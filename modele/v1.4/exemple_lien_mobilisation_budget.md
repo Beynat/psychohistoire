@@ -1,6 +1,6 @@
 # Exemple de lien et de chaîne de jalons (protocole v1.4, section 10)
 
-**Statut : illustratif.** Ce document montre la structure sur un lien réel de la piste exploratoire. Les vraisemblances ne sont pas estimées : elles le seront par les évaluateurs (section 10.6). Les fenêtres parlementaires sont à vérifier sur l'ordre du jour de l'Assemblée avant tout gel.
+**Statut : illustratif, établi sous la v1.4 et dépassé sur plusieurs points.** Depuis la v1.6 : intensité à trois niveaux sur un nœud racine indépendant de la mobilisation, plus de statut « en retard » ni de plafond hebdomadaire, calcul continu en cours de fenêtre, jalons J5 et J6 à reclasser en « état aval », jalons inactifs par défaut. La relecture 3 (D1, D2) explique pourquoi. Ce document montre la structure sur un lien réel de la piste exploratoire. Les vraisemblances ne sont pas estimées : elles le seront par les évaluateurs (section 10.6). Les fenêtres parlementaires sont à vérifier sur l'ordre du jour de l'Assemblée avant tout gel.
 
 ## Lien L-04-01 : mobilisation contre le budget → budget 2027
 

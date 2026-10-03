@@ -3,7 +3,7 @@ name: Version du protocole
 # Crée automatiquement le tag et la release « protocole-vX.Y » dès qu'une nouvelle
 # version de modele/protocole.md arrive sur main. Le numéro est lu sur la première ligne.
 # Si le texte change sans changement de numéro, le contrôle échoue : toute modification
-# du protocole doit créer une version (protocole, section 11).
+# du protocole doit créer une version (protocole, section 12).
 
 on:
   push:

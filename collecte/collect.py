@@ -164,18 +164,23 @@ def main():
 
 
 
-# --- Veille d'actualité (protocole v1.3, section 10.2) : titres seulement, sans IA ---
+# --- Veille d'actualité (protocole v1.6, section 11.2) : titres seulement, sans IA ---
+# La collecte n'écrit que data/veille.json. Les décisions de tri sont dans data/tri.json,
+# écrit par l'agent de tri et seulement lu ici : un titre non trié n'est jamais purgé.
 VEILLE = Path(__file__).resolve().parent.parent / "data" / "veille.json"
+TRI = Path(__file__).resolve().parent.parent / "data" / "tri.json"
 FLUX = {
     "franceinfo · politique": "https://www.francetvinfo.fr/politique.rss",
     "franceinfo · économie": "https://www.francetvinfo.fr/economie.rss",
     "franceinfo · société": "https://www.francetvinfo.fr/societe.rss",
     "Le Monde · politique": "https://www.lemonde.fr/politique/rss_full.xml",
     "Le Monde · économie": "https://www.lemonde.fr/economie/rss_full.xml",
+    "LCP · Assemblée nationale": "https://lcp.fr/rss.xml",
+    "Public Sénat": "https://www.publicsenat.fr/feed",
 }
 
 
-def veille(jours=10, maxi=400):
+def veille(jours=10):
     import xml.etree.ElementTree as ET
     from email.utils import parsedate_to_datetime
     old = []
@@ -184,6 +189,12 @@ def veille(jours=10, maxi=400):
             old = json.loads(VEILLE.read_text("utf-8")).get("items", [])
         except ValueError:
             old = []
+    tries = set()
+    if TRI.exists():
+        try:
+            tries = set(json.loads(TRI.read_text("utf-8")).get("decides", []))
+        except ValueError:
+            tries = set()
     vus = {i["lien"] for i in old}
     statut, neufs = {}, []
     for nom, url in FLUX.items():
@@ -191,28 +202,29 @@ def veille(jours=10, maxi=400):
             root = ET.fromstring(get(url).encode("utf-8"))
             n = 0
             for it in root.iter("item"):
-                lien = (it.findtext("link") or "").strip()
+                lien = (it.findtext("link") or "").strip().split("#xtor")[0]
                 if not lien or lien in vus:
                     continue
                 try:
                     date = parsedate_to_datetime(it.findtext("pubDate")).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
                 except Exception:
                     date = None
-                neufs.append({"source": nom, "titre": (it.findtext("title") or "").strip(), "lien": lien,
-                              "date": date, "trie": False})
+                neufs.append({"source": nom, "titre": (it.findtext("title") or "").strip(), "lien": lien, "date": date})
                 vus.add(lien)
                 n += 1
             statut[nom] = f"ok ({n} nouveaux)"
         except Exception as exc:
             statut[nom] = f"echec: {type(exc).__name__}"
     limite = datetime.now(timezone.utc).timestamp() - jours * 86400
-    def recent(i):
+
+    def garder(i):
+        if i["lien"] not in tries:  # jamais purgé tant qu'il n'est pas trié
+            return True
         try:
             return datetime.strptime(i["date"], "%Y-%m-%dT%H:%MZ").replace(tzinfo=timezone.utc).timestamp() >= limite
         except Exception:
             return True
-    items = sorted([i for i in old + neufs if recent(i) or not i.get("trie")],
-                   key=lambda i: i.get("date") or "", reverse=True)[:maxi]
+    items = sorted([i for i in old + neufs if garder(i)], key=lambda i: i.get("date") or "", reverse=True)
     VEILLE.write_text(json.dumps({"execution": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
                                   "flux": statut, "items": items}, ensure_ascii=False, indent=1), "utf-8")
     print("veille:", statut)

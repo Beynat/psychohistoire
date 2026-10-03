@@ -1,0 +1,40 @@
+name: Contrôle des registres
+
+# Vérifie que les registres de prévisions et les décisions de tri ne sont modifiés
+# que par ajout (protocole, sections 0 et 12). Échoue si une ligne existante est
+# supprimée ou réécrite.
+
+on:
+  push:
+    branches: [main]
+    paths: ["registre/**", "modele/jalons/**"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  ajout-seul:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Aucune ligne supprimée ni modifiée
+        env:
+          AVANT: ${{ github.event.before }}
+        run: |
+          if [ -z "$AVANT" ] || ! git cat-file -e "$AVANT^{commit}" 2>/dev/null || [ "$AVANT" = "0000000000000000000000000000000000000000" ]; then
+            AVANT=$(git rev-parse HEAD~1)
+          fi
+          echc=0
+          for f in $(git diff --name-only "$AVANT" HEAD -- registre modele/jalons); do
+            if git cat-file -e "$AVANT:$f" 2>/dev/null; then
+              supp=$(git diff --unified=0 "$AVANT" HEAD -- "$f" | grep -E '^-[^-]' | wc -l)
+              if [ "$supp" -gt 0 ]; then
+                echo "::error file=$f::$supp ligne(s) supprimée(s) ou modifiée(s) : les registres sont en ajout seul. Corriger par une ligne d'erratum."
+                echc=1
+              fi
+            fi
+          done
+          exit $echc

@@ -1454,9 +1454,9 @@
    "url": "https://www.franceinfo.fr/societe/education/blocage-des-lycees/un-lycee-calcine-en-plein-paris-en-marge-du-mouvement-lyceen_8221216.html",
    "confiance": "forte",
    "traitement": {
-    "cas": "c",
+    "cas": "a",
     "noeud": "PV-04",
-    "motif": "Faits établis qui renseignent la mobilisation sans la trancher. Les évaluateurs divergent sur le sens : les violences et les concessions précèdent souvent l'essoufflement (2018), mais la tension reste forte (2006). L'effet net est faible."
+    "motif": "Sans effet après panel : les trois évaluateurs divergent de signe et la moyenne est indiscernable de zéro (seuil d'application, protocole v1.6). La mise à jour MAJ-001, appliquée d'abord, a été annulée. Le fait mêlait des éléments de sens opposés, qu'il aurait fallu évaluer séparément."
    }
   },
   {
@@ -1497,14 +1497,15 @@
    "url": "https://www.franceinfo.fr/politique/jordan-bardella/la-demission-doit-aller-de-soi-les-adversaires-du-rn-appellent-jordan-bardella-a-tirer-des-consequences-des-nouvelles-revelations-de-mediapart_8218915.html",
    "confiance": "forte",
    "traitement": {
-    "cas": "d",
-    "motif": "Ne change pas la décision de la Cour de cassation, donc pas la candidature de Marine Le Pen. Il modifie les chances du RN dans l'hypothèse d'un autre candidat (lignes « autre RN » de la présidentielle). L'effet sur l'opinion sera lu dans les sondages, pas estimé.",
+    "cas": "f",
+    "motif": "En observation : le fait est contesté (plainte pour faux) et son effet passe d'abord par les sondages, qu'on attend. Réexamen le 17 octobre 2026.",
     "integre": true,
     "noeud": "PV-02",
     "portee": [
      "PV-06",
      "PV-02"
-    ]
+    ],
+    "reexamen": "2026-10-17"
    }
   },
   {
@@ -1576,8 +1577,8 @@
    "url": "https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012",
    "confiance": "forte",
    "traitement": {
-    "cas": "b",
-    "motif": "Donnée : relevé de l'écart de taux, appliqué au sous-indicateur. Le réseau a été estimé avec ce niveau.",
+    "cas": "f",
+    "motif": "En observation : la source citée est secondaire. La série primaire collectée (BCE, moyenne mensuelle) donne 82 pb en août ; la valeur de septembre est attendue.",
     "integre": true
    }
   },
@@ -1616,10 +1617,10 @@
    ],
    "source": "CGT",
    "url": "https://www.cgt.fr/29-septembre-2026",
-   "confiance": "moyenne",
+   "confiance": "faible",
    "traitement": {
     "cas": "c",
-    "motif": "Renseigne la mobilisation, sans la trancher.",
+    "motif": "Indice, confiance faible : le comptage de 206 000 manifestants vient d'un syndicat, partie prenante. Il ne peut pas servir de donnée.",
     "integre": true,
     "noeud": "PV-04"
    }
@@ -1814,6 +1815,11 @@
  "journal": [
   {
    "date": "2026-10-03",
+   "type": "Correction",
+   "texte": "Application du protocole v1.6 à la piste exploratoire : MAJ-001 annulée (évaluateurs de signes opposés), affaire Bardella et écart de taux à 120 pb placés en observation, comptage syndical ramené au rang d'indice. Le registre reçoit des lignes d'annulation et d'erratum, sans réécriture."
+  },
+  {
+   "date": "2026-10-03",
    "type": "Mise à jour",
    "texte": "Premier tri de l'actualité (87 titres) et première mise à jour événementielle (MAJ-001, mouvement lycéen) : trois évaluations indépendantes, rapport de vraisemblance 1,16 ; mobilisation d'ampleur de 36 à 39 %, budget adopté de 52 à 51 %. Les faits antérieurs sont classés selon le protocole v1.3."
   },
@@ -1928,7 +1934,12 @@
      "classe": "CPE 2006 : perturbations massives pendant trois mois, journées de 500 000 à 700 000 manifestants.",
      "texte": "Escalade et soutiens élargis indiquent un mouvement montant, freiné par l'absence d'appel interprofessionnel et les vacances."
     }
-   ]
+   ],
+   "statut": "annulée",
+   "annulation": {
+    "date": "2026-10-03",
+    "motif": "Seuil d'application du protocole v1.6 non atteint : évaluateurs de signes opposés (0,85 ; 1,15 ; 1,6), moyenne à 0,8 erreur type de zéro. Le fait réunissait en outre des éléments de valences opposées (incendies, concessions)."
+   }
   }
  ],
  "tris": [
