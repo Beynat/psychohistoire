@@ -7,3 +7,7 @@ Projet personnel, théorique et récréatif, inspiré de la psychohistoire d'Isa
 - `data/collecte.json` : données ouvertes collectées chaque nuit, sans IA, par `collecte/collect.py` (GitHub Actions).
 
 Aucune de ces probabilités ne constitue un conseil.
+
+## Méthode
+
+Le protocole scientifique en vigueur est `modele/protocole.md` (version taguée), avec son journal (`modele/journal.md`) et les relectures externes (`modele/v1.2/`). Les probabilités affichées actuellement par la page relèvent de la **piste exploratoire** (v0, v0.2), produite avant le protocole et notée à part.
