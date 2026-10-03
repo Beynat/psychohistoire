@@ -1,13 +1,13 @@
 name: Contrôle des registres
 
-# Vérifie que les registres de prévisions et les décisions de tri ne sont modifiés
+# Vérifie que les registres de prévisions, les journaux de jalons et les décisions de tri ne sont modifiés
 # que par ajout (protocole, sections 0 et 12). Échoue si une ligne existante est
 # supprimée ou réécrite.
 
 on:
   push:
     branches: [main]
-    paths: ["registre/**", "modele/jalons/**"]
+    paths: ["registre/**", "modele/jalons/**", "data/tri/**"]
   workflow_dispatch: {}
 
 permissions:
@@ -28,7 +28,7 @@ jobs:
             AVANT=$(git rev-parse HEAD~1)
           fi
           echc=0
-          for f in $(git diff --name-only "$AVANT" HEAD -- registre modele/jalons); do
+          for f in $(git diff --name-only "$AVANT" HEAD -- registre modele/jalons data/tri); do
             if git cat-file -e "$AVANT:$f" 2>/dev/null; then
               supp=$(git diff --unified=0 "$AVANT" HEAD -- "$f" | grep -E '^-[^-]' | wc -l)
               if [ "$supp" -gt 0 ]; then

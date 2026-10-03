@@ -164,11 +164,11 @@ def main():
 
 
 
-# --- Veille d'actualité (protocole v1.6, section 11.2) : titres seulement, sans IA ---
-# La collecte n'écrit que data/veille.json. Les décisions de tri sont dans data/tri.json,
+# --- Veille d'actualité (protocole v1.7, section 11.2) : titres seulement, sans IA ---
+# La collecte n'écrit que data/veille.json. Les décisions de tri sont dans data/tri/AAAA-MM.json,
 # écrit par l'agent de tri et seulement lu ici : un titre non trié n'est jamais purgé.
 VEILLE = Path(__file__).resolve().parent.parent / "data" / "veille.json"
-TRI = Path(__file__).resolve().parent.parent / "data" / "tri.json"
+TRI = Path(__file__).resolve().parent.parent / "data" / "tri"
 FLUX = {
     "franceinfo · politique": "https://www.francetvinfo.fr/politique.rss",
     "franceinfo · économie": "https://www.francetvinfo.fr/economie.rss",
@@ -190,11 +190,11 @@ def veille(jours=10):
         except ValueError:
             old = []
     tries = set()
-    if TRI.exists():
+    for f in sorted(TRI.glob("*.json")) if TRI.exists() else []:
         try:
-            tries = set(json.loads(TRI.read_text("utf-8")).get("decides", []))
+            tries |= set(json.loads(f.read_text("utf-8")).get("decides", []))
         except ValueError:
-            tries = set()
+            pass
     vus = {i["lien"] for i in old}
     statut, neufs = {}, []
     for nom, url in FLUX.items():

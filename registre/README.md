@@ -5,4 +5,6 @@ Fichiers en ajout seul : une ligne JSON par prévision émise. Une ligne n'est j
 - `exploratoire.jsonl` : piste exploratoire (v0, v0.2 et ses mises à jour). Notée à part.
 - `protocole.jsonl` : piste protocole, vide jusqu'au premier cycle (1er novembre 2026 au plus tôt).
 
-Champs : `question`, `emise` (date et heure), `probabilites` (en %), `piste`, `origine` (estimation initiale, cycle mensuel ou mise à jour événementielle), `donnees` (état des données utilisé).
+Champs (protocole, section 0) : `question`, `emise` (date et heure), `probabilites` (en %), `piste` (et `phase` pour la piste protocole), `origine` (estimation initiale, cycle mensuel, jalon ou fait imprévu, avec sa référence), `donnees` (commit ou état des données gelées). Une erreur se corrige par une ligne d'erratum (`erratum: true`), jamais par réécriture.
+
+- `fantome.jsonl` : probabilités qu'auraient les nœuds si les jalons étaient actifs (section 10.6). Créé avec les premiers jalons.

@@ -11,6 +11,14 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [ ] `scripts/puissance.py` : simulation de puissance publiée avant le premier cycle (section 8.3).
 - [ ] `scripts/comparateurs.py` : persistance, taux de base, 50 % (section 8.4).
 
+## Données et questions
+
+- [ ] `modele/evenements.json` : événements et décisions de la phase 1, tirés du balayage v1, avec leurs critères de résolution (section 8.8).
+- [ ] Historique long des séries (au moins 2010-2025) pour les quantiles de la marche aléatoire (section 8.1) ; la collecte ne garde que 24 mois.
+- [ ] Collecte des cotes externes pour P1 : Polymarket et Metaculus, avec volume et écart entre offre et demande (section 4.5).
+- [ ] Taux de base des comparateurs, avec leurs deux classes de référence (sections 7.3 et 8.4).
+- [ ] Script de résolution : séries par script, événements sur source primaire, double résolution des cas ambigus (section 8.8).
+
 ## Ensemble direct
 
 - [ ] Consigne des cinq prévisionnistes rédigée et versionnée.
@@ -21,6 +29,8 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [ ] Tâches planifiées créées : tri (trois fois par semaine), cycle mensuel (section 12).
 - [ ] Règle de rattrapage testée sur un passage manqué simulé.
 - [ ] Workflow de contrôle des registres actif.
+- [ ] Branche `main` protégée contre la poussée forcée et la suppression (réglage GitHub, par Nathan).
+- [ ] Cycle à blanc mi-octobre sur la piste exploratoire, chaîne complète : gel, questions, prévisions, registre, notation.
 
 ## Prérequis de la phase 2 (1er décembre 2026)
 

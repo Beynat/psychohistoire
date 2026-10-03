@@ -1,7 +1,7 @@
-# Protocole Psychohistoire — version 1.6
+# Protocole Psychohistoire — version 1.7
 
-Statut : soumis à relecture (relecture 4). Rédigé le 3 octobre 2026, avant toute estimation produite selon ce protocole. Gelé jusqu'au bilan de la phase 1, sauf corrections exigées par une relecture (section 12).
-Remplace la version 1.5. Les changements répondent à la relecture 3 et sont justifiés dans `v1.6/reponse_relecture_3.md` et `journal.md`. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
+Statut : soumis à relecture (relecture 5). Rédigé le 3 octobre 2026, avant toute estimation produite selon ce protocole. Gelé jusqu'au bilan de la phase 1, sauf corrections exigées par une relecture (section 12).
+Remplace la version 1.6. Les changements répondent à la relecture 4 et sont justifiés dans `v1.7/reponse_relecture_4.md` et `journal.md`. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
 
 ## 0. Pistes et registres
 
@@ -74,7 +74,7 @@ L'impact d'un objet est l'effet, s'il se réalise (ou varie d'un écart-type his
 | 4 | 50 à 100 pb | 0,6 à 1,2 pt | 0,7 à 1,5 pt | 10 à 20 pts | 10 à 20 pts |
 | 5 | > 100 pb | > 1,2 pt | > 1,5 pt | > 20 pts | > 20 pts |
 
-L'issue politique désigne la présidentielle jusqu'au 2 mai 2027, puis la majorité absolue à l'Assemblée.
+L'issue politique désigne la présidentielle jusqu'à son second tour, puis la majorité absolue à l'Assemblée.
 
 ### 5.3 Classement
 
@@ -147,7 +147,7 @@ Une grappe correspond à une variable source, ou à un lien pour les jalons et l
 
 1. **Persistance** : marche aléatoire à la volatilité historique pour les variables, taux de base de la période pour les événements (un statu quo à 0 % rendrait le score logarithmique infini).
 2. **Taux de base constant**, et **50 %**.
-3. **Références externes** sur P1 : prévision communautaire Metaculus ou prix Polymarket. Ce sont les seuls comparateurs extérieurs à la famille de modèles utilisée ; l'écart à ces références, mesuré avant calage, est publié à chaque bilan, même si le pool P1 ne sert pas aux critères d'échec. Si son signe est systématique (test de signe au seuil de 10 %), les estimations de P2 sont corrigées d'un décalage moyen en log-cotes à l'analyse trimestrielle, avec trace.
+3. **Références externes** sur P1 : prévision communautaire Metaculus ou prix Polymarket. Ce sont les seuls comparateurs extérieurs à la famille de modèles utilisée ; l'écart à ces références, mesuré avant calage, est publié à chaque bilan, même si le pool P1 ne sert pas aux critères d'échec. Si son signe est systématique (test de signe au seuil de 10 %), les estimations de P2 du modèle et de l'ensemble direct sont corrigées du même décalage moyen en log-cotes à l'analyse trimestrielle, avec trace. Les critères de la section 8.6 sont jugés sur les estimations non corrigées.
 4. **Ensemble direct** : au moins cinq prévisionnistes IA avec recherche, médiane non extrémisée.
 5. **Modèle témoin** : mêmes marginales, nœuds indépendants, sans dépendances.
 
@@ -163,12 +163,20 @@ Une grappe correspond à une variable source, ou à un lien pour les jalons et l
 - **Calibration.** Si l'erreur de calibration dépasse le 90e centile de sa distribution simulée sous calibration parfaite, au même nombre de questions, les probabilités sont recalibrées et la cause est cherchée.
 - **Persistance.** Si la persistance bat le modèle sur P2 au seuil de 10 %, le projet est déclaré en échec méthodologique.
 
+Ces critères portent sur les estimations non corrigées du biais commun (section 8.4).
+
 **Calendrier attendu.** Le réseau démarre au plus tard le 1er janvier 2027 ; seules 10 à 15 grappes seront résolues avant le premier tour de la présidentielle. Les 40 grappes devraient être atteintes vers septembre 2027. Le verdict tombera donc après l'élection, et avec une puissance limitée (environ 55 à 68 % pour un écart de Brier de 0,02, selon la simulation de la relecture 3) : le retour par défaut à la phase 2 est probable, même si la structure est bonne.
 
 ### 8.7 Tests sur le passé
 
 - **Composantes statistiques :** rétro-test sur 2010-2025.
-- **Jugement :** questions ouvertes publiquement avant le 1er juillet 2026 et résolues ensuite. Pas de recherche web : un script constitue, pour chaque question, un dossier figé à partir de captures archivées datées d'avant son ouverture (Internet Archive). Une question dont le dossier ne peut être constitué est écartée. La coupure de chaque modèle est vérifiée par sondage de faits datés. Le résultat fixe le plancher de dispersion (section 4.4).
+- **Jugement :** questions ouvertes publiquement avant le 1er juillet 2026 et résolues ensuite. Pas de recherche web : un script constitue, pour chaque question, un dossier figé à partir de captures archivées datées d'avant son ouverture (Internet Archive). Le choix des pages est mécanique : le texte de la question, plus une liste fixe de pages (articles Wikipédia en français et en anglais des entités nommées dans la question, pages d'accueil de franceinfo et du Monde) à la date d'ouverture. Une question dont le dossier ne peut être constitué est écartée. Le test porte sur au moins 50 questions. La coupure de chaque modèle est vérifiée par sondage de faits datés. Le résultat fixe le plancher de dispersion (section 4.4).
+
+### 8.8 Résolution des questions
+
+- **Banque d'événements de la phase 1.** Avant le 1er novembre 2026, un fichier `modele/evenements.json` fixe la liste des événements et décisions suivis en phase 1, tirée du balayage v1, avec leurs critères de résolution (déjà écrits dans `modele/v1/fusion.md`). Il est commité avant le premier cycle et ne change qu'à l'analyse trimestrielle, par ajout.
+- **Qui résout.** Les questions sur des séries sont résolues par script, sur la série collectée. Les questions sur des événements le sont sur une source primaire officielle (Journal officiel, Assemblée nationale, Conseil constitutionnel, ministère), citée avec sa date.
+- **Cas ambigu.** Deux agents résolvent indépendamment. S'ils divergent, un troisième tranche. Si le désaccord persiste ou si la source primaire manque 30 jours après l'échéance, la question est annulée pour tous les comparateurs, avec motif.
 
 ## 9. Scénarios
 
@@ -199,8 +207,9 @@ Un pivot ne bascule pas d'un coup : ce qui y mène passe par des étapes observa
 | Fenêtre | Date de début et date de fin, ancrées sur le calendrier institutionnel quand il existe, sinon estimées et signalées comme telles |
 | Niveau | 1 : pivot ; 2 : jalon structurant ; 3 : jalon fin |
 | Type | État amont (renseigne A), transmission (renseigne M), état aval (renseigne B même si A était faux) |
+| Porte sur | Pour un jalon de transmission : la présence du mécanisme (M non nulle contre nulle) ou sa force (forte contre faible) |
 | Rôle | Nécessaire si a ≥ 0,95, sinon favorable |
-| Vraisemblances | a = P(observé dans la fenêtre si l'hypothèse est vraie) et b = P(observé si elle est fausse). L'hypothèse est A pour un jalon d'état amont, M non nulle pour un jalon de transmission, l'issue favorisée de B pour un jalon d'état aval. Deux couples (a, b) sont donnés : sachant le jalon précédent de la chaîne observé, et sachant qu'il est manqué |
+| Vraisemblances | a = P(observé dans la fenêtre si l'hypothèse est vraie) et b = P(observé si elle est fausse). L'hypothèse est A pour un jalon d'état amont, M non nulle (ou M forte, pour un jalon de force) pour un jalon de transmission, l'issue favorisée de B pour un jalon d'état aval. Trois couples (a, b) sont donnés : sachant le jalon précédent de la chaîne observé ; sachant qu'il est manqué ; sachant qu'il n'est pas encore résolu ou qu'il est invalidé (et pour le premier jalon de la chaîne) |
 | Statut | Attendu, en cours, observé, manqué, invalidé |
 | Définition | Date de définition et niveau de l'indicateur à cette date ; toute modification est journalisée |
 
@@ -219,7 +228,7 @@ Un pivot ne bascule pas d'un coup : ce qui y mène passe par des étapes observa
 - **Observé :** rapport a / b.
 - **En cours :** rapport (1 − a·F(t)) / (1 − b·F(t)), où F(t) est la part de la fenêtre écoulée, en supposant une date d'observation uniforme dans la fenêtre. Le calcul est fait par script. Il n'y a donc pas de chute à la clôture : la non-observation compte au fur et à mesure.
 - **Manqué :** rapport (1 − a) / (1 − b), atteint à la clôture.
-- **Réduction contre le bruit.** Tous les log-rapports sont multipliés par un facteur k ≤ 1, calé sur le test du jugement (section 8.7). Il n'y a pas de plafond hebdomadaire.
+- **Réduction contre le bruit.** Tous les log-rapports sont multipliés par un facteur k ≤ 1. Tant qu'il n'est pas estimé, k = 0,5, valeur déclarée arbitraire. Il est estimé sur le registre fantôme (section 10.6) par régression logistique de l'issue sur le log-rapport proposé, avec la log-cote de la probabilité avant en décalage : le coefficient est k. Il n'y a pas de plafond hebdomadaire.
 - **Pivots à échéance.** Un événement qui doit survenir avant une date garde sa décroissance propre (taux mensuel, section 7.4), indépendamment des jalons.
 
 ### 10.5 Double compte
@@ -227,17 +236,14 @@ Un pivot ne bascule pas d'un coup : ce qui y mène passe par des étapes observa
 - **Indicateur exclusif.** Un indicateur ne sert de preuve qu'à un seul jalon et un seul lien. S'il en renseigne plusieurs, son log-rapport est partagé par des poids fixés à l'avance, dont la somme vaut 1.
 - **Pas de jalon sur une résolution.** Un indicateur qui tranche un nœud est traité comme une donnée (section 11.3, cas b), jamais comme jalon.
 - **État aval.** Un jalon d'état aval agit sur B comme preuve virtuelle, jamais sur le lien.
-- **Priorité du jalon.** Un fait prévu comme jalon est traité par le jalon, jamais aussi comme fait imprévu (section 11).
+- **Priorité du jalon.** Quand les jalons sont actifs, un fait prévu comme jalon est traité par le jalon, jamais aussi comme fait imprévu. Tant qu'ils sont inactifs, un jalon observé ou manqué est renvoyé à la section 11 comme un fait ordinaire (panel, seuil, plafond) ; ses vraisemblances gelées ne servent qu'au registre fantôme. Définir un jalon ne peut donc pas neutraliser un fait décisif.
 
 ### 10.6 Activation
 
 - **Par défaut.** Les jalons sont affichés et notés en P2d, sans effet sur les probabilités du réseau.
-- **Activation.** Elle est décidée à l'analyse trimestrielle, quand trois conditions sont réunies :
-  - au moins 30 jalons sont résolus, tous liens confondus ;
-  - leur erreur de calibration est sous le 90e centile de sa distribution simulée sous calibration parfaite ;
-  - leur score de Brier bat celui de la fréquence de base des jalons.
-- **Exception.** Un lien dont les jalons font moins bien que la fréquence de base reste inactif.
-- **Désactivation.** Elle suit la même règle, appliquée à chaque analyse trimestrielle.
+- **Registre fantôme.** Chaque semaine, un script calcule la probabilité qu'auraient les nœuds si les jalons étaient actifs, avec k courant. Ces probabilités sont enregistrées dans `registre/fantome.jsonl`, en ajout seul ; ce sont aussi celles de l'affichage « indicatif ». Chaque changement hebdomadaire est une mise à jour fantôme.
+- **Activation.** Décidée à l'analyse trimestrielle quand la statistique de direction Z (section 10.11), calculée sur les mises à jour fantômes résolues, est significative au seuil unilatéral de 10 %, avec au moins 30 mises à jour résolues.
+- **Désactivation.** Même statistique, calculée sur les mises à jour réelles une fois les jalons actifs (section 10.11).
 
 ### 10.7 Périmètre et définition
 
@@ -247,7 +253,7 @@ Un pivot ne bascule pas d'un coup : ce qui y mène passe par des étapes observa
   - Un jalon est défini et commité au moins 7 jours avant l'ouverture de sa fenêtre.
   - Son seuil ne doit pas avoir été atteint dans les 30 jours précédant sa définition, faute de quoi il ne renseigne rien.
   - Un jalon ajouté en cours de route ne porte que sur une fenêtre future.
-  - Le contrôle des registres (section 12) vérifie que les fichiers de jalons ne sont modifiés que par ajout, sauf champs de statut.
+  - Les définitions de jalons (`modele/jalons/definitions.jsonl`) et leurs statuts (`modele/jalons/statuts.jsonl`) sont deux journaux séparés en ajout seul, vérifiés par le contrôle des registres (section 12).
 - **Révision.** Une fenêtre ne peut être déplacée que si le calendrier institutionnel change (report d'un vote, par exemple), avec la source. Le changement est journalisé.
 
 ### 10.8 Routine hebdomadaire
@@ -274,7 +280,7 @@ Chaque jalon est une question : « J est-il observé dans sa fenêtre ? ». Ces 
 
 ### 10.11 Critère de maintien
 
-Une fois les jalons actifs, on juge la direction de leurs mises à jour : la part de celles qui rapprochent la probabilité de l'issue finalement réalisée, comparée à 50 % par un test de signe. Si cette part n'est pas significativement supérieure à 50 % au seuil de 10 %, à 40 mises à jour, les jalons redeviennent inactifs. Cela ne demande aucune piste parallèle.
+On juge la direction des mises à jour par la statistique Z = Σ d (y − p) / √(Σ d² p (1 − p)), où, pour chaque mise à jour, d est le déplacement de la probabilité, p la probabilité avant et y l'issue réalisée (0 ou 1). Sous l'hypothèse de mises à jour sans information, Z suit approximativement une loi normale centrée réduite, quel que soit p. Une fois les jalons actifs, si Z n'est pas significatif au seuil unilatéral de 10 % à 40 mises à jour résolues, les jalons redeviennent inactifs (puissance attendue d'environ 51 à 55 %, selon la simulation de la relecture 4). Aucune piste parallèle n'est nécessaire.
 
 ## 11. Faits imprévus
 
@@ -297,7 +303,7 @@ Le modèle doit réagir à l'actualité en jours, sans réagir au bruit. Les fai
   - regroupe les titres par fait, en supprimant les doublons ;
   - rattache chaque fait à un jalon attendu, à un nœud ou à rien.
 
-  Il ne juge pas la matérialité : c'est le rôle du panel (section 11.4). Les décisions de tri sont écrites dans `data/tri.json`, que la collecte ne modifie pas.
+  Il ne juge pas la matérialité : c'est le rôle du panel (section 11.4). Les décisions de tri sont écrites dans un fichier par mois, `data/tri/AAAA-MM.json`, en ajout seul, que la collecte lit sans le modifier.
 - **Trace.** Toute décision est consignée, y compris « non rattaché », avec son motif.
 - **Contrôle du tri.** Chaque trimestre, un second modèle réexamine 60 faits non rattachés tirés au sort. Plus de 10 % de faux négatifs (borne inférieure de l'intervalle à 80 % au-dessus de 5 %) entraînent une révision de la consigne de tri.
 
@@ -308,7 +314,7 @@ Le modèle doit réagir à l'actualité en jours, sans réagir au bruit. Les fai
 | a. Sans effet | Non rattaché, ou effet jugé nul par le panel | Consigné avec motif |
 | b. Donnée | Le fait résout un nœud ou mesure une variable, selon une source primaire officielle ou la collecte | Le nœud est fixé à son issue et le réseau propagé. Aucun jugement |
 | c. Évidence | Le fait renseigne un nœud non résolu, par un canal qu'aucune donnée ne mesure | Preuve virtuelle (section 11.4) |
-| d. Paramètre | Le fait changerait encore l'enfant si le parent était connu : il modifie une relation, pas la probabilité d'un nœud | Révision ciblée des lignes concernées, avec le même plafond, le même seuil d'application et les mêmes garde-fous que le cas c. Les évaluateurs ne voient pas la ligne actuelle au premier tour |
+| d. Paramètre | Le fait changerait encore l'enfant si le parent était connu : il modifie une relation, pas la probabilité d'un nœud | Révision ciblée des lignes concernées, avec le même plafond, le même seuil d'application et les mêmes garde-fous que le cas c. Un seul tour ; les évaluateurs ne voient pas la ligne actuelle |
 | e. Hors modèle | Aucun nœud ne correspond | Question ad hoc prévue directement, notée dans un pool séparé. Nœud candidat à l'analyse trimestrielle |
 | f. En observation | Fait contesté, ou dont l'effet passe d'abord par une donnée à venir | Aucune mise à jour ; date de réexamen fixée |
 
@@ -320,9 +326,9 @@ Le modèle doit réagir à l'actualité en jours, sans réagir au bruit. Les fai
   - Le fait est postérieur au gel de la dernière estimation du nœud.
   - Il est rattaché au nœud le plus en amont quand plusieurs nœuds sont concernés.
   - Le rapport est estimé sachant les faits déjà intégrés sur ce nœud, qui sont présentés aux évaluateurs.
-- **Estimation.** Trois évaluateurs aveugles, en un tour, estiment P(fait | issue) pour chaque issue, en citant au moins une classe de référence. Agrégation par moyenne des log-rapports.
-- **Seuil d'application.** Pas de mise à jour si les évaluateurs divergent de signe, ou si la moyenne des log-rapports est à moins de deux erreurs types de zéro. Le fait est alors classé sans effet, avec ce motif.
-- **Plafond.** Rapport entre 1/3 et 3 avec trois évaluateurs. Un fait jugé très diagnostique peut être porté à cinq évaluateurs, avec un plafond de 10.
+- **Estimation.** Cinq évaluateurs aveugles, en un tour, répartis sur au moins trois modèles, estiment P(fait | issue) pour chaque issue, en citant au moins une classe de référence. Agrégation par moyenne des log-rapports.
+- **Seuil d'application.** Pas de mise à jour si les évaluateurs divergent de signe, si la moyenne des log-rapports est à moins de deux erreurs types de zéro, ou si le rapport, après réduction par k, est compris entre 0,8 et 1,25. L'erreur type ne peut être inférieure à un plancher égal au plancher de dispersion (section 4.4), pour qu'un consensus de famille ne passe pas pour une preuve. Le fait est alors classé sans effet, avec ce motif.
+- **Plafond.** Rapport entre 1/3 et 3. Un fait jugé très diagnostique peut être porté à sept évaluateurs, avec un plafond de 10.
 - **Réduction.** Le facteur k (section 10.4) s'applique.
 
 ### 11.5 Garde-fous
@@ -342,23 +348,23 @@ Chaque mise à jour b, c ou d produit de nouvelles lignes de registre pour toute
 
 ### 11.7 Critère de maintien
 
-On juge la direction des mises à jour c et d : la part de celles qui rapprochent la probabilité de l'issue réalisée, ou de la donnée arrivée ensuite, comparée à 50 % par un test de signe. Si cette part n'est pas significativement supérieure à 50 % au seuil de 10 %, à 40 mises à jour, la couche est réduite aux cas b et f.
+On juge la direction des mises à jour c et d par la statistique Z de la section 10.11, sur les issues réalisées. Pour les mises à jour sur un canal mesuré ensuite par une donnée (sondage, série), on utilise un test de signe : la donnée arrivée ensuite a-t-elle bougé dans le sens de la mise à jour ? Si Z n'est pas significatif au seuil unilatéral de 10 % à 40 mises à jour résolues, la couche est réduite aux cas b et f.
 
 ### 11.8 Coût
 
 - **Tri :** un passage de modèle léger, trois fois par semaine.
-- **Cas c et d :** trois évaluateurs sur un seul nœud, cinq pour un fait très diagnostique.
+- **Cas c et d :** cinq évaluateurs sur un seul nœud, sept pour un fait très diagnostique.
 - **Plafond :** au plus huit mises à jour c ou d par mois. Au-delà, les faits sont regroupés au cycle mensuel.
 
 ## 12. Révisions, exécution et gouvernance
 
 - **Cycle mensuel.** Gel des données, génération des questions, prévisions, notation.
-- **Analyse trimestrielle.** Révision des paramètres, entrée ou sortie de nœuds, réexamen des révisions ciblées, activation des jalons (section 10.6), correction du biais commun (section 8.4). Le tout est tracé.
+- **Analyse trimestrielle.** Révision des paramètres, entrée ou sortie de nœuds, réexamen des révisions ciblées, activation des jalons et estimation de k (sections 10.4 et 10.6), correction du biais commun (section 8.4). Le tout est tracé.
 - **Déclencheurs.**
   - La collecte nocturne, la pose des tags et le contrôle des registres passent par GitHub Actions.
   - Le tri, la routine hebdomadaire, le cycle mensuel et l'analyse trimestrielle passent par des tâches planifiées de Claude, créées après le gel.
 - **Rattrapage.** Un passage manqué est rattrapé au passage suivant, en conservant la date des faits. Au-delà de 7 jours de retard, il est déclaré manqué au journal, sans prévision rétroactive.
-- **Registres.** Un workflow vérifie à chaque commit que les registres et les fichiers de jalons ne sont modifiés que par ajout de lignes.
+- **Registres.** Un workflow vérifie à chaque commit que les registres, les journaux de jalons et les décisions de tri ne sont modifiés que par ajout. La branche `main` est protégée contre la poussée forcée et la suppression, ce qui empêche de réécrire l'historique. Le contrôle d'ajout seul est détectif : un échec est visible publiquement et doit être corrigé par une ligne d'erratum.
 - **Protocole.**
   - Il ne change que par une nouvelle version, numérotée en première ligne et journalisée.
   - Le tag et la release `protocole-vX.Y` sont créés automatiquement au premier commit de la version sur `main`. Le contrôle échoue si le texte change sans nouveau numéro.
