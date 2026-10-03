@@ -147,6 +147,22 @@ footer{font-size:var(--s-sm);color:var(--muted)}
   h1.title{font-size:24px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+:root{--line-strong:#C9C8C2;--zone:rgba(120,110,80,.05);--zone-line:#D2CFC4}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--line-strong:#4A4A45;--zone:rgba(255,255,255,.03);--zone-line:#45443F}}
+:root[data-theme="dark"]{--line-strong:#4A4A45;--zone:rgba(255,255,255,.03);--zone-line:#45443F}
+.tag.z{background:var(--zone);color:var(--muted);border:1px dashed var(--zone-line)}
+.apres{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:var(--s-sm);color:var(--muted);background:var(--zone);border:1px dashed var(--zone-line);border-radius:6px;padding:5px 10px}
+.apres .zl{font-weight:700}
+.per{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px}
+.zonebox{background:var(--zone);border:1px dashed var(--zone-line);border-radius:10px;padding:2px 12px 12px;margin-top:16px}
+.ncard{display:flex;flex-direction:column;gap:7px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);margin-bottom:8px}
+.crit-l{color:var(--accent);font-weight:700}
+.zonesec{background:var(--zone);border:1px dashed var(--zone-line);border-radius:12px;padding:4px 16px 16px}
+.svgw svg{min-width:760px}
+tr.old td{color:var(--muted)}
+.desk{display:block}
+@media (max-width:860px){.desk{display:none}}
 </style>
 </head>
 <body>
@@ -160,29 +176,32 @@ footer{font-size:var(--s-sm);color:var(--muted)}
 <script>
 document.documentElement.lang="fr";
 const NAV=[
-  ["vue","Vue d'ensemble",[["synthese","Synthèse"],["cartographie","Scénarios"]]],
+  ["vue","Vue d'ensemble",[["synthese","Synthèse"],["carte","Carte des pivots"]]],
   ["ind","Indicateurs",[["indicateurs","Indicateurs structurels"],["sous-indicateurs","Sous-indicateurs"]]],
   ["suivi","Suivi",[["pivots","Moments pivots"],["actualite","Actualité"],["previsions","Prévisions"]]],
   ["ref","Référence",[["precedents","Précédents"],["methodologie","Méthode et glossaire"]]]
 ];
-let D=null,C=null;
+let D=null,C=null,M=null;
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fr=(n,d=1)=>Number(n).toLocaleString("fr-FR",{minimumFractionDigits:d,maximumFractionDigits:d});
 const P=n=>`${n} %`;
 const dfr=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(Date.UTC(y,m-1,d)).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"})};
 const median=a=>{const s=[...a].sort((x,y)=>x-y);return s.length%2?s[(s.length-1)/2]:(s[s.length/2-1]+s[s.length/2])/2};
-function to100(v){const t=v.reduce((a,b)=>a+b,0);const raw=v.map(x=>x*100/t);const fl=raw.map(Math.floor);let r=100-fl.reduce((a,b)=>a+b,0);raw.map((x,i)=>[x-fl[i],i]).sort((a,b)=>b[0]-a[0]).forEach(([,i])=>{if(r>0){fl[i]++;r--}});return fl}
+function to100(v){const t=v.reduce((a,b)=>a+b,0)||1;const raw=v.map(x=>x*100/t);const fl=raw.map(Math.floor);let r=100-fl.reduce((a,b)=>a+b,0);raw.map((x,i)=>[x-fl[i],i]).sort((a,b)=>b[0]-a[0]).forEach(([,i])=>{if(r>0){fl[i]++;r--}});return fl}
 
-/* --- glossaire : termes colorés, définition au survol ou au toucher --- */
+/* --- glossaire --- */
 const G={
   "pivot":["Moment pivot","Événement à fort impact dont l'issue n'est pas écrite d'avance, décliné en hypothèses auxquelles on attribue une probabilité."],
-  "sous-pivot":["Sous-pivot","Moment pivot qui en conditionne un autre : ici, l'issue du budget 2027 modifie les probabilités de la présidentielle."],
+  "sous-pivot":["Sous-pivot","Moment pivot qui en conditionne un autre : ses issues changent les probabilités du pivot situé en aval."],
+  "anticipé":["Pivot anticipé","Crise qui n'a pas encore eu lieu mais dont les signaux sont visibles, comme une mobilisation sociale contre le budget."],
+  "projection":["Projection","Pivot postérieur à l'élection, jusqu'en septembre 2028. Il est calculé à partir des issues de la présidentielle."],
+  "sensibilite":["Écart d'influence","Variation, en points, de l'issue principale d'un pivot selon l'issue du pivot amont. Plus l'écart est grand, plus le lien pèse."],
   "marge":["Marge","Distance entre la valeur actuelle et le prochain seuil. Plus elle est faible, plus un petit choc suffit à changer d'état."],
-  "critique":["Chemin critique","L'enchaînement d'issues le plus probable, qui passe par les mesures les plus proches de leur seuil."],
-  "calcule":["Probabilité calculée","Elle n'est pas estimée directement : elle découle des probabilités conditionnelles à l'issue du budget 2027."],
+  "critique":["Chemin critique","Les liens où l'issue d'un pivot amont fait le plus varier le pivot aval, et qui mènent au scénario dominant."],
+  "calcule":["Probabilité calculée","Elle n'est pas estimée directement : elle combine les probabilités conditionnelles de tout le réseau de pivots."],
   "mediane":["Médiane de trois","Trois agents estiment chaque probabilité sans voir les réponses des autres ; on retient la valeur du milieu."],
-  "fourchette":["Fourchette","Plus petite et plus grande des trois estimations. Une fourchette large signale un désaccord entre estimateurs."],
+  "fourchette":["Fourchette","Résultat le plus bas et le plus haut parmi les trois estimateurs, calculés chacun sur tout le réseau."],
   "note":["Note sur 10","Moyenne des sous-indicateurs, chacun noté selon sa position entre des seuils fixés à l'avance. Plus elle est haute, plus la situation est tendue."],
   "externe":["Référence externe","Estimation publique (marché de prédiction, modèle de sondages) relevée après les nôtres, pour comparer les résultats."],
   "confiance":["Confiance","Qualité de la mesure : forte pour une statistique officielle, moyenne pour une source secondaire ou unique."],
@@ -196,6 +215,7 @@ const G={
   "LFI":["LFI","La France insoumise, parti de gauche radicale. Candidat déclaré : Jean-Luc Mélenchon."],
   "LR":["LR","Les Républicains, parti de droite. Candidat désigné : Bruno Retailleau."],
   "PS":["PS","Parti socialiste. Son candidat sera désigné par une primaire avec Place publique les 9 et 10 octobre 2026."],
+  "APL":["APL","Aide personnalisée au logement. Le budget 2027 prévoit de la supprimer pour environ 200 000 étudiants."],
   "loi spéciale":["Loi spéciale","Loi votée en urgence quand le budget n'est pas adopté au 31 décembre : l'État peut lever l'impôt, mais sans mesure nouvelle."],
   "censure":["Motion de censure","Vote de l'Assemblée qui renverse le gouvernement s'il réunit la majorité absolue des députés, soit 289 voix."],
   "ordonnance":["Ordonnance budgétaire","Article 47 de la Constitution : sans vote du Parlement sous 70 jours, le gouvernement peut appliquer son budget par ordonnance."],
@@ -206,14 +226,14 @@ const G={
   "Brier":["Score de Brier","Écart au carré entre la probabilité annoncée et le résultat : 0 est parfait, 0,25 équivaut à répondre 50 % partout."],
   "taux de base":["Taux de base","Fréquence d'une issue dans les cas passés comparables. C'est le point de départ obligatoire de chaque estimation."]
 };
-const AUTO=["loi spéciale","taux de base","Maastricht","Polymarket","Metaculus","Sondax","censure","ordonnance","OAT","Bund","PIB","BCE","RN","LFI","LR","PS","pb","Brier"];
+const AUTO=["loi spéciale","taux de base","Maastricht","Polymarket","Metaculus","Sondax","censure","ordonnance","OAT","Bund","PIB","BCE","APL","RN","LFI","LR","PS","pb","Brier"];
 const T=(k,label)=>`<span class="term" tabindex="0" data-def="${k}">${label}</span>`;
 function glossify(root){
   const re=new RegExp(`(^|[^\\p{L}\\-])(${AUTO.map(a=>a.replace(/ /g,"\\s")).join("|")})(?=$|[^\\p{L}\\-])`,"u");
   const scopes=new Map();
   const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest(".term,svg,a,button,th,.nog,.tag,h1,h2,summary,#pop")?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
   const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
-  nodes.forEach(n=>{const scope=n.parentElement.closest(".box,.sec,.page-h,tr,details,article")||root;let seen=scopes.get(scope);if(!seen){seen=new Set();scopes.set(scope,seen)}
+  nodes.forEach(n=>{const scope=n.parentElement.closest(".box,.sec,.page-h,tr,details,article,.ncard")||root;let seen=scopes.get(scope);if(!seen){seen=new Set();scopes.set(scope,seen)}
     let node=n,m;while(node&&(m=re.exec(node.nodeValue))){const key=m[2].replace(/\s/g," ");const start=m.index+m[1].length;
       if(seen.has(key)){node=node.splitText(start+m[2].length);continue}seen.add(key);
       const mid=node.splitText(start);const after=mid.splitText(m[2].length);const span=document.createElement("span");span.className="term";span.tabIndex=0;span.dataset.def=key;span.textContent=mid.nodeValue;mid.replaceWith(span);node=after}});
@@ -225,7 +245,7 @@ document.addEventListener("click",e=>{const t=e.target.closest(".term");if(!t){$
 if(matchMedia("(hover:hover)").matches){document.addEventListener("mouseover",e=>{const t=e.target.closest(".term");if(t)showPop(t)});document.addEventListener("mouseout",e=>{if(e.target.closest(".term"))$("#pop").hidden=true})}
 document.addEventListener("focusin",e=>{if(e.target.matches(".term"))showPop(e.target)});
 
-/* --- calculs --- */
+/* --- indicateurs --- */
 function score(si){const [t0,t1,t2,tm]=si.seuils,v=si.valeur;const pts=[[t0,0],[t1,3.5],[t2,6.5],[tm,10]];if(v<=t0)return 0;if(v>=tm)return 10;for(let i=1;i<pts.length;i++){if(v<=pts[i][0]){const [x0,y0]=pts[i-1],[x1,y1]=pts[i];return y0+(y1-y0)*(v-x0)/(x1-x0)}}return 10}
 const etat=s=>s<3.5?["ok","Stable"]:s<6.5?["warn","Sous tension"]:["crit","Critique"];
 function marge(si){const [,t1,t2]=si.seuils,v=si.valeur;const u=si.unite==="% du PIB"?"pt de PIB":si.unite==="%"?"pt":si.unite;const f=x=>si.unite==="pb"?fr(x,0):fr(x,1);
@@ -235,17 +255,28 @@ function seuilsTxt(si){const [,t1,t2]=si.seuils;const NOT=["","AAA","AA+","AA","
   const u=rk?"":si.unite==="pb"?" pb":" %";return `tension dès ${f(t1)}${u}, critique dès ${f(t2)}${u}`}
 const siById=id=>D.sousIndicateurs.find(s=>s.id===id);
 function noteInd(ind){const sc=ind.sous.map(id=>score(siById(id)));return sc.reduce((a,b)=>a+b,0)/sc.length}
-const hypsMedian=hs=>to100(hs.map(h=>median(h.estimations)));
-function qd(q){
-  if(!q.conditionnelle)return {glob:hypsMedian(q.hypotheses),rg:q.hypotheses.map(h=>h.estimations)};
-  const bq=D.pivots.find(p=>p.id===q.conditionnelle).questions[0];const bp=hypsMedian(bq.hypotheses);const pB1=bp[0]/100;
-  const c1=to100(q.hypotheses.map(h=>median(h.si.B1))),c2=to100(q.hypotheses.map(h=>median(h.si.nonB1)));
-  const glob=to100(q.hypotheses.map((h,i)=>pB1*c1[i]+(1-pB1)*c2[i]));
-  const per=[0,1,2].map(k=>{const b=bq.hypotheses[0].estimations[k]/100;return q.hypotheses.map(h=>b*h.si.B1[k]+(1-b)*h.si.nonB1[k])});
-  return {glob,c1,c2,pB1:bp[0],rg:q.hypotheses.map((h,i)=>per.map(p=>Math.round(p[i])))};
-}
-const rng=r=>`${Math.min(...r)}–${Math.max(...r)}`;
 const trend=t=>t==="hausse"?'<span class="tag crit">▲ se dégrade</span>':t==="baisse"?'<span class="tag ok">▼ s\'améliore</span>':'<span class="tag n">stable</span>';
+
+/* --- réseau de pivots : calcul exact par énumération --- */
+const N=id=>D.pivots.find(n=>n.id===id);
+function cpts(k){/* k = "med" ou index d'estimateur */
+  const out={};D.pivots.forEach(n=>{out[n.id]={};for(const [key,tab] of Object.entries(n.cpt)){const v=n.issues.map(o=>k==="med"?median(tab[o.id]):tab[o.id][k]);const pr=k==="med"?to100(v):v.map(x=>x*100/v.reduce((a,b)=>a+b,0));out[n.id][key]=pr.map(x=>x/100)}});return out}
+const groupOf=(par,out)=>{for(const [g,arr] of Object.entries(par.g))if(arr.includes(out))return g};
+const keyOf=(n,a)=>n.parents.map(p=>groupOf(p,a[p.id])).join("_");
+function joint(k){const T=cpts(k);const res=[];const ns=D.pivots;
+  (function rec(i,a,p){if(i===ns.length){res.push({a:{...a},p});return}const n=ns[i];const dist=T[n.id][keyOf(n,a)];n.issues.forEach((o,j)=>{if(dist[j]>0){a[n.id]=o.id;rec(i+1,a,p*dist[j])}});delete a[n.id]})(0,{},1);
+  return res}
+const prob=(J,f)=>J.reduce((s,x)=>s+(f(x.a)?x.p:0),0);
+function build(){const Jm=joint("med"),Je=[0,1,2].map(joint);
+  const marg={},rng={};D.pivots.forEach(n=>{const m=n.issues.map(o=>prob(Jm,a=>a[n.id]===o.id)*100);marg[n.id]=to100(m);
+    rng[n.id]=n.issues.map(o=>{const v=Je.map(J=>Math.round(prob(J,a=>a[n.id]===o.id)*100));return [Math.min(...v),Math.max(...v)]})});
+  const sens={};D.pivots.forEach(n=>{const dom=n.issues[marg[n.id].indexOf(Math.max(...marg[n.id]))].id;n.parents.forEach(pp=>{const par=N(pp.id);
+    const cond=par.issues.map(o=>{const pa=prob(Jm,a=>a[par.id]===o.id);return pa?prob(Jm,a=>a[par.id]===o.id&&a[n.id]===dom)/pa:null}).filter(x=>x!=null);
+    sens[pp.id+">"+n.id]=Math.round((Math.max(...cond)-Math.min(...cond))*100)})});
+  M={Jm,Je,marg,rng,sens}}
+const dom=id=>{const n=N(id),m=M.marg[id],i=m.indexOf(Math.max(...m));return {o:n.issues[i],p:m[i],r:M.rng[id][i],i}};
+const condTable=n=>{const keys=Object.keys(n.cpt);return keys.map(k=>({k,lab:k.split("_").map((g,i)=>{const par=N(n.parents[i].id);const ids=n.parents[i].g[g];return `${par.court} : ${ids.map(x=>par.issues.find(o=>o.id===x).court).join(" ou ")}`}).join(" · "),v:to100(n.issues.map(o=>median(n.cpt[k][o.id])))}))};
+const CRIT=8;
 
 /* --- navigation --- */
 const secOf=h=>{for(const [id,,items] of NAV)if(items.some(([k])=>k===h))return id;return "vue"};
@@ -260,19 +291,20 @@ function navHtml(base){
 let HL=null;
 function go(h,hl){HL=hl||null;if(location.hash.slice(1)===h){render();scrollTo(0,0)}else location.hash=h}
 document.addEventListener("click",e=>{const t=e.target.closest("[data-go]");if(t&&!e.target.closest("a[href]")){e.preventDefault();go(t.dataset.go,t.dataset.hl)}});
-document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches("[data-go].box,[data-go].rowlink,.term")){e.preventDefault();e.target.click()}});
+document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches("[data-go].box,[data-go].rowlink,[data-go].ncard,.term")){e.preventDefault();e.target.click()}});
 addEventListener("hashchange",()=>{render();scrollTo(0,0)});
-const link=(id,label)=>`<button class="lnk" data-go="${route(id)}"${/^(P-|Q-)/.test(id)?` data-hl="${id}"`:""}>${esc(label||lab(id))}</button>`;
+const link=(id,label)=>`<button class="lnk" data-go="${route(id)}"${/^(P-|Q-|PV)/.test(id)&&label==="Voir au registre"?` data-hl="${id}"`:""}>${esc(label||lab(id))}</button>`;
 function route(id){if(id.startsWith("PV"))return "pivot-"+id;if(id.startsWith("IS"))return "ind-"+id;if(id.startsWith("SI"))return "ind-"+siById(id).ind;if(id.startsWith("EV"))return "actualite";if(/^(P-|Q-)/.test(id))return "previsions";return "synthese"}
-function lab(id){if(id.startsWith("PV"))return D.pivots.find(p=>p.id===id).nom;if(id.startsWith("IS"))return D.indicateurs.find(p=>p.id===id).nom;if(id.startsWith("SI"))return siById(id).court;return id}
+function lab(id){if(id.startsWith("PV"))return N(id).nom;if(id.startsWith("IS"))return D.indicateurs.find(p=>p.id===id).nom;if(id.startsWith("SI"))return siById(id).court;return id}
+const regLink=id=>`<button class="lnk" data-go="previsions" data-hl="${id}">Voir au registre</button>`;
 
 function render(){
   $("#pop").hidden=true;
   const h=location.hash.slice(1)||"synthese";
-  const base=h.startsWith("pivot-")?"pivots":h.startsWith("ind-")?"indicateurs":h;
-  const V={synthese,cartographie,indicateurs,"sous-indicateurs":sousInd,pivots,actualite,previsions,precedents,methodologie};
+  const base=h.startsWith("pivot-")?"pivots":h.startsWith("ind-")?"indicateurs":h==="cartographie"?"carte":h;
+  const V={synthese,carte,indicateurs,"sous-indicateurs":sousInd,pivots,actualite,previsions,precedents,methodologie};
   navHtml(V[base]?base:"synthese");
-  const html=h.startsWith("pivot-")?pivotPage(h.slice(6)):h.startsWith("ind-")?indPage(h.slice(4)):V[h]?V[h]():`<p class="empty">Cette page n'existe pas. Voici la synthèse.</p>`+synthese();
+  const html=h.startsWith("pivot-")?pivotPage(h.slice(6)):h.startsWith("ind-")?indPage(h.slice(4)):V[base]?V[base]():`<p class="empty">Cette page n'existe pas. Voici la synthèse.</p>`+synthese();
   $("#view").innerHTML=html+`<footer class="mob" style="margin-top:40px">${about}</footer>`;
   glossify($("#view"));
   const cur=document.querySelector('.topnav .r2 [aria-current="page"]');if(cur)cur.scrollIntoView({block:"nearest",inline:"center"});
@@ -283,69 +315,81 @@ function render(){
 const head=(title,lede,crumb)=>`<div class="page-h">${crumb?`<div class="crumb">${crumb}</div>`:""}<h1 class="title">${title}</h1>${lede?`<p class="lede">${lede}</p>`:""}</div>`;
 const sec=(title,body,right="")=>`<section class="sec"><div class="sh"><h2>${title}</h2>${right}</div>${body}</section>`;
 const gauge=n=>`<div class="gauge" role="img" aria-label="Note ${fr(n)} sur 10"><i style="left:${n*10}%"></i></div>`;
-function bars(hs,dist,rg,ext){const max=Math.max(...dist);return hs.map((h,i)=>`<div class="hyp ${dist[i]===max?"dom":""}"><div>${esc(h.nom)}</div><div class="v">${P(dist[i])}<span>${rng(rg[i])}</span>${ext&&ext[i]!=null?`<span style="color:var(--warn)">réf. ${P(ext[i])}</span>`:""}</div>
-  <div class="bar"><b style="width:${dist[i]}%"></b><i class="r" style="left:${Math.min(...rg[i])}%;width:${Math.max(...rg[i])-Math.min(...rg[i])}%"></i>${ext&&ext[i]!=null?`<i class="e" style="left:calc(${ext[i]}% - 1.5px)"></i>`:""}</div></div>`).join("")}
-const barKey=ext=>`<div class="legend nog"><span><i style="width:14px;height:6px;background:var(--accent);border-radius:2px"></i>probabilité (${T("mediane","médiane de trois")})</span><span><i style="width:10px;height:10px;border-left:1.5px solid var(--muted);border-right:1.5px solid var(--muted)"></i>${T("fourchette","fourchette")}</span>${ext?`<span><i style="width:3px;height:10px;background:var(--warn)"></i>${T("externe","référence externe")}</span>`:""}</div>`;
+function bars(items,dist,rg,ext){const max=Math.max(...dist);return items.map((h,i)=>`<div class="hyp ${dist[i]===max?"dom":""}"><div>${esc(h.nom)}</div><div class="v">${P(dist[i])}<span>${rg[i][0]}–${rg[i][1]}</span>${ext&&ext[i]!=null?`<span style="color:var(--warn)">réf. ${P(ext[i])}</span>`:""}</div>
+  <div class="bar"><b style="width:${dist[i]}%"></b><i class="r" style="left:${rg[i][0]}%;width:${rg[i][1]-rg[i][0]}%"></i>${ext&&ext[i]!=null?`<i class="e" style="left:calc(${ext[i]}% - 1.5px)"></i>`:""}</div></div>`).join("")}
+const barKey=ext=>`<div class="legend nog"><span><i style="width:14px;height:6px;background:var(--accent);border-radius:2px"></i>probabilité ${T("calcule","calculée")}</span><span><i style="width:10px;height:10px;border-left:1.5px solid var(--muted);border-right:1.5px solid var(--muted)"></i>${T("fourchette","fourchette")}</span>${ext?`<span><i style="width:3px;height:10px;background:var(--warn)"></i>${T("externe","référence externe")}</span>`:""}</div>`;
+const typeTag=n=>`<span class="tag ${n.type==="pivot"?"a":n.type==="projection"?"z":"n"}">${T(n.type==="anticipé"?"anticipé":n.type==="projection"?"projection":n.type,n.type==="anticipé"?"pivot anticipé":n.type)}</span>`;
 function indBox(ind){const n=noteInd(ind);const [c,l]=etat(n);return `<div class="box go" tabindex="0" role="link" data-go="ind-${ind.id}">
   <div class="rowx sp"><h3>${esc(ind.nom)}</h3><span class="tag ${c}">${l}</span></div>
   <div class="rowx"><span class="big">${fr(n)}</span><span class="muted">${T("note","sur 10")}</span>${trend(ind.tendance)}</div>
   ${gauge(n)}<p class="sm muted" style="margin:0">${esc(ind.lecture)}</p></div>`}
-function dominant(p){const q=p.questions[0];const {glob,rg}=qd(q);const i=glob.indexOf(Math.max(...glob));return {nom:q.hypotheses[i].nom,pct:glob[i],r:rg[i],q,glob}}
-function pivotBox(p){const d=dominant(p);
-  const sub=p.id==="PV-01"?`<div class="sm muted">Non adopté au total ${P(d.glob[1]+d.glob[2])}, adopté ${P(d.glob[0])}</div>`:"";
-  return `<div class="box go" tabindex="0" role="link" data-go="pivot-${p.id}">
-  <div class="rowx sp"><h3>${esc(p.nom)}</h3><span class="tag ${p.type==="sous-pivot"?"n":"a"}">${p.type==="sous-pivot"?T("sous-pivot","sous-pivot"):T("pivot","pivot")}</span></div>
-  <div class="sm muted">${esc(d.q.texte)}</div>
-  <div class="rowx"><span class="big">${P(d.pct)}</span><span><span class="b">${esc(d.nom)}</span><br><span class="sm muted">${T("fourchette","fourchette")} ${rng(d.r)}</span></span></div>${sub}
-  <div class="sm muted">Échéance ${dfr(p.echeance)}</div></div>`}
+const SCN={RN:"Victoire du RN",C:"Victoire du bloc central",G:"Victoire de la gauche",D:"Victoire de la droite LR ou autre"};
+function scenarios(){const pres=N("PV-02");
+  return pres.issues.map((o,i)=>{const p=M.marg["PV-02"][i];const pr=prob(M.Jm,a=>a["PV-02"]===o.id);
+    const viaA=prob(M.Jm,a=>a["PV-02"]===o.id&&a["PV-01"]==="B1")*100,viaX=pr*100-viaA;
+    const maj=prob(M.Jm,a=>a["PV-02"]===o.id&&a["PV-07"]==="O")/pr*100,choc=prob(M.Jm,a=>a["PV-02"]===o.id&&a["PV-08"]==="O")/pr*100;
+    return {o,i,p,r:M.rng["PV-02"][i],viaA,viaX,maj:Math.round(maj),choc:Math.round(choc)}}).sort((a,b)=>b.p-a.p)}
+function scenList(){const sc=scenarios();return `<div class="rows">${sc.map((x,j)=>`<div class="rowlink" tabindex="0" role="link" data-go="pivot-PV-02" style="display:flex;flex-direction:column;gap:8px">
+  <div class="rowx sp"><span class="b">${SCN[x.o.id]}${j===0?` <span class="tag a">scénario dominant</span>`:""}</span><span><span class="b">${P(x.p)}</span> <span class="sm muted">${x.r[0]}–${x.r[1]}</span></span></div>
+  <div class="stack" role="img" aria-label="${fr(x.viaA,1)} points via budget adopté, ${fr(x.viaX,1)} via budget non adopté"><span style="width:${x.viaA}%;background:var(--accent-mid)"></span><span style="width:${x.viaX}%;background:var(--accent)"></span></div>
+  <div class="apres"><span class="zl">Puis</span><span>majorité absolue ${P(x.maj)}</span><span>choc sur la dette ${P(x.choc)}</span></div></div>`).join("")}</div>
+  <div class="legend nog" style="margin-top:14px"><span><i style="width:14px;height:8px;background:var(--accent-mid);border-radius:2px"></i>après un budget adopté</span><span><i style="width:14px;height:8px;background:var(--accent);border-radius:2px"></i>après un budget non adopté</span><span><i style="width:14px;height:8px;background:var(--zone);border:1px dashed var(--zone-line);border-radius:2px"></i>${T("projection","projection")} jusqu'en septembre 2028</span></div>`}
+
+/* --- carte du réseau --- */
+const LAY={"PV-03":[0,0],"PV-04":[0,2],"PV-05":[1,0],"PV-01":[1,1],"PV-06":[1,2],"PV-02":[2,1],"PV-07":[3,0],"PV-08":[3,2]};
+function mapSvg(){
+  const BW=168,BH=64,X=[10,216,422,640],Y=[78,166,254],ZX=622,W=828;
+  const box=id=>{const [c,r]=LAY[id];return {x:X[c],y:Y[r]-BH/2,cx:X[c]+BW/2,cy:Y[r]}};
+  const tx=(x,y,t,o="")=>`<text x="${x}" y="${y}" ${o}>${t}</text>`;
+  let s=`<svg viewBox="0 0 ${W} 300" role="img" aria-label="Réseau des moments pivots de la France jusqu'en septembre 2028" font-family="Public Sans, system-ui, sans-serif"><defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--line-strong)"/></marker><marker id="arc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker></defs>`;
+  s+=`<rect x="${ZX}" y="4" width="${W-ZX-4}" height="292" rx="10" fill="var(--zone)" stroke="var(--zone-line)" stroke-dasharray="5 4"/>`;
+  ["Oct.–déc. 2026","Fin 2026 – mars 2027","Mai 2027","Après l'élection, jusqu'en 2028"].forEach((h,i)=>{s+=tx(X[i],28,h,'font-size="12.5" font-weight="700" fill="var(--muted)"')});
+  const edges=[];D.pivots.forEach(n=>n.parents.forEach(p=>edges.push([p.id,n.id,M.sens[p.id+">"+n.id]])));
+  edges.forEach(([a,b,v])=>{const A=box(a),B=box(b);const same=LAY[a][0]===LAY[b][0];const cr=v>=CRIT;let d,lx,ly;
+    if(same){d=`M${A.cx} ${A.y+BH} L${B.cx} ${B.y-2}`;lx=A.cx+10;ly=(A.y+BH+B.y)/2}else{const x1=A.x+BW,x2=B.x-2,mx=(x1+x2)/2;d=`M${x1} ${A.cy} C ${mx} ${A.cy}, ${mx} ${B.cy}, ${x2} ${B.cy}`;lx=mx-17;ly=(A.cy+B.cy)/2}
+    s+=`<path d="${d}" fill="none" stroke="${cr?"var(--accent)":"var(--line-strong)"}" stroke-width="${cr?2.4:1.4}" marker-end="url(#ar${cr?"c":""})"/>`;
+    s+=`<rect x="${lx}" y="${ly-9}" width="34" height="17" rx="4" fill="var(--surface)" stroke="${cr?"var(--accent)":"var(--line)"}"/>`+tx(lx+17,ly+4,`±${v}`,`text-anchor="middle" font-size="11" font-weight="700" fill="${cr?"var(--accent)":"var(--muted)"}"`)});
+  D.pivots.forEach(n=>{const b=box(n.id);const m=M.marg[n.id];const dm=dom(n.id);const isP=n.id==="PV-02";
+    s+=`<g data-go="pivot-${n.id}" style="cursor:pointer"><rect x="${b.x}" y="${b.y}" width="${BW}" height="${BH}" rx="8" fill="${isP?"var(--accent-soft)":"var(--surface)"}" stroke="${isP?"var(--accent)":"var(--line-strong)"}" stroke-width="${isP?1.6:1}"/>`;
+    s+=tx(b.x+12,b.y+21,esc(n.court),'font-size="13" font-weight="700" fill="var(--ink)"');
+    s+=tx(b.x+12,b.y+41,esc(dm.o.court),'font-size="12.5" fill="var(--muted)"')+tx(b.x+BW-12,b.y+41,P(dm.p),'text-anchor="end" font-size="14" font-weight="700" fill="var(--ink)"');
+    let x0=b.x+12;const w=BW-24;n.issues.forEach((o,j)=>{const ww=w*m[j]/100;s+=`<rect x="${x0}" y="${b.y+50}" width="${Math.max(0,ww-1)}" height="6" fill="var(--accent)" fill-opacity="${j===dm.i?1:.28}"/>`;x0+=ww});
+    s+=`<title>${esc(n.nom)} : ${n.issues.map((o,j)=>`${o.court} ${m[j]} %`).join(", ")}</title></g>`});
+  return s+`</svg>`}
+function mapMobile(){const per=D.periodes;return per.map((ph,k)=>{const ns=D.pivots.filter(n=>n.periode===k);if(!ns.length)return "";
+  return `<div class="${k===4?"zonebox":""}"><div class="per">${esc(ph)}</div>${ns.map(n=>{const m=M.marg[n.id],dm=dom(n.id);
+    return `<div class="ncard rowlink" tabindex="0" role="link" data-go="pivot-${n.id}"><div class="rowx sp"><span class="b">${esc(n.court)}</span><span><span class="sm muted">${esc(dm.o.court)}</span> <span class="b">${P(dm.p)}</span></span></div>
+    <div class="stack" style="height:6px">${n.issues.map((o,j)=>`<span style="width:${m[j]}%;background:var(--accent);opacity:${j===dm.i?1:.28}"></span>`).join("")}</div>
+    ${n.parents.length?`<div class="sm muted">Dépend de ${n.parents.map(p=>`${esc(N(p.id).court)} <span class="${M.sens[p.id+">"+n.id]>=CRIT?"crit-l":""}">±${M.sens[p.id+">"+n.id]}</span>`).join(", ")}</div>`:""}</div>`}).join("")}</div>`}).join("")}
+const mapKey=`<div class="legend nog"><span><i style="width:18px;border-top:2.4px solid var(--accent)"></i>${T("critique","chemin critique")}</span><span><b style="color:var(--muted)">±n</b> ${T("sensibilite","écart d'influence")} en points</span><span><i style="width:14px;height:10px;background:var(--zone);border:1px dashed var(--zone-line)"></i>${T("projection","projection")}</span></div>`;
+const mapBlock=()=>`<div class="desk"><div class="svgw">${mapSvg()}</div>${mapKey}</div><div class="mob">${mapMobile()}<div style="margin-top:10px">${mapKey}</div></div>`;
+
 function forecasts(){const out=[];
-  D.pivots.forEach(p=>p.questions.forEach(q=>{const {glob,rg}=qd(q);out.push({id:q.id,piv:p.id,texte:q.texte,dist:q.hypotheses.map((h,i)=>[h.nom,glob[i]]),rg,echeance:q.id==="Q-PV02-B"?"2027-04-18":p.echeance,ext:q.hypotheses.some(h=>h.externe!=null)?q.hypotheses.map(h=>h.externe):null})}));
-  D.previsionsSimples.forEach(p=>{const m=median(p.estimations);out.push({id:p.id,ind:p.ind,texte:p.texte,dist:[["Oui",m],["Non",100-m]],rg:[p.estimations,p.estimations.map(x=>100-x)],echeance:p.echeance})});
+  D.pivots.forEach(n=>out.push({id:n.id,piv:n.id,texte:n.question,dist:n.issues.map((o,i)=>[o.nom,M.marg[n.id][i]]),rg:M.rng[n.id],echeance:n.echeance}));
+  const qb=N("PV-02").autresQuestions[0];const d=to100(qb.hypotheses.map(h=>median(h.estimations)));
+  out.push({id:qb.id,piv:"PV-02",texte:qb.texte,dist:qb.hypotheses.map((h,i)=>[h.nom,d[i]]),rg:qb.hypotheses.map(h=>[Math.min(...h.estimations),Math.max(...h.estimations)]),echeance:"2027-04-18",ext:qb.hypotheses.map(h=>h.externe)});
+  D.previsionsSimples.forEach(p=>{const m=median(p.estimations);out.push({id:p.id,ind:p.ind,texte:p.texte,dist:[["Oui",m],["Non",100-m]],rg:[[Math.min(...p.estimations),Math.max(...p.estimations)],[100-Math.max(...p.estimations),100-Math.min(...p.estimations)]],echeance:p.echeance})});
   return out.sort((a,b)=>a.echeance.localeCompare(b.echeance))}
 
 /* --- vues --- */
 function synthese(){
-  const ind=D.indicateurs[0];const crit=D.sousIndicateurs.filter(s=>score(s)>=6.5).length;
-  const pres=dominant(D.pivots.find(p=>p.id==="PV-02"));const bud=hypsMedian(D.pivots[0].questions[0].hypotheses);
-  const alerts=D.sousIndicateurs.map(s=>({s,sc:score(s)})).filter(x=>x.sc>=5.8).sort((a,b)=>b.sc-a.sc);const fc=forecasts();
-  return head(`${crit} signaux des finances publiques sont critiques, à six mois de la présidentielle`,
-    `Le budget 2027 a ${P(bud[1]+bud[2])} de risques de ne pas être adopté. Le RN remporte la présidentielle dans ${P(pres.pct)} des cas ${T("calcule","calculés")}.`)
-  +`<div class="grid2">${sec("Indicateurs structurels",indBox(ind))}${sec("Moments pivots",`<div style="display:flex;flex-direction:column;gap:16px">${D.pivots.slice().reverse().map(pivotBox).join("")}</div>`)}</div>`
-  +`<div class="grid2">${sec("Alertes",`<div class="rows">${alerts.map(({s,sc})=>{const [c,l]=etat(sc);return `<div class="rowx sp rowlink" tabindex="0" role="link" data-go="ind-${s.ind}"><div style="min-width:0;flex:1 1 200px"><div class="b">${esc(s.nom)}</div><div class="sm muted">${esc(s.affiche)} · ${esc(marge(s))}</div></div><span class="tag ${c}">${l}</span></div>`}).join("")}</div>`)}
-  ${sec("Prochaines échéances",`<div class="rows">${fc.map(f=>{const top=f.dist.reduce((a,b)=>b[1]>a[1]?b:a);return `<div class="rowx sp rowlink" tabindex="0" role="link" data-go="previsions" data-hl="${f.id}"><div style="min-width:0;flex:1 1 200px"><div class="sm muted">${dfr(f.echeance)}</div><div>${esc(f.texte)}</div></div><span class="tag n">${esc(top[0])} ${P(top[1])}</span></div>`}).join("")}</div>`)}</div>`
-  +sec("Fiabilité du modèle",`<div class="rowx"><span class="tag n">0 sur ${fc.length} prévisions résolues</span><span class="sm muted">Premier ${T("Brier","score")} le 31 octobre.</span></div>`);
+  const sc=scenarios()[0];const ind=D.indicateurs[0];
+  const pre=Object.entries(M.sens).filter(([k])=>N(k.split(">")[1]).periode<4).sort((a,b)=>b[1]-a[1])[0];const [pa,pc]=pre[0].split(">");
+  const alerts=D.sousIndicateurs.map(s=>({s,sc:score(s)})).filter(x=>x.sc>=5.8).sort((a,b)=>b.sc-a.sc);const fc=forecasts().filter(f=>f.echeance<"2027-06-01").slice(0,5);
+  return head(`Scénario dominant : ${SCN[sc.o.id].replace("Victoire","victoire")}, à ${P(sc.p)}`,
+    `Il l'emporte presque autant après un budget 2027 adopté (${fr(sc.viaA,0)} points) qu'après un échec (${fr(sc.viaX,0)} points). Avant l'élection, le lien le plus influent relie ${esc(N(pa).nom.toLowerCase())} et ${esc(N(pc).nom.toLowerCase())} (±${pre[1]} points). Huit moments pivots sont ${T("calcule","calculés")} ensemble.`)
+  +sec("Scénarios France",scenList())
+  +sec("Carte des pivots",mapBlock(),`<button class="lnk sm" data-go="carte">Détail</button>`)
+  +`<div class="grid2">${sec("Indicateurs structurels",indBox(ind))}${sec("Alertes",`<div class="rows">${alerts.map(({s,sc})=>{const [c,l]=etat(sc);return `<div class="rowx sp rowlink" tabindex="0" role="link" data-go="ind-${s.ind}"><div style="min-width:0;flex:1 1 200px"><div class="b">${esc(s.nom)}</div><div class="sm muted">${esc(s.affiche)} · ${esc(marge(s))}</div></div><span class="tag ${c}">${l}</span></div>`}).join("")}</div>`)}</div>`
+  +sec("Prochaines échéances",`<div class="rows">${fc.map(f=>{const top=f.dist.reduce((a,b)=>b[1]>a[1]?b:a);return `<div class="rowx sp rowlink" tabindex="0" role="link" data-go="previsions" data-hl="${f.id}"><div style="min-width:0;flex:1 1 200px"><div class="sm muted">${dfr(f.echeance)}</div><div>${esc(f.texte)}</div></div><span class="tag n">${esc(top[0])} ${P(top[1])}</span></div>`}).join("")}</div>`)
+  +sec("Fiabilité du modèle",`<div class="rowx"><span class="tag n">0 sur ${forecasts().length} prévisions résolues</span><span class="sm muted">Premier ${T("Brier","score")} le 31 octobre.</span></div>`);
 }
 
-function mapData(){const bud=D.pivots.find(p=>p.id==="PV-01"),pre=D.pivots.find(p=>p.id==="PV-02");
-  const bd=hypsMedian(bud.questions[0].hypotheses);const pB1=bd[0],pNo=100-pB1;const q=pre.questions[0],{glob,c1,c2}=qd(q);
-  const joint=q.hypotheses.map((h,i)=>[pB1*c1[i]/100,pNo*c2[i]/100]);let best=[0,0,0];joint.forEach((j,i)=>j.forEach((v,k)=>{if(v>best[0])best=[v,i,k]}));
-  return {bd,pB1,pNo,q,glob,c1,c2,joint,best,pre}}
-const scenName=n=>({"RN":"Victoire du RN","Bloc central":"Victoire du bloc central","Gauche":"Victoire de la gauche"})[n]||"Victoire de la droite LR ou autre";
-function cartographie(){
-  const {bd,pB1,pNo,q,glob,c1,c2,joint,best,pre}=mapData();const n=noteInd(D.indicateurs[0]);
-  const W=v=>Math.max(1.2,v/3.2),X0=24,X1=214,BW=210,X2=516,WW=220,NH=76,yB=[148,328],yW=[94,194,294,394],yT=238;
-  const tx=(x,y,t,o="")=>`<text x="${x}" y="${y}" ${o}>${t}</text>`;
-  let s=`<svg viewBox="0 0 760 524" role="img" aria-label="Carte des chemins : le budget 2027 conditionne la présidentielle 2027" font-family="Public Sans, system-ui, sans-serif">`;
-  s+=tx(X0,28,"Aujourd'hui",'font-size="13" font-weight="700" fill="var(--muted)"')+tx(X1,28,"Budget 2027 · 31/12/2026",'font-size="13" font-weight="700" fill="var(--muted)"')+tx(X2,28,"Présidentielle · 2/05/2027",'font-size="13" font-weight="700" fill="var(--muted)"');
-  [pB1,pNo].forEach((p,k)=>{const cr=k===best[2];s+=`<path d="M${X0+136} ${yT} C ${X0+170} ${yT}, ${X1-40} ${yB[k]}, ${X1} ${yB[k]}" fill="none" stroke="${cr?"var(--accent)":"var(--line)"}" stroke-width="${W(p)}" stroke-linecap="round"/>`});
-  joint.forEach((j,i)=>j.forEach((v,k)=>{const cr=i===best[1]&&k===best[2];s+=`<path d="M${X1+BW} ${yB[k]} C ${X1+BW+50} ${yB[k]}, ${X2-50} ${yW[i]}, ${X2} ${yW[i]}" fill="none" stroke="${cr?"var(--accent)":"var(--line)"}" stroke-width="${W(v)}" stroke-linecap="round"/>`}));
-  s+=`<rect x="${X0}" y="${yT-30}" width="136" height="60" rx="8" fill="var(--soft)"/>`+tx(X0+68,yT+5,"3 octobre 2026",'text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)"');
-  [["Budget adopté",pB1,"loi de finances ou ordonnance",""],["Budget non adopté",pNo,`censure ${P(bd[1])}`,`loi spéciale ${P(bd[2])}`]].forEach(([l,p,s1,s2],k)=>{const cr=k===best[2];
-    s+=`<g data-go="pivot-PV-01" style="cursor:pointer"><rect x="${X1}" y="${yB[k]-NH/2}" width="${BW}" height="${NH}" rx="8" fill="${cr?"var(--accent-soft)":"var(--surface)"}" stroke="${cr?"var(--accent)":"var(--line)"}" stroke-width="${cr?1.6:1}"/>`+tx(X1+14,yB[k]-14,l,'font-size="14" font-weight="700" fill="var(--ink)"')+tx(X1+BW-14,yB[k]-14,P(p),'text-anchor="end" font-size="14" font-weight="700" fill="var(--ink)"')+tx(X1+14,yB[k]+8,s1,'font-size="13" fill="var(--muted)"')+(s2?tx(X1+14,yB[k]+26,s2,'font-size="13" fill="var(--muted)"'):"")+`</g>`});
-  q.hypotheses.forEach((h,i)=>{const cr=i===best[1];
-    s+=`<g data-go="pivot-PV-02" style="cursor:pointer"><rect x="${X2}" y="${yW[i]-40}" width="${WW}" height="80" rx="8" fill="${cr?"var(--accent-soft)":"var(--surface)"}" stroke="${cr?"var(--accent)":"var(--line)"}" stroke-width="${cr?1.6:1}"/>`+tx(X2+14,yW[i]-14,h.nom,'font-size="14" font-weight="700" fill="var(--ink)"')+tx(X2+WW-14,yW[i]-14,P(glob[i]),'text-anchor="end" font-size="14" font-weight="700" fill="var(--ink)"')+tx(X2+14,yW[i]+8,`si adopté ${P(c1[i])}, sinon ${P(c2[i])}`,'font-size="13" fill="var(--muted)"')+tx(X2+14,yW[i]+26,`dont ${fr(joint[i][1],1)} pts sans budget`,'font-size="13" fill="var(--muted)"')+`</g>`});
-  const [c]=etat(n);
-  s+=`<line x1="${X1+BW/2}" y1="${yB[1]+NH/2}" x2="${X1+BW/2}" y2="448" stroke="var(--line)" stroke-dasharray="3 3"/><g data-go="ind-IS-01" style="cursor:pointer"><rect x="${X1}" y="448" width="${BW}" height="56" rx="8" fill="var(--surface)" stroke="var(--line)"/>`+tx(X1+14,471,"Finances publiques",'font-size="14" font-weight="700" fill="var(--ink)"')+tx(X1+14,492,`${fr(n)} sur 10 · marge ${fr(6.5-n)}`,`font-size="13" fill="var(--${c})"`)+`</g>`;
-  s+=`<line x1="${X2+WW/2}" y1="${yW[3]+40}" x2="${X2+WW/2}" y2="448" stroke="var(--line)" stroke-dasharray="3 3"/><rect x="${X2}" y="448" width="${WW}" height="56" rx="8" fill="none" stroke="var(--line)" stroke-dasharray="4 3"/>`+tx(X2+14,471,"Stabilité institutionnelle",'font-size="14" font-weight="700" fill="var(--muted)"')+tx(X2+14,492,"indicateur à construire",'font-size="13" fill="var(--muted)"')+`</svg>`;
-  const sc=q.hypotheses.map((h,i)=>({nom:h.nom,p:glob[i],v1:joint[i][0],v2:joint[i][1],i})).sort((a,b)=>b.p-a.p);
-  return head("Le chemin le plus probable : budget non adopté, puis victoire du RN",`Scénarios France, combinant l'issue du budget 2027 et le vainqueur de la présidentielle. Probabilités ${T("calcule","calculées")} le long de chaque chemin.`)
-  +`<div class="rowx"><span class="tag a">France</span><span class="tag n">Monde · à venir</span><span class="tag n">Long terme · à venir</span></div>`
-  +sec("Scénarios",`<div class="rows">${sc.map(x=>`<div class="rowlink" tabindex="0" role="link" data-go="pivot-PV-02" style="display:flex;flex-direction:column;gap:7px"><div class="rowx sp"><span class="b">${scenName(x.nom)}${x.i===best[1]?` <span class="tag a">${T("critique","chemin critique")}</span>`:""}</span><span class="b">${P(x.p)}</span></div>
-    <div class="stack"><span style="width:${x.v1}%;background:var(--accent-mid)"></span><span style="width:${x.v2}%;background:var(--accent)"></span></div></div>`).join("")}</div>
-    <div class="legend nog" style="margin-top:14px"><span><i style="width:14px;height:8px;background:var(--accent-mid);border-radius:2px"></i>via budget adopté (${P(pB1)})</span><span><i style="width:14px;height:8px;background:var(--accent);border-radius:2px"></i>via budget non adopté (${P(pNo)})</span></div>`)
-  +sec("Carte des chemins",`<p class="sm muted mob" style="margin:0 0 8px">Faites glisser la carte vers la gauche.</p><div class="svgw">${s}</div>
-   <details class="more" style="margin-top:12px"><summary>Comment lire la carte</summary><div class="in sm"><p style="margin:0">L'épaisseur de chaque lien est proportionnelle à la probabilité du chemin ; le ${T("critique","chemin critique")} est en couleur. Chaque boîte ouvre sa fiche.</p><p style="margin:0">${esc(pre.noteChemin)}</p></div></details>`);
-}
+function carte(){const edges=[];D.pivots.forEach(n=>n.parents.forEach(p=>edges.push([p.id,n.id,M.sens[p.id+">"+n.id]])));edges.sort((a,b)=>b[2]-a[2]);
+  return head("Carte des pivots","Comment les moments pivots s'enchaînent et pèsent les uns sur les autres, d'octobre 2026 à septembre 2028.")
+  +mapBlock()
+  +sec("Liens les plus influents",`<div class="tw"><table class="resp"><thead><tr><th>Pivot amont</th><th>Pivot aval</th><th>${T("sensibilite","Écart d'influence")}</th></tr></thead><tbody>${edges.map(([a,b,v])=>`<tr><td class="lead">${link(a)}</td><td data-l="Pivot aval">${link(b)}</td><td data-l="Écart"><span class="${v>=CRIT?"b":""}" style="${v>=CRIT?"color:var(--accent)":""}">±${v} pts</span></td></tr>`).join("")}</tbody></table></div>`)
+  +`<details class="more" style="margin-top:16px"><summary>Comment le réseau est calculé</summary><div class="in sm"><p style="margin:0">Chaque pivot reçoit des probabilités conditionnelles à l'issue de ses pivots amont, au plus trois. L'outil combine l'ensemble pour obtenir les probabilités de chaque pivot et de chaque scénario, sans jamais compter deux fois un même facteur.</p><p style="margin:0">L'écart d'influence mesure de combien l'issue principale d'un pivot varie selon l'issue de son pivot amont. Les liens d'au moins ${CRIT} points forment le chemin critique.</p></div></details>`}
 
 function indicateurs(){return head("Indicateurs structurels",`Les grandes forces lentes qui conditionnent la stabilité, chacune résumée par une ${T("note","note sur 10")}.`)
   +`<div class="grid2">${D.indicateurs.map(indBox).join("")}</div>`
@@ -371,7 +415,7 @@ function indPage(id){const ind=D.indicateurs.find(i=>i.id===id);if(!ind)return i
   const evs=D.actualite.filter(e=>e.effets.some(f=>f.cible===id||ind.sous.includes(f.cible)));const prev=D.previsionsSimples.filter(p=>p.ind===id);
   return head(`${esc(ind.nom)}, ${esc(ind.echelle)}`,esc(ind.definition),`<button class="lnk" data-go="indicateurs">Indicateurs structurels</button> / ${esc(ind.nom)}`)
   +`<div class="box"><div class="rowx sp"><div class="rowx"><span class="big">${fr(n)}</span><span class="muted">${T("note","sur 10")}</span>${trend(ind.tendance)}</div><span class="tag ${c}">${l}</span></div>${gauge(n)}
-   <p style="margin:0">${esc(ind.lecture)}</p><div class="sm muted">Utilisé par ${ind.pivots.map(p=>link(p)).join(", ")}${prev.length?" et les prévisions "+prev.map(p=>link(p.id)).join(", "):""}.</div></div>`
+   <p style="margin:0">${esc(ind.lecture)}</p><div class="sm muted">Pèse sur ${ind.pivots.map(p=>link(p)).join(", ")}${prev.length?" et la prévision "+prev.map(p=>`<button class="lnk" data-go="previsions" data-hl="${p.id}">${p.id}</button>`).join(", "):""}.</div></div>`
   +sec("Sous-indicateurs",`<div>${ind.sous.map(siById).map(s=>{const sc=score(s);const [cc,ll]=etat(sc);return `<details class="block"><summary><span style="min-width:0;flex:1"><span class="rowx sp"><span>${esc(s.nom)}</span><span>${esc(s.affiche)}</span></span><span class="rowx sp" style="font-weight:400;margin-top:4px"><span class="sm muted">${esc(marge(s))}</span><span class="tag ${cc}">${ll}</span></span></span></summary>
      <div class="in"><div class="gauge" role="img" aria-label="note ${fr(sc)} sur 10"><i style="left:${sc*10}%"></i></div>
      <div><div class="b sm">Comment il agit</div><p class="sm" style="margin:2px 0 0">${esc(s.action)}</p></div>
@@ -384,28 +428,31 @@ function sousInd(){return head("Sous-indicateurs","Les mesures qui alimentent le
   +D.indicateurs.map(ind=>sec(esc(ind.nom),`<div class="tw"><table class="resp"><thead><tr><th>Mesure</th><th>Valeur</th><th>État</th><th>Marge</th><th>Date</th><th>Source</th></tr></thead><tbody>
   ${ind.sous.map(siById).map(s=>{const [c,l]=etat(score(s));return `<tr><td class="lead">${esc(s.nom)}</td><td data-l="Valeur" style="white-space:nowrap">${esc(s.affiche)}</td><td data-l="État"><span class="tag ${c}">${l}</span></td><td data-l="Marge">${esc(marge(s))}</td><td data-l="Date">${esc(s.date)}</td><td data-l="Source"><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.source)}</a></td></tr>`}).join("")}</tbody></table></div>`,link(ind.id,"Ouvrir la fiche"))).join("")}
 
-function pivots(){return head("Moments pivots","Les moments dont l'issue n'est pas écrite et qui vont peser sur nos sociétés.")
-  +`<div class="grid2" style="gap:16px 24px">${D.pivots.map(pivotBox).join("")}</div>`
-  +sec("À venir",`<div class="rowx"><span class="tag n">Gaza</span><span class="tag n">Iran et détroit d'Ormuz</span><span class="tag n">Climat</span></div><p class="sm muted" style="margin:12px 0 0">Les pivots de crise s'ouvriront sur la réalité humaine (victimes, déplacés) avant toute probabilité.</p>`)}
+function pivots(){return head("Moments pivots","Les moments dont l'issue n'est pas écrite, rangés dans l'ordre où ils se dénouent.")
+  +D.periodes.map((ph,k)=>{const ns=D.pivots.filter(n=>n.periode===k);if(!ns.length)return "";return `<section class="sec ${k===4?"zonesec":""}"><div class="sh"><h2>${esc(ph)}</h2>${k===4?`<span class="tag z">${T("projection","projection")}</span>`:""}</div><div class="grid2" style="gap:16px 24px">${ns.map(n=>{const dm=dom(n.id);
+    return `<div class="box go" tabindex="0" role="link" data-go="pivot-${n.id}"><div class="rowx sp"><h3>${esc(n.nom)}</h3>${typeTag(n)}</div><div class="sm muted">${esc(n.question)}</div><div class="rowx"><span class="big">${P(dm.p)}</span><span><span class="b">${esc(dm.o.nom)}</span><br><span class="sm muted">${T("fourchette","fourchette")} ${dm.r[0]}–${dm.r[1]}</span></span></div>${n.parents.length?`<div class="sm muted">Dépend de ${n.parents.map(p=>esc(N(p.id).nom)).join(", ")}</div>`:""}</div>`}).join("")}</div></section>`}).join("")
+  +sec("À venir",`<div class="rowx"><span class="tag n">Gaza</span><span class="tag n">Iran et détroit d'Ormuz</span><span class="tag n">Climat</span></div><p class="sm muted" style="margin:12px 0 0">Les pivots de crise s'ouvriront sur la réalité humaine avant toute probabilité.</p>`)}
 
-function pivotPage(id){const p=D.pivots.find(x=>x.id===id);if(!p)return pivots();
-  const qs=p.questions.map(q=>{const r=qd(q);const ext=q.hypotheses.some(h=>h.externe!=null)?q.hypotheses.map(h=>h.externe):null;
-    let extra="";
-    if(q.conditionnelle)extra=`<details class="more"><summary>Selon l'issue du budget</summary><div class="in"><div class="tw"><table><thead><tr><th>Hypothèse</th><th>Si adopté</th><th>Si non adopté</th><th>Au total</th></tr></thead><tbody>${q.hypotheses.map((h,i)=>`<tr><td>${esc(h.nom)}</td><td>${P(r.c1[i])}</td><td>${P(r.c2[i])}</td><td class="b">${P(r.glob[i])}</td></tr>`).join("")}</tbody></table></div></div></details>`;
-    if(ext)extra=`<p class="sm" style="margin:0;color:var(--warn)">Écart marqué avec le modèle Sondax sur le duel RN contre LFI. <a href="${esc(q.externeUrl)}" target="_blank" rel="noopener">Source</a></p>`;
-    return `<div class="box"><h3>${esc(q.texte)}</h3>${q.conditionnelle?`<div class="sm muted">${T("calcule","Probabilité calculée")} selon l'issue du ${link(q.conditionnelle)}.</div>`:""}${bars(q.hypotheses,r.glob,r.rg,ext)}${barKey(!!ext)}${extra}<div class="sm muted">Résolution : ${esc(q.resolution)} ${link(q.id,"Voir au registre")}</div></div>`}).join(`<div style="height:16px"></div>`);
-  const est=p.questions.map(q=>q.hypotheses.map(h=>`<tr><td>${esc(h.nom)}</td>${[0,1,2].map(k=>`<td>${h.estimations?P(h.estimations[k]):h.si.B1[k]+" / "+h.si.nonB1[k]}</td>`).join("")}</tr>`).join("")).join("");
-  const evs=D.actualite.filter(e=>p.actualite.includes(e.id));
-  return head(esc(p.nom),esc(p.phrase),`<button class="lnk" data-go="pivots">Moments pivots</button> / ${esc(p.nom)}`)
-  +`<div class="rowx" style="margin:-12px 0 8px"><span class="tag ${p.type==="sous-pivot"?"n":"a"}">${p.type==="sous-pivot"?T("sous-pivot","sous-pivot"):T("pivot","pivot")}</span><span class="sm muted">Échéance ${dfr(p.echeance)}</span>${p.amont.length?`<span class="sm muted">Dépend de ${p.amont.map(a=>link(a)).join(", ")}</span>`:""}${p.aval.length?`<span class="sm muted">Alimente ${p.aval.map(a=>link(a)).join(", ")}</span>`:""}</div>`
-  +(p.realiteHumaine?sec("Réalité humaine",`<p>${esc(p.realiteHumaine)}</p>`):"")
+function pivotPage(id){const n=N(id);if(!n)return pivots();
+  const children=D.pivots.filter(c=>c.parents.some(p=>p.id===id));
+  const ext=null;
+  let qs=`<div class="box"><h3>${esc(n.question)}</h3>${bars(n.issues,M.marg[id],M.rng[id],ext)}${barKey(false)}`;
+  if(n.parents.length){const rows=condTable(n);qs+=`<details class="more"><summary>Selon les pivots amont</summary><div class="in"><div class="tw"><table><thead><tr><th>Si…</th>${n.issues.map(o=>`<th>${esc(o.court)}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.lab)}</td>${r.v.map(v=>`<td>${P(v)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div></details>`}
+  qs+=`<div class="sm muted">Résolution : ${esc(n.resolution)} ${regLink(id)}</div></div>`;
+  (n.autresQuestions||[]).forEach(q=>{const d=to100(q.hypotheses.map(h=>median(h.estimations)));const ex=q.hypotheses.map(h=>h.externe);
+    qs+=`<div style="height:16px"></div><div class="box"><h3>${esc(q.texte)}</h3>${bars(q.hypotheses,d,q.hypotheses.map(h=>[Math.min(...h.estimations),Math.max(...h.estimations)]),ex)}${barKey(true)}<p class="sm" style="margin:0;color:var(--warn)">Écart marqué avec le modèle Sondax sur le duel RN contre LFI. <a href="${esc(q.externeUrl)}" target="_blank" rel="noopener">Source</a></p><div class="sm muted">Résolution : ${esc(q.resolution)} ${regLink(q.id)}</div></div>`});
+  const evs=D.actualite.filter(e=>(n.actualite||[]).includes(e.id));
+  const est=[0,1,2].map(k=>{const v=to100(n.issues.map(o=>prob(M.Je[k],a=>a[id]===o.id)*100));return `<div><div class="rowx sp"><span class="b sm">${esc(D.meta.estimateurs[k])}</span><span class="sm">${n.issues.map((o,j)=>`${esc(o.court)} ${P(v[j])}`).join(" · ")}</span></div>${n.raisons?`<p class="sm muted" style="margin:4px 0 0">${esc(n.raisons[k])}</p>`:""}</div>`}).join("");
+  return head(esc(n.nom),esc(n.phrase),`<button class="lnk" data-go="pivots">Moments pivots</button> / ${esc(n.nom)}`)
+  +`<div class="rowx" style="margin:-12px 0 8px">${typeTag(n)}<span class="sm muted">Échéance ${dfr(n.echeance)}</span>${n.parents.length?`<span class="sm muted">Dépend de ${n.parents.map(p=>link(p.id)).join(", ")}</span>`:""}${children.length?`<span class="sm muted">Pèse sur ${children.map(c=>link(c.id)).join(", ")}</span>`:""}</div>`
+  +(n.realiteHumaine?sec("Réalité humaine",`<p style="margin:0">${esc(n.realiteHumaine)}</p>`):"")
   +sec("Probabilités",qs)
-  +sec("Analyse",`<details class="block" open><summary>Ce qui ferait basculer</summary><div class="in">${p.declencheurs.map(x=>`<div class="rowx sp"><div style="min-width:0;flex:1 1 240px">${esc(x.texte)}<div class="sm muted">vers : ${esc(x.vers)}</div></div><span class="tag n">${esc(x.date||x.distance)}</span></div>`).join("")}</div></details>
-   <details class="block"><summary>Raisonnement</summary><div class="in"><div class="b sm">${T("taux de base","Taux de base")}</div><ul class="sm" style="margin:0;padding-left:18px">${p.tauxDeBase.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
-     <div class="b sm" style="margin-top:6px">Ajustements</div><div class="rows sm">${p.conversion.map(c=>`<div><div class="b">${esc(c.facteur)}</div><div class="muted">${esc(c.effet)}</div></div>`).join("")}</div>${p.noteChemin?`<p class="sm muted" style="margin:0">${esc(p.noteChemin)}</p>`:""}</div></details>
-   <details class="block"><summary>Les trois estimations</summary><div class="in"><div class="tw"><table><thead><tr><th>Hypothèse</th>${D.meta.estimateurs.map(e=>`<th>${esc((e.split(" · ")[1]||e).replace(/^./,c=>c.toUpperCase()))}</th>`).join("")}</tr></thead><tbody>${est}</tbody></table></div>${p.questions.some(q=>q.conditionnelle)?`<p class="sm muted" style="margin:0">Pour la question conditionnelle : si adopté / sinon.</p>`:""}</div></details>
-   <details class="block"><summary>Conséquences sur les indicateurs</summary><div class="in">${p.projections.map(x=>{const h=p.questions[0].hypotheses.find(h=>h.id===x.hyp);return `<div class="sm"><span class="b">${esc(h?h.nom:x.hyp)}</span> · ${esc(x.texte)}</div>`}).join("")}</div></details>
-   <details class="block"><summary>Actualité liée</summary><div class="in">${evs.map(e=>`<div class="rowlink sm" tabindex="0" role="link" data-go="actualite"><span class="muted">${dfr(e.date)}</span> · ${esc(e.titre)}</div>`).join("")}</div></details>`)}
+  +sec("Analyse",`<details class="block" open><summary>Ce qui ferait basculer</summary><div class="in">${(n.declencheurs||[]).map(x=>`<div class="rowx sp"><div style="min-width:0;flex:1 1 240px">${esc(x.texte)}<div class="sm muted">vers : ${esc(x.vers)}</div></div><span class="tag n">${esc(x.date||x.distance)}</span></div>`).join("")}</div></details>
+   <details class="block"><summary>Raisonnement</summary><div class="in"><div class="b sm">${T("taux de base","Taux de base")}</div><ul class="sm" style="margin:0;padding-left:18px">${(n.tauxDeBase||[]).map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+     ${n.conversion?`<div class="b sm" style="margin-top:6px">Ajustements</div><div class="rows sm">${n.conversion.map(c=>`<div><div class="b">${esc(c.facteur)}</div><div class="muted">${esc(c.effet)}</div></div>`).join("")}</div>`:""}${n.noteChemin?`<p class="sm muted" style="margin:0">${esc(n.noteChemin)}</p>`:""}</div></details>
+   <details class="block"><summary>Les trois estimations</summary><div class="in rows">${est}</div></details>
+   ${children.length||n.projections?`<details class="block"><summary>Conséquences</summary><div class="in">${children.map(c=>`<div class="sm">Pèse sur ${link(c.id)} : ${T("sensibilite","écart d'influence")} de ±${M.sens[id+">"+c.id]} points.</div>`).join("")}${(n.projections||[]).map(x=>{const h=n.issues.find(h=>h.id===x.hyp);return `<div class="sm"><span class="b">${esc(h?h.nom:x.hyp)}</span> · ${esc(x.texte)}</div>`}).join("")}</div></details>`:""}
+   ${evs.length?`<details class="block"><summary>Actualité liée</summary><div class="in">${evs.map(e=>`<div class="rowlink sm" tabindex="0" role="link" data-go="actualite"><span class="muted">${dfr(e.date)}</span> · ${esc(e.titre)}</div>`).join("")}</div></details>`:""}`)}
 
 function actualite(){return head("Actualité","Les faits récents et ce qu'ils font bouger.")
   +`<div class="rows">${D.actualite.map(e=>`<article style="display:flex;flex-direction:column;gap:6px"><div class="sm muted">${dfr(e.date)}</div><h3>${esc(e.titre)}</h3><p style="margin:0">${esc(e.resume)}</p>
@@ -415,8 +462,9 @@ function actualite(){return head("Actualité","Les faits récents et ce qu'ils f
 function previsions(){const fc=forecasts();return head("Prévisions",`Le ${T("fige","registre figé")} de toutes les prévisions, et leur résultat à échéance.`)
   +`<div class="tw"><table class="resp"><thead><tr><th>Question</th><th>Probabilités</th><th>Échéance</th><th>${T("externe","Référence")}</th><th>Résultat</th></tr></thead><tbody>
   ${fc.map(f=>`<tr id="row-${f.id}"><td class="lead" style="min-width:220px">${esc(f.texte)}<div class="sm muted" style="font-weight:400">${f.id} · ${f.piv?link(f.piv):link(f.ind)} · émise le ${dfr(D.meta.releve)}</div></td>
-  <td class="blk" data-l="Probabilités" style="min-width:180px">${f.dist.map(([n,v],i)=>`<div class="rowx sp" style="flex-wrap:nowrap"><span>${esc(n)}</span><span style="white-space:nowrap"><span class="b">${P(v)}</span> <span class="muted sm">${rng(f.rg[i])}</span></span></div>`).join("")}</td>
+  <td class="blk" data-l="Probabilités" style="min-width:180px">${f.dist.map(([n,v],i)=>`<div class="rowx sp" style="flex-wrap:nowrap"><span>${esc(n)}</span><span style="white-space:nowrap"><span class="b">${P(v)}</span> <span class="muted sm">${f.rg[i][0]}–${f.rg[i][1]}</span></span></div>`).join("")}</td>
   <td data-l="Échéance">${dfr(f.echeance)}</td><td data-l="Référence">${f.ext?f.dist.map((d,i)=>f.ext[i]!=null?`${esc(d[0])} ${P(f.ext[i])}`:"").filter(Boolean).join("<br>"):"—"}</td><td data-l="Résultat"><span class="tag n">En attente</span></td></tr>`).join("")}
+  ${D.revisees.map(r=>`<tr class="old"><td class="lead" style="min-width:220px">${esc(r.texte)}<div class="sm muted" style="font-weight:400">${r.id} · émise le ${dfr(r.emise)} · ${esc(r.motif)}</div></td><td class="blk" data-l="Probabilités">${r.dist.map(([n,v])=>`<div class="rowx sp" style="flex-wrap:nowrap"><span>${esc(n)}</span><s>${P(v)}</s></div>`).join("")}</td><td data-l="Échéance">—</td><td data-l="Référence">—</td><td data-l="Résultat"><span class="tag n">Révisée</span></td></tr>`).join("")}
   </tbody></table></div>`}
 
 function precedents(){return head("Précédents historiques",`Les cas passés qui fournissent les ${T("taux de base","taux de base")}.`)
@@ -431,19 +479,19 @@ function methodologie(){return head("Méthode et glossaire","Les règles qui enc
   +sec("Règles",`<ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px">
   <li>Toute prévision est une question fermée, datée, avec un critère de résolution écrit dès l'émission.</li>
   <li>Chaque estimation part du ${T("taux de base","taux de base")} et de l'hypothèse « rien ne change » ; chaque ajustement est écrit.</li>
-  <li>Chaque probabilité est la ${T("mediane","médiane de trois")} estimations indépendantes ; les scénarios sont calculés.</li>
-  <li>Un facteur n'agit sur un pivot que par un seul chemin, pour ne jamais être compté deux fois.</li>
+  <li>Chaque probabilité conditionnelle est la ${T("mediane","médiane de trois")} estimations indépendantes ; les probabilités globales et les scénarios sont calculés sur tout le réseau.</li>
+  <li>Un pivot a au plus trois pivots amont ; un facteur n'agit que par un seul chemin, pour ne jamais être compté deux fois.</li>
   <li>Un indicateur repéré après coup n'est validé que sur des événements futurs.</li>
   <li>Le relevé hebdomadaire applique les règles ; seule l'analyse trimestrielle peut les modifier, avec une trace au journal.</li>
-  <li>Au-delà de trois ans, l'outil produit des scénarios, pas des prévisions notées.</li></ol>`)
+  <li>Les projections s'arrêtent à deux ans ; au-delà, l'outil ne produit pas de prévision notée.</li></ol>`)
   +sec("Journal des révisions",`<div class="rows">${D.journal.map(j=>`<div><div class="rowx"><span class="sm muted">${dfr(j.date)}</span><span class="tag n">${esc(j.type)}</span></div><p class="sm" style="margin:6px 0 0">${esc(j.texte)}</p></div>`).join("")}</div>`)
   +sec("Collecte automatique",collecte())
   +sec("Glossaire",`<dl class="dict nog">${Object.values(G).sort((a,b)=>a[0].localeCompare(b[0],"fr")).map(([t,d])=>`<dt>${esc(t)}</dt><dd class="sm just">${esc(d)}</dd>`).join("")}</dl>`)}
 
 /* --- démarrage --- */
-fetch("data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(j=>{D=j;render();
+fetch("data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(j=>{D=j;build();render();
   fetch("data/collecte.json",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(c=>{if(c){C=c;if(location.hash.includes("methodologie"))render()}}).catch(()=>{})})
-  .catch(()=>{$("#view").innerHTML=`<p class="empty">Les données n'ont pas pu être chargées. Rechargez la page.</p>`});
+  .catch(e=>{console.error(e);$("#view").innerHTML=`<p class="empty">Les données n'ont pas pu être chargées. Rechargez la page.</p>`});
 </script>
 
 </body>

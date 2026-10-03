@@ -1,8 +1,8 @@
 {
  "meta": {
   "releve": "2026-10-03",
-  "version": "v0",
-  "methode": "Probabilités = médiane de 3 estimations indépendantes (estimateurs 1 à 3, sans accès aux estimations des autres), renormalisées à 100 %. Probabilités globales et scénarios calculés par l'outil.",
+  "version": "v0.2",
+  "methode": "Chaque probabilité conditionnelle est la médiane de trois estimations indépendantes, renormalisée à 100 %. Les probabilités globales, les scénarios et les fourchettes sont calculés par l'outil sur l'ensemble du réseau.",
   "estimateurs": [
    "Estimateur 1 · généraliste",
    "Estimateur 2 · sceptique",
@@ -26,7 +26,9 @@
     "SI-01-06"
    ],
    "pivots": [
-    "PV-01"
+    "PV-03",
+    "PV-01",
+    "PV-08"
    ],
    "lecture": "Trois signaux sur six ont franchi leur seuil critique : écart de taux avec l'Allemagne, taux à 10 ans et déficit. La dette, les intérêts et la notation tiennent encore, ce qui maintient la note globale sous tension."
   }
@@ -302,58 +304,142 @@
  ],
  "pivots": [
   {
+   "id": "PV-03",
+   "nom": "Notation de Moody's",
+   "type": "sous-pivot",
+   "periode": 0,
+   "echeance": "2026-10-31",
+   "phrase": "Revue programmée le 23 octobre ; la note Aa3 est sous perspective négative depuis avril.",
+   "question": "Moody's abaisse-t-elle la note de la France sous Aa3 en octobre 2026 ?",
+   "resolution": "Communiqué de Moody's ; revue programmée le 23/10/2026.",
+   "issues": [
+    {
+     "id": "D",
+     "nom": "Note abaissée",
+     "court": "abaissée"
+    },
+    {
+     "id": "M",
+     "nom": "Note maintenue",
+     "court": "maintenue"
+    }
+   ],
+   "parents": [],
+   "cpt": {
+    "": {
+     "D": [
+      38,
+      30,
+      30
+     ],
+     "M": [
+      62,
+      70,
+      70
+     ]
+    }
+   },
+   "indicateurs": [
+    "IS-01"
+   ],
+   "tauxDeBase": [
+    "Les agences dégradent rarement à la première revue après un passage en perspective négative.",
+    "Fitch et S&P ont maintenu leur note en août et mai 2026."
+   ],
+   "declencheurs": [
+    {
+     "texte": "Décision de Moody's",
+     "date": "23/10/2026",
+     "vers": "Note abaissée ou maintenue"
+    }
+   ],
+   "raisons": [
+    "La revue tombe en pleine flambée de l'écart de taux, mais Moody's réagit souvent lentement et peut attendre l'issue du budget.",
+    "Dégradation envisageable, loin d'être automatique ; Fitch et S&P viennent de confirmer leur note.",
+    "Les agences dégradent rarement à la première revue après un changement de perspective, et le budget n'est pas tranché le 23/10."
+   ],
+   "actualite": [
+    "EV-01"
+   ],
+   "court": "Note de Moody's"
+  },
+  {
+   "id": "PV-04",
+   "nom": "Mobilisation contre le budget",
+   "type": "anticipé",
+   "periode": 0,
+   "echeance": "2026-12-31",
+   "phrase": "Le mouvement lycéen né le 18 septembre est le plus fort depuis 2010 ; la fonction publique a manifesté le 29 septembre contre le gel du point d'indice.",
+   "realiteHumaine": "Au 1er octobre, près de 2 000 interpellations et 318 blessés, dont 170 élèves, 65 personnels et 83 policiers et gendarmes. Plus de 400 lycées ont été fermés par précaution le même jour.",
+   "question": "Une mobilisation d'ampleur contre le budget a-t-elle lieu d'ici le 31 décembre 2026 ?",
+   "resolution": "Oui si une journée réunit au moins 500 000 manifestants selon le ministère de l'Intérieur sur un appel citant le budget 2027, ou si au moins 500 lycées sont perturbés ou bloqués selon le ministère de l'Éducation lors de 3 journées distinctes après le 05/10/2026.",
+   "issues": [
+    {
+     "id": "O",
+     "nom": "Mobilisation d'ampleur",
+     "court": "d'ampleur"
+    },
+    {
+     "id": "N",
+     "nom": "Pas de mobilisation d'ampleur",
+     "court": "limitée"
+    }
+   ],
+   "parents": [],
+   "cpt": {
+    "": {
+     "O": [
+      50,
+      30,
+      36
+     ],
+     "N": [
+      50,
+      70,
+      64
+     ]
+    }
+   },
+   "indicateurs": [],
+   "tauxDeBase": [
+    "Huit grands mouvements depuis 1986 : 2 retraits complets (1986, 2006), 3 reculs partiels, 3 sans recul ; aucun gouvernement tombé du fait de la rue.",
+    "Pic lycéen de 2010 : 379 lycées bloqués ; décembre 2018 : 280 perturbés. Le 2 octobre 2026 : 564."
+   ],
+   "declencheurs": [
+    {
+     "texte": "Concertation annoncée par le ministre de l'Éducation",
+     "date": "05/10/2026",
+     "vers": "Pas de mobilisation d'ampleur"
+    },
+    {
+     "texte": "Grève et manifestations de l'éducation",
+     "date": "06/10/2026",
+     "vers": "Mobilisation d'ampleur"
+    },
+    {
+     "texte": "Vacances de la Toussaint",
+     "date": "mi-octobre",
+     "vers": "Pas de mobilisation d'ampleur"
+    }
+   ],
+   "raisons": [
+    "Le seuil de 500 000 manifestants n'a été franchi que lors des grands mouvements interprofessionnels ; c'est surtout le critère lycéen qui porte la probabilité, avec le risque d'essoufflement aux vacances de la Toussaint.",
+    "Seuls quatre mouvements sur huit depuis 1986 ont dépassé un million de manifestants ; aucune journée interprofessionnelle n'est annoncée et les mouvements lycéens retombent vite.",
+    "Les mobilisations de plus de 500 000 personnes restent rares ; le mouvement lycéen peut tenir trois journées au-dessus de 500 établissements, mais ces mouvements s'essoufflent en deux à trois semaines."
+   ],
+   "actualite": [
+    "EV-07",
+    "EV-08"
+   ],
+   "court": "Mobilisation"
+  },
+  {
    "id": "PV-01",
    "nom": "Budget 2027",
    "type": "sous-pivot",
-   "aval": [
-    "PV-02"
-   ],
-   "amont": [],
    "phrase": "Le gouvernement Lecornu, sans majorité, doit faire adopter un effort de 54 Md€ alors que les taux d'emprunt français dépassent ceux de l'Italie.",
    "realiteHumaine": null,
    "echeance": "2026-12-31",
-   "indicateursDirects": [
-    "IS-01"
-   ],
-   "questions": [
-    {
-     "id": "Q-PV01",
-     "texte": "Quelle est l'issue du budget 2027 au 31 décembre 2026 ?",
-     "resolution": "Constat au 31/12/2026 au Journal officiel et au compte rendu des séances de l'Assemblée nationale.",
-     "hypotheses": [
-      {
-       "id": "B1",
-       "nom": "Budget adopté",
-       "detail": "Loi de finances promulguée ou budget mis en œuvre par ordonnance (art. 47), sans chute du gouvernement",
-       "estimations": [
-        40,
-        30,
-        33
-       ]
-      },
-      {
-       "id": "B2",
-       "nom": "Gouvernement censuré",
-       "detail": "Motion de censure adoptée avant le 31/12/2026",
-       "estimations": [
-        25,
-        22,
-        22
-       ]
-      },
-      {
-       "id": "B3",
-       "nom": "Loi spéciale",
-       "detail": "Ni censure, ni loi de finances, ni ordonnance au 31/12/2026",
-       "estimations": [
-        35,
-        48,
-        45
-       ]
-      }
-     ]
-    }
-   ],
    "tauxDeBase": [
     "Budgets 2025 et 2026 : aucun n'a été promulgué avant le 31 décembre ; loi spéciale les deux fois.",
     "Gouvernements minoritaires depuis 2024 : 1 censure sur 3 budgets (Barnier, décembre 2024).",
@@ -362,33 +448,15 @@
    "conversion": [
     {
      "facteur": "Taux de base récent : loi spéciale pour les budgets 2025 et 2026",
-     "effet": "Point de départ : la loi spéciale est l'issue la plus probable"
+     "effet": "Point de départ : loi spéciale ou adoption tardive"
     },
     {
-     "facteur": "Dissolution écartée par le président le 24/09",
-     "effet": "Censurer devient moins intéressant pour l'opposition : la censure reste sous 25 %"
+     "facteur": "Mobilisation d'ampleur",
+     "effet": "La censure gagne environ 8 points"
     },
     {
-     "facteur": "Rejet affiché du PS (02/10) et des écologistes",
-     "effet": "La censure reste au-dessus de 20 %"
-    },
-    {
-     "facteur": "Finances publiques à 6,1/10, écart de taux à 130 pb",
-     "effet": "La pression des marchés pousse au compromis : soutient l'adoption"
-    }
-   ],
-   "projections": [
-    {
-     "hyp": "B1",
-     "texte": "Finances publiques : détente probable de l'écart de taux, notation stabilisée."
-    },
-    {
-     "hyp": "B2",
-     "texte": "Finances publiques : hausse de l'écart de taux, risque de dégradation par Moody's ou S&P (28/11)."
-    },
-    {
-     "hyp": "B3",
-     "texte": "Finances publiques : budget reconduit sans mesures nouvelles, déficit 2027 au-dessus de la cible de 5,0 %."
+     "facteur": "Dégradation par Moody's",
+     "effet": "Effet faible et ambigu : pression pour adopter, mais gouvernement délégitimé"
     }
    ],
    "declencheurs": [
@@ -412,98 +480,595 @@
     "EV-02",
     "EV-04",
     "EV-06"
-   ]
+   ],
+   "periode": 1,
+   "question": "Quelle est l'issue du budget 2027 au 31 décembre 2026 ?",
+   "resolution": "Constat au 31/12/2026 au Journal officiel et au compte rendu des séances de l'Assemblée nationale.",
+   "issues": [
+    {
+     "id": "B1",
+     "nom": "Budget adopté",
+     "detail": "Loi de finances promulguée ou budget mis en œuvre par ordonnance (art. 47), sans chute du gouvernement",
+     "court": "adopté"
+    },
+    {
+     "id": "B2",
+     "nom": "Gouvernement censuré",
+     "detail": "Motion de censure adoptée avant le 31/12/2026",
+     "court": "censure"
+    },
+    {
+     "id": "B3",
+     "nom": "Loi spéciale",
+     "detail": "Ni censure, ni loi de finances, ni ordonnance au 31/12/2026",
+     "court": "loi spéciale"
+    }
+   ],
+   "parents": [
+    {
+     "id": "PV-03",
+     "g": {
+      "D": [
+       "D"
+      ],
+      "M": [
+       "M"
+      ]
+     }
+    },
+    {
+     "id": "PV-04",
+     "g": {
+      "O": [
+       "O"
+      ],
+      "N": [
+       "N"
+      ]
+     }
+    }
+   ],
+   "cpt": {
+    "D_O": {
+     "B1": [
+      43,
+      24,
+      45
+     ],
+     "B2": [
+      39,
+      22,
+      40
+     ],
+     "B3": [
+      18,
+      54,
+      15
+     ]
+    },
+    "D_N": {
+     "B1": [
+      54,
+      27,
+      55
+     ],
+     "B2": [
+      29,
+      18,
+      30
+     ],
+     "B3": [
+      17,
+      55,
+      15
+     ]
+    },
+    "M_O": {
+     "B1": [
+      45,
+      22,
+      48
+     ],
+     "B2": [
+      38,
+      22,
+      38
+     ],
+     "B3": [
+      17,
+      56,
+      14
+     ]
+    },
+    "M_N": {
+     "B1": [
+      56,
+      25,
+      58
+     ],
+     "B2": [
+      29,
+      17,
+      28
+     ],
+     "B3": [
+      15,
+      58,
+      14
+     ]
+    }
+   },
+   "indicateurs": [
+    "IS-01"
+   ],
+   "raisons": [
+    "Si rien ne change, on suit le précédent du budget 2026 : adoption après des censures rejetées. Une forte mobilisation durcit le PS et ajoute une dizaine de points à la censure.",
+    "Deux budgets de suite ont fini en loi spéciale et l'ordonnance n'a jamais servi : la loi spéciale est le scénario central. Moody's et la rue ne déplacent que marginalement les chiffres.",
+    "Un budget finit presque toujours par passer, mais les chutes de Barnier et Bayrou montrent la fragilité. La mobilisation et une dégradation poussent vers la censure."
+   ],
+   "projections": [
+    {
+     "hyp": "B1",
+     "texte": "Finances publiques : détente probable de l'écart de taux, notation stabilisée."
+    },
+    {
+     "hyp": "B2",
+     "texte": "Finances publiques : hausse de l'écart de taux, risque de dégradation par Moody's ou S&P (28/11)."
+    },
+    {
+     "hyp": "B3",
+     "texte": "Finances publiques : budget reconduit sans mesures nouvelles, déficit 2027 au-dessus de la cible de 5,0 %."
+    }
+   ],
+   "court": "Budget 2027"
+  },
+  {
+   "id": "PV-05",
+   "nom": "Candidature unique du centre",
+   "type": "sous-pivot",
+   "periode": 2,
+   "echeance": "2027-03-31",
+   "phrase": "Édouard Philippe et Gabriel Attal sont tous deux candidats ; la primaire est écartée et aucun départage n'est daté.",
+   "question": "Le bloc central présente-t-il un seul candidat au premier tour ?",
+   "resolution": "Liste officielle des candidats publiée par le Conseil constitutionnel (mars 2027).",
+   "issues": [
+    {
+     "id": "U",
+     "nom": "Candidat unique",
+     "court": "un candidat"
+    },
+    {
+     "id": "P",
+     "nom": "Plusieurs candidats",
+     "court": "divisé"
+    }
+   ],
+   "parents": [],
+   "cpt": {
+    "": {
+     "U": [
+      38,
+      52,
+      40
+     ],
+     "P": [
+      62,
+      48,
+      60
+     ]
+    }
+   },
+   "indicateurs": [],
+   "tauxDeBase": [
+    "2002 : la dispersion de la gauche élimine Jospin de 190 000 voix.",
+    "1995 : Chirac et Balladur, issus du même camp, se maintiennent jusqu'au premier tour."
+   ],
+   "declencheurs": [
+    {
+     "texte": "Sondages du premier tour : Philippe seul monte à 18 %",
+     "date": "en continu",
+     "vers": "Candidat unique"
+    },
+    {
+     "texte": "Clôture des parrainages",
+     "date": "mars 2027",
+     "vers": "Candidat unique ou plusieurs"
+    }
+   ],
+   "raisons": [
+    "Primaire écartée, aucun mécanisme daté, mais un départage par les sondages au profit de Philippe reste possible d'ici mars.",
+    "La pression des sondages (Philippe à 18 % seul) et le précédent de 2002 poussent à un retrait avant les parrainages, freiné par l'ambition d'Attal.",
+    "Les candidatures de camp se maintiennent souvent jusqu'au bout (1995, 2002), mais le risque d'élimination peut forcer un retrait."
+   ],
+   "actualite": [],
+   "court": "Centre uni"
+  },
+  {
+   "id": "PV-06",
+   "nom": "Candidature de Marine Le Pen",
+   "type": "sous-pivot",
+   "periode": 2,
+   "echeance": "2027-03-31",
+   "phrase": "Éligible depuis l'arrêt d'appel ; un rejet de son pourvoi rendrait exécutoire un an sous bracelet électronique, et elle refuse de faire campagne ainsi.",
+   "question": "Marine Le Pen figure-t-elle sur la liste officielle des candidats ?",
+   "resolution": "Liste officielle des candidats publiée par le Conseil constitutionnel (mars 2027).",
+   "issues": [
+    {
+     "id": "L",
+     "nom": "Marine Le Pen candidate",
+     "court": "Le Pen"
+    },
+    {
+     "id": "R",
+     "nom": "Autre candidat RN",
+     "court": "autre RN"
+    }
+   ],
+   "parents": [],
+   "cpt": {
+    "": {
+     "L": [
+      50,
+      85,
+      80
+     ],
+     "R": [
+      50,
+      15,
+      20
+     ]
+    }
+   },
+   "indicateurs": [],
+   "tauxDeBase": [
+    "La Cour de cassation rejette la majorité des pourvois.",
+    "Le RN affirme n'avoir « pas de plan B » ; l'affaire Bardella rend une substitution moins attractive."
+   ],
+   "declencheurs": [
+    {
+     "texte": "Décision de la Cour de cassation",
+     "date": "au plus tard début avril 2027",
+     "vers": "Autre candidat RN en cas de rejet"
+    },
+    {
+     "texte": "Suites de l'affaire Bardella",
+     "date": "en cours",
+     "vers": "Marine Le Pen candidate"
+    }
+   ],
+   "raisons": [
+    "La Cour de cassation rejette la majorité des pourvois, ce qui rendrait le bracelet exécutoire, et Le Pen refuse de faire campagne ainsi.",
+    "Elle est éligible, le RN n'a pas de plan B et la liste officielle pourrait précéder la décision de cassation : environ 15 % de risque.",
+    "Le risque porte sur la cassation, attendue près de la publication de la liste ; l'affaire Bardella réduit l'attrait d'une substitution."
+   ],
+   "actualite": [
+    "EV-09"
+   ],
+   "court": "Le Pen candidate"
   },
   {
    "id": "PV-02",
    "nom": "Présidentielle 2027",
    "type": "pivot",
-   "aval": [],
-   "amont": [
-    "PV-01"
-   ],
    "phrase": "Premier tour le 18 avril 2027, second tour le 2 mai. Le président sortant ne peut pas se représenter ; le RN est en tête de tous les sondages.",
    "realiteHumaine": null,
    "echeance": "2027-05-02",
-   "indicateursDirects": [],
-   "noteChemin": "Les finances publiques n'agissent sur la présidentielle qu'à travers le budget 2027, pour ne pas compter deux fois le même facteur. L'indicateur Stabilité institutionnelle s'y branchera directement quand il sera construit.",
-   "questions": [
+   "noteChemin": "Trois pivots amont conditionnent ce pivot : le budget 2027, la candidature unique du centre et la candidature de Marine Le Pen. Les finances publiques n'agissent qu'à travers le budget, pour ne pas compter deux fois le même facteur.",
+   "tauxDeBase": [
+    "À environ 200 jours, le favori des sondages a fini premier dans 4 élections sur 5 (2002-2022).",
+    "Le duel de second tour attendu ne s'est réalisé que 3 fois sur 5 (ratés en 2002 et 2017 ; 1995 également).",
+    "Mélenchon a été sous-estimé de 4 à 9 points à 200 jours en 2012 et 2022.",
+    "Le camp présidentiel a changé dans 4 élections sur 11 depuis 1965 ; aucun candidat RN ou FN n'a jamais gagné."
+   ],
+   "conversion": [
     {
-     "id": "Q-PV02-A",
-     "texte": "Quelle famille politique remporte la présidentielle ?",
-     "resolution": "Proclamation des résultats par le Conseil constitutionnel, mai 2027.",
-     "conditionnelle": "PV-01",
-     "hypotheses": [
-      {
-       "id": "RN",
-       "nom": "RN",
-       "detail": "Marine Le Pen ou Jordan Bardella",
-       "si": {
-        "B1": [
-         50,
-         40,
-         36
-        ],
-        "nonB1": [
-         56,
-         45,
-         42
-        ]
-       }
-      },
-      {
-       "id": "C",
-       "nom": "Bloc central",
-       "detail": "Renaissance, Horizons, MoDem",
-       "si": {
-        "B1": [
-         30,
-         33,
-         37
-        ],
-        "nonB1": [
-         23,
-         28,
-         30
-        ]
-       }
-      },
-      {
-       "id": "G",
-       "nom": "Gauche",
-       "detail": "LFI, PS, Place publique, écologistes, PCF",
-       "si": {
-        "B1": [
-         12,
-         15,
-         16
-        ],
-        "nonB1": [
-         13,
-         17,
-         17
-        ]
-       }
-      },
-      {
-       "id": "D",
-       "nom": "Droite LR ou autre",
-       "detail": "Bruno Retailleau ou autre candidat",
-       "si": {
-        "B1": [
-         8,
-         12,
-         11
-        ],
-        "nonB1": [
-         8,
-         10,
-         11
-        ]
-       }
-      }
+     "facteur": "Sondages de second tour (Le Pen 55-57 % face au centre)",
+     "effet": "RN favori, mais écart réversible à sept mois"
+    },
+    {
+     "facteur": "Plusieurs candidats au centre",
+     "effet": "RN +5 à 7 points (risque d'élimination du centre, comme la gauche en 2002)"
+    },
+    {
+     "facteur": "Autre candidat que Marine Le Pen",
+     "effet": "RN −6 à 10 points"
+    },
+    {
+     "facteur": "Budget non adopté",
+     "effet": "RN +4 à 6 points"
+    }
+   ],
+   "projections": [
+    {
+     "hyp": "RN",
+     "texte": "Finances publiques : forte réaction probable des marchés à l'annonce du programme (précédent du Royaume-Uni en 2022)."
+    },
+    {
+     "hyp": "C",
+     "texte": "Finances publiques : continuité de la trajectoire de redressement annoncée."
+    },
+    {
+     "hyp": "G",
+     "texte": "Finances publiques : hausse probable de l'écart de taux en cas de programme de relance."
+    },
+    {
+     "hyp": "D",
+     "texte": "Finances publiques : trajectoire d'économies renforcée."
+    }
+   ],
+   "declencheurs": [
+    {
+     "texte": "Primaire PS – Place publique, puis primaire écologistes et L'Après",
+     "date": "9-11/10/2026",
+     "vers": "RN contre un autre candidat"
+    },
+    {
+     "texte": "Accord ou non sur une candidature unique du bloc central",
+     "date": "non daté",
+     "vers": "RN contre bloc central"
+    },
+    {
+     "texte": "Décision de la Cour de cassation sur Marine Le Pen",
+     "date": "au plus tard début avril 2027",
+     "vers": "Pas de RN ou relais Bardella"
+    }
+   ],
+   "actualite": [
+    "EV-04",
+    "EV-05",
+    "EV-06",
+    "EV-09"
+   ],
+   "periode": 3,
+   "question": "Quelle famille politique remporte la présidentielle ?",
+   "resolution": "Proclamation des résultats par le Conseil constitutionnel, mai 2027.",
+   "issues": [
+    {
+     "id": "RN",
+     "nom": "RN",
+     "detail": "Marine Le Pen ou Jordan Bardella",
+     "court": "RN"
+    },
+    {
+     "id": "C",
+     "nom": "Bloc central",
+     "detail": "Renaissance, Horizons, MoDem",
+     "court": "centre"
+    },
+    {
+     "id": "G",
+     "nom": "Gauche",
+     "detail": "LFI, PS, Place publique, écologistes, PCF",
+     "court": "gauche"
+    },
+    {
+     "id": "D",
+     "nom": "Droite LR ou autre",
+     "detail": "Bruno Retailleau ou autre candidat",
+     "court": "droite"
+    }
+   ],
+   "parents": [
+    {
+     "id": "PV-01",
+     "g": {
+      "A": [
+       "B1"
+      ],
+      "X": [
+       "B2",
+       "B3"
+      ]
+     }
+    },
+    {
+     "id": "PV-05",
+     "g": {
+      "U": [
+       "U"
+      ],
+      "P": [
+       "P"
+      ]
+     }
+    },
+    {
+     "id": "PV-06",
+     "g": {
+      "L": [
+       "L"
+      ],
+      "R": [
+       "R"
+      ]
+     }
+    }
+   ],
+   "cpt": {
+    "A_U_L": {
+     "RN": [
+      52,
+      40,
+      42
+     ],
+     "C": [
+      33,
+      38,
+      38
+     ],
+     "G": [
+      8,
+      14,
+      12
+     ],
+     "D": [
+      7,
+      8,
+      8
      ]
     },
+    "A_U_R": {
+     "RN": [
+      42,
+      33,
+      36
+     ],
+     "C": [
+      40,
+      43,
+      42
+     ],
+     "G": [
+      10,
+      15,
+      13
+     ],
+     "D": [
+      8,
+      9,
+      9
+     ]
+    },
+    "A_P_L": {
+     "RN": [
+      58,
+      46,
+      52
+     ],
+     "C": [
+      24,
+      28,
+      26
+     ],
+     "G": [
+      11,
+      17,
+      14
+     ],
+     "D": [
+      7,
+      9,
+      8
+     ]
+    },
+    "A_P_R": {
+     "RN": [
+      47,
+      38,
+      45
+     ],
+     "C": [
+      31,
+      33,
+      31
+     ],
+     "G": [
+      13,
+      18,
+      15
+     ],
+     "D": [
+      9,
+      11,
+      9
+     ]
+    },
+    "X_U_L": {
+     "RN": [
+      57,
+      44,
+      48
+     ],
+     "C": [
+      28,
+      34,
+      32
+     ],
+     "G": [
+      9,
+      14,
+      12
+     ],
+     "D": [
+      6,
+      8,
+      8
+     ]
+    },
+    "X_U_R": {
+     "RN": [
+      47,
+      37,
+      42
+     ],
+     "C": [
+      34,
+      40,
+      37
+     ],
+     "G": [
+      11,
+      15,
+      13
+     ],
+     "D": [
+      8,
+      8,
+      8
+     ]
+    },
+    "X_P_L": {
+     "RN": [
+      62,
+      50,
+      58
+     ],
+     "C": [
+      20,
+      24,
+      21
+     ],
+     "G": [
+      12,
+      17,
+      14
+     ],
+     "D": [
+      6,
+      9,
+      7
+     ]
+    },
+    "X_P_R": {
+     "RN": [
+      52,
+      43,
+      51
+     ],
+     "C": [
+      26,
+      29,
+      26
+     ],
+     "G": [
+      13,
+      18,
+      15
+     ],
+     "D": [
+      9,
+      10,
+      8
+     ]
+    }
+   },
+   "indicateurs": [],
+   "raisons": [
+    "Le RN est le favori structurel mais le favori à 200 jours ne gagne pas toujours. Centre unique, absence de Le Pen et budget adopté renforcent chacun le centre de 5 à 10 points.",
+    "Le plafond de verre du RN a tenu en 2017 et 2022 et les duels attendus ne se réalisent que trois fois sur cinq : le RN est ramené vers 40 %.",
+    "Départ à environ 45 % pour le RN, davantage si le centre est divisé (scénario 2002) ou si le budget échoue, moins si Le Pen est remplacée."
+   ],
+   "autresQuestions": [
     {
      "id": "Q-PV02-B",
      "texte": "Qui s'affronte au second tour ?",
@@ -554,86 +1119,292 @@
      "externeUrl": "https://sondax.fr/"
     }
    ],
+   "court": "Présidentielle"
+  },
+  {
+   "id": "PV-07",
+   "nom": "Majorité du président élu",
+   "type": "projection",
+   "periode": 4,
+   "echeance": "2027-12-31",
+   "phrase": "Le président élu pourra dissoudre dès son entrée en fonction ; l'Assemblée actuelle n'a de majorité pour aucun camp.",
+   "question": "Le camp du président élu dispose-t-il d'une majorité absolue à l'Assemblée au 31 décembre 2027 ?",
+   "resolution": "Composition de l'Assemblée au 31/12/2027 : au moins 289 députés dans les groupes du camp présidentiel.",
+   "issues": [
+    {
+     "id": "O",
+     "nom": "Majorité absolue",
+     "court": "oui"
+    },
+    {
+     "id": "N",
+     "nom": "Pas de majorité absolue",
+     "court": "non"
+    }
+   ],
+   "parents": [
+    {
+     "id": "PV-02",
+     "g": {
+      "RN": [
+       "RN"
+      ],
+      "Centre": [
+       "C"
+      ],
+      "Gauche": [
+       "G"
+      ],
+      "Droite": [
+       "D"
+      ]
+     }
+    }
+   ],
+   "cpt": {
+    "RN": {
+     "O": [
+      58,
+      50,
+      52
+     ],
+     "N": [
+      42,
+      50,
+      48
+     ]
+    },
+    "Centre": {
+     "O": [
+      38,
+      40,
+      38
+     ],
+     "N": [
+      62,
+      60,
+      62
+     ]
+    },
+    "Gauche": {
+     "O": [
+      35,
+      33,
+      28
+     ],
+     "N": [
+      65,
+      67,
+      72
+     ]
+    },
+    "Droite": {
+     "O": [
+      30,
+      30,
+      33
+     ],
+     "N": [
+      70,
+      70,
+      67
+     ]
+    }
+   },
+   "indicateurs": [],
    "tauxDeBase": [
-    "À environ 200 jours, le favori des sondages a fini premier dans 4 élections sur 5 (2002-2022).",
-    "Le duel de second tour attendu ne s'est réalisé que 3 fois sur 5 (ratés en 2002 et 2017 ; 1995 également).",
-    "Mélenchon a été sous-estimé de 4 à 9 points à 200 jours en 2012 et 2022.",
-    "Le camp présidentiel a changé dans 4 élections sur 11 depuis 1965 ; aucun candidat RN ou FN n'a jamais gagné."
-   ],
-   "conversion": [
-    {
-     "facteur": "Sondages de second tour (Le Pen 55-57 % face au centre)",
-     "effet": "RN favori, mais l'écart reste réversible à 7 mois"
-    },
-    {
-     "facteur": "Taux de base : duel attendu réalisé 3 fois sur 5",
-     "effet": "Plus de 50 % répartis hors du duel RN-centre"
-    },
-    {
-     "facteur": "Pourvoi de Marine Le Pen, décision au plus tard début avril 2027",
-     "effet": "Environ 10 à 13 % sans RN au second tour"
-    },
-    {
-     "facteur": "Budget 2027 non adopté",
-     "effet": "RN +4 points, bloc central −5 points par rapport au cas où le budget est adopté"
-    }
-   ],
-   "projections": [
-    {
-     "hyp": "RN",
-     "texte": "Finances publiques : forte réaction probable des marchés à l'annonce du programme (précédent du Royaume-Uni en 2022)."
-    },
-    {
-     "hyp": "C",
-     "texte": "Finances publiques : continuité de la trajectoire de redressement annoncée."
-    },
-    {
-     "hyp": "G",
-     "texte": "Finances publiques : hausse probable de l'écart de taux en cas de programme de relance."
-    },
-    {
-     "hyp": "D",
-     "texte": "Finances publiques : trajectoire d'économies renforcée."
-    }
+    "Après une présidentielle, le camp du président a obtenu la majorité absolue 5 fois sur 7 (relative en 1988 et 2022).",
+    "Sondages législatifs : RN 34-36 %, gauche 24 %, Ensemble 14-16 %."
    ],
    "declencheurs": [
     {
-     "texte": "Primaire PS – Place publique, puis primaire écologistes et L'Après",
-     "date": "9-11/10/2026",
-     "vers": "RN contre un autre candidat"
-    },
-    {
-     "texte": "Accord ou non sur une candidature unique du bloc central",
-     "date": "non daté",
-     "vers": "RN contre bloc central"
-    },
-    {
-     "texte": "Décision de la Cour de cassation sur Marine Le Pen",
-     "date": "au plus tard début avril 2027",
-     "vers": "Pas de RN ou relais Bardella"
+     "texte": "Dissolution par le président élu",
+     "date": "mai-juin 2027",
+     "vers": "Majorité absolue"
     }
    ],
-   "actualite": [
-    "EV-04",
-    "EV-05",
-    "EV-06"
-   ]
+   "raisons": [
+    "Majorité absolue 5 fois sur 7 après une présidentielle, mais l'électorat est tripolaire ; le RN, autour de 35 %, a les meilleures chances.",
+    "La tripartition rend l'exercice plus difficile qu'en 2002 ou 2017 ; le RN profite le plus de l'effet d'entraînement.",
+    "Seul le socle du RN rend une majorité absolue crédible après dissolution ; centre et gauche devraient bâtir des alliances fragiles."
+   ],
+   "actualite": [],
+   "court": "Majorité absolue"
+  },
+  {
+   "id": "PV-08",
+   "nom": "Choc sur la dette",
+   "type": "projection",
+   "periode": 4,
+   "echeance": "2028-09-30",
+   "phrase": "Un écart de 200 pb serait inédit depuis la création de l'euro ; l'Italie l'a dépassé en 2018 avec un gouvernement contestant les règles budgétaires.",
+   "question": "L'écart OAT-Bund à 10 ans atteint-il 200 pb entre le 2 mai 2027 et le 30 septembre 2028 ?",
+   "resolution": "Au moins une clôture à 200 pb ou plus, données Banque de France et Bundesbank.",
+   "issues": [
+    {
+     "id": "O",
+     "nom": "Choc à 200 pb ou plus",
+     "court": "oui"
+    },
+    {
+     "id": "N",
+     "nom": "Pas de choc",
+     "court": "non"
+    }
+   ],
+   "parents": [
+    {
+     "id": "PV-02",
+     "g": {
+      "RN": [
+       "RN"
+      ],
+      "Centre": [
+       "C"
+      ],
+      "Gauche": [
+       "G"
+      ],
+      "Droite": [
+       "D"
+      ]
+     }
+    },
+    {
+     "id": "PV-07",
+     "g": {
+      "M": [
+       "O"
+      ],
+      "S": [
+       "N"
+      ]
+     }
+    }
+   ],
+   "cpt": {
+    "RN_M": {
+     "O": [
+      60,
+      33,
+      38
+     ],
+     "N": [
+      40,
+      67,
+      62
+     ]
+    },
+    "RN_S": {
+     "O": [
+      50,
+      22,
+      35
+     ],
+     "N": [
+      50,
+      78,
+      65
+     ]
+    },
+    "Centre_M": {
+     "O": [
+      12,
+      10,
+      15
+     ],
+     "N": [
+      88,
+      90,
+      85
+     ]
+    },
+    "Centre_S": {
+     "O": [
+      25,
+      15,
+      22
+     ],
+     "N": [
+      75,
+      85,
+      78
+     ]
+    },
+    "Gauche_M": {
+     "O": [
+      65,
+      35,
+      40
+     ],
+     "N": [
+      35,
+      65,
+      60
+     ]
+    },
+    "Gauche_S": {
+     "O": [
+      45,
+      22,
+      28
+     ],
+     "N": [
+      55,
+      78,
+      72
+     ]
+    },
+    "Droite_M": {
+     "O": [
+      14,
+      10,
+      12
+     ],
+     "N": [
+      86,
+      90,
+      88
+     ]
+    },
+    "Droite_S": {
+     "O": [
+      25,
+      15,
+      18
+     ],
+     "N": [
+      75,
+      85,
+      82
+     ]
+    }
+   },
+   "indicateurs": [
+    "IS-01"
+   ],
+   "tauxDeBase": [
+    "Italie 2018 : écart de 130 à 292 pb en un mois après l'arrivée du gouvernement M5S-Ligue, pic à 326 pb.",
+    "Pic français de 2011-2012 : environ 150 pb ; octobre 2026 : environ 130 pb."
+   ],
+   "declencheurs": [
+    {
+     "texte": "Premier budget du nouveau gouvernement",
+     "date": "automne 2027",
+     "vers": "Choc à 200 pb ou plus"
+    }
+   ],
+   "raisons": [
+    "L'Italie de 2018 montre que 200 pb est atteignable avec un gouvernement contestant les règles et disposant d'une majorité.",
+    "200 pb serait inédit depuis l'euro ; le filet de la BCE et le retour à la moyenne justifient la prudence, sauf majorité RN ou de gauche.",
+    "Il faudrait +70 pb en 17 mois ; c'est possible avec un programme coûteux appliqué par une majorité, plus modéré avec le centre ou la droite."
+   ],
+   "actualite": [],
+   "court": "Choc sur la dette"
   }
  ],
  "scenariosFrance": "Les scénarios France combinent l'issue du budget 2027 et la famille du vainqueur de 2027 ; leur probabilité est le produit des probabilités le long du chemin.",
  "previsionsSimples": [
-  {
-   "id": "P-004",
-   "texte": "Moody's abaisse la note de la France sous Aa3 entre le 3 et le 31 octobre 2026",
-   "estimations": [
-    38,
-    30,
-    30
-   ],
-   "echeance": "2026-10-31",
-   "ind": "IS-01",
-   "resolution": "Communiqué de Moody's ; revue programmée le 23/10/2026."
-  },
   {
    "id": "P-005",
    "texte": "L'écart OAT-Bund 10 ans clôture au moins une fois à 150 pb ou plus avant le 31 décembre 2026",
@@ -648,6 +1419,38 @@
   }
  ],
  "actualite": [
+  {
+   "id": "EV-07",
+   "date": "2026-10-02",
+   "titre": "Mouvement lycéen : 564 établissements perturbés, un record depuis 2010",
+   "resume": "Parti de Créteil le 18 septembre, le mouvement s'étend aux universités, qui protestent notamment contre la suppression des APL de 200 000 étudiants prévue au budget 2027.",
+   "effets": [
+    {
+     "cible": "PV-04",
+     "sens": "hausse",
+     "texte": "Mobilisation en hausse"
+    }
+   ],
+   "source": "Boursorama",
+   "url": "https://www.boursorama.com/actualite-economique/actualites/blocage-des-lycees-un-vendredi-sous-haute-tension-564-etablissements-perturbes-a34ffcd77c3d705dd5e6e6ecd303139c",
+   "confiance": "moyenne"
+  },
+  {
+   "id": "EV-09",
+   "date": "2026-10-01",
+   "titre": "Affaire Bardella : Mediapart présente des éléments d'authentification de messages de 2013",
+   "resume": "Jordan Bardella dénonce des faux et porte plainte. Selon YouGov, 60 % des Français jugent les propos graves, 38 % souhaitent sa démission.",
+   "effets": [
+    {
+     "cible": "PV-06",
+     "sens": "vers Marine Le Pen candidate",
+     "texte": "Relais Bardella moins crédible"
+    }
+   ],
+   "source": "franceinfo",
+   "url": "https://www.franceinfo.fr/politique/jordan-bardella/la-demission-doit-aller-de-soi-les-adversaires-du-rn-appellent-jordan-bardella-a-tirer-des-consequences-des-nouvelles-revelations-de-mediapart_8218915.html",
+   "confiance": "forte"
+  },
   {
    "id": "EV-06",
    "date": "2026-10-02",
@@ -678,7 +1481,7 @@
     {
      "cible": "PV-01",
      "sens": "ouvre",
-     "texte": "Ouverture du sous-pivot"
+     "texte": "Effort de 54 Md€ à faire voter"
     }
    ],
    "source": "Euronews",
@@ -721,6 +1524,22 @@
    "source": "INSEE",
    "url": "https://www.insee.fr/fr/statistiques/9056956",
    "confiance": "forte"
+  },
+  {
+   "id": "EV-08",
+   "date": "2026-09-29",
+   "titre": "Fonction publique : 206 000 manifestants contre le gel du point d'indice",
+   "resume": "Huit syndicats unis contre l'économie de 2 Md€ prévue au budget 2027 ; aucune journée interprofessionnelle n'est encore annoncée.",
+   "effets": [
+    {
+     "cible": "PV-04",
+     "sens": "hausse",
+     "texte": "Front syndical uni"
+    }
+   ],
+   "source": "CGT",
+   "url": "https://www.cgt.fr/29-septembre-2026",
+   "confiance": "moyenne"
   },
   {
    "id": "EV-05",
@@ -902,8 +1721,82 @@
  "journal": [
   {
    "date": "2026-10-03",
+   "type": "Révision",
+   "texte": "Passage à un réseau de huit pivots : Moody's et la mobilisation sociale en amont du budget, candidature unique du centre et candidature de Marine Le Pen en amont de la présidentielle, majorité et choc sur la dette en projection jusqu'en septembre 2028. Trois nouvelles estimations indépendantes ; les prévisions précédentes restent visibles au registre."
+  },
+  {
+   "date": "2026-10-03",
    "type": "Création",
    "texte": "Version v0 : indicateur Finances publiques (6 sous-indicateurs), sous-pivot Budget 2027, pivot Présidentielle 2027, 2 prévisions simples. Trois estimateurs indépendants. Aucune intervention humaine sur les probabilités."
+  }
+ ],
+ "periodes": [
+  "Octobre-décembre 2026",
+  "Fin 2026",
+  "Janvier-mars 2027",
+  "Mai 2027",
+  "Après l'élection, jusqu'à septembre 2028"
+ ],
+ "revisees": [
+  {
+   "id": "Q-PV01",
+   "texte": "Issue du budget 2027 au 31/12/2026",
+   "dist": [
+    [
+     "Budget adopté",
+     33
+    ],
+    [
+     "Gouvernement censuré",
+     22
+    ],
+    [
+     "Loi spéciale",
+     45
+    ]
+   ],
+   "emise": "2026-10-03",
+   "motif": "Passage au réseau de pivots : le budget dépend désormais de Moody's et de la mobilisation."
+  },
+  {
+   "id": "Q-PV02-A",
+   "texte": "Famille politique du vainqueur de la présidentielle",
+   "dist": [
+    [
+     "RN",
+     44
+    ],
+    [
+     "Bloc central",
+     30
+    ],
+    [
+     "Gauche",
+     16
+    ],
+    [
+     "Droite LR ou autre",
+     10
+    ]
+   ],
+   "emise": "2026-10-03",
+   "motif": "Ajout des pivots amont : candidature unique du centre et candidature de Marine Le Pen."
+  },
+  {
+   "id": "P-004",
+   "texte": "Moody's abaisse la note entre le 3 et le 31 octobre 2026",
+   "dist": [
+    [
+     "Oui",
+     30
+    ],
+    [
+     "Non",
+     70
+    ]
+   ],
+   "emise": "2026-10-03",
+   "motif": "Devenue le pivot « Notation de Moody's », probabilité inchangée."
   }
  ]
 }
