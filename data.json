@@ -1,262 +1,897 @@
 {
-  "meta": {
-    "releve": "2026-10-03",
-    "version": "v0",
-    "methode": "Probabilités = médiane de 3 estimations indépendantes (estimateurs 1 à 3, sans accès aux estimations des autres), renormalisées à 100 %. Probabilités globales et scénarios calculés par l'outil.",
-    "estimateurs": ["Estimateur 1 · généraliste", "Estimateur 2 · sceptique", "Estimateur 3 · historien"]
-  },
-
-  "indicateurs": [
-    {
-      "id": "IS-01",
-      "nom": "Finances publiques",
-      "echelle": "France",
-      "statut": "construit",
-      "tendance": "hausse",
-      "definition": "Capacité de l'État à financer sa dépense et sa dette sans perte de confiance des marchés ni rupture politique. Plus la note est haute, plus la situation est tendue.",
-      "sous": ["SI-01-01", "SI-01-02", "SI-01-03", "SI-01-04", "SI-01-05", "SI-01-06"],
-      "pivots": ["PV-01"],
-      "lecture": "Cinq signaux sur six se dégradent depuis l'été. L'écart de taux avec l'Allemagne a franchi son seuil critique mi-septembre et la dette est à un point du sien. La note globale reste « sous tension », à 0,4 point du seuil critique."
-    }
-  ],
-  "indicateursProposes": [
-    "Niveau de vie populaire", "Stabilité institutionnelle", "Compétition des élites", "Cohésion sociale et information",
-    "Démographie", "Cycle économique et financier", "Énergie et ressources", "Climat", "Ordre international", "Rupture technologique"
-  ],
-
-  "sousIndicateurs": [
-    {
-      "id": "SI-01-01", "ind": "IS-01", "nom": "Dette publique (Maastricht)", "court": "Dette / PIB",
-      "valeur": 119.0, "unite": "% du PIB", "affiche": "119,0 %", "date": "T2 2026, publié le 29/09/2026",
-      "seuils": [60, 100, 120, 150], "tendance": "hausse", "precedent": "117,5 % au T1 2026",
-      "source": "INSEE", "url": "https://www.insee.fr/fr/statistiques/9053525",
-      "frequence": "Trimestrielle", "confiance": "forte", "statut": "validé",
-      "serie": [[2007,65.5],[2008,69.8],[2009,84.1],[2010,86.3],[2011,88.7],[2012,91.7],[2013,94.6],[2014,96.2],[2015,97.0],[2016,98.1],[2017,98.8],[2018,98.5],[2019,98.2],[2020,114.9],[2021,112.8],[2022,111.4],[2023,109.5],[2024,112.6],[2025,115.6],[2026.5,119.0]],
-      "serieSource": "Eurostat (gov_10dd_edpt1), fin d'année ; INSEE pour le T2 2026"
-    },
-    {
-      "id": "SI-01-02", "ind": "IS-01", "nom": "Déficit public de l'année en cours", "court": "Déficit",
-      "valeur": 5.4, "unite": "% du PIB", "affiche": "5,4 %", "date": "Prévision 2026, PLF 2027 du 01/10/2026",
-      "seuils": [0, 3, 5, 8], "tendance": "hausse", "precedent": "5,1 % réalisé en 2025",
-      "source": "Compte rendu du Conseil des ministres", "url": "https://www.info.gouv.fr/conseil-des-ministres/compte-rendu-du-conseil-des-ministres-du-01-10-2026",
-      "frequence": "Annuelle", "confiance": "forte", "statut": "validé"
-    },
-    {
-      "id": "SI-01-03", "ind": "IS-01", "nom": "Charge d'intérêts des administrations publiques", "court": "Intérêts",
-      "valeur": 2.2, "unite": "% du PIB", "affiche": "2,2 %", "date": "2025",
-      "seuils": [1, 2, 3, 5], "tendance": "hausse", "precedent": "79,2 Md€ prévus en 2026, 91,2 Md€ en 2027",
-      "source": "INSEE", "url": "https://www.insee.fr/fr/statistiques/8956575",
-      "frequence": "Annuelle", "confiance": "forte", "statut": "validé"
-    },
-    {
-      "id": "SI-01-04", "ind": "IS-01", "nom": "Écart de taux OAT – Bund à 10 ans", "court": "Écart OAT-Bund",
-      "valeur": 130, "unite": "pb", "affiche": "130 pb", "date": "01/10/2026",
-      "seuils": [20, 60, 100, 200], "tendance": "hausse", "precedent": "104 pb le 18/09/2026",
-      "source": "Ideal Investisseur (source unique pour le 01/10)", "url": "https://www.ideal-investisseur.fr/en/markets/oat-bund-spread.html",
-      "frequence": "Quotidienne", "confiance": "moyenne", "statut": "validé",
-      "points": [["18/09",104],["21/09",99],["29/09",111],["30/09",122],["01/10",130]]
-    },
-    {
-      "id": "SI-01-05", "ind": "IS-01", "nom": "Taux de l'OAT à 10 ans", "court": "Taux OAT 10 ans",
-      "valeur": 4.90, "unite": "%", "affiche": "4,90 %", "date": "01/10/2026",
-      "seuils": [1, 3.5, 4.5, 7], "tendance": "hausse", "precedent": "4,45 % le 21/09/2026",
-      "source": "Ideal Investisseur", "url": "https://www.ideal-investisseur.fr/en/markets/oat-bund-spread.html",
-      "frequence": "Quotidienne", "confiance": "moyenne", "statut": "validé"
-    },
-    {
-      "id": "SI-01-06", "ind": "IS-01", "nom": "Notation souveraine (S&P · Moody's · Fitch)", "court": "Notation",
-      "valeur": 4.67, "unite": "rang moyen (AAA = 1)", "affiche": "A+ · Aa3 · A+", "date": "Fitch confirmée le 28/08/2026",
-      "seuils": [1, 4, 6, 9], "tendance": "stable", "precedent": "Moody's en perspective négative, revue le 23/10/2026",
-      "source": "Agence France Trésor", "url": "https://www.aft.gouv.fr/en/frances-credit-ratings",
-      "frequence": "Revues programmées", "confiance": "forte", "statut": "validé"
-    }
-  ],
-
-  "pivots": [
-    {
-      "id": "PV-01",
-      "nom": "Budget 2027",
-      "type": "sous-pivot",
-      "aval": ["PV-02"],
-      "amont": [],
-      "phrase": "Le gouvernement Lecornu, sans majorité, doit faire adopter un effort de 54 Md€ alors que les taux d'emprunt français dépassent ceux de l'Italie.",
-      "realiteHumaine": null,
-      "echeance": "2026-12-31",
-      "indicateursDirects": ["IS-01"],
-      "questions": [
-        {
-          "id": "Q-PV01",
-          "texte": "Quelle est l'issue du budget 2027 au 31 décembre 2026 ?",
-          "resolution": "Constat au 31/12/2026 au Journal officiel et au compte rendu des séances de l'Assemblée nationale.",
-          "hypotheses": [
-            {"id": "B1", "nom": "Budget adopté", "detail": "Loi de finances promulguée ou budget mis en œuvre par ordonnance (art. 47), sans chute du gouvernement", "estimations": [40, 30, 33]},
-            {"id": "B2", "nom": "Gouvernement censuré", "detail": "Motion de censure adoptée avant le 31/12/2026", "estimations": [25, 22, 22]},
-            {"id": "B3", "nom": "Loi spéciale", "detail": "Ni censure, ni loi de finances, ni ordonnance au 31/12/2026", "estimations": [35, 48, 45]}
-          ]
-        }
-      ],
-      "tauxDeBase": [
-        "Budgets 2025 et 2026 : aucun n'a été promulgué avant le 31 décembre ; loi spéciale les deux fois.",
-        "Gouvernements minoritaires depuis 2024 : 1 censure sur 3 budgets (Barnier, décembre 2024).",
-        "L'ordonnance budgétaire de l'article 47 n'a jamais été utilisée sous la Ve République."
-      ],
-      "conversion": [
-        {"facteur": "Taux de base récent (2 lois spéciales sur 2)", "effet": "Point de départ : loi spéciale majoritaire"},
-        {"facteur": "Dissolution écartée par le président le 24/09", "effet": "Réduit l'intérêt de censurer : B2 contenu sous 25 %"},
-        {"facteur": "Rejet affiché du PS (02/10) et des écologistes", "effet": "Maintient B2 au-dessus de 20 %"},
-        {"facteur": "IS-01 Finances publiques à 6,1/10, écart de taux à 130 pb", "effet": "Pression des marchés en faveur d'un compromis : soutient B1"}
-      ],
-      "projections": [
-        {"hyp": "B1", "texte": "Finances publiques : détente probable de l'écart de taux, notation stabilisée."},
-        {"hyp": "B2", "texte": "Finances publiques : hausse de l'écart de taux, risque de dégradation par Moody's ou S&P (28/11)."},
-        {"hyp": "B3", "texte": "Finances publiques : budget reconduit sans mesures nouvelles, déficit 2027 au-dessus de la cible de 5,0 %."}
-      ],
-      "declencheurs": [
-        {"texte": "Dépôt et vote d'une motion de censure à l'Assemblée", "date": "à partir du 13/10/2026", "vers": "B2"},
-        {"texte": "Écart OAT-Bund au-dessus de 150 pb (plus haut de 2011-2012)", "distance": "à 20 pb", "vers": "B1 ou B2"},
-        {"texte": "Expiration du délai de 70 jours (art. 47) ouvrant l'ordonnance", "date": "vers mi-décembre 2026", "vers": "B1"}
-      ],
-      "actualite": ["EV-02", "EV-04", "EV-06"]
-    },
-    {
-      "id": "PV-02",
-      "nom": "Présidentielle 2027",
-      "type": "pivot",
-      "aval": [],
-      "amont": ["PV-01"],
-      "phrase": "Premier tour le 18 avril 2027, second tour le 2 mai. Le président sortant ne peut pas se représenter ; le RN est en tête de tous les sondages.",
-      "realiteHumaine": null,
-      "echeance": "2027-05-02",
-      "indicateursDirects": [],
-      "noteChemin": "Les finances publiques agissent sur ce pivot uniquement via le sous-pivot Budget 2027 (règle du chemin unique). L'indicateur Stabilité institutionnelle s'y branchera directement une fois construit.",
-      "questions": [
-        {
-          "id": "Q-PV02-A",
-          "texte": "Quelle famille politique remporte la présidentielle ?",
-          "resolution": "Proclamation des résultats par le Conseil constitutionnel, mai 2027.",
-          "conditionnelle": "PV-01",
-          "hypotheses": [
-            {"id": "RN", "nom": "RN", "detail": "Marine Le Pen ou Jordan Bardella", "si": {"B1": [50, 40, 36], "nonB1": [56, 45, 42]}},
-            {"id": "C", "nom": "Bloc central", "detail": "Renaissance, Horizons, MoDem", "si": {"B1": [30, 33, 37], "nonB1": [23, 28, 30]}},
-            {"id": "G", "nom": "Gauche", "detail": "LFI, PS, Place publique, écologistes, PCF", "si": {"B1": [12, 15, 16], "nonB1": [13, 17, 17]}},
-            {"id": "D", "nom": "Droite LR ou autre", "detail": "Bruno Retailleau ou autre candidat", "si": {"B1": [8, 12, 11], "nonB1": [8, 10, 11]}}
-          ]
-        },
-        {
-          "id": "Q-PV02-B",
-          "texte": "Qui s'affronte au second tour ?",
-          "resolution": "Résultats officiels du premier tour, 18 avril 2027.",
-          "hypotheses": [
-            {"id": "RNC", "nom": "RN contre bloc central", "estimations": [48, 45, 47], "externe": 30},
-            {"id": "RNL", "nom": "RN contre LFI", "estimations": [22, 27, 19], "externe": 68},
-            {"id": "RNA", "nom": "RN contre un autre candidat", "estimations": [17, 18, 21], "externe": null},
-            {"id": "SRN", "nom": "Pas de RN au second tour", "estimations": [13, 10, 13], "externe": null}
-          ],
-          "externeSource": "Modèle Sondax au 03/10/2026, relevé après les estimations",
-          "externeUrl": "https://sondax.fr/"
-        }
-      ],
-      "tauxDeBase": [
-        "À environ 200 jours, le favori des sondages a fini premier dans 4 élections sur 5 (2002-2022).",
-        "Le duel de second tour attendu ne s'est réalisé que 3 fois sur 5 (ratés en 2002 et 2017 ; 1995 également).",
-        "Mélenchon a été sous-estimé de 4 à 9 points à 200 jours en 2012 et 2022.",
-        "Le camp présidentiel a changé dans 4 élections sur 11 depuis 1965 ; aucun candidat RN ou FN n'a jamais gagné."
-      ],
-      "conversion": [
-        {"facteur": "Sondages de second tour (Le Pen 55-57 % face au centre)", "effet": "RN favori, mais l'écart reste réversible à 7 mois"},
-        {"facteur": "Taux de base : duel attendu réalisé 3 fois sur 5", "effet": "Plus de 50 % répartis hors du duel RN-centre"},
-        {"facteur": "Pourvoi de Marine Le Pen, décision au plus tard début avril 2027", "effet": "Environ 10 à 13 % sans RN au second tour"},
-        {"facteur": "Sous-pivot Budget 2027 non adopté", "effet": "RN +5 à 6 points, bloc central −5 à 7 points"}
-      ],
-      "projections": [
-        {"hyp": "RN", "texte": "Finances publiques : forte réaction probable des marchés à l'annonce du programme (précédent du Royaume-Uni en 2022)."},
-        {"hyp": "C", "texte": "Finances publiques : continuité de la trajectoire de redressement annoncée."},
-        {"hyp": "G", "texte": "Finances publiques : hausse probable de l'écart de taux en cas de programme de relance."},
-        {"hyp": "D", "texte": "Finances publiques : trajectoire d'économies renforcée."}
-      ],
-      "declencheurs": [
-        {"texte": "Primaire PS – Place publique, puis primaire écologistes et L'Après", "date": "9-11/10/2026", "vers": "RN contre un autre candidat"},
-        {"texte": "Accord ou non sur une candidature unique du bloc central", "date": "non daté", "vers": "RN contre bloc central"},
-        {"texte": "Décision de la Cour de cassation sur Marine Le Pen", "date": "au plus tard début avril 2027", "vers": "Pas de RN ou relais Bardella"}
-      ],
-      "actualite": ["EV-04", "EV-05", "EV-06"]
-    }
-  ],
-
-  "scenariosFrance": "Les scénarios France combinent l'issue du budget 2027 et la famille du vainqueur de 2027 ; leur probabilité est le produit des probabilités le long du chemin.",
-
-  "previsionsSimples": [
-    {
-      "id": "P-004", "texte": "Moody's abaisse la note de la France sous Aa3 entre le 3 et le 31 octobre 2026",
-      "estimations": [38, 30, 30], "echeance": "2026-10-31", "ind": "IS-01",
-      "resolution": "Communiqué de Moody's ; revue programmée le 23/10/2026."
-    },
-    {
-      "id": "P-005", "texte": "L'écart OAT-Bund 10 ans clôture au moins une fois à 150 pb ou plus avant le 31 décembre 2026",
-      "estimations": [40, 40, 35], "echeance": "2026-12-31", "ind": "IS-01",
-      "resolution": "Données quotidiennes Banque de France et Bundesbank."
-    }
-  ],
-
-  "actualite": [
-    {"id": "EV-06", "date": "2026-10-02", "titre": "Le PS juge le budget 2027 « pas acceptable » et maintient la menace de censure",
-     "resume": "Les responsables socialistes écrivent au Premier ministre pour réclamer plus de justice fiscale. Les écologistes annoncent qu'ils bloqueront le texte.",
-     "effets": [{"cible": "PV-01", "sens": "vers B2", "texte": "Risque de censure en hausse"}],
-     "source": "Echos Plus", "url": "https://echosplus.com/2026/10/03/budget-2027-le-ps-presse-lecornu-de-revoir-sa-copie-et-maintient-la-menace-de-censure/", "confiance": "moyenne"},
-    {"id": "EV-02", "date": "2026-10-01", "titre": "Présentation du budget 2027 : effort de 54 Md€, déficit visé à 5,0 %",
-     "resume": "Le gouvernement Lecornu révise le déficit 2026 à 5,4 % et vise 5,0 % en 2027. La charge d'intérêts passerait de 79,2 à 91,2 Md€.",
-     "effets": [{"cible": "SI-01-02", "sens": "hausse", "texte": "Déficit 2026 révisé de 5,1 à 5,4 %"}, {"cible": "PV-01", "sens": "ouvre", "texte": "Ouverture du sous-pivot"}],
-     "source": "Euronews", "url": "https://fr.euronews.com/2026/10/01/budget-2027-le-gouvernement-propose-un-effort-de-54-milliards-deuros-pour-ramener-le-defic", "confiance": "forte"},
-    {"id": "EV-01", "date": "2026-09-30", "titre": "L'écart de taux avec l'Allemagne atteint 120 pb, un niveau inédit depuis 2012",
-     "resume": "L'OAT à 10 ans monte à 4,77 %, au-dessus du taux italien : +113 pb depuis juillet, la plus forte hausse trimestrielle depuis 1987.",
-     "effets": [{"cible": "SI-01-04", "sens": "hausse", "texte": "Seuil critique de 100 pb dépassé depuis le 18/09"}, {"cible": "SI-01-05", "sens": "hausse", "texte": "Taux au-dessus de 4,5 %"}],
-     "source": "France Épargne", "url": "https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012", "confiance": "forte"},
-    {"id": "EV-03", "date": "2026-09-30", "titre": "Inflation à 3,0 % sur un an en septembre, tirée par l'énergie",
-     "resume": "L'indice harmonisé atteint 3,4 %. La hausse vient des produits pétroliers et du gaz, dans le prolongement de la crise du détroit d'Ormuz (Brent à 102 $).",
-     "effets": [{"cible": "IS-futur", "sens": "hausse", "texte": "Niveau de vie et énergie (indicateurs à construire)"}],
-     "source": "INSEE", "url": "https://www.insee.fr/fr/statistiques/9056956", "confiance": "forte"},
-    {"id": "EV-05", "date": "2026-09-27", "titre": "Sénatoriales : la droite et le centre gardent le Sénat, le RN forme un groupe",
-     "resume": "Le RN et ses alliés passent de 4 à 15 sénateurs et constituent un groupe pour la première fois.",
-     "effets": [{"cible": "PV-02", "sens": "neutre", "texte": "Signal d'implantation du RN, sans effet chiffré"}],
-     "source": "Public Sénat", "url": "https://www.publicsenat.fr/actualites/politique/senatoriales-2026-decouvrez-les-equilibres-politiques-du-senat-a-lissue-des-elections", "confiance": "forte"},
-    {"id": "EV-04", "date": "2026-09-24", "titre": "Le président écarte une dissolution avant la présidentielle",
-     "resume": "Interrogé à la télévision, il juge qu'une dissolution « ne serait pas bon pour le pays » et bloquerait son successeur.",
-     "effets": [{"cible": "PV-01", "sens": "vers B1 ou B3", "texte": "Censure moins attractive pour l'opposition"}],
-     "source": "LCP", "url": "https://lcp.fr/actualites/ce-ne-serait-pas-bon-pour-le-pays-emmanuel-macron-ecarte-l-hypothese-d-une-dissolution", "confiance": "forte"}
-  ],
-
-  "precedents": [
-    {"cas": "Royaume-Uni 2022", "type": "Crise obligataire", "contexte": "Taux à 30 ans +270 pb en 10 semaines après un mini-budget non financé", "issue": "Intervention de la Banque d'Angleterre, chute de Liz Truss après 44 jours", "duree": "4 semaines", "url": "https://www.bankofengland.co.uk/financial-stability-report/2022/december-2022"},
-    {"cas": "Espagne 2012", "type": "Crise de la dette souveraine", "contexte": "Dette 89,6 % du PIB, prime de risque record de 638 pb, faillite de Bankia", "issue": "Aide européenne au secteur bancaire ; prime revenue à 113 pb en 2015", "duree": "Environ 3 ans", "url": "https://en.wikipedia.org/wiki/Premiership_of_Mariano_Rajoy"},
-    {"cas": "France 2011-2012", "type": "Contagion zone euro", "contexte": "Écart OAT-Bund autour de 150 pb au plus fort", "issue": "Perte du AAA chez S&P (janvier 2012), retour au calme après l'intervention de la BCE", "duree": "Environ 1 an", "url": null},
-    {"cas": "Italie 2011", "type": "Crise de la dette souveraine", "contexte": "Dette 119,1 % du PIB, écart BTP-Bund au-delà de 570 pb", "issue": "Démission de Berlusconi, gouvernement technique Monti, achats de la BCE", "duree": "Environ 12 mois", "url": "https://en.wikipedia.org/wiki/Trichet-Draghi_letter"},
-    {"cas": "Grèce 2009-2018", "type": "Crise de la dette souveraine", "contexte": "Déficit révisé de 3,7 à 12,7 % ; dette de 128 à 175 % du PIB", "issue": "Trois plans d'aide (289 Md€), PIB −25 %", "duree": "9 ans", "url": "https://www.markethistories.com/en/the-greek-debt-crisis-how-a-small-economy-nearly-broke-the-eurozone-2009-2018"},
-    {"cas": "Présidentielle 2017", "type": "Erreur des sondages à 6 mois", "contexte": "Duel Juppé ou Fillon contre Le Pen attendu", "issue": "Second tour Macron – Le Pen", "duree": "", "url": "https://legrandcontinent.eu/fr/2026/09/30/de-le-pen-a-macron-que-disaient-les-sondages-200-jours-avant-les-precedentes-elections-presidentielles"},
-    {"cas": "Présidentielle 2002", "type": "Erreur des sondages à 6 mois", "contexte": "Duel Chirac – Jospin attendu ; J.-M. Le Pen sondé entre 6 et 11 %", "issue": "Le Pen qualifié avec 16,9 %, Jospin éliminé", "duree": "", "url": "https://legrandcontinent.eu/fr/2026/09/30/de-le-pen-a-macron-que-disaient-les-sondages-200-jours-avant-les-precedentes-elections-presidentielles"},
-    {"cas": "Présidentielle 1995", "type": "Erreur des sondages à 6 mois", "contexte": "Duel Balladur – Delors attendu", "issue": "Second tour Chirac – Jospin", "duree": "", "url": "https://www.soft-concept.com/surveymag/les-sondages-6-mois-avant-les-precedentes-presidentielles.html"}
-  ],
-
-  "dictionnaire": [
-    ["Indicateur structurel", "Grande force lente qui conditionne la stabilité d'une société. Noté de 0 (stable) à 10 (critique)."],
-    ["Sous-indicateur", "Donnée mesurable et sourcée qui alimente un indicateur structurel."],
-    ["Seuil", "Valeur qui sépare les états stable, sous tension et critique, ou qui fait basculer une hypothèse."],
-    ["Marge", "Distance actuelle d'une mesure au prochain seuil."],
-    ["Moment pivot", "Moment à fort impact dont l'issue n'est pas écrite, décliné en questions et hypothèses probabilisées."],
-    ["Sous-pivot", "Moment pivot qui en alimente un autre ; les probabilités du pivot aval sont estimées pour chacune de ses issues."],
-    ["Hypothèse", "Réponse possible à une question pivot, avec un critère de résolution. Les hypothèses d'une question totalisent 100 %."],
-    ["Probabilité conditionnelle", "Probabilité d'une hypothèse sachant l'issue d'un pivot amont."],
-    ["Scénario", "Combinaison d'hypothèses de plusieurs pivots. Sa probabilité est calculée, jamais estimée."],
-    ["Chemin critique", "Enchaînement le plus probable passant par les mesures dont la marge est la plus faible."],
-    ["Chemin unique", "Un indicateur agit sur un pivot directement ou via un sous-pivot, jamais les deux : évite le double comptage."],
-    ["Taux de base", "Fréquence d'une issue dans les cas passés comparables ; point de départ de toute estimation."],
-    ["Médiane de trois", "Chaque probabilité est la médiane de trois estimations produites sans que les estimateurs voient celles des autres."],
-    ["Référence externe", "Estimation publique (marché de prédiction, modèle) relevée après nos estimations, pour comparaison."],
-    ["Score de Brier", "Écart au carré entre probabilité et résultat : 0 est parfait, 0,25 équivaut à répondre 50 % partout."],
-    ["Calibration", "Les événements annoncés à 70 % se réalisent-ils 7 fois sur 10 ? Mesurée à partir de 20 prévisions résolues."],
-    ["Intervention humaine", "Toute modification faite par Nathan, tracée au journal pour isoler la performance de l'IA seule."]
-  ],
-
-  "journal": [
-    {"date": "2026-10-03", "type": "Création", "texte": "Version v0 : indicateur Finances publiques (6 sous-indicateurs), sous-pivot Budget 2027, pivot Présidentielle 2027, 2 prévisions simples. Trois estimateurs indépendants. Aucune intervention humaine sur les probabilités."}
+ "meta": {
+  "releve": "2026-10-03",
+  "version": "v0",
+  "methode": "Probabilités = médiane de 3 estimations indépendantes (estimateurs 1 à 3, sans accès aux estimations des autres), renormalisées à 100 %. Probabilités globales et scénarios calculés par l'outil.",
+  "estimateurs": [
+   "Estimateur 1 · généraliste",
+   "Estimateur 2 · sceptique",
+   "Estimateur 3 · historien"
   ]
+ },
+ "indicateurs": [
+  {
+   "id": "IS-01",
+   "nom": "Finances publiques",
+   "echelle": "France",
+   "statut": "construit",
+   "tendance": "hausse",
+   "definition": "Capacité de l'État à financer sa dépense et sa dette sans perte de confiance des marchés ni rupture politique. Plus la note est haute, plus la situation est tendue.",
+   "sous": [
+    "SI-01-01",
+    "SI-01-02",
+    "SI-01-03",
+    "SI-01-04",
+    "SI-01-05",
+    "SI-01-06"
+   ],
+   "pivots": [
+    "PV-01"
+   ],
+   "lecture": "Trois signaux sur six ont déjà franchi leur seuil critique : écart de taux avec l'Allemagne, taux à 10 ans et déficit. La note globale, moyenne des six, reste « sous tension », à 0,4 point du seuil critique, car la dette, les intérêts et la notation tiennent encore."
+  }
+ ],
+ "indicateursProposes": [
+  "Niveau de vie populaire",
+  "Stabilité institutionnelle",
+  "Compétition des élites",
+  "Cohésion sociale et information",
+  "Démographie",
+  "Cycle économique et financier",
+  "Énergie et ressources",
+  "Climat",
+  "Ordre international",
+  "Rupture technologique"
+ ],
+ "sousIndicateurs": [
+  {
+   "id": "SI-01-01",
+   "ind": "IS-01",
+   "nom": "Dette publique (Maastricht)",
+   "court": "Dette / PIB",
+   "valeur": 119.0,
+   "unite": "% du PIB",
+   "affiche": "119,0 %",
+   "date": "T2 2026, publié le 29/09/2026",
+   "seuils": [
+    60,
+    100,
+    120,
+    150
+   ],
+   "tendance": "hausse",
+   "precedent": "117,5 % au T1 2026",
+   "source": "INSEE",
+   "url": "https://www.insee.fr/fr/statistiques/9053525",
+   "frequence": "Trimestrielle",
+   "confiance": "forte",
+   "statut": "validé",
+   "serie": [
+    [
+     2007,
+     65.5
+    ],
+    [
+     2008,
+     69.8
+    ],
+    [
+     2009,
+     84.1
+    ],
+    [
+     2010,
+     86.3
+    ],
+    [
+     2011,
+     88.7
+    ],
+    [
+     2012,
+     91.7
+    ],
+    [
+     2013,
+     94.6
+    ],
+    [
+     2014,
+     96.2
+    ],
+    [
+     2015,
+     97.0
+    ],
+    [
+     2016,
+     98.1
+    ],
+    [
+     2017,
+     98.8
+    ],
+    [
+     2018,
+     98.5
+    ],
+    [
+     2019,
+     98.2
+    ],
+    [
+     2020,
+     114.9
+    ],
+    [
+     2021,
+     112.8
+    ],
+    [
+     2022,
+     111.4
+    ],
+    [
+     2023,
+     109.5
+    ],
+    [
+     2024,
+     112.6
+    ],
+    [
+     2025,
+     115.6
+    ],
+    [
+     2026.5,
+     119.0
+    ]
+   ],
+   "serieSource": "Eurostat (gov_10dd_edpt1), fin d'année ; INSEE pour le T2 2026"
+  },
+  {
+   "id": "SI-01-02",
+   "ind": "IS-01",
+   "nom": "Déficit public de l'année en cours",
+   "court": "Déficit",
+   "valeur": 5.4,
+   "unite": "% du PIB",
+   "affiche": "5,4 %",
+   "date": "Prévision 2026, PLF 2027 du 01/10/2026",
+   "seuils": [
+    0,
+    3,
+    5,
+    8
+   ],
+   "tendance": "hausse",
+   "precedent": "5,1 % réalisé en 2025",
+   "source": "Compte rendu du Conseil des ministres",
+   "url": "https://www.info.gouv.fr/conseil-des-ministres/compte-rendu-du-conseil-des-ministres-du-01-10-2026",
+   "frequence": "Annuelle",
+   "confiance": "forte",
+   "statut": "validé"
+  },
+  {
+   "id": "SI-01-03",
+   "ind": "IS-01",
+   "nom": "Charge d'intérêts des administrations publiques",
+   "court": "Intérêts",
+   "valeur": 2.2,
+   "unite": "% du PIB",
+   "affiche": "2,2 %",
+   "date": "2025",
+   "seuils": [
+    1,
+    2,
+    3,
+    5
+   ],
+   "tendance": "hausse",
+   "precedent": "79,2 Md€ prévus en 2026, 91,2 Md€ en 2027",
+   "source": "INSEE",
+   "url": "https://www.insee.fr/fr/statistiques/8956575",
+   "frequence": "Annuelle",
+   "confiance": "forte",
+   "statut": "validé"
+  },
+  {
+   "id": "SI-01-04",
+   "ind": "IS-01",
+   "nom": "Écart de taux OAT – Bund à 10 ans",
+   "court": "Écart OAT-Bund",
+   "valeur": 130,
+   "unite": "pb",
+   "affiche": "130 pb",
+   "date": "01/10/2026",
+   "seuils": [
+    20,
+    60,
+    100,
+    200
+   ],
+   "tendance": "hausse",
+   "precedent": "104 pb le 18/09/2026",
+   "source": "Ideal Investisseur (source unique pour le 01/10)",
+   "url": "https://www.ideal-investisseur.fr/en/markets/oat-bund-spread.html",
+   "frequence": "Quotidienne",
+   "confiance": "moyenne",
+   "statut": "validé",
+   "points": [
+    [
+     "18/09",
+     104
+    ],
+    [
+     "21/09",
+     99
+    ],
+    [
+     "29/09",
+     111
+    ],
+    [
+     "30/09",
+     122
+    ],
+    [
+     "01/10",
+     130
+    ]
+   ]
+  },
+  {
+   "id": "SI-01-05",
+   "ind": "IS-01",
+   "nom": "Taux de l'OAT à 10 ans",
+   "court": "Taux OAT 10 ans",
+   "valeur": 4.9,
+   "unite": "%",
+   "affiche": "4,90 %",
+   "date": "01/10/2026",
+   "seuils": [
+    1,
+    3.5,
+    4.5,
+    7
+   ],
+   "tendance": "hausse",
+   "precedent": "4,45 % le 21/09/2026",
+   "source": "Ideal Investisseur",
+   "url": "https://www.ideal-investisseur.fr/en/markets/oat-bund-spread.html",
+   "frequence": "Quotidienne",
+   "confiance": "moyenne",
+   "statut": "validé"
+  },
+  {
+   "id": "SI-01-06",
+   "ind": "IS-01",
+   "nom": "Notation souveraine (S&P · Moody's · Fitch)",
+   "court": "Notation",
+   "valeur": 4.67,
+   "unite": "rang moyen (AAA = 1)",
+   "affiche": "A+ · Aa3 · A+",
+   "date": "Fitch confirmée le 28/08/2026",
+   "seuils": [
+    1,
+    4,
+    6,
+    9
+   ],
+   "tendance": "stable",
+   "precedent": "Moody's en perspective négative, revue le 23/10/2026",
+   "source": "Agence France Trésor",
+   "url": "https://www.aft.gouv.fr/en/frances-credit-ratings",
+   "frequence": "Revues programmées",
+   "confiance": "forte",
+   "statut": "validé"
+  }
+ ],
+ "pivots": [
+  {
+   "id": "PV-01",
+   "nom": "Budget 2027",
+   "type": "sous-pivot",
+   "aval": [
+    "PV-02"
+   ],
+   "amont": [],
+   "phrase": "Le gouvernement Lecornu, sans majorité, doit faire adopter un effort de 54 Md€ alors que les taux d'emprunt français dépassent ceux de l'Italie.",
+   "realiteHumaine": null,
+   "echeance": "2026-12-31",
+   "indicateursDirects": [
+    "IS-01"
+   ],
+   "questions": [
+    {
+     "id": "Q-PV01",
+     "texte": "Quelle est l'issue du budget 2027 au 31 décembre 2026 ?",
+     "resolution": "Constat au 31/12/2026 au Journal officiel et au compte rendu des séances de l'Assemblée nationale.",
+     "hypotheses": [
+      {
+       "id": "B1",
+       "nom": "Budget adopté",
+       "detail": "Loi de finances promulguée ou budget mis en œuvre par ordonnance (art. 47), sans chute du gouvernement",
+       "estimations": [
+        40,
+        30,
+        33
+       ]
+      },
+      {
+       "id": "B2",
+       "nom": "Gouvernement censuré",
+       "detail": "Motion de censure adoptée avant le 31/12/2026",
+       "estimations": [
+        25,
+        22,
+        22
+       ]
+      },
+      {
+       "id": "B3",
+       "nom": "Loi spéciale",
+       "detail": "Ni censure, ni loi de finances, ni ordonnance au 31/12/2026",
+       "estimations": [
+        35,
+        48,
+        45
+       ]
+      }
+     ]
+    }
+   ],
+   "tauxDeBase": [
+    "Budgets 2025 et 2026 : aucun n'a été promulgué avant le 31 décembre ; loi spéciale les deux fois.",
+    "Gouvernements minoritaires depuis 2024 : 1 censure sur 3 budgets (Barnier, décembre 2024).",
+    "L'ordonnance budgétaire de l'article 47 n'a jamais été utilisée sous la Ve République."
+   ],
+   "conversion": [
+    {
+     "facteur": "Taux de base récent : loi spéciale pour les budgets 2025 et 2026",
+     "effet": "Point de départ : la loi spéciale est l'issue la plus probable"
+    },
+    {
+     "facteur": "Dissolution écartée par le président le 24/09",
+     "effet": "Censurer devient moins intéressant pour l'opposition : la censure reste sous 25 %"
+    },
+    {
+     "facteur": "Rejet affiché du PS (02/10) et des écologistes",
+     "effet": "La censure reste au-dessus de 20 %"
+    },
+    {
+     "facteur": "Finances publiques à 6,1/10, écart de taux à 130 pb",
+     "effet": "La pression des marchés pousse au compromis : soutient l'adoption"
+    }
+   ],
+   "projections": [
+    {
+     "hyp": "B1",
+     "texte": "Finances publiques : détente probable de l'écart de taux, notation stabilisée."
+    },
+    {
+     "hyp": "B2",
+     "texte": "Finances publiques : hausse de l'écart de taux, risque de dégradation par Moody's ou S&P (28/11)."
+    },
+    {
+     "hyp": "B3",
+     "texte": "Finances publiques : budget reconduit sans mesures nouvelles, déficit 2027 au-dessus de la cible de 5,0 %."
+    }
+   ],
+   "declencheurs": [
+    {
+     "texte": "Dépôt et vote d'une motion de censure à l'Assemblée",
+     "date": "à partir du 13/10/2026",
+     "vers": "B2"
+    },
+    {
+     "texte": "Écart OAT-Bund au-dessus de 150 pb (plus haut de 2011-2012)",
+     "distance": "à 20 pb",
+     "vers": "adoption ou censure"
+    },
+    {
+     "texte": "Expiration du délai de 70 jours (art. 47) ouvrant l'ordonnance",
+     "date": "vers mi-décembre 2026",
+     "vers": "B1"
+    }
+   ],
+   "actualite": [
+    "EV-02",
+    "EV-04",
+    "EV-06"
+   ]
+  },
+  {
+   "id": "PV-02",
+   "nom": "Présidentielle 2027",
+   "type": "pivot",
+   "aval": [],
+   "amont": [
+    "PV-01"
+   ],
+   "phrase": "Premier tour le 18 avril 2027, second tour le 2 mai. Le président sortant ne peut pas se représenter ; le RN est en tête de tous les sondages.",
+   "realiteHumaine": null,
+   "echeance": "2027-05-02",
+   "indicateursDirects": [],
+   "noteChemin": "Les finances publiques n'agissent sur la présidentielle qu'à travers le budget 2027, pour ne pas compter deux fois le même facteur. L'indicateur Stabilité institutionnelle s'y branchera directement quand il sera construit.",
+   "questions": [
+    {
+     "id": "Q-PV02-A",
+     "texte": "Quelle famille politique remporte la présidentielle ?",
+     "resolution": "Proclamation des résultats par le Conseil constitutionnel, mai 2027.",
+     "conditionnelle": "PV-01",
+     "hypotheses": [
+      {
+       "id": "RN",
+       "nom": "RN",
+       "detail": "Marine Le Pen ou Jordan Bardella",
+       "si": {
+        "B1": [
+         50,
+         40,
+         36
+        ],
+        "nonB1": [
+         56,
+         45,
+         42
+        ]
+       }
+      },
+      {
+       "id": "C",
+       "nom": "Bloc central",
+       "detail": "Renaissance, Horizons, MoDem",
+       "si": {
+        "B1": [
+         30,
+         33,
+         37
+        ],
+        "nonB1": [
+         23,
+         28,
+         30
+        ]
+       }
+      },
+      {
+       "id": "G",
+       "nom": "Gauche",
+       "detail": "LFI, PS, Place publique, écologistes, PCF",
+       "si": {
+        "B1": [
+         12,
+         15,
+         16
+        ],
+        "nonB1": [
+         13,
+         17,
+         17
+        ]
+       }
+      },
+      {
+       "id": "D",
+       "nom": "Droite LR ou autre",
+       "detail": "Bruno Retailleau ou autre candidat",
+       "si": {
+        "B1": [
+         8,
+         12,
+         11
+        ],
+        "nonB1": [
+         8,
+         10,
+         11
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "Q-PV02-B",
+     "texte": "Qui s'affronte au second tour ?",
+     "resolution": "Résultats officiels du premier tour, 18 avril 2027.",
+     "hypotheses": [
+      {
+       "id": "RNC",
+       "nom": "RN contre bloc central",
+       "estimations": [
+        48,
+        45,
+        47
+       ],
+       "externe": 30
+      },
+      {
+       "id": "RNL",
+       "nom": "RN contre LFI",
+       "estimations": [
+        22,
+        27,
+        19
+       ],
+       "externe": 68
+      },
+      {
+       "id": "RNA",
+       "nom": "RN contre un autre candidat",
+       "estimations": [
+        17,
+        18,
+        21
+       ],
+       "externe": null
+      },
+      {
+       "id": "SRN",
+       "nom": "Pas de RN au second tour",
+       "estimations": [
+        13,
+        10,
+        13
+       ],
+       "externe": null
+      }
+     ],
+     "externeSource": "Modèle Sondax au 03/10/2026, relevé après les estimations",
+     "externeUrl": "https://sondax.fr/"
+    }
+   ],
+   "tauxDeBase": [
+    "À environ 200 jours, le favori des sondages a fini premier dans 4 élections sur 5 (2002-2022).",
+    "Le duel de second tour attendu ne s'est réalisé que 3 fois sur 5 (ratés en 2002 et 2017 ; 1995 également).",
+    "Mélenchon a été sous-estimé de 4 à 9 points à 200 jours en 2012 et 2022.",
+    "Le camp présidentiel a changé dans 4 élections sur 11 depuis 1965 ; aucun candidat RN ou FN n'a jamais gagné."
+   ],
+   "conversion": [
+    {
+     "facteur": "Sondages de second tour (Le Pen 55-57 % face au centre)",
+     "effet": "RN favori, mais l'écart reste réversible à 7 mois"
+    },
+    {
+     "facteur": "Taux de base : duel attendu réalisé 3 fois sur 5",
+     "effet": "Plus de 50 % répartis hors du duel RN-centre"
+    },
+    {
+     "facteur": "Pourvoi de Marine Le Pen, décision au plus tard début avril 2027",
+     "effet": "Environ 10 à 13 % sans RN au second tour"
+    },
+    {
+     "facteur": "Budget 2027 non adopté",
+     "effet": "RN +4 points, bloc central −5 points par rapport au cas où le budget est adopté"
+    }
+   ],
+   "projections": [
+    {
+     "hyp": "RN",
+     "texte": "Finances publiques : forte réaction probable des marchés à l'annonce du programme (précédent du Royaume-Uni en 2022)."
+    },
+    {
+     "hyp": "C",
+     "texte": "Finances publiques : continuité de la trajectoire de redressement annoncée."
+    },
+    {
+     "hyp": "G",
+     "texte": "Finances publiques : hausse probable de l'écart de taux en cas de programme de relance."
+    },
+    {
+     "hyp": "D",
+     "texte": "Finances publiques : trajectoire d'économies renforcée."
+    }
+   ],
+   "declencheurs": [
+    {
+     "texte": "Primaire PS – Place publique, puis primaire écologistes et L'Après",
+     "date": "9-11/10/2026",
+     "vers": "RN contre un autre candidat"
+    },
+    {
+     "texte": "Accord ou non sur une candidature unique du bloc central",
+     "date": "non daté",
+     "vers": "RN contre bloc central"
+    },
+    {
+     "texte": "Décision de la Cour de cassation sur Marine Le Pen",
+     "date": "au plus tard début avril 2027",
+     "vers": "Pas de RN ou relais Bardella"
+    }
+   ],
+   "actualite": [
+    "EV-04",
+    "EV-05",
+    "EV-06"
+   ]
+  }
+ ],
+ "scenariosFrance": "Les scénarios France combinent l'issue du budget 2027 et la famille du vainqueur de 2027 ; leur probabilité est le produit des probabilités le long du chemin.",
+ "previsionsSimples": [
+  {
+   "id": "P-004",
+   "texte": "Moody's abaisse la note de la France sous Aa3 entre le 3 et le 31 octobre 2026",
+   "estimations": [
+    38,
+    30,
+    30
+   ],
+   "echeance": "2026-10-31",
+   "ind": "IS-01",
+   "resolution": "Communiqué de Moody's ; revue programmée le 23/10/2026."
+  },
+  {
+   "id": "P-005",
+   "texte": "L'écart OAT-Bund 10 ans clôture au moins une fois à 150 pb ou plus avant le 31 décembre 2026",
+   "estimations": [
+    40,
+    40,
+    35
+   ],
+   "echeance": "2026-12-31",
+   "ind": "IS-01",
+   "resolution": "Données quotidiennes Banque de France et Bundesbank."
+  }
+ ],
+ "actualite": [
+  {
+   "id": "EV-06",
+   "date": "2026-10-02",
+   "titre": "Le PS juge le budget 2027 « pas acceptable » et maintient la menace de censure",
+   "resume": "Les responsables socialistes écrivent au Premier ministre pour réclamer plus de justice fiscale. Les écologistes annoncent qu'ils bloqueront le texte.",
+   "effets": [
+    {
+     "cible": "PV-01",
+     "sens": "vers la censure",
+     "texte": "Risque de censure en hausse"
+    }
+   ],
+   "source": "Echos Plus",
+   "url": "https://echosplus.com/2026/10/03/budget-2027-le-ps-presse-lecornu-de-revoir-sa-copie-et-maintient-la-menace-de-censure/",
+   "confiance": "moyenne"
+  },
+  {
+   "id": "EV-02",
+   "date": "2026-10-01",
+   "titre": "Présentation du budget 2027 : effort de 54 Md€, déficit visé à 5,0 %",
+   "resume": "Le gouvernement Lecornu révise le déficit 2026 à 5,4 % et vise 5,0 % en 2027. La charge d'intérêts passerait de 79,2 à 91,2 Md€.",
+   "effets": [
+    {
+     "cible": "SI-01-02",
+     "sens": "hausse",
+     "texte": "Déficit 2026 révisé de 5,1 à 5,4 %"
+    },
+    {
+     "cible": "PV-01",
+     "sens": "ouvre",
+     "texte": "Ouverture du sous-pivot"
+    }
+   ],
+   "source": "Euronews",
+   "url": "https://fr.euronews.com/2026/10/01/budget-2027-le-gouvernement-propose-un-effort-de-54-milliards-deuros-pour-ramener-le-defic",
+   "confiance": "forte"
+  },
+  {
+   "id": "EV-01",
+   "date": "2026-09-30",
+   "titre": "L'écart de taux avec l'Allemagne atteint 120 pb, un niveau inédit depuis 2012",
+   "resume": "L'OAT à 10 ans monte à 4,77 %, au-dessus du taux italien : +113 pb depuis juillet, la plus forte hausse trimestrielle depuis 1987.",
+   "effets": [
+    {
+     "cible": "SI-01-04",
+     "sens": "hausse",
+     "texte": "Seuil critique dépassé depuis le 18/09"
+    },
+    {
+     "cible": "SI-01-05",
+     "sens": "hausse",
+     "texte": "Taux au-dessus de 4,5 %"
+    }
+   ],
+   "source": "France Épargne",
+   "url": "https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012",
+   "confiance": "forte"
+  },
+  {
+   "id": "EV-03",
+   "date": "2026-09-30",
+   "titre": "Inflation à 3,0 % sur un an en septembre, tirée par l'énergie",
+   "resume": "L'indice harmonisé atteint 3,4 %. La hausse vient des produits pétroliers et du gaz, dans le prolongement de la crise du détroit d'Ormuz (Brent à 102 $).",
+   "effets": [
+    {
+     "cible": "IS-futur",
+     "sens": "hausse",
+     "texte": "Niveau de vie et énergie, indicateurs à construire"
+    }
+   ],
+   "source": "INSEE",
+   "url": "https://www.insee.fr/fr/statistiques/9056956",
+   "confiance": "forte"
+  },
+  {
+   "id": "EV-05",
+   "date": "2026-09-27",
+   "titre": "Sénatoriales : la droite et le centre gardent le Sénat, le RN forme un groupe",
+   "resume": "Le RN et ses alliés passent de 4 à 15 sénateurs et constituent un groupe pour la première fois.",
+   "effets": [
+    {
+     "cible": "PV-02",
+     "sens": "neutre",
+     "texte": "Implantation du RN, sans effet chiffré"
+    }
+   ],
+   "source": "Public Sénat",
+   "url": "https://www.publicsenat.fr/actualites/politique/senatoriales-2026-decouvrez-les-equilibres-politiques-du-senat-a-lissue-des-elections",
+   "confiance": "forte"
+  },
+  {
+   "id": "EV-04",
+   "date": "2026-09-24",
+   "titre": "Le président écarte une dissolution avant la présidentielle",
+   "resume": "Interrogé à la télévision, il juge qu'une dissolution « ne serait pas bon pour le pays » et bloquerait son successeur.",
+   "effets": [
+    {
+     "cible": "PV-01",
+     "sens": "vers adoption ou loi spéciale",
+     "texte": "Censure moins attractive pour l'opposition"
+    }
+   ],
+   "source": "LCP",
+   "url": "https://lcp.fr/actualites/ce-ne-serait-pas-bon-pour-le-pays-emmanuel-macron-ecarte-l-hypothese-d-une-dissolution",
+   "confiance": "forte"
+  }
+ ],
+ "precedents": [
+  {
+   "cas": "Royaume-Uni 2022",
+   "type": "Crise obligataire",
+   "contexte": "Taux à 30 ans +270 pb en 10 semaines après un mini-budget non financé",
+   "issue": "Intervention de la Banque d'Angleterre, chute de Liz Truss après 44 jours",
+   "duree": "4 semaines",
+   "url": "https://www.bankofengland.co.uk/financial-stability-report/2022/december-2022"
+  },
+  {
+   "cas": "Espagne 2012",
+   "type": "Crise de la dette souveraine",
+   "contexte": "Dette 89,6 % du PIB, prime de risque record de 638 pb, faillite de Bankia",
+   "issue": "Aide européenne au secteur bancaire ; prime revenue à 113 pb en 2015",
+   "duree": "Environ 3 ans",
+   "url": "https://en.wikipedia.org/wiki/Premiership_of_Mariano_Rajoy"
+  },
+  {
+   "cas": "France 2011-2012",
+   "type": "Contagion zone euro",
+   "contexte": "Écart OAT-Bund autour de 150 pb au plus fort",
+   "issue": "Perte du AAA chez S&P (janvier 2012), retour au calme après l'intervention de la BCE",
+   "duree": "Environ 1 an",
+   "url": null
+  },
+  {
+   "cas": "Italie 2011",
+   "type": "Crise de la dette souveraine",
+   "contexte": "Dette 119,1 % du PIB, écart BTP-Bund au-delà de 570 pb",
+   "issue": "Démission de Berlusconi, gouvernement technique Monti, achats de la BCE",
+   "duree": "Environ 12 mois",
+   "url": "https://en.wikipedia.org/wiki/Trichet-Draghi_letter"
+  },
+  {
+   "cas": "Grèce 2009-2018",
+   "type": "Crise de la dette souveraine",
+   "contexte": "Déficit révisé de 3,7 à 12,7 % ; dette de 128 à 175 % du PIB",
+   "issue": "Trois plans d'aide (289 Md€), PIB −25 %",
+   "duree": "9 ans",
+   "url": "https://www.markethistories.com/en/the-greek-debt-crisis-how-a-small-economy-nearly-broke-the-eurozone-2009-2018"
+  },
+  {
+   "cas": "Présidentielle 2017",
+   "type": "Erreur des sondages à 6 mois",
+   "contexte": "Duel Juppé ou Fillon contre Le Pen attendu",
+   "issue": "Second tour Macron – Le Pen",
+   "duree": "",
+   "url": "https://legrandcontinent.eu/fr/2026/09/30/de-le-pen-a-macron-que-disaient-les-sondages-200-jours-avant-les-precedentes-elections-presidentielles"
+  },
+  {
+   "cas": "Présidentielle 2002",
+   "type": "Erreur des sondages à 6 mois",
+   "contexte": "Duel Chirac – Jospin attendu ; J.-M. Le Pen sondé entre 6 et 11 %",
+   "issue": "Le Pen qualifié avec 16,9 %, Jospin éliminé",
+   "duree": "",
+   "url": "https://legrandcontinent.eu/fr/2026/09/30/de-le-pen-a-macron-que-disaient-les-sondages-200-jours-avant-les-precedentes-elections-presidentielles"
+  },
+  {
+   "cas": "Présidentielle 1995",
+   "type": "Erreur des sondages à 6 mois",
+   "contexte": "Duel Balladur – Delors attendu",
+   "issue": "Second tour Chirac – Jospin",
+   "duree": "",
+   "url": "https://www.soft-concept.com/surveymag/les-sondages-6-mois-avant-les-precedentes-presidentielles.html"
+  }
+ ],
+ "dictionnaire": [
+  [
+   "Indicateur structurel",
+   "Grande force lente qui conditionne la stabilité d'une société. Noté de 0 (stable) à 10 (critique)."
+  ],
+  [
+   "Sous-indicateur",
+   "Donnée mesurable et sourcée qui alimente un indicateur structurel."
+  ],
+  [
+   "Seuil",
+   "Valeur qui sépare les états stable, sous tension et critique, ou qui fait basculer une hypothèse."
+  ],
+  [
+   "Marge",
+   "Distance actuelle d'une mesure au prochain seuil."
+  ],
+  [
+   "Moment pivot",
+   "Moment à fort impact dont l'issue n'est pas écrite, décliné en questions et hypothèses probabilisées."
+  ],
+  [
+   "Sous-pivot",
+   "Moment pivot qui en alimente un autre ; les probabilités du pivot aval sont estimées pour chacune de ses issues."
+  ],
+  [
+   "Hypothèse",
+   "Réponse possible à une question pivot, avec un critère de résolution. Les hypothèses d'une question totalisent 100 %."
+  ],
+  [
+   "Probabilité conditionnelle",
+   "Probabilité d'une hypothèse sachant l'issue d'un pivot amont."
+  ],
+  [
+   "Scénario",
+   "Combinaison d'hypothèses de plusieurs pivots. Sa probabilité est calculée, jamais estimée."
+  ],
+  [
+   "Chemin critique",
+   "Enchaînement le plus probable passant par les mesures dont la marge est la plus faible."
+  ],
+  [
+   "Chemin unique",
+   "Un indicateur agit sur un pivot directement ou via un sous-pivot, jamais les deux : évite le double comptage."
+  ],
+  [
+   "Taux de base",
+   "Fréquence d'une issue dans les cas passés comparables ; point de départ de toute estimation."
+  ],
+  [
+   "Médiane de trois",
+   "Chaque probabilité est la médiane de trois estimations produites sans que les estimateurs voient celles des autres."
+  ],
+  [
+   "Référence externe",
+   "Estimation publique (marché de prédiction, modèle) relevée après nos estimations, pour comparaison."
+  ],
+  [
+   "Score de Brier",
+   "Écart au carré entre probabilité et résultat : 0 est parfait, 0,25 équivaut à répondre 50 % partout."
+  ],
+  [
+   "Calibration",
+   "Les événements annoncés à 70 % se réalisent-ils 7 fois sur 10 ? Mesurée à partir de 20 prévisions résolues."
+  ],
+  [
+   "Intervention humaine",
+   "Toute modification faite par Nathan, tracée au journal pour isoler la performance de l'IA seule."
+  ],
+  [
+   "Confiance dans les données",
+   "Qualité de la mesure : forte (statistique officielle), moyenne (plusieurs sources secondaires ou source unique), faible (estimation non recoupée)."
+  ],
+  [
+   "Note sur 10",
+   "Plus elle est haute, plus la situation est tendue : 0 à 3,5 stable, 3,5 à 6,5 sous tension, au-delà critique."
+  ]
+ ],
+ "journal": [
+  {
+   "date": "2026-10-03",
+   "type": "Création",
+   "texte": "Version v0 : indicateur Finances publiques (6 sous-indicateurs), sous-pivot Budget 2027, pivot Présidentielle 2027, 2 prévisions simples. Trois estimateurs indépendants. Aucune intervention humaine sur les probabilités."
+  }
+ ]
 }
