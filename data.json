@@ -8,7 +8,25 @@
    "Estimateur 2 · sceptique",
    "Estimateur 3 · historien"
   ],
-  "piste": "exploratoire"
+  "piste": "exploratoire",
+  "suivis": [
+   [
+    "PV-01",
+    "B1"
+   ],
+   [
+    "PV-02",
+    "RN"
+   ],
+   [
+    "PV-07",
+    "O"
+   ],
+   [
+    "PV-08",
+    "O"
+   ]
+  ]
  },
  "indicateurs": [
   {
@@ -1421,6 +1439,27 @@
  ],
  "actualite": [
   {
+   "id": "EV-10",
+   "date": "2026-10-03",
+   "titre": "Mouvement lycéen : incendies d'établissements et premières concessions",
+   "resume": "Lycées incendiés à Paris et à Nantes, collège à Metz, policier agressé à Belfort. Le ministre de l'Éducation annonce un plan pour accélérer les remplacements ; le gouvernement propose de relever l'indice minimal des fonctionnaires, jugé « mesurettes » par les syndicats.",
+   "effets": [
+    {
+     "cible": "PV-04",
+     "sens": "évidence",
+     "texte": "Mobilisation"
+    }
+   ],
+   "source": "franceinfo",
+   "url": "https://www.franceinfo.fr/societe/education/blocage-des-lycees/un-lycee-calcine-en-plein-paris-en-marge-du-mouvement-lyceen_8221216.html",
+   "confiance": "forte",
+   "traitement": {
+    "cas": "c",
+    "noeud": "PV-04",
+    "motif": "Faits établis qui renseignent la mobilisation sans la trancher. Les évaluateurs divergent sur le sens : les violences et les concessions précèdent souvent l'essoufflement (2018), mais la tension reste forte (2006). L'effet net est faible."
+   }
+  },
+  {
    "id": "EV-07",
    "date": "2026-10-02",
    "titre": "Mouvement lycéen : 564 établissements perturbés, un record depuis 2010",
@@ -1434,7 +1473,13 @@
    ],
    "source": "Boursorama",
    "url": "https://www.boursorama.com/actualite-economique/actualites/blocage-des-lycees-un-vendredi-sous-haute-tension-564-etablissements-perturbes-a34ffcd77c3d705dd5e6e6ecd303139c",
-   "confiance": "moyenne"
+   "confiance": "moyenne",
+   "traitement": {
+    "cas": "c",
+    "motif": "Renseigne la mobilisation, qui n'est pas tranchée : aucune série ne la mesure avant sa résolution.",
+    "integre": true,
+    "noeud": "PV-04"
+   }
   },
   {
    "id": "EV-09",
@@ -1443,14 +1488,24 @@
    "resume": "Jordan Bardella dénonce des faux et porte plainte. Selon YouGov, 60 % des Français jugent les propos graves, 38 % souhaitent sa démission.",
    "effets": [
     {
-     "cible": "PV-06",
-     "sens": "vers Marine Le Pen candidate",
-     "texte": "Relais Bardella moins crédible"
+     "cible": "PV-02",
+     "sens": "lignes autre RN",
+     "texte": "Chances du RN avec un autre candidat"
     }
    ],
    "source": "franceinfo",
    "url": "https://www.franceinfo.fr/politique/jordan-bardella/la-demission-doit-aller-de-soi-les-adversaires-du-rn-appellent-jordan-bardella-a-tirer-des-consequences-des-nouvelles-revelations-de-mediapart_8218915.html",
-   "confiance": "forte"
+   "confiance": "forte",
+   "traitement": {
+    "cas": "d",
+    "motif": "Ne change pas la décision de la Cour de cassation, donc pas la candidature de Marine Le Pen. Il modifie les chances du RN dans l'hypothèse d'un autre candidat (lignes « autre RN » de la présidentielle). L'effet sur l'opinion sera lu dans les sondages, pas estimé.",
+    "integre": true,
+    "noeud": "PV-02",
+    "portee": [
+     "PV-06",
+     "PV-02"
+    ]
+   }
   },
   {
    "id": "EV-06",
@@ -1466,7 +1521,13 @@
    ],
    "source": "Echos Plus",
    "url": "https://echosplus.com/2026/10/03/budget-2027-le-ps-presse-lecornu-de-revoir-sa-copie-et-maintient-la-menace-de-censure/",
-   "confiance": "moyenne"
+   "confiance": "moyenne",
+   "traitement": {
+    "cas": "c",
+    "motif": "Renseigne le budget : la menace de censure du PS pèse sur l'issue sans la trancher.",
+    "integre": true,
+    "noeud": "PV-01"
+   }
   },
   {
    "id": "EV-02",
@@ -1487,7 +1548,12 @@
    ],
    "source": "Euronews",
    "url": "https://fr.euronews.com/2026/10/01/budget-2027-le-gouvernement-propose-un-effort-de-54-milliards-deuros-pour-ramener-le-defic",
-   "confiance": "forte"
+   "confiance": "forte",
+   "traitement": {
+    "cas": "b",
+    "motif": "Donnée : fixe la cible de déficit et l'effort prévu. Les sous-indicateurs sont mis à jour sans jugement.",
+    "integre": true
+   }
   },
   {
    "id": "EV-01",
@@ -1508,7 +1574,12 @@
    ],
    "source": "France Épargne",
    "url": "https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012",
-   "confiance": "forte"
+   "confiance": "forte",
+   "traitement": {
+    "cas": "b",
+    "motif": "Donnée : relevé de l'écart de taux, appliqué au sous-indicateur. Le réseau a été estimé avec ce niveau.",
+    "integre": true
+   }
   },
   {
    "id": "EV-03",
@@ -1524,7 +1595,12 @@
    ],
    "source": "INSEE",
    "url": "https://www.insee.fr/fr/statistiques/9056956",
-   "confiance": "forte"
+   "confiance": "forte",
+   "traitement": {
+    "cas": "e",
+    "motif": "Le réseau exploratoire n'a pas de nœud inflation ; la v1.3 en fait une variable cible.",
+    "integre": true
+   }
   },
   {
    "id": "EV-08",
@@ -1540,7 +1616,13 @@
    ],
    "source": "CGT",
    "url": "https://www.cgt.fr/29-septembre-2026",
-   "confiance": "moyenne"
+   "confiance": "moyenne",
+   "traitement": {
+    "cas": "c",
+    "motif": "Renseigne la mobilisation, sans la trancher.",
+    "integre": true,
+    "noeud": "PV-04"
+   }
   },
   {
    "id": "EV-05",
@@ -1556,7 +1638,12 @@
    ],
    "source": "Public Sénat",
    "url": "https://www.publicsenat.fr/actualites/politique/senatoriales-2026-decouvrez-les-equilibres-politiques-du-senat-a-lissue-des-elections",
-   "confiance": "forte"
+   "confiance": "forte",
+   "traitement": {
+    "cas": "a",
+    "motif": "Le Sénat ne vote pas la censure, et l'effet sur la présidentielle passera par les sondages : rien à estimer.",
+    "integre": true
+   }
   },
   {
    "id": "EV-04",
@@ -1572,7 +1659,12 @@
    ],
    "source": "LCP",
    "url": "https://lcp.fr/actualites/ce-ne-serait-pas-bon-pour-le-pays-emmanuel-macron-ecarte-l-hypothese-d-une-dissolution",
-   "confiance": "forte"
+   "confiance": "forte",
+   "traitement": {
+    "cas": "e",
+    "motif": "Renseigne un nœud « dissolution », absent du réseau exploratoire et prévu en phase 3.",
+    "integre": true
+   }
   }
  ],
  "precedents": [
@@ -1722,6 +1814,11 @@
  "journal": [
   {
    "date": "2026-10-03",
+   "type": "Mise à jour",
+   "texte": "Premier tri de l'actualité (87 titres) et première mise à jour événementielle (MAJ-001, mouvement lycéen) : trois évaluations indépendantes, rapport de vraisemblance 1,16 ; mobilisation d'ampleur de 36 à 39 %, budget adopté de 52 à 51 %. Les faits antérieurs sont classés selon le protocole v1.3."
+  },
+  {
+   "date": "2026-10-03",
    "type": "Révision",
    "texte": "Passage à un réseau de huit pivots : Moody's et la mobilisation sociale en amont du budget, candidature unique du centre et candidature de Marine Le Pen en amont de la présidentielle, majorité et choc sur la dette en projection jusqu'en septembre 2028. Trois nouvelles estimations indépendantes ; les prévisions précédentes restent visibles au registre."
   },
@@ -1798,6 +1895,78 @@
    ],
    "emise": "2026-10-03",
    "motif": "Devenue le pivot « Notation de Moody's », probabilité inchangée."
+  }
+ ],
+ "majs": [
+  {
+   "id": "MAJ-001",
+   "date": "2026-10-03",
+   "ev": "EV-10",
+   "cas": "c",
+   "noeud": "PV-04",
+   "lr": {
+    "O": 1.16,
+    "N": 1
+   },
+   "resume": "Mouvement lycéen : incendies et premières concessions",
+   "estimations": [
+    {
+     "eval": "Évaluateur 1",
+     "R": 1.15,
+     "classe": "Mouvements lycéens de 1986, 2006, 2010 et 2018 : pic en quelques semaines, puis reflux, surtout avant les vacances.",
+     "texte": "Colère durable, mais ni journée interprofessionnelle ni front syndical uni ; concessions et Toussaint peuvent désamorcer."
+    },
+    {
+     "eval": "Évaluateur 2",
+     "R": 0.85,
+     "classe": "Décembre 2018 : violences au pic, puis extinction avec les vacances et quelques concessions. 2010 : seuil franchi seulement grâce à un mouvement interprofessionnel.",
+     "texte": "Les violences marquent souvent le sommet et entraînent la désolidarisation ; les concessions visent à vider le mouvement avant la Toussaint."
+    },
+    {
+     "eval": "Évaluateur 3",
+     "R": 1.6,
+     "classe": "CPE 2006 : perturbations massives pendant trois mois, journées de 500 000 à 700 000 manifestants.",
+     "texte": "Escalade et soutiens élargis indiquent un mouvement montant, freiné par l'absence d'appel interprofessionnel et les vacances."
+    }
+   ]
+  }
+ ],
+ "tris": [
+  {
+   "date": "2026-10-03",
+   "titres": 87,
+   "periode": "2 octobre 12 h – 3 octobre 16 h",
+   "retenus": [
+    "EV-10"
+   ],
+   "ecartes": [
+    {
+     "sujet": "Affaire Bardella : communication de crise du RN, tribunes",
+     "n": 5,
+     "motif": "Réactions, pas de fait nouveau établi ; l'effet sur l'opinion passera par les sondages."
+    },
+    {
+     "sujet": "Budget 2027 : défiance des marchés, avertissements du gouvernement, mesures sectorielles",
+     "n": 7,
+     "motif": "Le canal des marchés est mesuré par l'écart de taux ; les mesures sectorielles sont sous le seuil."
+    },
+    {
+     "sujet": "Pétrole : déblocage de réserves par le G7 et l'AIE",
+     "n": 4,
+     "motif": "Moteur exogène sans nœud dans le réseau exploratoire."
+    },
+    {
+     "sujet": "Primaire PS – Place publique, candidature du Parti animaliste",
+     "n": 2,
+     "motif": "Calendrier déjà connu ; candidature sous le seuil."
+    },
+    {
+     "sujet": "Sans lien avec un nœud (faits divers, consommation, international)",
+     "n": 49,
+     "motif": "Non rattachés."
+    }
+   ],
+   "retenus_titres": 20
   }
  ]
 }

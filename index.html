@@ -192,6 +192,13 @@ function to100(v){const t=v.reduce((a,b)=>a+b,0)||1;const raw=v.map(x=>x*100/t);
 
 /* --- glossaire --- */
 const G={
+  "rv":["Rapport de vraisemblance","À quel point un fait est plus probable si l'issue se produit que si elle ne se produit pas. 1 : fait neutre ; 2 : deux fois plus probable. Il multiplie les cotes de l'issue, puis le réseau propage l'effet."],
+  "portee":["Portée","Probabilité des pivots suivis selon chaque issue du nœud touché : l'effet maximal qu'un fait pourrait avoir s'il faisait basculer ce nœud."],
+  "cas-a":["Sans effet","Fait sans lien avec un nœud du modèle, ou trop faible pour le déplacer d'au moins 3 points. Consigné avec son motif."],
+  "cas-b":["Donnée","Fait qui tranche une issue ou mesure une variable (vote, décision, série publiée). Appliqué sans jugement."],
+  "cas-c":["Évidence","Fait qui renseigne un nœud non tranché. Trois évaluateurs estiment à quel point il est plus probable sous une issue que sous l'autre ; le réseau se met à jour en conséquence."],
+  "cas-d":["Paramètre","Fait qui change une relation entre nœuds plutôt que la probabilité d'un nœud. Seules les lignes concernées des tables sont révisées."],
+  "cas-e":["Hors modèle","Fait qui ne correspond à aucun nœud. Il donne lieu à une question à part et peut faire entrer un nœud à l'analyse trimestrielle."],
   "pivot":["Moment pivot","Événement à fort impact dont l'issue n'est pas écrite d'avance, décliné en hypothèses auxquelles on attribue une probabilité."],
   "sous-pivot":["Sous-pivot","Moment pivot qui en conditionne un autre : ses issues changent les probabilités du pivot situé en aval."],
   "anticipé":["Pivot anticipé","Crise qui n'a pas encore eu lieu mais dont les signaux sont visibles, comme une mobilisation sociale contre le budget."],
@@ -259,15 +266,30 @@ const trend=t=>t==="hausse"?'<span class="tag crit">▲ se dégrade</span>':t===
 
 /* --- réseau de pivots : calcul exact par énumération --- */
 const N=id=>D.pivots.find(n=>n.id===id);
-function cpts(k){/* k = "med" ou index d'estimateur */
-  const out={};D.pivots.forEach(n=>{out[n.id]={};for(const [key,tab] of Object.entries(n.cpt)){const v=n.issues.map(o=>k==="med"?median(tab[o.id]):tab[o.id][k]);const pr=k==="med"?to100(v):v.map(x=>x*100/v.reduce((a,b)=>a+b,0));out[n.id][key]=pr.map(x=>x/100)}});return out}
+function cpts(k,ev){/* k = "med" ou index d'estimateur ; ev = mises à jour appliquées */
+  const out={};D.pivots.forEach(n=>{out[n.id]={};for(const [key,tab0] of Object.entries(n.cpt)){const tab=(ev&&ev.rev[n.id+"|"+key])||tab0;const v=n.issues.map(o=>k==="med"?median(tab[o.id]):tab[o.id][k]);const pr=k==="med"?to100(v):v.map(x=>x*100/v.reduce((a,b)=>a+b,0));out[n.id][key]=pr.map(x=>x/100)}});return out}
+/* --- mises à jour événementielles (protocole v1.3, section 10) --- */
+const MAJ=()=>(D.majs||[]).slice().sort((a,b)=>(a.date+a.id).localeCompare(b.date+b.id));
+function evid(n){const ev={obs:{},lr:{},rev:{}};MAJ().slice(0,n).forEach(u=>{
+  if(u.cas==="b")ev.obs[u.noeud]=u.issue;
+  if(u.cas==="c"){const c=ev.lr[u.noeud]||{};for(const [o,v] of Object.entries(u.lr))c[o]=(c[o]||1)*v;ev.lr[u.noeud]=c}
+  if(u.cas==="d")ev.rev[u.noeud+"|"+u.ligne]=u.cpt});return ev}
 const groupOf=(par,out)=>{for(const [g,arr] of Object.entries(par.g))if(arr.includes(out))return g};
 const keyOf=(n,a)=>n.parents.map(p=>groupOf(p,a[p.id])).join("_");
-function joint(k){const T=cpts(k);const res=[];const ns=D.pivots;
-  (function rec(i,a,p){if(i===ns.length){res.push({a:{...a},p});return}const n=ns[i];const dist=T[n.id][keyOf(n,a)];n.issues.forEach((o,j)=>{if(dist[j]>0){a[n.id]=o.id;rec(i+1,a,p*dist[j])}});delete a[n.id]})(0,{},1);
-  return res}
+function joint(k,ev){ev=ev||M_EV;const T=cpts(k,ev);const res=[];const ns=D.pivots;
+  (function rec(i,a,p){if(i===ns.length){res.push({a:{...a},p});return}const n=ns[i];const dist=T[n.id][keyOf(n,a)];const ob=ev.obs[n.id],lr=ev.lr[n.id];
+    n.issues.forEach((o,j)=>{if(dist[j]>0&&(!ob||ob===o.id)){a[n.id]=o.id;rec(i+1,a,p*dist[j]*(lr&&lr[o.id]!=null?lr[o.id]:1))}});delete a[n.id]})(0,{},1);
+  const z=res.reduce((t,x)=>t+x.p,0);res.forEach(x=>x.p/=z);return res}
+let M_EV={obs:{},lr:{},rev:{}};
+const margOf=J=>{const m={};D.pivots.forEach(n=>m[n.id]=n.issues.map(o=>prob(J,a=>a[n.id]===o.id)*100));return m};
+const desc=id=>{const out=new Set();(function r(x){D.pivots.filter(c=>c.parents.some(p=>p.id===x)).forEach(c=>{if(!out.has(c.id)){out.add(c.id);r(c.id)}})})(id);return out};
+const SUIVIS=()=>D.meta.suivis||[];
+/* probabilité d'une issue suivie, conditionnée à chaque issue d'un nœud amont */
+const portee=(id,J)=>{const n=N(id),d=desc(id);return SUIVIS().filter(([t])=>d.has(t)).map(([t,o])=>({t,o,v:n.issues.map(x=>{const pa=prob(J,a=>a[id]===x.id);return pa?Math.round(prob(J,a=>a[id]===x.id&&a[t]===o)/pa*100):null})}))};
+/* fil : état initial puis chaque mise à jour */
+function fil(){const L=MAJ();const pts=[];for(let i=0;i<=L.length;i++){const m=margOf(joint("med",evid(i)));pts.push({u:i?L[i-1]:null,m})}return pts}
 const prob=(J,f)=>J.reduce((s,x)=>s+(f(x.a)?x.p:0),0);
-function build(){const Jm=joint("med"),Je=[0,1,2].map(joint);
+function build(){M_EV=evid(MAJ().length);const Jm=joint("med"),Je=[0,1,2].map(k=>joint(k));
   const marg={},rng={};D.pivots.forEach(n=>{const m=n.issues.map(o=>prob(Jm,a=>a[n.id]===o.id)*100);marg[n.id]=to100(m);
     rng[n.id]=n.issues.map(o=>{const v=Je.map(J=>Math.round(prob(J,a=>a[n.id]===o.id)*100));return [Math.min(...v),Math.max(...v)]})});
   const sens={};D.pivots.forEach(n=>{const dom=n.issues[marg[n.id].indexOf(Math.max(...marg[n.id]))].id;n.parents.forEach(pp=>{const par=N(pp.id);
@@ -454,10 +476,33 @@ function pivotPage(id){const n=N(id);if(!n)return pivots();
    ${children.length||n.projections?`<details class="block"><summary>Conséquences</summary><div class="in">${children.map(c=>`<div class="sm">Pèse sur ${link(c.id)} : ${T("sensibilite","écart d'influence")} de ±${M.sens[id+">"+c.id]} points.</div>`).join("")}${(n.projections||[]).map(x=>{const h=n.issues.find(h=>h.id===x.hyp);return `<div class="sm"><span class="b">${esc(h?h.nom:x.hyp)}</span> · ${esc(x.texte)}</div>`}).join("")}</div></details>`:""}
    ${evs.length?`<details class="block"><summary>Actualité liée</summary><div class="in">${evs.map(e=>`<div class="rowlink sm" tabindex="0" role="link" data-go="actualite"><span class="muted">${dfr(e.date)}</span> · ${esc(e.titre)}</div>`).join("")}</div></details>`:""}`)}
 
-function actualite(){return head("Actualité","Les faits récents et ce qu'ils font bouger.")
-  +`<div class="rows">${D.actualite.map(e=>`<article style="display:flex;flex-direction:column;gap:6px"><div class="sm muted">${dfr(e.date)}</div><h3>${esc(e.titre)}</h3><p style="margin:0">${esc(e.resume)}</p>
-  <div class="rowx">${e.effets.map(f=>f.cible==="IS-futur"?`<span class="tag n" style="white-space:normal">${esc(f.texte)}</span>`:`<button class="tag a" style="border:0;cursor:pointer;white-space:normal;text-align:left" data-go="${route(f.cible)}">${esc(lab(f.cible))} · ${esc(f.texte)}</button>`).join("")}</div>
-  <div class="sm muted"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source)}</a> · ${T("confiance","confiance")} ${esc(e.confiance)}</div></article>`).join("")}</div>`}
+const CAS={a:["Sans effet","n"],b:["Donnée","ok"],c:["Évidence","a"],d:["Paramètre","warn"],e:["Hors modèle","n"]};
+const casTag=k=>{const c=CAS[k]||["Non trié","n"];return `<span class="tag ${c[1]}"><span class="term" tabindex="0" data-def="cas-${k}">${c[0]}</span></span>`};
+const iss=(t,o)=>N(t).issues.find(x=>x.id===o);
+const pv=(m,t,o)=>Math.round(m[t][N(t).issues.findIndex(x=>x.id===o)]);
+const sgn=d=>d?` <span class="sm muted">(${d>0?"+":"−"}${Math.abs(d)})</span>`:"";
+function actualite(){const F=fil(),L=MAJ(),S=SUIVIS();
+  const lbl=([t,o])=>`${N(t).court} · ${iss(t,o).court}`;
+  const filT=`<div class="tw"><table class="resp"><thead><tr><th>Date</th><th>Fait</th>${S.map(x=>`<th>${esc(lbl(x))}</th>`).join("")}</tr></thead><tbody>${F.map((p,i)=>`<tr><td class="lead" style="white-space:nowrap">${dfr(p.u?p.u.date:D.meta.releve)}</td><td data-l="Fait">${p.u?`${casTag(p.u.cas)} ${esc(p.u.resume)}`:"Estimation initiale"}</td>${S.map(x=>`<td data-l="${esc(lbl(x))}"><span class="b">${pv(p.m,...x)} %</span>${i?sgn(pv(p.m,...x)-pv(F[i-1].m,...x)):""}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
+  ${L.length?"":`<p class="sm muted" style="margin:8px 0 0">Aucune mise à jour depuis l'estimation initiale : les faits ci-dessous étaient connus lorsqu'elle a été produite.</p>`}`;
+  const card=e=>{const t=e.traitement||{};const us=L.filter(u=>u.ev===e.id);
+    const nodes=[...new Set([t.noeud,...e.effets.map(f=>f.cible)].filter(x=>x&&x.startsWith("PV")))];
+    const maj=us.map(u=>{const i=L.indexOf(u),A=F[i].m,B=F[i+1].m,n=N(u.noeud);let j=B[u.noeud].indexOf(Math.max(...B[u.noeud]));if(u.lr){const k=Object.entries(u.lr).sort((x,y)=>y[1]-x[1])[0][0];j=n.issues.findIndex(x=>x.id===k)}if(u.cas==="b")j=n.issues.findIndex(x=>x.id===u.issue);const o=n.issues[j].id;
+      const ch=S.filter(([x])=>x!==u.noeud).map(x=>{const d=pv(B,...x)-pv(A,...x);return d?`${esc(lbl(x))} ${pv(A,...x)} → ${pv(B,...x)} %`:""}).filter(Boolean);
+      return `<div class="sm"><span class="b">Mise à jour du ${dfr(u.date)}</span> · ${esc(n.court)} ${esc(n.issues[j].court)} : <span class="b">${pv(A,u.noeud,o)} % → ${pv(B,u.noeud,o)} %</span>${u.lr?` (${T("rv","rapport de vraisemblance")} ${String(u.lr[o]||1).replace(".",",")})`:""}</div>
+      <div class="sm">${ch.length?"Effet propagé : "+ch.join(" · "):"Aucun effet propagé d'au moins un point sur les pivots suivis."}</div>
+      ${u.estimations?`<details class="block"><summary>Les ${u.estimations.length} évaluations</summary><div class="in rows">${u.estimations.map(x=>`<div class="sm"><span class="b">${esc(x.eval)} · ${T("rv","R")} = ${String(x.R).replace(".",",")}</span><div>${esc(x.texte)}</div><div class="muted">${T("taux de base","Classe de référence")} : ${esc(x.classe)}</div></div>`).join("")}</div></details>`:""}`}).join("");
+    const por=(t.portee||nodes).map(id=>{const n=N(id),r=portee(id,M.Jm);return r.length?`<div class="tw"><table class="sm" style="width:auto;min-width:0"><thead><tr><th>Si ${esc(n.court)} :</th>${n.issues.map(x=>`<th style="text-align:right">${esc(x.court)}</th>`).join("")}</tr></thead><tbody>${r.map(q=>`<tr><td>${esc(lbl([q.t,q.o]))}</td>${q.v.map(v=>`<td style="text-align:right">${v} %</td>`).join("")}</tr>`).join("")}</tbody></table></div>`:`<div class="sm"><span class="b">${esc(n.court)}</span> : aucun pivot suivi en aval.</div>`}).join("");
+    return `<article style="display:flex;flex-direction:column;gap:6px"><div class="sm muted">${dfr(e.date)}</div><h3>${esc(e.titre)}</h3><p style="margin:0">${esc(e.resume)}</p>
+    <div class="rowx">${casTag(t.cas)}${t.integre?`<span class="tag n">Intégré à l'estimation initiale</span>`:""}${e.effets.filter(f=>f.cible!=="IS-futur").map(f=>`<button class="tag a" style="border:0;cursor:pointer;white-space:normal;text-align:left" data-go="${route(f.cible)}">${esc(lab(f.cible))}</button>`).join("")}</div>
+    ${t.motif?`<p class="sm" style="margin:0">${esc(t.motif)}</p>`:""}${maj}
+    ${por?`<details class="block"><summary>${T("portee","Portée dans le modèle")}</summary><div class="in">${por}</div></details>`:""}
+    <div class="sm muted"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source)}</a> · ${T("confiance","confiance")} ${esc(e.confiance)}</div></article>`};
+  const evs=D.actualite.slice().sort((x,y)=>y.date.localeCompare(x.date));
+  return head("Actualité","Ce que chaque fait change, ou ne change pas, dans le modèle.")
+  +sec("Fil des probabilités",filT)
+  +(D.tris&&D.tris.length?sec("Dernier tri",(t=>`<p style="margin:0 0 8px">${dfr(t.date)} · ${t.titres} titres relevés (${esc(t.periode)}) · <span class="b">${t.retenus.length} fait${t.retenus.length>1?"s":""} retenu${t.retenus.length>1?"s":""}</span>, regroupant ${t.retenus_titres} titres.</p><details class="block"><summary>Titres écartés et motifs</summary><div class="in rows">${t.ecartes.map(x=>`<div class="sm"><span class="b">${esc(x.sujet)}</span> · ${x.n} titres<div class="muted">${esc(x.motif)}</div></div>`).join("")}</div></details>`)(D.tris[D.tris.length-1])):"")
+  +sec("Faits triés",`<div class="legend nog" style="margin-bottom:10px">${Object.keys(CAS).map(casTag).join("")}</div><div class="rows">${evs.map(card).join("")}</div>`)}
 
 function previsions(){const fc=forecasts();return head("Prévisions",`Le ${T("fige","registre figé")} de toutes les prévisions, et leur résultat à échéance.`)
   +`<div class="tw"><table class="resp"><thead><tr><th>Question</th><th>Probabilités</th><th>Échéance</th><th>${T("externe","Référence")}</th><th>Résultat</th></tr></thead><tbody>

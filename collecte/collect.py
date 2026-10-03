@@ -163,5 +163,65 @@ def main():
     return 0 if ok else 1
 
 
+
+# --- Veille d'actualité (protocole v1.3, section 10.2) : titres seulement, sans IA ---
+VEILLE = Path(__file__).resolve().parent.parent / "data" / "veille.json"
+FLUX = {
+    "franceinfo · politique": "https://www.francetvinfo.fr/politique.rss",
+    "franceinfo · économie": "https://www.francetvinfo.fr/economie.rss",
+    "franceinfo · société": "https://www.francetvinfo.fr/societe.rss",
+    "Le Monde · politique": "https://www.lemonde.fr/politique/rss_full.xml",
+    "Le Monde · économie": "https://www.lemonde.fr/economie/rss_full.xml",
+}
+
+
+def veille(jours=10, maxi=400):
+    import xml.etree.ElementTree as ET
+    from email.utils import parsedate_to_datetime
+    old = []
+    if VEILLE.exists():
+        try:
+            old = json.loads(VEILLE.read_text("utf-8")).get("items", [])
+        except ValueError:
+            old = []
+    vus = {i["lien"] for i in old}
+    statut, neufs = {}, []
+    for nom, url in FLUX.items():
+        try:
+            root = ET.fromstring(get(url).encode("utf-8"))
+            n = 0
+            for it in root.iter("item"):
+                lien = (it.findtext("link") or "").strip()
+                if not lien or lien in vus:
+                    continue
+                try:
+                    date = parsedate_to_datetime(it.findtext("pubDate")).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
+                except Exception:
+                    date = None
+                neufs.append({"source": nom, "titre": (it.findtext("title") or "").strip(), "lien": lien,
+                              "date": date, "trie": False})
+                vus.add(lien)
+                n += 1
+            statut[nom] = f"ok ({n} nouveaux)"
+        except Exception as exc:
+            statut[nom] = f"echec: {type(exc).__name__}"
+    limite = datetime.now(timezone.utc).timestamp() - jours * 86400
+    def recent(i):
+        try:
+            return datetime.strptime(i["date"], "%Y-%m-%dT%H:%MZ").replace(tzinfo=timezone.utc).timestamp() >= limite
+        except Exception:
+            return True
+    items = sorted([i for i in old + neufs if recent(i) or not i.get("trie")],
+                   key=lambda i: i.get("date") or "", reverse=True)[:maxi]
+    VEILLE.write_text(json.dumps({"execution": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                  "flux": statut, "items": items}, ensure_ascii=False, indent=1), "utf-8")
+    print("veille:", statut)
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    code = main()
+    try:
+        veille()
+    except Exception as exc:
+        print("veille en échec:", exc)
+    sys.exit(code)
