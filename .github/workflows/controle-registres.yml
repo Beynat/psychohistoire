@@ -28,7 +28,7 @@ jobs:
             AVANT=$(git rev-parse HEAD~1)
           fi
           echc=0
-          for f in $(git diff --name-only "$AVANT" HEAD -- registre modele/jalons data/tri); do
+          for f in $(git diff --name-only "$AVANT" HEAD -- registre modele/jalons data/tri | grep -E '\.(jsonl|json)$'); do
             if git cat-file -e "$AVANT:$f" 2>/dev/null; then
               supp=$(git diff --unified=0 "$AVANT" HEAD -- "$f" | grep -E '^-[^-]' | wc -l)
               if [ "$supp" -gt 0 ]; then
