@@ -28,7 +28,7 @@
    "pivots": [
     "PV-01"
    ],
-   "lecture": "Trois signaux sur six ont déjà franchi leur seuil critique : écart de taux avec l'Allemagne, taux à 10 ans et déficit. La note globale, moyenne des six, reste « sous tension », à 0,4 point du seuil critique, car la dette, les intérêts et la notation tiennent encore."
+   "lecture": "Trois signaux sur six ont franchi leur seuil critique : écart de taux avec l'Allemagne, taux à 10 ans et déficit. La dette, les intérêts et la notation tiennent encore, ce qui maintient la note globale sous tension."
   }
  ],
  "indicateursProposes": [
@@ -148,7 +148,9 @@
      119.0
     ]
    ],
-   "serieSource": "Eurostat (gov_10dd_edpt1), fin d'année ; INSEE pour le T2 2026"
+   "serieSource": "Eurostat (gov_10dd_edpt1), fin d'année ; INSEE pour le T2 2026",
+   "action": "Plus la dette est élevée, plus l'État dépend des marchés pour se refinancer, et plus une hausse des taux pèse sur son budget.",
+   "pourquoi": "100 % : au-delà, la dette ne baisse plus sans excédents durables. 120 % : niveau de l'Italie au déclenchement de sa crise de 2011."
   },
   {
    "id": "SI-01-02",
@@ -171,7 +173,9 @@
    "url": "https://www.info.gouv.fr/conseil-des-ministres/compte-rendu-du-conseil-des-ministres-du-01-10-2026",
    "frequence": "Annuelle",
    "confiance": "forte",
-   "statut": "validé"
+   "statut": "validé",
+   "action": "Un déficit élevé alourdit la dette chaque année et réduit la capacité de l'État à absorber un nouveau choc.",
+   "pourquoi": "3 % : critère européen fixé par le traité de Maastricht. Au-delà de 5 %, la dette progresse mécaniquement, sauf croissance exceptionnelle."
   },
   {
    "id": "SI-01-03",
@@ -194,7 +198,9 @@
    "url": "https://www.insee.fr/fr/statistiques/8956575",
    "frequence": "Annuelle",
    "confiance": "forte",
-   "statut": "validé"
+   "statut": "validé",
+   "action": "Les intérêts sont une dépense contrainte : chaque hausse réduit d'autant les autres dépenses publiques possibles.",
+   "pourquoi": "2 % du PIB : niveau moyen de la France dans les années 2010. 3 % : seuil d'alerte, à mi-chemin des 4 à 5 % atteints par l'Italie en crise."
   },
   {
    "id": "SI-01-04",
@@ -239,7 +245,9 @@
      "01/10",
      130
     ]
-   ]
+   ],
+   "action": "L'écart mesure le surcoût exigé pour prêter à la France plutôt qu'à l'Allemagne : c'est le thermomètre de la confiance des marchés.",
+   "pourquoi": "60 pb : premier niveau de tension des crises récentes. 100 pb : stress caractérisé. Le pic de la crise de 2011-2012 avoisinait 150 pb."
   },
   {
    "id": "SI-01-05",
@@ -262,7 +270,9 @@
    "url": "https://www.ideal-investisseur.fr/en/markets/oat-bund-spread.html",
    "frequence": "Quotidienne",
    "confiance": "moyenne",
-   "statut": "validé"
+   "statut": "validé",
+   "action": "C'est le taux auquel l'État emprunte à dix ans. S'il dépasse durablement la croissance, le poids de la dette augmente de lui-même.",
+   "pourquoi": "3,5 % : au-dessus de la croissance nominale, proche de 3 %. 4,5 % : niveau qui rend la charge d'intérêts difficilement soutenable."
   },
   {
    "id": "SI-01-06",
@@ -285,7 +295,9 @@
    "url": "https://www.aft.gouv.fr/en/frances-credit-ratings",
    "frequence": "Revues programmées",
    "confiance": "forte",
-   "statut": "validé"
+   "statut": "validé",
+   "action": "Les notes des agences conditionnent l'accès de certains investisseurs à la dette française ; une dégradation renchérit l'emprunt.",
+   "pourquoi": "AA- : dernier cran de la catégorie « haute qualité ». À partir de A, certains fonds réduisent leurs achats, ce qui accentue la hausse des taux."
   }
  ],
  "pivots": [

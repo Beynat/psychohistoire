@@ -6,467 +6,444 @@
 <title>Psychohistoire</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&display=swap">
 <style>
-/* Layout : en-tête + barre d'onglets collante, une vue à la fois, colonne de lecture de 1080px max */
+/* Layout : navigation latérale par sections sur ordinateur, deux rangées sur téléphone ; colonne de contenu de 820px */
 :root{
-  --bg:#EEF1F4; --surface:#FFFFFF; --surface-2:#F6F8FA; --ink:#16202B; --muted:#56616E; --line:#D5DBE2;
-  --accent:#2B4C9B; --accent-soft:rgba(43,76,155,.10); --accent-2:rgba(43,76,155,.38);
-  --ok:#2F7D63; --warn:#A86E14; --crit:#B23A2E; --ok-soft:rgba(47,125,99,.12); --warn-soft:rgba(168,110,20,.14); --crit-soft:rgba(178,58,46,.12);
-  --f-display:"Literata", Georgia, "Times New Roman", serif;
-  --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-data:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --bg:#FBFBFA; --surface:#FFFFFF; --soft:#F3F3F1; --ink:#1C1C1A; --muted:#62625D; --line:#E4E3DF;
+  --accent:#2F4F8F; --accent-soft:rgba(47,79,143,.09); --accent-mid:rgba(47,79,143,.35);
+  --ok:#2E7558; --warn:#9A6513; --crit:#A8382B; --ok-soft:rgba(46,117,88,.11); --warn-soft:rgba(154,101,19,.12); --crit-soft:rgba(168,56,43,.10);
+  --font:"Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --s-sm:13px; --s-md:15px; --s-lg:19px; --s-xl:28px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0F151C; --surface:#17202A; --surface-2:#1C2733; --ink:#E6EBF0; --muted:#A7B2BE; --line:#2C3846;
-  --accent:#8EA9EE; --accent-soft:rgba(142,169,238,.14); --accent-2:rgba(142,169,238,.42);
-  --ok:#5DBB98; --warn:#E0A846; --crit:#E8705F; --ok-soft:rgba(93,187,152,.14); --warn-soft:rgba(224,168,70,.15); --crit-soft:rgba(232,112,95,.15);
+  --bg:#161615; --surface:#1E1E1C; --soft:#252523; --ink:#ECEBE7; --muted:#A3A29C; --line:#33332F;
+  --accent:#93AEEB; --accent-soft:rgba(147,174,235,.12); --accent-mid:rgba(147,174,235,.4);
+  --ok:#62B693; --warn:#D9A34A; --crit:#E07465; --ok-soft:rgba(98,182,147,.13); --warn-soft:rgba(217,163,74,.14); --crit-soft:rgba(224,116,101,.14);
   color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0F151C; --surface:#17202A; --surface-2:#1C2733; --ink:#E6EBF0; --muted:#A7B2BE; --line:#2C3846;
-  --accent:#8EA9EE; --accent-soft:rgba(142,169,238,.14); --accent-2:rgba(142,169,238,.42);
-  --ok:#5DBB98; --warn:#E0A846; --crit:#E8705F; --ok-soft:rgba(93,187,152,.14); --warn-soft:rgba(224,168,70,.15); --crit-soft:rgba(232,112,95,.15);
+  --bg:#161615; --surface:#1E1E1C; --soft:#252523; --ink:#ECEBE7; --muted:#A3A29C; --line:#33332F;
+  --accent:#93AEEB; --accent-soft:rgba(147,174,235,.12); --accent-mid:rgba(147,174,235,.4);
+  --ok:#62B693; --warn:#D9A34A; --crit:#E07465; --ok-soft:rgba(98,182,147,.13); --warn-soft:rgba(217,163,74,.14); --crit-soft:rgba(224,116,101,.14);
   color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-body)}
-a{color:var(--accent)}
-a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.wrap{max-width:1080px;margin:0 auto;padding-inline:16px}
-header.top{padding-block:20px 8px}
-.brand{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
-.brand h1{font:600 26px/1.1 var(--f-display);margin:0;letter-spacing:-.01em}
-.brand .sub{color:var(--muted);font-size:13px}
-.brand .sub b{font-family:var(--f-data);font-weight:500;color:var(--ink)}
-.tagline{margin:6px 0 0;color:var(--muted);font-size:13.5px;max-width:70ch}
-nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
-.tabs .scroll{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding-block:6px}
-.tabs .scroll::-webkit-scrollbar{display:none}
-.tabs .scroll.more{-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
-.tabs .grp{display:flex;align-items:center;gap:1px;padding-left:8px;margin-left:4px;border-left:1px solid var(--line)}
-.tabs .grp:first-child{border-left:0;margin-left:0;padding-left:0}
-.tabs .glabel{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:3px;white-space:nowrap}
-.tabs button{all:unset;cursor:pointer;white-space:nowrap;padding:7px 9px;border-radius:6px;font-size:14px;color:var(--muted)}
-.tabs button:hover{color:var(--ink);background:var(--surface-2)}
-.tabs button[aria-current="page"]{color:var(--ink);background:var(--surface);box-shadow:inset 0 -2px 0 var(--accent);font-weight:600}
-main{padding-block:22px 48px}
-.view-h{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
-.view-h h2{font:600 22px/1.25 var(--f-display);margin:0;text-wrap:balance}
-.view-h p{margin:0;color:var(--muted);max-width:68ch}
-.crumb{font-size:13px;color:var(--muted)}
-h3{font:600 17px/1.3 var(--f-display);margin:0}
-h4{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:0;font-weight:600}
-.grid{display:grid;gap:14px}
-.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.card.link{cursor:pointer;transition:border-color .15s}
-.card.link:hover{border-color:var(--accent)}
-.section{display:flex;flex-direction:column;gap:12px;margin-top:26px;min-width:0}
-.section:first-child{margin-top:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 var(--s-md)/1.6 var(--font);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:2px}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+p,.just{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.shell{display:grid;grid-template-columns:232px minmax(0,1fr);max-width:1180px;margin:0 auto;padding-inline:24px;gap:40px}
+.side{position:sticky;top:0;align-self:start;height:100vh;padding-block:28px;overflow-y:auto}
+.brand{font-weight:700;font-size:var(--s-lg);letter-spacing:-.01em;margin:0}
+.releve{font-size:var(--s-sm);color:var(--muted);margin:2px 0 26px}
+.nav-sec{margin-bottom:18px}
+.nav-sec .h{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.nav-sec button{all:unset;cursor:pointer;display:block;padding:5px 10px;margin-left:-10px;border-radius:6px;color:var(--ink);font-size:var(--s-md)}
+.nav-sec button:hover{background:var(--soft)}
+.nav-sec button[aria-current="page"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.side .about{font-size:var(--s-sm);color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:8px}
+.topnav{display:none}
+main{padding-block:32px 64px;min-width:0;max-width:820px}
+.page-h{margin-bottom:28px}
+.crumb{font-size:var(--s-sm);color:var(--muted);margin-bottom:6px}
+h1.title{font-size:var(--s-xl);line-height:1.2;font-weight:700;letter-spacing:-.015em;margin:0 0 10px;text-wrap:balance}
+.lede{color:var(--muted);margin:0;max-width:68ch}
+h2{font-size:var(--s-lg);font-weight:700;margin:0;line-height:1.3}
+h3{font-size:var(--s-md);font-weight:700;margin:0;line-height:1.4}
+.sec{margin-top:40px;min-width:0}
+.sh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:10px;margin-bottom:16px;border-bottom:1px solid var(--line)}
 .muted{color:var(--muted)}
-.small{font-size:13px}
-.num{font-family:var(--f-data);font-variant-numeric:tabular-nums}
-.big{font:500 30px/1 var(--f-data);font-variant-numeric:tabular-nums}
-.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;max-width:100%}
-.pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.crit{background:var(--crit-soft);color:var(--crit)}
-.pill.neutral{background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
-.pill.acc{background:var(--accent-soft);color:var(--accent)}
-.row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
-.between{justify-content:space-between}
-.ref{all:unset;cursor:pointer;color:var(--accent);font-weight:500;border-bottom:1px solid var(--accent-soft)}
-.ref:hover{border-bottom-color:var(--accent)}
-.term{border-bottom:1px dotted var(--muted);cursor:help}
-#pop{position:absolute;z-index:20;max-width:280px;background:var(--ink);color:var(--bg);font-size:13px;line-height:1.45;padding:10px 12px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
-#pop b{display:block;margin-bottom:2px}
-.gauge{position:relative;height:10px;border-radius:5px;background:linear-gradient(90deg,var(--ok-soft) 0 35%,var(--warn-soft) 35% 65%,var(--crit-soft) 65% 100%)}
-.gauge i{position:absolute;top:-4px;width:4px;height:18px;border-radius:2px;background:var(--ink);transform:translateX(-2px)}
-.gauge-scale{display:flex;justify-content:space-between;font:11px var(--f-data);color:var(--muted)}
-.hyp{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center}
-.hyp + .hyp{margin-top:10px}
-.hyp .lab{font-size:14px;min-width:0}
-.hyp .lab small{display:block;color:var(--muted);font-size:12px}
-.hyp .pct{font:500 15px var(--f-data);text-align:right;white-space:nowrap}
-.hyp .pct small{display:block;font:12px var(--f-data);color:var(--muted)}
-.bar{grid-column:1 / -1;position:relative;height:8px;background:var(--surface-2);border-radius:4px;background-image:linear-gradient(90deg,transparent calc(50% - 1px),var(--line) calc(50% - 1px),var(--line) calc(50% + 1px),transparent calc(50% + 1px))}
-.bar b{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--accent)}
-.bar .rng{position:absolute;top:-3px;height:14px;border-left:1.5px solid var(--ink);border-right:1.5px solid var(--ink);opacity:.5}
-.bar .ext{position:absolute;top:-5px;width:3px;height:18px;background:var(--warn);border-radius:1px}
-.hyp:not(.dom) .bar b{opacity:.45}
-.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted)}
-.legend i{display:inline-block;vertical-align:middle;margin-right:5px}
-table{border-collapse:collapse;width:100%;font-size:14px}
-th{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
-td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.sm{font-size:var(--s-sm)}
+.b{font-weight:700}
+.big{font-size:var(--s-xl);font-weight:700;line-height:1;letter-spacing:-.01em}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0 24px}
+.box{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.go{cursor:pointer;transition:border-color .15s}
+.go:hover{border-color:var(--accent-mid)}
+.rows > *{padding-block:14px;border-top:1px solid var(--line)}
+.rows > *:first-child{border-top:0;padding-top:0}
+.rows > *:last-child{padding-bottom:0}
+.rowx{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+.sp{justify-content:space-between}
+.tag{display:inline-flex;align-items:center;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.tag.ok{background:var(--ok-soft);color:var(--ok)} .tag.warn{background:var(--warn-soft);color:var(--warn)} .tag.crit{background:var(--crit-soft);color:var(--crit)}
+.tag.n{background:var(--soft);color:var(--muted)} .tag.a{background:var(--accent-soft);color:var(--accent)}
+.lnk{all:unset;cursor:pointer;color:var(--accent);font-weight:600}
+.lnk:hover{text-decoration:underline;text-underline-offset:2px}
+.rowlink{cursor:pointer}
+.rowlink:hover .b,.rowlink:hover > div:last-child{color:var(--accent)}
+.term{color:var(--accent);border-bottom:1px dotted var(--accent-mid);cursor:help}
+#pop{position:absolute;z-index:30;width:min(300px,calc(100vw - 32px));background:var(--ink);color:var(--bg);font-size:var(--s-sm);line-height:1.5;padding:11px 13px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+#pop b{display:block;margin-bottom:3px}
+details.more > summary{cursor:pointer;color:var(--accent);font-size:var(--s-sm);font-weight:600;list-style:none;display:inline-flex;gap:6px}
+details.more > summary::-webkit-details-marker{display:none}
+details.more > summary::before{content:"+";display:inline-block;width:12px}
+details.more[open] > summary::before{content:"−"}
+details.more > .in{margin-top:10px;display:flex;flex-direction:column;gap:10px}
+details.block{border-top:1px solid var(--line)}
+details.block:last-child{border-bottom:1px solid var(--line)}
+details.block > summary{cursor:pointer;list-style:none;padding:14px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;font-weight:700}
+details.block > summary::-webkit-details-marker{display:none}
+details.block > summary::after{content:"+";color:var(--muted);font-weight:400;font-size:18px;line-height:1.2}
+details.block[open] > summary::after{content:"−"}
+details.block > .in{padding-bottom:18px;display:flex;flex-direction:column;gap:12px}
+.gauge{position:relative;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--ok-soft) 0 35%,var(--warn-soft) 35% 65%,var(--crit-soft) 65% 100%)}
+.gauge i{position:absolute;top:-4px;width:3px;height:16px;border-radius:2px;background:var(--ink);transform:translateX(-1.5px)}
+.hyp{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 12px;align-items:baseline}
+.hyp + .hyp{margin-top:12px}
+.hyp .v{font-weight:700;text-align:right;white-space:nowrap}
+.hyp .v span{font-weight:400;color:var(--muted);font-size:var(--s-sm);margin-left:8px}
+.bar{grid-column:1 / -1;position:relative;height:6px;background:var(--soft);border-radius:3px}
+.bar b{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--accent)}
+.hyp:not(.dom) .bar b{background:var(--accent-mid)}
+.bar .r{position:absolute;top:-3px;height:12px;border-left:1.5px solid var(--muted);border-right:1.5px solid var(--muted)}
+.bar .e{position:absolute;top:-4px;width:3px;height:14px;background:var(--warn);border-radius:1px}
+.stack{display:flex;height:10px;border-radius:3px;overflow:hidden;background:var(--soft)}
+.stack span{display:block;height:100%}
+table{border-collapse:collapse;width:100%;font-size:var(--s-sm)}
+th{font-weight:700;text-align:left;padding:8px 12px 8px 0;border-bottom:1px solid var(--line);white-space:nowrap;color:var(--muted)}
+td{padding:10px 12px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
 tr:last-child td{border-bottom:0}
 tr.hl td{background:var(--accent-soft)}
-.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
-@media (max-width:640px){
+.tw{overflow-x:auto}
+.svgw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:10px}
+.svgw svg{display:block;min-width:700px;width:100%;height:auto}
+.chart svg{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;vertical-align:middle;margin-right:6px}
+.empty{color:var(--muted);font-size:var(--s-sm);border:1px dashed var(--line);border-radius:10px;padding:14px}
+dl.dict{display:grid;grid-template-columns:200px minmax(0,1fr);margin:0}
+dl.dict dt,dl.dict dd{margin:0;padding:10px 0;border-top:1px solid var(--line)}
+dl.dict dt{font-weight:700;padding-right:16px}
+footer{font-size:var(--s-sm);color:var(--muted)}
+.mob{display:none}
+@media (max-width:860px){
+  .shell{display:block;padding-inline:16px}
+  .side{display:none}
+  .topnav{display:block;position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line);padding-inline:16px}
+  .topnav .t1{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding-top:12px}
+  .topnav .t1 .brand{font-size:17px}
+  .topnav .t1 .releve{margin:0;font-size:12px}
+  .topnav .row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-block:9px}
+  .topnav .row::-webkit-scrollbar{display:none}
+  .topnav .r1 button{all:unset;cursor:pointer;font-weight:700;font-size:var(--s-sm);padding:6px 12px;border-radius:999px;color:var(--muted);white-space:nowrap;background:var(--soft)}
+  .topnav .r1 button[aria-current="true"]{background:var(--ink);color:var(--bg)}
+  .topnav .r2{padding-top:0}
+  .topnav .r2 button{all:unset;cursor:pointer;font-size:var(--s-sm);padding:6px 0;margin-right:14px;color:var(--muted);white-space:nowrap;border-bottom:2px solid transparent}
+  .topnav .r2 button[aria-current="page"]{color:var(--ink);font-weight:700;border-bottom-color:var(--accent)}
+  main{padding-block:22px 40px}
+  .mob{display:block}
   table.resp thead{display:none}
   table.resp,table.resp tbody,table.resp tr,table.resp td{display:block;width:100%}
-  table.resp tr{padding:10px 14px;border-bottom:1px solid var(--line)}
+  table.resp tr{padding:12px 0;border-bottom:1px solid var(--line)}
   table.resp tr:last-child{border-bottom:0}
-  table.resp td{border:0;padding:3px 0}
-  table.resp td[data-l]::before{content:attr(data-l);display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;margin-top:4px}
-  table.resp td.lead{font-weight:600;font-size:15px}
-}
-.list{display:flex;flex-direction:column}
-.list > *{padding:11px 0;border-bottom:1px solid var(--line)}
-.list > *:last-child{border-bottom:0}
-.list > .clickable{cursor:pointer}
-.list > .clickable:hover .t{color:var(--accent)}
-.si-pos{position:relative;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--ok-soft) 0 35%,var(--warn-soft) 35% 65%,var(--crit-soft) 65% 100%);min-width:90px}
-.si-pos i{position:absolute;top:-3px;width:3px;height:12px;background:var(--ink);border-radius:2px;transform:translateX(-1.5px)}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{all:unset;cursor:pointer;font-size:12.5px;padding:3px 9px;border:1px solid var(--line);border-radius:6px;background:var(--surface-2);color:var(--ink)}
-.chip[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
-.svgwrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px}
-.svgwrap svg{display:block;min-width:720px;width:100%;max-width:860px;margin:0 auto;height:auto}
-.chart svg{display:block;width:100%;height:auto}
-.stack{display:flex;height:14px;border-radius:4px;overflow:hidden;background:var(--surface-2)}
-.stack span{display:block;height:100%}
-.timeline .ev{display:grid;grid-template-columns:92px minmax(0,1fr);gap:4px 14px}
-.timeline time{font:500 13px var(--f-data);color:var(--muted);padding-top:2px}
-.note{background:var(--surface-2);border:1px dashed var(--line);border-radius:10px;padding:14px;color:var(--muted);font-size:14px}
-details.fold{background:var(--surface);border:1px solid var(--line);border-radius:10px}
-details.fold > summary{cursor:pointer;list-style:none;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:600}
-details.fold > summary::-webkit-details-marker{display:none}
-details.fold > summary::after{content:"+";font:500 18px var(--f-data);color:var(--muted)}
-details.fold[open] > summary::after{content:"−"}
-details.fold > summary span{font-weight:400;color:var(--muted);font-size:13px}
-details.fold > .in{padding:0 16px 16px;display:flex;flex-direction:column;gap:12px}
-dl.dict{display:grid;grid-template-columns:minmax(150px,220px) minmax(0,1fr);gap:0;margin:0}
-dl.dict dt,dl.dict dd{padding:9px 0;border-bottom:1px solid var(--line);margin:0}
-dl.dict dt{font-weight:600;padding-right:14px}
-footer{color:var(--muted);font-size:12.5px;padding-block:0 32px}
-.only-mobile{display:none}
-@media (max-width:640px){.only-mobile{display:block}.only-desktop{display:none!important}}
-@media (max-width:560px){
-  .brand h1{font-size:22px}
-  dl.dict{grid-template-columns:1fr} dl.dict dt{border-bottom:0;padding-bottom:0}
-  .timeline .ev{grid-template-columns:1fr}
-  .big{font-size:26px}
+  table.resp td{border:0;padding:2px 0}
+  table.resp td[data-l]{display:flex;justify-content:space-between;gap:12px;text-align:right}
+  table.resp td[data-l]::before{content:attr(data-l);color:var(--muted);flex:0 0 auto;text-align:left}
+  table.resp td.lead{font-weight:700;margin-bottom:4px}
+  table.resp td.blk{display:block;text-align:left}
+  table.resp td.blk::before{display:block;margin-bottom:4px}
+  dl.dict{grid-template-columns:1fr} dl.dict dd{border-top:0;padding-top:0}
+  h1.title{font-size:24px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<header class="top wrap">
-  <div class="brand">
-    <h1>Psychohistoire</h1>
-    <span class="sub" id="releve">Chargement du relevé…</span>
-  </div>
-  <p class="tagline">Prévisions chiffrées sur la France et le monde, produites par des agents IA à partir de données publiques et de précédents historiques. Expérience personnelle, aucun conseil.</p>
-</header>
-<nav class="tabs" aria-label="Onglets">
-  <div class="wrap"><div class="scroll" id="tabs"></div></div>
-</nav>
-<main class="wrap" id="view" tabindex="-1"></main>
+<div class="topnav" id="topnav"></div>
+<div class="shell">
+  <aside class="side" id="side"></aside>
+  <main id="view" tabindex="-1"></main>
+</div>
 <div id="pop" role="tooltip" hidden></div>
-<footer class="wrap">Projet théorique et récréatif inspiré d'Asimov. Méthode et vocabulaire dans l'onglet Méthodologie. Données et historique : <a href="https://github.com/Beynat/psychohistoire" target="_blank" rel="noopener">dépôt public</a>.</footer>
 
 <script>
-const TABS=[
-  ["Lire",[["synthese","Synthèse"],["cartographie","Cartographie"],["indicateurs","Indicateurs"],["sous-indicateurs","Sous-indicateurs"]]],
-  ["Suivre",[["pivots","Pivots"],["actualite","Actualité"],["previsions","Prévisions"]]],
-  ["Référence",[["precedents","Précédents"],["methodologie","Méthodologie"]]]
+document.documentElement.lang="fr";
+const NAV=[
+  ["vue","Vue d'ensemble",[["synthese","Synthèse"],["cartographie","Scénarios"]]],
+  ["ind","Indicateurs",[["indicateurs","Indicateurs structurels"],["sous-indicateurs","Sous-indicateurs"]]],
+  ["suivi","Suivi",[["pivots","Moments pivots"],["actualite","Actualité"],["previsions","Prévisions"]]],
+  ["ref","Référence",[["precedents","Précédents"],["methodologie","Méthode et glossaire"]]]
 ];
 let D=null,C=null;
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fr=(n,d=1)=>Number(n).toLocaleString("fr-FR",{minimumFractionDigits:d,maximumFractionDigits:d});
+const P=n=>`${n} %`;
 const dfr=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(Date.UTC(y,m-1,d)).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"})};
 const median=a=>{const s=[...a].sort((x,y)=>x-y);return s.length%2?s[(s.length-1)/2]:(s[s.length/2-1]+s[s.length/2])/2};
-function to100(vals){const t=vals.reduce((a,b)=>a+b,0);const raw=vals.map(v=>v*100/t);const fl=raw.map(Math.floor);let rest=100-fl.reduce((a,b)=>a+b,0);raw.map((v,i)=>[v-fl[i],i]).sort((a,b)=>b[0]-a[0]).forEach(([,i])=>{if(rest>0){fl[i]++;rest--}});return fl}
-const mobile=()=>window.innerWidth<=640;
+function to100(v){const t=v.reduce((a,b)=>a+b,0);const raw=v.map(x=>x*100/t);const fl=raw.map(Math.floor);let r=100-fl.reduce((a,b)=>a+b,0);raw.map((x,i)=>[x-fl[i],i]).sort((a,b)=>b[0]-a[0]).forEach(([,i])=>{if(r>0){fl[i]++;r--}});return fl}
 
-/* --- définitions au toucher --- */
-const DEF={
-  "sous-pivot":["Sous-pivot","Moment pivot qui en conditionne un autre : ici, l'issue du budget change les probabilités de la présidentielle."],
-  "pivot":["Moment pivot","Moment à fort impact dont l'issue n'est pas écrite, décliné en questions et en hypothèses probabilisées."],
+/* --- glossaire : termes colorés, définition au survol ou au toucher --- */
+const G={
+  "pivot":["Moment pivot","Événement à fort impact dont l'issue n'est pas écrite d'avance, décliné en hypothèses auxquelles on attribue une probabilité."],
+  "sous-pivot":["Sous-pivot","Moment pivot qui en conditionne un autre : ici, l'issue du budget 2027 modifie les probabilités de la présidentielle."],
   "marge":["Marge","Distance entre la valeur actuelle et le prochain seuil. Plus elle est faible, plus un petit choc suffit à changer d'état."],
-  "critique":["Chemin critique","L'enchaînement le plus probable, qui passe par les mesures les plus proches de leur seuil."],
+  "critique":["Chemin critique","L'enchaînement d'issues le plus probable, qui passe par les mesures les plus proches de leur seuil."],
   "calcule":["Probabilité calculée","Elle n'est pas estimée directement : elle découle des probabilités conditionnelles à l'issue du budget 2027."],
-  "mediane":["Médiane de trois","Trois agents estiment chaque probabilité sans voir les estimations des autres ; on retient la valeur du milieu."],
-  "fourchette":["Fourchette","Plus petite et plus grande des trois estimations : elle montre le désaccord entre estimateurs."],
-  "note":["Note sur 10","Moyenne des sous-indicateurs, chacun noté selon sa position entre des seuils fixés à l'avance. Plus la note est haute, plus la situation est tendue."],
-  "externe":["Référence externe","Estimation publique (marché de prédiction, modèle de sondages) relevée après les nôtres, pour comparer."],
-  "confiance":["Confiance dans les données","Forte : statistique officielle. Moyenne : sources secondaires ou source unique. Faible : estimation non recoupée."]
+  "mediane":["Médiane de trois","Trois agents estiment chaque probabilité sans voir les réponses des autres ; on retient la valeur du milieu."],
+  "fourchette":["Fourchette","Plus petite et plus grande des trois estimations. Une fourchette large signale un désaccord entre estimateurs."],
+  "note":["Note sur 10","Moyenne des sous-indicateurs, chacun noté selon sa position entre des seuils fixés à l'avance. Plus elle est haute, plus la situation est tendue."],
+  "externe":["Référence externe","Estimation publique (marché de prédiction, modèle de sondages) relevée après les nôtres, pour comparer les résultats."],
+  "confiance":["Confiance","Qualité de la mesure : forte pour une statistique officielle, moyenne pour une source secondaire ou unique."],
+  "fige":["Registre figé","Une prévision n'est jamais modifiée après son émission : une révision crée une nouvelle ligne, et l'historique public garde tout."],
+  "OAT":["OAT","Obligation assimilable du Trésor : titre de dette de l'État français. Son taux à 10 ans sert de référence."],
+  "Bund":["Bund","Obligation de l'État allemand, considérée comme la référence sans risque de la zone euro."],
+  "pb":["Point de base","Un centième de point de pourcentage : 100 pb correspondent à 1 point."],
+  "PIB":["PIB","Produit intérieur brut : la richesse produite en un an. Dette et déficit s'expriment en pourcentage du PIB."],
+  "BCE":["BCE","Banque centrale européenne. Elle fixe les taux directeurs et peut acheter de la dette publique en cas de crise."],
+  "RN":["RN","Rassemblement national, parti d'extrême droite. Candidate déclarée : Marine Le Pen, avec Jordan Bardella en relais possible."],
+  "LFI":["LFI","La France insoumise, parti de gauche radicale. Candidat déclaré : Jean-Luc Mélenchon."],
+  "LR":["LR","Les Républicains, parti de droite. Candidat désigné : Bruno Retailleau."],
+  "PS":["PS","Parti socialiste. Son candidat sera désigné par une primaire avec Place publique les 9 et 10 octobre 2026."],
+  "loi spéciale":["Loi spéciale","Loi votée en urgence quand le budget n'est pas adopté au 31 décembre : l'État peut lever l'impôt, mais sans mesure nouvelle."],
+  "censure":["Motion de censure","Vote de l'Assemblée qui renverse le gouvernement s'il réunit la majorité absolue des députés, soit 289 voix."],
+  "ordonnance":["Ordonnance budgétaire","Article 47 de la Constitution : sans vote du Parlement sous 70 jours, le gouvernement peut appliquer son budget par ordonnance."],
+  "Maastricht":["Critères de Maastricht","Règles européennes de 1992 : déficit public inférieur à 3 % du PIB et dette inférieure à 60 % du PIB."],
+  "Sondax":["Sondax","Agrégateur de sondages qui publie un modèle de probabilités pour la présidentielle."],
+  "Polymarket":["Polymarket","Marché de prédiction : les prix des paris reflètent la probabilité que les participants attribuent à chaque issue."],
+  "Metaculus":["Metaculus","Plateforme de prévisions collectives, notée sur ses résultats passés."],
+  "Brier":["Score de Brier","Écart au carré entre la probabilité annoncée et le résultat : 0 est parfait, 0,25 équivaut à répondre 50 % partout."],
+  "taux de base":["Taux de base","Fréquence d'une issue dans les cas passés comparables. C'est le point de départ obligatoire de chaque estimation."]
 };
-const T=(k,label)=>`<span class="term" tabindex="0" role="button" data-def="${k}">${label}</span>`;
-document.addEventListener("click",e=>{const t=e.target.closest(".term");const pop=$("#pop");
-  if(!t){pop.hidden=true;return}e.stopPropagation();const [h,d]=DEF[t.dataset.def]||["",""];pop.innerHTML=`<b>${h}</b>${d}`;pop.hidden=false;
-  const r=t.getBoundingClientRect();const w=Math.min(280,window.innerWidth-32);pop.style.maxWidth=w+"px";
-  pop.style.left=Math.max(16,Math.min(window.scrollX+r.left,window.scrollX+window.innerWidth-w-16))+"px";pop.style.top=(window.scrollY+r.bottom+8)+"px"},true);
+const AUTO=["loi spéciale","taux de base","Maastricht","Polymarket","Metaculus","Sondax","censure","ordonnance","OAT","Bund","PIB","BCE","RN","LFI","LR","PS","pb","Brier"];
+const T=(k,label)=>`<span class="term" tabindex="0" data-def="${k}">${label}</span>`;
+function glossify(root){
+  const re=new RegExp(`(^|[^\\p{L}\\-])(${AUTO.map(a=>a.replace(/ /g,"\\s")).join("|")})(?=$|[^\\p{L}\\-])`,"u");
+  const scopes=new Map();
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest(".term,svg,a,button,th,.nog,.tag,h1,h2,summary,#pop")?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+  const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+  nodes.forEach(n=>{const scope=n.parentElement.closest(".box,.sec,.page-h,tr,details,article")||root;let seen=scopes.get(scope);if(!seen){seen=new Set();scopes.set(scope,seen)}
+    let node=n,m;while(node&&(m=re.exec(node.nodeValue))){const key=m[2].replace(/\s/g," ");const start=m.index+m[1].length;
+      if(seen.has(key)){node=node.splitText(start+m[2].length);continue}seen.add(key);
+      const mid=node.splitText(start);const after=mid.splitText(m[2].length);const span=document.createElement("span");span.className="term";span.tabIndex=0;span.dataset.def=key;span.textContent=mid.nodeValue;mid.replaceWith(span);node=after}});
+}
+function showPop(t){const pop=$("#pop");const [h,d]=G[t.dataset.def]||["",""];if(!h)return;pop.innerHTML=`<b>${h}</b>${d}`;pop.hidden=false;
+  const r=t.getBoundingClientRect(),w=pop.offsetWidth;pop.style.left=Math.max(16,Math.min(scrollX+r.left,scrollX+innerWidth-w-16))+"px";
+  pop.style.top=(r.bottom+pop.offsetHeight+16>innerHeight?scrollY+r.top-pop.offsetHeight-8:scrollY+r.bottom+8)+"px"}
+document.addEventListener("click",e=>{const t=e.target.closest(".term");if(!t){$("#pop").hidden=true;return}e.preventDefault();e.stopPropagation();showPop(t)},true);
+if(matchMedia("(hover:hover)").matches){document.addEventListener("mouseover",e=>{const t=e.target.closest(".term");if(t)showPop(t)});document.addEventListener("mouseout",e=>{if(e.target.closest(".term"))$("#pop").hidden=true})}
+document.addEventListener("focusin",e=>{if(e.target.matches(".term"))showPop(e.target)});
 
 /* --- calculs --- */
 function score(si){const [t0,t1,t2,tm]=si.seuils,v=si.valeur;const pts=[[t0,0],[t1,3.5],[t2,6.5],[tm,10]];if(v<=t0)return 0;if(v>=tm)return 10;for(let i=1;i<pts.length;i++){if(v<=pts[i][0]){const [x0,y0]=pts[i-1],[x1,y1]=pts[i];return y0+(y1-y0)*(v-x0)/(x1-x0)}}return 10}
 const etat=s=>s<3.5?["ok","Stable"]:s<6.5?["warn","Sous tension"]:["crit","Critique"];
 function marge(si){const [,t1,t2]=si.seuils,v=si.valeur;const u=si.unite==="% du PIB"?"pt de PIB":si.unite==="%"?"pt":si.unite;const f=x=>si.unite==="pb"?fr(x,0):fr(x,1);
   if(si.unite.startsWith("rang")){if(v<t1)return `${fr(t1-v,1)} cran avant tension`;if(v<t2)return `${fr(t2-v,1)} cran avant critique`;return "seuil critique dépassé"}
-  if(v<t1)return `${f(t1-v)} ${u} avant tension`;if(v<t2)return `${f(t2-v)} ${u} avant critique`;return `seuil critique dépassé de ${f(v-t2)} ${u}`}
+  if(v<t1)return `${f(t1-v)} ${u} avant tension`;if(v<t2)return `${f(t2-v)} ${u} avant critique`;return `${f(v-t2)} ${u} au-delà du seuil critique`}
+function seuilsTxt(si){const [,t1,t2]=si.seuils;const NOT=["","AAA","AA+","AA","AA-","A+","A","A-","BBB+","BBB"];const rk=si.unite.startsWith("rang");const f=x=>rk?NOT[x]||fr(x,1):si.unite==="pb"?fr(x,0):fr(x,1);
+  const u=rk?"":si.unite==="pb"?" pb":" %";return `tension dès ${f(t1)}${u}, critique dès ${f(t2)}${u}`}
 const siById=id=>D.sousIndicateurs.find(s=>s.id===id);
 function noteInd(ind){const sc=ind.sous.map(id=>score(siById(id)));return sc.reduce((a,b)=>a+b,0)/sc.length}
 const hypsMedian=hs=>to100(hs.map(h=>median(h.estimations)));
-function questionDist(q){
-  if(!q.conditionnelle)return {glob:hypsMedian(q.hypotheses)};
-  const piv=D.pivots.find(p=>p.id===q.conditionnelle);const bq=piv.questions[0];const bp=hypsMedian(bq.hypotheses);const pB1=bp[0]/100;
+function qd(q){
+  if(!q.conditionnelle)return {glob:hypsMedian(q.hypotheses),rg:q.hypotheses.map(h=>h.estimations)};
+  const bq=D.pivots.find(p=>p.id===q.conditionnelle).questions[0];const bp=hypsMedian(bq.hypotheses);const pB1=bp[0]/100;
   const c1=to100(q.hypotheses.map(h=>median(h.si.B1))),c2=to100(q.hypotheses.map(h=>median(h.si.nonB1)));
   const glob=to100(q.hypotheses.map((h,i)=>pB1*c1[i]+(1-pB1)*c2[i]));
   const per=[0,1,2].map(k=>{const b=bq.hypotheses[0].estimations[k]/100;return q.hypotheses.map(h=>b*h.si.B1[k]+(1-b)*h.si.nonB1[k])});
-  return {glob,c1,c2,pB1:bp[0],ranges:q.hypotheses.map((h,i)=>per.map(p=>Math.round(p[i])))};
+  return {glob,c1,c2,pB1:bp[0],rg:q.hypotheses.map((h,i)=>per.map(p=>Math.round(p[i])))};
 }
-function ranges(q){return q.conditionnelle?questionDist(q).ranges:q.hypotheses.map(h=>h.estimations)}
 const rng=r=>`${Math.min(...r)}–${Math.max(...r)}`;
-const trend=t=>t==="hausse"?'<span class="pill crit" style="font-weight:500">▲ se dégrade</span>':t==="baisse"?'<span class="pill ok" style="font-weight:500">▼ s\'améliore</span>':'<span class="pill neutral" style="font-weight:500">stable</span>';
+const trend=t=>t==="hausse"?'<span class="tag crit">▲ se dégrade</span>':t==="baisse"?'<span class="tag ok">▼ s\'améliore</span>':'<span class="tag n">stable</span>';
 
 /* --- navigation --- */
-function buildTabs(){$("#tabs").innerHTML=TABS.map(([g,items])=>`<div class="grp"><span class="glabel">${g}</span>${items.map(([id,l])=>`<button data-go="${id}">${l}</button>`).join("")}</div>`).join("");
-  const sc=$("#tabs");const upd=()=>sc.classList.toggle("more",sc.scrollLeft+sc.clientWidth<sc.scrollWidth-4);sc.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);setTimeout(upd,50)}
+const secOf=h=>{for(const [id,,items] of NAV)if(items.some(([k])=>k===h))return id;return "vue"};
+const about=`Prévisions produites par des agents IA à partir de données publiques. Expérience personnelle, aucun conseil. <a href="https://github.com/Beynat/psychohistoire" target="_blank" rel="noopener">Dépôt public</a>`;
+function navHtml(base){
+  $("#side").innerHTML=`<p class="brand">Psychohistoire</p><p class="releve">Relevé du ${dfr(D.meta.releve)}</p>`+NAV.map(([,lab,items])=>`<div class="nav-sec"><p class="h">${lab}</p>${items.map(([k,l])=>`<button data-go="${k}"${k===base?' aria-current="page"':""}>${l}</button>`).join("")}</div>`).join("")+`<div class="about">${about}</div>`;
+  const s=secOf(base);const items=NAV.find(n=>n[0]===s)[2];
+  $("#topnav").innerHTML=`<div class="t1"><span class="brand">Psychohistoire</span><span class="releve">Relevé du ${dfr(D.meta.releve)}</span></div>
+  <div class="row r1">${NAV.map(([id,lab,it])=>`<button data-go="${it[0][0]}"${id===s?' aria-current="true"':""}>${lab}</button>`).join("")}</div>
+  <div class="row r2">${items.map(([k,l])=>`<button data-go="${k}"${k===base?' aria-current="page"':""}>${l}</button>`).join("")}</div>`;
+}
 let HL=null;
-function go(h,hl){HL=hl||null;if(location.hash.slice(1)===h){render();window.scrollTo(0,0)}else{location.hash=h}}
+function go(h,hl){HL=hl||null;if(location.hash.slice(1)===h){render();scrollTo(0,0)}else location.hash=h}
 document.addEventListener("click",e=>{const t=e.target.closest("[data-go]");if(t&&!e.target.closest("a[href]")){e.preventDefault();go(t.dataset.go,t.dataset.hl)}});
-document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches("[data-go].card,[data-go].clickable,.term")){e.preventDefault();e.target.click()}});
-window.addEventListener("hashchange",()=>{render();window.scrollTo(0,0)});
-let lastMob=null;window.addEventListener("resize",()=>{if(D&&mobile()!==lastMob)render()});
-const link=(id,label)=>`<button class="ref" data-go="${refRoute(id)}"${id.startsWith("P-")||id.startsWith("Q-")?` data-hl="${id}"`:""}>${esc(label||refLabel(id))}</button>`;
-function refRoute(id){if(id.startsWith("PV"))return "pivot-"+id;if(id.startsWith("IS"))return "ind-"+id;if(id.startsWith("SI"))return "ind-"+siById(id).ind;if(id.startsWith("EV"))return "actualite";if(id.startsWith("P-")||id.startsWith("Q-"))return "previsions";return "synthese"}
-function refLabel(id){if(id.startsWith("PV"))return D.pivots.find(p=>p.id===id).nom;if(id.startsWith("IS"))return D.indicateurs.find(p=>p.id===id).nom;if(id.startsWith("SI"))return siById(id).court;return id}
+document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches("[data-go].box,[data-go].rowlink,.term")){e.preventDefault();e.target.click()}});
+addEventListener("hashchange",()=>{render();scrollTo(0,0)});
+const link=(id,label)=>`<button class="lnk" data-go="${route(id)}"${/^(P-|Q-)/.test(id)?` data-hl="${id}"`:""}>${esc(label||lab(id))}</button>`;
+function route(id){if(id.startsWith("PV"))return "pivot-"+id;if(id.startsWith("IS"))return "ind-"+id;if(id.startsWith("SI"))return "ind-"+siById(id).ind;if(id.startsWith("EV"))return "actualite";if(/^(P-|Q-)/.test(id))return "previsions";return "synthese"}
+function lab(id){if(id.startsWith("PV"))return D.pivots.find(p=>p.id===id).nom;if(id.startsWith("IS"))return D.indicateurs.find(p=>p.id===id).nom;if(id.startsWith("SI"))return siById(id).court;return id}
 
 function render(){
-  lastMob=mobile();$("#pop").hidden=true;
+  $("#pop").hidden=true;
   const h=location.hash.slice(1)||"synthese";
   const base=h.startsWith("pivot-")?"pivots":h.startsWith("ind-")?"indicateurs":h;
-  document.querySelectorAll("#tabs [data-go]").forEach(b=>{if(b.dataset.go===base)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
-  const V={synthese,cartographie,indicateurs,"sous-indicateurs":sousInd,pivots,actualite,previsions,quotidien,precedents,methodologie};
-  let html;
-  if(h.startsWith("pivot-"))html=pivotPage(h.slice(6));
-  else if(h.startsWith("ind-"))html=indPage(h.slice(4));
-  else if(V[h])html=V[h]();
-  else html=`<div class="note" style="margin-bottom:18px">Cette page n'existe pas ou plus. Voici la synthèse.</div>`+synthese();
-  $("#view").innerHTML=html;
-  const a=document.querySelector('#tabs [aria-current="page"]');if(a)a.scrollIntoView({block:"nearest",inline:"center"});
+  const V={synthese,cartographie,indicateurs,"sous-indicateurs":sousInd,pivots,actualite,previsions,precedents,methodologie};
+  navHtml(V[base]?base:"synthese");
+  const html=h.startsWith("pivot-")?pivotPage(h.slice(6)):h.startsWith("ind-")?indPage(h.slice(4)):V[h]?V[h]():`<p class="empty">Cette page n'existe pas. Voici la synthèse.</p>`+synthese();
+  $("#view").innerHTML=html+`<footer class="mob" style="margin-top:40px">${about}</footer>`;
+  glossify($("#view"));
+  const cur=document.querySelector('.topnav .r2 [aria-current="page"]');if(cur)cur.scrollIntoView({block:"nearest",inline:"center"});
   if(HL){const r=document.getElementById("row-"+HL);if(r){r.classList.add("hl");setTimeout(()=>r.scrollIntoView({block:"center"}),30)}HL=null}
 }
 
 /* --- composants --- */
-function gauge(n){return `<div class="gauge" role="img" aria-label="Note ${fr(n)} sur 10"><i style="left:${n*10}%"></i></div><div class="gauge-scale"><span>0 stable</span><span>3,5</span><span>6,5</span><span>10 critique</span></div>`}
-function hypBars(hs,dist,{rg=null,ext=null}={}){const max=Math.max(...dist);return hs.map((h,i)=>{
-  const r=rg?rg[i]:null;const e=ext?ext[i]:null;
-  return `<div class="hyp ${dist[i]===max?"dom":""}"><div class="lab">${esc(h.nom)}${h.detail?`<small>${esc(h.detail)}</small>`:""}</div><div class="pct">${dist[i]} %${r?`<small>${rng(r)}</small>`:""}${e!=null?`<small style="color:var(--warn)">réf. ${e} %</small>`:""}</div>
-  <div class="bar"><b style="width:${dist[i]}%"></b>${r?`<span class="rng" style="left:${Math.min(...r)}%;width:${Math.max(...r)-Math.min(...r)}%"></span>`:""}${e!=null?`<span class="ext" style="left:calc(${e}% - 1.5px)"></span>`:""}</div></div>`}).join("")}
-function barLegend(ext){return `<div class="legend"><span><i style="width:16px;height:8px;background:var(--accent);border-radius:3px"></i>probabilité retenue (${T("mediane","médiane de trois")})</span><span><i style="width:12px;height:12px;border-left:1.5px solid var(--ink);border-right:1.5px solid var(--ink);opacity:.5"></i>${T("fourchette","fourchette")} des estimateurs</span>${ext?`<span><i style="width:3px;height:12px;background:var(--warn)"></i>${T("externe","référence externe")}</span>`:""}<span>trait gris : 50 %</span></div>`}
-function indCard(ind){const n=noteInd(ind);const [c,l]=etat(n);return `<div class="card link" tabindex="0" role="link" data-go="ind-${ind.id}">
-  <div class="row between"><h3>${esc(ind.nom)}</h3><span class="pill ${c}">${l}</span></div>
-  <div class="row"><span class="big">${fr(n)}</span><span class="muted small">${T("note","/ 10")}</span>${trend(ind.tendance)}<span class="muted small">${T("marge","marge")} ${fr(6.5-n)} avant critique</span></div>
-  ${gauge(n)}<p class="small muted" style="margin:0">${esc(ind.lecture)}</p></div>`}
-function pivotDominant(p){const q=p.questions[0];const d=questionDist(q).glob;const i=d.indexOf(Math.max(...d));return [q.hypotheses[i].nom,d[i],q,ranges(q)[i],d]}
-function pivotCard(p){const [nom,pct,q,r,d]=pivotDominant(p);
-  const extra=p.id==="PV-01"?`<div class="small muted">Non adopté au total : ${d[1]+d[2]} % (censure ${d[1]} %, loi spéciale ${d[2]} %) · adopté ${d[0]} %</div>`:"";
-  return `<div class="card link" tabindex="0" role="link" data-go="pivot-${p.id}">
-  <div class="row between"><h3>${esc(p.nom)}</h3><span class="pill ${p.type==="sous-pivot"?"neutral":"acc"}">${p.type==="sous-pivot"?T("sous-pivot","Sous-pivot"):T("pivot","Pivot")}</span></div>
-  <p class="small muted" style="margin:0">${esc(q.texte)}</p>
-  <div class="row"><span class="big">${pct} %</span><span class="small">${esc(nom)}${q.conditionnelle?` · ${T("calcule","calculé")}`:""}<br><span class="muted">${T("fourchette","fourchette")} ${rng(r)} %</span></span></div>${extra}
-  <div class="small muted">Échéance ${dfr(p.echeance)}${p.aval.length?` · alimente ${p.aval.map(a=>refLabel(a)).join(", ")}`:""}${p.amont.length?` · dépend de ${p.amont.map(a=>refLabel(a)).join(", ")}`:""}</div></div>`}
-
-function forecasts(){
-  const out=[];
-  D.pivots.forEach(p=>p.questions.forEach(q=>{const d=questionDist(q).glob;
-    const ech=q.id==="Q-PV02-B"?"2027-04-18":p.echeance;
-    out.push({id:q.id,piv:p.id,texte:q.texte,dist:q.hypotheses.map((h,i)=>[h.nom,d[i]]),rg:ranges(q),echeance:ech,calc:!!q.conditionnelle,ext:q.hypotheses.some(h=>h.externe!=null)?q.hypotheses.map(h=>h.externe):null,extSrc:q.externeSource})}));
+const head=(title,lede,crumb)=>`<div class="page-h">${crumb?`<div class="crumb">${crumb}</div>`:""}<h1 class="title">${title}</h1>${lede?`<p class="lede">${lede}</p>`:""}</div>`;
+const sec=(title,body,right="")=>`<section class="sec"><div class="sh"><h2>${title}</h2>${right}</div>${body}</section>`;
+const gauge=n=>`<div class="gauge" role="img" aria-label="Note ${fr(n)} sur 10"><i style="left:${n*10}%"></i></div>`;
+function bars(hs,dist,rg,ext){const max=Math.max(...dist);return hs.map((h,i)=>`<div class="hyp ${dist[i]===max?"dom":""}"><div>${esc(h.nom)}</div><div class="v">${P(dist[i])}<span>${rng(rg[i])}</span>${ext&&ext[i]!=null?`<span style="color:var(--warn)">réf. ${P(ext[i])}</span>`:""}</div>
+  <div class="bar"><b style="width:${dist[i]}%"></b><i class="r" style="left:${Math.min(...rg[i])}%;width:${Math.max(...rg[i])-Math.min(...rg[i])}%"></i>${ext&&ext[i]!=null?`<i class="e" style="left:calc(${ext[i]}% - 1.5px)"></i>`:""}</div></div>`).join("")}
+const barKey=ext=>`<div class="legend nog"><span><i style="width:14px;height:6px;background:var(--accent);border-radius:2px"></i>probabilité (${T("mediane","médiane de trois")})</span><span><i style="width:10px;height:10px;border-left:1.5px solid var(--muted);border-right:1.5px solid var(--muted)"></i>${T("fourchette","fourchette")}</span>${ext?`<span><i style="width:3px;height:10px;background:var(--warn)"></i>${T("externe","référence externe")}</span>`:""}</div>`;
+function indBox(ind){const n=noteInd(ind);const [c,l]=etat(n);return `<div class="box go" tabindex="0" role="link" data-go="ind-${ind.id}">
+  <div class="rowx sp"><h3>${esc(ind.nom)}</h3><span class="tag ${c}">${l}</span></div>
+  <div class="rowx"><span class="big">${fr(n)}</span><span class="muted">${T("note","sur 10")}</span>${trend(ind.tendance)}</div>
+  ${gauge(n)}<p class="sm muted" style="margin:0">${esc(ind.lecture)}</p></div>`}
+function dominant(p){const q=p.questions[0];const {glob,rg}=qd(q);const i=glob.indexOf(Math.max(...glob));return {nom:q.hypotheses[i].nom,pct:glob[i],r:rg[i],q,glob}}
+function pivotBox(p){const d=dominant(p);
+  const sub=p.id==="PV-01"?`<div class="sm muted">Non adopté au total ${P(d.glob[1]+d.glob[2])}, adopté ${P(d.glob[0])}</div>`:"";
+  return `<div class="box go" tabindex="0" role="link" data-go="pivot-${p.id}">
+  <div class="rowx sp"><h3>${esc(p.nom)}</h3><span class="tag ${p.type==="sous-pivot"?"n":"a"}">${p.type==="sous-pivot"?T("sous-pivot","sous-pivot"):T("pivot","pivot")}</span></div>
+  <div class="sm muted">${esc(d.q.texte)}</div>
+  <div class="rowx"><span class="big">${P(d.pct)}</span><span><span class="b">${esc(d.nom)}</span><br><span class="sm muted">${T("fourchette","fourchette")} ${rng(d.r)}</span></span></div>${sub}
+  <div class="sm muted">Échéance ${dfr(p.echeance)}</div></div>`}
+function forecasts(){const out=[];
+  D.pivots.forEach(p=>p.questions.forEach(q=>{const {glob,rg}=qd(q);out.push({id:q.id,piv:p.id,texte:q.texte,dist:q.hypotheses.map((h,i)=>[h.nom,glob[i]]),rg,echeance:q.id==="Q-PV02-B"?"2027-04-18":p.echeance,ext:q.hypotheses.some(h=>h.externe!=null)?q.hypotheses.map(h=>h.externe):null})}));
   D.previsionsSimples.forEach(p=>{const m=median(p.estimations);out.push({id:p.id,ind:p.ind,texte:p.texte,dist:[["Oui",m],["Non",100-m]],rg:[p.estimations,p.estimations.map(x=>100-x)],echeance:p.echeance})});
-  return out.sort((a,b)=>a.echeance.localeCompare(b.echeance));
-}
+  return out.sort((a,b)=>a.echeance.localeCompare(b.echeance))}
 
 /* --- vues --- */
 function synthese(){
-  const ind=D.indicateurs[0];const n=noteInd(ind);
-  const crit=D.sousIndicateurs.filter(s=>score(s)>=6.5).length;
-  const alerts=D.sousIndicateurs.map(s=>({s,sc:score(s)})).filter(x=>x.sc>=5.8).sort((a,b)=>b.sc-a.sc);
-  const fc=forecasts();const pres=D.pivots.find(p=>p.id==="PV-02");const [,pRN]=pivotDominant(pres);const bud=hypsMedian(D.pivots[0].questions[0].hypotheses);
-  return `<div class="view-h"><h2>${crit} signaux des finances publiques sont déjà critiques, à six mois de la présidentielle</h2>
-  <p>La note globale, moyenne de six signaux, reste sous tension à ${fr(n)}/10. Le budget 2027 a ${bud[1]+bud[2]} % de chances de ne pas être adopté, et le RN remporte la présidentielle dans ${pRN} % des cas ${T("calcule","calculés")}.</p></div>
-  <div class="grid g2">
-    <div class="section"><h4>Indicateurs structurels</h4>${indCard(ind)}<p class="small muted" style="margin:0">1 indicateur construit sur les 8 visés ; les autres arrivent à l'étape suivante.</p></div>
-    <div class="section"><h4>Moments pivots</h4>${D.pivots.slice().reverse().map(pivotCard).join("")}</div>
-  </div>
-  <div class="grid g2" style="margin-top:22px">
-    <div class="section"><h4>Prochaines échéances</h4><div class="card"><div class="list">${fc.map(f=>{const top=f.dist.reduce((a,b)=>b[1]>a[1]?b:a);return `<div class="row between clickable" tabindex="0" role="link" data-go="previsions" data-hl="${f.id}"><div style="min-width:0;flex:1 1 220px"><div class="small muted num">${dfr(f.echeance)}</div><div class="t">${esc(f.texte)}</div></div><span class="pill neutral">${esc(top[0])} ${top[1]} %</span></div>`}).join("")}</div></div></div>
-    <div class="section"><h4>Alertes</h4><div class="card"><div class="list">${alerts.map(({s,sc})=>{const [c,l]=etat(sc);return `<div class="row between clickable" tabindex="0" role="link" data-go="ind-${s.ind}"><div style="min-width:0;flex:1 1 220px"><div class="t" style="color:var(--accent);font-weight:500">${esc(s.nom)}</div><div class="small muted">${esc(s.affiche)} · ${esc(marge(s))}</div></div><span class="pill ${c}">${l}</span></div>`}).join("")}</div></div>
-    <div class="card"><div class="row between"><h3>Fiabilité du modèle</h3><span class="pill neutral">0 / ${fc.length} prévisions résolues</span></div><p class="small muted" style="margin:0">Le score du modèle s'affichera dès la première échéance (Moody's, 31 octobre), comparé à deux références naïves : « rien ne change » et « 50 % partout ». La courbe de calibration viendra après 20 prévisions résolues.</p></div></div>
-  </div>`;
+  const ind=D.indicateurs[0];const crit=D.sousIndicateurs.filter(s=>score(s)>=6.5).length;
+  const pres=dominant(D.pivots.find(p=>p.id==="PV-02"));const bud=hypsMedian(D.pivots[0].questions[0].hypotheses);
+  const alerts=D.sousIndicateurs.map(s=>({s,sc:score(s)})).filter(x=>x.sc>=5.8).sort((a,b)=>b.sc-a.sc);const fc=forecasts();
+  return head(`${crit} signaux des finances publiques sont critiques, à six mois de la présidentielle`,
+    `Le budget 2027 a ${P(bud[1]+bud[2])} de risques de ne pas être adopté. Le RN remporte la présidentielle dans ${P(pres.pct)} des cas ${T("calcule","calculés")}.`)
+  +`<div class="grid2">${sec("Indicateurs structurels",indBox(ind))}${sec("Moments pivots",`<div style="display:flex;flex-direction:column;gap:16px">${D.pivots.slice().reverse().map(pivotBox).join("")}</div>`)}</div>`
+  +`<div class="grid2">${sec("Alertes",`<div class="rows">${alerts.map(({s,sc})=>{const [c,l]=etat(sc);return `<div class="rowx sp rowlink" tabindex="0" role="link" data-go="ind-${s.ind}"><div style="min-width:0;flex:1 1 200px"><div class="b">${esc(s.nom)}</div><div class="sm muted">${esc(s.affiche)} · ${esc(marge(s))}</div></div><span class="tag ${c}">${l}</span></div>`}).join("")}</div>`)}
+  ${sec("Prochaines échéances",`<div class="rows">${fc.map(f=>{const top=f.dist.reduce((a,b)=>b[1]>a[1]?b:a);return `<div class="rowx sp rowlink" tabindex="0" role="link" data-go="previsions" data-hl="${f.id}"><div style="min-width:0;flex:1 1 200px"><div class="sm muted">${dfr(f.echeance)}</div><div>${esc(f.texte)}</div></div><span class="tag n">${esc(top[0])} ${P(top[1])}</span></div>`}).join("")}</div>`)}</div>`
+  +sec("Fiabilité du modèle",`<div class="rowx"><span class="tag n">0 sur ${fc.length} prévisions résolues</span><span class="sm muted">Premier ${T("Brier","score")} le 31 octobre.</span></div>`);
 }
 
-function mapData(){
-  const bud=D.pivots.find(p=>p.id==="PV-01"),pre=D.pivots.find(p=>p.id==="PV-02");
-  const bd=hypsMedian(bud.questions[0].hypotheses);const pB1=bd[0],pNo=100-pB1;
-  const q=pre.questions[0],{glob,c1,c2}=questionDist(q);
-  const joint=q.hypotheses.map((h,i)=>[pB1*c1[i]/100,pNo*c2[i]/100]);
-  let best=[0,0,0];joint.forEach((j,i)=>j.forEach((v,k)=>{if(v>best[0])best=[v,i,k]}));
-  return {bd,pB1,pNo,q,glob,c1,c2,joint,best,pre};
-}
-const scenName=n=>n==="Gauche"?"Victoire de la gauche":n==="RN"?"Victoire du RN":n==="Bloc central"?"Victoire du bloc central":"Victoire de la droite LR ou autre";
+function mapData(){const bud=D.pivots.find(p=>p.id==="PV-01"),pre=D.pivots.find(p=>p.id==="PV-02");
+  const bd=hypsMedian(bud.questions[0].hypotheses);const pB1=bd[0],pNo=100-pB1;const q=pre.questions[0],{glob,c1,c2}=qd(q);
+  const joint=q.hypotheses.map((h,i)=>[pB1*c1[i]/100,pNo*c2[i]/100]);let best=[0,0,0];joint.forEach((j,i)=>j.forEach((v,k)=>{if(v>best[0])best=[v,i,k]}));
+  return {bd,pB1,pNo,q,glob,c1,c2,joint,best,pre}}
+const scenName=n=>({"RN":"Victoire du RN","Bloc central":"Victoire du bloc central","Gauche":"Victoire de la gauche"})[n]||"Victoire de la droite LR ou autre";
 function cartographie(){
-  const M=mapData();const {bd,pB1,pNo,q,glob,c1,c2,joint,best,pre}=M;
-  const ind=D.indicateurs[0],n=noteInd(ind);
-  const W=v=>Math.max(1.2,v/3.2);
-  const X0=24,X1=214,BW=210,X2=516,WW=220,NH=76;
-  const yB=[148,328],yW=[94,194,294,394];
+  const {bd,pB1,pNo,q,glob,c1,c2,joint,best,pre}=mapData();const n=noteInd(D.indicateurs[0]);
+  const W=v=>Math.max(1.2,v/3.2),X0=24,X1=214,BW=210,X2=516,WW=220,NH=76,yB=[148,328],yW=[94,194,294,394],yT=238;
   const tx=(x,y,t,o="")=>`<text x="${x}" y="${y}" ${o}>${t}</text>`;
-  const mono='font-family="IBM Plex Mono, monospace"';
-  let s=`<svg viewBox="0 0 760 524" role="img" aria-label="Carte des scénarios France : le budget 2027 conditionne la présidentielle 2027" font-family="Public Sans, system-ui, sans-serif">`;
-  s+=tx(X0,28,"Aujourd'hui",'font-size="12" fill="var(--muted)"')+tx(X1,28,"Sous-pivot · Budget 2027 (31/12/2026)",'font-size="12" fill="var(--muted)"')+tx(X2,28,"Pivot · Présidentielle 2027 (2/05/2027)",'font-size="12" fill="var(--muted)"');
-  const yT=238;
+  let s=`<svg viewBox="0 0 760 524" role="img" aria-label="Carte des chemins : le budget 2027 conditionne la présidentielle 2027" font-family="Public Sans, system-ui, sans-serif">`;
+  s+=tx(X0,28,"Aujourd'hui",'font-size="13" font-weight="700" fill="var(--muted)"')+tx(X1,28,"Budget 2027 · 31/12/2026",'font-size="13" font-weight="700" fill="var(--muted)"')+tx(X2,28,"Présidentielle · 2/05/2027",'font-size="13" font-weight="700" fill="var(--muted)"');
   [pB1,pNo].forEach((p,k)=>{const cr=k===best[2];s+=`<path d="M${X0+136} ${yT} C ${X0+170} ${yT}, ${X1-40} ${yB[k]}, ${X1} ${yB[k]}" fill="none" stroke="${cr?"var(--accent)":"var(--line)"}" stroke-width="${W(p)}" stroke-linecap="round"/>`});
   joint.forEach((j,i)=>j.forEach((v,k)=>{const cr=i===best[1]&&k===best[2];s+=`<path d="M${X1+BW} ${yB[k]} C ${X1+BW+50} ${yB[k]}, ${X2-50} ${yW[i]}, ${X2} ${yW[i]}" fill="none" stroke="${cr?"var(--accent)":"var(--line)"}" stroke-width="${W(v)}" stroke-linecap="round"/>`}));
-  s+=`<rect x="${X0}" y="${yT-30}" width="136" height="60" rx="8" fill="var(--surface-2)" stroke="none"/>`+tx(X0+68,yT-5,"3 octobre 2026",'text-anchor="middle" font-size="13" font-weight="600" fill="var(--ink)"')+tx(X0+68,yT+15,"situation actuelle",'text-anchor="middle" font-size="12" fill="var(--muted)"');
-  [["Budget adopté",pB1,"loi de finances ou ordonnance",""],["Budget non adopté",pNo,`censure ${bd[1]} %`,`loi spéciale ${bd[2]} %`]].forEach(([l,p,s1,s2],k)=>{const cr=k===best[2];
-    s+=`<g data-go="pivot-PV-01" style="cursor:pointer"><rect x="${X1}" y="${yB[k]-NH/2}" width="${BW}" height="${NH}" rx="8" fill="${cr?"var(--accent-soft)":"var(--surface)"}" stroke="${cr?"var(--accent)":"var(--line)"}" stroke-width="${cr?2:1}"/>`+tx(X1+12,yB[k]-14,l,'font-size="13" font-weight="600" fill="var(--ink)"')+tx(X1+BW-12,yB[k]-14,p+" %",`text-anchor="end" font-size="14" ${mono} fill="var(--ink)"`)+tx(X1+12,yB[k]+8,s1,'font-size="12" fill="var(--muted)"')+(s2?tx(X1+12,yB[k]+26,s2,'font-size="12" fill="var(--muted)"'):"")+`</g>`});
+  s+=`<rect x="${X0}" y="${yT-30}" width="136" height="60" rx="8" fill="var(--soft)"/>`+tx(X0+68,yT+5,"3 octobre 2026",'text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)"');
+  [["Budget adopté",pB1,"loi de finances ou ordonnance",""],["Budget non adopté",pNo,`censure ${P(bd[1])}`,`loi spéciale ${P(bd[2])}`]].forEach(([l,p,s1,s2],k)=>{const cr=k===best[2];
+    s+=`<g data-go="pivot-PV-01" style="cursor:pointer"><rect x="${X1}" y="${yB[k]-NH/2}" width="${BW}" height="${NH}" rx="8" fill="${cr?"var(--accent-soft)":"var(--surface)"}" stroke="${cr?"var(--accent)":"var(--line)"}" stroke-width="${cr?1.6:1}"/>`+tx(X1+14,yB[k]-14,l,'font-size="14" font-weight="700" fill="var(--ink)"')+tx(X1+BW-14,yB[k]-14,P(p),'text-anchor="end" font-size="14" font-weight="700" fill="var(--ink)"')+tx(X1+14,yB[k]+8,s1,'font-size="13" fill="var(--muted)"')+(s2?tx(X1+14,yB[k]+26,s2,'font-size="13" fill="var(--muted)"'):"")+`</g>`});
   q.hypotheses.forEach((h,i)=>{const cr=i===best[1];
-    s+=`<g data-go="pivot-PV-02" style="cursor:pointer"><rect x="${X2}" y="${yW[i]-40}" width="${WW}" height="80" rx="8" fill="${cr?"var(--accent-soft)":"var(--surface)"}" stroke="${cr?"var(--accent)":"var(--line)"}" stroke-width="${cr?2:1}"/>`+tx(X2+12,yW[i]-16,h.nom,'font-size="13" font-weight="600" fill="var(--ink)"')+tx(X2+WW-12,yW[i]-16,glob[i]+" %",`text-anchor="end" font-size="15" ${mono} fill="var(--ink)"`)+tx(X2+12,yW[i]+6,`si adopté ${c1[i]} % · sinon ${c2[i]} %`,'font-size="12" fill="var(--muted)"')+tx(X2+12,yW[i]+25,`dont ${fr(joint[i][1],1)} pts via budget non adopté`,'font-size="12" fill="var(--muted)"')+`</g>`});
+    s+=`<g data-go="pivot-PV-02" style="cursor:pointer"><rect x="${X2}" y="${yW[i]-40}" width="${WW}" height="80" rx="8" fill="${cr?"var(--accent-soft)":"var(--surface)"}" stroke="${cr?"var(--accent)":"var(--line)"}" stroke-width="${cr?1.6:1}"/>`+tx(X2+14,yW[i]-14,h.nom,'font-size="14" font-weight="700" fill="var(--ink)"')+tx(X2+WW-14,yW[i]-14,P(glob[i]),'text-anchor="end" font-size="14" font-weight="700" fill="var(--ink)"')+tx(X2+14,yW[i]+8,`si adopté ${P(c1[i])}, sinon ${P(c2[i])}`,'font-size="13" fill="var(--muted)"')+tx(X2+14,yW[i]+26,`dont ${fr(joint[i][1],1)} pts sans budget`,'font-size="13" fill="var(--muted)"')+`</g>`});
   const [c]=etat(n);
-  s+=`<line x1="${X1+BW/2}" y1="${yB[1]+NH/2}" x2="${X1+BW/2}" y2="448" stroke="var(--line)" stroke-dasharray="3 3"/>`;
-  s+=`<g data-go="ind-IS-01" style="cursor:pointer"><rect x="${X1}" y="448" width="${BW}" height="56" rx="8" fill="var(--surface)" stroke="var(--line)"/>`+tx(X1+12,470,"Finances publiques",'font-size="13" font-weight="600" fill="var(--ink)"')+tx(X1+12,491,`${fr(n)} / 10 · marge ${fr(6.5-n)}`,`font-size="12" fill="var(--${c})"`)+`</g>`;
-  s+=`<line x1="${X2+WW/2}" y1="${yW[3]+40}" x2="${X2+WW/2}" y2="448" stroke="var(--line)" stroke-dasharray="3 3"/>`;
-  s+=`<rect x="${X2}" y="448" width="${WW}" height="56" rx="8" fill="none" stroke="var(--line)" stroke-dasharray="4 3"/>`+tx(X2+12,470,"Stabilité institutionnelle",'font-size="13" font-weight="600" fill="var(--muted)"')+tx(X2+12,491,"indicateur à construire",'font-size="12" fill="var(--muted)"');
-  s+=`</svg>`;
-  const scen=q.hypotheses.map((h,i)=>({nom:h.nom,p:glob[i],v1:joint[i][0],v2:joint[i][1],i})).sort((a,b)=>b.p-a.p);
-  const stacks=`<div class="card"><div class="list">${scen.map(x=>`<div class="clickable" tabindex="0" role="link" data-go="pivot-PV-02" style="display:flex;flex-direction:column;gap:6px">
-    <div class="row between"><span class="t" style="font-weight:600">${scenName(x.nom)}${x.i===best[1]?` <span class="pill acc">${T("critique","chemin critique")}</span>`:""}</span><span class="num" style="font-weight:500">${x.p} %</span></div>
-    <div class="stack" role="img" aria-label="${fr(x.v1,1)} points via budget adopté, ${fr(x.v2,1)} via budget non adopté"><span style="width:${x.v1}%;background:var(--accent-2)"></span><span style="width:${x.v2}%;background:var(--accent)"></span></div>
-    <div class="small muted">${fr(x.v1,1)} pts via budget adopté · ${fr(x.v2,1)} pts via budget non adopté</div></div>`).join("")}</div>
-    <div class="legend"><span><i style="width:14px;height:10px;background:var(--accent-2);border-radius:2px"></i>passe par un budget adopté (${pB1} %)</span><span><i style="width:14px;height:10px;background:var(--accent);border-radius:2px"></i>passe par un budget non adopté (${pNo} %)</span></div></div>`;
-  return `<div class="view-h"><h2>Le chemin le plus probable passe par un budget non adopté puis une victoire du RN</h2>
-  <p>Chaque scénario combine l'issue du budget 2027 et le vainqueur de la présidentielle ; sa probabilité est ${T("calcule","calculée")} le long du chemin, jamais estimée à la main.</p></div>
-  <div class="row" style="margin-bottom:12px"><span class="pill acc">France</span><span class="pill neutral">Monde · à venir</span><span class="pill neutral">Long terme · à venir</span></div>
-  <div class="section"><h4>Scénarios France</h4>${stacks}</div>
-  <div class="section"><h4>Carte des chemins</h4><p class="small muted only-mobile" style="margin:0">Faites glisser la carte vers la gauche pour voir la présidentielle. Chaque boîte ouvre sa fiche.</p>
-  <div class="svgwrap">${s}</div><p class="small muted" style="margin:0">Épaisseur des liens proportionnelle à la probabilité du chemin ; ${T("critique","chemin critique")} en couleur. ${esc(pre.noteChemin)}</p></div>`;
+  s+=`<line x1="${X1+BW/2}" y1="${yB[1]+NH/2}" x2="${X1+BW/2}" y2="448" stroke="var(--line)" stroke-dasharray="3 3"/><g data-go="ind-IS-01" style="cursor:pointer"><rect x="${X1}" y="448" width="${BW}" height="56" rx="8" fill="var(--surface)" stroke="var(--line)"/>`+tx(X1+14,471,"Finances publiques",'font-size="14" font-weight="700" fill="var(--ink)"')+tx(X1+14,492,`${fr(n)} sur 10 · marge ${fr(6.5-n)}`,`font-size="13" fill="var(--${c})"`)+`</g>`;
+  s+=`<line x1="${X2+WW/2}" y1="${yW[3]+40}" x2="${X2+WW/2}" y2="448" stroke="var(--line)" stroke-dasharray="3 3"/><rect x="${X2}" y="448" width="${WW}" height="56" rx="8" fill="none" stroke="var(--line)" stroke-dasharray="4 3"/>`+tx(X2+14,471,"Stabilité institutionnelle",'font-size="14" font-weight="700" fill="var(--muted)"')+tx(X2+14,492,"indicateur à construire",'font-size="13" fill="var(--muted)"')+`</svg>`;
+  const sc=q.hypotheses.map((h,i)=>({nom:h.nom,p:glob[i],v1:joint[i][0],v2:joint[i][1],i})).sort((a,b)=>b.p-a.p);
+  return head("Le chemin le plus probable : budget non adopté, puis victoire du RN",`Scénarios France, combinant l'issue du budget 2027 et le vainqueur de la présidentielle. Probabilités ${T("calcule","calculées")} le long de chaque chemin.`)
+  +`<div class="rowx"><span class="tag a">France</span><span class="tag n">Monde · à venir</span><span class="tag n">Long terme · à venir</span></div>`
+  +sec("Scénarios",`<div class="rows">${sc.map(x=>`<div class="rowlink" tabindex="0" role="link" data-go="pivot-PV-02" style="display:flex;flex-direction:column;gap:7px"><div class="rowx sp"><span class="b">${scenName(x.nom)}${x.i===best[1]?` <span class="tag a">${T("critique","chemin critique")}</span>`:""}</span><span class="b">${P(x.p)}</span></div>
+    <div class="stack"><span style="width:${x.v1}%;background:var(--accent-mid)"></span><span style="width:${x.v2}%;background:var(--accent)"></span></div></div>`).join("")}</div>
+    <div class="legend nog" style="margin-top:14px"><span><i style="width:14px;height:8px;background:var(--accent-mid);border-radius:2px"></i>via budget adopté (${P(pB1)})</span><span><i style="width:14px;height:8px;background:var(--accent);border-radius:2px"></i>via budget non adopté (${P(pNo)})</span></div>`)
+  +sec("Carte des chemins",`<p class="sm muted mob" style="margin:0 0 8px">Faites glisser la carte vers la gauche.</p><div class="svgw">${s}</div>
+   <details class="more" style="margin-top:12px"><summary>Comment lire la carte</summary><div class="in sm"><p style="margin:0">L'épaisseur de chaque lien est proportionnelle à la probabilité du chemin ; le ${T("critique","chemin critique")} est en couleur. Chaque boîte ouvre sa fiche.</p><p style="margin:0">${esc(pre.noteChemin)}</p></div></details>`);
 }
 
-function indicateurs(){return `<div class="view-h"><h2>Indicateurs structurels</h2><p>Chaque indicateur est la moyenne des notes de ses sous-indicateurs, chacune calculée selon la position de la valeur entre des seuils fixés à l'avance. Plus la note est haute, plus la situation est tendue.</p></div>
-  <div class="grid g2">${D.indicateurs.map(indCard).join("")}</div>
-  <div class="section"><h4>Proposés pour l'étape suivante (8 retenus au total)</h4><div class="chips">${D.indicateursProposes.map(n=>`<span class="pill neutral">${esc(n)}</span>`).join("")}</div></div>`}
+function indicateurs(){return head("Indicateurs structurels",`Les grandes forces lentes qui conditionnent la stabilité, chacune résumée par une ${T("note","note sur 10")}.`)
+  +`<div class="grid2">${D.indicateurs.map(indBox).join("")}</div>`
+  +sec("À construire",`<div class="rowx">${D.indicateursProposes.map(n=>`<span class="tag n">${esc(n)}</span>`).join("")}</div><p class="sm muted" style="margin:12px 0 0">Huit indicateurs seront retenus au total parmi ces propositions.</p>`)}
 
-function lineChart(si){
-  const pts=si.serie,W=520,H=250,L=44,R=14,T0=18,B=34;const xs=pts.map(p=>p[0]),x0=Math.min(...xs),x1=Math.max(...xs);const y0=60,y1=130;
-  const X=x=>L+(x-x0)/(x1-x0)*(W-L-R),Y=y=>T0+(1-(y-y0)/(y1-y0))*(H-T0-B);const fs='font-size="14" font-family="IBM Plex Mono, monospace" fill="var(--muted)"';
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Dette publique en pourcentage du PIB de 2007 à 2026">`;
-  s+=`<rect x="${L}" y="${Y(130)}" width="${W-L-R}" height="${Y(120)-Y(130)}" fill="var(--crit-soft)"/><rect x="${L}" y="${Y(120)}" width="${W-L-R}" height="${Y(100)-Y(120)}" fill="var(--warn-soft)"/>`;
-  [60,80,100,120].forEach(v=>{s+=`<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${L-7}" y="${Y(v)+5}" text-anchor="end" ${fs}>${v}</text>`});
+function lineChart(si){const pts=si.serie,W=520,H=240,L=44,R=14,T0=16,B=34,xs=pts.map(p=>p[0]),x0=Math.min(...xs),x1=Math.max(...xs),y0=60,y1=130;
+  const X=x=>L+(x-x0)/(x1-x0)*(W-L-R),Y=y=>T0+(1-(y-y0)/(y1-y0))*(H-T0-B);const fs='font-size="14" fill="var(--muted)" font-family="Public Sans, sans-serif"';
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Dette publique en pourcentage du PIB, 2007-2026"><rect x="${L}" y="${Y(130)}" width="${W-L-R}" height="${Y(120)-Y(130)}" fill="var(--crit-soft)"/><rect x="${L}" y="${Y(120)}" width="${W-L-R}" height="${Y(100)-Y(120)}" fill="var(--warn-soft)"/>`;
+  [60,80,100,120].forEach(v=>{s+=`<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${L-8}" y="${Y(v)+5}" text-anchor="end" ${fs}>${v}</text>`});
   [2008,2014,2020,2026].forEach(v=>{s+=`<text x="${X(Math.min(v,x1))}" y="${H-10}" text-anchor="${v===2026?"end":"middle"}" ${fs}>${v}</text>`});
-  s+=`<polyline fill="none" stroke="var(--accent)" stroke-width="2.6" points="${pts.map(p=>X(p[0])+","+Y(p[1])).join(" ")}"/>`;
-  const last=pts[pts.length-1];s+=`<circle cx="${X(last[0])}" cy="${Y(last[1])}" r="5" fill="var(--accent)"/><text x="${X(last[0])-10}" y="${Y(last[1])+20}" text-anchor="end" font-size="15" font-weight="600" font-family="IBM Plex Mono, monospace" fill="var(--ink)">${fr(last[1])} %</text>`;
-  return s+`</svg><div class="legend"><span><i style="width:14px;height:10px;background:var(--warn-soft)"></i>sous tension (100 à 120 %)</span><span><i style="width:14px;height:10px;background:var(--crit-soft)"></i>critique (plus de 120 %)</span></div>`}
-function spreadChart(si){
-  const pts=si.points,W=520,H=210,L=44,R=14,T0=14,B=32;const y0=60,y1=160;const X=i=>L+i/(pts.length-1)*(W-L-R),Y=y=>T0+(1-(y-y0)/(y1-y0))*(H-T0-B);const fs='font-size="14" font-family="IBM Plex Mono, monospace" fill="var(--muted)"';
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Écart OAT-Bund du 18 septembre au 1er octobre 2026">`;
-  s+=`<rect x="${L}" y="${Y(160)}" width="${W-L-R}" height="${Y(100)-Y(160)}" fill="var(--crit-soft)"/>`;
-  [60,100,150].forEach(v=>{s+=`<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="${v===150?"var(--warn)":"var(--line)"}" ${v===150?'stroke-dasharray="5 4"':""}/><text x="${L-7}" y="${Y(v)+5}" text-anchor="end" ${fs}>${v}</text>`});
+  s+=`<polyline fill="none" stroke="var(--accent)" stroke-width="2.4" points="${pts.map(p=>X(p[0])+","+Y(p[1])).join(" ")}"/>`;const l=pts.at(-1);
+  s+=`<circle cx="${X(l[0])}" cy="${Y(l[1])}" r="4.5" fill="var(--accent)"/><text x="${X(l[0])-10}" y="${Y(l[1])+20}" text-anchor="end" font-size="15" font-weight="700" fill="var(--ink)" font-family="Public Sans, sans-serif">${fr(l[1])} %</text></svg>`;
+  return s+`<div class="legend nog"><span><i style="width:12px;height:10px;background:var(--warn-soft)"></i>sous tension</span><span><i style="width:12px;height:10px;background:var(--crit-soft)"></i>critique</span></div>`}
+function spreadChart(si){const pts=si.points,W=520,H=210,L=44,R=14,T0=14,B=32,y0=60,y1=160;const X=i=>L+i/(pts.length-1)*(W-L-R),Y=y=>T0+(1-(y-y0)/(y1-y0))*(H-T0-B);const fs='font-size="14" fill="var(--muted)" font-family="Public Sans, sans-serif"';
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Écart OAT-Bund, septembre 2026"><rect x="${L}" y="${Y(160)}" width="${W-L-R}" height="${Y(100)-Y(160)}" fill="var(--crit-soft)"/>`;
+  [60,100,150].forEach(v=>{s+=`<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="${v===150?"var(--warn)":"var(--line)"}" ${v===150?'stroke-dasharray="5 4"':""}/><text x="${L-8}" y="${Y(v)+5}" text-anchor="end" ${fs}>${v}</text>`});
   pts.forEach((p,i)=>{if(i%2===0||i===pts.length-1)s+=`<text x="${X(i)}" y="${H-8}" text-anchor="${i===0?"start":i===pts.length-1?"end":"middle"}" ${fs}>${p[0]}</text>`});
-  s+=`<polyline fill="none" stroke="var(--accent)" stroke-width="2.6" points="${pts.map((p,i)=>X(i)+","+Y(p[1])).join(" ")}"/>`;
-  const l=pts.length-1;s+=`<circle cx="${X(l)}" cy="${Y(pts[l][1])}" r="5" fill="var(--accent)"/><text x="${X(l)-10}" y="${Y(pts[l][1])+22}" text-anchor="end" font-size="15" font-weight="600" font-family="IBM Plex Mono, monospace" fill="var(--ink)">${pts[l][1]} pb</text>`;
-  return s+`</svg><div class="legend"><span><i style="width:14px;height:10px;background:var(--crit-soft)"></i>critique (plus de 100 pb)</span><span><i style="width:14px;border-top:2px dashed var(--warn)"></i>150 pb : plus haut de 2011-2012, seuil de la prévision P-005</span></div>`}
+  s+=`<polyline fill="none" stroke="var(--accent)" stroke-width="2.4" points="${pts.map((p,i)=>X(i)+","+Y(p[1])).join(" ")}"/>`;const l=pts.length-1;
+  s+=`<circle cx="${X(l)}" cy="${Y(pts[l][1])}" r="4.5" fill="var(--accent)"/><text x="${X(l)-10}" y="${Y(pts[l][1])+22}" text-anchor="end" font-size="15" font-weight="700" fill="var(--ink)" font-family="Public Sans, sans-serif">${pts[l][1]} pb</text></svg>`;
+  return s+`<div class="legend nog"><span><i style="width:12px;height:10px;background:var(--crit-soft)"></i>critique</span><span><i style="width:14px;border-top:2px dashed var(--warn)"></i>150 pb, seuil de la prévision P-005</span></div>`}
 
 function indPage(id){const ind=D.indicateurs.find(i=>i.id===id);if(!ind)return indicateurs();const n=noteInd(ind);const [c,l]=etat(n);
-  const sis=ind.sous.map(siById);
-  const evs=D.actualite.filter(e=>e.effets.some(f=>f.cible===id||ind.sous.includes(f.cible)));
-  const prev=D.previsionsSimples.filter(p=>p.ind===id);
-  return `<div class="crumb"><button class="ref" data-go="indicateurs">Indicateurs</button> / ${esc(ind.nom)}</div>
-  <div class="view-h" style="margin-top:6px"><h2>${esc(ind.nom)} · ${esc(ind.echelle)}</h2><p>${esc(ind.definition)}</p></div>
-  <div class="grid g2"><div class="card"><div class="row between"><h4>Note actuelle</h4><span class="pill ${c}">${l}</span></div><div class="row"><span class="big">${fr(n)}</span><span class="muted small">${T("note","/ 10")}</span>${trend(ind.tendance)}</div><div class="small muted">${T("marge","Marge")} ${fr(6.5-n)} avant critique</div>${gauge(n)}</div>
-  <div class="card"><h4>Lecture</h4><p style="margin:0">${esc(ind.lecture)}</p><div class="small muted">Utilisé par : ${ind.pivots.map(p=>link(p)).join(", ")}${prev.length?", "+prev.map(p=>link(p.id,"prévision "+p.id)).join(", "):""}</div></div></div>
-  <div class="section"><h4>Sous-indicateurs</h4><div class="card"><div class="list">${sis.map(s=>{const sc=score(s);const [cc,ll]=etat(sc);return `<div class="grid" style="grid-template-columns:minmax(0,1.4fr) minmax(90px,1fr) auto;gap:6px 14px;align-items:center">
-    <div style="min-width:0"><div style="font-weight:600">${esc(s.nom)}</div><div class="small muted">${esc(s.date)} · ${esc(s.precedent)} · <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.source)}</a> · ${T("confiance","confiance")} ${esc(s.confiance)}</div></div>
-    <div><div class="si-pos" role="img" aria-label="note ${fr(sc)} sur 10"><i style="left:${sc*10}%"></i></div><div class="small muted" style="margin-top:6px">${esc(marge(s))}</div></div>
-    <div style="text-align:right"><div class="num" style="font-size:17px;font-weight:500;white-space:nowrap">${esc(s.affiche)}</div><span class="pill ${cc}">${ll}</span></div></div>`}).join("")}</div></div></div>
-  <div class="grid g2" style="margin-top:22px">
-    <div class="section"><h4>Dette publique, % du PIB</h4><div class="card chart">${lineChart(siById("SI-01-01"))}<div class="small muted">${esc(siById("SI-01-01").serieSource)}</div></div></div>
-    <div class="section"><h4>Écart OAT-Bund 10 ans, points de base</h4><div class="card chart">${spreadChart(siById("SI-01-04"))}<div class="small muted">Relevés ponctuels de septembre ; la série quotidienne sera branchée sur la collecte automatique.</div></div></div>
-  </div>
-  <div class="section"><h4>Actualité liée</h4><div class="card"><div class="list">${evs.map(e=>`<div class="clickable" tabindex="0" role="link" data-go="actualite"><span class="small muted num">${dfr(e.date)}</span><div class="t">${esc(e.titre)}</div></div>`).join("")}</div></div></div>`}
+  const evs=D.actualite.filter(e=>e.effets.some(f=>f.cible===id||ind.sous.includes(f.cible)));const prev=D.previsionsSimples.filter(p=>p.ind===id);
+  return head(`${esc(ind.nom)}, ${esc(ind.echelle)}`,esc(ind.definition),`<button class="lnk" data-go="indicateurs">Indicateurs structurels</button> / ${esc(ind.nom)}`)
+  +`<div class="box"><div class="rowx sp"><div class="rowx"><span class="big">${fr(n)}</span><span class="muted">${T("note","sur 10")}</span>${trend(ind.tendance)}</div><span class="tag ${c}">${l}</span></div>${gauge(n)}
+   <p style="margin:0">${esc(ind.lecture)}</p><div class="sm muted">Utilisé par ${ind.pivots.map(p=>link(p)).join(", ")}${prev.length?" et les prévisions "+prev.map(p=>link(p.id)).join(", "):""}.</div></div>`
+  +sec("Sous-indicateurs",`<div>${ind.sous.map(siById).map(s=>{const sc=score(s);const [cc,ll]=etat(sc);return `<details class="block"><summary><span style="min-width:0;flex:1"><span class="rowx sp"><span>${esc(s.nom)}</span><span>${esc(s.affiche)}</span></span><span class="rowx sp" style="font-weight:400;margin-top:4px"><span class="sm muted">${esc(marge(s))}</span><span class="tag ${cc}">${ll}</span></span></span></summary>
+     <div class="in"><div class="gauge" role="img" aria-label="note ${fr(sc)} sur 10"><i style="left:${sc*10}%"></i></div>
+     <div><div class="b sm">Comment il agit</div><p class="sm" style="margin:2px 0 0">${esc(s.action)}</p></div>
+     <div><div class="b sm">Pourquoi ces seuils : ${esc(seuilsTxt(s))}</div><p class="sm" style="margin:2px 0 0">${esc(s.pourquoi)}</p></div>
+     <div class="sm muted">${esc(s.date)} · précédent : ${esc(s.precedent)} · <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.source)}</a> · ${T("confiance","confiance")} ${esc(s.confiance)}</div></div></details>`}).join("")}</div>`)
+  +`<div class="grid2">${sec("Dette publique, % du PIB",`<div class="chart">${lineChart(siById("SI-01-01"))}</div>`)}${sec("Écart OAT-Bund, en pb",`<div class="chart">${spreadChart(siById("SI-01-04"))}</div>`)}</div>`
+  +sec("Actualité liée",`<div class="rows">${evs.map(e=>`<div class="rowlink" tabindex="0" role="link" data-go="actualite"><div class="sm muted">${dfr(e.date)}</div><div>${esc(e.titre)}</div></div>`).join("")}</div>`)}
 
-function sousInd(){
-  return `<div class="view-h"><h2>Sous-indicateurs</h2><p>Les données brutes qui alimentent les indicateurs structurels, avec leur source et leur date. Tous sont au statut « validé » : les signaux en observation apparaîtront après les premiers post-mortems.</p></div>
-  ${D.indicateurs.map(ind=>`<div class="section"><div class="row between"><h4>${esc(ind.nom)}</h4>${link(ind.id,"Ouvrir la fiche")}</div><div class="tablewrap"><table class="resp"><thead><tr><th>Sous-indicateur</th><th>Valeur</th><th>État</th><th>Marge</th><th>Mesure</th><th>${T("confiance","Confiance")}</th><th>Source</th></tr></thead><tbody>
-  ${ind.sous.map(siById).map(s=>{const [c,l]=etat(score(s));return `<tr><td class="lead">${esc(s.nom)}</td><td data-l="Valeur" class="num" style="white-space:nowrap">${esc(s.affiche)}</td><td data-l="État"><span class="pill ${c}">${l}</span></td><td data-l="Marge" class="small">${esc(marge(s))}</td><td data-l="Mesure" class="small">${esc(s.date)}<div class="muted">${esc(s.frequence)}</div></td><td data-l="Confiance" class="small">${esc(s.confiance)}</td><td data-l="Source" class="small"><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.source)}</a></td></tr>`}).join("")}
-  </tbody></table></div></div>`).join("")}`}
+function sousInd(){return head("Sous-indicateurs","Les mesures qui alimentent les indicateurs structurels.")
+  +D.indicateurs.map(ind=>sec(esc(ind.nom),`<div class="tw"><table class="resp"><thead><tr><th>Mesure</th><th>Valeur</th><th>État</th><th>Marge</th><th>Date</th><th>Source</th></tr></thead><tbody>
+  ${ind.sous.map(siById).map(s=>{const [c,l]=etat(score(s));return `<tr><td class="lead">${esc(s.nom)}</td><td data-l="Valeur" style="white-space:nowrap">${esc(s.affiche)}</td><td data-l="État"><span class="tag ${c}">${l}</span></td><td data-l="Marge">${esc(marge(s))}</td><td data-l="Date">${esc(s.date)}</td><td data-l="Source"><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.source)}</a></td></tr>`}).join("")}</tbody></table></div>`,link(ind.id,"Ouvrir la fiche"))).join("")}
 
-function pivots(){return `<div class="view-h"><h2>Moments pivots</h2><p>Moments à fort impact dont l'issue n'est pas écrite. Un ${T("sous-pivot","sous-pivot")} conditionne les probabilités du pivot qu'il alimente.</p></div>
-  <div class="grid g2">${D.pivots.map(pivotCard).join("")}</div>
-  <div class="note" style="margin-top:16px">Autres pivots prévus : Gaza, Iran et détroit d'Ormuz, climat. Chacun ouvrira sur une section « Réalité humaine » (personnes touchées, victimes, déplacés), placée avant toute probabilité.</div>`}
+function pivots(){return head("Moments pivots","Les moments dont l'issue n'est pas écrite et qui vont peser sur nos sociétés.")
+  +`<div class="grid2" style="gap:16px 24px">${D.pivots.map(pivotBox).join("")}</div>`
+  +sec("À venir",`<div class="rowx"><span class="tag n">Gaza</span><span class="tag n">Iran et détroit d'Ormuz</span><span class="tag n">Climat</span></div><p class="sm muted" style="margin:12px 0 0">Les pivots de crise s'ouvriront sur la réalité humaine (victimes, déplacés) avant toute probabilité.</p>`)}
 
 function pivotPage(id){const p=D.pivots.find(x=>x.id===id);if(!p)return pivots();
-  const qs=p.questions.map(q=>{const rg=ranges(q);
-    if(q.conditionnelle){const {glob,c1,c2,pB1}=questionDist(q);
-      return `<div class="card"><h3>${esc(q.texte)}</h3><div class="small muted">Probabilité ${T("calcule","calculée")} à partir de l'issue du ${link(q.conditionnelle)} : adopté ${pB1} %, non adopté ${100-pB1} %.</div>${hypBars(q.hypotheses,glob,{rg})}${barLegend(false)}
-      <div class="tablewrap"><table class="resp"><thead><tr><th>Hypothèse</th><th>Si budget adopté</th><th>Si non adopté</th><th>Au total</th></tr></thead><tbody>${q.hypotheses.map((h,i)=>`<tr><td class="lead">${esc(h.nom)}</td><td data-l="Si budget adopté" class="num">${c1[i]} %</td><td data-l="Si non adopté" class="num">${c2[i]} %</td><td data-l="Au total" class="num"><b>${glob[i]} %</b></td></tr>`).join("")}</tbody></table></div>
-      <div class="small muted">Résolution : ${esc(q.resolution)} ${link(q.id,"Voir au registre")}</div></div>`}
-    const d=questionDist(q).glob;const ext=q.hypotheses.some(h=>h.externe!=null)?q.hypotheses.map(h=>h.externe):null;
-    return `<div class="card"><h3>${esc(q.texte)}</h3>${hypBars(q.hypotheses,d,{rg,ext})}${barLegend(!!ext)}
-    ${ext?`<div class="small" style="color:var(--warn)">${esc(q.externeSource)} (<a href="${esc(q.externeUrl)}" target="_blank" rel="noopener">source</a>) : écart marqué sur le duel RN contre LFI.</div>`:""}
-    <div class="small muted">Résolution : ${esc(q.resolution)} ${link(q.id,"Voir au registre")}</div></div>`}).join("");
-  const est=p.questions.map(q=>q.hypotheses.map(h=>{const v=h.estimations;return `<tr><td class="lead">${esc(h.nom)}${q.conditionnelle?' <span class="muted small">(si adopté / sinon)</span>':""}</td>${[0,1,2].map(k=>`<td data-l="${esc(D.meta.estimateurs[k])}" class="num">${v?v[k]+" %":h.si.B1[k]+" / "+h.si.nonB1[k]}</td>`).join("")}</tr>`}).join("")).join("");
+  const qs=p.questions.map(q=>{const r=qd(q);const ext=q.hypotheses.some(h=>h.externe!=null)?q.hypotheses.map(h=>h.externe):null;
+    let extra="";
+    if(q.conditionnelle)extra=`<details class="more"><summary>Selon l'issue du budget</summary><div class="in"><div class="tw"><table><thead><tr><th>Hypothèse</th><th>Si adopté</th><th>Si non adopté</th><th>Au total</th></tr></thead><tbody>${q.hypotheses.map((h,i)=>`<tr><td>${esc(h.nom)}</td><td>${P(r.c1[i])}</td><td>${P(r.c2[i])}</td><td class="b">${P(r.glob[i])}</td></tr>`).join("")}</tbody></table></div></div></details>`;
+    if(ext)extra=`<p class="sm" style="margin:0;color:var(--warn)">Écart marqué avec le modèle Sondax sur le duel RN contre LFI. <a href="${esc(q.externeUrl)}" target="_blank" rel="noopener">Source</a></p>`;
+    return `<div class="box"><h3>${esc(q.texte)}</h3>${q.conditionnelle?`<div class="sm muted">${T("calcule","Probabilité calculée")} selon l'issue du ${link(q.conditionnelle)}.</div>`:""}${bars(q.hypotheses,r.glob,r.rg,ext)}${barKey(!!ext)}${extra}<div class="sm muted">Résolution : ${esc(q.resolution)} ${link(q.id,"Voir au registre")}</div></div>`}).join(`<div style="height:16px"></div>`);
+  const est=p.questions.map(q=>q.hypotheses.map(h=>`<tr><td>${esc(h.nom)}</td>${[0,1,2].map(k=>`<td>${h.estimations?P(h.estimations[k]):h.si.B1[k]+" / "+h.si.nonB1[k]}</td>`).join("")}</tr>`).join("")).join("");
   const evs=D.actualite.filter(e=>p.actualite.includes(e.id));
-  return `<div class="crumb"><button class="ref" data-go="pivots">Pivots</button> / ${esc(p.nom)}</div>
-  <div class="view-h" style="margin-top:6px"><div class="row"><h2>${esc(p.nom)}</h2><span class="pill ${p.type==="sous-pivot"?"neutral":"acc"}">${p.type==="sous-pivot"?T("sous-pivot","Sous-pivot"):T("pivot","Pivot")}</span></div><p>${esc(p.phrase)}</p>
-  <div class="small muted">Échéance ${dfr(p.echeance)} · dernière révision ${dfr(D.meta.releve)}${p.amont.length?` · dépend de ${p.amont.map(a=>link(a)).join(", ")}`:""}${p.aval.length?` · alimente ${p.aval.map(a=>link(a)).join(", ")}`:""}</div></div>
-  ${p.realiteHumaine?`<div class="section"><h4>Réalité humaine</h4><div class="card">${esc(p.realiteHumaine)}</div></div>`:""}
-  <div class="section"><h4>Questions et probabilités</h4>${qs}</div>
-  <div class="section">
-  <details class="fold"><summary>Raisonnement <span>taux de base et ajustements</span></summary><div class="in">
-    <div><h4 style="margin-bottom:6px">Taux de base</h4><ul style="margin:0;padding-left:18px" class="small">${p.tauxDeBase.map(t=>`<li>${esc(t)}</li>`).join("")}</ul><div class="small muted" style="margin-top:6px">Voir aussi les <button class="ref" data-go="precedents">précédents historiques</button>.</div></div>
-    <div><h4 style="margin-bottom:6px">Du taux de base à la probabilité</h4><div class="list">${p.conversion.map(c=>`<div><div class="small" style="font-weight:600">${esc(c.facteur)}</div><div class="small muted">${esc(c.effet)}</div></div>`).join("")}</div>${p.indicateursDirects.length?`<div class="small muted">Indicateurs branchés directement : ${p.indicateursDirects.map(i=>link(i)).join(", ")}</div>`:`<div class="small muted">${esc(p.noteChemin||"")}</div>`}</div>
-  </div></details>
-  <details class="fold"><summary>Les trois estimations <span>avant agrégation</span></summary><div class="in"><div class="tablewrap"><table class="resp"><thead><tr><th>Hypothèse</th>${D.meta.estimateurs.map(e=>`<th>${esc(e)}</th>`).join("")}</tr></thead><tbody>${est}</tbody></table></div><div class="small muted">${esc(D.meta.methode)}</div></div></details>
-  <details class="fold"><summary>Projections <span>effet de chaque issue sur les indicateurs</span></summary><div class="in"><div class="list">${p.projections.map(x=>{const h=p.questions[0].hypotheses.find(h=>h.id===x.hyp);return `<div><div style="font-weight:600">${esc(h?h.nom:x.hyp)}</div><div class="small muted">${esc(x.texte)}</div></div>`}).join("")}</div></div></details>
-  <details class="fold" open><summary>Déclencheurs <span>ce qui ferait basculer</span></summary><div class="in"><div class="list">${p.declencheurs.map(x=>`<div class="row between"><div style="min-width:0;flex:1 1 240px">${esc(x.texte)}<div class="small muted">vers : ${esc(x.vers)}</div></div><span class="pill neutral">${esc(x.date||x.distance)}</span></div>`).join("")}</div></div></details>
-  <details class="fold"><summary>Actualité liée et évolution <span>${evs.length} faits</span></summary><div class="in"><div class="list">${evs.map(e=>`<div class="clickable" tabindex="0" role="link" data-go="actualite"><span class="small muted num">${dfr(e.date)}</span><div class="t">${esc(e.titre)}</div></div>`).join("")}</div><div class="note">Première estimation le ${dfr(D.meta.releve)}. La courbe de chaque hypothèse apparaîtra à la prochaine révision, avec les faits marquants pointés sur l'axe.</div></div></details>
-  </div>`}
+  return head(esc(p.nom),esc(p.phrase),`<button class="lnk" data-go="pivots">Moments pivots</button> / ${esc(p.nom)}`)
+  +`<div class="rowx" style="margin:-12px 0 8px"><span class="tag ${p.type==="sous-pivot"?"n":"a"}">${p.type==="sous-pivot"?T("sous-pivot","sous-pivot"):T("pivot","pivot")}</span><span class="sm muted">Échéance ${dfr(p.echeance)}</span>${p.amont.length?`<span class="sm muted">Dépend de ${p.amont.map(a=>link(a)).join(", ")}</span>`:""}${p.aval.length?`<span class="sm muted">Alimente ${p.aval.map(a=>link(a)).join(", ")}</span>`:""}</div>`
+  +(p.realiteHumaine?sec("Réalité humaine",`<p>${esc(p.realiteHumaine)}</p>`):"")
+  +sec("Probabilités",qs)
+  +sec("Analyse",`<details class="block" open><summary>Ce qui ferait basculer</summary><div class="in">${p.declencheurs.map(x=>`<div class="rowx sp"><div style="min-width:0;flex:1 1 240px">${esc(x.texte)}<div class="sm muted">vers : ${esc(x.vers)}</div></div><span class="tag n">${esc(x.date||x.distance)}</span></div>`).join("")}</div></details>
+   <details class="block"><summary>Raisonnement</summary><div class="in"><div class="b sm">${T("taux de base","Taux de base")}</div><ul class="sm" style="margin:0;padding-left:18px">${p.tauxDeBase.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+     <div class="b sm" style="margin-top:6px">Ajustements</div><div class="rows sm">${p.conversion.map(c=>`<div><div class="b">${esc(c.facteur)}</div><div class="muted">${esc(c.effet)}</div></div>`).join("")}</div>${p.noteChemin?`<p class="sm muted" style="margin:0">${esc(p.noteChemin)}</p>`:""}</div></details>
+   <details class="block"><summary>Les trois estimations</summary><div class="in"><div class="tw"><table><thead><tr><th>Hypothèse</th>${D.meta.estimateurs.map(e=>`<th>${esc((e.split(" · ")[1]||e).replace(/^./,c=>c.toUpperCase()))}</th>`).join("")}</tr></thead><tbody>${est}</tbody></table></div>${p.questions.some(q=>q.conditionnelle)?`<p class="sm muted" style="margin:0">Pour la question conditionnelle : si adopté / sinon.</p>`:""}</div></details>
+   <details class="block"><summary>Conséquences sur les indicateurs</summary><div class="in">${p.projections.map(x=>{const h=p.questions[0].hypotheses.find(h=>h.id===x.hyp);return `<div class="sm"><span class="b">${esc(h?h.nom:x.hyp)}</span> · ${esc(x.texte)}</div>`}).join("")}</div></details>
+   <details class="block"><summary>Actualité liée</summary><div class="in">${evs.map(e=>`<div class="rowlink sm" tabindex="0" role="link" data-go="actualite"><span class="muted">${dfr(e.date)}</span> · ${esc(e.titre)}</div>`).join("")}</div></details>`)}
 
-function actualite(){return `<div class="view-h"><h2>Actualité</h2><p>Faits datés et sourcés, avec ce qu'ils font bouger. Les analyses approfondies (post-mortem) apparaîtront ici pour les événements majeurs.</p></div>
-  <div class="card timeline"><div class="list">${D.actualite.map(e=>`<div class="ev"><time datetime="${e.date}">${dfr(e.date).replace(" 2026","")}</time><div style="min-width:0;display:flex;flex-direction:column;gap:6px">
-  <div style="font-weight:600">${esc(e.titre)}</div><div class="small">${esc(e.resume)}</div>
-  <div class="chips">${e.effets.map(f=>f.cible==="IS-futur"?`<span class="pill neutral">${esc(f.texte)}</span>`:`<button class="pill acc" style="all:unset;cursor:pointer;display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px;background:var(--accent-soft);color:var(--accent);max-width:100%" data-go="${refRoute(f.cible)}">${esc(refLabel(f.cible))} · ${esc(f.texte)}</button>`).join("")}</div>
-  <div class="small muted"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source)}</a> · ${T("confiance","confiance")} ${esc(e.confiance)}</div></div></div>`).join("")}</div></div>`}
+function actualite(){return head("Actualité","Les faits récents et ce qu'ils font bouger.")
+  +`<div class="rows">${D.actualite.map(e=>`<article style="display:flex;flex-direction:column;gap:6px"><div class="sm muted">${dfr(e.date)}</div><h3>${esc(e.titre)}</h3><p style="margin:0">${esc(e.resume)}</p>
+  <div class="rowx">${e.effets.map(f=>f.cible==="IS-futur"?`<span class="tag n" style="white-space:normal">${esc(f.texte)}</span>`:`<button class="tag a" style="border:0;cursor:pointer;white-space:normal;text-align:left" data-go="${route(f.cible)}">${esc(lab(f.cible))} · ${esc(f.texte)}</button>`).join("")}</div>
+  <div class="sm muted"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source)}</a> · ${T("confiance","confiance")} ${esc(e.confiance)}</div></article>`).join("")}</div>`}
 
-function previsions(){const fc=forecasts();return `<div class="view-h"><h2>Registre des prévisions</h2><p>Chaque prévision est figée à son émission ; une révision crée une nouvelle ligne et l'ancienne reste visible. L'historique public du dépôt GitHub conserve toutes les versions.</p></div>
-  <div class="tablewrap"><table class="resp"><thead><tr><th>Réf.</th><th>Question</th><th>Probabilités</th><th>Échéance</th><th>Référence externe</th><th>Résultat</th></tr></thead><tbody>
-  ${fc.map(f=>`<tr id="row-${f.id}"><td class="num small only-desktop">${esc(f.id)}</td><td class="lead" style="min-width:200px">${esc(f.texte)}<div class="small muted" style="font-weight:400">${f.id} · ${f.piv?link(f.piv):link(f.ind)} · ${f.calc?T("calcule","calculée"):T("mediane","médiane de trois")} · émise le ${dfr(D.meta.releve)}</div></td><td data-l="Probabilités" class="small" style="min-width:170px">${f.dist.map(([n,v],i)=>`<div class="row between" style="gap:8px;flex-wrap:nowrap"><span>${esc(n)}</span><span class="num" style="white-space:nowrap"><b>${v} %</b> <span class="muted">${rng(f.rg[i])}</span></span></div>`).join("")}</td><td data-l="Échéance" class="small num">${dfr(f.echeance)}</td><td data-l="Référence externe" class="small">${f.ext?f.dist.map((d,i)=>f.ext[i]!=null?`${esc(d[0])} ${f.ext[i]} %`:"").filter(Boolean).join("<br>")+`<div class="muted">${esc(f.extSrc)}</div>`:'<span class="muted">à relever (Metaculus, Polymarket)</span>'}</td><td data-l="Résultat"><span class="pill neutral">En attente</span></td></tr>`).join("")}
-  </tbody></table></div>
-  <p class="small muted">Gris à droite de chaque probabilité : ${T("fourchette","fourchette")} des trois estimateurs. Le score du modèle sera comparé à « rien ne change » et « 50 % partout ». Probabilités bornées entre 5 et 95 % par hypothèse.</p>`}
-
-function quotidien(){return `<div class="view-h"><h2>Questions du quotidien</h2><p>Lecture des indicateurs appliquée à des décisions personnelles.</p></div>
-  <div class="note">Les questions du quotidien sont personnelles : elles sont tenues dans un espace privé séparé, qui lit les indicateurs publiés ici.</div>`}
-
-function precedents(){return `<div class="view-h"><h2>Précédents historiques</h2><p>Cas passés comparables, qui fournissent les taux de base des estimations.</p></div>
-  <div class="tablewrap"><table class="resp"><thead><tr><th>Cas</th><th>Type</th><th>Contexte</th><th>Issue</th><th>Durée</th></tr></thead><tbody>
-  ${D.precedents.map(p=>`<tr><td class="lead" style="white-space:nowrap">${p.url?`<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.cas)}</a>`:esc(p.cas)}</td><td data-l="Type" class="small">${esc(p.type)}</td><td data-l="Contexte" class="small">${esc(p.contexte)}</td><td data-l="Issue" class="small">${esc(p.issue)}</td><td data-l="Durée" class="small">${esc(p.duree||"—")}</td></tr>`).join("")}
+function previsions(){const fc=forecasts();return head("Prévisions",`Le ${T("fige","registre figé")} de toutes les prévisions, et leur résultat à échéance.`)
+  +`<div class="tw"><table class="resp"><thead><tr><th>Question</th><th>Probabilités</th><th>Échéance</th><th>${T("externe","Référence")}</th><th>Résultat</th></tr></thead><tbody>
+  ${fc.map(f=>`<tr id="row-${f.id}"><td class="lead" style="min-width:220px">${esc(f.texte)}<div class="sm muted" style="font-weight:400">${f.id} · ${f.piv?link(f.piv):link(f.ind)} · émise le ${dfr(D.meta.releve)}</div></td>
+  <td class="blk" data-l="Probabilités" style="min-width:180px">${f.dist.map(([n,v],i)=>`<div class="rowx sp" style="flex-wrap:nowrap"><span>${esc(n)}</span><span style="white-space:nowrap"><span class="b">${P(v)}</span> <span class="muted sm">${rng(f.rg[i])}</span></span></div>`).join("")}</td>
+  <td data-l="Échéance">${dfr(f.echeance)}</td><td data-l="Référence">${f.ext?f.dist.map((d,i)=>f.ext[i]!=null?`${esc(d[0])} ${P(f.ext[i])}`:"").filter(Boolean).join("<br>"):"—"}</td><td data-l="Résultat"><span class="tag n">En attente</span></td></tr>`).join("")}
   </tbody></table></div>`}
 
-function collecteCard(){if(!C)return `<div class="note">La collecte automatique (chaque nuit, sans IA) n'a pas encore produit de données.</div>`;
-  const rows=Object.entries(C.series).map(([k,s])=>{const d=s.donnees&&s.donnees.length?s.donnees[s.donnees.length-1]:null;
-    const val=Array.isArray(d)?`${esc(d[0])} : <b class="num">${typeof d[1]==="number"?fr(d[1],d[1]%1?1:0):esc(d[1])}</b>`:(Array.isArray(s.donnees)?`${s.donnees.length} marchés relevés`:"—");
-    return `<tr><td class="lead">${esc(s.nom)}<div class="small muted" style="font-weight:400">${esc(s.source)}</div></td><td data-l="Dernière valeur" class="small">${val}</td><td data-l="État"><span class="pill ${s.statut==="ok"?"ok":"crit"}">${s.statut==="ok"?"À jour":"Échec"}</span></td></tr>`}).join("");
-  return `<div class="tablewrap"><table class="resp"><thead><tr><th>Série</th><th>Dernière valeur</th><th>État</th></tr></thead><tbody>${rows}</tbody></table></div><p class="small muted" style="margin:0">Dernière exécution : ${esc(C.execution.replace("T"," ").replace("Z"," UTC"))}. Les relevés de Claude intègrent ensuite ces valeurs aux sous-indicateurs.</p>`}
+function precedents(){return head("Précédents historiques",`Les cas passés qui fournissent les ${T("taux de base","taux de base")}.`)
+  +`<div class="rows">${D.precedents.map(p=>`<article style="display:flex;flex-direction:column;gap:4px"><div class="rowx sp"><h3>${p.url?`<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.cas)}</a>`:esc(p.cas)}</h3><span class="tag n">${esc(p.type)}</span></div><p class="sm" style="margin:0">${esc(p.contexte)}. <span class="b">Issue :</span> ${esc(p.issue)}${p.duree?` (${esc(p.duree)})`:""}.</p></article>`).join("")}</div>`}
 
-function methodologie(){return `<div class="view-h"><h2>Méthodologie</h2><p>L'essentiel des règles et le vocabulaire commun. Les termes soulignés en pointillés dans l'outil renvoient à ces définitions au toucher.</p></div>
-  <div class="grid g2"><div class="card"><h3>Règles clés</h3><ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px" class="small">
-  <li>Toute prévision est une question fermée, datée, avec un critère de résolution écrit à l'émission.</li>
-  <li>Chaque estimation part d'un taux de base et de l'hypothèse « rien ne change » ; chaque ajustement est écrit.</li>
-  <li>Probabilité = médiane de trois estimateurs indépendants ; scénarios et probabilités globales calculés.</li>
-  <li>Un facteur agit sur un pivot par un seul chemin, pour ne jamais être compté deux fois ; pas de boucle entre pivots.</li>
+function collecte(){if(!C)return `<p class="empty">La collecte automatique n'a pas encore produit de données.</p>`;
+  return `<div class="tw"><table class="resp"><thead><tr><th>Série</th><th>Dernière valeur</th><th>État</th></tr></thead><tbody>${Object.values(C.series).map(s=>{const d=s.donnees&&s.donnees.length?s.donnees.at(-1):null;
+  const v=Array.isArray(d)?`${esc(d[0])} : <span class="b">${typeof d[1]==="number"?fr(d[1],d[1]%1?1:0):esc(d[1])}</span>`:Array.isArray(s.donnees)?`${s.donnees.length} marchés`:"—";
+  return `<tr><td class="lead">${esc(s.nom)}<div class="sm muted" style="font-weight:400">${esc(s.source)}</div></td><td data-l="Valeur">${v}</td><td data-l="État"><span class="tag ${s.statut==="ok"?"ok":"crit"}">${s.statut==="ok"?"À jour":"Échec"}</span></td></tr>`}).join("")}</tbody></table></div><p class="sm muted" style="margin:10px 0 0">Dernière exécution le ${esc(C.execution.slice(0,10).split("-").reverse().join("/"))} à ${esc(C.execution.slice(11,16))} UTC.</p>`}
+
+function methodologie(){return head("Méthode et glossaire","Les règles qui encadrent les prévisions et le vocabulaire de l'outil.")
+  +sec("Règles",`<ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px">
+  <li>Toute prévision est une question fermée, datée, avec un critère de résolution écrit dès l'émission.</li>
+  <li>Chaque estimation part du ${T("taux de base","taux de base")} et de l'hypothèse « rien ne change » ; chaque ajustement est écrit.</li>
+  <li>Chaque probabilité est la ${T("mediane","médiane de trois")} estimations indépendantes ; les scénarios sont calculés.</li>
+  <li>Un facteur n'agit sur un pivot que par un seul chemin, pour ne jamais être compté deux fois.</li>
   <li>Un indicateur repéré après coup n'est validé que sur des événements futurs.</li>
-  <li>Le relevé hebdomadaire applique les règles ; seule l'analyse trimestrielle peut les changer, avec une trace au journal.</li>
-  <li>Au-delà de 3 ans : scénarios, pas de prévision notée.</li></ul></div>
-  <div class="card"><h3>Journal des révisions</h3><div class="list">${D.journal.map(j=>`<div><div class="row"><span class="small muted num">${dfr(j.date)}</span><span class="pill neutral">${esc(j.type)}</span></div><div class="small" style="margin-top:4px">${esc(j.texte)}</div></div>`).join("")}</div></div></div>
-  <div class="section"><h4>Collecte automatique</h4>${collecteCard()}</div>
-  <div class="section"><h4>Dictionnaire</h4><div class="card"><dl class="dict">${D.dictionnaire.map(([t,d])=>`<dt>${esc(t)}</dt><dd class="small">${esc(d)}</dd>`).join("")}</dl></div></div>`}
+  <li>Le relevé hebdomadaire applique les règles ; seule l'analyse trimestrielle peut les modifier, avec une trace au journal.</li>
+  <li>Au-delà de trois ans, l'outil produit des scénarios, pas des prévisions notées.</li></ol>`)
+  +sec("Journal des révisions",`<div class="rows">${D.journal.map(j=>`<div><div class="rowx"><span class="sm muted">${dfr(j.date)}</span><span class="tag n">${esc(j.type)}</span></div><p class="sm" style="margin:6px 0 0">${esc(j.texte)}</p></div>`).join("")}</div>`)
+  +sec("Collecte automatique",collecte())
+  +sec("Glossaire",`<dl class="dict nog">${Object.values(G).sort((a,b)=>a[0].localeCompare(b[0],"fr")).map(([t,d])=>`<dt>${esc(t)}</dt><dd class="sm just">${esc(d)}</dd>`).join("")}</dl>`)}
 
 /* --- démarrage --- */
-buildTabs();
-fetch("data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(j=>{D=j;
-  $("#releve").innerHTML=`Relevé du <b>${dfr(D.meta.releve)}</b> · ${esc(D.meta.version)}`;render();
-  fetch("data/collecte.json",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(c=>{if(c){C=c;if((location.hash||"").includes("methodologie"))render()}}).catch(()=>{})})
-  .catch(()=>{$("#view").innerHTML=`<div class="note">Les données n'ont pas pu être chargées. Rechargez la page ; si le problème persiste, le dernier relevé a échoué.</div>`});
+fetch("data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(j=>{D=j;render();
+  fetch("data/collecte.json",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(c=>{if(c){C=c;if(location.hash.includes("methodologie"))render()}}).catch(()=>{})})
+  .catch(()=>{$("#view").innerHTML=`<p class="empty">Les données n'ont pas pu être chargées. Rechargez la page.</p>`});
 </script>
 
 </body>
