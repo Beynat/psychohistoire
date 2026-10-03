@@ -17,10 +17,30 @@ OUT = Path(__file__).resolve().parent.parent / "data" / "collecte.json"
 UA = {"User-Agent": "psychohistoire-collecte/1.0 (+https://github.com/Beynat/psychohistoire)"}
 
 
-def get(url, timeout=40):
-    req = urllib.request.Request(url, headers=UA)
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.read().decode("utf-8")
+def get(url, timeout=40, essais=2):
+    for n in range(essais):
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return r.read().decode("utf-8")
+        except Exception:
+            if n == essais - 1:
+                raise
+
+
+def inflation_fr():
+    """Eurostat a fait évoluer ses jeux HICP en 2026 : on garde la série la plus récente des candidats."""
+    best = []
+    for ds, p in [("prc_hicp_minr", {"geo": "FR", "unit": "RCH_A", "coicop18": "TOTAL"}),
+                  ("prc_hicp_minr", {"geo": "FR", "unit": "RCH_A", "coicop": "CP00"}),
+                  ("prc_hicp_manr", {"geo": "FR", "unit": "RCH_A", "coicop": "CP00"})]:
+        try:
+            s = eurostat_last(ds, p)
+        except Exception:
+            continue
+        if s and (not best or s[-1][0] > best[-1][0]):
+            best = s
+    return best[-12:]
 
 
 def eurostat_last(dataset, params):
@@ -84,8 +104,8 @@ SOURCES = {
     "inflation_FR": {
         "nom": "Inflation harmonisée France, glissement annuel",
         "lie": None,
-        "source": "Eurostat prc_hicp_manr",
-        "fn": lambda: eurostat_last("prc_hicp_manr", {"geo": "FR", "unit": "RCH_A", "coicop": "CP00"})[-12:],
+        "source": "Eurostat HICP (jeu le plus récent disponible)",
+        "fn": inflation_fr,
     },
     "taux_depot_BCE": {
         "nom": "Taux de la facilité de dépôt de la BCE",
