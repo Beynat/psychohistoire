@@ -1,7 +1,7 @@
-# Protocole Psychohistoire — version 1.4
+# Protocole Psychohistoire — version 1.5
 
 Statut : soumis à relecture (relecture 3). Rédigé le 3 octobre 2026, avant toute estimation produite selon ce protocole.
-Remplace la version 1.3. Ajout de la section 10 (liens causaux et jalons) ; les changements sont justifiés dans `journal.md`. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
+Remplace la version 1.4. Aucun modèle d'une autre famille n'étant disponible, les exigences correspondantes sont remplacées par des compensations (sections 4.4, 6.1, 8.4 et 13) ; les changements sont justifiés dans `journal.md`. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
 
 ## 0. Pistes et registres
 
@@ -39,7 +39,7 @@ Chaque phase doit battre la précédente pour que la suivante soit construite. �
 | --- | --- | --- | --- |
 | 1 | 1er novembre 2026 | Banque de questions, lignes de base, ensemble direct, registre, mises à jour événementielles de type « donnée » | Scripts de génération, de notation et de puissance en service |
 | 2 | 1er décembre 2026 | Modèle de l'écart de taux, moyenne de sondages corrigée de l'erreur historique | Rétro-test publié |
-| 3 | 1er janvier 2027 au plus tard | Réseau réduit de 10 à 15 nœuds sur la séquence politique et budgétaire, chaînes de jalons sur les 3 à 5 liens les plus influents, mises à jour événementielles complètes | Relecture par une autre famille de modèles (section 12) |
+| 3 | 1er janvier 2027 au plus tard | Réseau réduit de 10 à 15 nœuds sur la séquence politique et budgétaire, chaînes de jalons sur les 3 à 5 liens les plus influents, mises à jour événementielles complètes | Test du jugement passé (section 8.7) et relectures conformes au critère d'arrêt (section 12) |
 | 4 | Après le bilan de la phase 3 | Extension du réseau, analyse structurelle complète | La phase 3 bat la phase 1 sur P2b et P2c (section 8.6) |
 
 Avant la phase 3, les chaînes de jalons peuvent être pilotées sur la piste exploratoire, sans effet sur la piste protocole. Chaque phase dispose d'une liste de contrôle dans `modele/controle/`. Tout ce qui est mécanique est scripté : génération des questions, agrégation, notation, puissance.
@@ -49,7 +49,7 @@ Avant la phase 3, les chaînes de jalons peuvent être pilotées sur la piste ex
 1. **Réseau bayésien dynamique** à pas mensuel (Murphy 2002), acyclique au sein d'une tranche. Les dépendances d'une tranche à l'autre passent par les variables d'état et l'occurrence passée des événements.
 2. **Parents.** Au plus trois parents intra-tranche par nœud, avec une exception motivée à quatre. Les parents continus sont discrétisés aux quantiles historiques 33 et 67. Si le choix des parents crée un cycle, l'arc le plus faible est renvoyé à la tranche suivante.
 3. **Tables de probabilités conditionnelles explicites** (Pearl 1988).
-4. **Incertitude des paramètres.** Chaque ligne de table est une loi de Dirichlet centrée sur l'agrégat. Sa concentration est tirée de la dispersion du premier tour d'élicitation, avec un plancher calé sur le test du jugement (section 8.7). La simulation tire au moins 500 jeux de paramètres, puis 1 000 trajectoires par jeu. Chaque sortie est publiée avec son intervalle crédible à 80 %.
+4. **Incertitude des paramètres.** Chaque ligne de table est une loi de Dirichlet centrée sur l'agrégat. Sa concentration est tirée de la dispersion du premier tour d'élicitation, avec un plancher calé sur le test du jugement (section 8.7). Faute d'évaluateurs d'une autre famille, ce plancher n'est jamais inférieur à l'écart observé entre les estimations et les cotes externes du pool P1, une fois celles-ci disponibles. La simulation tire au moins 500 jeux de paramètres, puis 1 000 trajectoires par jeu. Chaque sortie est publiée avec son intervalle crédible à 80 %.
 5. **Calage sur les cotes.** Un nœud coté reste dans le réseau. On décale l'ordonnée de sa table, en log-cotes, jusqu'à ce que la marginale calculée égale la cote. La cote est fiable si elle cumule un volume d'au moins 100 000 dollars, un écart entre l'offre et la demande d'au plus 3 points, et porte sur le même événement, résolu à un mois près. Sinon, pas de calage. Les questions calées vont dans P1.
 6. **Sensibilité.** Régression des sorties principales sur les jeux de paramètres tirés : part de variance expliquée par ligne de table. Publiée à chaque version.
 
@@ -58,7 +58,7 @@ Avant la phase 3, les chaînes de jalons peuvent être pilotées sur la piste ex
 ### 5.1 Identification
 
 1. Balayage v1 complété des décisions d'acteurs, de la boucle souverain-banques et de la fonction de réaction de la BCE.
-2. Pré-mortem (Klein 2007) par un modèle d'une autre famille, relayé par Nathan.
+2. Pré-mortem (Klein 2007) par deux agents distincts, sans accès au balayage, puis lu par Nathan, qui peut ajouter des objets avec trace.
 3. Second balayage à un mois d'intervalle, avant la phase 3. Le recouvrement est publié (indice de Jaccard).
 4. Hiérarchie des sources : séries officielles primaires, puis données d'agences, puis presse de référence. Tout niveau de paramétrage vient d'une source primaire ou de `collect.py`. Les divergences sont tranchées et consignées.
 
@@ -91,7 +91,7 @@ Les événements de probabilité inférieure à 5 % sur la période et d'impact 
 
 ### 6.1 Composition et règles
 
-- **Effectif.** Au moins cinq évaluateurs, dont au moins trois modèles différents de la famille principale. Un évaluateur d'une autre famille reçoit l'ensemble des tables, en un message par tour, relayé par Nathan.
+- **Effectif.** Au moins cinq évaluateurs, répartis sur au moins trois modèles différents de la famille disponible (par exemple Opus, Sonnet, Haiku). Aucun modèle d'une autre famille n'est disponible : la diversité des évaluateurs reste limitée, ce qui est compensé par le plancher de dispersion (section 4.4) et par la référence externe (section 8.4).
 - **Entrées aveugles.** Nom, définition, mécanisme et mesure ; ni cote ni note d'autrui au premier tour. L'ordre est aléatoire et aucune posture n'est imposée.
 - **Accord.** L'alpha de Krippendorff est publié. On ne refait pas de passage pour l'améliorer : un accord faible élargit les lois de Dirichlet. Un accord élevé n'est pas une preuve de qualité.
 
@@ -146,7 +146,7 @@ Une grappe correspond à une variable source, ou à un lien pour les jalons, sur
 
 1. **Persistance** : marche aléatoire à la volatilité historique pour les variables, statu quo pour les événements.
 2. **Taux de base constant**, et **50 %**.
-3. **Références externes** sur P1 : prévision communautaire Metaculus ou prix Polymarket.
+3. **Références externes** sur P1 : prévision communautaire Metaculus ou prix Polymarket. Ce sont les seuls comparateurs extérieurs à la famille de modèles utilisée ; l'écart à ces références est publié à chaque bilan, même si le pool P1 ne sert pas aux critères d'échec.
 4. **Ensemble direct** : au moins cinq prévisionnistes IA avec recherche, médiane non extrémisée.
 5. **Modèle témoin** : mêmes marginales, nœuds indépendants, sans dépendances.
 
@@ -231,7 +231,7 @@ Un jalon de type état est une preuve sur le nœud amont, traitée comme une pre
 ### 10.6 Périmètre et définition
 
 - **Liens suivis.** Les 3 à 5 liens dont la part de variance expliquée sur les pivots principaux est la plus forte (section 4.6), avec au plus 8 jalons par lien.
-- **Définition.** Les jalons sont proposés par un agent sur sources primaires. Leurs vraisemblances a et b sont estimées par trois évaluateurs aveugles en un tour, plus un évaluateur d'une autre famille. Agrégation par moyenne des log-cotes.
+- **Définition.** Les jalons sont proposés par un agent sur sources primaires. Leurs vraisemblances a et b sont estimées par trois évaluateurs aveugles en un tour, sur au moins deux modèles différents. Agrégation par moyenne des log-cotes.
 - **Gel ex ante.** Un jalon est défini et commité au moins 7 jours avant l'ouverture de sa fenêtre. Un jalon ajouté en cours de route ne porte que sur une fenêtre future ; un jalon défini après les faits est interdit.
 - **Révision.** Une fenêtre ne peut être déplacée que si le calendrier institutionnel change (report d'un vote, par exemple), avec la source. Le changement est journalisé.
 
@@ -330,12 +330,12 @@ La couche est comparée à la même piste sans mises à jour événementielles (
 - **Protocole.** Il ne change que par une nouvelle version, numérotée en première ligne et journalisée. Le tag et la release `protocole-vX.Y` sont créés automatiquement par GitHub Actions au premier commit de la version sur `main` (`.github/workflows/version-protocole.yml`). Le contrôle échoue si le texte change sans nouveau numéro.
 - **Routine hebdomadaire.** Jalons (section 10.7).
 - **Interventions humaines.** Toutes sont tracées.
-- **Relecture.** Obligatoire à chaque version. Critère d'arrêt : deux relectures consécutives sans défaut bloquant ni important. La mise en production de la phase 3 exige en plus une relecture par un modèle d'une autre famille ou par un prévisionniste humain.
+- **Relecture.** Obligatoire à chaque version. Critère d'arrêt : deux relectures consécutives sans défaut bloquant ni important. Le relecteur est de la même famille que les auteurs ; ses relectures sont conduites en sessions séparées, sans accès aux échanges de rédaction.
 
 ## 13. Limites assumées
 
 - **Cascades sociales et décisions individuelles.** Le modèle peut dire qu'un terrain est propice, pas dater l'étincelle.
-- **Élicitation.** Même structurée, elle reste un jugement, et des modèles d'une même famille partagent leurs biais.
+- **Une seule famille de modèles.** Évaluateurs, ensemble direct et relecteur appartiennent à la même famille et partagent ses biais. La comparaison du modèle à l'ensemble direct est donc interne à cette famille. Les seuls contrôles extérieurs sont les cotes externes du pool P1 (marchés, Metaculus) et la résolution des questions.
 - **Puissance.** Seuls des écarts nets de performance seront détectables. Un petit apport de la structure peut passer inaperçu, et la règle par défaut est alors de simplifier.
 - **Couche événementielle.** Elle juge vite, donc avec moins de recul. Ses erreurs sont mesurées (section 11.7), pas supposées nulles.
 - **Jalons.** Leur qualité dépend de fenêtres bien posées : une fenêtre trop étroite transforme un simple retard en échec du mécanisme. Le recalibrage trimestriel (section 10.4) et le critère de maintien (section 10.10) en mesurent le coût.
