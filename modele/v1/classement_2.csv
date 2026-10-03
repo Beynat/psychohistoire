@@ -1,0 +1,75 @@
+id;impact;incertitude;redondant;justification
+VE-01;4;2;;Stock de dette lourd et croissant, trajectoire quasi acquise mais contrainte majeure sur toutes les marges budgétaires.
+VE-02;4;3;;Le déficit conditionne budget, notation et marchés, avec une issue ouverte entre cible PLF et dérive de 0,5 pt.
+VE-03;3;2;VE-01;Grandeur quasi comptable de la dette et des taux, dont la hausse est déjà largement inscrite au PLF.
+VE-04;5;4;;Canal de transmission décisif du risque politique vers le budget et le crédit, niveau et dynamique encore incertains.
+VE-05;4;3;;Croissance faible déjà prévue à 0,4 à 0,9 % : la marge d'écart de quelques dixièmes pilote recettes et emploi.
+VE-06;3;3;;Remontée du chômage modérée (8,3 à 8,7 %), effet social réel mais graduel et retardé sur l'activité.
+VE-07;3;3;;Inflation autour de 2,5 % liée à l'énergie, érode le revenu réel mais reste modeste à l'échelle de 24 mois.
+VE-08;3;3;;Le revenu réel des ménages commande la consommation et le climat social, mais bouge de quelques dixièmes.
+VE-09;2;3;VE-08;Indicateur d'opinion économique surtout dérivé du revenu et de l'activité, faible pouvoir causal propre.
+VE-10;3;3;;Défaillances en hausse avec effet localisé sur l'emploi et le crédit, pas de rupture systémique à ce stade.
+VE-11;2;3;;Immobilier et crédit à l'habitat pèsent sur le BTP, effet sectoriel borné sur 24 mois.
+VE-12;2;2;;Déficit des retraites modeste (-5,1 Md€) et effet à 2028 limité aux conflits sur l'âge et l'indexation.
+VE-13;3;3;;Choix de consolider par l'impôt, effet réel sur l'activité mais variation de quelques dixièmes de PIB.
+VE-14;2;2;;Commandes aéronautiques et défense : soutien de +0,2 pt de PIB, tendance portée par des carnets pleins.
+VE-15;4;2;;Défiance au plus bas, tendance lourde déjà acquise qui borne l'acceptabilité de toute réforme ou austérité.
+VE-16;2;2;VE-08;Inégalités et pauvreté évoluent lentement et se lisent avec décalage de deux ans, sans effet propre à 24 mois.
+VE-17;2;4;;Diffusion de l'IA aux effets surtout après 2027 selon la fiche elle-même, impact emploi encore négligeable en France.
+VE-18;3;2;VE-15;Demande d'autorité stable sur des séries annuelles et co-mouvante avec la défiance, même vague de sondage.
+VE-19;2;1;VE-15;Sentiment de déclin installé à 90 %, quasi constant et peu discriminant pour la trajectoire.
+VE-20;3;4;;Intensité protestataire auto-excitée, pics imprévisibles liés aux annonces d'austérité mais effets durables rares.
+VE-21;2;3;;Violence politique en hausse mais limitée en volume, effet sur la trajectoire surtout via la campagne.
+VE-22;1;2;VE-15;Attitude d'opinion annuelle sans mécanisme causal démontré à 24 mois, variable de seuil très indirecte.
+VE-23;2;3;;Abstention déjà record aux municipales, effet sur la légitimité mais peu sur l'issue présidentielle.
+VE-24;1;3;;Variable lente sans série ni taux de base, effet nul à 24 mois, construction théorique non observée.
+VE-25;2;2;VE-08;Mesure relative proche du pouvoir d'achat, évolution lente et amortie par l'État-providence.
+VE-26;1;1;;Paramètre quasi fixe sur 24 mois, simple conditionnant d'EV-11 sans dynamique propre.
+VE-27;2;4;;Mécanisme plausible mais sans série publique, effet confondu avec l'intensité protestataire.
+EV-01;4;3;;Une dégradation renchérit le financement et reste ouverte (Moody's négative), effet net surtout via VE-04.
+EV-02;3;4;EV-15;Loi spéciale ou ordonnance : effet réel limité comme en 2024, dépend surtout de la censure en amont.
+EV-03;3;2;VE-02;Seuil sur le déficit 2027 : dépassement de 5,0 % jugé probable par HCFP, CE et Fitch, simple résolution de VE-02.
+EV-04;2;3;;Durcissement de procédure avec effet surtout symbolique, la contrainte réelle passe déjà par les marchés.
+EV-05;5;4;;L'issue présidentielle fixe la politique budgétaire, européenne et institutionnelle, avec cotes de 34 à 45 % pour le favori.
+EV-06;3;3;VE-05;Simple seuil sur la croissance trimestrielle, à garder comme indicateur de résolution et non comme moteur.
+EV-07;2;4;;Cyberattaque spectaculaire mais interruptions de plus de 24 h rares et effet macro historiquement très limité.
+EV-08;1;3;;Ingérence documentable mais effet démontré sur un résultat présidentiel quasi nul, simple bruit de campagne.
+EV-09;2;2;;Canicules quasi certaines, perte agricole de 0,1 pt de PIB seulement : spectaculaire mais économiquement mineur.
+EV-10;2;3;;Mouvement lycéen de 3 semaines type 2005, effet politique ponctuel et faible sur la trajectoire d'ensemble.
+EV-11;3;4;;Émeutes nationales à environ 10 % par an : fort impact médiatique et sécuritaire, coût macro de 2023 faible.
+EV-12;3;3;VE-20;Franchissement de seuil sur l'intensité protestataire, déjà défini presque comme un seuil de VE-20.
+EV-13;2;3;;Grève fonction publique à 9,6 % loin du seuil de 18 %, effets sur le budget historiquement limités.
+EV-14;2;2;;Vague agricole quasi annuelle, forte visibilité mais effet de trajectoire borné et récurrent.
+EV-15;3;4;;Censure plausible au vu du PS, mais précédent de 2024 : effet budgétaire modéré, effet politique réel surtout vers 2027.
+EV-16;4;4;;Dissolution après la présidentielle serait l'outil de construction d'une majorité, date et probabilité très ouvertes.
+EV-17;4;4;;Cohabitation ou blocage selon législatives conditionne la capacité de gouverner, conditionnel à EV-16.
+EX-01;3;3;EX-03;Prix du pétrole dérivé du conflit du Golfe, Brent revenu près de 90 à 100 $ avec effet inflation modéré.
+EX-02;3;3;;Gaz cher mais France amortie par le nucléaire, risque hivernal réel sur industrie et prix surtout en 2026-2027.
+EX-03;4;3;;Choc énergétique déjà largement transmis, brut revenu à son niveau d'avant-guerre, cessez-le-feu coté à 82 %.
+EX-04;3;4;;Correction IA aurait un effet financier mondial réel mais transmission à la France indirecte et date imprévisible.
+EX-05;4;3;;Taux longs mondiaux tirent directement la charge de la dette française et déterminent VE-04 en grande partie.
+EX-06;3;3;;Politique de la BCE transmise au crédit et à la dette, hausses modestes attendues donc effet moyen.
+EX-07;2;3;;Droits américains : +1 pt de taux effectif, effet de quelques dixièmes sur les exportations françaises.
+EX-08;2;3;EX-03;Pénuries d'intrants dérivées du Golfe, effet sectoriel et temporaire sans pouvoir propre.
+EX-09;2;2;;El Niño fort quasi acquis, canal alimentaire de +10 % en scénario de risque, effet net limité en France.
+EX-10;3;4;;Cessez-le-feu ou poursuite change défense, énergie et climat de menace, mais effet direct sur la France surtout indirect.
+EX-11;2;4;;Risque de crédit privé réel mais opaque et sans déclencheur identifié, effet conditionnel à un choc financier.
+EX-12;3;3;;Demande des partenaires à 1,0 % : pilote une partie de l'écart de croissance, tendance peu volatile.
+EX-13;3;2;;Conflit direct Russie-OTAN coté à 4-6 % : effet colossal s'il survient mais quasi exclu sur la période, pèse peu en espérance.
+EX-14;3;3;;Récession américaine à 8 % à fin 2026, effet par taux et demande extérieure mais probabilité basse.
+EX-15;1;3;;Résultat des midterms connu le 03/11, effet sur la France très indirect et déjà peu discriminant.
+EX-16;3;2;;Invasion de Taïwan à 12 % : choc mondial majeur mais probabilité faible et issue non liée à la France.
+VE-C1;3;3;;Immigration et asile : saillance structurante dans la campagne, effet économique faible mais effet électoral réel.
+VE-C2;2;3;;Narcotrafic : homicides stables, effet sur l'ordre public localisé et sur l'agenda, peu sur l'économie.
+VE-C3;3;3;;Nucléaire disponible amortit le choc gazier mais prix de gros 2027 doublé affecte l'industrie et le tarif régulé.
+VE-C4;3;2;;Hausse des crédits de défense déjà votée, effet d'éviction sur les autres dépenses réel mais à trajectoire connue.
+VE-C5;2;2;;Popularité exécutive très basse, déjà acquise, pèse peu sur la trajectoire au-delà de la capacité à voter le budget.
+VE-C6;4;4;EV-05;Série mensuelle sous-jacente à EV-05, quasi relation comptable avec l'issue présidentielle.
+VE-C7;3;2;;Désindustrialisation lente et structurelle avec fermetures nettes, effet local et politique plus que macro à 24 mois.
+VE-C8;2;2;;Contribution et investissement local : effet sur la commande publique et le BTP mais ampleur limitée.
+VE-C9;2;2;;Tension hospitalière réelle mais déjà en trajectoire, effet indirect surtout via saillance et conflits sociaux.
+EV-C1;3;4;;Attentat meurtrier : effet d'agenda ponctuel en campagne, effet durable sur la trajectoire plus incertain.
+EV-C2;2;4;;Crise d'ordre public outre-mer localisée, coût budgétaire et agenda mais poids national réduit.
+EV-C3;2;3;;Accord CFP 2028-2034 : effets surtout après 2028, impact sur la période limité à l'agenda agricole.
+EV-C4;2;3;;Avis de la CJUE sur Mercosur : application provisoire déjà en vigueur, effet agricole et commercial modéré.
+EX-C1;2;3;;Taux de change EUR/USD stable à ±10 % : effet de quelques dixièmes sur export et facture pétrolière.
