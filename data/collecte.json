@@ -1,12 +1,12 @@
 {
- "execution": "2026-10-03T11:28:21Z",
+ "execution": "2026-10-03T11:29:37Z",
  "series": {
   "dette_trimestrielle_FR": {
    "nom": "Dette publique, % du PIB (trimestrielle)",
    "lie": "SI-01-01",
    "source": "Eurostat gov_10q_ggdebt",
    "statut": "ok",
-   "maj": "2026-10-03T11:28:21Z",
+   "maj": "2026-10-03T11:29:37Z",
    "donnees": [
     [
      "2024-Q2",
@@ -47,7 +47,7 @@
    "lie": "SI-01-05",
    "source": "BCE IRS.M.FR.L.L40.CI.0000.EUR.N.Z",
    "statut": "ok",
-   "maj": "2026-10-03T11:28:21Z",
+   "maj": "2026-10-03T11:29:37Z",
    "donnees": [
     [
      "2024-09",
@@ -152,7 +152,7 @@
    "lie": "SI-01-04",
    "source": "BCE IRS.M.DE.L.L40.CI.0000.EUR.N.Z",
    "statut": "ok",
-   "maj": "2026-10-03T11:28:21Z",
+   "maj": "2026-10-03T11:29:37Z",
    "donnees": [
     [
      "2024-09",
@@ -255,46 +255,10 @@
   "inflation_FR": {
    "nom": "Inflation harmonisée France, glissement annuel",
    "lie": null,
-   "source": "Eurostat prc_hicp_manr",
+   "source": "Eurostat HICP (jeu le plus récent disponible)",
    "statut": "ok",
-   "maj": "2026-10-03T11:28:21Z",
+   "maj": "2026-10-03T11:29:37Z",
    "donnees": [
-    [
-     "2025-01",
-     1.8
-    ],
-    [
-     "2025-02",
-     0.9
-    ],
-    [
-     "2025-03",
-     0.9
-    ],
-    [
-     "2025-04",
-     0.9
-    ],
-    [
-     "2025-05",
-     0.6
-    ],
-    [
-     "2025-06",
-     0.9
-    ],
-    [
-     "2025-07",
-     0.9
-    ],
-    [
-     "2025-08",
-     0.8
-    ],
-    [
-     "2025-09",
-     1.1
-    ],
     [
      "2025-10",
      0.8
@@ -306,6 +270,42 @@
     [
      "2025-12",
      0.7
+    ],
+    [
+     "2026-01",
+     0.4
+    ],
+    [
+     "2026-02",
+     1.1
+    ],
+    [
+     "2026-03",
+     2.0
+    ],
+    [
+     "2026-04",
+     2.5
+    ],
+    [
+     "2026-05",
+     2.8
+    ],
+    [
+     "2026-06",
+     2.0
+    ],
+    [
+     "2026-07",
+     2.4
+    ],
+    [
+     "2026-08",
+     2.6
+    ],
+    [
+     "2026-09",
+     3.4
     ]
    ]
   },
@@ -313,17 +313,37 @@
    "nom": "Taux de la facilité de dépôt de la BCE",
    "lie": null,
    "source": "BCE FM.D.U2.EUR.4F.KR.DFR.LEV",
-   "statut": "echec",
-   "erreur": "HTTPError: HTTP Error 504: Gateway Time-out",
-   "maj": null,
-   "donnees": null
+   "statut": "ok",
+   "maj": "2026-10-03T11:29:37Z",
+   "donnees": [
+    [
+     "2026-09-29",
+     2.5
+    ],
+    [
+     "2026-09-30",
+     2.5
+    ],
+    [
+     "2026-10-01",
+     2.5
+    ],
+    [
+     "2026-10-02",
+     2.5
+    ],
+    [
+     "2026-10-03",
+     2.5
+    ]
+   ]
   },
   "polymarket_presidentielle": {
    "nom": "Marchés de prédiction : présidentielle française",
    "lie": "Q-PV02-A",
    "source": "Polymarket (API publique)",
    "statut": "ok",
-   "maj": "2026-10-03T11:28:21Z",
+   "maj": "2026-10-03T11:29:37Z",
    "donnees": [
     {
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
@@ -482,7 +502,7 @@
    "lie": "SI-01-04",
    "source": "Calcul à partir des séries BCE",
    "statut": "ok",
-   "maj": "2026-10-03T11:28:21Z",
+   "maj": "2026-10-03T11:29:37Z",
    "donnees": [
     [
      "2024-09",
