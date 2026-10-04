@@ -21,10 +21,12 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 
 ## Ensemble direct
 
-- [ ] Consigne des cinq prévisionnistes rédigée et versionnée.
-- [ ] Agrégation par médiane non extrémisée, scriptée.
+- [x] Consigne des cinq prévisionnistes rédigée et versionnée : `modele/consigne_ensemble.md` (v1.0).
+- [x] Agrégation par médiane non extrémisée, scriptée : `scripts/ensemble.py` (au moins 5 prévisionnistes et 3 modèles, contrôle des réponses).
 
 ## Exécution
+
+- [x] Procédure du cycle mensuel écrite : `modele/controle/cycle_mensuel.md`.
 
 - [ ] Tâches planifiées créées : tri (trois fois par semaine), cycle mensuel (section 12).
 - [ ] Règle de rattrapage testée sur un passage manqué simulé.
