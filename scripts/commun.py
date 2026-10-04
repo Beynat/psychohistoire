@@ -13,10 +13,15 @@ PARIS = ZoneInfo("Europe/Paris")
 # Variables d'état suivies en phase 1 (noyau, sections 7.1 et 8.1) : série mensuelle collectée,
 # libellé, unité, délai habituel de publication en mois après la période.
 VARIABLES = {
-    "ecart_FR_DE_pb": {"nom": "écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE)", "unite": "pb", "delai": 1},
+    "ecart_FR_DE_pb": {"nom": "écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE)", "unite": "pb", "delai": 1,
+                       "proxy": "ecart_FR_DE_journalier_pb"},
     "inflation_ipch_FR": {"nom": "inflation IPCH France sur un an", "unite": "%", "delai": 1},
     "chomage_FR": {"nom": "taux de chômage France (Eurostat, CVS)", "unite": "%", "delai": 1},
 }
+# Ancrage quotidien (cycle à blanc) : quand une série mensuelle publiée tard a un équivalent quotidien
+# (« proxy »), le niveau de départ est la moyenne des 5 dernières observations quotidiennes, corrigée
+# du décalage moyen entre la série mensuelle et la moyenne mensuelle du proxy sur les 12 derniers mois
+# communs. Le mois de départ est celui de la dernière observation quotidienne.
 HORIZONS = (1, 2, 3)          # mois après le mois du gel
 QUANTILES = (20, 50, 80)      # seuils aux quantiles de la marche aléatoire (section 8.1)
 HISTO_DEBUT = "2010-01"       # fenêtre d'estimation des variations (section 7.1)
@@ -49,6 +54,22 @@ def serie(nom):
     p = RACINE / "data" / "historique" / f"{nom}.csv"
     with p.open(encoding="utf-8") as f:
         return [(r["periode"], float(r["valeur"])) for r in csv.DictReader(f) if r["valeur"] not in ("", None)]
+
+
+def ancrage_quotidien(mensuelle, quotidienne):
+    """Renvoie (mois de départ, niveau estimé, correction) ou None si le proxy est inutilisable."""
+    if len(quotidienne) < 30:
+        return None
+    moy = {}
+    for p, v in quotidienne:
+        moy.setdefault(p[:7], []).append(v)
+    m = dict(mensuelle)
+    communs = sorted(k for k in moy if k in m)[-12:]
+    if len(communs) < 6:
+        return None
+    correction = sum(m[k] - sum(moy[k]) / len(moy[k]) for k in communs) / len(communs)
+    niveau = sum(v for _, v in quotidienne[-5:]) / 5 + correction
+    return quotidienne[-1][0][:7], niveau, correction
 
 
 def mois_suivant(m, k=1):

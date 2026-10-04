@@ -18,3 +18,5 @@ Ce dossier est un essai de la chaîne complète sur la piste exploratoire (4 oct
 | La question mensuelle sur l'élection d'un président sans majorité absolue n'a pas de sens : ce critère se juge à l'issue de législatives. | Pas de question mensuelle pour cet événement (`scripts/evenements.py`). |
 
 Les prévisions de ce cycle sont dans `registre/essai.jsonl`. Elles ne comptent pas.
+
+**Mise à jour du 4 octobre 2026.** Le problème de l'écart de taux est résolu. L'OAT quotidienne est désormais collectée par Webstat, et les seuils partent du dernier niveau quotidien corrigé du décalage avec la série BCE. Dans un test pour un gel au 1er novembre, le seuil médian de novembre passe de 82 à 118 pb.

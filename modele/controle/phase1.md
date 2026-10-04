@@ -30,7 +30,7 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 
 - [ ] Tâches planifiées créées : tri (trois fois par semaine), cycle mensuel (section 12).
 - [ ] Règle de rattrapage testée sur un passage manqué simulé.
-- [ ] Clé API Webstat (Banque de France) pour l'OAT quotidienne, en secret GitHub `WEBSTAT_KEY`, puis seuils de l'écart calés sur la dernière observation quotidienne.
+- [x] Clé API Webstat en secret GitHub `WEBSTAT_KEY` ; OAT quotidienne (TEC 10, depuis 2010) collectée chaque nuit par `collecte/webstat.py` ; seuils de l'écart calés sur le niveau quotidien corrigé du décalage avec la série BCE (4 octobre 2026).
 - [ ] Workflow de contrôle des registres actif : ajout seul, `--no-renames`, horodatage dans la fenêtre de poussée, décisions de tri en JSONL (section 12).
 - [x] Tags `protocole-v*` et `annexe-phase3-v*` protégés contre la suppression et la mise à jour (ruleset actif depuis le 4 octobre 2026).
 - [x] Branche `main` protégée contre la poussée forcée et la suppression (ruleset actif depuis le 4 octobre 2026).
@@ -38,6 +38,6 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 
 ## Prérequis de la phase 2 (1er décembre 2026)
 
-- [ ] Écart de taux OAT-Bund journalier collecté. Aucune source gratuite sans clé trouvée pour l'OAT journalière (Webstat exige une clé, AFT bloque les scripts) ; le Bund journalier est disponible (Bundesbank). Piste : clé Webstat gratuite de la Banque de France.
+- [x] Écart de taux OAT-Bund journalier collecté depuis 2010 : TEC 10 (Banque de France) moins Bund 10 ans (Bundesbank, courbe Svensson). Décalage moyen avec la série BCE : environ −9 pb sur 12 mois, corrigé à l'ancrage.
 - [ ] Historique journalier 2010-2025 pour le rétro-test (section 7.1).
 - [ ] Source des sondages de la présidentielle identifiée et collectée (agrégat public ou instituts), avec l'historique des présidentielles 2002 à 2022 pour l'erreur des sondages (section 7.1).

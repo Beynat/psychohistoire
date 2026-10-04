@@ -42,13 +42,22 @@ def generer(gel, etiquette=None):
 
     for nom, meta in VARIABLES.items():
         s = lire(nom)
-        dernier, base = s[-1]
+        publie, base_publiee = s[-1]
+        dernier, base, ancrage = publie, base_publiee, None
+        if meta.get("proxy"):
+            try:
+                a = commun.ancrage_quotidien(s, lire(meta["proxy"]))
+            except FileNotFoundError:
+                a = None
+            if a and a[0] > publie:
+                dernier, base = a[0], a[1]
+                ancrage = {"proxy": meta["proxy"], "niveau_estime": round(a[1], 1), "correction": round(a[2], 1)}
         for h in HORIZONS:
             cible = mois_suivant(mois, h - 1)
-            if cible <= dernier:
+            if cible <= publie:
                 ecartees.append((f"{nom} {cible}", "valeur déjà publiée"))
                 continue
-            pas = ecart_mois(dernier, cible)
+            pas = max(1, ecart_mois(dernier, cible))
             var = variations(s, pas)
             for q in QUANTILES:
                 seuil = arrondi(base + quantile(var, q), meta["unite"])
@@ -56,10 +65,12 @@ def generer(gel, etiquette=None):
                 qs.append({
                     "id": qid, "type": "variable", "pool": correspondances.get(qid, {}).get("pool", "P2a"),
                     "grappe": f"{nom}-{trimestre(cible)}",
-                    "texte": f"La valeur de « {meta['nom']} » pour {cible} est-elle supérieure ou égale à {seuil} {meta['unite']} ? (Dernière valeur publiée au gel : {base:g} {meta['unite']} pour {dernier}.)",
+                    "texte": f"La valeur de « {meta['nom']} » pour {cible} est-elle supérieure ou égale à {seuil} {meta['unite']} ? (Dernière valeur publiée au gel : {base_publiee:g} {meta['unite']} pour {publie}"
+                            + (f" ; niveau récent estimé d'après les données quotidiennes : {base:.0f} {meta['unite']})" if ancrage else ")"),
                     "issues": ["oui", "non"], "echeance": iso_fin_mois(mois_suivant(cible, meta["delai"])),
                     "details": {"serie": nom, "periode": cible, "seuil": seuil, "derniere_periode": dernier,
-                                "derniere_valeur": base, "pas": pas, "quantile": q, "n_variations": len(var)},
+                                "derniere_valeur": round(base, 2), "pas": pas, "quantile": q, "n_variations": len(var),
+                                "derniere_publiee": [publie, base_publiee], "ancrage_quotidien": ancrage},
                 })
 
     evts = lire_json("modele/evenements.json")["evenements"]
