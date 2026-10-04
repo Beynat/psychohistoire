@@ -4,12 +4,12 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 
 ## Scripts
 
-- [ ] `scripts/questions.py` : génération mécanique de la banque de questions (section 8.1), seuils aux quantiles 20, 50 et 80 de la marche aléatoire, grappes (section 8.3).
-- [ ] `scripts/geler.py` : gel des données à date, empreinte des fichiers, commit avant toute prévision (section 8.2).
-- [x] `scripts/registre.py` : ajout des prévisions au registre, au format de la section 0, horodatage par l'horloge système (version initiale le 4 octobre 2026 ; à compléter par des tests).
-- [ ] `scripts/notation.py` : Brier, score logarithmique, décomposition de Murphy, Brier pondéré dans le temps, tests par grappes (section 8.5).
-- [ ] `scripts/puissance.py` : simulation de puissance publiée avant le premier cycle (section 8.3).
-- [ ] `scripts/comparateurs.py` : persistance, taux de base, 50 % (section 8.4).
+- [x] `scripts/questions.py` : banque de questions, seuils aux quantiles de la marche aléatoire, grappes, pools (environ 57 questions et 35 grappes par cycle).
+- [x] `scripts/geler.py` : gel des données, manifeste à empreintes SHA-256, gel jamais réécrit.
+- [x] `scripts/registre.py` : ajout au registre, horodatage par l'horloge système, propositions et résolutions ; tests dans `scripts/tests.py`.
+- [x] `scripts/notation.py` : Brier, logarithmique, Murphy, Brier pondéré dans le temps, test par grappes à permutation de signes.
+- [x] `scripts/puissance.py` : puissance publiée dans `data/puissance.json` (environ 61 à 79 % à 40 grappes pour un écart de Brier de 0,02 ; fausse alarme 9 à 10 %).
+- [x] `scripts/comparateurs.py` : persistance, taux de base ramené à la fenêtre, 50 %.
 
 ## Données et questions
 
@@ -17,7 +17,7 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [x] Historique long des séries mensuelles et trimestrielles (taux 10 ans FR et DE et écart depuis 1990, IPCH depuis 1997, dette, PIB, chômage) : `collecte/historique.py`, `data/historique/` (4 octobre 2026).
 - [x] Collecte des cotes externes pour P1 : Polymarket (232 marchés France, volume, écart offre-demande, drapeau de fiabilité), `collecte/cotes.py`. Metaculus exige un jeton : inaccessible, limite consignée (4 octobre 2026).
 - [x] Taux de base des 20 questions résolubles, deux classes de référence ou plus, fourchette et classe retenue : `modele/taux_base/`, fusion `scripts/taux_base.py` → `modele/taux_base.json` (4 octobre 2026). Bornés entre 2 et 98 % pour le score logarithmique. Plusieurs comptages reposent sur des sources partielles, signalées dans le champ « incertitude » : à revoir au premier bilan.
-- [ ] Script de résolution : séries par script, événements sur source primaire, double résolution des cas ambigus (section 8.8).
+- [x] `scripts/resolution.py` : séries par script, événements par propositions d'agents concordantes, troisième avis, annulation.
 
 ## Ensemble direct
 

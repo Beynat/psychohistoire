@@ -1,0 +1,348 @@
+{
+ "etabli_le": "2026-10-04T10:06:17+02:00",
+ "sigma": 0.12,
+ "simulations": 2000,
+ "seuil": "unilatéral 10 %",
+ "taux_fausse_alarme_delta_0": {
+  "12": 0.087,
+  "40": 0.102
+ },
+ "table": [
+  {
+   "grappes": 12,
+   "questions_par_grappe": 4,
+   "rho": 0.1,
+   "delta_brier": 0.007,
+   "puissance": 0.156
+  },
+  {
+   "grappes": 12,
+   "questions_par_grappe": 4,
+   "rho": 0.1,
+   "delta_brier": 0.02,
+   "puissance": 0.352
+  },
+  {
+   "grappes": 12,
+   "questions_par_grappe": 4,
+   "rho": 0.1,
+   "delta_brier": 0.04,
+   "puissance": 0.728
+  },
+  {
+   "grappes": 12,
+   "questions_par_grappe": 4,
+   "rho": 0.3,
+   "delta_brier": 0.007,
+   "puissance": 0.147
+  },
+  {
+   "grappes": 12,
+   "questions_par_grappe": 4,
+   "rho": 0.3,
+   "delta_brier": 0.02,
+   "puissance": 0.289
+  },
+  {
+   "grappes": 12,
+   "questions_par_grappe": 4,
+   "rho": 0.3,
+   "delta_brier": 0.04,
+   "puissance": 0.606
+  },
+  {
+   "grappes": 12,
+   "questions_par_grappe": 6,
+   "rho": 0.1,
+   "delta_brier": 0.007,
+   "puissance": 0.166
+  },
+  {
+   "grappes": 12,
+   "questions_par_grappe": 6,
+   "rho": 0.1,
+   "delta_brier": 0.02,
+   "puissance": 0.404
+  },
+  {
+   "grappes": 12,
+   "questions_par_grappe": 6,
+   "rho": 0.1,
+   "delta_brier": 0.04,
+   "puissance": 0.835
+  },
+  {
+   "grappes": 12,
+   "questions_par_grappe": 6,
+   "rho": 0.3,
+   "delta_brier": 0.007,
+   "puissance": 0.161
+  },
+  {
+   "grappes": 12,
+   "questions_par_grappe": 6,
+   "rho": 0.3,
+   "delta_brier": 0.02,
+   "puissance": 0.318
+  },
+  {
+   "grappes": 12,
+   "questions_par_grappe": 6,
+   "rho": 0.3,
+   "delta_brier": 0.04,
+   "puissance": 0.648
+  },
+  {
+   "grappes": 25,
+   "questions_par_grappe": 4,
+   "rho": 0.1,
+   "delta_brier": 0.007,
+   "puissance": 0.216
+  },
+  {
+   "grappes": 25,
+   "questions_par_grappe": 4,
+   "rho": 0.1,
+   "delta_brier": 0.02,
+   "puissance": 0.54
+  },
+  {
+   "grappes": 25,
+   "questions_par_grappe": 4,
+   "rho": 0.1,
+   "delta_brier": 0.04,
+   "puissance": 0.952
+  },
+  {
+   "grappes": 25,
+   "questions_par_grappe": 4,
+   "rho": 0.3,
+   "delta_brier": 0.007,
+   "puissance": 0.185
+  },
+  {
+   "grappes": 25,
+   "questions_par_grappe": 4,
+   "rho": 0.3,
+   "delta_brier": 0.02,
+   "puissance": 0.44
+  },
+  {
+   "grappes": 25,
+   "questions_par_grappe": 4,
+   "rho": 0.3,
+   "delta_brier": 0.04,
+   "puissance": 0.859
+  },
+  {
+   "grappes": 25,
+   "questions_par_grappe": 6,
+   "rho": 0.1,
+   "delta_brier": 0.007,
+   "puissance": 0.238
+  },
+  {
+   "grappes": 25,
+   "questions_par_grappe": 6,
+   "rho": 0.1,
+   "delta_brier": 0.02,
+   "puissance": 0.623
+  },
+  {
+   "grappes": 25,
+   "questions_par_grappe": 6,
+   "rho": 0.1,
+   "delta_brier": 0.04,
+   "puissance": 0.974
+  },
+  {
+   "grappes": 25,
+   "questions_par_grappe": 6,
+   "rho": 0.3,
+   "delta_brier": 0.007,
+   "puissance": 0.208
+  },
+  {
+   "grappes": 25,
+   "questions_par_grappe": 6,
+   "rho": 0.3,
+   "delta_brier": 0.02,
+   "puissance": 0.507
+  },
+  {
+   "grappes": 25,
+   "questions_par_grappe": 6,
+   "rho": 0.3,
+   "delta_brier": 0.04,
+   "puissance": 0.886
+  },
+  {
+   "grappes": 40,
+   "questions_par_grappe": 4,
+   "rho": 0.1,
+   "delta_brier": 0.007,
+   "puissance": 0.263
+  },
+  {
+   "grappes": 40,
+   "questions_par_grappe": 4,
+   "rho": 0.1,
+   "delta_brier": 0.02,
+   "puissance": 0.703
+  },
+  {
+   "grappes": 40,
+   "questions_par_grappe": 4,
+   "rho": 0.1,
+   "delta_brier": 0.04,
+   "puissance": 0.992
+  },
+  {
+   "grappes": 40,
+   "questions_par_grappe": 4,
+   "rho": 0.3,
+   "delta_brier": 0.007,
+   "puissance": 0.206
+  },
+  {
+   "grappes": 40,
+   "questions_par_grappe": 4,
+   "rho": 0.3,
+   "delta_brier": 0.02,
+   "puissance": 0.586
+  },
+  {
+   "grappes": 40,
+   "questions_par_grappe": 4,
+   "rho": 0.3,
+   "delta_brier": 0.04,
+   "puissance": 0.962
+  },
+  {
+   "grappes": 40,
+   "questions_par_grappe": 6,
+   "rho": 0.1,
+   "delta_brier": 0.007,
+   "puissance": 0.272
+  },
+  {
+   "grappes": 40,
+   "questions_par_grappe": 6,
+   "rho": 0.1,
+   "delta_brier": 0.02,
+   "puissance": 0.788
+  },
+  {
+   "grappes": 40,
+   "questions_par_grappe": 6,
+   "rho": 0.1,
+   "delta_brier": 0.04,
+   "puissance": 0.998
+  },
+  {
+   "grappes": 40,
+   "questions_par_grappe": 6,
+   "rho": 0.3,
+   "delta_brier": 0.007,
+   "puissance": 0.231
+  },
+  {
+   "grappes": 40,
+   "questions_par_grappe": 6,
+   "rho": 0.3,
+   "delta_brier": 0.02,
+   "puissance": 0.615
+  },
+  {
+   "grappes": 40,
+   "questions_par_grappe": 6,
+   "rho": 0.3,
+   "delta_brier": 0.04,
+   "puissance": 0.976
+  },
+  {
+   "grappes": 60,
+   "questions_par_grappe": 4,
+   "rho": 0.1,
+   "delta_brier": 0.007,
+   "puissance": 0.292
+  },
+  {
+   "grappes": 60,
+   "questions_par_grappe": 4,
+   "rho": 0.1,
+   "delta_brier": 0.02,
+   "puissance": 0.823
+  },
+  {
+   "grappes": 60,
+   "questions_par_grappe": 4,
+   "rho": 0.1,
+   "delta_brier": 0.04,
+   "puissance": 1.0
+  },
+  {
+   "grappes": 60,
+   "questions_par_grappe": 4,
+   "rho": 0.3,
+   "delta_brier": 0.007,
+   "puissance": 0.264
+  },
+  {
+   "grappes": 60,
+   "questions_par_grappe": 4,
+   "rho": 0.3,
+   "delta_brier": 0.02,
+   "puissance": 0.706
+  },
+  {
+   "grappes": 60,
+   "questions_par_grappe": 4,
+   "rho": 0.3,
+   "delta_brier": 0.04,
+   "puissance": 0.991
+  },
+  {
+   "grappes": 60,
+   "questions_par_grappe": 6,
+   "rho": 0.1,
+   "delta_brier": 0.007,
+   "puissance": 0.347
+  },
+  {
+   "grappes": 60,
+   "questions_par_grappe": 6,
+   "rho": 0.1,
+   "delta_brier": 0.02,
+   "puissance": 0.893
+  },
+  {
+   "grappes": 60,
+   "questions_par_grappe": 6,
+   "rho": 0.1,
+   "delta_brier": 0.04,
+   "puissance": 1.0
+  },
+  {
+   "grappes": 60,
+   "questions_par_grappe": 6,
+   "rho": 0.3,
+   "delta_brier": 0.007,
+   "puissance": 0.272
+  },
+  {
+   "grappes": 60,
+   "questions_par_grappe": 6,
+   "rho": 0.3,
+   "delta_brier": 0.02,
+   "puissance": 0.776
+  },
+  {
+   "grappes": 60,
+   "questions_par_grappe": 6,
+   "rho": 0.3,
+   "delta_brier": 0.04,
+   "puissance": 0.994
+  }
+ ]
+}
