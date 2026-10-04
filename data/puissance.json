@@ -1,11 +1,11 @@
 {
- "etabli_le": "2026-10-04T22:05:41+02:00",
+ "etabli_le": "2026-10-04T22:30:56+02:00",
  "sigma": 0.12,
  "simulations": 4000,
  "seuil": "unilatéral 10 %",
  "taux_fausse_alarme_delta_0": {
   "12": 0.089,
-  "40": 0.099
+  "40": 0.097
  },
  "table": [
   {
@@ -181,14 +181,14 @@
    "questions_par_grappe": 4,
    "rho": 0.1,
    "delta_brier": 0.007,
-   "puissance": 0.255
+   "puissance": 0.253
   },
   {
    "grappes": 40,
    "questions_par_grappe": 4,
    "rho": 0.1,
    "delta_brier": 0.02,
-   "puissance": 0.696
+   "puissance": 0.695
   },
   {
    "grappes": 40,
@@ -202,35 +202,35 @@
    "questions_par_grappe": 4,
    "rho": 0.3,
    "delta_brier": 0.007,
-   "puissance": 0.225
+   "puissance": 0.223
   },
   {
    "grappes": 40,
    "questions_par_grappe": 4,
    "rho": 0.3,
    "delta_brier": 0.02,
-   "puissance": 0.584
+   "puissance": 0.582
   },
   {
    "grappes": 40,
    "questions_par_grappe": 4,
    "rho": 0.3,
    "delta_brier": 0.04,
-   "puissance": 0.958
+   "puissance": 0.957
   },
   {
    "grappes": 40,
    "questions_par_grappe": 6,
    "rho": 0.1,
    "delta_brier": 0.007,
-   "puissance": 0.284
+   "puissance": 0.283
   },
   {
    "grappes": 40,
    "questions_par_grappe": 6,
    "rho": 0.1,
    "delta_brier": 0.02,
-   "puissance": 0.804
+   "puissance": 0.803
   },
   {
    "grappes": 40,
@@ -244,14 +244,14 @@
    "questions_par_grappe": 6,
    "rho": 0.3,
    "delta_brier": 0.007,
-   "puissance": 0.227
+   "puissance": 0.225
   },
   {
    "grappes": 40,
    "questions_par_grappe": 6,
    "rho": 0.3,
    "delta_brier": 0.02,
-   "puissance": 0.626
+   "puissance": 0.624
   },
   {
    "grappes": 40,
@@ -265,14 +265,14 @@
    "questions_par_grappe": 4,
    "rho": 0.1,
    "delta_brier": 0.007,
-   "puissance": 0.313
+   "puissance": 0.312
   },
   {
    "grappes": 60,
    "questions_par_grappe": 4,
    "rho": 0.1,
    "delta_brier": 0.02,
-   "puissance": 0.832
+   "puissance": 0.831
   },
   {
    "grappes": 60,
@@ -286,14 +286,14 @@
    "questions_par_grappe": 4,
    "rho": 0.3,
    "delta_brier": 0.007,
-   "puissance": 0.271
+   "puissance": 0.268
   },
   {
    "grappes": 60,
    "questions_par_grappe": 4,
    "rho": 0.3,
    "delta_brier": 0.02,
-   "puissance": 0.719
+   "puissance": 0.715
   },
   {
    "grappes": 60,
@@ -307,14 +307,14 @@
    "questions_par_grappe": 6,
    "rho": 0.1,
    "delta_brier": 0.007,
-   "puissance": 0.338
+   "puissance": 0.335
   },
   {
    "grappes": 60,
    "questions_par_grappe": 6,
    "rho": 0.1,
    "delta_brier": 0.02,
-   "puissance": 0.899
+   "puissance": 0.897
   },
   {
    "grappes": 60,
@@ -328,14 +328,14 @@
    "questions_par_grappe": 6,
    "rho": 0.3,
    "delta_brier": 0.007,
-   "puissance": 0.266
+   "puissance": 0.261
   },
   {
    "grappes": 60,
    "questions_par_grappe": 6,
    "rho": 0.3,
    "delta_brier": 0.02,
-   "puissance": 0.744
+   "puissance": 0.742
   },
   {
    "grappes": 60,
@@ -354,7 +354,7 @@
    "questions_informatives": 12,
    "rho": 0.1,
    "delta_brier": 0.02,
-   "puissance": 0.191
+   "puissance": 0.188
   },
   {
    "butee": "2027-09-30",
@@ -364,7 +364,7 @@
    "questions_informatives": 12,
    "rho": 0.1,
    "delta_brier": 0.04,
-   "puissance": 0.368
+   "puissance": 0.362
   },
   {
    "butee": "2027-09-30",
@@ -374,7 +374,7 @@
    "questions_informatives": 12,
    "rho": 0.3,
    "delta_brier": 0.02,
-   "puissance": 0.173
+   "puissance": 0.168
   },
   {
    "butee": "2027-09-30",
@@ -384,7 +384,7 @@
    "questions_informatives": 12,
    "rho": 0.3,
    "delta_brier": 0.04,
-   "puissance": 0.27
+   "puissance": 0.264
   },
   {
    "butee": "2027-09-30",
@@ -394,7 +394,7 @@
    "questions_informatives": 12,
    "rho": 0.1,
    "delta_brier": 0.02,
-   "puissance": 0.322
+   "puissance": 0.319
   },
   {
    "butee": "2027-09-30",
@@ -404,7 +404,7 @@
    "questions_informatives": 12,
    "rho": 0.1,
    "delta_brier": 0.04,
-   "puissance": 0.59
+   "puissance": 0.585
   },
   {
    "butee": "2027-09-30",
@@ -414,7 +414,7 @@
    "questions_informatives": 12,
    "rho": 0.3,
    "delta_brier": 0.02,
-   "puissance": 0.251
+   "puissance": 0.249
   },
   {
    "butee": "2027-09-30",
@@ -424,7 +424,7 @@
    "questions_informatives": 12,
    "rho": 0.3,
    "delta_brier": 0.04,
-   "puissance": 0.488
+   "puissance": 0.484
   },
   {
    "butee": "2028-09-30",
@@ -433,95 +433,95 @@
    "questions": 206,
    "questions_informatives": 27,
    "rho": 0.1,
+   "delta_brier": 0.02,
+   "puissance": 0.272
+  },
+  {
+   "butee": "2028-09-30",
+   "grappes_P2b": 28,
+   "grappes_P2c": 0,
+   "questions": 206,
+   "questions_informatives": 27,
+   "rho": 0.1,
+   "delta_brier": 0.04,
+   "puissance": 0.529
+  },
+  {
+   "butee": "2028-09-30",
+   "grappes_P2b": 28,
+   "grappes_P2c": 0,
+   "questions": 206,
+   "questions_informatives": 27,
+   "rho": 0.3,
+   "delta_brier": 0.02,
+   "puissance": 0.211
+  },
+  {
+   "butee": "2028-09-30",
+   "grappes_P2b": 28,
+   "grappes_P2c": 0,
+   "questions": 206,
+   "questions_informatives": 27,
+   "rho": 0.3,
+   "delta_brier": 0.04,
+   "puissance": 0.4
+  },
+  {
+   "butee": "2028-09-30",
+   "grappes_P2b": 28,
+   "grappes_P2c": 15,
+   "questions": 251,
+   "questions_informatives": 27,
+   "rho": 0.1,
+   "delta_brier": 0.02,
+   "puissance": 0.351
+  },
+  {
+   "butee": "2028-09-30",
+   "grappes_P2b": 28,
+   "grappes_P2c": 15,
+   "questions": 251,
+   "questions_informatives": 27,
+   "rho": 0.1,
+   "delta_brier": 0.04,
+   "puissance": 0.694
+  },
+  {
+   "butee": "2028-09-30",
+   "grappes_P2b": 28,
+   "grappes_P2c": 15,
+   "questions": 251,
+   "questions_informatives": 27,
+   "rho": 0.3,
    "delta_brier": 0.02,
    "puissance": 0.276
   },
   {
    "butee": "2028-09-30",
    "grappes_P2b": 28,
-   "grappes_P2c": 0,
-   "questions": 206,
-   "questions_informatives": 27,
-   "rho": 0.1,
-   "delta_brier": 0.04,
-   "puissance": 0.535
-  },
-  {
-   "butee": "2028-09-30",
-   "grappes_P2b": 28,
-   "grappes_P2c": 0,
-   "questions": 206,
-   "questions_informatives": 27,
-   "rho": 0.3,
-   "delta_brier": 0.02,
-   "puissance": 0.214
-  },
-  {
-   "butee": "2028-09-30",
-   "grappes_P2b": 28,
-   "grappes_P2c": 0,
-   "questions": 206,
-   "questions_informatives": 27,
-   "rho": 0.3,
-   "delta_brier": 0.04,
-   "puissance": 0.405
-  },
-  {
-   "butee": "2028-09-30",
-   "grappes_P2b": 28,
-   "grappes_P2c": 15,
-   "questions": 251,
-   "questions_informatives": 27,
-   "rho": 0.1,
-   "delta_brier": 0.02,
-   "puissance": 0.355
-  },
-  {
-   "butee": "2028-09-30",
-   "grappes_P2b": 28,
-   "grappes_P2c": 15,
-   "questions": 251,
-   "questions_informatives": 27,
-   "rho": 0.1,
-   "delta_brier": 0.04,
-   "puissance": 0.696
-  },
-  {
-   "butee": "2028-09-30",
-   "grappes_P2b": 28,
-   "grappes_P2c": 15,
-   "questions": 251,
-   "questions_informatives": 27,
-   "rho": 0.3,
-   "delta_brier": 0.02,
-   "puissance": 0.278
-  },
-  {
-   "butee": "2028-09-30",
-   "grappes_P2b": 28,
    "grappes_P2c": 15,
    "questions": 251,
    "questions_informatives": 27,
    "rho": 0.3,
    "delta_brier": 0.04,
-   "puissance": 0.532
+   "puissance": 0.53
   }
  ],
  "demarrage_tardif": {
   "2027-01-01": {
    "grappes_P2b": 17,
    "questions_informatives": 12,
-   "puissance_0.04": 0.266
+   "puissance_0.04": 0.262
   },
   "2027-02-01": {
    "grappes_P2b": 17,
    "questions_informatives": 12,
-   "puissance_0.04": 0.257
+   "puissance_0.04": 0.252
   },
   "2027-03-01": {
    "grappes_P2b": 16,
    "questions_informatives": 12,
-   "puissance_0.04": 0.246
+   "puissance_0.04": 0.234
   },
   "2027-04-01": {
    "grappes_P2b": 15,
@@ -531,7 +531,7 @@
   "2027-05-01": {
    "grappes_P2b": 13,
    "questions_informatives": 1,
-   "puissance_0.04": 0.203
+   "puissance_0.04": 0.197
   }
  },
  "persistance_P2a": {

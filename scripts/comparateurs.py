@@ -20,7 +20,7 @@ Toutes les probabilités sont bornées entre 2 et 98 % avant renormalisation.
 """
 import sys
 
-from commun import RACINE, borne, jours, lire_json, proba_au_dessus, variations_question
+from commun import RACINE, jours, lire_json, proba_au_dessus, variations_question
 import commun
 from registre import ajouter
 
@@ -33,7 +33,9 @@ def lire_serie(cycle, nom):
 
 
 def normaliser(d):
-    b = {k: borne(v) for k, v in d.items()}
+    # Aucune borne (relecture 17, I3) : une borne appliquée à certains auteurs seulement les pénalise sur les
+    # événements rares ; le score logarithmique borne lui-même ses probabilités (commun.log_score).
+    b = {k: max(float(v), 0.0) for k, v in d.items()}
     s = sum(b.values())
     return {k: round(v * 100 / s, 1) for k, v in b.items()}
 

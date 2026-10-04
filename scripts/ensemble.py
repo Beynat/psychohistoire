@@ -11,12 +11,13 @@ prévisionniste (consigne v1.1).
 import statistics
 import sys
 
-from commun import RACINE, borne, lire_json
+from commun import RACINE, lire_json
 from registre import ajouter
 
 
 def normaliser(d):
-    b = {k: borne(v / 100) for k, v in d.items()}
+    # Médiane non extrémisée et non bornée (noyau, section 8.4 ; relecture 17, I3) : seulement renormalisée.
+    b = {k: max(v / 100, 0.0) for k, v in d.items()}
     s = sum(b.values())
     return {k: round(v * 100 / s, 1) for k, v in b.items()}
 

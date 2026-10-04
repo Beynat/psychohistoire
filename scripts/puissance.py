@@ -16,15 +16,19 @@ import sys
 
 from commun import ecrire_json, maintenant
 
-T10 = {4: 1.533, 5: 1.476, 9: 1.383, 11: 1.363, 14: 1.345, 19: 1.328, 24: 1.318, 39: 1.304, 59: 1.296, 79: 1.292}
+# Quantile 0,90 de la loi de Student (unilatéral 10 %), par degré de liberté (relecture 17, souhaitable 8 :
+# l'ancienne table arrondissait 16 degrés à 19).
+T10 = {1: 3.078, 2: 1.886, 3: 1.638, 4: 1.533, 5: 1.476, 6: 1.440, 7: 1.415, 8: 1.397, 9: 1.383, 10: 1.372,
+       11: 1.363, 12: 1.356, 13: 1.350, 14: 1.345, 15: 1.341, 16: 1.337, 17: 1.333, 18: 1.330, 19: 1.328,
+       20: 1.325, 21: 1.323, 22: 1.321, 23: 1.319, 24: 1.318, 25: 1.316, 26: 1.315, 27: 1.314, 28: 1.313,
+       29: 1.311, 30: 1.310, 40: 1.303, 60: 1.296, 80: 1.292, 120: 1.289}
 
 
 def t_critique(dl):
-    cles = sorted(T10)
-    for c in cles:
-        if dl <= c:
-            return T10[c]
-    return 1.2816
+    """Valeur exacte si tabulée, sinon celle du plus grand degré tabulé inférieur (prudent)."""
+    if dl <= 0:
+        return T10[1]
+    return T10[max(c for c in T10 if c <= dl)] if dl <= 120 else 1.2816
 
 
 def puissance_banque(ms, delta, rho, sigma, nsim, rnd):

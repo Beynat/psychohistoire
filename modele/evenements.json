@@ -1,6 +1,6 @@
 {
  "description": "Banque d'événements (noyau, section 8.8). Générée par scripts/evenements.py depuis modele/banque/criteres.json. Seuls le nom, la sous-question et le critère sont transmis aux prévisionnistes.",
- "genere_le": "2026-10-04T22:05:04+02:00",
+ "genere_le": "2026-10-04T22:29:33+02:00",
  "premier_tour": "2027-04-18",
  "second_tour": "2027-05-02",
  "evenements": [
@@ -181,7 +181,7 @@
    "evenement": "EV-06",
    "nom": "Récession technique",
    "domaine": "économie",
-   "critere": "La variation trimestrielle du PIB en volume de la France, en première estimation de l'Insee, est strictement négative pour deux trimestres consécutifs compris entre le troisième trimestre 2026 et le deuxième trimestre 2028.",
+   "critere": "Le jour où l'Insee publie la première estimation de la variation trimestrielle du PIB en volume de la France pour un trimestre T+1 compris entre le quatrième trimestre 2026 et le deuxième trimestre 2028, cette première estimation et la variation du trimestre T publiée le même jour (éventuellement révisée) sont toutes deux strictement négatives. Les révisions publiées à d'autres dates ne comptent pas.",
    "sous_question": null,
    "source_resolution": "Insee, comptes trimestriels (première estimation)",
    "fenetre": {
@@ -209,7 +209,7 @@
    "evenement": "EV-07",
    "nom": "Cyberattaque majeure contre un service essentiel",
    "domaine": "sécurité",
-   "critere": "Un communiqué de l'ANSSI, d'un ministère, de l'ACPR, de la Banque de France ou de l'AMF confirme une cyberattaque ayant interrompu pendant plus de 24 heures consécutives, à l'échelle nationale ou d'une région, la distribution d'électricité, de gaz ou d'eau, le transport ferroviaire ou aérien, ou un système de paiement ou un établissement bancaire d'importance systémique. La durée d'interruption est celle qu'établit ce communiqué ; s'il ne la donne pas, celle qu'établit le communiqué de l'opérateur concerné ou deux agences de presse concordantes (AFP, Reuters, AP).",
+   "critere": "Un communiqué de l'ANSSI, d'un ministère, de l'ACPR, de la Banque de France ou de l'AMF confirme une cyberattaque ayant interrompu pendant plus de 24 heures consécutives, à l'échelle nationale ou d'une région, la distribution d'électricité, de gaz ou d'eau, le transport ferroviaire ou aérien, ou un système de paiement ou un établissement bancaire d'importance systémique. Pour un système de paiement ou un établissement bancaire, l'interruption porte sur les paiements ou sur l'accès des clients à leurs comptes, tous canaux confondus : une indisponibilité de la seule banque en ligne, les cartes et les agences fonctionnant, ne compte pas. La durée d'interruption est celle qu'établit ce communiqué ; s'il ne la donne pas, celle qu'établit le communiqué de l'opérateur concerné ou deux agences de presse concordantes (AFP, Reuters, AP).",
    "sous_question": null,
    "source_resolution": "Communiqués de l'ANSSI, des ministères, de l'ACPR, de la Banque de France ou de l'AMF",
    "fenetre": {
@@ -807,7 +807,7 @@
    "evenement": "EV-20",
    "nom": "Pourvoi de Marine Le Pen",
    "domaine": "politique",
-   "critere": "Issue, au 31 mars 2027, du pourvoi formé par Marine Le Pen contre l'arrêt de la cour d'appel de Paris du 7 juillet 2026. Une décision de non-admission est rangée avec le rejet. Si la Cour de cassation statue par un même arrêt sur plusieurs pourvois, l'issue se lit dans le dispositif statuant sur le pourvoi de Marine Le Pen ; une cassation, même obtenue sur un autre pourvoi, est rangée en « cassation totale ou partielle ».",
+   "critere": "Issue, au 31 mars 2027, du pourvoi formé par Marine Le Pen contre l'arrêt de la cour d'appel de Paris du 7 juillet 2026. Une décision de non-admission est rangée avec le rejet. L'issue « cassation totale ou partielle » suppose la cassation d'au moins une disposition de l'arrêt d'appel qui concerne Marine Le Pen (culpabilité, peine ou intérêts civils), sur son pourvoi ou sur un autre ; une cassation qui ne concerne que d'autres prévenus est rangée avec le rejet.",
    "sous_question": null,
    "source_resolution": "Cour de cassation, arrêts et communiqués",
    "fenetre": {
@@ -1286,7 +1286,7 @@
    "evenement": "EV-43",
    "nom": "Premier ministre issu d'un parti concurrent au premier tour",
    "domaine": "politique",
-   "critere": "Le Premier ministre en fonction le 30 septembre 2028 est membre d'un parti qui a investi ou soutenu, au premier tour de 2027, un candidat autre que le président élu. Une coalition dont le Premier ministre vient d'un tel parti compte.",
+   "critere": "Le Premier ministre en fonction le 30 septembre 2028 est membre d'un parti qui a investi ou soutenu, par une décision publiée, au premier tour de 2027, un candidat autre que le président élu. Une coalition dont le Premier ministre vient d'un tel parti compte.",
    "sous_question": null,
    "source_resolution": "Journal officiel (décret de nomination) ; déclarations publiques du parti",
    "fenetre": {

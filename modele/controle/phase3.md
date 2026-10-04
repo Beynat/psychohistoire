@@ -11,4 +11,6 @@ Ouverte le 4 octobre 2026 à partir de la relecture 7. À compléter avant le d�
 
 ## À reporter à la prochaine version du noyau
 
+- Annexe, sections 10.4 et 10.11 : la statistique Z et le facteur k mesurent p et d « à la clôture de la question », ce qui sélectionne la prévision selon l'issue, comme le critère de calibration avant la v1.22. Les mesurer sur une prévision choisie indépendamment de l'issue (par exemple la première après l'activation de la couche) avant le démarrage de la phase 3 (relecture 17, souhaitable 1).
+
 - Mentionner au premier bilan la légère prudence de la loi de Student sur Z avec peu de grappes (7 % au lieu de 10 % à 5 grappes).

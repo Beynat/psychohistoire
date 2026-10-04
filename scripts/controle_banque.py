@@ -36,6 +36,14 @@ def gels_reels():
 def controler():
     erreurs = []
     actuels = {e["id"]: e for e in lire_json("modele/evenements.json")["evenements"]}
+    # Banque régénérée en mémoire depuis criteres.json et ajouts.jsonl (relecture 17, souhaitable 2) : une
+    # modification de la source non régénérée dans evenements.json est aussi détectée.
+    from evenements import construire
+    regeneres = {e["id"]: e for e in construire()[0]}
+    for i in sorted(set(regeneres) | set(actuels)):
+        a, r = actuels.get(i), regeneres.get(i)
+        if a is None or r is None or any(a.get(c) != r.get(c) for c in CHAMPS):
+            erreurs.append(f"{i} : modele/evenements.json n'est pas à jour de modele/banque/criteres.json (relancer scripts/evenements.py)")
     gels = gels_reels()
     statut = lire_json("modele/statut.json", {"definitif": False})
     if gels and not statut.get("definitif"):

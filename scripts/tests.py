@@ -53,6 +53,35 @@ def test_brier_periode_commune():
     assert notation.brier_pondere(a, "oui", a[0]["emise"][:10], "2027-03-31") > ba  # l'artefact corrigé
 
 
+def test_brier_pondere_propre():
+    """Relecture 17, I1 : sur des questions de fenêtre « survenue » à risque constant, la prévision honnête a le
+    meilleur Brier pondéré moyen ; gonfler ou réduire les probabilités ne paie pas (mêmes trajectoires)."""
+    from datetime import date, timedelta
+    def moyenne(facteur, n=3000, h=0.1, mois=9):
+        rnd, tot = random.Random(1), 0.0
+        debuts, ech = [date(2027, 1 + k, 1) for k in range(mois)], date(2027, 9, 30)
+        for _ in range(n):
+            fait = None
+            for k in range(mois):
+                if rnd.random() < h:
+                    fin_m = debuts[k + 1] if k + 1 < mois else ech + timedelta(days=1)
+                    fait = debuts[k] + timedelta(days=rnd.randrange((fin_m - debuts[k]).days))
+                    break
+            lignes = []
+            for k in range(mois):
+                if fait and debuts[k] >= fait:
+                    break
+                p = min(1.0, facteur * (1 - (1 - h) ** (mois - k)))
+                lignes.append({"emise": debuts[k].isoformat() + "T08:00:00+01:00",
+                               "probabilites": {"oui": 100 * p, "non": 100 - 100 * p}})
+            if lignes:
+                tot += notation.brier_pondere(lignes, "oui" if fait else "non", "2027-01-01", ech.isoformat(),
+                                              (fait or ech).isoformat())
+        return tot / n
+    honnete = moyenne(1.0)
+    assert honnete < moyenne(1.25) and honnete < moyenne(0.8), honnete
+
+
 def test_bout_en_bout():
     """Relecture 12, S15 : un cycle fictif de bout en bout sur une copie du dépôt (gel, questions,
     comparateurs, prévisions de deux auteurs, propositions, résolution, bilan). Vérifie : une seule
@@ -288,6 +317,19 @@ print(json.dumps({"n": b["auteurs"]["modèle"]["calibration_8_6"]["questions"],
 """
         out = json.loads(run("-c", code).strip().splitlines()[-1])
         assert out == {"n": 0, "n_sans": 0}, out
+        # Relecture 17, I2 : la prévision retenue est la première de cycle, pas la dernière avant résolution.
+        code2 = r"""
+import json, notation
+from pathlib import Path
+L = [{"question": "Q-EV-15", "probabilites": {"oui": p, "non": 100 - p}, "piste": "protocole", "phase": 1, "auteur": "modèle",
+      "origine": "cycle " + c, "donnees": "t", "emise": d + "T08:00:00+01:00"} for p, c, d in ((30, "2026-11", "2026-11-02"), (10, "2026-12", "2026-12-01"))]
+Path('registre/d.jsonl').write_text(''.join(json.dumps(x) + chr(10) for x in L))
+Path('registre/resolutions_d.jsonl').write_text(json.dumps({"resolution": True, "question": "Q-EV-15", "issue": "non",
+    "date_fait": "2026-12-31", "source": "s", "methode": "m", "emise": "2027-01-05T08:00:00+01:00"}) + chr(10))
+b = notation.bilan('registre/d.jsonl', 'ensemble direct', '2027-01-15')
+print(json.dumps(b["auteurs"]["modèle"]["calibration_8_6"]["p_moyenne"]))
+"""
+        assert json.loads(run("-c", code2).strip().splitlines()[-1]) == 0.3
     finally:
         shutil.rmtree(tmp.parent)
 

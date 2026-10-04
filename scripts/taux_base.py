@@ -1,8 +1,8 @@
 """Fusionne modele/taux_base/groupe_*.json en modele/taux_base.json (noyau, sections 7.3 et 8.4).
 
-Règle mécanique ajoutée à la fusion : la probabilité utilisée par le comparateur « taux de base »
-est bornée entre 2 % et 98 % (par issue, puis renormalisée), car une probabilité de 0 ou 100 %
-rendrait le score logarithmique infini (section 8.4). La valeur brute retenue est conservée.
+La probabilité utilisée par le comparateur « taux de base » est la valeur retenue, sans borne (relecture 17,
+I3 : une borne propre à certains auteurs les pénalise sur les événements rares) ; le score logarithmique
+borne lui-même ses probabilités à 10⁻⁴ (commun.log_score).
 """
 import json
 from datetime import datetime
@@ -10,19 +10,12 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 RACINE = Path(__file__).resolve().parent.parent
-BORNE = (2.0, 98.0)
-
-
-def borner(p):
-    return min(max(p, BORNE[0]), BORNE[1])
-
-
 def utilisee(q):
     if q.get("issues"):
-        b = {k: max(v, BORNE[0]) for k, v in q["issues"].items()}
+        b = {k: max(v, 0.0) for k, v in q["issues"].items()}
         s = sum(b.values())
         return {k: round(v * 100 / s, 1) for k, v in b.items()}
-    p = borner(q["retenue"]["probabilite"])
+    p = q["retenue"]["probabilite"]
     return {"oui": round(p, 1), "non": round(100 - p, 1)}
 
 

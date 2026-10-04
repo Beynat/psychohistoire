@@ -1,6 +1,6 @@
 """Notation des prévisions résolues (noyau, sections 8.5 et 8.6).
 
-Usage : python scripts/notation.py [registre/<fichier>.jsonl] [--reference AUTEUR]
+Usage : python scripts/notation.py [registre/<fichier>.jsonl] [--reference AUTEUR] [--date AAAA-MM-JJ]
 Écrit data/bilans/<date>.json (ou bilan_<suffixe>) et affiche un résumé.
 
 Pour chaque auteur (comparateurs, ensemble direct, puis modèle) et chaque pool :
@@ -55,12 +55,14 @@ def murphy(paires):
 
 def test_calibration(items, rho=0.3, nsim=2000, graine=3):
     """Critère de calibration de la section 8.6 (relecture 13, S2). items : (p, y, grappe) des questions
-    binaires de P2b et P2c échues à la date du test, dernière prévision de cycle avant résolution (relecture 15, I1). Statistique : terme de fiabilité de Murphy en dix classes.
+    binaires de P2b et P2c échues à la date du test (relecture 15, I1), première prévision de cycle de l'auteur
+    (relecture 17, I2 : choisie indépendamment de l'issue). Statistique : terme de fiabilité de Murphy en dix classes.
     Loi sous calibration parfaite : issues tirées avec P(y = 1) = p, corrélées dans une grappe par une
     copule gaussienne de corrélation ρ = 0,3. Échec si la fiabilité observée dépasse le 90e centile."""
     from statistics import NormalDist
     if len(items) < 10:
-        return {"questions": len(items), "verdict": "trop peu de questions"}
+        return {"questions": len(items), "p_moyenne": round(sum(p for p, _, _ in items) / len(items), 4) if items else None,
+                "verdict": "trop peu de questions"}
     obs = murphy([(p, y) for p, y, _ in items])["fiabilite"]
     nd, rnd = NormalDist(), random.Random(graine)
     grappes = sorted({g for _, _, g in items})
@@ -113,25 +115,53 @@ def fin_brier(q, r):
     return q["echeance"]
 
 
-def brier_pondere(lignes, issue, debut, fin):
-    """Moyenne journalière, de debut à fin inclus, du Brier de la dernière prévision inscrite ce jour-là.
-    Les jours antérieurs à la première prévision de l'auteur ne sont pas comptés : l'appelant fixe debut."""
-    jour, k, cumul, n = date.fromisoformat(debut), -1, 0.0, 0
-    while jour <= date.fromisoformat(fin):
-        while k + 1 < len(lignes) and lignes[k + 1]["emise"][:10] <= jour.isoformat():
-            k += 1
-        if k >= 0:
-            cumul += brier(lignes[k]["probabilites"], issue)
-            n += 1
-        jour += timedelta(days=1)
-    return cumul / n if n else None
+def un_mois_apres(d):
+    """Même jour du mois suivant (dernier jour du mois s'il n'existe pas)."""
+    a, m = (d.year + (d.month == 12), d.month % 12 + 1)
+    for jour in (d.day, 30, 29, 28):
+        try:
+            return date(a, m, jour)
+        except ValueError:
+            continue
+
+
+def brier_pondere(lignes, issue, debut, echeance, date_fait=None):
+    """Brier pondéré dans le temps, règle propre (relecture 17, I1).
+
+    Chaque prévision vaut pour sa durée prévue : de son jour (ou de debut) au jour de la prévision suivante ;
+    la dernière, si le fait survient dans la fenêtre, vaut jusqu'au même jour du mois suivant (date du cycle
+    suivant prévu), sinon jusqu'à l'échéance. Aucune durée n'est tronquée au fait, et la somme est divisée par
+    la longueur fixe de la période, de debut à l'échéance : les jours postérieurs au fait comptent pour zéro,
+    comme une prévision devenue certaine. Le poids de chaque prévision ne dépend donc pas de l'issue, et la
+    prévision honnête est optimale. lignes : prévisions triées, toutes émises avant le jour du fait."""
+    d0, fin = date.fromisoformat(debut), date.fromisoformat(echeance)
+    longueur = (fin - d0).days + 1
+    if longueur <= 0 or not lignes:
+        return None
+    fait_dans_fenetre = date_fait is not None and date_fait <= echeance
+    cumul, couvert = 0.0, False
+    for k, l in enumerate(lignes):
+        jour = date.fromisoformat(l["emise"][:10])
+        if k + 1 < len(lignes):
+            suivant = date.fromisoformat(lignes[k + 1]["emise"][:10])
+        else:
+            suivant = un_mois_apres(jour) if fait_dans_fenetre else fin + timedelta(days=1)
+        a, b = max(jour, d0), min(suivant, fin + timedelta(days=1))
+        if b > a:
+            cumul += (b - a).days * brier(l["probabilites"], issue)
+            couvert = True
+    return cumul / longueur if couvert else None
 
 
 def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhui=None):
     aujourdhui = aujourdhui or date.today().isoformat()
     sfx = suffixe(reg)
     qs = toutes_les_questions(cycles_du_registre(reg))
-    res = {q: r for q, r in resolutions_effectives(sfx).items() if r.get("issue") is not None}
+    toutes = resolutions_effectives(sfx)
+    res = {q: r for q, r in toutes.items() if r.get("issue") is not None}
+    # Questions échues à la date du test sans résolution ni annulation (relecture 17, I4) : publiées, pour
+    # que la sélection par le délai de résolution reste visible.
+    echues_ouvertes = sorted(q for q, v in qs.items() if v["echeance"] <= aujourdhui and q not in toutes)
     prev = {}
     for l in lire_jsonl(reg):
         if "probabilites" in l and l["question"] in res:
@@ -153,11 +183,16 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
         cyc = [l for l in lignes if str(l.get("origine", "")).startswith("cycle")]
         der = lignes[-1]["probabilites"]
         der_cycle = cyc[-1]["probabilites"] if cyc else None
+        # Prévision retenue pour la calibration (relecture 17, I2) : la première prévision de cycle, choisie
+        # indépendamment de l'issue. La dernière avant résolution dépend de l'issue pour une question de fenêtre
+        # (faible à l'approche d'une échéance sans fait, encore haute le mois d'un fait).
+        prem_cycle = cyc[0]["probabilites"] if cyc else None
         scores[(auteur, qid)] = {"brier": brier(der, r["issue"]), "log": logs(der, r["issue"]),
-                                 "brier_temps": brier_pondere(lignes, r["issue"], d0, fin), "pool": q["pool"], "grappe": q["grappe"],
+                                 "brier_temps": brier_pondere(lignes, r["issue"], d0, q["echeance"], r.get("date_fait")), "pool": q["pool"], "grappe": q["grappe"],
                                  "lignes": lignes, "debut": d0, "fin": fin,
                                  "binaire": len(q["issues"]) == 2,
                                  "p_oui": (der_cycle or der).get("oui", 0) / 100, "cycle_seul": der_cycle is not None,
+                                 "p_oui_cal": (prem_cycle or lignes[0]["probabilites"]).get("oui", 0) / 100,
                                  "y": r["issue"] == "oui"}
     auteurs = sorted({a for a, _ in scores})
     # Événements ajoutés en cours de phase (noyau, section 8.8) : bilan avec et sans eux.
@@ -176,7 +211,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
         # Calibration (section 8.6 ; relecture 15, I1) : questions échues à la date du test, quelle que soit
         # leur issue, comme pour le test de valeur ajoutée ; dernière prévision de cycle avant résolution ;
         # avec et sans les questions ajoutées.
-        cal = [(qid, (x["p_oui"], x["y"], x["grappe"])) for qid, x in mes.items()
+        cal = [(qid, (x["p_oui_cal"], x["y"], x["grappe"])) for qid, x in mes.items()
                if x["binaire"] and x["pool"] in ("P2b", "P2c") and x.get("cycle_seul") and echue(qid)]
         cal_avec = test_calibration([c for _, c in cal])
         cal_sans = test_calibration([c for qid, c in cal if evenement(qid) not in ajoutes])
@@ -185,7 +220,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
             p: {"n": len(v), "brier": round(sum(x["brier"] for x in v) / len(v), 4),
                 "log": round(sum(x["log"] for x in v) / len(v), 4),
                 "brier_temps": round(sum(x["brier_temps"] for x in v) / len(v), 4),
-                "murphy": murphy([(x["p_oui"], x["y"]) for x in v if x["binaire"]])} for p, v in pools.items()}}
+                "murphy": murphy([(x["p_oui_cal"], x["y"]) for x in v if x["binaire"]])} for p, v in pools.items()}}
 
     def comparer(a, garder, instantanes=True, ref=None):
         ref = ref or reference
@@ -208,7 +243,9 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
             if debut > s["fin"]:
                 continue
             issue = res[qid]["issue"]
-            br, bo = brier_pondere(ls, issue, debut, s["fin"]), brier_pondere(lo, issue, debut, o["fin"])
+            fait = res[qid].get("date_fait")
+            br, bo = (brier_pondere(ls, issue, debut, qs[qid]["echeance"], fait),
+                      brier_pondere(lo, issue, debut, qs[qid]["echeance"], fait))
             if br is not None and bo is not None:
                 diffs.setdefault(s["grappe"], []).append(br - bo)
                 pr = s["p_oui"] if s["binaire"] else None
@@ -276,6 +313,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
             v.pop(k, None)
     sortie = {"etabli_le": maintenant(), "registre": reg, "reference": reference,
               "questions_resolues": len(res), "auteurs": par_auteur, "comparaisons": comparaisons,
+              "date_du_test": aujourdhui, "echues_non_resolues": echues_ouvertes,
               "bilan_8_6_modele": bilan_8_6, "exclues": exclues}
     ecrire_json(f"data/bilans/bilan{sfx}_{aujourdhui}.json", sortie)
     return sortie
@@ -286,7 +324,14 @@ if __name__ == "__main__":
     ref = sys.argv[sys.argv.index("--reference") + 1] if "--reference" in sys.argv else "ensemble direct"
     if ref in args:
         args.remove(ref)
-    b = bilan(args[0] if args else "registre/protocole.jsonl", ref)
+    # Date du test (relecture 17, I4) : le bilan de la section 8.6 se lance au cycle de décembre 2027 avec
+    # --date 2027-09-30, une fois écoulé le délai de résolution des questions échues à cette date.
+    jour = sys.argv[sys.argv.index("--date") + 1] if "--date" in sys.argv else None
+    if jour in args:
+        args.remove(jour)
+    b = bilan(args[0] if args else "registre/protocole.jsonl", ref, jour)
+    if b["echues_non_resolues"]:
+        print(f"{len(b['echues_non_resolues'])} questions échues non résolues : " + ", ".join(b["echues_non_resolues"][:20]))
     print(f"{b['questions_resolues']} questions résolues ; référence : {b['reference']}")
     for a, v in b["auteurs"].items():
         print(f"- {a} : " + " ; ".join(f"{p} n={x['n']} Brier {x['brier']} log {x['log']}" for p, x in v["pools"].items()))

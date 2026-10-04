@@ -81,7 +81,9 @@ def generer(gel, etiquette=None):
                     "id": qid, "type": "variable", "pool": correspondances.get(qid, {}).get("pool", "P2a"),
                     "grappe": f"{nom}-{trimestre(cible)}",
                     "texte": f"La valeur de « {meta['nom']} » pour {cible} est-elle supérieure ou égale à {seuil} {meta['unite']} ? (Dernière valeur publiée au gel : {base_publiee:g} {meta['unite']} pour {publie}"
-                            + (f" ; niveau récent estimé d'après les données quotidiennes : {base:.0f} {meta['unite']})" if ancrage else ")"),
+                            + (f" ; niveau récent estimé d'après les données quotidiennes : {base:.0f} {meta['unite']})" if ancrage else ")")
+                            # Règle de résolution rappelée dans le texte (relecture 17, souhaitable 7).
+                            + " Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
                     "issues": ["oui", "non"], "echeance": iso_fin_mois(mois_suivant(cible, meta["delai"])),
                     "details": {"serie": nom, "periode": cible, "seuil": seuil, "derniere_periode": dernier,
                                 "derniere_valeur": round(base, 2), "pas": pas, "quantile": q, "n_variations": len(var),
