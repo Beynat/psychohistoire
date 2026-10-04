@@ -1,0 +1,410 @@
+{
+ "previsionniste": "P3",
+ "modele": "sonnet",
+ "gel": "2026-10-04",
+ "previsions": {
+  "Q-2026-10-ecart_FR_DE_pb-2026-10-q20": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-10-q50": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-10-q80": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-11-q20": {
+   "probabilites": {
+    "oui": 79,
+    "non": 21
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-11-q50": {
+   "probabilites": {
+    "oui": 49,
+    "non": 51
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-11-q80": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-12-q20": {
+   "probabilites": {
+    "oui": 77,
+    "non": 23
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-12-q50": {
+   "probabilites": {
+    "oui": 49,
+    "non": 51
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-12-q80": {
+   "probabilites": {
+    "oui": 21,
+    "non": 79
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-10-q20": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-10-q50": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-10-q80": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-11-q20": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-11-q50": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-11-q80": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-12-q20": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-12-q50": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-12-q80": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-chomage_FR-2026-10-q20": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-chomage_FR-2026-10-q50": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-chomage_FR-2026-10-q80": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-chomage_FR-2026-11-q20": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-chomage_FR-2026-11-q50": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-chomage_FR-2026-11-q80": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-chomage_FR-2026-12-q20": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-chomage_FR-2026-12-q50": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-2026-10-chomage_FR-2026-12-q80": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Seuil placé sur la distribution implicite (q20/q50/q80) pour les séries ; sinon taux de base ajusté à la situation (sans recherche web)."
+  },
+  "Q-EV-01": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-01-2026-10": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-02": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-03": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-04": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-04-2026-10": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-05": {
+   "probabilites": {
+    "RN": 40,
+    "bloc central": 25,
+    "gauche": 13,
+    "droite LR ou autre": 15,
+    "autre": 7
+   },
+   "motif": "Marchés : Le Pen 45 % Polymarket, 34 % Metaculus ; je tiens RN autour de 40 % avec incertitude sur l'éligibilité et un second tour ouvert contre un candidat central."
+  },
+  "Q-EV-06": {
+   "probabilites": {
+    "oui": 12,
+    "non": 88
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-06-2026-10": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-07": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-07-2026-10": {
+   "probabilites": {
+    "oui": 7,
+    "non": 93
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-08": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-08-2026-10": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-09": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-10": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-13": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-15": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-16a": {
+   "probabilites": {
+    "oui": 7,
+    "non": 93
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-16a-2026-10": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-16b": {
+   "probabilites": {
+    "oui": 42,
+    "non": 58
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-17": {
+   "probabilites": {
+    "oui": 88,
+    "non": 12
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-17-2026-10": {
+   "probabilites": {
+    "oui": 85,
+    "non": 15
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-C1": {
+   "probabilites": {
+    "oui": 70,
+    "non": 30
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-C1-2026-10": {
+   "probabilites": {
+    "oui": 6,
+    "non": 94
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-C2": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-C2-2026-10": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-C3a": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-C3b": {
+   "probabilites": {
+    "oui": 85,
+    "non": 15
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-C3b-2026-10": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "Taux de base ajusté à la situation politique et budgétaire d'octobre 2026, sans recherche web."
+  },
+  "Q-EV-C4": {
+   "probabilites": {
+    "avis rendu, compatible": 62,
+    "avis rendu, incompatible": 26,
+    "pas d'avis": 12
+   },
+   "motif": "Délai jusqu'à ~18 mois après saisine, donc avis probable avant fin 2028 ; la CJUE valide plus souvent qu'elle n'invalide."
+  }
+ }
+}

@@ -55,7 +55,7 @@ def generer(gel):
                 qs.append({
                     "id": qid, "type": "variable", "pool": correspondances.get(qid, {}).get("pool", "P2a"),
                     "grappe": f"{nom}-{trimestre(cible)}",
-                    "texte": f"La valeur de « {meta['nom']} » pour {cible} est-elle supérieure ou égale à {seuil} {meta['unite']} ?",
+                    "texte": f"La valeur de « {meta['nom']} » pour {cible} est-elle supérieure ou égale à {seuil} {meta['unite']} ? (Dernière valeur publiée au gel : {base:g} {meta['unite']} pour {dernier}.)",
                     "issues": ["oui", "non"], "echeance": iso_fin_mois(mois_suivant(cible, meta["delai"])),
                     "details": {"serie": nom, "periode": cible, "seuil": seuil, "derniere_periode": dernier,
                                 "derniere_valeur": base, "pas": pas, "quantile": q, "n_variations": len(var)},
@@ -78,7 +78,7 @@ def generer(gel):
                    "grappe": f"{e['evenement']}-{trimestre(fin)}",
                    "texte": f"{e['nom']}{' (' + e['sous_question'] + ')' if e['sous_question'] else ''} : le critère est-il rempli entre le {debut} et le {fin} ?",
                    "echeance": fin, "fenetre": {"debut": debut, "fin": fin}})
-        if len(e["issues"]) == 2 and ecart_mois(gel[:7], fin[:7]) > 3 and e["fenetre"]["debut"] <= gel:
+        if len(e["issues"]) == 2 and e.get("mensuelle", True) and ecart_mois(gel[:7], fin[:7]) > 3 and e["fenetre"]["debut"] <= gel:
             mid = f"Q-{e['id']}-{cycle}"
             qs.append({**commun_e, "id": mid, "pool": correspondances.get(mid, {}).get("pool", "P2b"),
                        "grappe": f"{e['evenement']}-{trimestre(cycle)}",

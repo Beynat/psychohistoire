@@ -1,6 +1,6 @@
 {
  "description": "Banque d'événements de la phase 1 (noyau, section 8.8). Générée par scripts/evenements.py ; ne change qu'à l'analyse trimestrielle, par ajout.",
- "genere_le": "2026-10-04T09:55:33+02:00",
+ "genere_le": "2026-10-04T10:13:43+02:00",
  "second_tour_a_verifier": "2027-05-02",
  "evenements": [
   {
@@ -21,7 +21,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-02",
@@ -41,7 +42,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-03",
@@ -61,7 +63,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-04",
@@ -81,7 +84,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-05",
@@ -104,7 +108,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-06",
@@ -124,7 +129,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-07",
@@ -144,7 +150,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-08",
@@ -164,7 +171,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-09",
@@ -184,7 +192,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-10",
@@ -204,7 +213,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-11",
@@ -224,7 +234,8 @@
    ],
    "source_accessible": false,
    "motif_inaccessible": "Le nombre de communes touchées n'est publié par le ministère de l'Intérieur qu'au cas par cas ; ACLED exige un compte.",
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-12",
@@ -244,7 +255,8 @@
    ],
    "source_accessible": false,
    "motif_inaccessible": "Résolution sur ACLED, qui exige un compte : source inaccessible au projet.",
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-13",
@@ -264,7 +276,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-14",
@@ -284,7 +297,8 @@
    ],
    "source_accessible": false,
    "motif_inaccessible": "Résolution sur ACLED, qui exige un compte : source inaccessible au projet.",
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-15",
@@ -304,7 +318,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-16a",
@@ -324,7 +339,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-16b",
@@ -344,7 +360,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": true
   },
   {
    "id": "EV-17",
@@ -364,7 +381,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "fusion A+B"
+   "origine": "fusion A+B",
+   "mensuelle": false
   },
   {
    "id": "EV-C1",
@@ -384,7 +402,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "balayage C"
+   "origine": "balayage C",
+   "mensuelle": true
   },
   {
    "id": "EV-C2",
@@ -404,7 +423,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "balayage C"
+   "origine": "balayage C",
+   "mensuelle": true
   },
   {
    "id": "EV-C3a",
@@ -424,7 +444,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "balayage C"
+   "origine": "balayage C",
+   "mensuelle": true
   },
   {
    "id": "EV-C3b",
@@ -444,7 +465,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "balayage C"
+   "origine": "balayage C",
+   "mensuelle": true
   },
   {
    "id": "EV-C4",
@@ -465,7 +487,8 @@
    ],
    "source_accessible": true,
    "motif_inaccessible": null,
-   "origine": "balayage C"
+   "origine": "balayage C",
+   "mensuelle": true
   }
  ]
 }

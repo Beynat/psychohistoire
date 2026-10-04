@@ -1,0 +1,410 @@
+{
+ "previsionniste": "P1",
+ "modele": "opus",
+ "gel": "2026-10-04",
+ "previsions": {
+  "Q-2026-10-ecart_FR_DE_pb-2026-10-q20": {
+   "probabilites": {
+    "oui": 97,
+    "non": 3
+   },
+   "motif": "Spread OAT-Bund de marché à ~99-104 pb mi-septembre, ~120-130 pb au 30/09-01/10/2026 (plus haut depuis 2012) ; une moyenne d'octobre sous 76 pb exigerait un retournement brutal immédiat."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-10-q50": {
+   "probabilites": {
+    "oui": 95,
+    "non": 5
+   },
+   "motif": "Spread OAT-Bund de marché à ~99-104 pb mi-septembre, ~120-130 pb au 30/09-01/10/2026 (plus haut depuis 2012) ; le niveau de départ est très au-dessus du seuil de 82 pb."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-10-q80": {
+   "probabilites": {
+    "oui": 91,
+    "non": 9
+   },
+   "motif": "Spread OAT-Bund de marché à ~99-104 pb mi-septembre, ~120-130 pb au 30/09-01/10/2026 (plus haut depuis 2012) ; reste un risque de détente rapide (compromis budgétaire, écart de méthode BCE) mais le seuil de 89 pb est loin sous le niveau courant."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-11-q20": {
+   "probabilites": {
+    "oui": 93,
+    "non": 7
+   },
+   "motif": "Spread OAT-Bund de marché à ~99-104 pb mi-septembre, ~120-130 pb au 30/09-01/10/2026 (plus haut depuis 2012) ; horizon plus long, mais le débat budgétaire de novembre entretient la prime de risque."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-11-q50": {
+   "probabilites": {
+    "oui": 89,
+    "non": 11
+   },
+   "motif": "Spread OAT-Bund de marché à ~99-104 pb mi-septembre, ~120-130 pb au 30/09-01/10/2026 (plus haut depuis 2012) ; une décrue de 40 pb en deux mois serait sans précédent récent hors choc positif majeur."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-11-q80": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Spread OAT-Bund de marché à ~99-104 pb mi-septembre, ~120-130 pb au 30/09-01/10/2026 (plus haut depuis 2012) ; possible détente partielle (accord budgétaire, Moody's, BCE) mais 91 pb reste sous le niveau actuel."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-12-q20": {
+   "probabilites": {
+    "oui": 91,
+    "non": 9
+   },
+   "motif": "Spread OAT-Bund de marché à ~99-104 pb mi-septembre, ~120-130 pb au 30/09-01/10/2026 (plus haut depuis 2012) ; incertitude budgétaire (49.3/censure/loi spéciale) et présidentielle 2027 maintiennent l'écart élevé."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-12-q50": {
+   "probabilites": {
+    "oui": 86,
+    "non": 14
+   },
+   "motif": "Spread OAT-Bund de marché à ~99-104 pb mi-septembre, ~120-130 pb au 30/09-01/10/2026 (plus haut depuis 2012) ; la détente nécessaire pour passer sous 82 pb d'ici décembre est peu probable."
+  },
+  "Q-2026-10-ecart_FR_DE_pb-2026-12-q80": {
+   "probabilites": {
+    "oui": 74,
+    "non": 26
+   },
+   "motif": "Spread OAT-Bund de marché à ~99-104 pb mi-septembre, ~120-130 pb au 30/09-01/10/2026 (plus haut depuis 2012) ; queue de détente plus large à trois mois, mais 92 pb reste sous le niveau courant."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-10-q20": {
+   "probabilites": {
+    "oui": 76,
+    "non": 24
+   },
+   "motif": "IPCH septembre 2026 à 3,4 % (IPC 3,0 % après 2,4 %), énergie +21 % sur un an, Brent ~102 $ début octobre après +38 % sur trois mois ; effet de base d'octobre 2025 neutre, diffusion aux prix alimentaires en cours ; baisse du pétrole (réserves G7) comme risque baissier."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-10-q50": {
+   "probabilites": {
+    "oui": 54,
+    "non": 46
+   },
+   "motif": "IPCH septembre 2026 à 3,4 % (IPC 3,0 % après 2,4 %), énergie +21 % sur un an, Brent ~102 $ début octobre après +38 % sur trois mois ; médiane proche de 3,4-3,5 %, seuil quasi au centre de la distribution."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-10-q80": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "IPCH septembre 2026 à 3,4 % (IPC 3,0 % après 2,4 %), énergie +21 % sur un an, Brent ~102 $ début octobre après +38 % sur trois mois ; 3,6 % suppose une nouvelle hausse de l'énergie ou une accélération des produits frais."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-11-q20": {
+   "probabilites": {
+    "oui": 75,
+    "non": 25
+   },
+   "motif": "IPCH septembre 2026 à 3,4 % (IPC 3,0 % après 2,4 %), énergie +21 % sur un an, Brent ~102 $ début octobre après +38 % sur trois mois ; effet de base favorable à la hausse (novembre 2025 en baisse mensuelle) ; incertitude pétrole plus large."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-11-q50": {
+   "probabilites": {
+    "oui": 54,
+    "non": 46
+   },
+   "motif": "IPCH septembre 2026 à 3,4 % (IPC 3,0 % après 2,4 %), énergie +21 % sur un an, Brent ~102 $ début octobre après +38 % sur trois mois ; médiane autour de 3,4-3,5 % avec effet de base légèrement haussier."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-11-q80": {
+   "probabilites": {
+    "oui": 29,
+    "non": 71
+   },
+   "motif": "IPCH septembre 2026 à 3,4 % (IPC 3,0 % après 2,4 %), énergie +21 % sur un an, Brent ~102 $ début octobre après +38 % sur trois mois ; 3,7 % requiert une poursuite du choc énergétique."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-12-q20": {
+   "probabilites": {
+    "oui": 76,
+    "non": 24
+   },
+   "motif": "IPCH septembre 2026 à 3,4 % (IPC 3,0 % après 2,4 %), énergie +21 % sur un an, Brent ~102 $ début octobre après +38 % sur trois mois ; à trois mois, l'énergie reste le facteur dominant ; un repli du Brent ramènerait l'inflation vers 3 %."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-12-q50": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "IPCH septembre 2026 à 3,4 % (IPC 3,0 % après 2,4 %), énergie +21 % sur un an, Brent ~102 $ début octobre après +38 % sur trois mois ; distribution centrée près de 3,4 %, incertitude pétrolière symétrique."
+  },
+  "Q-2026-10-inflation_ipch_FR-2026-12-q80": {
+   "probabilites": {
+    "oui": 24,
+    "non": 76
+   },
+   "motif": "IPCH septembre 2026 à 3,4 % (IPC 3,0 % après 2,4 %), énergie +21 % sur un an, Brent ~102 $ début octobre après +38 % sur trois mois ; 3,8 % suppose une nouvelle escalade au Moyen-Orient."
+  },
+  "Q-2026-10-chomage_FR-2026-10-q20": {
+   "probabilites": {
+    "oui": 82,
+    "non": 18
+   },
+   "motif": "Chômage Eurostat 8,3 % en juillet puis 8,2 % en août 2026, Insee T2 à 8,3 % en hausse ; activité stagnante (T1 -0,2 %, T2 0,0 %) et choc pétrolier ; tendance haussière, recul sous 8,1 % peu probable ; révisions Eurostat avec l'Insee T3 mi-novembre."
+  },
+  "Q-2026-10-chomage_FR-2026-10-q50": {
+   "probabilites": {
+    "oui": 63,
+    "non": 37
+   },
+   "motif": "Chômage Eurostat 8,3 % en juillet puis 8,2 % en août 2026, Insee T2 à 8,3 % en hausse ; activité stagnante (T1 -0,2 %, T2 0,0 %) et choc pétrolier ; 8,2 % est le dernier point, biais haussier modéré."
+  },
+  "Q-2026-10-chomage_FR-2026-10-q80": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Chômage Eurostat 8,3 % en juillet puis 8,2 % en août 2026, Insee T2 à 8,3 % en hausse ; activité stagnante (T1 -0,2 %, T2 0,0 %) et choc pétrolier ; retour à 8,3 % plausible vu la conjoncture."
+  },
+  "Q-2026-10-chomage_FR-2026-11-q20": {
+   "probabilites": {
+    "oui": 87,
+    "non": 13
+   },
+   "motif": "Chômage Eurostat 8,3 % en juillet puis 8,2 % en août 2026, Insee T2 à 8,3 % en hausse ; activité stagnante (T1 -0,2 %, T2 0,0 %) et choc pétrolier ; seuil de 8,0 % sous le niveau récent."
+  },
+  "Q-2026-10-chomage_FR-2026-11-q50": {
+   "probabilites": {
+    "oui": 63,
+    "non": 37
+   },
+   "motif": "Chômage Eurostat 8,3 % en juillet puis 8,2 % en août 2026, Insee T2 à 8,3 % en hausse ; activité stagnante (T1 -0,2 %, T2 0,0 %) et choc pétrolier ; stabilité ou légère hausse attendue."
+  },
+  "Q-2026-10-chomage_FR-2026-11-q80": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Chômage Eurostat 8,3 % en juillet puis 8,2 % en août 2026, Insee T2 à 8,3 % en hausse ; activité stagnante (T1 -0,2 %, T2 0,0 %) et choc pétrolier ; 8,4 % suppose une dégradation nette du marché du travail."
+  },
+  "Q-2026-10-chomage_FR-2026-12-q20": {
+   "probabilites": {
+    "oui": 86,
+    "non": 14
+   },
+   "motif": "Chômage Eurostat 8,3 % en juillet puis 8,2 % en août 2026, Insee T2 à 8,3 % en hausse ; activité stagnante (T1 -0,2 %, T2 0,0 %) et choc pétrolier ; seuil sous le niveau récent, tendance haussière."
+  },
+  "Q-2026-10-chomage_FR-2026-12-q50": {
+   "probabilites": {
+    "oui": 64,
+    "non": 36
+   },
+   "motif": "Chômage Eurostat 8,3 % en juillet puis 8,2 % en août 2026, Insee T2 à 8,3 % en hausse ; activité stagnante (T1 -0,2 %, T2 0,0 %) et choc pétrolier ; légère hausse probable sur fond de croissance quasi nulle."
+  },
+  "Q-2026-10-chomage_FR-2026-12-q80": {
+   "probabilites": {
+    "oui": 34,
+    "non": 66
+   },
+   "motif": "Chômage Eurostat 8,3 % en juillet puis 8,2 % en août 2026, Insee T2 à 8,3 % en hausse ; activité stagnante (T1 -0,2 %, T2 0,0 %) et choc pétrolier ; 8,4 % atteignable si la stagnation persiste."
+  },
+  "Q-EV-01": {
+   "probabilites": {
+    "oui": 76,
+    "non": 24
+   },
+   "motif": "Moody's Aa3 perspective négative depuis 2024, S&P et Fitch A+ stables ; spread à ~120 pb, croissance nulle, budget fragile et alternance 2027 rendent une dégradation sur deux ans probable."
+  },
+  "Q-EV-01-2026-10": {
+   "probabilites": {
+    "oui": 36,
+    "non": 64
+   },
+   "motif": "Seule échéance du mois : Moody's le 23/10 (Aa3 négative depuis deux ans, maintenue en avril 2026) ; flambée du spread et budget incertain accroissent le risque de passage en A1."
+  },
+  "Q-EV-02": {
+   "probabilites": {
+    "oui": 58,
+    "non": 42
+   },
+   "motif": "Pas de LFI votée au 31/12 lors des deux derniers exercices (loi spéciale) ; PS hostile au PLF 2027, Assemblée sans majorité, 49.3 exposé à la censure, art. 47 évoqué."
+  },
+  "Q-EV-03": {
+   "probabilites": {
+    "oui": 63,
+    "non": 37
+   },
+   "motif": "Dérapages fréquents par rapport aux cibles (2023, 2024), croissance nulle, charge d'intérêts en hausse et année électorale 2027 avec probable collectif du nouvel exécutif."
+  },
+  "Q-EV-04": {
+   "probabilites": {
+    "oui": 14,
+    "non": 86
+   },
+   "motif": "Décisions 126(8)/126(9) rares (Espagne/Portugal 2016) et Commission indulgente, mais risque accru si dérapage budgétaire post-2027."
+  },
+  "Q-EV-04-2026-10": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Aucune évaluation du Conseil prévue en octobre ; paquet d'automne de la Commission en novembre."
+  },
+  "Q-EV-05": {
+   "probabilites": {
+    "RN": 43,
+    "bloc central": 27,
+    "gauche": 13,
+    "droite LR ou autre": 13,
+    "autre": 4
+   },
+   "motif": "RN largement en tête au 1er tour ; marchés à ~50 % pour RN (Le Pen + Bardella), Metaculus plus bas ; Philippe solide second ; révélations sur Bardella et front républicain modèrent."
+  },
+  "Q-EV-06": {
+   "probabilites": {
+    "oui": 16,
+    "non": 84
+   },
+   "motif": "Deux trimestres consécutifs négatifs en 1re estimation sont rares (2008-09, 2012-13, 2020) ; économie stagnante et choc pétrolier relèvent le risque."
+  },
+  "Q-EV-06-2026-10": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Seule la 1re estimation du T3 2026 paraît fin octobre (BdF ~+0,2 %) ; deux trimestres négatifs impossibles à constater ce mois-ci."
+  },
+  "Q-EV-07": {
+   "probabilites": {
+    "oui": 28,
+    "non": 72
+   },
+   "motif": "Incidents graves fréquents mais interruption >24 h d'un OIV confirmée publiquement par l'ANSSI ou un régulateur reste rare ; contexte géopolitique tendu sur deux ans."
+  },
+  "Q-EV-07-2026-10": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Taux mensuel faible pour un incident de ce niveau avec confirmation officielle."
+  },
+  "Q-EV-08": {
+   "probabilites": {
+    "oui": 87,
+    "non": 13
+   },
+   "motif": "VIGINUM attribue régulièrement des campagnes (Storm-1516, Matriochka) et a publié lors des législatives 2024 et des JO ; quasi certain pendant la campagne 2027."
+  },
+  "Q-EV-08-2026-10": {
+   "probabilites": {
+    "oui": 9,
+    "non": 91
+   },
+   "motif": "Campagne officielle pas encore ouverte, mais un rapport d'attribution ciblant la présidentielle reste possible à tout moment."
+  },
+  "Q-EV-09": {
+   "probabilites": {
+    "oui": 84,
+    "non": 16
+   },
+   "motif": "Vigilance rouge canicule déclenchée en 2019, 2023 et 2025 notamment ; deux étés couverts."
+  },
+  "Q-EV-10": {
+   "probabilites": {
+    "oui": 75,
+    "non": 25
+   },
+   "motif": "Mouvement lycéen lancé le 21/09 (356 lycées touchés au 30/09) et 29 universités partiellement bloquées dès le 01/10 selon l'Union étudiante ; reste la question du maintien après le 04/10 et des vacances de Toussaint."
+  },
+  "Q-EV-13": {
+   "probabilites": {
+    "oui": 9,
+    "non": 91
+   },
+   "motif": "Le 29/09/2026, 9,6 % de grévistes en FPE ; dépasser 18 % est rare hors grandes réformes (retraites 2023)."
+  },
+  "Q-EV-15": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Taux de base 1 censure sur 4 budgets ; PS menaçant, RN favorable à la chute, mais réticence à provoquer une crise à six mois de la présidentielle."
+  },
+  "Q-EV-16a": {
+   "probabilites": {
+    "oui": 6,
+    "non": 94
+   },
+   "motif": "Dissolution juste avant une présidentielle peu rationnelle pour Macron ; Polymarket ~5 % avant fin 2026."
+  },
+  "Q-EV-16a-2026-10": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Aucun signal de dissolution imminente en octobre."
+  },
+  "Q-EV-16b": {
+   "probabilites": {
+    "oui": 84,
+    "non": 16
+   },
+   "motif": "Un président nouvellement élu dissout presque toujours face à une Assemblée défavorable (1981, 1988) ; le RN ou Philippe y auraient intérêt."
+  },
+  "Q-EV-17": {
+   "probabilites": {
+    "oui": 68,
+    "non": 32
+   },
+   "motif": "Fragmentation tripolaire : un président RN ou central obtiendrait difficilement 289 sièges (cf. 2022) ; sans législatives, l'Assemblée actuelle n'a pas de majorité."
+  },
+  "Q-EV-17-2026-10": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Critère portant sur le président élu en 2027, non constatable en octobre 2026 ; probabilité résiduelle liée à l'ambiguïté de résolution sur la composition existante."
+  },
+  "Q-EV-C1": {
+   "probabilites": {
+    "oui": 84,
+    "non": 16
+   },
+   "motif": "Attentats meurtriers saisis par le PNAT presque chaque année depuis 2016 (dont Mulhouse 2025), fréquence en baisse ; deux ans de fenêtre."
+  },
+  "Q-EV-C1-2026-10": {
+   "probabilites": {
+    "oui": 5,
+    "non": 95
+   },
+   "motif": "Taux mensuel d'environ 0,5 attentat meurtrier par an ces dernières années."
+  },
+  "Q-EV-C2": {
+   "probabilites": {
+    "oui": 48,
+    "non": 52
+   },
+   "motif": "Précédents : Guadeloupe 2021, Nouvelle-Calédonie et Martinique 2024 ; dossier calédonien non stabilisé, deux ans de fenêtre."
+  },
+  "Q-EV-C2-2026-10": {
+   "probabilites": {
+    "oui": 4,
+    "non": 96
+   },
+   "motif": "Pas de crise ouverte signalée ; taux mensuel faible."
+  },
+  "Q-EV-C3a": {
+   "probabilites": {
+    "oui": 24,
+    "non": 76
+   },
+   "motif": "Précédents : 20 à 26 mois entre proposition et accord ; objectif décembre 2026 (17 mois) ambitieux et divisions profondes entre les 27."
+  },
+  "Q-EV-C3b": {
+   "probabilites": {
+    "oui": 94,
+    "non": 6
+   },
+   "motif": "Un accord avant l'entrée en vigueur en 2028 est quasi indispensable ; seul un blocage prolongé l'empêcherait."
+  },
+  "Q-EV-C3b-2026-10": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Le Conseil européen d'octobre n'est qu'une étape ; sommet extraordinaire prévu fin novembre."
+  },
+  "Q-EV-C4": {
+   "probabilites": {
+    "avis rendu, compatible": 64,
+    "avis rendu, incompatible": 15,
+    "pas d'avis": 21
+   },
+   "motif": "Saisine du Parlement européen en janvier 2026 ; délais historiques 16-24 mois (avis CETA en 19 mois, compatible), donc avis probable vers 2027-2028 ; retrait de la demande ou retard possibles."
+  }
+ }
+}

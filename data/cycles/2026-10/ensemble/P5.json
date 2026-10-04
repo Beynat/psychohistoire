@@ -1,0 +1,410 @@
+{
+  "previsionniste": "P5",
+  "modele": "haiku",
+  "gel": "2026-10-04",
+  "previsions": {
+    "Q-2026-10-ecart_FR_DE_pb-2026-10-q20": {
+      "probabilites": {
+        "oui": 92,
+        "non": 8
+      },
+      "motif": "Taux de base : l'écart France-Allemagne fluctue historiquement entre 40-100 pb en période de normalité. Situation actuelle : sources du 2/10/2026 indiquent > 150 pb, du jamais vu depuis fin 2011. Données de septembre autour de 100-105 pb. Le seuil de 76 pb est très probable étant donné les niveaux observés."
+    },
+    "Q-2026-10-ecart_FR_DE_pb-2026-10-q50": {
+      "probabilites": {
+        "oui": 88,
+        "non": 12
+      },
+      "motif": "Les spreads observés en fin septembre sont de 104 pb, début octobre > 150 pb. La moyenne mensuelle pour octobre se situera probablement entre 100-140 pb. Le seuil de 82 pb est hautement probable mais moins certain que 76 pb."
+    },
+    "Q-2026-10-ecart_FR_DE_pb-2026-10-q80": {
+      "probabilites": {
+        "oui": 72,
+        "non": 28
+      },
+      "motif": "Les spreads observés jusqu'à > 150 pb rendent le seuil de 89 pb probable. Cependant, la volatilité des spreads signifie que la moyenne mensuelle pourrait descendre en-dessous si une baisse intervient en fin octobre. Probabilité modérée."
+    },
+    "Q-2026-10-ecart_FR_DE_pb-2026-11-q20": {
+      "probabilites": {
+        "oui": 85,
+        "non": 15
+      },
+      "motif": "La dynamique des spreads suivra l'actualité politique et budgétaire française. Avec les tensions autour du budget 2027 et les échéances de notation (Moody's 23/10, S&P 27/11), les spreads resteront probablement élevés. Seuil de 75 pb probable."
+    },
+    "Q-2026-10-ecart_FR_DE_pb-2026-11-q50": {
+      "probabilites": {
+        "oui": 78,
+        "non": 22
+      },
+      "motif": "La moyenne de novembre dépendra des décisions de révision des agences de notation. Même en cas de non-dégradation (maintien), les spreads resteraient probablement > 80 pb. Probabilité modérée-haute."
+    },
+    "Q-2026-10-ecart_FR_DE_pb-2026-11-q80": {
+      "probabilites": {
+        "oui": 58,
+        "non": 42
+      },
+      "motif": "Le seuil de 91 pb est plus exigeant. Cela supposerait un maintien ou une baisse des spreads en novembre. Possible mais pas assuré. Dépend du calendrier des notifications et de l'adoption du budget."
+    },
+    "Q-2026-10-ecart_FR_DE_pb-2026-12-q20": {
+      "probabilites": {
+        "oui": 82,
+        "non": 18
+      },
+      "motif": "D'ici décembre, même un scénario d'adoption du budget maintient une tension structurelle. Le seuil de 72 pb est probable étant donné les niveaux observés plus élevés en septembre-octobre."
+    },
+    "Q-2026-10-ecart_FR_DE_pb-2026-12-q50": {
+      "probabilites": {
+        "oui": 74,
+        "non": 26
+      },
+      "motif": "82 pb en décembre suppose une baisse progressive des spreads sur Q4. Possible si budget adopté et stabilité retrouvée, mais incertitude demeure. Probabilité modérée."
+    },
+    "Q-2026-10-ecart_FR_DE_pb-2026-12-q80": {
+      "probabilites": {
+        "oui": 52,
+        "non": 48
+      },
+      "motif": "92 pb en décembre (baisse significative) supposerait une résolution positive. Probabilité quasi-égale : dépend fortement des résolutions budgétaire et politique."
+    },
+    "Q-2026-10-inflation_ipch_FR-2026-10-q20": {
+      "probabilites": {
+        "oui": 88,
+        "non": 12
+      },
+      "motif": "Septembre 2026 : 3,4% en IPCH (source Boursorama 30/09/2026). Octobre sera très probablement >= 3,2%. Taux de base : inflation en hausse, tracté par l'énergie (+21,2% en septembre). Probabilité haute."
+    },
+    "Q-2026-10-inflation_ipch_FR-2026-10-q50": {
+      "probabilites": {
+        "oui": 72,
+        "non": 28
+      },
+      "motif": "Octobre >= 3,4% ? Septembre est exactement à 3,4%. Probabilité modérée que octobre soit au même niveau ou légèrement supérieur, mais quelque volatilité mois-à-mois est attendue."
+    },
+    "Q-2026-10-inflation_ipch_FR-2026-10-q80": {
+      "probabilites": {
+        "oui": 44,
+        "non": 56
+      },
+      "motif": "3,6% en octobre supposerait une accélération par rapport à septembre. Possible si prix énergétiques restent élevés, mais septembre était déjà élevé. Probabilité modérée-basse."
+    },
+    "Q-2026-10-inflation_ipch_FR-2026-11-q20": {
+      "probabilites": {
+        "oui": 82,
+        "non": 18
+      },
+      "motif": "Novembre >= 3,1% : avec inflation en hausse et taux de base de 3,4% en septembre, probabilité forte que novembre reste >= 3,1%."
+    },
+    "Q-2026-10-inflation_ipch_FR-2026-11-q50": {
+      "probabilites": {
+        "oui": 68,
+        "non": 32
+      },
+      "motif": "Novembre >= 3,4% : dépend de la persistance des prix énergétiques. Possible mais moins certain que 3,1%. Probabilité modérée."
+    },
+    "Q-2026-10-inflation_ipch_FR-2026-11-q80": {
+      "probabilites": {
+        "oui": 38,
+        "non": 62
+      },
+      "motif": "3,7% en novembre supposerait une accélération soutenue. Possible si chocs énergétiques persistent, mais fin d'année voit souvent une modération saisonnière. Probabilité modérée-basse."
+    },
+    "Q-2026-10-inflation_ipch_FR-2026-12-q20": {
+      "probabilites": {
+        "oui": 78,
+        "non": 22
+      },
+      "motif": "Décembre >= 3,0% : probabilité haute car inflation en hausse sur la période. Même avec modération saisonnière, 3,0% paraît probable."
+    },
+    "Q-2026-10-inflation_ipch_FR-2026-12-q50": {
+      "probabilites": {
+        "oui": 62,
+        "non": 38
+      },
+      "motif": "Décembre >= 3,4% : supposer un maintien malgré effets de base défavorables et potentielle modération saisonnière. Probabilité modérée."
+    },
+    "Q-2026-10-inflation_ipch_FR-2026-12-q80": {
+      "probabilites": {
+        "oui": 34,
+        "non": 66
+      },
+      "motif": "3,8% en décembre serait très élevé pour une fin d'année. Peu probable sauf choc énergétique majeur. Probabilité basse."
+    },
+    "Q-2026-10-chomage_FR-2026-10-q20": {
+      "probabilites": {
+        "oui": 82,
+        "non": 18
+      },
+      "motif": "Juillet 2026 : 8,3% (Eurostat CVS). Q2 2026 : 8,3%. Tendance : hausse de 0,2 pt par trimestre. Octobre >= 8,1% est très probable étant donné les niveaux récents."
+    },
+    "Q-2026-10-chomage_FR-2026-10-q50": {
+      "probabilites": {
+        "oui": 68,
+        "non": 32
+      },
+      "motif": "Octobre >= 8,2% : avec 8,3% en juillet et tendance haussière, possible mais non assuré. La statistique mensuelle oscille. Probabilité modérée."
+    },
+    "Q-2026-10-chomage_FR-2026-10-q80": {
+      "probabilites": {
+        "oui": 52,
+        "non": 48
+      },
+      "motif": "8,3% en octobre : l'égalité avec juillet est probable mais non certain. Dépend de la dynamique de l'emploi en septembre-octobre. Probabilité quasi-égale."
+    },
+    "Q-2026-10-chomage_FR-2026-11-q20": {
+      "probabilites": {
+        "oui": 75,
+        "non": 25
+      },
+      "motif": "Novembre >= 8,0% : très probable en raison de la tendance haussière et du niveau déjà atteint. Probabilité modérée-haute."
+    },
+    "Q-2026-10-chomage_FR-2026-11-q50": {
+      "probabilites": {
+        "oui": 62,
+        "non": 38
+      },
+      "motif": "Novembre >= 8,2% : suppose une stabilisation ou une aggravation. Possible mais non certain. Probabilité modérée."
+    },
+    "Q-2026-10-chomage_FR-2026-11-q80": {
+      "probabilites": {
+        "oui": 44,
+        "non": 56
+      },
+      "motif": "8,4% en novembre : exigerait une dégradation supplémentaire du marché du travail. Possible si croissance reste faible. Probabilité modérée-basse."
+    },
+    "Q-2026-10-chomage_FR-2026-12-q20": {
+      "probabilites": {
+        "oui": 72,
+        "non": 28
+      },
+      "motif": "Décembre >= 8,0% : très probable malgré possibles effets saisonniers positifs en fin d'année. Probabilité modérée-haute."
+    },
+    "Q-2026-10-chomage_FR-2026-12-q50": {
+      "probabilites": {
+        "oui": 58,
+        "non": 42
+      },
+      "motif": "Décembre >= 8,2% : dépend de l'évolution Q4. Possible mais moins assuré que 8,0%. Probabilité modérée."
+    },
+    "Q-2026-10-chomage_FR-2026-12-q80": {
+      "probabilites": {
+        "oui": 38,
+        "non": 62
+      },
+      "motif": "8,4% en décembre : supposer une détérioration continue. Possible en cas de récession imminente, mais probabilité modérée-basse."
+    },
+    "Q-EV-01": {
+      "probabilites": {
+        "oui": 58,
+        "non": 42
+      },
+      "motif": "Taux de base : notation souveraine se dégrade tous les 10-15 ans. Situation actuelle : Moody's maintient Aa3 outlook négatif. Sources indiquent que Fitch et S&P auraient récemment dégradé. Deux agences dégradées déjà ? Si oui, probabilité est très haute. Articles partiellement contradictoires : certains disent dégradation Moody's, d'autres maintien. Évaluation : 58% compte tenu de l'incertitude."
+    },
+    "Q-EV-01-2026-10": {
+      "probabilites": {
+        "oui": 32,
+        "non": 68
+      },
+      "motif": "Moody's réunit le 23/10/2026. Probabilité d'une dégradation à cette date : modérée. Outlook négatif suggère une dégradation possible mais pas imminente. Probabilité : 32%."
+    },
+    "Q-EV-02": {
+      "probabilites": {
+        "oui": 48,
+        "non": 52
+      },
+      "motif": "Lecornu envisage les ordonnances (article FranceInfo). Gauche promet censure. Taux de base : 1 censure (Barnier déc. 2024), 1 chute question confiance (Bayrou sept. 2025) en 4 budgets. Lecornu a survécu à deux votes de non-confiance. Probabilité de censure effective : ~48%."
+    },
+    "Q-EV-03": {
+      "probabilites": {
+        "oui": 38,
+        "non": 62
+      },
+      "motif": "Cible PLF 2027 : 5,0%. Probabilité que déficit notifié > 5,0% : dépend de l'évolution macroéconomique Q4 2026 - Q4 2027. Croissance faible suggère risque accru. Probabilité modérée : 38%."
+    },
+    "Q-EV-04": {
+      "probabilites": {
+        "oui": 22,
+        "non": 78
+      },
+      "motif": "Procédure déficit excessif durcie (art. 126(8) ou 126(9) TFUE) : supposerait une notification entre octobre 2026 et septembre 2028. France déjà en PDE. Durcissement supposerait dégradation significative. Probabilité basse : 22%."
+    },
+    "Q-EV-04-2026-10": {
+      "probabilites": {
+        "oui": 4,
+        "non": 96
+      },
+      "motif": "Durcissement en octobre 2026 : Conseil européen se réunit rarement pour PDE en octobre. Très improbable. Probabilité : 4%."
+    },
+    "Q-EV-05": {
+      "probabilites": {
+        "RN": 42,
+        "bloc central": 24,
+        "gauche": 16,
+        "droite LR ou autre": 12,
+        "autre": 6
+      },
+      "motif": "Sondages Polymarket (03/10/2026) : Le Pen 45%, Philippe 19%, Lisnard 12%, Mélenchon 12-13%, Bardella 5%. Sondages internes peuvent être biaisés. Métaclulus : Le Pen 34,3%, Philippe 25,5%, Mélenchon 9,8%. RN dominant (cumulé Le Pen + Bardella : ~47% Polymarket). Répartition : RN 42%, bloc central 24%, gauche 16%, droite 12%, autre 6%."
+    },
+    "Q-EV-06": {
+      "probabilites": {
+        "oui": 42,
+        "non": 58
+      },
+      "motif": "Récession = deux trimestres consécutifs < 0 entre T3 2026 et T2 2028. Q3 2026 : +0,2%. Q2 2026 : 0,0%. Croissance très faible mais pas négative. Récession technique possible si deux trimestres consécutifs deviennent négatifs (Q4 2026 + Q1 2027, etc.). Probabilité modérée : 42%."
+    },
+    "Q-EV-06-2026-10": {
+      "probabilites": {
+        "oui": 3,
+        "non": 97
+      },
+      "motif": "Récession détectable en octobre 2026 : impossible car premier trimestre le plus ancien serait Q3 2026 (+0,2%). Q4 2026 serait publie début 2027. Probabilité : 3%."
+    },
+    "Q-EV-07": {
+      "probabilites": {
+        "oui": 28,
+        "non": 72
+      },
+      "motif": "Cyberattaque majeure (ANSSI, > 24h interruption OIV/financier) entre octobre 2026 et septembre 2028. Taux de base : 1-2 incidents majeurs par an en France. Probabilité sur 2 ans : 28%."
+    },
+    "Q-EV-07-2026-10": {
+      "probabilites": {
+        "oui": 6,
+        "non": 94
+      },
+      "motif": "Cyberattaque en octobre 2026 : possible mais peu probable. Probabilité : 6%."
+    },
+    "Q-EV-08": {
+      "probabilites": {
+        "oui": 54,
+        "non": 46
+      },
+      "motif": "Campagne ingérence étrangère rapportée par VIGINUM pour 2027 : présidentielle crée incitation. Taux de base : exemples 2022 (Russie), potentiellement actifs d'autres puissances. Probabilité : 54%."
+    },
+    "Q-EV-08-2026-10": {
+      "probabilites": {
+        "oui": 8,
+        "non": 92
+      },
+      "motif": "Rapport VIGINUM en octobre 2026 : peu probable car révélation généralement postérieure aux événements. Probabilité : 8%."
+    },
+    "Q-EV-09": {
+      "probabilites": {
+        "oui": 72,
+        "non": 28
+      },
+      "motif": "Vigilance rouge canicule (été 2027-2028) ou perte agricole >= 0,1 pt PIB : été 2026 a connu plusieurs vigilances rouges (juin 72 dpts, juillet 37 dpts). Taux de base historique : canicules rouges tous les 2-3 ans. Probabilité : 72%."
+    },
+    "Q-EV-10": {
+      "probabilites": {
+        "oui": 36,
+        "non": 64
+      },
+      "motif": "Extension mouvement lycéen (> 300 établissements 2 semaines OU universités) d'ici 15/11/2026 : mouvement a eu lieu septembre 2026 (Wikipedia). Critère très spécifique (300 éts, 2 semaines consécutives). Taux de base (2005) : ~3 semaines. Probabilité d'extension supplémentaire : 36%."
+    },
+    "Q-EV-13": {
+      "probabilites": {
+        "oui": 26,
+        "non": 74
+      },
+      "motif": "Grève FP : > 18% grévistes FPE en une journée d'ici 31/12/2026. Article 29/09 : 300 k manifestants. Autre article : < 10% agents. Taux de base : grève massive rare. Probabilité : 26%."
+    },
+    "Q-EV-15": {
+      "probabilites": {
+        "oui": 42,
+        "non": 58
+      },
+      "motif": "Censure gouvernement Lecornu sur budget 2027 d'ici 31/12/2026 : Lecornu a survécu deux votes, envisage ordonnances. Taux de base : 1 censure (Barnier) en 4 budgets. Menace crédible mais gouvernement cherche éviter. Probabilité : 42%."
+    },
+    "Q-EV-16a": {
+      "probabilites": {
+        "oui": 9,
+        "non": 91
+      },
+      "motif": "Dissolution avant 02/05/2027 (avant second tour) : Macron refuse (article 10 sept 2026). Polymarket : ~5% avant 31/12/2026. Après, très peu probable avant présidentielle. Probabilité : 9%."
+    },
+    "Q-EV-16a-2026-10": {
+      "probabilites": {
+        "oui": 1,
+        "non": 99
+      },
+      "motif": "Dissolution en octobre 2026 : article du gouvernement du 10/09 exclut explicitement. Probabilité : 1%."
+    },
+    "Q-EV-16b": {
+      "probabilites": {
+        "oui": 22,
+        "non": 78
+      },
+      "motif": "Dissolution après 02/05/2027 (post-présidentielle) : dépend du résultat électoral. Si RN gagne, possible. Si bloc central, moins probable. Probabilité moyenne : 22%."
+    },
+    "Q-EV-17": {
+      "probabilites": {
+        "oui": 46,
+        "non": 54
+      },
+      "motif": "Président sans majorité 289 sièges à l'Assemblée : dépend de dissolution (prob. 9%) et résultats legislatives. Si pas de dissolution, Assemblée actuelle : pas de majorité claire. Si dissolution et élections : résultat imprévisible mais fragmentation probable. Probabilité : 46%."
+    },
+    "Q-EV-17-2026-10": {
+      "probabilites": {
+        "oui": 1,
+        "non": 99
+      },
+      "motif": "Président sans majorité en octobre 2026 : impossible car président élu 2022 pas jusqu'en 2027. Probabilité : 1%."
+    },
+    "Q-EV-C1": {
+      "probabilites": {
+        "oui": 54,
+        "non": 46
+      },
+      "motif": "Attentat terroriste meurtrier (PNAT, >= 1 mort hors assaillant) entre oct 2026 et sept 2028. Taux de base TE-SAT 2016-2026 : 1-2 atentados par an en France. Sur 2 ans : 54%."
+    },
+    "Q-EV-C1-2026-10": {
+      "probabilites": {
+        "oui": 9,
+        "non": 91
+      },
+      "motif": "Attentat en octobre 2026 : possible mais peu probable. Probabilité : 9%."
+    },
+    "Q-EV-C2": {
+      "probabilites": {
+        "oui": 32,
+        "non": 68
+      },
+      "motif": "Crise ordre public outre-mer (état d'urgence ou couvre-feu > 7 j) d'ici sept 2028 : précédents NC 2024, Martinique 2024. Taux de base : tous les 2-3 ans. Probabilité : 32%."
+    },
+    "Q-EV-C2-2026-10": {
+      "probabilites": {
+        "oui": 4,
+        "non": 96
+      },
+      "motif": "Crise en octobre 2026 : possible mais peu probable. Probabilité : 4%."
+    },
+    "Q-EV-C3a": {
+      "probabilites": {
+        "oui": 68,
+        "non": 32
+      },
+      "motif": "Accord CFP 2028-2034 avant 31/12/2026 : sommet 17-18/12/2026 (extraordinaire 26-27/11). Cible officielle. Accord unanime nécessaire. Probabilité : 68%."
+    },
+    "Q-EV-C3b": {
+      "probabilites": {
+        "oui": 88,
+        "non": 12
+      },
+      "motif": "Accord CFP avant 30/09/2028 : si pas accordé fin 2026, très probable avant 2028. Probabilité : 88%."
+    },
+    "Q-EV-C3b-2026-10": {
+      "probabilites": {
+        "oui": 5,
+        "non": 95
+      },
+      "motif": "Accord en octobre 2026 : sommet prévus novembre-décembre. Probabilité : 5%."
+    },
+    "Q-EV-C4": {
+      "probabilites": {
+        "avis rendu, compatible": 28,
+        "avis rendu, incompatible": 26,
+        "pas d'avis": 46
+      },
+      "motif": "CJUE avis UE-Mercosur d'ici sept 2028 : Parlement saisi janvier 2026. Délai : jusqu'à 18 mois (juillet 2027). Trois scénarios : (1) avis compatible 28% ; (2) avis incompatible 26% ; (3) pas d'avis (délai dépassé, ou retrait saisine) 46%."
+    }
+  }
+}

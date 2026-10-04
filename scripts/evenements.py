@@ -61,6 +61,8 @@ REGLES = {
 }
 ISSUES = {"EV-05": ["RN", "bloc central", "gauche", "droite LR ou autre", "autre"],
           "EV-C4": ["avis rendu, compatible", "avis rendu, incompatible", "pas d'avis"]}
+# Critères appréciés seulement en fin de fenêtre : pas de question mensuelle (cycle à blanc).
+SANS_MENSUELLE = {"EV-17": "Le critère se juge à l'issue de législatives ou en fin de période, pas mois par mois."}
 INACCESSIBLE = {
     "EV-12": "Résolution sur ACLED, qui exige un compte : source inaccessible au projet.",
     "EV-14": "Résolution sur ACLED, qui exige un compte : source inaccessible au projet.",
@@ -96,6 +98,7 @@ def construire():
                     "source_accessible": r["id"] not in INACCESSIBLE,
                     "motif_inaccessible": INACCESSIBLE.get(r["id"]),
                     "origine": origine,
+                    "mensuelle": r["id"] not in SANS_MENSUELLE,
                 })
     return evts
 

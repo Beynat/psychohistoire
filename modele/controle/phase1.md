@@ -30,10 +30,11 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 
 - [ ] Tâches planifiées créées : tri (trois fois par semaine), cycle mensuel (section 12).
 - [ ] Règle de rattrapage testée sur un passage manqué simulé.
+- [ ] Clé API Webstat (Banque de France) pour l'OAT quotidienne, en secret GitHub `WEBSTAT_KEY`, puis seuils de l'écart calés sur la dernière observation quotidienne.
 - [ ] Workflow de contrôle des registres actif : ajout seul, `--no-renames`, horodatage dans la fenêtre de poussée, décisions de tri en JSONL (section 12).
 - [x] Tags `protocole-v*` et `annexe-phase3-v*` protégés contre la suppression et la mise à jour (ruleset actif depuis le 4 octobre 2026).
 - [x] Branche `main` protégée contre la poussée forcée et la suppression (ruleset actif depuis le 4 octobre 2026).
-- [ ] Cycle à blanc mi-octobre sur la piste exploratoire, chaîne complète : gel, questions, prévisions, registre, notation.
+- [x] Cycle à blanc sur la piste exploratoire, chaîne complète (4 octobre 2026) : `data/cycles/2026-10/ESSAI.md`. Quatre problèmes trouvés et corrigés ; un reste ouvert (série quotidienne de l'OAT).
 
 ## Prérequis de la phase 2 (1er décembre 2026)
 

@@ -26,9 +26,16 @@ def suffixe(reg):
 
 
 def toutes_les_questions():
+    """Questions de toutes les banques de cycle, plus la question de fenêtre de chaque événement
+    (« Q-<id> »), pour pouvoir constater avant émission qu'un événement s'est déjà produit."""
     qs = {}
+    for e in lire_json("modele/evenements.json")["evenements"]:
+        qs[f"Q-{e['id']}"] = {"id": f"Q-{e['id']}", "type": "evenement", "issues": e["issues"], "pool": "P2b",
+                              "grappe": f"{e['evenement']}", "echeance": e["fenetre"]["fin"], "avant_emission": True}
     for f in sorted((RACINE / "data" / "cycles").glob("*/questions.json")):
         for q in lire_json(str(f.relative_to(RACINE)))["questions"]:
+            if qs.get(q["id"], {}).get("avant_emission"):
+                del qs[q["id"]]
             qs.setdefault(q["id"], q)
     return qs
 
@@ -43,7 +50,7 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
     emises = {l["question"] for l in lire_jsonl(reg) if "question" in l and "probabilites" in l}
     nouvelles, series = [], {}
     for qid, q in toutes_les_questions().items():
-        if qid in deja or qid not in emises:
+        if qid in deja or (qid not in emises and not (q.get("avant_emission") and qid in props)):
             continue
         if q["type"] == "variable":
             d = q["details"]

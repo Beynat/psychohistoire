@@ -3,10 +3,12 @@
 Exécutée le 1er de chaque mois par la tâche planifiée du cycle mensuel (noyau, section 12). Chaque étape est commitée et poussée avant la suivante ; l'ordre garantit que les prévisions sont postérieures au gel et antérieures à toute autre recherche (section 8.2).
 
 1. **Gel.** `python scripts/geler.py AAAA-MM-01`, puis commit et poussée du dossier `data/cycles/AAAA-MM/gel/`.
+1 bis. **Événements déjà survenus.** Avant de générer les questions, deux agents distincts vérifient, pour chaque événement de `modele/evenements.json` encore ouvert, s'il s'est déjà produit au regard de son critère. Chaque constat positif est ajouté comme proposition (`registre/propositions.jsonl`), puis `python scripts/resolution.py` le résout. La question n'est alors pas émise (section 8.2).
 2. **Questions.** `python scripts/questions.py AAAA-MM-01`, puis commit et poussée de `questions.json`.
 3. **Comparateurs.** `python scripts/comparateurs.py AAAA-MM`, puis commit et poussée du registre.
 4. **Ensemble direct.**
-   - Lancer cinq prévisionnistes indépendants, sur au moins trois modèles, avec `modele/consigne_ensemble.md` et la seule liste de questions.
+   - Lancer cinq prévisionnistes indépendants, sur au moins trois modèles, avec `modele/consigne_ensemble.md` (v1.1 : au moins 10 recherches web déclarées) et la seule liste de questions.
+   - Lire les motifs : un seuil signalé comme décalé ou une question signalée comme déjà résolue est consigné pour le cycle suivant.
    - Chacun écrit `data/cycles/AAAA-MM/ensemble/<identifiant>.json`.
    - Puis `python scripts/ensemble.py AAAA-MM`, et commit et poussée dans l'heure (contrôle d'horodatage).
 5. **Résolution.**
