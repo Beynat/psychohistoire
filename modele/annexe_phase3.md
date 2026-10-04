@@ -1,6 +1,6 @@
-# Annexe phase 3 — liens, jalons et faits imprévus — version 1.0
+# Annexe phase 3 — liens, jalons et faits imprévus — version 1.1
 
-Statut : soumise à relecture avec le noyau v1.8 (relecture 6). Rédigée le 4 octobre 2026. Elle complète `protocole.md` (le noyau) et ne s'applique qu'à partir de la phase 3, sauf le cas b (section 8.9 du noyau) et le pilote sur la piste exploratoire. Elle conserve la numérotation 10 et 11 pour la continuité des renvois. Elle est versionnée et taguée séparément (`annexe-phase3-vX.Y`), et gelée jusqu'au bilan de la phase 1, sauf corrections exigées en relecture.
+Statut : soumise à relecture avec le noyau v1.10 (relecture 7). Rédigée le 4 octobre 2026. Elle complète `protocole.md` (le noyau) et ne s'applique qu'à partir de la phase 3, sauf le cas b (section 8.9 du noyau) et le pilote sur la piste exploratoire. Elle conserve la numérotation 10 et 11 pour la continuité des renvois. Elle est versionnée et taguée séparément (`annexe-phase3-vX.Y`), et gelée dans les mêmes conditions que le noyau (section 12). Seuls la veille et le tri (section 11.2), limités au cas « donnée », servent dès la phase 1.
 
 ## 10. Liens causaux et jalons
 
@@ -44,7 +44,7 @@ Un pivot ne bascule pas d'un coup : ce qui y mène passe par des étapes observa
 - **Observé :** rapport a / b.
 - **En cours :** rapport (1 − a·F(t)) / (1 − b·F(t)), où F(t) est la part de la fenêtre écoulée, en supposant une date d'observation uniforme dans la fenêtre. Le calcul est fait par script. Il n'y a donc pas de chute à la clôture : la non-observation compte au fur et à mesure.
 - **Manqué :** rapport (1 − a) / (1 − b), atteint à la clôture.
-- **Réduction contre le bruit.** Tous les log-rapports sont multipliés par un facteur k ≤ 1. Tant qu'il n'est pas estimé, k = 0,5, valeur déclarée arbitraire. Il est estimé sur le registre fantôme (section 10.6) par régression logistique de l'issue sur le log-rapport brut, avant réduction, avec la log-cote de la probabilité sans jalons en décalage : le coefficient est k. Le facteur des faits imprévus est estimé séparément (section 11.4). Il n'y a pas de plafond hebdomadaire.
+- **Réduction contre le bruit.** Tous les log-rapports sont multipliés par un facteur k ≤ 1. Tant qu'il n'est pas estimé, k = 0,5, valeur déclarée arbitraire. Il est estimé sur le registre fantôme (section 10.6) par régression logistique de l'issue sur le log-rapport brut, avant réduction, avec la log-cote de la probabilité sans jalons en décalage : le coefficient est k. Le facteur des faits imprévus est estimé séparément (section 11.4). Un facteur n'est estimé qu'à partir de 40 questions résolues, et son estimation est bornée entre 0 et 1. Il n'y a pas de plafond hebdomadaire.
 - **Pivots à échéance.** Un événement qui doit survenir avant une date garde sa décroissance propre (taux mensuel, section 7.4), indépendamment des jalons.
 
 ### 10.5 Double compte
@@ -69,7 +69,7 @@ Un pivot ne bascule pas d'un coup : ce qui y mène passe par des étapes observa
   - Un jalon est défini et commité au moins 7 jours avant l'ouverture de sa fenêtre.
   - Son seuil ne doit pas avoir été atteint dans les 30 jours précédant sa définition, faute de quoi il ne renseigne rien.
   - Un jalon ajouté en cours de route ne porte que sur une fenêtre future.
-  - Les définitions de jalons (`modele/jalons/definitions.jsonl`) et leurs statuts (`modele/jalons/statuts.jsonl`) sont deux journaux séparés en ajout seul, vérifiés par le contrôle des registres (section 12).
+  - Les définitions de jalons (`modele/jalons/definitions.jsonl`) et leurs statuts (`modele/jalons/statuts.jsonl`) sont deux journaux séparés en ajout seul, vérifiés par le contrôle des registres (section 12). La date de définition (`defini_le`, avec fuseau) est fixée par script et contrôlée à la poussée, comme l'horodatage des registres.
 - **Révision.** Une fenêtre ne peut être déplacée que si le calendrier institutionnel change (report d'un vote, par exemple), avec la source. Le changement est journalisé.
 
 ### 10.8 Routine hebdomadaire
@@ -96,8 +96,8 @@ Chaque jalon est une question : « J est-il observé dans sa fenêtre ? ». Ces 
 
 ### 10.11 Critère de direction (commun aux jalons et aux faits imprévus)
 
-- **Statistique.** Z = Σ d (y − p) / √(Σ d² p (1 − p)), avec **un terme par question résolue**. Pour chaque question, p est la probabilité sans la couche jugée et d le déplacement cumulé dû à cette couche, mesuré à la clôture de la question : probabilité fantôme moins probabilité sans jalons pour les jalons (section 10.6), probabilité avec moins probabilité sans les mises à jour c et d pour les faits imprévus (section 11.7). y vaut 1 si l'issue s'est réalisée, 0 sinon. Plusieurs mises à jour d'une même question ne comptent donc qu'une fois.
-- **Loi.** Sous l'hypothèse d'une couche sans information, Z suit approximativement une loi normale centrée réduite, quel que soit p.
+- **Statistique.** Pour chaque question résolue i, le terme est sᵢ = dᵢ (yᵢ − pᵢ). Les termes sont sommés par grappe (section 8.3 du noyau) : S_g = Σ_{i ∈ g} sᵢ. La statistique est Z = Σ_g S_g / √(Σ_g S_g²), ce qui tient compte de la corrélation entre questions d'un même lien. Pour chaque question, p est la probabilité sans la couche jugée et d le déplacement cumulé dû à cette couche, mesuré à la clôture de la question : probabilité fantôme moins probabilité sans jalons pour les jalons (section 10.6), probabilité avec moins probabilité sans les mises à jour c et d pour les faits imprévus (section 11.7). y vaut 1 si l'issue s'est réalisée, 0 sinon. Plusieurs mises à jour d'une même question ne comptent donc qu'une fois. Seules comptent les questions dont le déplacement d est d'au moins 0,5 point en valeur absolue.
+- **Loi.** Sous l'hypothèse d'une couche sans information, Z suit approximativement une loi normale centrée réduite, quel que soit p. Avec moins de 15 grappes, la valeur critique est prise dans une loi de Student à (nombre de grappes − 1) degrés de liberté.
 - **Décision.** Seuil unilatéral de 10 %, sur au moins 40 questions résolues, pour l'activation comme pour la désactivation.
 
 ## 11. Faits imprévus
@@ -121,7 +121,7 @@ Le modèle doit réagir à l'actualité en jours, sans réagir au bruit. Les fai
   - regroupe les titres par fait, en supprimant les doublons ;
   - rattache chaque fait à un jalon attendu, à un nœud ou à rien.
 
-  Il ne juge pas la matérialité : c'est le rôle du panel (section 11.4). Les décisions de tri sont écrites dans un fichier par mois, `data/tri/AAAA-MM.jsonl`, une décision par ligne, en ajout seul ; la collecte le lit sans le modifier.
+  Il ne juge pas la matérialité : c'est le rôle du panel (section 11.4). Les décisions de tri sont écrites dans un fichier par mois, `data/tri/AAAA-MM.jsonl`, en ajout seul ; la collecte le lit sans le modifier. Chaque ligne porte un seul titre et contient les clés `lien` (adresse du titre, obligatoire), `passage` (date du tri), `fait` (identifiant du fait qui regroupe les titres), `decision` (jalon, nœud ou « non rattaché ») et `motif`.
 - **Trace.** Toute décision est consignée, y compris « non rattaché », avec son motif.
 - **Contrôle du tri.** Chaque trimestre, un second modèle réexamine 60 faits non rattachés tirés au sort. Plus de 10 % de faux négatifs (borne inférieure de l'intervalle à 80 % au-dessus de 5 %) entraînent une révision de la consigne de tri.
 

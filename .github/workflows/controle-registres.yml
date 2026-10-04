@@ -4,7 +4,8 @@ name: Contrôle des registres
 # 1. que les registres de prévisions, les journaux de jalons et les décisions de tri
 #    ne sont modifiés que par ajout de lignes (aucune ligne supprimée ou réécrite,
 #    aucun fichier supprimé ni renommé) ;
-# 2. que chaque nouvelle ligne de registre porte un horodatage « emise » compris entre
+# 2. que chaque nouvelle ligne de registre (« emise ») et chaque nouvelle définition de
+#    jalon (« defini_le ») porte un horodatage avec fuseau, compris entre
 #    deux heures avant le début du contrôle et le début du contrôle. La date de poussée
 #    fait foi : une question résolue avant elle est annulée (section 8.8).
 # Le contrôle est détectif : un échec est public et se corrige par une ligne d'erratum.
@@ -53,17 +54,22 @@ jobs:
               supp = [l for l in diff if l.startswith("-") and not l.startswith("---")]
               if supp:
                   erreurs.append(f"{f} : {len(supp)} ligne(s) supprimée(s) ou réécrite(s)")
-              if f.startswith("registre/") and f.endswith(".jsonl"):
+              champ = "emise" if f.startswith("registre/") and f.endswith(".jsonl") else \
+                      "defini_le" if f == "modele/jalons/definitions.jsonl" else None
+              if champ:
                   for l in diff:
                       if not l.startswith("+") or l.startswith("+++"):
                           continue
                       try:
-                          e = datetime.fromisoformat(json.loads(l[1:])["emise"])
+                          e = datetime.fromisoformat(json.loads(l[1:])[champ])
                       except Exception as exc:
-                          erreurs.append(f"{f} : ligne sans horodatage lisible ({exc})")
+                          erreurs.append(f"{f} : champ « {champ} » absent ou illisible ({type(exc).__name__})")
+                          continue
+                      if e.tzinfo is None:
+                          erreurs.append(f"{f} : « {champ} » {e.isoformat()} sans fuseau horaire")
                           continue
                       if not (debut - timedelta(hours=2) <= e <= debut + timedelta(minutes=5)):
-                          erreurs.append(f"{f} : « emise » {e.isoformat()} hors de la fenêtre de poussée ({debut.isoformat()})")
+                          erreurs.append(f"{f} : « {champ} » {e.isoformat()} hors de la fenêtre de poussée ({debut.isoformat()})")
           for x in erreurs:
               print(f"::error::{x}")
           print("Contrôle conforme." if not erreurs else f"{len(erreurs)} anomalie(s).")

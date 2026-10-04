@@ -37,3 +37,4 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 
 - [ ] Écart de taux OAT-Bund journalier collecté (source primaire à identifier : Banque de France, Bundesbank).
 - [ ] Historique journalier 2010-2025 pour le rétro-test (section 7.1).
+- [ ] Source des sondages de la présidentielle identifiée et collectée (agrégat public ou instituts), avec l'historique des présidentielles 2002 à 2022 pour l'erreur des sondages (section 7.1).
