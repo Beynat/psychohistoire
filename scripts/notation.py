@@ -84,7 +84,9 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
         if not lignes:
             exclues.append({"auteur": auteur, "question": qid, "motif": "émise après l'échéance ou la résolution"})
             continue
-        fin = q["echeance"]
+        # Brier pondéré : du jour d'émission à l'échéance, arrêté la veille du fait (relecture 9).
+        fin = min(q["echeance"], (date.fromisoformat(r["date_fait"]) - timedelta(days=1)).isoformat()) \
+            if r.get("date_fait") else q["echeance"]
         d0 = lignes[0]["emise"][:10]
         jour, k, cumul, n = date.fromisoformat(d0), 0, 0.0, 0
         while jour <= date.fromisoformat(fin):

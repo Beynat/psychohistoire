@@ -74,6 +74,12 @@ def generer(gel, etiquette=None):
                 })
 
     evts = lire_json("modele/evenements.json")["evenements"]
+    # Grappe : l'événement ; ses sous-questions à fenêtres distinctes forment des grappes séparées
+    # (noyau, section 8.3, relecture 9).
+    fins = {}
+    for e in evts:
+        fins.setdefault(e["evenement"], set()).add(e["fenetre"]["fin"])
+    grappe = lambda e: e["id"] if len(fins[e["evenement"]]) > 1 else e["evenement"]
     for e in evts:
         if not e["source_accessible"]:
             ecartees.append((e["id"], e["motif_inaccessible"]))
@@ -89,14 +95,14 @@ def generer(gel, etiquette=None):
         # Une grappe par événement : la question de fenêtre et ses questions mensuelles sont corrélées
         # (relecture 8, souhaitable « grappes »).
         qs.append({**commun_e, "id": qid, "pool": correspondances.get(qid, {}).get("pool", e.get("pool", "P2b")),
-                   "grappe": e["evenement"],
+                   "grappe": grappe(e),
                    "texte": (f"{e['nom']} : le critère est-il rempli ? (fenêtre du {debut} au {fin})"
                              if len(e["issues"]) == 2 else f"{e['nom']} : quelle issue, selon le critère ? (échéance : {fin})"),
                    "echeance": fin, "fenetre": {"debut": debut, "fin": fin}})
         if len(e["issues"]) == 2 and e.get("mensuelle", True) and ecart_mois(gel[:7], fin[:7]) > 3 and e["fenetre"]["debut"] <= gel:
             mid = f"Q-{e['id']}-{cycle}"
             qs.append({**commun_e, "id": mid, "pool": correspondances.get(mid, {}).get("pool", e.get("pool", "P2b")),
-                       "grappe": e["evenement"],
+                       "grappe": grappe(e),
                        "texte": f"{e['nom']} : le critère est-il rempli au cours du mois {mois} ?",
                        "echeance": iso_fin_mois(mois), "fenetre": {"debut": gel, "fin": iso_fin_mois(mois)}})
     return {"cycle": cycle, "gel": gel, "genere_le": maintenant(), "questions": qs,

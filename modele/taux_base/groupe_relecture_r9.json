@@ -1,0 +1,159 @@
+{
+ "groupe": "relecture 9",
+ "etabli_le": "2026-10-04",
+ "questions": [
+  {
+   "id": "EV-45",
+   "classes": [
+    {
+     "definition": "Fenêtres de 17 mois suivant chaque élection présidentielle (1981, 1988, 1995, 2002, 2007, 2012, 2017, 2022) : une baisse législative (loi ou ordonnance ratifiée) de l'âge légal de départ intervient-elle ? Seul cas : ordonnance n° 82-270 du 26 mars 1982 (retraite à 60 ans, ~10,5 mois après l'élection du 10 mai 1981). 2012 : décret du 2 juillet 2012 élargissant les départs anticipés pour carrières longues, sans baisse de l'âge légal, non compté.",
+     "periode": "1981-2022",
+     "k": 1,
+     "n": 8,
+     "unite": "fenêtres post-présidentielles de 17 mois",
+     "frequence": 0.125,
+     "probabilite_fenetre": 12.5,
+     "calcul": "p = k/n = 1/8 = 12,5 % (unité = fenêtre de même durée et même position que celle du critère, pas de conversion).",
+     "sources": [
+      {
+       "titre": "Vie publique, Retraites : chronologie des réformes depuis 1945",
+       "url": "https://www.vie-publique.fr/eclairage/20203-retraites-chronologie-des-reformes-depuis-1945"
+      },
+      {
+       "titre": "Légifrance, Ordonnance n° 82-270 du 26 mars 1982 relative à l'abaissement de l'âge de la retraite des assurés du régime général et du régime des assurances sociales agricoles",
+       "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000880039"
+      }
+     ],
+     "incertitude": "n = 8, intervalle de confiance très large. Le cas de 1982 est discutable au sens strict : l'ordonnance a abaissé de 65 à 60 ans l'âge du taux plein, l'âge minimal d'ouverture du droit étant déjà de 60 ans depuis 1945 ; au sens strict du critère (âge d'ouverture du droit), k = 0. Classe comptée selon la qualification usuelle « abaissement de l'âge de la retraite ». URL et intitulé de l'ordonnance non revérifiés (Légifrance inaccessible, erreur 403)."
+    },
+    {
+     "definition": "Modifications à la baisse de l'âge légal de départ (régime général) par un texte de valeur législative, sur toute la période depuis 1945, ramenées à une période quelconque de 17 mois. Cas : ordonnance du 26 mars 1982 (60 ans) ; loi n° 2025-1403 du 30 décembre 2025 (LFSS 2026), qui suspend la hausse de 2023 et ramène l'âge à 62 ans et 9 mois pour les générations 1963 à mars 1965 (au lieu de 63 ans pour 1964-65). Hausses de 2010 (60 → 62) et 2023 (62 → 64) non comptées.",
+     "periode": "janvier 1945 - septembre 2026 (81,75 ans)",
+     "k": 2,
+     "n": 81.75,
+     "unite": "années (événements par an)",
+     "frequence": 0.0245,
+     "probabilite_fenetre": 3.4,
+     "calcul": "lambda = 2/81,75 = 0,0245 /an ; fenêtre T = 17/12 = 1,417 an ; p = 1 - exp(-0,0245 x 1,417) = 1 - exp(-0,0347) = 3,4 %. Variante stricte (1982 exclu, âge minimal inchangé) : 1 - exp(-1,417/81,75) = 1,7 %.",
+     "sources": [
+      {
+       "titre": "Légifrance, Loi n° 2025-1403 du 30 décembre 2025 de financement de la sécurité sociale pour 2026",
+       "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000053226384"
+      },
+      {
+       "titre": "Service-public.fr, Âge de départ à la retraite selon l'année de naissance (1963 - mars 1965 : 62 ans 9 mois ; à partir de 1969 : 64 ans)",
+       "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F14043"
+      },
+      {
+       "titre": "Vie publique, Retraites : chronologie des réformes depuis 1945",
+       "url": "https://www.vie-publique.fr/eclairage/20203-retraites-chronologie-des-reformes-depuis-1945"
+      }
+     ],
+     "incertitude": "k très faible (2) ; la suspension LFSS 2026 est une baisse relative au calendrier de 2023, pas un abaissement sous un niveau antérieur. Classe non conditionnée au cycle électoral (sous-estime probablement le risque post-élection). État actuel vérifié via service-public.fr (génération 1970 : 64 ans, non concernée par la suspension) ; l'article L161-17-2 n'a pas pu être lu directement sur Légifrance (erreur 403)."
+    }
+   ],
+   "fourchette": [
+    3.4,
+    12.5
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 12.5,
+    "motif": "Classe dont la fenêtre a la même position que celle du critère (17 mois après une présidentielle), seule configuration où une baisse s'est produite par alternance. Biais à la hausse possible : le cas unique de 1982 ne baisse pas l'âge minimal au sens strict ; la classe 1 (3,4 %) sert d'ancrage bas."
+   },
+   "issues": {
+    "oui": 12.5,
+    "non": 87.5
+   }
+  },
+  {
+   "id": "EV-32",
+   "classes": [
+    {
+     "definition": "Périodes de 9 mois depuis janvier 2020 durant lesquelles entre en application une mesure de contrôle à l'exportation annoncée par le MOFCOM sur une matière critique (terres rares, gallium, germanium, graphite, aimants) s'appliquant aux exportations vers l'UE. Périodes : P1 janv.-sept. 2020 … P9 janv.-sept. 2026. Positives : P5 (gallium/germanium, annonce n° 23 de 2023, en vigueur le 1er août 2023), P6 (graphite, annonce n° 39 de 2023, en vigueur le 1er décembre 2023), P8 (7 terres rares moyennes et lourdes et aimants, annonce n° 18 de 2025, en vigueur le 4 avril 2025). Non comptés : antimoine (sept. 2024) et tungstène/indium etc. (févr. 2025), hors liste ; interdiction Ga/Ge vers les États-Unis (déc. 2024) et mesures visant le Japon (annonce n° 1 de 2026), non applicables à l'UE ; mécanisme de signalement (annonce n° 26 de 2026), procédural.",
+     "periode": "janvier 2020 - septembre 2026",
+     "k": 3,
+     "n": 9,
+     "unite": "périodes de 9 mois",
+     "frequence": 0.3333,
+     "probabilite_fenetre": 33.3,
+     "calcul": "p = k/n = 3/9 = 33,3 % (fenêtre du 3 oct. 2026 au 30 juin 2027 ≈ 9 mois, pas de conversion).",
+     "sources": [
+      {
+       "titre": "CMS, China tightens export controls on rare earths: takeaways for global businesses",
+       "url": "https://cms.law/en/chn/legal-updates/china-tightens-export-controls-on-rare-earths-takeaways-for-global-businesses"
+      },
+      {
+       "titre": "China Briefing, China's Rare Earth Export Controls - Impact on Businesses and Industries",
+       "url": "https://www.china-briefing.com/news/chinas-rare-earth-export-controls-impacts-on-businesses/"
+      },
+      {
+       "titre": "Morgan Lewis, Recent China Export Control Actions Signal Active Enforcement for Rare Earths and Strategic Minerals (juillet 2026)",
+       "url": "https://www.morganlewis.com/pubs/2026/07/recent-china-export-control-actions-signal-active-enforcement-for-rare-earths-and-strategic-minerals"
+      }
+    ],
+     "incertitude": "Dates des mesures 2023 (gallium/germanium, graphite) issues de ma connaissance, non revérifiées sur mofcom.gov.cn. Classe plus large que le critère (inclut gallium, germanium, graphite) ; n = 9. Les annonces d'octobre 2025 (n° 57, 61, 62) ne sont pas comptées séparément (même période P8 ; suspendues avant ou peu après leur entrée en application)."
+    },
+    {
+     "definition": "Même découpage, restreint au critère strict : nouvelles mesures sur terres rares ou aimants à base de terres rares, en application et applicables à l'UE. Seule période positive : P8 (annonce n° 18 de 2025, 4 avril 2025). Interdiction d'exporter les technologies d'extraction/séparation des terres rares (catalogue de décembre 2023) non comptée (technologies, pas biens).",
+     "periode": "janvier 2020 - septembre 2026",
+     "k": 1,
+     "n": 9,
+     "unite": "périodes de 9 mois",
+     "frequence": 0.1111,
+     "probabilite_fenetre": 11.1,
+     "calcul": "p = k/n = 1/9 = 11,1 %",
+     "sources": [
+      {
+       "titre": "CMS, China tightens export controls on rare earths: takeaways for global businesses",
+       "url": "https://cms.law/en/chn/legal-updates/china-tightens-export-controls-on-rare-earths-takeaways-for-global-businesses"
+      },
+      {
+       "titre": "Geopolitechs, China Plans to Reimpose Rare Earth Export Controls on Japan (annonce MOFCOM n° 1 de 2026)",
+       "url": "https://www.geopolitechs.org/p/china-plans-to-reimpose-rare-earth"
+      }
+     ],
+     "incertitude": "k = 1 : estimation très instable. Si l'on comptait les annonces d'octobre 2025 (n° 57 terres rares, n° 61 extraterritoriale partiellement en vigueur dès le 9 octobre) ou la mesure de 2023 sur les technologies, k resterait à 1 ou passerait à 2 (P6), soit 11 à 22 %."
+    },
+    {
+     "definition": "Fin de suspension sans prolongation : échéances de suspensions de mesures commerciales restrictives décidées par la Chine dans la trêve sino-américaine de 2025, arrivées à terme. Échéances observées : août 2025 (surtaxe de 24 % sur les produits américains, suspension de 90 jours prolongée de 90 jours) et novembre 2025 (prolongée d'un an). Les deux ont été prolongées. Prochaine échéance pertinente : 10 novembre 2026 (annonce MOFCOM n° 70 de 2025 suspendant les annonces n° 55 à 58, 61 et 62, dont les 5 terres rares supplémentaires et la règle extraterritoriale), dans la fenêtre.",
+     "periode": "mai 2025 - septembre 2026",
+     "k": 0,
+     "n": 2,
+     "unite": "échéances de suspension",
+     "frequence": 0.0,
+     "probabilite_fenetre": 25.0,
+     "calcul": "k/n = 0/2 = 0 % ; estimateur de Laplace (k+1)/(n+2) = 1/4 = 25 %, retenu comme probabilité de fenêtre faute de cas positifs (une échéance dans la fenêtre).",
+     "sources": [
+      {
+       "titre": "MOFCOM, Annonce n° 70 de 2025 (suspension des annonces n° 55, 56, 57, 58, 61 et 62 jusqu'au 10 novembre 2026)",
+       "url": "https://www.mofcom.gov.cn/zwgk/zcfb/art/2025/art_b1ec77dd3f0d4762952904df7cdaadec.html"
+      },
+      {
+       "titre": "China Briefing, US-China Tariff Truce Extended Another 90 Days: Implications",
+       "url": "https://www.china-briefing.com/news/us-china-tariff-truce-extended-90-days-2025/"
+      },
+      {
+       "titre": "RTHK, Beijing extends tariff suspension on US imports",
+       "url": "https://news.rthk.hk/rthk/en/component/k2/1830239-20251105.htm"
+      }
+     ],
+     "incertitude": "n = 2 et précédents de nature différente (droits de douane décidés par la Commission tarifaire du Conseil des affaires d'État, pas contrôles à l'exportation du MOFCOM) ; le chiffre de 25 % reflète surtout l'estimateur, pas des données. Aucune suspension de contrôle à l'exportation du MOFCOM n'est encore arrivée à échéance."
+    }
+   ],
+   "fourchette": [
+    11.1,
+    33.3
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 33.3,
+    "motif": "Le critère couvre deux voies (nouvelle mesure ou fin de suspension). La classe 1 (nouvelles mesures terres rares strictes, 11,1 %) combinée à la classe 2 (fin de suspension, 25 %) donne 1 - 0,889 x 0,75 = 33,3 %, soit le niveau de la classe 0, mieux mesurée (k = 3). Classe 0 retenue."
+   },
+   "issues": {
+    "oui": 33.3,
+    "non": 66.7
+   }
+  }
+ ]
+}

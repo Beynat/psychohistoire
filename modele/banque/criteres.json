@@ -1,7 +1,7 @@
 {
- "version": "1.0",
+ "version": "1.1",
  "date": "2026-10-04",
- "description": "Critères de résolution de la banque d'événements, seuls transmis aux prévisionnistes. Le texte d'origine du balayage v1 reste dans modele/v1 et figure dans evenements.json sous « contexte_v1 », jamais transmis (relecture 8, G1). Sources de résolution : modele/sources.md, règle 1.",
+ "description": "Critères de résolution de la banque d'événements, seuls transmis aux prévisionnistes. Le texte d'origine du balayage v1 reste dans modele/v1 et figure dans evenements.json sous « contexte_v1 », jamais transmis (relecture 8, G1). Sources de résolution : modele/sources.md, règle 1. Champ « nature » (relecture 9, H1) : « survenue » pour un événement qui peut se produire à tout moment de la fenêtre (taux de base ramené à la fenêtre restante par un risque constant), « constat » pour une issue constatée à date fixe (taux de base non converti).",
  "second_tour": "2027-05-02",
  "premier_tour": "2027-04-18",
  "source_dates": "https://www.info.gouv.fr/actualite/presidentielle-2027-date-a-retenir-et-informations-cles",
@@ -35,7 +35,8 @@
    "mensuelle": true,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "survenue"
   },
   {
    "id": "EV-02",
@@ -57,7 +58,8 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "constat"
   },
   {
    "id": "EV-03",
@@ -79,7 +81,8 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "constat"
   },
   {
    "id": "EV-04",
@@ -101,7 +104,8 @@
    "mensuelle": true,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "survenue"
   },
   {
    "id": "EV-05",
@@ -160,7 +164,8 @@
     "reste": "autre"
    },
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "constat"
   },
   {
    "id": "EV-06",
@@ -182,7 +187,8 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "survenue"
   },
   {
    "id": "EV-07",
@@ -205,14 +211,15 @@
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "motif_reecriture": "Relecture 8, G3 : la liste des opérateurs d'importance vitale est classifiée ; les services visés sont désormais nommés.",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "survenue"
   },
   {
    "id": "EV-08",
    "evenement": "EV-08",
    "nom": "Ingérence étrangère visant la présidentielle",
    "domaine": "sécurité",
-   "critere": "Pendant la fenêtre, le SGDSN (VIGINUM) ou le gouvernement publie un rapport ou un communiqué attribuant à un État étranger, ou à un acteur qu'il présente comme lié à un État étranger, une campagne de manipulation de l'information visant l'élection présidentielle de 2027. Une publication antérieure à la fenêtre ne compte pas.",
+   "critere": "Pendant la fenêtre, le SGDSN (VIGINUM) ou le gouvernement publie un rapport ou un communiqué qui attribue à un État étranger, ou à un acteur qu'il présente comme lié à un État étranger, une campagne de manipulation de l'information et désigne expressément l'élection présidentielle de 2027 comme sa cible. Une publication antérieure à la fenêtre ne compte pas.",
    "sous_question": null,
    "source_resolution": "SGDSN, VIGINUM ; communiqués du gouvernement",
    "fenetre": {
@@ -227,7 +234,9 @@
    "mensuelle": true,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "survenue"
   },
   {
    "id": "EV-09",
@@ -249,7 +258,8 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "constat"
   },
   {
    "id": "EV-10",
@@ -271,7 +281,8 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": false,
-   "motif_inaccessible": "Relecture 8, G3 : critère non résoluble, aucune source officielle ne publie le nombre d'établissements bloqués."
+   "motif_inaccessible": "Relecture 8, G3 : critère non résoluble, aucune source officielle ne publie le nombre d'établissements bloqués.",
+   "nature": "survenue"
   },
   {
    "id": "EV-11",
@@ -293,7 +304,8 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": false,
-   "motif_inaccessible": "Le nombre de communes touchées n'est publié qu'au cas par cas ; ACLED exige un compte."
+   "motif_inaccessible": "Le nombre de communes touchées n'est publié qu'au cas par cas ; ACLED exige un compte.",
+   "nature": "survenue"
   },
   {
    "id": "EV-12",
@@ -315,14 +327,15 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": false,
-   "motif_inaccessible": "Résolution sur ACLED, qui exige un compte. Remplacé par EV-39 (relecture 8)."
+   "motif_inaccessible": "Résolution sur ACLED, qui exige un compte. Remplacé par EV-39 (relecture 8).",
+   "nature": "survenue"
   },
   {
    "id": "EV-13",
    "evenement": "EV-13",
    "nom": "Grève massive dans la fonction publique",
    "domaine": "société",
-   "critere": "Le taux de grévistes dans la fonction publique de l'État publié par la DGAFP dépasse 18 % pour au moins une journée de la fenêtre.",
+   "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État publié par la DGAFP dépasse 18 %. La valeur retenue est la dernière publiée par la DGAFP pour cette journée.",
    "sous_question": null,
    "source_resolution": "DGAFP, taux de grévistes",
    "fenetre": {
@@ -337,7 +350,9 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "survenue"
   },
   {
    "id": "EV-14",
@@ -359,7 +374,8 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": false,
-   "motif_inaccessible": "Résolution sur ACLED, qui exige un compte."
+   "motif_inaccessible": "Résolution sur ACLED, qui exige un compte.",
+   "nature": "survenue"
   },
   {
    "id": "EV-15",
@@ -381,7 +397,8 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "survenue"
   },
   {
    "id": "EV-16a",
@@ -403,7 +420,8 @@
    "mensuelle": true,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "survenue"
   },
   {
    "id": "EV-16b",
@@ -425,14 +443,15 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "survenue"
   },
   {
    "id": "EV-17",
    "evenement": "EV-17",
    "nom": "Président élu sans majorité de son groupe",
    "domaine": "politique",
-   "critere": "Le 30 septembre 2028, selon la composition des groupes publiée par l'Assemblée nationale, le groupe politique auquel appartiennent les députés du parti qui a investi le président élu en 2027 compte moins de 289 membres, apparentés compris. Si le président élu n'a été investi par aucun parti, le groupe retenu est celui qui a déclaré le soutenir au premier tour et compte le plus de membres.",
+   "critere": "Le 30 septembre 2028, selon la composition des groupes publiée par l'Assemblée nationale, le groupe politique auquel appartiennent les députés du parti dont le président élu en 2027 est membre au jour du second tour compte moins de 289 membres, apparentés compris. Si le président élu n'est membre d'aucun parti, le groupe retenu est celui qui a déclaré le soutenir au premier tour et compte le plus de membres.",
    "sous_question": null,
    "source_resolution": "Assemblée nationale, composition des groupes",
    "fenetre": {
@@ -447,7 +466,9 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat"
   },
   {
    "id": "EV-C1",
@@ -469,14 +490,15 @@
    "mensuelle": true,
    "origine": "balayage C, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "survenue"
   },
   {
    "id": "EV-C2",
    "evenement": "EV-C2",
    "nom": "Crise d'ordre public grave outre-mer",
    "domaine": "outre-mer",
-   "critere": "Pendant la fenêtre, un décret déclarant l'état d'urgence (loi du 3 avril 1955) sur tout ou partie d'une collectivité d'outre-mer est publié au Journal officiel, ou un couvre-feu préfectoral couvrant la commune la plus peuplée d'une collectivité d'outre-mer est en vigueur au moins 7 jours consécutifs.",
+   "critere": "Pendant la fenêtre, un décret déclarant l'état d'urgence (loi du 3 avril 1955) sur tout ou partie d'un département, d'une région ou d'une collectivité d'outre-mer, ou de la Nouvelle-Calédonie, est publié au Journal officiel ; ou un couvre-feu général (applicable à toute la population, pour un motif d'ordre public) couvrant la commune la plus peuplée de l'un de ces territoires est en vigueur au moins 7 jours consécutifs. Un couvre-feu limité aux mineurs ou motivé par un phénomène naturel ne compte pas.",
    "sous_question": null,
    "source_resolution": "Journal officiel ; recueils des actes administratifs des préfectures",
    "fenetre": {
@@ -491,7 +513,9 @@
    "mensuelle": true,
    "origine": "balayage C, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "survenue"
   },
   {
    "id": "EV-C3a",
@@ -513,7 +537,8 @@
    "mensuelle": false,
    "origine": "balayage C, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "survenue"
   },
   {
    "id": "EV-C3b",
@@ -535,7 +560,8 @@
    "mensuelle": false,
    "origine": "balayage C, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "survenue"
   },
   {
    "id": "EV-C4",
@@ -558,7 +584,8 @@
    "mensuelle": false,
    "origine": "balayage C, critère réécrit (relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "constat"
   },
   {
    "id": "EV-18",
@@ -581,7 +608,8 @@
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "constat"
   },
   {
    "id": "EV-19",
@@ -605,14 +633,15 @@
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "constat"
   },
   {
    "id": "EV-20",
    "evenement": "EV-20",
    "nom": "Pourvoi de Marine Le Pen",
    "domaine": "politique",
-   "critere": "Issue, au 31 mars 2027, du pourvoi formé par Marine Le Pen contre l'arrêt de la cour d'appel de Paris du 7 juillet 2026.",
+   "critere": "Issue, au 31 mars 2027, du pourvoi formé par Marine Le Pen contre l'arrêt de la cour d'appel de Paris du 7 juillet 2026. Une décision de non-admission est rangée avec le rejet.",
    "sous_question": null,
    "source_resolution": "Cour de cassation, arrêts et communiqués",
    "fenetre": {
@@ -620,7 +649,7 @@
     "fin": "2027-03-31"
    },
    "issues": [
-    "rejet",
+    "rejet ou non-admission",
     "cassation totale ou partielle",
     "désistement",
     "pas d'arrêt au 31 mars 2027"
@@ -629,7 +658,9 @@
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat"
   },
   {
    "id": "EV-21",
@@ -651,16 +682,17 @@
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "constat"
   },
   {
    "id": "EV-23",
    "evenement": "EV-23",
    "nom": "Participation au premier tour",
    "domaine": "politique",
-   "critere": "Taux de participation au premier tour de l'élection présidentielle de 2027, France entière, selon les résultats officiels.",
+   "critere": "Taux de participation au premier tour de l'élection présidentielle de 2027, France entière, proclamé par le Conseil constitutionnel.",
    "sous_question": null,
-   "source_resolution": "Ministère de l'Intérieur ; Conseil constitutionnel",
+   "source_resolution": "Conseil constitutionnel, proclamation des résultats du premier tour",
    "fenetre": {
     "debut": "2026-10-03",
     "fin": "2027-04-18"
@@ -675,15 +707,17 @@
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat"
   },
   {
    "id": "EV-40a",
    "evenement": "EV-40",
    "nom": "Qualification de Marine Le Pen au second tour",
    "domaine": "politique",
-   "critere": "Marine Le Pen est l'un des deux candidats admis au second tour de l'élection présidentielle de 2027, selon la proclamation des résultats du premier tour par le Conseil constitutionnel.",
-   "sous_question": "Marine Le Pen",
+   "critere": "Marine Le Pen figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
    "source_resolution": "Conseil constitutionnel",
    "fenetre": {
     "debut": "2026-10-03",
@@ -704,15 +738,17 @@
     }
    },
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat"
   },
   {
    "id": "EV-40b",
    "evenement": "EV-40",
    "nom": "Qualification de Édouard Philippe au second tour",
    "domaine": "politique",
-   "critere": "Édouard Philippe est l'un des deux candidats admis au second tour de l'élection présidentielle de 2027, selon la proclamation des résultats du premier tour par le Conseil constitutionnel.",
-   "sous_question": "Édouard Philippe",
+   "critere": "Édouard Philippe figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
    "source_resolution": "Conseil constitutionnel",
    "fenetre": {
     "debut": "2026-10-03",
@@ -733,15 +769,17 @@
     }
    },
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat"
   },
   {
    "id": "EV-40c",
    "evenement": "EV-40",
    "nom": "Qualification de Jean-Luc Mélenchon au second tour",
    "domaine": "politique",
-   "critere": "Jean-Luc Mélenchon est l'un des deux candidats admis au second tour de l'élection présidentielle de 2027, selon la proclamation des résultats du premier tour par le Conseil constitutionnel.",
-   "sous_question": "Jean-Luc Mélenchon",
+   "critere": "Jean-Luc Mélenchon figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
    "source_resolution": "Conseil constitutionnel",
    "fenetre": {
     "debut": "2026-10-03",
@@ -762,15 +800,17 @@
     }
    },
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat"
   },
   {
    "id": "EV-40d",
    "evenement": "EV-40",
    "nom": "Qualification de David Lisnard au second tour",
    "domaine": "politique",
-   "critere": "David Lisnard est l'un des deux candidats admis au second tour de l'élection présidentielle de 2027, selon la proclamation des résultats du premier tour par le Conseil constitutionnel.",
-   "sous_question": "David Lisnard",
+   "critere": "David Lisnard figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
    "source_resolution": "Conseil constitutionnel",
    "fenetre": {
     "debut": "2026-10-03",
@@ -791,15 +831,17 @@
     }
    },
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat"
   },
   {
    "id": "EV-40e",
    "evenement": "EV-40",
    "nom": "Qualification de Gabriel Attal au second tour",
    "domaine": "politique",
-   "critere": "Gabriel Attal est l'un des deux candidats admis au second tour de l'élection présidentielle de 2027, selon la proclamation des résultats du premier tour par le Conseil constitutionnel.",
-   "sous_question": "Gabriel Attal",
+   "critere": "Gabriel Attal figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
    "source_resolution": "Conseil constitutionnel",
    "fenetre": {
     "debut": "2026-10-03",
@@ -820,15 +862,17 @@
     }
    },
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat"
   },
   {
    "id": "EV-40f",
    "evenement": "EV-40",
    "nom": "Qualification de Raphaël Glucksmann au second tour",
    "domaine": "politique",
-   "critere": "Raphaël Glucksmann est l'un des deux candidats admis au second tour de l'élection présidentielle de 2027, selon la proclamation des résultats du premier tour par le Conseil constitutionnel.",
-   "sous_question": "Raphaël Glucksmann",
+   "critere": "Raphaël Glucksmann figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
    "source_resolution": "Conseil constitutionnel",
    "fenetre": {
     "debut": "2026-10-03",
@@ -849,15 +893,17 @@
     }
    },
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat"
   },
   {
    "id": "EV-40g",
    "evenement": "EV-40",
    "nom": "Qualification de Bruno Retailleau au second tour",
    "domaine": "politique",
-   "critere": "Bruno Retailleau est l'un des deux candidats admis au second tour de l'élection présidentielle de 2027, selon la proclamation des résultats du premier tour par le Conseil constitutionnel.",
-   "sous_question": "Bruno Retailleau",
+   "critere": "Bruno Retailleau figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
    "source_resolution": "Conseil constitutionnel",
    "fenetre": {
     "debut": "2026-10-03",
@@ -878,7 +924,9 @@
     }
    },
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat"
   },
   {
    "id": "EV-41",
@@ -912,16 +960,17 @@
     }
    },
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "constat"
   },
   {
    "id": "EV-39",
    "evenement": "EV-39",
    "nom": "Journée de mobilisation à plus de 500 000 manifestants",
    "domaine": "société",
-   "critere": "Pendant la fenêtre, le ministère de l'Intérieur annonce, pour une même journée, plus de 500 000 manifestants en France. Les comptages des organisateurs ne comptent pas.",
+   "critere": "Pendant la fenêtre, le ministère de l'Intérieur chiffre à plus de 500 000 le nombre de manifestants en France pour une même journée. Le chiffre retenu est celui du ministère, publié par lui ou rapporté par au moins deux agences de presse (AFP, Reuters, AP) ; les comptages des organisateurs ne comptent pas.",
    "sous_question": null,
-   "source_resolution": "Ministère de l'Intérieur (chiffres officiels de participation)",
+   "source_resolution": "Ministère de l'Intérieur, directement ou rapporté par deux agences de presse",
    "fenetre": {
     "debut": "2026-10-03",
     "fin": "2028-09-30"
@@ -934,14 +983,16 @@
    "mensuelle": true,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "survenue"
   },
   {
    "id": "EV-42",
    "evenement": "EV-42",
    "nom": "Baisse générale du prix des carburants",
    "domaine": "économie",
-   "critere": "Pendant la fenêtre, une loi, une ordonnance ou un décret publié au Journal officiel instaure une remise sur le prix des carburants ouverte à tous les consommateurs, ou abaisse le tarif de l'accise sur le gazole ou sur l'essence. Une aide ciblée (sous condition de revenu, de profession ou de kilométrage) ne compte pas.",
+   "critere": "Pendant la fenêtre, une loi, une ordonnance ou un décret publié au Journal officiel instaure une remise sur le prix des carburants ouverte à tous les consommateurs, ou abaisse le tarif normal de l'accise applicable au gazole routier ou aux essences. Une aide ciblée (sous condition de revenu, de profession ou de kilométrage) et une baisse limitée au gazole non routier ou à une profession ne comptent pas.",
    "sous_question": null,
    "source_resolution": "Journal officiel",
    "fenetre": {
@@ -956,7 +1007,9 @@
    "mensuelle": true,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "survenue"
   },
   {
    "id": "EV-38",
@@ -978,7 +1031,8 @@
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "constat"
   },
   {
    "id": "EV-29",
@@ -1000,14 +1054,15 @@
    "mensuelle": true,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "survenue"
   },
   {
    "id": "EV-36",
    "evenement": "EV-36",
    "nom": "Crédits de défense 2028 conformes à la programmation",
    "domaine": "défense",
-   "critere": "Les crédits de paiement de la mission Défense, hors contributions au compte d'affectation spéciale Pensions, inscrits dans le projet de loi de finances pour 2028 déposé à l'Assemblée nationale, sont au moins égaux à l'annuité 2028 fixée par la loi de programmation militaire en vigueur au dépôt.",
+   "critere": "Les crédits de paiement de la mission Défense, hors contributions au compte d'affectation spéciale Pensions, inscrits dans le projet de loi de finances pour 2028 déposé à l'Assemblée nationale, sont au moins égaux à l'annuité 2028 fixée par la loi de programmation militaire en vigueur au dépôt. Si aucun projet de loi de finances pour 2028 n'est déposé au 31 octobre 2027, la réponse est « non ».",
    "sous_question": null,
    "source_resolution": "Projet de loi de finances (Assemblée nationale) ; loi de programmation militaire (Légifrance)",
    "fenetre": {
@@ -1022,7 +1077,9 @@
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat"
   },
   {
    "id": "EV-35",
@@ -1044,14 +1101,15 @@
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "constat"
   },
   {
    "id": "EV-43",
    "evenement": "EV-43",
-   "nom": "Cohabitation au 30 septembre 2028",
+   "nom": "Premier ministre issu d'un parti concurrent au premier tour",
    "domaine": "politique",
-   "critere": "Le Premier ministre en fonction le 30 septembre 2028 est membre d'un parti qui a investi ou soutenu, au premier tour de 2027, un candidat autre que le président élu.",
+   "critere": "Le Premier ministre en fonction le 30 septembre 2028 est membre d'un parti qui a investi ou soutenu, au premier tour de 2027, un candidat autre que le président élu. Une coalition dont le Premier ministre vient d'un tel parti compte.",
    "sous_question": null,
    "source_resolution": "Journal officiel (décret de nomination) ; déclarations publiques du parti",
    "fenetre": {
@@ -1066,7 +1124,9 @@
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat"
   },
   {
    "id": "EV-44",
@@ -1089,14 +1149,15 @@
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "constat"
   },
   {
    "id": "EV-45",
    "evenement": "EV-45",
-   "nom": "Âge légal de départ sous 64 ans",
+   "nom": "Âge légal abaissé sous 64 ans (génération 1970)",
    "domaine": "social",
-   "critere": "Le 30 septembre 2028, l'âge d'ouverture du droit à pension fixé par le code de la sécurité sociale (article L161-17-2 ou disposition qui le remplace) pour les assurés nés en 1968 est inférieur à 64 ans.",
+   "critere": "Le 30 septembre 2028, l'âge d'ouverture du droit à pension fixé par le code de la sécurité sociale (article L161-17-2 ou disposition qui le remplace) pour les assurés nés en 1970 est inférieur à 64 ans. Cette génération n'est pas concernée par la suspension de la réforme de 2023 : la réponse « oui » suppose un abaissement voté.",
    "sous_question": null,
    "source_resolution": "Légifrance, code de la sécurité sociale",
    "fenetre": {
@@ -1111,14 +1172,16 @@
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat"
   },
   {
    "id": "EV-28",
    "evenement": "EV-28",
    "nom": "Cessez-le-feu en Ukraine",
    "domaine": "international : Ukraine",
-   "critere": "Pendant la fenêtre, les gouvernements russe et ukrainien annoncent tous deux un cessez-le-feu général ou un accord de paix couvrant l'ensemble de la ligne de front.",
+   "critere": "Pendant la fenêtre, les gouvernements russe et ukrainien annoncent tous deux un cessez-le-feu général couvrant l'ensemble de la ligne de front, sans terme fixé ou d'une durée prévue d'au moins 30 jours, ou un accord de paix. Une trêve de durée plus courte ne compte pas.",
    "sous_question": null,
    "source_resolution": "Présidences russe et ukrainienne ; Conseil de sécurité de l'ONU",
    "fenetre": {
@@ -1133,7 +1196,9 @@
    "mensuelle": true,
    "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "survenue"
   },
   {
    "id": "EV-30",
@@ -1155,29 +1220,32 @@
    "mensuelle": false,
    "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "constat"
   },
   {
    "id": "EV-32",
    "evenement": "EV-32",
-   "nom": "Contrôles chinois sur les terres rares",
+   "nom": "Restrictions chinoises sur les terres rares visant l'UE",
    "domaine": "international : Chine",
-   "critere": "Le 31 mars 2027, les contrôles à l'exportation sur les terres rares annoncés par le ministère chinois du Commerce en octobre 2025 sont applicables, leur suspension ayant expiré ou été levée.",
+   "critere": "Pendant la fenêtre, le ministère chinois du Commerce (MOFCOM) annonce l'entrée en application de contrôles à l'exportation sur des terres rares ou des aimants à base de terres rares qui s'appliquent aux exportations vers l'Union européenne, qu'il s'agisse de nouvelles mesures ou de la fin d'une suspension. La prolongation d'une suspension ne compte pas.",
    "sous_question": null,
    "source_resolution": "Ministère chinois du Commerce (MOFCOM)",
    "fenetre": {
     "debut": "2026-10-03",
-    "fin": "2027-03-31"
+    "fin": "2027-06-30"
    },
    "issues": [
     "oui",
     "non"
    ],
    "pool": "P2e",
-   "mensuelle": false,
+   "mensuelle": true,
    "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "survenue"
   },
   {
    "id": "EV-33",
@@ -1199,7 +1267,9 @@
    "mensuelle": true,
    "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
    "accessible": true,
-   "motif_inaccessible": null
+   "motif_inaccessible": null,
+   "nature": "survenue"
   }
- ]
+ ],
+ "regle_date_fait_non": "Pour une issue « non » (événement non survenu), la date du fait est la fin de la fenêtre (relecture 9)."
 }

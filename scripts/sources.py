@@ -86,5 +86,7 @@ if __name__ == "__main__":
             with open(f, encoding="utf-8") as h:
                 r = indicateur(h.read())
             print(f"{f} : {json.dumps(r, ensure_ascii=False)}")
+        print("Note : les sources non lues ne sont détectées que si le document le dit (« non lu », « bloqué », etc.) ; "
+              "un décompte manuel peut en trouver davantage (relecture 9).")
     else:
         sys.exit(__doc__)

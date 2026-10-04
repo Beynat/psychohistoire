@@ -1,7 +1,7 @@
-# Protocole Psychohistoire — version 1.11
+# Protocole Psychohistoire — version 1.12
 
-Statut : soumis à relecture (relecture 9). Rédigé le 3 octobre 2026, avant toute estimation produite selon ce protocole. Gelé jusqu'au bilan de la phase 1, sauf les exceptions de la section 12.
-Remplace la version 1.10. Les changements répondent à la relecture 8, qui portait sur le fond (périmètre de la banque) et sur la méthode ; ils sont justifiés dans `v1.11/reponse_relecture_8.md` et `journal.md`. Le texte est scindé : ce noyau (sections 0 à 9, 12 et 13) et l'annexe `annexe_phase3.md` (sections 10 et 11), gelés et tagués séparément. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
+Statut : soumis à relecture (relecture 10). Rédigé le 3 octobre 2026, avant toute estimation produite selon ce protocole. Gelé jusqu'au bilan de la phase 1, sauf les exceptions de la section 12.
+Remplace la version 1.11. Les changements répondent à la relecture 9 ; ils sont justifiés dans `v1.12/reponse_relecture_9.md` et `journal.md`. La version 1.11 répondait à la relecture 8, sur le fond et la méthode (`v1.11/reponse_relecture_8.md`). Le texte est scindé : ce noyau (sections 0 à 9, 12 et 13) et l'annexe `annexe_phase3.md` (sections 10 et 11), gelés et tagués séparément. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
 
 ## 0. Pistes et registres
 
@@ -148,31 +148,32 @@ Les données sont gelées à une date, puis les prévisions sont commitées avan
 | P2d | Jalons : « J observé dans sa fenêtre » | Descriptif : calibration des jalons, sans décision attachée (annexe, section 10.9) |
 | P2e | Indicateurs internationaux : un événement par grand sujet mondial (Ukraine, États-Unis, Chine, Proche-Orient) | Descriptif : calibration publiée, sans décision attachée ; exclu des critères de la section 8.6 |
 
-Une grappe correspond à une variable source sur une fenêtre trimestrielle sans chevauchement ; à un événement, dont la question de fenêtre et les questions mensuelles forment une seule grappe ; ou à un lien pour les jalons et les questions conjointes. L'objectif est d'au moins 40 grappes pour P2b et P2c réunis. La puissance est simulée et publiée avant le premier cycle de chaque phase.
+Une grappe correspond à une variable source sur une fenêtre trimestrielle sans chevauchement ; à un événement, dont la question de fenêtre et les questions mensuelles forment une seule grappe (deux sous-questions à fenêtres distinctes, comme la dissolution avant et après le second tour, forment deux grappes) ; ou à un lien pour les jalons et les questions conjointes.
 
+**Grappe résolue.** Une grappe entre dans les tests dès qu'une de ses questions est résolue ; elle y contribue par la somme des écarts de score sur ses questions résolues à la date du test. La puissance est simulée sur la banque réelle (nombre de questions de chaque grappe) et publiée avant le premier cycle de chaque phase (`data/puissance.json`). 
 ### 8.4 Comparateurs
 
 1. **Persistance** pour les variables : marche aléatoire à la volatilité historique.
-2. **Taux de base** pour les événements, sur la période de la question (un statu quo à 0 % rendrait le score logarithmique infini), et **50 %**. Pour un événement sans classe de référence pertinente (le vainqueur d'une élection dont un candidat n'a jamais gagné), la loi uniforme tient lieu de taux de base.
+2. **Taux de base** pour les événements, sur la période de la question (un statu quo à 0 % rendrait le score logarithmique infini), et **50 %**. Chaque événement a une nature déclarée : « survenue » (il peut se produire à tout moment de sa fenêtre ; le taux est ramené à la fenêtre restante par un risque constant) ou « constat » (l'issue est constatée à une date fixe ; le taux n'est pas converti). Pour un événement sans classe de référence pertinente (le vainqueur d'une élection dont un candidat n'a jamais gagné), la loi uniforme tient lieu de taux de base.
 3. **Références externes** sur P1 : prévision communautaire Metaculus ou prix Polymarket. Ce sont les seuls comparateurs extérieurs à la famille de modèles utilisée ; l'écart à ces références, mesuré avant calage, est publié à chaque bilan, même si le pool P1 ne sert pas aux critères d'échec. Si son signe est systématique (test de signe au seuil de 10 %), les estimations de P2 du modèle et de l'ensemble direct sont corrigées du même décalage moyen en log-cotes à l'analyse trimestrielle, avec trace. Les critères de la section 8.6 sont jugés sur les estimations non corrigées.
 4. **Ensemble direct** : au moins cinq prévisionnistes IA avec recherche, médiane non extrémisée. Son écart au taux de base est publié à chaque bilan, sans décision attachée : si l'ensemble ne bat pas le taux de base, une victoire du modèle sur l'ensemble prouve peu.
 5. **Modèle témoin** : mêmes marginales, nœuds indépendants, sans dépendances.
 
 ### 8.5 Scores et tests
 
-- **Scores :** Brier, score logarithmique, décomposition de Murphy, Brier pondéré dans le temps. Ce dernier vaut, pour une question ouverte du jour d'émission t₀ au jour de clôture T, la moyenne sur chaque jour t de (p_t − y)², où p_t est la dernière probabilité inscrite au registre ce jour-là et y l'issue (0 ou 1).
+- **Scores :** Brier, score logarithmique, décomposition de Murphy, Brier pondéré dans le temps. Ce dernier vaut, pour une question ouverte du jour d'émission t₀ au jour de clôture T, la moyenne sur chaque jour t de (p_t − y)², où p_t est la dernière probabilité inscrite au registre ce jour-là et y l'issue (0 ou 1). La moyenne s'arrête la veille de la date du fait (section 8.8) si celle-ci précède l'échéance.
 - **Tests :** Diebold-Mariano par grappes, ou test de permutation par grappes s'il y en a moins de 40.
 
 ### 8.6 Critères d'échec fixés à l'avance
 
-Évalués à 40 grappes résolues sur P2b et P2c, ou au plus tard au 30 septembre 2027 :
+Évalués au 30 septembre 2027, sur toutes les grappes résolues de P2b et P2c à cette date :
 - **Valeur ajoutée.** Si la phase 3 ne bat pas l'ensemble direct (phase 1) sur P2b et P2c, au seuil de 10 %, le modèle structurel est déclaré sans valeur ajoutée et l'on revient à la phase 2.
 - **Calibration.** Si l'erreur de calibration dépasse le 90e centile de sa distribution simulée sous calibration parfaite, au même nombre de questions, les probabilités sont recalibrées et la cause est cherchée.
 - **Persistance.** Si la persistance (variables) ou le taux de base (événements) bat le modèle sur P2 au seuil de 10 %, le projet est déclaré en échec méthodologique.
 
 Ces critères portent sur les estimations non corrigées du biais commun (section 8.4).
 
-**Calendrier attendu.** Le réseau démarre au plus tard le 1er janvier 2027 ; seules 10 à 15 grappes seront résolues avant le premier tour de la présidentielle. Les 40 grappes devraient être atteintes vers septembre 2027. Le verdict tombera donc après l'élection, et avec une puissance limitée (environ 55 à 68 % pour un écart de Brier de 0,02, selon la simulation de la relecture 3) : le retour par défaut à la phase 2 est probable, même si la structure est bonne.
+**Calendrier attendu.** Le réseau démarre au plus tard le 1er janvier 2027. Sur la banque réelle, une vingtaine de grappes de P2b ont au moins une question émise après le démarrage du réseau et résolue au 30 septembre 2027 (18 au 4 octobre 2026), dont la moitié par leurs questions mensuelles ; s'y ajoutent les grappes de P2c, encore inconnues (0 à 15 dans la simulation). La puissance simulée (`data/puissance.json`, σ = 0,12) est de 35 à 61 % pour un écart de Brier de 0,02, et de 70 à 96 % pour 0,04, selon la corrélation intra-grappe et le nombre de grappes de P2c. Repousser la butée au 30 septembre 2028 ne la porterait qu'à 39 à 65 % pour 0,02. Le verdict tombe donc après la présidentielle, avec une puissance faible pour un petit écart : le retour par défaut à la phase 2 est probable, même si la structure est bonne.
 
 ### 8.7 Tests sur le passé
 
@@ -183,7 +184,7 @@ Ces critères portent sur les estimations non corrigées du biais commun (sectio
 
 - **Banque d'événements de la phase 1.** Elle est fixée avant le premier cycle dans `modele/banque/criteres.json`, d'où `scripts/evenements.py` tire `modele/evenements.json`. Elle comprend les événements du balayage v1 dotés d'un critère, avec un critère réécrit à la relecture 8 (le texte d'origine est conservé dans le champ `contexte_v1`), et les ajouts de la relecture 8. Seul le critère est transmis aux prévisionnistes : ni cote, ni sondage, ni taux de base.
 - **Ajouts en cours de phase.** Exception au gel (section 12), encadrée ainsi :
-  - au plus cinq ajouts par cycle, inscrits avant le gel du cycle dans `modele/banque/ajouts.jsonl`, en ajout seul, contrôlé à la poussée ;
+  - au plus cinq ajouts par cycle, inscrits avant le gel du cycle dans `modele/banque/ajouts.jsonl`, en ajout seul, avec des identifiants nouveaux ; le plafond, l'unicité et l'ajout seul sont contrôlés à la poussée (`scripts/controle_banque.py`) ;
   - chacun porte un critère, une source de résolution et un motif ; il est proposé par un agent sans accès aux registres ni aux prévisions, ou par une décision humaine journalisée ;
   - son taux de base est estimé sur une classe de référence historique, sans recherche d'actualité ;
   - aucun retrait d'événement, aucune modification du critère d'une question émise ;
@@ -194,7 +195,7 @@ Ces critères portent sur les estimations non corrigées du biais commun (sectio
   - sur une partie prenante, seulement pour sa propre décision et si le critère le prévoit (vote interne d'un parti) ;
   - à défaut de toute autorité qui publie l'acte, sur deux agences de presse concordantes (AFP, Reuters, AP).
   La méthode de classement des sources est dans `modele/sources.md`.
-- **Date du fait.** Toute proposition de résolution porte la date du fait. Une prévision émise le jour du fait ou après est annulée pour son auteur. Le gel d'un cycle est daté du jour réel de son exécution.
+- **Date du fait.** Toute proposition de résolution porte la date du fait ; pour une issue « non », c'est la fin de la fenêtre. Une prévision émise le jour du fait ou après est annulée pour son auteur. Le gel d'un cycle est daté du jour réel de son exécution.
 - **Cas ambigu.** Deux agents résolvent indépendamment. S'ils divergent, un troisième tranche. Si le désaccord persiste ou si la source primaire manque 30 jours après l'échéance, la question est annulée pour tous les comparateurs, avec motif.
 - **Résolution antérieure à la poussée.** Une prévision dont la question était déjà résolue à la date de poussée de sa ligne de registre (section 12) est annulée, pour le comparateur concerné, avec motif.
 
@@ -230,7 +231,7 @@ Ces deux sections forment l'annexe `annexe_phase3.md`, qui ne s'applique qu'à p
 - **Protocole.**
   - Il ne change que par une nouvelle version, numérotée en première ligne et journalisée.
   - Le noyau et l'annexe sont versionnés séparément. Les tags et releases `protocole-vX.Y` et `annexe-phase3-vX.Y` sont créés automatiquement au premier commit de chaque version sur `main`. Le contrôle échoue si un texte change sans nouveau numéro.
-  - Le noyau et l'annexe sont gelés jusqu'au bilan de la phase 1, tenu à la première analyse trimestrielle (début février 2027). Pendant le gel, une version n'est possible que pour corriger un défaut relevé en relecture, ou pour retirer une exigence devenue inexécutable, sur décision humaine journalisée. Tout ajout au texte est exclu. Les ajouts d'événements à la banque, encadrés par la section 8.8, sont la seule exception ; ils ne modifient pas le texte.
+  - Le noyau et l'annexe sont gelés jusqu'au bilan de la phase 1, tenu à la première analyse trimestrielle (début février 2027). Pendant le gel, une version n'est possible que pour corriger un défaut relevé en relecture, ou pour retirer une exigence devenue inexécutable, sur décision humaine journalisée. Tout ajout au texte est exclu. Les ajouts d'événements à la banque, encadrés par la section 8.8, sont la seule exception ; ils ne modifient pas le texte. La banque (`modele/banque/criteres.json`) est figée au premier gel d'un cycle réel : à chaque poussée, un contrôle échoue si le critère, les issues, la fenêtre, la nature ou le pool d'un événement déjà gelé a changé.
 - **Interventions humaines.** Toutes sont tracées.
 - **Relecture.** Obligatoire à chaque version. Le critère d'arrêt est de deux relectures consécutives sans défaut bloquant ni important. Le relecteur est de la même famille que les auteurs ; ses relectures sont conduites en sessions séparées, sans accès aux échanges de rédaction.
 

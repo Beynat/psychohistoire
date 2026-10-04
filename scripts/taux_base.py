@@ -29,18 +29,30 @@ def utilisee(q):
 if __name__ == "__main__":
     evts = {e["id"]: e for e in json.loads((RACINE / "modele/evenements.json").read_text("utf-8"))["evenements"]}
     sortie, manquants = {}, []
-    # Les fichiers de la relecture 8 (suffixe _r8) passent en dernier : ils remplacent les estimations
-    # des critères réécrits (EV-07, EV-09, EV-17).
-    for f in sorted((RACINE / "modele/taux_base").glob("groupe_*.json"), key=lambda f: (f.stem.endswith("_r8"), f.name)):
+    # Les fichiers des relectures (suffixe _rN) passent après la banque initiale, par ordre de relecture :
+    # ils remplacent les estimations des critères réécrits.
+    import re
+    def rang(f):
+        m = re.search(r"_r(\d+)$", f.stem)
+        return (int(m.group(1)) if m else 0, f.name)
+    for f in sorted((RACINE / "modele/taux_base").glob("groupe_*.json"), key=rang):
         g = json.loads(f.read_text("utf-8"))
         for q in g["questions"]:
             sortie[q["id"]] = {**q, "groupe": g["groupe"], "utilisee": utilisee(q)}
     for i, e in evts.items():
         if e["source_accessible"] and i not in sortie and e.get("taux_base") != "uniforme":
             manquants.append(i)
+    # Entrées périmées (relecture 9) : événement retiré, non émis ou à taux de base uniforme.
+    perimes = sorted(i for i in sortie if i not in evts or not evts[i]["source_accessible"] or evts[i].get("taux_base") == "uniforme")
+    for i in perimes:
+        del sortie[i]
+    ecarts = [i for i, q in sortie.items() if i in evts and set(q["utilisee"]) != set(evts[i]["issues"])]
+    if ecarts:
+        raise SystemExit(f"Issues du taux de base différentes de celles de la banque : {ecarts}")
+
     doc = {"description": "Taux de base des questions d'événement : au moins deux classes de référence, fourchette, classe retenue (sections 7.3 et 8.4). Probabilités en %. « utilisee » est la valeur du comparateur, bornée entre 2 et 98 %.",
            "fusionne_le": datetime.now(ZoneInfo("Europe/Paris")).isoformat(timespec="seconds"),
-           "questions": sortie, "manquants": manquants}
+           "questions": sortie, "manquants": manquants, "retires": perimes}
     (RACINE / "modele/taux_base.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1), "utf-8")
     print(f"{len(sortie)} questions, manquantes : {manquants or 'aucune'}")
     for i, q in sortie.items():

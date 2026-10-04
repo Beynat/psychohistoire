@@ -13,7 +13,7 @@ name: Contrôle des registres
 on:
   push:
     branches: [main]
-    paths: ["registre/**", "modele/jalons/**", "data/tri/**", "modele/banque/ajouts.jsonl"]
+    paths: ["registre/**", "modele/jalons/**", "data/tri/**", "modele/banque/**", "modele/evenements.json", "data/cycles/**"]
   workflow_dispatch: {}
 
 permissions:
@@ -76,3 +76,5 @@ jobs:
           print("Contrôle conforme." if not erreurs else f"{len(erreurs)} anomalie(s).")
           sys.exit(1 if erreurs else 0)
           PY
+      - name: Banque d'événements figée après le premier gel, ajouts plafonnés (noyau, sections 8.8 et 12)
+        run: python3 scripts/controle_banque.py

@@ -5,9 +5,11 @@ Par défaut, écrit dans registre/protocole.jsonl ; un cycle à blanc passe un a
 
 - Persistance (variables) : probabilité que la marche aléatoire empirique (variations depuis 2010
   sur le même nombre de mois) dépasse le seuil.
-- Taux de base (événements) : valeur « utilisee » de modele/taux_base.json, ramenée à la fenêtre
-  restante de la question par un risque constant : p = 1 − (1 − p_fenêtre)^(durée restante / durée
-  de la fenêtre de l'événement). Distribution par issue inchangée pour une question à plusieurs issues.
+- Taux de base (événements) : valeur « utilisee » de modele/taux_base.json. Pour un événement de
+  nature « survenue », elle est ramenée à la fenêtre restante de la question par un risque constant : p = 1 − (1 − p_fenêtre)^(durée restante / durée
+  de la fenêtre de l'événement). Pour un événement de nature « constat » (issue constatée à date
+  fixe, relecture 9), elle n'est pas convertie. Distribution par issue inchangée pour une question à
+  plusieurs issues.
 - 50 % : probabilité uniforme sur les issues.
 - Référence externe (noyau, section 8.4, point 3) : pour une question de fenêtre dont l'événement porte
   une « reference_externe » (modele/banque/criteres.json), prix Polymarket gelés (gel/cotes.json),
@@ -80,6 +82,9 @@ def previsions(cycle):
                 sortie.append((f"référence externe {e['reference_externe']['source']}" + ("" if ref[1] else " (non fiable)"), ref[0]))
             if len(q["issues"]) > 2:
                 sortie.append(("taux de base", {k: v / 100 for k, v in u.items()}))
+            elif e.get("nature", "survenue") == "constat":
+                # Issue constatée à date fixe : pas de conversion à la fenêtre restante (relecture 9, H1).
+                sortie.append(("taux de base", {"oui": u["oui"] / 100, "non": u["non"] / 100}))
             else:
                 p_f = u["oui"] / 100
                 ratio = max(jours(q["fenetre"]["debut"], q["fenetre"]["fin"]), 1) / max(

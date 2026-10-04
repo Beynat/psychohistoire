@@ -69,14 +69,17 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
             continue
         avis = props.get(qid, [])
         issues = [a["issue"] for a in avis]
+        def df(issue, avis_retenus):
+            # Issue « non » : la date du fait est la fin de la fenêtre (relecture 9).
+            return q["echeance"] if issue == "non" else min(date_fait(a) for a in avis_retenus)
         if len(avis) >= 2 and issues[0] == issues[1]:
-            nouvelles.append({"resolution": True, "question": qid, "issue": issues[0], "date_fait": min(date_fait(a) for a in avis[:2]),
+            nouvelles.append({"resolution": True, "question": qid, "issue": issues[0], "date_fait": df(issues[0], avis[:2]),
                               "source": " ; ".join(a["source"] for a in avis[:2]), "methode": "deux agents concordants"})
         elif len(avis) >= 3:
             maj = max(set(issues[:3]), key=issues[:3].count)
             if issues[:3].count(maj) >= 2:
                 nouvelles.append({"resolution": True, "question": qid, "issue": maj,
-                                  "date_fait": min(date_fait(a) for a in avis[:3] if a["issue"] == maj),
+                                  "date_fait": df(maj, [a for a in avis[:3] if a["issue"] == maj]),
                                   "source": " ; ".join(a["source"] for a in avis[:3]), "methode": "troisième agent, majorité"})
             else:
                 nouvelles.append({"resolution": True, "question": qid, "issue": None, "source": "—",
