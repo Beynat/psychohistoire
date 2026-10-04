@@ -68,7 +68,10 @@ def ancrage_quotidien(mensuelle, quotidienne):
     if len(communs) < 6:
         return None
     correction = sum(m[k] - sum(moy[k]) / len(moy[k]) for k in communs) / len(communs)
-    niveau = sum(v for _, v in quotidienne[-5:]) / 5 + correction
+    # Dernière valeur quotidienne plutôt que moyenne des 5 derniers jours : sur 2010-2026, elle prévoit
+    # un peu mieux la moyenne mensuelle du mois suivant (erreur absolue moyenne 5,8 pb contre 5,9) et
+    # ne retarde pas en période de tension (essai du 4 octobre 2026 : seuils jugés trop bas).
+    niveau = quotidienne[-1][1] + correction
     return quotidienne[-1][0][:7], niveau, correction
 
 

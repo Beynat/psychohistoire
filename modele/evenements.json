@@ -1,6 +1,6 @@
 {
  "description": "Banque d'événements de la phase 1 (noyau, section 8.8). Générée par scripts/evenements.py ; ne change qu'à l'analyse trimestrielle, par ajout.",
- "genere_le": "2026-10-04T10:13:43+02:00",
+ "genere_le": "2026-10-04T11:46:46+02:00",
  "second_tour_a_verifier": "2027-05-02",
  "evenements": [
   {
@@ -130,7 +130,7 @@
    "source_accessible": true,
    "motif_inaccessible": null,
    "origine": "fusion A+B",
-   "mensuelle": true
+   "mensuelle": false
   },
   {
    "id": "EV-07",

@@ -62,7 +62,8 @@ REGLES = {
 ISSUES = {"EV-05": ["RN", "bloc central", "gauche", "droite LR ou autre", "autre"],
           "EV-C4": ["avis rendu, compatible", "avis rendu, incompatible", "pas d'avis"]}
 # Critères appréciés seulement en fin de fenêtre : pas de question mensuelle (cycle à blanc).
-SANS_MENSUELLE = {"EV-17": "Le critère se juge à l'issue de législatives ou en fin de période, pas mois par mois."}
+SANS_MENSUELLE = {"EV-17": "Le critère se juge à l'issue de législatives ou en fin de période, pas mois par mois.",
+                  "EV-06": "Critère trimestriel, constaté aux publications de l'Insee : une question mensuelle n'a pas de sens (essai du 4 octobre 2026)."}
 INACCESSIBLE = {
     "EV-12": "Résolution sur ACLED, qui exige un compte : source inaccessible au projet.",
     "EV-14": "Résolution sur ACLED, qui exige un compte : source inaccessible au projet.",

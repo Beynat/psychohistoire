@@ -8,9 +8,10 @@ Exécutée le 1er de chaque mois par la tâche planifiée du cycle mensuel (noya
 3. **Comparateurs.** `python scripts/comparateurs.py AAAA-MM`, puis commit et poussée du registre.
 4. **Ensemble direct.**
    - Préparer le fichier remis aux prévisionnistes : `python scripts/dossier.py AAAA-MM /tmp/previsionnistes.json` (questions et dossier de données gelées, rien d'autre).
-   - Lancer cinq prévisionnistes indépendants, sur au moins trois modèles, avec `modele/consigne_ensemble.md` (v1.2 : dossier de données, au moins 10 recherches web déclarées, consacrées aux événements) et ce seul fichier.
+   - Lancer cinq prévisionnistes indépendants, sur au moins trois modèles, avec `modele/consigne_ensemble.md` (v1.3 : dossier de données, au moins 10 recherches web déclarées, consacrées aux événements, issues imposées) et ce seul fichier.
+   - Chacun écrit `<racine absolue du dépôt>/data/cycles/AAAA-MM/ensemble/<identifiant>.json` : le chemin absolu est donné dans le message de lancement.
+   - Dès qu'un fichier est rendu : `python scripts/verifier_reponse.py AAAA-MM <fichier>`. S'il n'est pas conforme, le prévisionniste est relancé une seule fois avec la liste des défauts ; un second échec est consigné au journal et le cycle passe sans ensemble direct.
    - Lire les motifs : un seuil signalé comme décalé ou une question signalée comme déjà résolue est consigné pour le cycle suivant.
-   - Chacun écrit `data/cycles/AAAA-MM/ensemble/<identifiant>.json`.
    - Puis `python scripts/ensemble.py AAAA-MM`, et commit et poussée dans l'heure (contrôle d'horodatage).
 5. **Résolution.**
    - Pour chaque question d'événement dont l'échéance est passée, deux agents distincts cherchent la source primaire et ajoutent une proposition (`registre/propositions.jsonl`, via `scripts/registre.py`).
