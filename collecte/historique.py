@@ -108,11 +108,15 @@ def brent_journalier():
 
 
 def brent_mensuel():
-    """Moyenne mensuelle du Brent spot (EIA via FRED)."""
+    """Moyenne mensuelle du Brent spot (EIA via FRED). Un mois n'est écrit qu'une fois complet, c'est-à-dire
+    quand une cotation du mois suivant est présente (relecture 13, L1) : sinon la question « moyenne de
+    novembre » serait résolue sur quelques jours de cotation."""
     m = {}
-    for p, v in brent_journalier():
+    j = brent_journalier()
+    for p, v in j:
         m.setdefault(p[:7], []).append(v)
-    return sorted((k, round(sum(x) / len(x), 2)) for k, x in m.items())
+    dernier = j[-1][0][:7] if j else ""
+    return sorted((k, round(sum(x) / len(x), 2)) for k, x in m.items() if k < dernier)
 
 
 def inflation_energie_fr():

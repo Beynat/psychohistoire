@@ -13,4 +13,4 @@ Aucune de ces probabilités ne constitue un conseil.
 
 ## Méthode
 
-Le protocole scientifique en vigueur est `modele/protocole.md` (le noyau, version taguée), complété par `modele/annexe_phase3.md` pour la phase 3, avec son journal (`modele/journal.md`) et les relectures externes (`modele/v1.2/`, `modele/v1.3/`, `modele/v1.4/`, `modele/v1.6/`, `modele/v1.7/`, `modele/v1.8/`, `modele/v1.10/`). Les probabilités affichées actuellement par la page relèvent de la **piste exploratoire** (v0, v0.2), produite avant le protocole et notée à part.
+Le protocole scientifique en vigueur est `modele/protocole.md` (le noyau, version taguée), complété par `modele/annexe_phase3.md` pour la phase 3, avec son journal (`modele/journal.md`) et les relectures externes avec leurs réponses (dossiers `modele/v1.*/`, relectures 1 à 13). Les probabilités affichées actuellement par la page relèvent de la **piste exploratoire** (v0, v0.2), produite avant le protocole et notée à part.

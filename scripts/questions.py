@@ -36,8 +36,11 @@ def generer(gel, etiquette=None):
     gel_dir = RACINE / "data" / "cycles" / cycle / "gel" / "historique"
     lire = (lambda n: commun.serie(n)) if not gel_dir.exists() else (
         lambda n: [(p, float(v)) for p, v in (l.split(",") for l in (gel_dir / f"{n}.csv").read_text("utf-8").splitlines()[1:] if l)])
-    resolues = {r["question"] for r in lire_jsonl("registre/resolutions.jsonl") if r.get("resolution")}
-    correspondances = lire_json("modele/correspondances_p1.json", {"correspondances": {}})["correspondances"]
+    from resolution import resolutions_effectives
+    resolues = set(resolutions_effectives(""))   # errata de réouverture appliqués (relecture 13, S1)
+    gel_corr = RACINE / "data" / "cycles" / cycle / "gel" / "correspondances_p1.json"
+    correspondances = lire_json(str(gel_corr.relative_to(RACINE)) if gel_corr.exists() else "modele/correspondances_p1.json",
+                                {"correspondances": {}})["correspondances"]
     qs, ecartees = [], []
 
     for nom, meta in VARIABLES.items():

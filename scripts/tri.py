@@ -22,7 +22,7 @@ Usage :
         (annexe, section 11.2 ; relecture 11, J2).
     python scripts/tri.py reprise
         Écrit data/reprise.json : pour chaque fait, sources distinctes (total, sept premiers jours, sept
-        derniers jours), jours de présence, questions concernées, caractérisation proposée, stade retenu,
+        derniers jours), jours de présence, questions concernées, type de fait, stade retenu,
         date de réexamen et statut (annexe, sections 11.2 et 11.3 ; descriptif).
 """
 import json
@@ -36,6 +36,8 @@ CLES = {"lien", "fait", "decision", "motif"}
 FACULTATIVES = {"concerne", "caracterisation"}
 NATURES = {"pénal lié à la fonction", "pénal hors fonction", "manquement éthique ou politique",
            "vie privée", "décision ou déclaration publique", "autre"}
+# Natures soumises à l'axe « stade » (annexe, section 11.2) ; les autres sont des faits publics (relecture 13, S5).
+MISES_EN_CAUSE = {"pénal lié à la fonction", "pénal hors fonction", "manquement éthique ou politique", "vie privée"}
 STADES = ["allégation", "procédure engagée", "mise en cause formelle", "décision"]
 # Étapes officielles (annexe, section 11.2) : actes de l'autorité elle-même ; une saisine ou un
 # signalement par un tiers n'en est pas une (relecture 11, S4).
@@ -72,8 +74,8 @@ def questions_ouvertes():
     resolues = set()
     f = RACINE / "registre" / "resolutions.jsonl"
     if f.exists():
-        resolues = {json.loads(l)["question"] for l in f.read_text("utf-8").splitlines()
-                    if l.strip() and json.loads(l).get("resolution")}
+        from resolution import resolutions_effectives
+        resolues = set(resolutions_effectives(""))
     return [{"question": f"Q-{e['id']}", "nom": e["nom"], "critere": e["critere"], "fenetre": e["fenetre"]}
             for e in lire_json("modele/evenements.json")["evenements"]
             if e["source_accessible"] and f"Q-{e['id']}" not in resolues]
@@ -124,7 +126,7 @@ def ajouter():
                        **({"concerne": d["concerne"]} if "concerne" in d else {}),
                        # Seul le type est conservé (relecture 12, K5) : un fait public établi par la source
                        # de son auteur (décision, vote, accord publié) n'est pas une allégation.
-                       **({"type_fait": "fait établi" if c["nature"] == "décision ou déclaration publique" else "mise en cause"}
+                       **({"type_fait": "mise en cause" if c["nature"] in MISES_EN_CAUSE else "fait public"}
                           if c is not None else {}),
                        # Source et date du titre, conservées pour la mesure de reprise (la veille purge les titres triés).
                        "source": t.get("source"), "date_titre": t.get("date")})
@@ -159,8 +161,10 @@ def etape():
 
 
 def stades_retenus():
-    """Stade retenu par fait : le plus élevé dont la MÊME étape a été vérifiée par au moins deux agents
-    distincts (relecture 12, S8), sinon « allégation ». Le stade « fait établi » est à part."""
+    """Stade retenu par fait : pour une mise en cause, le plus élevé dont la MÊME étape a été vérifiée par
+    au moins deux agents distincts (relecture 12, S8), sinon « allégation » ; pour un fait public, « fait
+    établi » si deux agents ont vérifié l'étape « fait public vérifié ». Les deux axes sont séparés
+    (relecture 13, S5) : l'ordre de lecture ne change rien."""
     f = TRI / "etapes.jsonl"
     par = {}
     if f.exists():
@@ -168,18 +172,16 @@ def stades_retenus():
             if l.strip():
                 d = json.loads(l)
                 par.setdefault((d["fait"], d["etape"]), {}).setdefault(d["agent"], d["date_fait"])
-    retenu = {}
+    judiciaire, public = {}, {}
     for (fait, etape_), agents in par.items():
-        stade = ETAPES[etape_]
         if len(agents) < 2:
             continue
+        stade = ETAPES[etape_]
         if stade == "fait établi":
-            retenu[fait] = (stade, min(agents.values()))
-        else:
-            actuel = retenu.get(fait, ("allégation", None))[0]
-            if actuel == "fait établi" or STADES.index(stade) > STADES.index(actuel):
-                retenu[fait] = (stade, min(agents.values()))
-    return retenu
+            public[fait] = ("fait établi", min(agents.values()))
+        elif STADES.index(stade) > STADES.index(judiciaire.get(fait, ("allégation", None))[0]):
+            judiciaire[fait] = (stade, min(agents.values()))
+    return judiciaire, public
 
 
 def decisions_statut():
@@ -218,13 +220,13 @@ def reprise(aujourdhui=None):
             x["concerne"] |= set(d.get("concerne", []))
             if d["decision"] != "non rattaché":
                 x["decision"].add(d["decision"])
-    stades = stades_retenus()
+    stades, publics = stades_retenus()
     nouvelles_decisions = []
     natures = {}
     fe = TRI / "etapes.jsonl"
     if fe.exists():
         for l in fe.read_text("utf-8").splitlines():
-            if l.strip() and "nature" in json.loads(l) and json.loads(l)["fait"] in stades:
+            if l.strip() and "nature" in json.loads(l) and json.loads(l)["fait"] in stades:   # étape judiciaire vérifiée
                 natures[json.loads(l)["fait"]] = json.loads(l)["nature"]
     sortie = {}
     for k, v in faits.items():
@@ -232,14 +234,26 @@ def reprise(aujourdhui=None):
         d0 = date.fromisoformat(jours[0])
         s7p = {s for j, s in v["obs"] if date.fromisoformat(j) < d0 + timedelta(days=7)}
         s7d = {s for j, s in v["obs"] if date.fromisoformat(j) > auj - timedelta(days=7)}
-        stade, date_etape = stades.get(k, ("allégation", None))
+        if v["type"] in ("fait public", "fait établi"):
+            stade, date_etape = publics.get(k, (None, None))
+        else:
+            stade, date_etape = stades.get(k, ("allégation", None))
         # Réexamen : 30 jours après l'entrée ; 14 jours si au moins cinq sources distinctes la première semaine
         # (constaté au septième jour). Table de décision de l'annexe, section 11.3.
         reex = d0 + timedelta(days=14 if len(s7p) >= 5 and auj >= d0 + timedelta(days=7) else 30)
         deja = decisions_statut().get(k, [])
-        if v["type"] == "fait établi":
-            statut = "fait établi" if stade == "fait établi" else "fait public non vérifié"
-            stade, reex = None, None
+        public = v["type"] in ("fait public", "fait établi")
+        if public and stade == "fait établi":
+            statut, stade, reex = "fait établi", None, None
+        elif public:
+            stade = None   # un fait public non vérifié est contesté : il suit la table de réexamen
+            if any(x["decision"] == "retombé" for x in deja):
+                statut = "retombé"
+            elif auj < reex:
+                statut = "fait public non vérifié, en observation"
+            else:
+                statut = "retombé"
+                nouvelles_decisions.append({"fait": k, "decision": "retombé", "date": reex.isoformat()})
         elif date_etape and date_etape >= jours[0]:
             statut = "étape officielle vérifiée"
         elif any(x["decision"] == "retombé" for x in deja):

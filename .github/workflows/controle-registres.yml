@@ -13,7 +13,7 @@ name: Contrôle des registres
 on:
   push:
     branches: [main]
-    paths: ["registre/**", "modele/jalons/**", "data/tri/**", "modele/banque/**", "modele/evenements.json", "data/cycles/**"]
+    paths: ["registre/**", "modele/jalons/**", "data/tri/**", "modele/banque/**", "modele/evenements.json", "data/cycles/**", "data/premieres_valeurs.jsonl"]
   workflow_dispatch: {}
 
 permissions:
@@ -42,7 +42,7 @@ jobs:
               avant = git("rev-parse", "HEAD~1").strip()
           debut = datetime.now(timezone.utc)
           erreurs = []
-          suivis = ("registre/", "modele/jalons/", "data/tri/", "modele/banque/ajouts.jsonl")
+          suivis = ("registre/", "modele/jalons/", "data/tri/", "modele/banque/ajouts.jsonl", "data/premieres_valeurs.jsonl")
           for ligne in git("diff", "--no-renames", "--name-status", avant, "HEAD").splitlines():
               statut, f = ligne.split("\t", 1)
               # Fichiers d'un cycle (gel, questions et seuils, dossier, réponses de l'ensemble) : jamais

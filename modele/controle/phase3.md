@@ -8,5 +8,4 @@ Ouverte le 4 octobre 2026 à partir de la relecture 7. À compléter avant le d�
 
 ## À reporter à la prochaine version du noyau
 
-- Aligner la ligne de statut sur la règle de gel de la section 12 (retrait d'une exigence inexécutable).
 - Mentionner au premier bilan la légère prudence de la loi de Student sur Z avec peu de grappes (7 % au lieu de 10 % à 5 grappes).

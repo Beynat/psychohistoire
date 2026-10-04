@@ -4,7 +4,7 @@ Usage : python scripts/notation.py [registre/<fichier>.jsonl] [--reference AUTEU
 Écrit data/bilans/<date>.json (ou bilan_<suffixe>) et affiche un résumé.
 
 Pour chaque auteur (comparateurs, ensemble direct, puis modèle) et chaque pool :
-- Brier (somme sur les issues des écarts au carré) et score logarithmique, sur la dernière
+- Brier (½ Σ sur les issues de la question des écarts au carré, soit (p − y)² en binaire) et score logarithmique, sur la dernière
   prévision émise avant l'échéance ;
 - Brier pondéré dans le temps : moyenne, sur chaque jour de l'émission à l'échéance, du Brier de
   la dernière probabilité inscrite ce jour-là (section 8.5) ;
@@ -29,10 +29,11 @@ from commun import ecrire_json, lire_jsonl, log_score, maintenant
 from resolution import cycles_du_registre, resolutions_effectives, suffixe, toutes_les_questions
 
 
-def brier(dist, issue):
+def brier(dist, issue, issues=None):
     """Brier normalisé (relecture 12, S1) : ½ Σ_k (p_k − y_k)², qui vaut (p − y)² pour une question
     binaire, comme la formule de la section 8.5 ; les écarts de 8.6 (0,02, 0,04) sont dans cette unité."""
-    return 0.5 * sum((dist.get(k, 0) / 100 - (1.0 if k == issue else 0.0)) ** 2 for k in dist)
+    # Somme sur les issues de la question (relecture 13, S11) : une issue absente de la prévision vaut 0.
+    return 0.5 * sum((dist.get(k, 0) / 100 - (1.0 if k == issue else 0.0)) ** 2 for k in (issues or set(dist) | {issue}))
 
 
 def logs(dist, issue):
@@ -50,6 +51,28 @@ def murphy(paires):
     fia = sum(len(c) * (sum(p for p, _ in c) / len(c) - sum(y for _, y in c) / len(c)) ** 2 for c in classes.values()) / n
     res = sum(len(c) * (sum(y for _, y in c) / len(c) - ybar) ** 2 for c in classes.values()) / n
     return {"fiabilite": round(fia, 4), "resolution": round(res, 4), "incertitude": round(ybar * (1 - ybar), 4)}
+
+
+def test_calibration(items, rho=0.3, nsim=2000, graine=3):
+    """Critère de calibration de la section 8.6 (relecture 13, S2). items : (p, y, grappe) des questions
+    binaires de P2b et P2c, prévisions de cycle. Statistique : terme de fiabilité de Murphy en dix classes.
+    Loi sous calibration parfaite : issues tirées avec P(y = 1) = p, corrélées dans une grappe par une
+    copule gaussienne de corrélation ρ = 0,3. Échec si la fiabilité observée dépasse le 90e centile."""
+    from statistics import NormalDist
+    if len(items) < 10:
+        return {"questions": len(items), "verdict": "trop peu de questions"}
+    obs = murphy([(p, y) for p, y, _ in items])["fiabilite"]
+    nd, rnd = NormalDist(), random.Random(graine)
+    grappes = sorted({g for _, _, g in items})
+    sims = []
+    for _ in range(nsim):
+        u = {g: rnd.gauss(0, 1) for g in grappes}
+        tir = [(p, nd.cdf(math.sqrt(rho) * u[g] + math.sqrt(1 - rho) * rnd.gauss(0, 1)) < p) for p, _, g in items]
+        sims.append(murphy(tir)["fiabilite"])
+    sims.sort()
+    seuil = sims[int(0.9 * nsim)]
+    return {"questions": len(items), "grappes": len(grappes), "fiabilite": obs, "seuil_90": round(seuil, 4),
+            "verdict": "recalibrer" if obs > seuil else "conforme"}
 
 
 def test_grappes(diffs):
@@ -127,12 +150,15 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
         # Brier pondéré : du jour d'émission à l'échéance, arrêté la veille du fait (relecture 9).
         fin = fin_brier(q, r)
         d0 = lignes[0]["emise"][:10]
+        cyc = [l for l in lignes if str(l.get("origine", "")).startswith("cycle")]
         der = lignes[-1]["probabilites"]
+        der_cycle = cyc[-1]["probabilites"] if cyc else None
         scores[(auteur, qid)] = {"brier": brier(der, r["issue"]), "log": logs(der, r["issue"]),
                                  "brier_temps": brier_pondere(lignes, r["issue"], d0, fin), "pool": q["pool"], "grappe": q["grappe"],
                                  "lignes": lignes, "debut": d0, "fin": fin,
                                  "binaire": len(q["issues"]) == 2,
-                                 "p_oui": der.get("oui", 0) / 100, "y": r["issue"] == "oui"}
+                                 "p_oui": (der_cycle or der).get("oui", 0) / 100, "cycle_seul": der_cycle is not None,
+                                 "y": r["issue"] == "oui"}
     auteurs = sorted({a for a, _ in scores})
     par_auteur = {}
     for a in auteurs:
@@ -140,7 +166,9 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
         pools = {}
         for s in mes.values():
             pools.setdefault(s["pool"], []).append(s)
-        par_auteur[a] = {"questions": len(mes), "pools": {
+        cal = [(x["p_oui"], x["y"], x["grappe"]) for x in mes.values()
+               if x["binaire"] and x["pool"] in ("P2b", "P2c") and x.get("cycle_seul")]
+        par_auteur[a] = {"questions": len(mes), "calibration_8_6": test_calibration(cal), "pools": {
             p: {"n": len(v), "brier": round(sum(x["brier"] for x in v) / len(v), 4),
                 "log": round(sum(x["log"] for x in v) / len(v), 4),
                 "brier_temps": round(sum(x["brier_temps"] for x in v) / len(v), 4),
@@ -193,14 +221,20 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
             if a == reference:
                 continue
             # Test de la section 8.6 : pools P2b et P2c seulement (relecture 12, K2), avec et sans ajouts.
+            avec = comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c"))
+            sans = comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c") and evenement(qid) not in ajoutes)
             comparaisons[a] = {
-                "critere_8_6": comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c")),
-                "critere_8_6_sans_ajouts": comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c") and evenement(qid) not in ajoutes),
+                # Verdict combiné (relecture 13, S9) : non concluant si les deux bilans diffèrent.
+                "verdict_8_6": avec["verdict"] if avec["verdict"] == sans["verdict"] else "non concluant (bilans avec et sans ajouts divergents)",
+                "critere_8_6": avec,
+                "critere_8_6_sans_ajouts": sans,
                 "toutes_questions_descriptif": comparer(a, lambda qid, s: True),
                 # Critère de persistance (section 8.6) : variables contre la persistance (P2a),
                 # événements contre le taux de base (P2b).
                 **({"critere_persistance_P2a": comparer(a, lambda qid, s: s["pool"] == "P2a")} if a == "comparateur : persistance" else {}),
-                **({"critere_taux_de_base_P2b": comparer(a, lambda qid, s: s["pool"] == "P2b")} if a == "comparateur : taux de base" else {}),
+                **({"critere_taux_de_base_P2b": comparer(a, lambda qid, s: s["pool"] == "P2b"),
+                    "critere_taux_de_base_P2b_sans_ajouts": comparer(a, lambda qid, s: s["pool"] == "P2b" and evenement(qid) not in ajoutes)}
+                   if a == "comparateur : taux de base" else {}),
                 # Apport des mises à jour continues, descriptif, sans décision (relecture 12, K3).
                 "mises_a_jour_continues_descriptif": comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c"), instantanes=False),
             }

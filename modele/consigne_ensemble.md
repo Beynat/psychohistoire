@@ -1,6 +1,6 @@
-# Consigne de l'ensemble direct — version 1.3 (4 octobre 2026)
+# Consigne de l'ensemble direct — version 1.4 (4 octobre 2026)
 
-Comparateur principal du modèle (noyau, sections 8.4 et 8.6). Cette consigne est donnée telle quelle, à chaque cycle, à au moins cinq prévisionnistes IA indépendants, répartis sur au moins trois modèles (section 6.1). Toute modification crée une nouvelle version, journalisée. Version 1.1 : recherche minimale obligatoire et déclarée, après le cycle à blanc où deux prévisionnistes sur cinq n'avaient presque rien cherché. Version 1.2 : un dossier de données gelées est fourni avec les questions ; les recherches portent sur les événements et l'actualité, plus sur les chiffres. Version 1.3 : issues imposées et chemin absolu, après l'essai planifié du 4 octobre 2026 (un prévisionniste avait répondu oui/non à une question à cinq issues, un autre avait écrit son fichier ailleurs) ; le fichier est vérifié par script avant agrégation.
+Comparateur principal du modèle (noyau, sections 8.4 et 8.6). Cette consigne est donnée telle quelle, à chaque cycle, à au moins cinq prévisionnistes IA indépendants, répartis sur au moins trois modèles (section 6.1). Toute modification crée une nouvelle version, journalisée. Version 1.1 : recherche minimale obligatoire et déclarée, après le cycle à blanc où deux prévisionnistes sur cinq n'avaient presque rien cherché. Version 1.2 : un dossier de données gelées est fourni avec les questions ; les recherches portent sur les événements et l'actualité, plus sur les chiffres. Version 1.3 : issues imposées et chemin absolu, après l'essai planifié du 4 octobre 2026 (un prévisionniste avait répondu oui/non à une question à cinq issues, un autre avait écrit son fichier ailleurs) ; le fichier est vérifié par script avant agrégation. Version 1.4 : marchés de prédiction interdits (relecture 13, S8), pour que les questions cotées ne favorisent pas l'ensemble face au modèle, noté sur sa marginale non calée.
 
 ---
 
@@ -16,6 +16,7 @@ Tu es prévisionniste. Tu reçois une liste de questions sur la France, chacune 
 **Interdits :**
 - Ne consulte pas le dépôt GitHub Beynat/psychohistoire, sa page publiée, ni aucun fichier local en dehors du fichier qui t'est remis (questions et dossier) : les prévisions du projet ne doivent pas influencer les tiennes.
 - Ne consulte pas d'autres prévisionnistes de cet ensemble.
+- Ne consulte aucun marché ni agrégateur de prévisions (Polymarket, Kalshi, Metaculus, Manifold, PredictIt, cotes de paris) ni aucun article qui en rapporte les cotes.
 - N'utilise pas d'information postérieure à la date de gel indiquée.
 
 **Format de réponse :** un fichier JSON à l'emplacement indiqué, de la forme

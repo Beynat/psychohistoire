@@ -69,7 +69,7 @@ def test_bout_en_bout():
             assert r.returncode == 0, r.stderr[-2000:]
             return r
         (tmp / "modele/statut.json").write_text(json.dumps({"definitif": True}))
-        run("scripts/geler.py", "2026-11-01", "2026-11")
+        run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
         run("scripts/questions.py", "2026-11-01", "2026-11")
         run("scripts/comparateurs.py", "2026-11", "registre/e2e.jsonl")
         banque = json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())
@@ -108,6 +108,116 @@ def test_bout_en_bout():
         # Q-EV-30 est en P2e : hors du critère ; Q-EV-15 : mêmes prévisions sur la période commune.
         c = out["c"]["critere_8_6"]
         assert c["grappes"] == 1 and c["t"] is None and c["verdict"] == "non concluant", c
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
+def _copie():
+    """Copie du dépôt dans un dossier temporaire, et un lanceur de commandes Python dans cette copie."""
+    import subprocess, os
+    racine = Path(__file__).resolve().parent.parent
+    tmp = Path(tempfile.mkdtemp()) / "depot"
+    shutil.copytree(racine, tmp, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+    env = {**os.environ, "PYTHONPATH": str(tmp / "scripts")}
+
+    def run(*a):
+        r = subprocess.run([sys.executable, *a], cwd=tmp, env=env, capture_output=True, text=True)
+        assert r.returncode == 0, r.stderr[-2000:]
+        return r.stdout
+    return tmp, run
+
+
+def test_regles_de_resolution():
+    """Relecture 13, S4 : un cas discriminant par règle de résolution (un avis par agent et par passage,
+    « non » prématuré refusé, annulation à 60 jours, première valeur collectée, réouverture par erratum)."""
+    tmp, run = _copie()
+    try:
+        code = r"""
+import json, resolution, registre
+from pathlib import Path
+R = Path('registre')
+def props(L):
+    (R / 'propositions_t.jsonl').write_text(''.join(json.dumps(x) + chr(10) for x in L))
+def P(q, issue, agent, jour, df='2026-11-20'):
+    return {"proposition": True, "question": q, "issue": issue, "source": "s", "agent": agent, "date_fait": df,
+            "emise": jour + "T08:00:00+01:00"}
+(R / 't.jsonl').write_text('')
+out = {}
+# 1. Même agent, même jour, « oui » deux fois : un seul avis, pas de résolution.
+props([P("Q-EV-15", "oui", "A", "2026-11-20"), P("Q-EV-15", "oui", "A", "2026-11-20")])
+out["doublon"] = [r["question"] for r in resolution.resoudre("registre/t.jsonl", "2026-11-21")]
+(R / 'resolutions_t.jsonl').write_text('')
+# 2. « non » sur un événement « survenue » avant son échéance : ignoré.
+props([P("Q-EV-01", "non", "A", "2026-11-20"), P("Q-EV-01", "non", "B", "2026-11-20")])
+out["non_premature"] = [r["question"] for r in resolution.resoudre("registre/t.jsonl", "2026-11-21")]
+(R / 'resolutions_t.jsonl').write_text('')
+# 3. Un seul avis, 61 jours après l'échéance : annulée ; sans aucun avis : pas d'annulation.
+props([P("Q-EV-15", "oui", "A", "2027-01-05")])
+r = resolution.resoudre("registre/t.jsonl", "2027-03-03")
+out["annulation60"] = [(x["question"], x["issue"]) for x in r]
+(R / 'resolutions_t.jsonl').write_text('')
+props([])
+out["sans_avis"] = [x["question"] for x in resolution.resoudre("registre/t.jsonl", "2027-03-03")]
+print(json.dumps(out))
+"""
+        out = json.loads(run("-c", code).strip().splitlines()[-1])
+        assert out["doublon"] == [], out
+        assert "Q-EV-01" not in out["non_premature"], out
+        assert ("Q-EV-15", None) in [tuple(x) for x in out["annulation60"]], out
+        assert out["sans_avis"] == [], out
+        # 4. Première valeur collectée (relecture 13, L1) : collectée, révisée, puis résolue.
+        code2 = r"""
+import json, resolution
+from pathlib import Path
+Path('data/premieres_valeurs.jsonl').write_text(json.dumps({"serie": "inflation_ipch_FR", "periode": "2099-11",
+    "valeur": 3.4, "collecte_le": "2099-12-02T03:00:00+01:00"}) + chr(10))
+Path('data/historique/inflation_ipch_FR.csv').write_text('periode,valeur' + chr(10) + '2099-11,3.3' + chr(10))
+cyc = Path('data/cycles/2099-10'); cyc.mkdir(parents=True, exist_ok=True)
+q = {"id": "Q-2099-10-inflation_ipch_FR-2099-11-q50", "type": "variable", "pool": "P2a", "grappe": "g", "texte": "t",
+     "issues": ["oui", "non"], "echeance": "2099-12-31", "details": {"serie": "inflation_ipch_FR", "periode": "2099-11", "seuil": 3.4}}
+(cyc / 'questions.json').write_text(json.dumps({"questions": [q]}))
+Path('registre/v.jsonl').write_text(json.dumps({"question": q["id"], "probabilites": {"oui": 50, "non": 50}, "piste": "protocole",
+    "phase": 1, "origine": "cycle 2099-10", "donnees": "t", "emise": "2099-10-01T08:00:00+02:00"}) + chr(10))
+r = resolution.resoudre("registre/v.jsonl", "2100-01-01")
+print(json.dumps([(x["issue"], x["valeur"], x["date_fait"]) for x in r]))
+"""
+        r = json.loads(run("-c", code2).strip().splitlines()[-1])
+        assert r == [["oui", 3.4, "2099-12-02"]], r
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
+def test_regles_du_bilan():
+    """Relecture 13, S4 : cycles d'essai exclus du registre noté, instantanés mensuels, grappe par acte."""
+    tmp, run = _copie()
+    try:
+        run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
+        run("scripts/questions.py", "2026-11-01", "2026-11")
+        banque = json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())
+        g = {q["id"]: q["grappe"] for q in banque["questions"]}
+        assert g["Q-EV-21"] == g["Q-EV-40a"] == g["Q-EV-20"], "grappe par acte"
+        code = r"""
+import json, resolution, notation
+from pathlib import Path
+# Le registre ne cite que le cycle 2026-11 : les banques d'essai (2026-10...) ne doivent pas être lues.
+L = []
+for auteur, lignes in (("ensemble direct", [("2026-11-02", 20, "cycle 2026-11")]),
+                       ("modèle", [("2026-11-02", 20, "cycle 2026-11"), ("2026-11-15", 90, "fait imprévu MAJ-1")])):
+    for d, p, o in lignes:
+        L.append({"question": "Q-EV-15", "probabilites": {"oui": p, "non": 100 - p}, "piste": "protocole", "phase": 1,
+                  "auteur": auteur, "origine": o, "donnees": "t", "emise": d + "T08:00:00+01:00"})
+Path('registre/b.jsonl').write_text(''.join(json.dumps(x) + chr(10) for x in L))
+Path('registre/resolutions_b.jsonl').write_text(json.dumps({"resolution": True, "question": "Q-EV-15", "issue": "non",
+    "date_fait": "2026-12-31", "source": "s", "methode": "m", "emise": "2027-01-05T08:00:00+01:00"}) + chr(10))
+qs = resolution.toutes_les_questions(resolution.cycles_du_registre('registre/b.jsonl'))
+b = notation.bilan('registre/b.jsonl', 'ensemble direct', '2027-02-01')
+c = b['comparaisons']['modèle']
+print(json.dumps({"grappe": qs["Q-EV-15"]["grappe"], "t": c["critere_8_6"]["t"], "continu": c["mises_a_jour_continues_descriptif"]["t"]}))
+"""
+        out = json.loads(run("-c", code).strip().splitlines()[-1])
+        assert out["grappe"] == "EV-15", out          # banque du cycle 2026-11, pas celle de l'essai
+        assert out["t"] is None, out                  # instantanés mensuels identiques : écart nul
+        assert out["continu"] is not None, out        # la mise à jour continue n'apparaît que dans le descriptif
     finally:
         shutil.rmtree(tmp.parent)
 

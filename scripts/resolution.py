@@ -78,6 +78,10 @@ def resolutions_effectives(sfx):
         if r.get("resolution"):
             res.setdefault(r["question"], dict(r))
         elif r.get("erratum") and r.get("objet") in res and isinstance(r.get("correction"), dict):
+            if r["correction"].get("rouverte"):
+                # Erratum de réouverture (relecture 13, S1) : la question redevient ouverte.
+                del res[r["objet"]]
+                continue
             res[r["objet"]].update(r["correction"])
             res[r["objet"]]["corrigee_par_erratum"] = r.get("emise")
     return res
@@ -91,27 +95,40 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
     for p in lire_jsonl(f"registre/propositions{sfx}.jsonl"):
         props.setdefault(p["question"], []).append(p)
     emises = {l["question"] for l in lire_jsonl(reg) if "question" in l and "probabilites" in l}
-    nouvelles, series = [], {}
+    nouvelles = []
+    premieres = {}
+    for l in lire_jsonl("data/premieres_valeurs.jsonl"):
+        premieres.setdefault((l["serie"], l["periode"]), l)
     for qid, q in toutes_les_questions(cycles_du_registre(reg)).items():
         if qid in deja or (qid not in emises and not (q.get("avant_emission") and qid in props)):
             continue
         if q["type"] == "variable":
             d = q["details"]
-            s = series.setdefault(d["serie"], dict(commun.serie(d["serie"])))
-            if d["periode"] in s:
-                v = s[d["periode"]]
-                # Fait foi la première valeur collectée de la période ; sa date de collecte est la date
-                # du fait (relecture 12, S6) : une révision ultérieure de la série ne change pas l'issue.
+            # Fait foi la première valeur collectée de la période, lue dans le journal en ajout seul
+            # data/premieres_valeurs.jsonl ; sa date de collecte est la date du fait (relecture 13, L1).
+            pv = premieres.get((d["serie"], d["periode"]))
+            if pv:
+                v = pv["valeur"]
                 nouvelles.append({"resolution": True, "question": qid, "issue": "oui" if v >= d["seuil"] else "non",
-                                  "valeur": v, "date_fait": aujourdhui, "publie_le": aujourdhui,
-                                  "source": f"data/historique/{d['serie']}.csv (première valeur collectée)", "methode": "script"})
+                                  "valeur": v, "date_fait": pv["collecte_le"][:10], "publie_le": pv["collecte_le"],
+                                  "source": "data/premieres_valeurs.jsonl (première valeur collectée)", "methode": "script"})
             continue
-        # Une proposition par agent : deux propositions du même agent ne valent pas deux avis (relecture 12).
-        avis, agents = [], set()
+        # Une proposition par agent et par passage (relecture 12 ; relecture 13, S6) : deux propositions du
+        # même agent le même jour ne valent qu'un avis. Une proposition « non » sur un événement « survenue »
+        # avant son échéance est ignorée : l'événement peut encore survenir (relecture 13, S1). Une
+        # proposition sans issue (issue null) consigne une recherche restée vaine (relecture 13, S13).
+        avis, vus, vaines = [], set(), set()
         for a in props.get(qid, []):
-            if a["agent"] not in agents:
-                agents.add(a["agent"])
-                avis.append(a)
+            cle = (a["agent"], a.get("emise", "")[:10])
+            if cle in vus:
+                continue
+            vus.add(cle)
+            if a["issue"] is None:
+                vaines.add(a["agent"])
+                continue
+            if a["issue"] == "non" and nature(qid, q) == "survenue" and aujourdhui <= q["echeance"]:
+                continue
+            avis.append(a)
         issues = [a["issue"] for a in avis]
         def df(issue, avis_retenus):
             # Événement « survenue » et issue « non » : la date du fait est la fin de la fenêtre
@@ -132,10 +149,11 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
             else:
                 nouvelles.append({"resolution": True, "question": qid, "issue": None, "source": "—",
                                   "methode": "annulée : désaccord persistant entre trois agents"})
-        elif date.fromisoformat(q["echeance"]) + timedelta(days=30) < date.fromisoformat(aujourdhui) and not avis:
+        elif date.fromisoformat(q["echeance"]) + timedelta(days=30) < date.fromisoformat(aujourdhui) and not avis and len(vaines) >= 2:
+            # Annulation à 30 jours seulement si deux agents ont consigné une recherche vaine (relecture 13, S13).
             nouvelles.append({"resolution": True, "question": qid, "issue": None, "source": "—",
-                              "methode": "annulée : aucune source primaire 30 jours après l'échéance"})
-        elif date.fromisoformat(q["echeance"]) + timedelta(days=60) < date.fromisoformat(aujourdhui):
+                              "methode": "annulée : source introuvable pour deux agents, 30 jours après l'échéance"})
+        elif date.fromisoformat(q["echeance"]) + timedelta(days=60) < date.fromisoformat(aujourdhui) and (avis or vaines):
             # Un seul avis, ou deux avis divergents sans troisième, 60 jours après l'échéance (relecture 12, S5).
             nouvelles.append({"resolution": True, "question": qid, "issue": None, "source": "—",
                               "methode": "annulée : pas de résolution concordante 60 jours après l'échéance"})

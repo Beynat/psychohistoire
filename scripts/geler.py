@@ -15,9 +15,16 @@ A_GELER = ["data/collecte.json", "data/cotes.json", "modele/evenements.json", "m
     str(p.relative_to(RACINE)) for p in (RACINE / "data/historique").glob("*.csv"))
 
 if __name__ == "__main__":
-    if len(sys.argv) not in (2, 3):
+    sys.argv = [a for a in sys.argv if a != "--essai"] + (["--essai"] if "--essai" in sys.argv else [])
+    if len([a for a in sys.argv if a != "--essai"]) not in (2, 3):
         sys.exit("usage : python scripts/geler.py AAAA-MM-JJ [ETIQUETTE]")
-    cycle = sys.argv[2] if len(sys.argv) == 3 else sys.argv[1][:7]
+    args = [a for a in sys.argv if a != "--essai"]
+    cycle = args[2] if len(args) == 3 else args[1][:7]
+    # Le gel est daté du jour réel d'exécution (noyau, section 8.8 ; relecture 13, S11), sauf cycle d'essai.
+    import re
+    from datetime import date
+    if re.fullmatch(r"\d{4}-\d{2}", cycle) and sys.argv[1] != date.today().isoformat() and "--essai" not in sys.argv:
+        sys.exit(f"La date de gel {sys.argv[1]} n'est pas celle du jour ({date.today().isoformat()}).")
     dest = RACINE / "data" / "cycles" / cycle / "gel"
     if (dest / "manifeste.json").exists():
         sys.exit(f"Le cycle {cycle} est déjà gelé : un gel n'est jamais réécrit.")

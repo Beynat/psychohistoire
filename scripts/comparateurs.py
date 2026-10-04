@@ -14,8 +14,8 @@ Par défaut, écrit dans registre/protocole.jsonl ; un cycle à blanc passe un a
 - Référence externe (noyau, section 8.4, point 3) : pour une question de fenêtre dont l'événement porte
   une « reference_externe » (modele/banque/criteres.json), prix Polymarket gelés (gel/cotes.json),
   renormalisés sur les issues ; le reste va à l'issue « reste ». La ligne indique si toutes les cotes
-  utilisées au-dessus de 5 % sont fiables (section 4.5) ; seule une référence fiable place la question en P1.
-- Un événement marqué « taux_base: uniforme » (EV-05, relecture 8) reçoit la loi uniforme comme taux de base.
+  utilisées au-dessus de 5 % sont fiables (section 4.5). Le pool d'une question est celui de la banque (EV-05 en P1) ; ce comparateur ne le change pas.
+- Un événement marqué « taux_base_mode: uniforme » (EV-05, relecture 8) reçoit la loi uniforme comme taux de base.
 Toutes les probabilités sont bornées entre 2 et 98 % avant renormalisation.
 """
 import sys
