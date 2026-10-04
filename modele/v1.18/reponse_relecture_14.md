@@ -26,4 +26,4 @@ Noyau v1.18 ; annexe v1.7. Registre du protocole vide. La relecture 14 est une r
 
 ## Vérifications
 
-`tests.py` : cinq tests conformes. `controle_banque.py` : conforme. `puissance.json` régénéré depuis le code.
+`tests.py` : huit tests conformes. `controle_banque.py` : conforme. `puissance.json` régénéré depuis le code.
