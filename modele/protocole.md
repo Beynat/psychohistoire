@@ -1,7 +1,7 @@
-# Protocole Psychohistoire — version 1.8
+# Protocole Psychohistoire — version 1.9
 
 Statut : soumis à relecture (relecture 6). Rédigé le 3 octobre 2026, avant toute estimation produite selon ce protocole. Gelé jusqu'au bilan de la phase 1, sauf corrections exigées par une relecture (section 12).
-Remplace la version 1.7. Les changements répondent à la relecture 5 et sont justifiés dans `v1.8/reponse_relecture_5.md` et `journal.md`. Le texte est scindé : ce noyau (sections 0 à 9, 12 et 13) et l'annexe `annexe_phase3.md` (sections 10 et 11), gelés et tagués séparément. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
+Remplace la version 1.8, qui répondait à la relecture 5 (`v1.8/reponse_relecture_5.md`). La v1.9 remplace le juge humain hors famille, faute de compétence disponible, par un contrôle par échantillon sur les cotes externes (section 6.1). Les changements sont justifiés dans `journal.md`. Le texte est scindé : ce noyau (sections 0 à 9, 12 et 13) et l'annexe `annexe_phase3.md` (sections 10 et 11), gelés et tagués séparément. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
 
 ## 0. Pistes et registres
 
@@ -98,7 +98,7 @@ Les événements de probabilité inférieure à 5 % sur la période et d'impact 
 
 - **Effectif.** Au moins cinq évaluateurs, répartis sur au moins trois modèles différents de la famille disponible (par exemple Opus, Sonnet, Haiku). Aucun modèle d'une autre famille n'est disponible : la diversité des évaluateurs reste limitée, ce qui est compensé par le plancher de dispersion (section 4.4) et par la référence externe (section 8.4).
 - **Entrées aveugles.** Nom, définition, mécanisme et mesure ; ni cote ni note d'autrui au premier tour. L'ordre est aléatoire et aucune posture n'est imposée.
-- **Juge hors famille.** À chaque élicitation de tables, Nathan estime à l'aveugle un échantillon de 10 lignes tirées au sort. Les écarts entre ses estimations et l'agrégat sont publiés ; ils ne modifient pas l'agrégat.
+- **Contrôle par échantillon.** Aucun juge hors famille, humain ou modèle, n'est disponible. À chaque élicitation de tables, 10 sorties du réseau (probabilités marginales des pivots et des nœuds) sont tirées au sort. Pour chacune qu'un marché ou Metaculus cote sur le même événement et le même horizon, l'écart, mesuré avant calage, est publié ; il ne modifie pas l'agrégat. Sans cote correspondante, la limite est assumée (section 13). Les lignes conditionnelles des tables ne sont pas tirées : elles n'ont presque jamais d'équivalent coté.
 - **Accord.** L'alpha de Krippendorff est publié. On ne refait pas de passage pour l'améliorer : un accord faible élargit les lois de Dirichlet. Un accord élevé n'est pas une preuve de qualité.
 
 ## 7. Paramétrage
@@ -224,7 +224,7 @@ Ces deux sections forment l'annexe `annexe_phase3.md`, qui ne s'applique qu'à p
 - **Cascades sociales et décisions individuelles.** Le modèle peut dire qu'un terrain est propice, pas dater l'étincelle.
 - **Une seule famille de modèles.**
   - Évaluateurs, ensemble direct et relecteur partagent les mêmes biais. Un biais commun déplace le centre des estimations et s'annule dans la comparaison au témoin.
-  - Les seuls contrôles extérieurs sont les cotes du pool P1, l'échantillon estimé par Nathan et la résolution des questions.
+  - Les seuls contrôles extérieurs sont les cotes externes (pool P1 et contrôle par échantillon, section 6.1) et la résolution des questions. Les lignes conditionnelles des tables n'ont aucun contrôle extérieur.
   - Aucun humain formé aux probabilités ne relit le protocole.
 - **Puissance.** Seuls des écarts nets de performance seront détectables, et le verdict de la phase 3 tombera après la présidentielle. Un petit apport de la structure peut passer inaperçu ; la règle par défaut est alors de simplifier.
 - **Jalons et faits imprévus.** Leurs paramètres se vérifient mal individuellement. C'est pourquoi les jalons n'agissent qu'après validation de la direction de leurs mises à jour fantômes, et les faits imprévus seulement au-delà d'un seuil d'application.
