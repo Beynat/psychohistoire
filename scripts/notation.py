@@ -55,7 +55,7 @@ def murphy(paires):
 
 def test_calibration(items, rho=0.3, nsim=2000, graine=3):
     """Critère de calibration de la section 8.6 (relecture 13, S2). items : (p, y, grappe) des questions
-    binaires de P2b et P2c, prévisions de cycle. Statistique : terme de fiabilité de Murphy en dix classes.
+    binaires de P2b et P2c échues à la date du test, dernière prévision de cycle avant résolution (relecture 15, I1). Statistique : terme de fiabilité de Murphy en dix classes.
     Loi sous calibration parfaite : issues tirées avec P(y = 1) = p, corrélées dans une grappe par une
     copule gaussienne de corrélation ρ = 0,3. Échec si la fiabilité observée dépasse le 90e centile."""
     from statistics import NormalDist
@@ -160,29 +160,38 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
                                  "p_oui": (der_cycle or der).get("oui", 0) / 100, "cycle_seul": der_cycle is not None,
                                  "y": r["issue"] == "oui"}
     auteurs = sorted({a for a, _ in scores})
+    # Événements ajoutés en cours de phase (noyau, section 8.8) : bilan avec et sans eux.
+    import json as _json
+    from commun import RACINE
+    fa = RACINE / "modele/banque/ajouts.jsonl"
+    ajoutes = {_json.loads(l)["id"] for l in fa.read_text("utf-8").splitlines() if l.strip()} if fa.exists() else set()
+    evenement = lambda qid: (qs[qid].get("details") or {}).get("evenement") or qid.removeprefix("Q-")
+    echue = lambda qid: qs[qid]["echeance"] <= aujourdhui
     par_auteur = {}
     for a in auteurs:
         mes = {qid: s for (aa, qid), s in scores.items() if aa == a}
         pools = {}
         for s in mes.values():
             pools.setdefault(s["pool"], []).append(s)
-        cal = [(x["p_oui"], x["y"], x["grappe"]) for x in mes.values()
-               if x["binaire"] and x["pool"] in ("P2b", "P2c") and x.get("cycle_seul")]
-        par_auteur[a] = {"questions": len(mes), "calibration_8_6": test_calibration(cal), "pools": {
+        # Calibration (section 8.6 ; relecture 15, I1) : questions échues à la date du test, quelle que soit
+        # leur issue, comme pour le test de valeur ajoutée ; dernière prévision de cycle avant résolution ;
+        # avec et sans les questions ajoutées.
+        cal = [(qid, (x["p_oui"], x["y"], x["grappe"])) for qid, x in mes.items()
+               if x["binaire"] and x["pool"] in ("P2b", "P2c") and x.get("cycle_seul") and echue(qid)]
+        cal_avec = test_calibration([c for _, c in cal])
+        cal_sans = test_calibration([c for qid, c in cal if evenement(qid) not in ajoutes])
+        par_auteur[a] = {"questions": len(mes), "calibration_8_6": cal_avec, "calibration_8_6_sans_ajouts": cal_sans,
+                         "pools": {
             p: {"n": len(v), "brier": round(sum(x["brier"] for x in v) / len(v), 4),
                 "log": round(sum(x["log"] for x in v) / len(v), 4),
                 "brier_temps": round(sum(x["brier_temps"] for x in v) / len(v), 4),
                 "murphy": murphy([(x["p_oui"], x["y"]) for x in v if x["binaire"]])} for p, v in pools.items()}}
-    # Événements ajoutés en cours de phase (noyau, section 8.8) : bilan avec et sans eux.
-    import json as _json
-    from commun import RACINE
-    fa = RACINE / "modele/banque/ajouts.jsonl"
-    ajoutes = {_json.loads(l)["id"] for l in fa.read_text("utf-8").splitlines() if l.strip()} if fa.exists() else set()
 
-    def comparer(a, garder, instantanes=True):
+    def comparer(a, garder, instantanes=True, ref=None):
+        ref = ref or reference
         diffs, echelles = {}, {}
         for (aa, qid), s in scores.items():
-            if aa != reference or (a, qid) not in scores or qs[qid]["echeance"] > aujourdhui or not garder(qid, s):
+            if aa != ref or (a, qid) not in scores or not echue(qid) or not garder(qid, s):
                 continue
             # Période commune (relecture 11, J1) : du plus tardif des deux premiers jours de prévision
             # à la veille du fait ou à l'échéance.
@@ -205,6 +214,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
                 pr = s["p_oui"] if s["binaire"] else None
                 echelles.setdefault(s["grappe"], []).append(4 * pr * (1 - pr) if pr is not None else 1.0)
         t = test_grappes(diffs)
+        t["reference"], t["autre"] = ref, a
         # Puissance recalculée sur les grappes réellement présentes (relecture 11, S8).
         if len(echelles) >= 2:
             import puissance
@@ -212,37 +222,61 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
             t["puissance_recalculee"] = {
                 f"delta_{d}": round(puissance.puissance_echelles(list(echelles.values()), d, 0.3, 0.12, 1000, rnd), 3)
                 for d in (0.02, 0.04)}
+        # Analyse en retirant chaque grappe tour à tour (relecture 15, S2c), publiée avec le verdict.
+        if len(diffs) >= 3:
+            t["sans_chaque_grappe"] = {g: test_grappes({k: v for k, v in diffs.items() if k != g})["verdict"]
+                                       for g in sorted(diffs)}
         return t
 
-    evenement = lambda qid: (qs[qid].get("details") or {}).get("evenement") or qid.removeprefix("Q-")
+    def combine(avec, sans):
+        # Verdict combiné (relecture 13, S9) : non concluant si les deux bilans diffèrent.
+        return avec["verdict"] if avec["verdict"] == sans["verdict"] else "non concluant (bilans avec et sans ajouts divergents)"
+
+    p2bc = lambda qid, s: s["pool"] in ("P2b", "P2c")
+    p2bc_sans = lambda qid, s: p2bc(qid, s) and evenement(qid) not in ajoutes
     comparaisons = {}
     if reference in auteurs:
         for a in auteurs:
             if a == reference:
                 continue
             # Test de la section 8.6 : pools P2b et P2c seulement (relecture 12, K2), avec et sans ajouts.
-            avec = comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c"))
-            sans = comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c") and evenement(qid) not in ajoutes)
+            avec, sans = comparer(a, p2bc), comparer(a, p2bc_sans)
             comparaisons[a] = {
-                # Verdict combiné (relecture 13, S9) : non concluant si les deux bilans diffèrent.
-                "verdict_8_6": avec["verdict"] if avec["verdict"] == sans["verdict"] else "non concluant (bilans avec et sans ajouts divergents)",
+                "verdict_8_6": combine(avec, sans),
                 "critere_8_6": avec,
                 "critere_8_6_sans_ajouts": sans,
                 "toutes_questions_descriptif": comparer(a, lambda qid, s: True),
-                # Critère de persistance (section 8.6) : variables contre la persistance (P2a),
-                # événements contre le taux de base (P2b).
-                **({"critere_persistance_P2a": comparer(a, lambda qid, s: s["pool"] == "P2a")} if a == "comparateur : persistance" else {}),
-                **({"critere_taux_de_base_P2b": comparer(a, lambda qid, s: s["pool"] == "P2b"),
-                    "critere_taux_de_base_P2b_sans_ajouts": comparer(a, lambda qid, s: s["pool"] == "P2b" and evenement(qid) not in ajoutes)}
-                   if a == "comparateur : taux de base" else {}),
                 # Apport des mises à jour continues, descriptif, sans décision (relecture 12, K3).
-                "mises_a_jour_continues_descriptif": comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c"), instantanes=False),
+                "mises_a_jour_continues_descriptif": comparer(a, p2bc, instantanes=False),
             }
+    # Bilan de la section 8.6 pour le modèle (relecture 15, S3), en une fois, quelle que soit la référence
+    # demandée : valeur ajoutée contre l'ensemble direct ; persistance (P2a) et taux de base (P2b) contre le
+    # modèle. Dans chaque test, « référence » désigne le premier auteur : verdict « référence meilleure »
+    # = le modèle fait mieux que le comparateur, sauf pour la valeur ajoutée, où la référence est l'ensemble.
+    bilan_8_6 = None
+    if "modèle" in auteurs:
+        ca, cs = par_auteur["modèle"]["calibration_8_6"], par_auteur["modèle"]["calibration_8_6_sans_ajouts"]
+        bilan_8_6 = {"calibration": {"verdict": combine(ca, cs), "avec_ajouts": ca, "sans_ajouts": cs}}
+        if "ensemble direct" in auteurs:
+            avec = comparer("modèle", p2bc, ref="ensemble direct")
+            sans = comparer("modèle", p2bc_sans, ref="ensemble direct")
+            bilan_8_6["valeur_ajoutee"] = {"verdict": combine(avec, sans), "avec_ajouts": avec, "sans_ajouts": sans,
+                                           "lecture": "« autre meilleur » = le modèle bat l'ensemble direct"}
+        if "comparateur : persistance" in auteurs:
+            t = comparer("comparateur : persistance", lambda qid, s: s["pool"] == "P2a", ref="modèle")
+            bilan_8_6["persistance_P2a"] = {"verdict": t["verdict"], "test": t,
+                                            "lecture": "« autre meilleur » = la persistance bat le modèle (échec méthodologique)"}
+        if "comparateur : taux de base" in auteurs:
+            avec = comparer("comparateur : taux de base", lambda qid, s: s["pool"] == "P2b", ref="modèle")
+            sans = comparer("comparateur : taux de base", lambda qid, s: s["pool"] == "P2b" and evenement(qid) not in ajoutes, ref="modèle")
+            bilan_8_6["taux_de_base_P2b"] = {"verdict": combine(avec, sans), "avec_ajouts": avec, "sans_ajouts": sans,
+                                             "lecture": "« autre meilleur » = le taux de base bat le modèle (échec méthodologique)"}
     for v in scores.values():
         for k in ("lignes", "debut", "fin"):
             v.pop(k, None)
     sortie = {"etabli_le": maintenant(), "registre": reg, "reference": reference,
-              "questions_resolues": len(res), "auteurs": par_auteur, "comparaisons": comparaisons, "exclues": exclues}
+              "questions_resolues": len(res), "auteurs": par_auteur, "comparaisons": comparaisons,
+              "bilan_8_6_modele": bilan_8_6, "exclues": exclues}
     ecrire_json(f"data/bilans/bilan{sfx}_{aujourdhui}.json", sortie)
     return sortie
 
@@ -258,3 +292,5 @@ if __name__ == "__main__":
         print(f"- {a} : " + " ; ".join(f"{p} n={x['n']} Brier {x['brier']} log {x['log']}" for p, x in v["pools"].items()))
     for a, c in b["comparaisons"].items():
         print(f"  {b['reference']} contre {a} : {c['critere_8_6']}")
+    if b["bilan_8_6_modele"]:
+        print("Bilan 8.6 du modèle : " + " ; ".join(f"{k} : {v.get('verdict')}" for k, v in b["bilan_8_6_modele"].items()))

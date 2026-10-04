@@ -20,7 +20,7 @@ Toutes les probabilités sont bornées entre 2 et 98 % avant renormalisation.
 """
 import sys
 
-from commun import RACINE, borne, jours, lire_json, proba_au_dessus, variations
+from commun import RACINE, borne, jours, lire_json, proba_au_dessus, variations_question
 import commun
 from registre import ajouter
 
@@ -72,7 +72,7 @@ def previsions(cycle):
         sortie = []
         if q["type"] == "variable":
             d = q["details"]
-            p = proba_au_dessus(d["derniere_valeur"], d["seuil"], variations(lire_serie(cycle, d["serie"]), d["pas"]))
+            p = proba_au_dessus(d["derniere_valeur"], d["seuil"], variations_question(lambda n: lire_serie(cycle, n), d))
             sortie.append(("persistance", {"oui": p, "non": 1 - p}))
         else:
             e = evts[q["details"]["evenement"]]

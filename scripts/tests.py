@@ -62,6 +62,9 @@ def test_bout_en_bout():
     racine = Path(__file__).resolve().parent.parent
     tmp = Path(tempfile.mkdtemp()) / "depot"
     shutil.copytree(racine, tmp, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+    # Les essais gèlent au 1er novembre 2026 : les séries sont réputées collectées la veille (relecture 15, S6).
+    etat = tmp / "data/historique/_collecte.json"
+    etat.write_text(json.dumps({k: "2026-10-31" for k in json.loads(etat.read_text())}))
     try:
         env = {**__import__("os").environ, "PYTHONPATH": str(tmp / "scripts")}
         def run(*a):
@@ -118,6 +121,9 @@ def _copie():
     racine = Path(__file__).resolve().parent.parent
     tmp = Path(tempfile.mkdtemp()) / "depot"
     shutil.copytree(racine, tmp, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+    # Les essais gèlent au 1er novembre 2026 : les séries sont réputées collectées la veille (relecture 15, S6).
+    etat = tmp / "data/historique/_collecte.json"
+    etat.write_text(json.dumps({k: "2026-10-31" for k in json.loads(etat.read_text())}))
     env = {**os.environ, "PYTHONPATH": str(tmp / "scripts")}
 
     def run(*a):
@@ -214,6 +220,20 @@ def test_regles_du_bilan():
         banque = json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())
         g = {q["id"]: q["grappe"] for q in banque["questions"]}
         assert g["Q-EV-21"] == g["Q-EV-40a"] == g["Q-EV-20"], "grappe par acte"
+        # Relecture 15, S10 : fenêtres emboîtées dans une grappe, fenêtres disjointes dans deux.
+        assert g["Q-EV-C3a"] == g["Q-EV-C3b"] and g["Q-EV-16a"] != g["Q-EV-16b"], "grappes et fenêtres"
+        # Relecture 15, S14 : la question mensuelle porte sur la période du gel à la fin du mois.
+        assert any(q["texte"].endswith("entre le 2026-11-01 et le 2026-11-30 ?") for q in banque["questions"])
+        # Relecture 15, S6 : une série non collectée depuis plus de trois jours n'est pas émise.
+        assert not any("non collectée" in e["motif"] for e in banque["ecartees"])
+        etat = tmp / "data/cycles/2026-11/gel/historique/_collecte.json"
+        e = json.loads(etat.read_text()); e["brent_journalier"] = "2026-10-20"; etat.write_text(json.dumps(e))
+        run("scripts/questions.py", "2026-11-01", "2026-11")
+        b2 = json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())
+        assert {"objet": "brent_mensuel", "motif": "série non collectée depuis plus de trois jours au gel"} in b2["ecartees"]
+        assert not any(q["id"].startswith("Q-2026-11-brent") for q in b2["questions"])
+        etat.write_text(json.dumps({**e, "brent_journalier": "2026-10-31"}))
+        run("scripts/questions.py", "2026-11-01", "2026-11")
         code = r"""
 import json, resolution, notation
 from pathlib import Path
@@ -230,12 +250,71 @@ Path('registre/resolutions_b.jsonl').write_text(json.dumps({"resolution": True, 
 qs = resolution.toutes_les_questions(resolution.cycles_du_registre('registre/b.jsonl'))
 b = notation.bilan('registre/b.jsonl', 'ensemble direct', '2027-02-01')
 c = b['comparaisons']['modèle']
-print(json.dumps({"grappe": qs["Q-EV-15"]["grappe"], "t": c["critere_8_6"]["t"], "continu": c["mises_a_jour_continues_descriptif"]["t"]}))
+print(json.dumps({"grappe": qs["Q-EV-15"]["grappe"], "t": c["critere_8_6"]["t"], "continu": c["mises_a_jour_continues_descriptif"]["t"],
+                  "b86": sorted(b["bilan_8_6_modele"]), "va": b["bilan_8_6_modele"]["valeur_ajoutee"]["avec_ajouts"]["t"]}))
 """
         out = json.loads(run("-c", code).strip().splitlines()[-1])
         assert out["grappe"] == "EV-15", out          # banque du cycle 2026-11, pas celle de l'essai
         assert out["t"] is None, out                  # instantanés mensuels identiques : écart nul
         assert out["continu"] is not None, out        # la mise à jour continue n'apparaît que dans le descriptif
+        assert out["b86"] == ["calibration", "valeur_ajoutee"] and out["va"] is None, out   # relecture 15, S3
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
+def test_calibration_questions_echues():
+    """Relecture 15, I1 : la calibration ne retient que les questions échues à la date du test, quelle que soit
+    leur issue ; une question de fenêtre longue résolue « oui » avant son échéance n'y entre pas seule."""
+    tmp, run = _copie()
+    try:
+        run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
+        run("scripts/questions.py", "2026-11-01", "2026-11")
+        code = r"""
+import json, notation
+from pathlib import Path
+evs = ["EV-01", "EV-04", "EV-07", "EV-08", "EV-17", "EV-C1", "EV-C2", "EV-39", "EV-29", "EV-43", "EV-45", "EV-16b", "EV-C3b"]
+L, R = [], []
+for e in evs:
+    L.append({"question": "Q-" + e, "probabilites": {"oui": 20, "non": 80}, "piste": "protocole", "phase": 1,
+              "auteur": "modèle", "origine": "cycle 2026-11", "donnees": "t", "emise": "2026-11-02T08:00:00+01:00"})
+for e in evs[:3]:
+    R.append({"resolution": True, "question": "Q-" + e, "issue": "oui", "date_fait": "2027-03-15", "source": "s",
+              "methode": "m", "emise": "2027-03-16T08:00:00+01:00"})
+Path('registre/c.jsonl').write_text(''.join(json.dumps(x) + chr(10) for x in L))
+Path('registre/resolutions_c.jsonl').write_text(''.join(json.dumps(x) + chr(10) for x in R))
+b = notation.bilan('registre/c.jsonl', 'ensemble direct', '2027-09-30')
+print(json.dumps({"n": b["auteurs"]["modèle"]["calibration_8_6"]["questions"],
+                  "n_sans": b["auteurs"]["modèle"]["calibration_8_6_sans_ajouts"]["questions"]}))
+"""
+        out = json.loads(run("-c", code).strip().splitlines()[-1])
+        assert out == {"n": 0, "n_sans": 0}, out
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
+def test_verifier_reponse():
+    """Relecture 15, S1 : une réponse sans liste d'adresses, ou qui cite le dépôt ou un marché, est rejetée."""
+    tmp, run = _copie()
+    try:
+        run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
+        run("scripts/questions.py", "2026-11-01", "2026-11")
+        code = r"""
+import json, verifier_reponse as v
+qs = json.load(open('data/cycles/2026-11/questions.json'))['questions']
+prev = {q['id']: {'probabilites': {k: round(100 / len(q['issues']), 4) for k in q['issues']}} for q in qs}
+base = {'previsionniste': 'p1', 'modele': 'm', 'recherches': 12, 'previsions': prev}
+res = {}
+for nom, adr in (('sans', None), ('propre', ['https://www.lemonde.fr/a']),
+                 ('depot', ['https://github.com/Beynat/psychohistoire/blob/main/data/x.json']),
+                 ('marche', ['https://polymarket.com/event/x'])):
+    r = dict(base) if adr is None else {**base, 'adresses': adr}
+    json.dump(r, open('r_' + nom + '.json', 'w'))
+    res[nom] = v.defauts('2026-11', 'r_' + nom + '.json')
+print(json.dumps(res, ensure_ascii=False))
+"""
+        out = json.loads(run("-c", code).strip().splitlines()[-1])
+        assert out["propre"] == [], out["propre"][:3]
+        assert out["sans"] and out["depot"] and out["marche"], out
     finally:
         shutil.rmtree(tmp.parent)
 

@@ -187,12 +187,24 @@ SERIES = {
 }
 
 
+
+def noter_collecte(nom):
+    """Date de la dernière collecte réussie de chaque série (relecture 15, S6), lue au gel par questions.py."""
+    import json as _j
+    from datetime import datetime as _dt
+    from zoneinfo import ZoneInfo as _Z
+    f = Path(__file__).resolve().parent.parent / "data" / "historique" / "_collecte.json"
+    etat = _j.loads(f.read_text("utf-8")) if f.exists() else {}
+    etat[nom] = _dt.now(_Z("Europe/Paris")).date().isoformat()
+    f.write_text(_j.dumps(dict(sorted(etat.items())), ensure_ascii=False, indent=1) + "\n", "utf-8")
+
 def ecrire(nom, serie):
     SORTIE.mkdir(parents=True, exist_ok=True)
     with open(SORTIE / f"{nom}.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["periode", "valeur"])
         w.writerows(serie)
+    noter_collecte(nom)
 
 
 def main():

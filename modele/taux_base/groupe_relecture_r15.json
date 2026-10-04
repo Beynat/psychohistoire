@@ -1,0 +1,297 @@
+{
+ "groupe": "relecture 15",
+ "etabli_le": "2026-10-04",
+ "questions": [
+  {
+   "id": "EV-15b",
+   "classes": [
+    {
+     "definition": "Motions de censure adoptées sous la Ve République (4 octobre 1962, 4 décembre 2024), toute l'année.",
+     "periode": "4/10/1958-3/10/2026 (68 ans)",
+     "k": 2,
+     "n": 68,
+     "unite": "années",
+     "frequence": 0.0294,
+     "probabilite_fenetre": 1.0,
+     "calcul": "λ = 2/68 = 0.0294/an ; T = 121 j = 0.331 an ; p = 1 − exp(−λT) = 1.0 %",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      },
+      {
+       "titre": "LCP, Le gouvernement Barnier censuré (4 déc. 2024)",
+       "url": "https://lcp.fr/actualites/le-gouvernement-barnier-censure-par-l-assemblee-nationale-qui-adopte-la-motion-du"
+      },
+      {
+       "titre": "Europe 1, Budget 2026 : les motions de censure de LFI et du RN rejetées",
+       "url": "https://www.europe1.fr/politique/budget-2026-les-motions-de-censure-de-lfi-et-du-rn-ont-ete-rejetees-le-texte-est-definitivement-adopte-888994"
+      },
+      {
+       "titre": "CNews, l'Assemblée rejette la motion de censure des écologistes (6 juillet 2026)",
+       "url": "https://www.cnews.fr/france/2026-07-06/canicule-lassemblee-nationale-rejette-la-motion-de-censure-deposee-par-les"
+      }
+     ],
+     "incertitude": "Ignore la configuration parlementaire ; borne basse."
+    },
+    {
+     "definition": "Assemblée sans majorité absolue (depuis juin 2022) : une motion adoptée (Barnier, 4 décembre 2024) ; toutes les autres rejetées, y compris en 2025 et 2026 (budget 2026, motion du 6 juillet 2026).",
+     "periode": "juin 2022-octobre 2026 (4,3 ans)",
+     "k": 1,
+     "n": 4.3,
+     "unite": "années",
+     "frequence": 0.2326,
+     "probabilite_fenetre": 7.4,
+     "calcul": "λ = 1/4,3 = 0.233/an ; T = 0.331 an ; p = 1 − exp(−λT) = 7.4 %",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      },
+      {
+       "titre": "LCP, Le gouvernement Barnier censuré (4 déc. 2024)",
+       "url": "https://lcp.fr/actualites/le-gouvernement-barnier-censure-par-l-assemblee-nationale-qui-adopte-la-motion-du"
+      },
+      {
+       "titre": "Europe 1, Budget 2026 : les motions de censure de LFI et du RN rejetées",
+       "url": "https://www.europe1.fr/politique/budget-2026-les-motions-de-censure-de-lfi-et-du-rn-ont-ete-rejetees-le-texte-est-definitivement-adopte-888994"
+      },
+      {
+       "titre": "CNews, l'Assemblée rejette la motion de censure des écologistes (6 juillet 2026)",
+       "url": "https://www.cnews.fr/france/2026-07-06/canicule-lassemblee-nationale-rejette-la-motion-de-censure-deposee-par-les"
+      }
+     ],
+     "incertitude": "k = 1 : taux très instable. La chute de Bayrou (question de confiance, septembre 2025) n'est pas comptée."
+    },
+    {
+     "definition": "Fenêtres du 1er janvier au second tour des 11 présidentielles (1965-2022) : motion de censure adoptée.",
+     "periode": "1965-2022",
+     "k": 0,
+     "n": 11,
+     "unite": "fenêtres pré-présidentielles",
+     "frequence": 0.0,
+     "probabilite_fenetre": 0.0,
+     "calcul": "p = 0/11 = 0 %",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      }
+     ],
+     "incertitude": "Aucune des deux motions adoptées ne tombe dans ces fenêtres ; aucune de ces fenêtres n'était en majorité relative, sauf 2022 (majorité relative constatée après le second tour)."
+    }
+   ],
+   "fourchette": [
+    0.0,
+    7.4
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 7.4,
+    "motif": "Configuration de la fenêtre (Assemblée sans majorité), comme pour EV-15 ; n petit, donc très incertain."
+   },
+   "issues": {
+    "oui": 7.4,
+    "non": 92.6
+   }
+  },
+  {
+   "id": "EV-15c",
+   "classes": [
+    {
+     "definition": "Motions de censure adoptées sous la Ve République, toute l'année.",
+     "periode": "4/10/1958-3/10/2026 (68 ans)",
+     "k": 2,
+     "n": 68,
+     "unite": "années",
+     "frequence": 0.0294,
+     "probabilite_fenetre": 4.1,
+     "calcul": "λ = 2/68 = 0.0294/an ; T = 517 j = 1.415 an ; p = 4.1 %",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      },
+      {
+       "titre": "LCP, Le gouvernement Barnier censuré (4 déc. 2024)",
+       "url": "https://lcp.fr/actualites/le-gouvernement-barnier-censure-par-l-assemblee-nationale-qui-adopte-la-motion-du"
+      },
+      {
+       "titre": "Europe 1, Budget 2026 : les motions de censure de LFI et du RN rejetées",
+       "url": "https://www.europe1.fr/politique/budget-2026-les-motions-de-censure-de-lfi-et-du-rn-ont-ete-rejetees-le-texte-est-definitivement-adopte-888994"
+      },
+      {
+       "titre": "CNews, l'Assemblée rejette la motion de censure des écologistes (6 juillet 2026)",
+       "url": "https://www.cnews.fr/france/2026-07-06/canicule-lassemblee-nationale-rejette-la-motion-de-censure-deposee-par-les"
+      }
+     ],
+     "incertitude": "Toutes configurations confondues."
+    },
+    {
+     "definition": "Assemblée sans majorité absolue (depuis juin 2022) : une motion adoptée en 4,3 ans.",
+     "periode": "juin 2022-octobre 2026",
+     "k": 1,
+     "n": 4.3,
+     "unite": "années",
+     "frequence": 0.2326,
+     "probabilite_fenetre": 28.0,
+     "calcul": "λ = 1/4,3 = 0.233/an ; T = 1.415 an ; p = 28.0 %",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      },
+      {
+       "titre": "LCP, Le gouvernement Barnier censuré (4 déc. 2024)",
+       "url": "https://lcp.fr/actualites/le-gouvernement-barnier-censure-par-l-assemblee-nationale-qui-adopte-la-motion-du"
+      },
+      {
+       "titre": "Europe 1, Budget 2026 : les motions de censure de LFI et du RN rejetées",
+       "url": "https://www.europe1.fr/politique/budget-2026-les-motions-de-censure-de-lfi-et-du-rn-ont-ete-rejetees-le-texte-est-definitivement-adopte-888994"
+      },
+      {
+       "titre": "CNews, l'Assemblée rejette la motion de censure des écologistes (6 juillet 2026)",
+       "url": "https://www.cnews.fr/france/2026-07-06/canicule-lassemblee-nationale-rejette-la-motion-de-censure-deposee-par-les"
+      }
+     ],
+     "incertitude": "Suppose que l'Assemblée reste sans majorité après la présidentielle, ce qui n'est pas connu."
+    },
+    {
+     "definition": "Fenêtres de 517 jours suivant le second tour des 11 présidentielles (1965-2022) : motion de censure adoptée.",
+     "periode": "1965-2022",
+     "k": 0,
+     "n": 11,
+     "unite": "fenêtres post-présidentielles",
+     "frequence": 0.0,
+     "probabilite_fenetre": 0.0,
+     "calcul": "p = 0/11 = 0 %",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      }
+     ],
+     "incertitude": "Fenêtres presque toutes à majorité absolue (élections législatives suivant la présidentielle)."
+    }
+   ],
+   "fourchette": [
+    0.0,
+    28.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 4.1,
+    "motif": "La configuration de l'Assemblée après 2027 n'est pas connue : le taux de la Ve République, toutes configurations confondues, est retenu ; la classe 1 (majorité relative maintenue) est la borne haute."
+   },
+   "issues": {
+    "oui": 4.1,
+    "non": 95.9
+   }
+  },
+  {
+   "id": "EV-46",
+   "classes": [
+    {
+     "definition": "Achats ciblés de la BCE sur la dette d'un État de la zone euro en tension (SMP mai 2010 : Grèce, Irlande, Portugal ; extension d'août 2011 : Italie, Espagne), par État-membre et par an, 1999-2026 ; aucune activation du TPI depuis sa création (21 juillet 2022) ; aucune intervention ciblée sur la France.",
+     "periode": "1999-2026 (27,75 ans, environ 16 États membres en moyenne)",
+     "k": 5,
+     "n": 444.0,
+     "unite": "États-années",
+     "frequence": 0.0113,
+     "probabilite_fenetre": 2.2,
+     "calcul": "λ = 5/(16 × 27,75) = 0.0113 par État-année ; T = 729 j = 2.00 ans ; p = 1 − exp(−λT) = 2.2 %",
+     "sources": [
+      {
+       "titre": "BCE, The Transmission Protection Instrument (communiqué du 21 juillet 2022)",
+       "url": "https://www.ecb.europa.eu/press/pr/date/2022/html/ecb.pr220721~973e6e7273.en.html"
+      }
+     ],
+     "incertitude": "Nombre moyen d'États membres approché (11 en 1999, 20 depuis 2023) ; liste des États couverts par le SMP de mémoire, non revérifiée ici ; la France n'a jamais été ciblée, ce qui plaide pour moins."
+    }
+   ],
+   "fourchette": [
+    2.2,
+    2.2
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 2.2,
+    "motif": "Seule classe disponible ; ramenée à 2 % par la borne mécanique."
+   },
+   "issues": {
+    "oui": 2.2,
+    "non": 97.8
+   }
+  },
+  {
+   "id": "EV-28b",
+   "classes": [
+    {
+     "definition": "Classe retenue pour EV-28 : guerres interétatiques COW postérieures à 1945 ayant duré au moins 2 ans, plus l'Ukraine en exposition censurée (5 fins sur 21,7 années de guerre).",
+     "periode": "1945-2026",
+     "k": 5,
+     "n": 21.7,
+     "unite": "années de guerre",
+     "frequence": 0.23,
+     "probabilite_fenetre": 20.5,
+     "calcul": "λ = 0,230/an ; T = 365 j ; p = 20.5 %",
+     "sources": [
+      {
+       "titre": "Correlates of War, Inter-State War Data v4.0",
+       "url": "https://correlatesofwar.org/data-sets/cow-war/"
+      }
+     ],
+     "incertitude": "Reprend l'estimation d'EV-28 (groupe international r8), ramenée à la seconde fenêtre ; ne conditionne pas sur l'absence de cessez-le-feu à la fin de la première."
+    }
+   ],
+   "fourchette": [
+    20.5,
+    20.5
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 20.5,
+    "motif": "Même classe que EV-28 (P2e, descriptif)."
+   },
+   "issues": {
+    "oui": 20.5,
+    "non": 79.5
+   }
+  },
+  {
+   "id": "EV-33b",
+   "classes": [
+    {
+     "definition": "Classe retenue pour EV-33 : épisodes de crise grave où la suspension d'un accord a été débattue au niveau de l'UE, conditionnés à la durée déjà écoulée (Jeffreys 0,5/20,5 an).",
+     "periode": "1991-2026",
+     "k": 0.5,
+     "n": 20.5,
+     "unite": "années d'épisode",
+     "frequence": 0.024,
+     "probabilite_fenetre": 3.0,
+     "calcul": "λ = 0,024/an ; T = 457 j ; p = 3.0 %",
+     "sources": [
+      {
+       "titre": "Conseil de l'UE, accord d'association UE-Israël",
+       "url": "https://www.consilium.europa.eu/fr/policies/israel/"
+      }
+     ],
+     "incertitude": "Reprend l'estimation d'EV-33 (groupe international r8), ramenée à la seconde fenêtre."
+    }
+   ],
+   "fourchette": [
+    3.0,
+    3.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 3.0,
+    "motif": "Même classe que EV-33 (P2e, descriptif)."
+   },
+   "issues": {
+    "oui": 3.0,
+    "non": 97.0
+   }
+  }
+ ]
+}

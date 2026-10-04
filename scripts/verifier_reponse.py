@@ -4,14 +4,23 @@ Usage : python scripts/verifier_reponse.py ETIQUETTE CHEMIN_DU_FICHIER
 Contrôle : JSON lisible ; champs previsionniste, modele, recherches ; au moins 10 recherches
 déclarées (consigne v1.1) ; une réponse à chaque question de data/cycles/<ETIQUETTE>/questions.json ;
 issues exactement celles de la question (essai du 4 octobre 2026 : un prévisionniste avait répondu
-oui/non à une question à cinq issues) ; pourcentages entre 0 et 100, de somme 100 à 1 point près.
+oui/non à une question à cinq issues) ; pourcentages entre 0 et 100, de somme 100 à 1 point près ;
+liste des adresses consultées (consigne v1.5), sans adresse du dépôt, de sa page publiée, ni d'un marché ou
+agrégateur de prévisions (relecture 15, S1).
 Code de sortie 0 si conforme, 1 sinon, avec la liste des défauts : le prévisionniste est alors
 relancé une fois avec cette liste.
 """
 import json
+import re
 import sys
 
 from commun import lire_json
+
+
+# Adresses interdites (consigne, « Interdits ») : le dépôt et sa page publiée, les marchés et agrégateurs.
+INTERDITES = re.compile(r"(github\.com/beynat/psychohistoire|beynat\.github\.io/psychohistoire|"
+                        r"raw\.githubusercontent\.com/beynat/psychohistoire|polymarket\.|kalshi\.|metaculus\.|"
+                        r"manifold\.markets|predictit\.)", re.I)
 
 
 def defauts(etiquette, chemin):
@@ -20,11 +29,15 @@ def defauts(etiquette, chemin):
             r = json.load(f)
     except Exception as exc:
         return [f"fichier illisible : {type(exc).__name__}"]
-    d = [f"champ « {c} » absent" for c in ("previsionniste", "modele", "recherches", "previsions") if c not in r]
+    d = [f"champ « {c} » absent" for c in ("previsionniste", "modele", "recherches", "adresses", "previsions") if c not in r]
     if d:
         return d
     if not isinstance(r["recherches"], int) or r["recherches"] < 10:
         d.append(f"recherches déclarées : {r['recherches']} (minimum 10)")
+    if not isinstance(r["adresses"], list) or not r["adresses"]:
+        d.append("liste des adresses consultées vide ou mal formée")
+    else:
+        d += [f"adresse interdite consultée : {a}" for a in r["adresses"] if INTERDITES.search(str(a))]
     anon = (lire_json(f"data/cycles/{etiquette}/anonymisation.json") or {}).get("correspondance", {})
     previsions = {anon.get(k, k): v for k, v in r["previsions"].items()}   # identifiants remis → banque
     for q in lire_json(f"data/cycles/{etiquette}/questions.json")["questions"]:

@@ -11,7 +11,7 @@ import sys
 from commun import RACINE, ecrire_json, empreinte, maintenant
 
 A_GELER = ["data/collecte.json", "data/cotes.json", "modele/evenements.json", "modele/taux_base.json",
-           "modele/correspondances_p1.json"] + sorted(
+           "modele/correspondances_p1.json", "data/historique/_collecte.json"] + sorted(
     str(p.relative_to(RACINE)) for p in (RACINE / "data/historique").glob("*.csv"))
 
 if __name__ == "__main__":

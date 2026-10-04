@@ -19,7 +19,8 @@ from datetime import datetime
 from commun import RACINE, empreinte, lire_json
 
 CHAMPS = ("critere", "issues", "fenetre", "nature", "pool", "source_accessible", "mensuelle", "source_resolution",
-          "acte", "evenement", "taux_base_mode", "reference_externe")   # relecture 13, S3
+          "acte", "evenement", "taux_base_mode", "reference_externe",   # relecture 13, S3
+          "nom", "sous_question")   # texte remis aux prévisionnistes (relecture 15, S7)
 PREMIER_CYCLE = "2026-11"
 
 

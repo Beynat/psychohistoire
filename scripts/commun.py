@@ -77,7 +77,41 @@ def ancrage_quotidien(mensuelle, quotidienne):
     # un peu mieux la moyenne mensuelle du mois suivant (erreur absolue moyenne 5,8 pb contre 5,9) et
     # ne retarde pas en période de tension (essai du 4 octobre 2026 : seuils jugés trop bas).
     niveau = quotidienne[-1][1] + correction
-    return quotidienne[-1][0][:7], niveau, correction
+    return quotidienne[-1][0][:7], niveau, correction, quotidienne[-1][0]
+
+
+def variations_ancrees(quotidienne, date_ancrage, pas, debut=HISTO_DEBUT):
+    """Variations d'un point quotidien à la moyenne d'un mois cible (relecture 15, S5). Pour chaque mois M de
+    l'historique, on prend la dernière observation quotidienne au plus tard au même jour du mois que la date
+    d'ancrage, et on la compare à la moyenne du mois M + pas (mois complets seulement). C'est la loi de l'écart
+    entre le niveau quotidien de départ et la moyenne mensuelle visée, plus étroite à l'horizon 1 que celle
+    d'une variation de moyennes mensuelles."""
+    jour = int(date_ancrage[8:10])
+    moy, par_mois = {}, {}
+    for p, v in quotidienne:
+        moy.setdefault(p[:7], []).append(v)
+        par_mois.setdefault(p[:7], []).append((p, v))
+    dernier = max(moy)                      # mois en cours, incomplet : jamais pris comme cible
+    sortie = []
+    for m in sorted(par_mois):
+        if m < debut:
+            continue
+        cible = mois_suivant(m, pas)
+        if cible >= dernier or cible not in moy:
+            continue
+        avant = [v for p, v in par_mois[m] if int(p[8:10]) <= jour]
+        if avant:
+            sortie.append(sum(moy[cible]) / len(moy[cible]) - avant[-1])
+    return sortie
+
+
+def variations_question(lire, details):
+    """Distribution de la variation utilisée pour une question de variable : depuis le point quotidien d'ancrage
+    s'il y en a un, sinon marche aléatoire des valeurs mensuelles. lire(nom) renvoie une série."""
+    a = details.get("ancrage_quotidien")
+    if a and a.get("date"):
+        return variations_ancrees(lire(a["proxy"]), a["date"], details["pas"])
+    return variations(lire(details["serie"]), details["pas"])
 
 
 def mois_suivant(m, k=1):

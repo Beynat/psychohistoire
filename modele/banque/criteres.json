@@ -1,5 +1,5 @@
 {
- "version": "1.4",
+ "version": "1.5",
  "date": "2026-10-04",
  "description": "Critères de résolution de la banque d'événements, seuls transmis aux prévisionnistes. Le texte d'origine du balayage v1 reste dans modele/v1 et figure dans evenements.json sous « contexte_v1 », jamais transmis (relecture 8, G1). Sources de résolution : modele/sources.md, règle 1. Champ « nature » (relecture 9, H1) : « survenue » pour un événement qui peut se produire à tout moment de la fenêtre (taux de base ramené à la fenêtre restante par un risque constant), « constat » pour une issue constatée à date fixe (taux de base non converti). Champ « acte » (relecture 12, K4) : les questions tranchées par le même acte officiel ou liées à la même candidature (pourvoi de Marine Le Pen, liste des candidats et résultats du premier tour de 2027) forment une seule grappe. « taux_base_mode: uniforme » remplace l'ancien drapeau « taux_base » (relecture 12, S4).",
  "second_tour": "2027-05-02",
@@ -196,7 +196,7 @@
    "evenement": "EV-07",
    "nom": "Cyberattaque majeure contre un service essentiel",
    "domaine": "sécurité",
-   "critere": "Un communiqué de l'ANSSI, d'un ministère, de l'ACPR, de la Banque de France ou de l'AMF confirme une cyberattaque ayant interrompu pendant plus de 24 heures consécutives, à l'échelle nationale ou d'une région, la distribution d'électricité, de gaz ou d'eau, le transport ferroviaire ou aérien, ou un système de paiement ou un établissement bancaire d'importance systémique.",
+   "critere": "Un communiqué de l'ANSSI, d'un ministère, de l'ACPR, de la Banque de France ou de l'AMF confirme une cyberattaque ayant interrompu pendant plus de 24 heures consécutives, à l'échelle nationale ou d'une région, la distribution d'électricité, de gaz ou d'eau, le transport ferroviaire ou aérien, ou un système de paiement ou un établissement bancaire d'importance systémique. La durée d'interruption est celle qu'établit ce communiqué ; s'il ne la donne pas, celle qu'établit le communiqué de l'opérateur concerné ou deux agences de presse concordantes (AFP, Reuters, AP).",
    "sous_question": null,
    "source_resolution": "Communiqués de l'ANSSI, des ministères, de l'ACPR, de la Banque de France ou de l'AMF",
    "fenetre": {
@@ -220,7 +220,7 @@
    "evenement": "EV-08",
    "nom": "Ingérence étrangère visant la présidentielle",
    "domaine": "sécurité",
-   "critere": "Pendant la fenêtre, le SGDSN (VIGINUM) ou le gouvernement publie un rapport ou un communiqué qui attribue à un État étranger, ou à un acteur qu'il présente comme lié à un État étranger, une campagne de manipulation de l'information et désigne expressément l'élection présidentielle de 2027 comme sa cible. Une publication antérieure à la fenêtre ne compte pas.",
+   "critere": "Pendant la fenêtre, le SGDSN (VIGINUM) ou le gouvernement publie un rapport ou un communiqué qui attribue à un État étranger, ou à un acteur qu'il présente comme lié à un État étranger, une campagne de manipulation de l'information et désigne expressément l'élection présidentielle de 2027 comme sa cible. Une publication antérieure à la fenêtre ne compte pas. Une mise en garde générale sur un risque d'ingérence ne suffit pas : il faut une campagne déterminée, attribuée et visant l'élection.",
    "sous_question": null,
    "source_resolution": "SGDSN, VIGINUM ; communiqués du gouvernement",
    "fenetre": {
@@ -361,7 +361,7 @@
    "evenement": "EV-13",
    "nom": "Grève massive dans la fonction publique",
    "domaine": "société",
-   "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État publié par la DGAFP dépasse 18 %. La valeur retenue est la dernière publiée par la DGAFP pour cette journée.",
+   "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État publié par la DGAFP dépasse 18 %. La valeur retenue est celle que publie la DGAFP pour cette journée, lue 30 jours après la journée (à défaut, à la première lecture qui suit).",
    "sous_question": null,
    "source_resolution": "DGAFP, taux de grévistes",
    "fenetre": {
@@ -409,7 +409,7 @@
    "nom": "Censure du gouvernement avant fin 2026",
    "domaine": "politique",
    "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
-   "sous_question": null,
+   "sous_question": "avant le 31 décembre 2026",
    "source_resolution": "Assemblée nationale, scrutins",
    "fenetre": {
     "debut": "2026-10-03",
@@ -422,6 +422,52 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
+   "accessible": true,
+   "motif_inaccessible": null,
+   "nature": "survenue"
+  },
+  {
+   "id": "EV-15b",
+   "evenement": "EV-15",
+   "nom": "Censure du gouvernement avant le second tour de 2027",
+   "domaine": "politique",
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) entre le 1er janvier 2027 et le 2 mai 2027.",
+   "sous_question": "du 1er janvier 2027 au second tour",
+   "source_resolution": "Assemblée nationale, scrutins",
+   "fenetre": {
+    "debut": "2027-01-01",
+    "fin": "2027-05-02"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "relecture 15, I3 (gouvernabilité après 2026)",
+   "accessible": true,
+   "motif_inaccessible": null,
+   "nature": "survenue"
+  },
+  {
+   "id": "EV-15c",
+   "evenement": "EV-15",
+   "nom": "Censure du gouvernement après le second tour de 2027",
+   "domaine": "politique",
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) entre le 3 mai 2027 et le 30 septembre 2028.",
+   "sous_question": "après le second tour",
+   "source_resolution": "Assemblée nationale, scrutins",
+   "fenetre": {
+    "debut": "2027-05-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "relecture 15, I3 (gouvernabilité après 2026)",
    "accessible": true,
    "motif_inaccessible": null,
    "nature": "survenue"
@@ -642,7 +688,7 @@
    "evenement": "EV-19",
    "nom": "Nombre de candidats de gauche",
    "domaine": "politique",
-   "critere": "Nombre de candidats figurant sur la liste arrêtée par le Conseil constitutionnel pour le premier tour de 2027 qui sont investis ou soutenus, par une décision publiée, par La France insoumise, le Parti socialiste, Place publique, Les Écologistes, le Parti communiste français, Debout !, Lutte ouvrière ou le Nouveau Parti anticapitaliste.",
+   "critere": "Nombre de candidats figurant sur la liste arrêtée par le Conseil constitutionnel pour le premier tour de 2027 qui sont investis ou soutenus, par une décision publiée, par La France insoumise, le Parti socialiste, Place publique, Les Écologistes, le Parti communiste français, Debout !, Lutte ouvrière ou le Nouveau Parti anticapitaliste (l'une ou l'autre des deux organisations issues de la scission de 2022, NPA-l'Anticapitaliste et NPA-Révolutionnaires).",
    "sous_question": null,
    "source_resolution": "Conseil constitutionnel (liste) ; décisions publiées des partis",
    "fenetre": {
@@ -668,7 +714,7 @@
    "evenement": "EV-20",
    "nom": "Pourvoi de Marine Le Pen",
    "domaine": "politique",
-   "critere": "Issue, au 31 mars 2027, du pourvoi formé par Marine Le Pen contre l'arrêt de la cour d'appel de Paris du 7 juillet 2026. Une décision de non-admission est rangée avec le rejet.",
+   "critere": "Issue, au 31 mars 2027, du pourvoi formé par Marine Le Pen contre l'arrêt de la cour d'appel de Paris du 7 juillet 2026. Une décision de non-admission est rangée avec le rejet. Si la Cour de cassation statue par un même arrêt sur plusieurs pourvois, l'issue se lit dans le dispositif statuant sur le pourvoi de Marine Le Pen ; une cassation, même obtenue sur un autre pourvoi, est rangée en « cassation totale ou partielle ».",
    "sous_question": null,
    "source_resolution": "Cour de cassation, arrêts et communiqués",
    "fenetre": {
@@ -1030,7 +1076,7 @@
    "evenement": "EV-42",
    "nom": "Baisse générale du prix des carburants",
    "domaine": "économie",
-   "critere": "Pendant la fenêtre, une loi, une ordonnance ou un décret publié au Journal officiel instaure une remise sur le prix des carburants ouverte à tous les consommateurs, ou abaisse le tarif normal de l'accise applicable au gazole routier ou aux essences. Une aide ciblée (sous condition de revenu, de profession ou de kilométrage) et une baisse limitée au gazole non routier ou à une profession ne comptent pas.",
+   "critere": "Pendant la fenêtre, une loi, une ordonnance ou un décret publié au Journal officiel instaure une remise sur le prix des carburants ouverte à tous les consommateurs, ou abaisse le tarif normal de l'accise applicable au gazole routier ou aux essences. Une aide ciblée (sous condition de revenu, de profession ou de kilométrage) et une baisse limitée au gazole non routier ou à une profession ne comptent pas. Les essences s'entendent des supercarburants SP95, SP95-E10 et SP98 ; le superéthanol E85 n'en fait pas partie.",
    "sous_question": null,
    "source_resolution": "Journal officiel",
    "fenetre": {
@@ -1054,7 +1100,7 @@
    "evenement": "EV-38",
    "nom": "Stocks de gaz bas à la sortie de l'hiver",
    "domaine": "énergie",
-   "critere": "Le taux de remplissage agrégé des stockages de gaz de l'Union européenne publié par AGSI+ (Gas Infrastructure Europe) pour le 1er février 2027 est strictement inférieur à 35 %.",
+   "critere": "Le taux de remplissage agrégé des stockages de gaz de l'Union européenne publié par AGSI+ (Gas Infrastructure Europe) pour le 1er février 2027 est strictement inférieur à 35 %, tel qu'affiché par AGSI+ le 3 février 2027 (capture archivée ce jour-là ; à défaut, la capture archivée la plus proche après cette date). Une révision ultérieure ne change pas l'issue.",
    "sous_question": null,
    "source_resolution": "AGSI+ (plateforme de transparence prévue par le droit de l'UE)",
    "fenetre": {
@@ -1195,7 +1241,7 @@
    "evenement": "EV-45",
    "nom": "Âge légal abaissé sous 64 ans (génération 1970)",
    "domaine": "social",
-   "critere": "Le 30 septembre 2028, l'âge d'ouverture du droit à pension fixé par le code de la sécurité sociale (article L161-17-2 ou disposition qui le remplace) pour les assurés nés en 1970 est inférieur à 64 ans. Cette génération n'est pas concernée par la suspension de la réforme de 2023 : la réponse « oui » suppose un abaissement voté.",
+   "critere": "Le 30 septembre 2028, l'âge d'ouverture du droit à pension fixé par le code de la sécurité sociale (article L161-17-2 ou disposition qui le remplace) pour les assurés nés en 1970 est inférieur à 64 ans, dans la version de l'article en vigueur à cette date ; une disposition promulguée dont l'entrée en vigueur est postérieure ne compte pas. Cette génération n'est pas concernée par la suspension de la réforme de 2023 : la réponse « oui » suppose un abaissement voté.",
    "sous_question": null,
    "source_resolution": "Légifrance, code de la sécurité sociale",
    "fenetre": {
@@ -1215,12 +1261,35 @@
    "nature": "constat"
   },
   {
+   "id": "EV-46",
+   "evenement": "EV-46",
+   "nom": "Activation du TPI de la BCE pour la France",
+   "domaine": "finances publiques",
+   "critere": "Pendant la fenêtre, la Banque centrale européenne annonce, par un communiqué ou une décision publiée, l'activation de l'instrument de protection de la transmission (TPI) avec des achats de titres de dette publique française. Des achats au titre d'autres programmes (APP, PEPP, y compris la flexibilité des réinvestissements) ne comptent pas.",
+   "sous_question": null,
+   "source_resolution": "Banque centrale européenne, communiqués et décisions",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "relecture 15, S12 (bloc BCE)",
+   "accessible": true,
+   "motif_inaccessible": null,
+   "nature": "survenue"
+  },
+  {
    "id": "EV-28",
    "evenement": "EV-28",
    "nom": "Cessez-le-feu en Ukraine",
    "domaine": "international : Ukraine",
    "critere": "Pendant la fenêtre, les gouvernements russe et ukrainien annoncent tous deux un cessez-le-feu général couvrant l'ensemble de la ligne de front, sans terme fixé ou d'une durée prévue d'au moins 30 jours, ou un accord de paix. Une trêve de durée plus courte ne compte pas.",
-   "sous_question": null,
+   "sous_question": "jusqu'au 30 septembre 2027",
    "source_resolution": "Présidences russe et ukrainienne ; Conseil de sécurité de l'ONU",
    "fenetre": {
     "debut": "2026-10-03",
@@ -1233,6 +1302,30 @@
    "pool": "P2e",
    "mensuelle": true,
    "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
+   "accessible": true,
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "survenue"
+  },
+  {
+   "id": "EV-28b",
+   "evenement": "EV-28",
+   "nom": "Cessez-le-feu en Ukraine (seconde période)",
+   "domaine": "international : Ukraine",
+   "critere": "Pendant la fenêtre, les gouvernements russe et ukrainien annoncent tous deux un cessez-le-feu général couvrant l'ensemble de la ligne de front, sans terme fixé ou d'une durée prévue d'au moins 30 jours, ou un accord de paix. Une trêve de durée plus courte ne compte pas.",
+   "sous_question": "du 1er octobre 2027 au 30 septembre 2028",
+   "source_resolution": "Présidences russe et ukrainienne ; Conseil de sécurité de l'ONU",
+   "fenetre": {
+    "debut": "2027-10-01",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2e",
+   "mensuelle": true,
+   "origine": "relecture 15, S12 (seconde série P2e)",
    "accessible": true,
    "motif_inaccessible": null,
    "revise": "relecture 9",
@@ -1291,7 +1384,7 @@
    "nom": "Suspension de l'accord UE-Israël",
    "domaine": "international : Proche-Orient",
    "critere": "Pendant la fenêtre, le Conseil de l'Union européenne adopte une décision suspendant tout ou partie de l'accord d'association entre l'UE et Israël.",
-   "sous_question": null,
+   "sous_question": "jusqu'au 30 juin 2027",
    "source_resolution": "Conseil de l'UE ; Journal officiel de l'UE",
    "fenetre": {
     "debut": "2026-10-03",
@@ -1304,6 +1397,29 @@
    "pool": "P2e",
    "mensuelle": true,
    "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
+   "accessible": true,
+   "motif_inaccessible": null,
+   "nature": "survenue"
+  },
+  {
+   "id": "EV-33b",
+   "evenement": "EV-33",
+   "nom": "Suspension de l'accord UE-Israël (seconde période)",
+   "domaine": "international : Proche-Orient",
+   "critere": "Pendant la fenêtre, le Conseil de l'Union européenne adopte une décision suspendant tout ou partie de l'accord d'association entre l'UE et Israël.",
+   "sous_question": "du 1er juillet 2027 au 30 septembre 2028",
+   "source_resolution": "Conseil de l'UE ; Journal officiel de l'UE",
+   "fenetre": {
+    "debut": "2027-07-01",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2e",
+   "mensuelle": true,
+   "origine": "relecture 15, S12 (seconde série P2e)",
    "accessible": true,
    "motif_inaccessible": null,
    "nature": "survenue"

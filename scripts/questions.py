@@ -14,7 +14,7 @@ import sys
 from datetime import date
 
 from commun import (HORIZONS, QUANTILES, VARIABLES, ecart_mois, ecrire_json, lire_json, lire_jsonl,
-                    maintenant, mois_suivant, quantile, trimestre, variations, RACINE)
+                    maintenant, mois_suivant, quantile, trimestre, variations_question, RACINE)
 import commun
 
 
@@ -42,8 +42,16 @@ def generer(gel, etiquette=None):
     correspondances = lire_json(str(gel_corr.relative_to(RACINE)) if gel_corr.exists() else "modele/correspondances_p1.json",
                                 {"correspondances": {}})["correspondances"]
     qs, ecartees = [], []
+    # Séries non collectées depuis plus de trois jours au gel (relecture 15, S6) : une publication a pu
+    # échapper à la collecte, et la question serait émise alors que sa valeur est publique.
+    etat_f = (gel_dir / "_collecte.json") if gel_dir.exists() else (RACINE / "data/historique/_collecte.json")
+    etat = lire_json(str(etat_f.relative_to(RACINE)), {}) if etat_f.exists() else {}
+    perimee = lambda n: n not in etat or (date.fromisoformat(gel) - date.fromisoformat(etat[n])).days > 3
 
     for nom, meta in VARIABLES.items():
+        if perimee(nom) or (meta.get("proxy") and perimee(meta["proxy"])):
+            ecartees.append((nom, "série non collectée depuis plus de trois jours au gel"))
+            continue
         s = lire(nom)
         publie, base_publiee = s[-1]
         dernier, base, ancrage = publie, base_publiee, None
@@ -54,14 +62,16 @@ def generer(gel, etiquette=None):
                 a = None
             if a and a[0] > publie:
                 dernier, base = a[0], a[1]
-                ancrage = {"proxy": meta["proxy"], "niveau_estime": round(a[1], 1), "correction": round(a[2], 1)}
+                ancrage = {"proxy": meta["proxy"], "niveau_estime": round(a[1], 1), "correction": round(a[2], 1),
+                           "date": a[3]}
         for h in HORIZONS:
             cible = mois_suivant(mois, h - 1)
             if cible <= publie:
                 ecartees.append((f"{nom} {cible}", "valeur déjà publiée"))
                 continue
             pas = max(1, ecart_mois(dernier, cible))
-            var = variations(s, pas)
+            # Ancrage quotidien : loi du point quotidien à la moyenne du mois cible (relecture 15, S5).
+            var = variations_question(lire, {"serie": nom, "pas": pas, "ancrage_quotidien": ancrage})
             for q in QUANTILES:
                 seuil = arrondi(base + quantile(var, q), meta["unite"])
                 qid = f"Q-{cycle}-{nom}-{cible}-q{q}"
@@ -82,11 +92,24 @@ def generer(gel, etiquette=None):
     evts = lire_json(str(gel_ev.relative_to(RACINE)) if gel_ev.exists() else "modele/evenements.json")["evenements"]
     # Grappe : l'événement ; ses sous-questions à fenêtres distinctes forment des grappes séparées
     # (noyau, section 8.3, relecture 9).
-    fins = {}
+    # Fenêtres disjointes : grappes distinctes ; fenêtres qui se chevauchent ou s'emboîtent (EV-C3a dans
+    # EV-C3b) : même grappe (relecture 15, S10). Composantes connexes par chevauchement, au sein d'un événement.
+    freres = {}
     for e in evts:
-        fins.setdefault(e["evenement"], set()).add(e["fenetre"]["fin"])
+        freres.setdefault(e["evenement"], []).append(e)
+    comp = {}
+    for ev, liste in freres.items():
+        groupes = []
+        for e in sorted(liste, key=lambda x: x["fenetre"]["debut"]):
+            f = e["fenetre"]
+            g = next((g for g in groupes if any(f["debut"] <= x["fenetre"]["fin"] and x["fenetre"]["debut"] <= f["fin"] for x in g)), None)
+            (g.append(e) if g is not None else groupes.append([e]))
+        for g in groupes:
+            nom_g = ev if len(groupes) == 1 else (g[0]["id"] if len(g) == 1 else ev + "-" + "-".join(x["id"].removeprefix(ev) for x in g))
+            for x in g:
+                comp[x["id"]] = nom_g
     # Les questions tranchées par un même acte officiel forment une grappe (relecture 12, K4).
-    grappe = lambda e: e["acte"] if e.get("acte") else (e["id"] if len(fins[e["evenement"]]) > 1 else e["evenement"])
+    grappe = lambda e: e["acte"] if e.get("acte") else comp[e["id"]]
     for e in evts:
         if not e["source_accessible"]:
             ecartees.append((e["id"], e["motif_inaccessible"]))
@@ -110,7 +133,7 @@ def generer(gel, etiquette=None):
             mid = f"Q-{e['id']}-{cycle}"
             qs.append({**commun_e, "id": mid, "pool": correspondances.get(mid, {}).get("pool", e.get("pool", "P2b")),
                        "grappe": grappe(e),
-                       "texte": f"{e['nom']} : le critère est-il rempli au cours du mois {mois} ?",
+                       "texte": f"{e['nom']} : le critère est-il rempli entre le {gel} et le {iso_fin_mois(mois)} ?",
                        "echeance": iso_fin_mois(mois), "fenetre": {"debut": gel, "fin": iso_fin_mois(mois)}})
     return {"cycle": cycle, "gel": gel, "genere_le": maintenant(), "questions": qs,
             "ecartees": [{"objet": o, "motif": m} for o, m in ecartees]}

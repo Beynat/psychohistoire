@@ -68,7 +68,7 @@ def construire():
 if __name__ == "__main__":
     evts, ref = construire()
     sortie = {
-        "description": "Banque d'événements (noyau, section 8.8). Générée par scripts/evenements.py depuis modele/banque/criteres.json. Seul le champ « critere » est transmis aux prévisionnistes.",
+        "description": "Banque d'événements (noyau, section 8.8). Générée par scripts/evenements.py depuis modele/banque/criteres.json. Seuls le nom, la sous-question et le critère sont transmis aux prévisionnistes.",
         "genere_le": datetime.now(ZoneInfo("Europe/Paris")).isoformat(timespec="seconds"),
         "premier_tour": ref["premier_tour"], "second_tour": ref["second_tour"],
         "evenements": evts,

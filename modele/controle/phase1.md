@@ -8,20 +8,20 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [x] `scripts/geler.py` : gel des données, manifeste à empreintes SHA-256, gel jamais réécrit.
 - [x] `scripts/registre.py` : ajout au registre, horodatage par l'horloge système, propositions et résolutions ; tests dans `scripts/tests.py`.
 - [x] `scripts/notation.py` : Brier, logarithmique, Murphy, Brier pondéré dans le temps, test par grappes à permutation de signes.
-- [x] `scripts/puissance.py` : puissance publiée dans `data/puissance.json` sur la banque réelle (P2b seul au 30 septembre 2027 : 17 à 19 % pour un écart de Brier de 0,02, 26 à 35 % pour 0,04 ; noyau, section 8.6).
+- [x] `scripts/puissance.py` : puissance publiée dans `data/puissance.json` sur la banque réelle (chiffres repris dans le noyau, section 8.6, qui seul fait foi).
 - [x] `scripts/comparateurs.py` : persistance, taux de base ramené à la fenêtre, 50 %.
 
 ## Données et questions
 
-- [x] `modele/evenements.json` : généré par `scripts/evenements.py` depuis `modele/banque/criteres.json` (critères réécrits et ajouts des relectures 8 à 12) ; 41 événements, 50 questions d'événement, 46 résolubles (4 octobre 2026).
+- [x] `modele/evenements.json` : généré par `scripts/evenements.py` depuis `modele/banque/criteres.json` (critères réécrits et ajouts des relectures 8 à 15) ; 42 événements, 55 questions d'événement, 51 résolubles (banque v1.5, 4 octobre 2026).
 - [x] Historique long des séries mensuelles et trimestrielles (taux 10 ans FR et DE et écart depuis 1990, IPCH depuis 1997, dette, PIB, chômage) : `collecte/historique.py`, `data/historique/` (4 octobre 2026).
 - [x] Collecte des cotes externes pour P1 : Polymarket (232 marchés France, volume, écart offre-demande, drapeau de fiabilité), `collecte/cotes.py`. Metaculus exige un jeton : inaccessible, limite consignée (4 octobre 2026).
-- [x] Taux de base des 45 questions d'événement résolubles (hors EV-05, loi uniforme), deux classes de référence ou plus, fourchette et classe retenue : `modele/taux_base/`, fusion `scripts/taux_base.py` → `modele/taux_base.json` (4 octobre 2026). Bornés entre 2 et 98 % pour le score logarithmique. Plusieurs comptages reposent sur des sources partielles, signalées dans le champ « incertitude » : à revoir au premier bilan.
+- [x] Taux de base des 50 questions d'événement résolubles (hors EV-05, loi uniforme ; banque v1.5), deux classes de référence ou plus (une seule pour EV-46, faute d'autre, et pour EV-28b et EV-33b, qui reprennent la classe retenue de leur première période), fourchette et classe retenue : `modele/taux_base/`, fusion `scripts/taux_base.py` → `modele/taux_base.json` (4 octobre 2026). Bornés entre 2 et 98 % pour le score logarithmique. Plusieurs comptages reposent sur des sources partielles, signalées dans le champ « incertitude » : à revoir au premier bilan.
 - [x] `scripts/resolution.py` : séries par script, événements par propositions d'agents concordantes, troisième avis, annulation.
 
 ## Ensemble direct
 
-- [x] Consigne des cinq prévisionnistes rédigée et versionnée : `modele/consigne_ensemble.md` (v1.4).
+- [x] Consigne des cinq prévisionnistes rédigée et versionnée : `modele/consigne_ensemble.md` (v1.5).
 - [x] Agrégation par médiane non extrémisée, scriptée : `scripts/ensemble.py` (au moins 5 prévisionnistes et 3 modèles, contrôle des réponses).
 
 ## Exécution

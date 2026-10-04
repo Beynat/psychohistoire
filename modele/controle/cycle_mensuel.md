@@ -11,7 +11,7 @@ Exécutée le 1er de chaque mois par la tâche planifiée du cycle mensuel (noya
 3. **Comparateurs.** `python scripts/comparateurs.py AAAA-MM`, puis commit et poussée du registre.
 4. **Ensemble direct.**
    - Préparer le fichier remis aux prévisionnistes : `python scripts/dossier.py AAAA-MM /tmp/previsionnistes.json` (questions et dossier de données gelées, rien d'autre).
-   - Lancer cinq prévisionnistes indépendants, sur au moins trois modèles, avec `modele/consigne_ensemble.md` (v1.3 : dossier de données, au moins 10 recherches web déclarées, consacrées aux événements, issues imposées) et ce seul fichier.
+   - Lancer cinq prévisionnistes indépendants, sur au moins trois modèles, avec `modele/consigne_ensemble.md` (version en vigueur, v1.5 : dossier de données, au moins 10 recherches web déclarées, consacrées aux événements, issues imposées, marchés de prédiction interdits, adresses consultées listées) et ce seul fichier.
    - Chacun écrit `<racine absolue du dépôt>/data/cycles/AAAA-MM/ensemble/<identifiant>.json` : le chemin absolu est donné dans le message de lancement.
    - Dès qu'un fichier est rendu : `python scripts/verifier_reponse.py AAAA-MM <fichier>`. S'il n'est pas conforme, le prévisionniste est relancé une seule fois avec la liste des défauts ; un second échec est consigné au journal et le cycle passe sans ensemble direct.
    - Lire les motifs : un seuil signalé comme décalé ou une question signalée comme déjà résolue est consigné pour le cycle suivant. Une question sur laquelle les prévisionnistes divergent de plus de 40 points est signalée comme critère possiblement ambigu (relecture 8, G3) et réexaminée avant le cycle suivant.
