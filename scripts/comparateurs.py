@@ -16,7 +16,7 @@ Par défaut, écrit dans registre/protocole.jsonl ; un cycle à blanc passe un a
   renormalisés sur les issues ; le reste va à l'issue « reste ». La ligne indique si toutes les cotes
   utilisées au-dessus de 5 % sont fiables (section 4.5). Le pool d'une question est celui de la banque (EV-05 en P1) ; ce comparateur ne le change pas.
 - Un événement marqué « taux_base_mode: uniforme » (EV-05, relecture 8) reçoit la loi uniforme comme taux de base.
-Toutes les probabilités sont bornées entre 2 et 98 % avant renormalisation.
+Aucune probabilité n'est bornée (relecture 17, I3) ; les distributions sont seulement renormalisées.
 """
 import sys
 
@@ -65,10 +65,14 @@ def reference_externe(q, e, cotes):
 def previsions(cycle):
     banque = lire_json(f"data/cycles/{cycle}/questions.json")
     gel = f"data/cycles/{cycle}/gel"
-    evts = {e["id"]: e for e in (lire_json(f"{gel}/evenements.json") or lire_json("modele/evenements.json"))["evenements"]}
-    cotes = (lire_json(f"{gel}/cotes.json") or lire_json("data/cotes.json") or {"marches": []})["marches"]
+    # Fichiers du gel seulement quand le cycle est gelé (audit interne, v1.24) : jamais de repli sur un fichier
+    # courant, postérieur au gel. Le repli ne vaut que pour un cycle à blanc sans gel.
+    gele = (RACINE / gel / "manifeste.json").exists()
+    lire_gel = (lambda n, courant: lire_json(f"{gel}/{n}")) if gele else (lambda n, courant: lire_json(f"{gel}/{n}") or lire_json(courant))
+    evts = {e["id"]: e for e in lire_gel("evenements.json", "modele/evenements.json")["evenements"]}
+    cotes = (lire_gel("cotes.json", "data/cotes.json") or {"marches": []})["marches"]
     # Taux de base gelés avec le cycle (relecture 10, S5) ; à défaut (cycle d'essai sans gel), fichier courant.
-    tb = (lire_json(f"{gel}/taux_base.json") or lire_json("modele/taux_base.json"))["questions"]
+    tb = lire_gel("taux_base.json", "modele/taux_base.json")["questions"]
     lignes = []
     for q in banque["questions"]:
         sortie = []

@@ -113,13 +113,24 @@ def generer(gel, etiquette=None):
             for x in g:
                 comp[x["id"]] = nom_g
     # Les questions tranchées par un même acte officiel forment une grappe (relecture 12, K4).
-    grappe = lambda e: e["acte"] if e.get("acte") else comp[e["id"]]
+    # Grappe figée à la première émission d'un événement (audit interne, v1.24) : un ajout ultérieur rejoint une
+    # grappe existante sans renommer celles des questions déjà émises.
+    import re as _re
+    figees = {}
+    for f in sorted((RACINE / "data" / "cycles").glob("*/questions.json")):
+        et = f.parent.name
+        if _re.fullmatch(r"\d{4}-\d{2}", et) and "2026-11" <= et < cycle:   # cycles réels (premier : 2026-11)
+            for q in lire_json(str(f.relative_to(RACINE)))["questions"]:
+                ev = (q.get("details") or {}).get("evenement")
+                if ev:
+                    figees.setdefault(ev, q["grappe"])
+    grappe = lambda e: figees.get(e["id"]) or (e["acte"] if e.get("acte") else comp[e["id"]])
     for e in evts:
         if not e["source_accessible"]:
             ecartees.append((e["id"], e["motif_inaccessible"]))
             continue
         debut, fin = max(e["fenetre"]["debut"], gel), e["fenetre"]["fin"]
-        if fin < gel:
+        if fin <= gel:   # échéance le jour du gel : issue en général déjà publique (audit interne, v1.24)
             continue
         qid = f"Q-{e['id']}"
         if qid in resolues:

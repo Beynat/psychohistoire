@@ -88,11 +88,16 @@ if __name__ == "__main__":
         banque = lire_json(f"data/cycles/{et}/questions.json")
         # Identifiants anonymisés (relecture 12, S7) : l'identifiant d'une question de variable contient
         # le quantile du seuil, dont on déduirait la probabilité du comparateur de persistance.
-        anon = {f"Q{k + 1:03d}": q["id"] for k, q in enumerate(banque["questions"])}
+        # Ordre mélangé par une graine dérivée de l'étiquette du cycle, donc reproductible et journalisée : l'ordre
+        # de la banque (trois seuils croissants d'une même série) révélerait le seuil médian (relecture 19, S5).
+        import random
+        ordre = list(banque["questions"])
+        random.Random(f"psychohistoire-{et}").shuffle(ordre)
+        anon = {f"Q{k + 1:03d}": q["id"] for k, q in enumerate(ordre)}
         reel = {v: k for k, v in anon.items()}
-        ecrire_json(f"data/cycles/{et}/anonymisation.json", {"description": "Identifiant remis aux prévisionnistes → identifiant de la banque (relecture 12, S7).", "correspondance": anon})
+        ecrire_json(f"data/cycles/{et}/anonymisation.json", {"description": "Identifiant remis aux prévisionnistes → identifiant de la banque (relecture 12, S7) ; ordre mélangé, graine « psychohistoire-<étiquette> » (relecture 19, S5).", "correspondance": anon})
         qs = [{"id": reel[q["id"]], **{k: q[k] for k in ("texte", "issues", "echeance")}} | (
-            {"critere": q["details"]["critere"]} if q["type"] == "evenement" else {}) for q in banque["questions"]]
+            {"critere": q["details"]["critere"]} if q["type"] == "evenement" else {}) for q in ordre]
         import json
         with open(sys.argv[2], "w", encoding="utf-8") as f:
             json.dump({"gel": dos["gel"], "questions": qs, "dossier_de_donnees": dos["series"]}, f, ensure_ascii=False, indent=1)

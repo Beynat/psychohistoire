@@ -387,6 +387,70 @@ print(json.dumps(a[3]))
         shutil.rmtree(tmp.parent)
 
 
+def test_symetrie_et_anteriorite():
+    """Relecture 19. I1 : deux auteurs aux prévisions identiques, dont l'un manque un cycle, ont un écart nul
+    (cycles communs seulement). B1 : une prévision émise après que l'issue d'un « constat » est établie
+    publiquement (date du fait) est exclue, même avant la publication officielle."""
+    tmp, run = _copie()
+    try:
+        run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
+        run("scripts/questions.py", "2026-11-01", "2026-11")
+        code = r"""
+import json, notation
+from pathlib import Path
+L = []
+for auteur, cycles in (("ensemble direct", (("2026-11", 20), ("2026-12", 30))),
+                       ("modèle", (("2026-11", 20), ("2026-12", 30), ("2027-01", 60)))):
+    for c, p in cycles:
+        L.append({"question": "Q-EV-16a", "probabilites": {"oui": p, "non": 100 - p}, "piste": "protocole", "phase": 1,
+                  "auteur": auteur, "origine": "cycle " + c, "donnees": "t", "emise": c + "-02T08:00:00+01:00"})
+L.append({"question": "Q-EV-30", "probabilites": {"oui": 99, "non": 1}, "piste": "protocole", "phase": 1,
+          "auteur": "modèle", "origine": "cycle 2026-12", "donnees": "t", "emise": "2026-12-01T08:00:00+01:00"})
+Path('registre/s.jsonl').write_text(''.join(json.dumps(x) + chr(10) for x in L))
+R = [{"resolution": True, "question": "Q-EV-16a", "issue": "oui", "date_fait": "2027-01-20", "source": "s", "methode": "m",
+      "emise": "2027-01-21T08:00:00+01:00"},
+     {"resolution": True, "question": "Q-EV-30", "issue": "oui", "date_fait": "2026-11-04", "source": "s", "methode": "m",
+      "emise": "2026-12-15T08:00:00+01:00"}]
+Path('registre/resolutions_s.jsonl').write_text(''.join(json.dumps(x) + chr(10) for x in R))
+b = notation.bilan('registre/s.jsonl', 'ensemble direct', '2027-06-01')
+# Mêmes prévisions émises le 1er par le modèle, le 5 par l'ensemble : départ commun, écart nul (audit, v1.24).
+L2 = []
+for auteur, jour in (("ensemble direct", "05"), ("modèle", "01")):
+    for c, p in (("2026-11", 20), ("2026-12", 60), ("2027-01", 60)):
+        L2.append({"question": "Q-EV-16a", "probabilites": {"oui": p, "non": 100 - p}, "piste": "protocole", "phase": 1,
+                   "auteur": auteur, "origine": "cycle " + c, "donnees": "t", "emise": c + "-" + jour + "T08:00:00+01:00"})
+Path('registre/u.jsonl').write_text(''.join(json.dumps(x) + chr(10) for x in L2))
+Path('registre/resolutions_u.jsonl').write_text(json.dumps(R[0]) + chr(10))
+b2 = notation.bilan('registre/u.jsonl', 'ensemble direct', '2027-06-01')
+print(json.dumps({"t": b["comparaisons"]["modèle"]["critere_8_6"]["t"],
+                  "exclue": any(e["question"] == "Q-EV-30" for e in b["exclues"]),
+                  "t_dates": b2["comparaisons"]["modèle"]["critere_8_6"]["t"]}))
+"""
+        out = json.loads(run("-c", code).strip().splitlines()[-1])
+        assert out == {"t": None, "exclue": True, "t_dates": None}, out
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
+def test_correspondances_figees():
+    """Relecture 19, S1 : après le premier gel d'un événement, aucune de ses questions ne peut passer en P1."""
+    tmp, run = _copie()
+    try:
+        st = tmp / "modele/statut.json"
+        st.write_text(json.dumps({**json.loads(st.read_text()), "definitif": True}))
+        run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
+        assert "Banque conforme" in run("scripts/controle_banque.py")
+        c = tmp / "modele/correspondances_p1.json"
+        d = json.loads(c.read_text()); d["correspondances"]["Q-EV-16a-2027-01"] = {"pool": "P1"}
+        c.write_text(json.dumps(d))
+        import subprocess, os
+        r = subprocess.run([sys.executable, "scripts/controle_banque.py"], cwd=tmp, capture_output=True, text=True,
+                           env={**os.environ, "PYTHONPATH": str(tmp / "scripts")})
+        assert r.returncode != 0 and "EV-16a : correspondance" in r.stdout, r.stdout[-500:]
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
 def test_registre():
     tmp = Path(tempfile.mkdtemp())
     ancien = registre.RACINE

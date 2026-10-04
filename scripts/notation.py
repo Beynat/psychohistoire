@@ -6,8 +6,8 @@ Usage : python scripts/notation.py [registre/<fichier>.jsonl] [--reference AUTEU
 Pour chaque auteur (comparateurs, ensemble direct, puis modèle) et chaque pool :
 - Brier (½ Σ sur les issues de la question des écarts au carré, soit (p − y)² en binaire) et score logarithmique, sur la dernière
   prévision émise avant l'échéance ;
-- Brier pondéré dans le temps : moyenne, sur chaque jour de l'émission à l'échéance, du Brier de
-  la dernière probabilité inscrite ce jour-là (section 8.5) ;
+- Brier pondéré dans le temps (section 8.5) : Brier de chaque prévision multiplié par sa durée prévue,
+  divisé par la longueur fixe de la période ;
 - décomposition de Murphy (fiabilité, résolution, incertitude) sur les questions binaires, en
   dix classes de probabilité.
 Comparaison de la référence (par défaut l'ensemble direct en phase 1) à chaque autre auteur sur
@@ -109,7 +109,8 @@ def test_grappes(diffs):
 
 
 def fin_brier(q, r):
-    """Dernier jour du Brier pondéré : l'échéance, ou la veille du fait s'il la précède."""
+    """Dernier jour où une prévision peut encore être notée : l'échéance, ou la veille du fait s'il la précède.
+    Sert seulement à écarter une comparaison sans jour commun ; le Brier pondéré, lui, court jusqu'à l'échéance."""
     if r.get("date_fait"):
         return min(q["echeance"], (date.fromisoformat(r["date_fait"]) - timedelta(days=1)).isoformat())
     return q["echeance"]
@@ -172,7 +173,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
         if not lignes:
             exclues.append({"auteur": auteur, "question": qid, "motif": "émise après l'échéance ou la résolution"})
             continue
-        # Brier pondéré : du jour d'émission à l'échéance, arrêté la veille du fait (relecture 9).
+        # Brier pondéré : du jour d'émission à l'échéance, durées prévues, longueur fixe (relectures 17 et 18).
         fin = fin_brier(q, r)
         d0 = lignes[0]["emise"][:10]
         cyc = [l for l in lignes if str(l.get("origine", "")).startswith("cycle")]
@@ -204,7 +205,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
         for s in mes.values():
             pools.setdefault(s["pool"], []).append(s)
         # Calibration (section 8.6 ; relecture 15, I1) : questions échues à la date du test, quelle que soit
-        # leur issue, comme pour le test de valeur ajoutée ; dernière prévision de cycle avant résolution ;
+        # leur issue, comme pour le test de valeur ajoutée ; première prévision de cycle (relecture 17, I2) ;
         # avec et sans les questions ajoutées.
         cal = [(qid, (x["p_oui_cal"], x["y"], x["grappe"])) for qid, x in mes.items()
                if x["binaire"] and x["pool"] in ("P2b", "P2c") and x.get("cycle_seul") and echue(qid)]
@@ -224,7 +225,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
             if aa != ref or (a, qid) not in scores or not echue(qid) or not garder(qid, s):
                 continue
             # Période commune (relecture 11, J1) : du plus tardif des deux premiers jours de prévision
-            # à la veille du fait ou à l'échéance.
+            # à l'échéance.
             o = scores[(a, qid)]
             ls, lo = s["lignes"], o["lignes"]
             if instantanes:
@@ -232,8 +233,23 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
                 # (origine « cycle … ») ; les mises à jour continues de la phase 3 sont exclues du test.
                 ls = [l for l in ls if str(l.get("origine", "")).startswith("cycle")]
                 lo = [l for l in lo if str(l.get("origine", "")).startswith("cycle")]
+                # Cycles communs aux deux auteurs (relecture 19, I1) : un cycle manqué par l'un est retiré pour
+                # les deux, chacun étant alors couvert par sa prévision de cycle précédente. Sinon, l'auteur qui
+                # a prévu au dernier cycle avant le fait est avantagé à prévisions également informées.
+                etiq = lambda l: str(l["origine"]).split()[1].rstrip(",")
+                communs = {etiq(l) for l in ls} & {etiq(l) for l in lo}
+                ls = [l for l in ls if etiq(l) in communs]
+                lo = [l for l in lo if etiq(l) in communs]
                 if not ls or not lo:
                     continue
+                # Même date de départ pour les deux auteurs à chaque cycle : la plus tardive des deux émissions
+                # (audit interne, v1.24). Sinon l'auteur qui prévoit le premier dans un cycle est avantagé, à
+                # prévisions identiques ; la procédure fait passer les comparateurs et le modèle avant l'ensemble.
+                d_s = {etiq(l): l["emise"] for l in ls}
+                d_o = {etiq(l): l["emise"] for l in lo}
+                depart = {c: max(d_s[c][:10], d_o[c][:10]) for c in communs}
+                ls = [{**l, "emise": depart[etiq(l)] + l["emise"][10:]} for l in ls]
+                lo = [{**l, "emise": depart[etiq(l)] + l["emise"][10:]} for l in lo]
             debut = max(ls[0]["emise"][:10], lo[0]["emise"][:10])
             if debut > s["fin"]:
                 continue

@@ -7,8 +7,10 @@ un registre d'essai), en ajout seul, par scripts/registre.py.
 - Variables : résolues par script dès que la période est publiée dans la série collectée.
 - Événements : résolus à partir des propositions d'agents (registre/propositions.jsonl), chacune
   avec sa source primaire. Deux propositions concordantes résolvent la question. En cas de
-  désaccord, une troisième tranche à la majorité. Si le désaccord persiste avec trois avis, ou si
-  aucune proposition n'existe 30 jours après l'échéance, la question est annulée pour tous.
+  désaccord, une troisième tranche à la majorité. Si le désaccord persiste avec trois avis, la
+  question est annulée pour tous. Sans avis : annulation à 30 jours après l'échéance si deux recherches
+  vaines ont été consignées (agents ou passages distincts), à 60 jours si au moins un avis ou une recherche
+  l'a été ; sans aucune recherche, la question reste ouverte (noyau, section 8.8).
 - Une prévision émise après la résolution publique de sa question, ou à la date du fait ou après
   (champ date_fait des propositions, relecture 8, G2), est annulée pour son auteur ; ce contrôle est
   fait par scripts/notation.py, qui compare les dates.
@@ -132,7 +134,7 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
                 continue
             vus.add(cle)
             if a["issue"] is None:
-                vaines.add(a["agent"])
+                vaines.add(cle)   # par agent et par passage, comme les avis (relecture 19, S7)
                 continue
             if a["issue"] == "non" and nature(qid, q) == "survenue" and a.get("emise", "")[:10] <= q["echeance"]:
                 continue   # émise avant l'échéance : ignorée, même après l'échéance (relecture 14, N1)

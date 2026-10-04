@@ -32,7 +32,9 @@ if __name__ == "__main__":
     for f in A_GELER:
         src = RACINE / f
         if not src.exists():
-            continue
+            # Un fichier manquant fait échouer le gel (audit interne, v1.24) : sinon un script lirait le fichier
+            # courant, postérieur au gel.
+            sys.exit(f"Gel impossible : {f} manquant.")
         cible = dest / (src.name if not f.startswith("data/historique") else f"historique/{src.name}")
         cible.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, cible)

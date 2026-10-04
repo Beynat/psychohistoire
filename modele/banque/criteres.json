@@ -1,5 +1,5 @@
 {
- "version": "1.7",
+ "version": "1.8",
  "date": "2026-10-04",
  "description": "Critères de résolution de la banque d'événements, seuls transmis aux prévisionnistes. Le texte d'origine du balayage v1 reste dans modele/v1 et figure dans evenements.json sous « contexte_v1 », jamais transmis (relecture 8, G1). Sources de résolution : modele/sources.md, règle 1. Champ « nature » (relecture 9, H1) : « survenue » pour un événement qui peut se produire à tout moment de la fenêtre (taux de base ramené à la fenêtre restante par un risque constant), « constat » pour une issue constatée à date fixe (taux de base non converti). Champ « acte » (relecture 12, K4) : les questions tranchées par le même acte officiel ou liées à la même candidature (pourvoi de Marine Le Pen, liste des candidats et résultats du premier tour de 2027) forment une seule grappe. « taux_base_mode: uniforme » remplace l'ancien drapeau « taux_base » (relecture 12, S4).",
  "second_tour": "2027-05-02",
@@ -220,7 +220,7 @@
    "evenement": "EV-08",
    "nom": "Ingérence étrangère visant la présidentielle",
    "domaine": "sécurité",
-   "critere": "Pendant la fenêtre, le SGDSN (VIGINUM) ou le gouvernement publie un rapport ou un communiqué qui attribue à un État étranger, ou à un acteur qu'il présente comme lié à un État étranger, une campagne de manipulation de l'information et désigne expressément l'élection présidentielle de 2027 comme sa cible. Une publication antérieure à la fenêtre ne compte pas. Une mise en garde générale sur un risque d'ingérence ne suffit pas : il faut une campagne déterminée, attribuée et visant l'élection.",
+   "critere": "Pendant la fenêtre, le SGDSN (VIGINUM) ou le gouvernement publie un rapport ou un communiqué qui attribue à un État étranger, ou à un acteur qu'il présente comme lié à un État étranger, une campagne de manipulation de l'information et présente expressément l'élection présidentielle de 2027 comme l'objectif de cette campagne, et non seulement comme son contexte. Une publication antérieure à la fenêtre ne compte pas. Une mise en garde générale sur un risque d'ingérence ne suffit pas : il faut une campagne déterminée, attribuée et visant l'élection.",
    "sous_question": null,
    "source_resolution": "SGDSN, VIGINUM ; communiqués du gouvernement",
    "fenetre": {

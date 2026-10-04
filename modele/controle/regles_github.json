@@ -1,0 +1,50 @@
+{
+ "description": "Règles GitHub de protection, relevées par l'API le 4 octobre 2026 (relecture 19, S13 : les relecteurs n'ont pas d'accès authentifié). Instantané, sans valeur de preuve continue.",
+ "rulesets": [
+  {
+   "name": "Protection de main",
+   "target": "branch",
+   "enforcement": "active",
+   "conditions": {
+    "ref_name": {
+     "exclude": [],
+     "include": [
+      "~DEFAULT_BRANCH"
+     ]
+    }
+   },
+   "rules": [
+    {
+     "type": "deletion"
+    },
+    {
+     "type": "non_fast_forward"
+    }
+   ],
+   "bypass_actors": []
+  },
+  {
+   "name": "Protection des versions",
+   "target": "tag",
+   "enforcement": "active",
+   "conditions": {
+    "ref_name": {
+     "exclude": [],
+     "include": [
+      "refs/tags/protocole-v*",
+      "refs/tags/annexe-phase3-v*"
+     ]
+    }
+   },
+   "rules": [
+    {
+     "type": "deletion"
+    },
+    {
+     "type": "update"
+    }
+   ],
+   "bypass_actors": []
+  }
+ ]
+}

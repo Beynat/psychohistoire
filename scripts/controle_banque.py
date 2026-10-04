@@ -60,6 +60,17 @@ def controler():
         for c in CHAMPS:
             if e.get(c) != a.get(c):
                 erreurs.append(f"{i} : champ « {c} » modifié depuis son premier gel (cycle {et})")
+    # Pool P1 par correspondance figé au premier gel de chaque événement (relecture 19, S1) : une question
+    # mensuelle ne peut pas passer de P2b à P1, donc sortir du test de 8.6, après ce gel.
+    ev_de = lambda qid: (re.fullmatch(r"Q-(EV-[A-Za-z0-9]+?)(-\d{4}-\d{2})?", qid) or [None, None])[1]
+    def p1(chemin):
+        c = (lire_json(chemin) or {"correspondances": {}})["correspondances"]
+        return {ev_de(q) for q in c if ev_de(q)}
+    p1_actuel = p1("modele/correspondances_p1.json")
+    for i, (et, _) in premiers.items():
+        au_gel = i in p1(f"data/cycles/{et}/gel/correspondances_p1.json")
+        if (i in p1_actuel) != au_gel:
+            erreurs.append(f"{i} : correspondance avec le pool P1 modifiée depuis son premier gel (cycle {et})")
     # Taux de base figés au premier gel de chaque événement (relecture 12, S3).
     tb_actuel = lire_json("modele/taux_base.json", {"questions": {}})["questions"]
     tb_premier = {}
