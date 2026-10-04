@@ -51,7 +51,10 @@ def test_registre():
                          {"question": "Q", "probabilites": {"oui": 60, "non": 30}, "piste": "exploratoire",
                           "origine": "o", "donnees": "d"},                   # somme ≠ 100
                          {"question": "Q", "probabilites": {"oui": 60, "non": 40}, "piste": "exploratoire",
-                          "origine": "o", "donnees": "d", "emise": "2026-01-01T00:00:00+01:00"}):  # horodatage fourni
+                          "origine": "o", "donnees": "d", "emise": "2026-01-01T00:00:00+01:00"},  # horodatage fourni
+                         {"proposition": True, "question": "Q", "issue": "oui", "source": "s", "agent": "a"},  # sans date du fait
+                         {"proposition": True, "question": "Q", "issue": "oui", "source": "s", "agent": "a",
+                          "date_fait": "3 novembre"}):                       # date du fait mal formée
             try:
                 registre.valider(mauvaise)
                 raise AssertionError(f"ligne acceptée à tort : {mauvaise}")

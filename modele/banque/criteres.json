@@ -1,8 +1,19 @@
 {
- "description": "Banque d'événements (noyau, section 8.8). Générée par scripts/evenements.py depuis modele/banque/criteres.json. Seul le champ « critere » est transmis aux prévisionnistes.",
- "genere_le": "2026-10-04T12:42:38+02:00",
- "premier_tour": "2027-04-18",
+ "version": "1.0",
+ "date": "2026-10-04",
+ "description": "Critères de résolution de la banque d'événements, seuls transmis aux prévisionnistes. Le texte d'origine du balayage v1 reste dans modele/v1 et figure dans evenements.json sous « contexte_v1 », jamais transmis (relecture 8, G1). Sources de résolution : modele/sources.md, règle 1.",
  "second_tour": "2027-05-02",
+ "premier_tour": "2027-04-18",
+ "source_dates": "https://www.info.gouv.fr/actualite/presidentielle-2027-date-a-retenir-et-informations-cles",
+ "non_retenus": {
+  "EV-22": "Mise en examen d'Édouard Philippe : information rare, prémisse appuyée sur une source tertiaire (relecture 8).",
+  "EV-24, EV-25": "Saillance des enjeux : série et périodicité du baromètre à confirmer ; à ajouter quand la série est identifiée.",
+  "EV-26": "Niveau du RN dans une vague : hypothèse et date indéfinies ; relève de la série de sondages de la phase 2.",
+  "EV-27": "Accord sur Ormuz : critère flou et redondant avec la série du Brent.",
+  "EV-31": "Accord « Turnberry » : faible et lointain ; États-Unis couverts par EV-30.",
+  "EV-34": "Actes antisémites au-dessus de 1 320 : quasi certainement non ; Proche-Orient couvert par EV-33.",
+  "EV-37": "Frontex : sans effet démontré, résolu en 2028."
+ },
  "evenements": [
   {
    "id": "EV-01",
@@ -23,12 +34,8 @@
    "pool": "P2b",
    "mensuelle": true,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Au moins une agence (Moody's, S&P, Fitch) abaisse d'au moins un cran la note long terme entre le 03/10/2026 et le 30/09/2028. Échéances : Moody's 23/10/2026, S&P 27/11/2026. Pas de probabilité de marché.",
-    "mesure": "AFT, page des notations ; communiqués des agences."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-02",
@@ -49,12 +56,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Aucune LFI 2027 votée publiée au JO au 31/12/2026. Modalités à enregistrer : (a) loi spéciale ; (b) ordonnance budgétaire au titre de l'art. 47 (B : aucun précédent sous la Ve République à sa connaissance, non vérifié). Pas de probabilité de marché.",
-    "mesure": "Légifrance, JO ; dossier législatif AN. Vote attendu le 17/11/2026 (B)."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-03",
@@ -75,12 +78,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Déficit 2027 notifié > 5,0 % du PIB.",
-    "mesure": "INSEE, notification de mars 2028."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-04",
@@ -101,12 +100,8 @@
    "pool": "P2b",
    "mensuelle": true,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Décision du Conseil au titre de l'art. 126(8) ou 126(9) TFUE visant la France entre le 03/10/2026 et le 30/09/2028.",
-    "mesure": "Conseil de l'UE / Commission, Semestre européen."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-05",
@@ -164,12 +159,8 @@
     },
     "reste": "autre"
    },
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Critère catégoriel : vainqueur proclamé ; binaire dérivé : victoire du candidat RN. Polymarket au 03/10/2026 : Le Pen 45 %, Philippe 19 %, Lisnard 12 %, Mélenchon 12-13 %, Bardella 5 %, Hollande 5 %. Metaculus : Le Pen 34,3 %, Philippe 25,5 %, Mélenchon 9,8 %. Date à vérifier : B et Fondapol donnent le 1er tour le 18/04/2027, l'URL Polymarket de A porte « 04-11 ».",
-    "mesure": "Conseil constitutionnel ; sondages : 1er tour Le Pen 34-37 %, Philippe 14-19 %, Mélenchon 16-19 % (sept. 2026) ; 2nd tour Le Pen 51-54 % contre Philippe (juil. 2026)."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-06",
@@ -190,12 +181,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Deux trimestres consécutifs < 0 en 1re estimation entre T3 2026 et T2 2028.",
-    "mesure": "INSEE, comptes trimestriels (1re estimation)."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-07",
@@ -217,12 +204,8 @@
    "mensuelle": true,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "motif_reecriture": "Relecture 8, G3 : la liste des opérateurs d'importance vitale est classifiée ; les services visés sont désormais nommés.",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Incident confirmé par l'ANSSI ou un régulateur, interruption > 24 h d'un OIV ou d'un établissement financier systémique.",
-    "mesure": "ANSSI, panorama annuel ; ACPR, BdF."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-08",
@@ -243,12 +226,8 @@
    "pool": "P2b",
    "mensuelle": true,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Rapport VIGINUM ou gouvernemental attribuant à un acteur étranger une campagne visant la présidentielle 2027.",
-    "mesure": "SGDSN/VIGINUM, rapports publics."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-09",
@@ -269,12 +248,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Vigilance rouge canicule sur au moins un département à l'été 2027 ou 2028, ou perte agricole chiffrée par l'INSEE ≥ 0,1 pt de PIB. Remarque : le premier volet est peu discriminant (probabilité élevée) ; le second est le plus informatif.",
-    "mesure": "Météo-France, vigilances et bilans ; Agreste."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-10",
@@ -295,12 +270,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": "Relecture 8, G3 : critère non résoluble, aucune source officielle ne publie le nombre d'établissements bloqués.",
-   "source_accessible": false,
-   "contexte_v1": {
-    "critere": "Plus de 300 établissements bloqués au moins 2 semaines consécutives OU extension aux universités avant le 15/11/2026. Taux de base (calcul de B) : les vagues de 2005 ont duré ~3 semaines.",
-    "mesure": "~416 établissements bloqués le 29 sept., > 350 le 30 ; 440 puis 625 interpellations ; > 100 blessés ; extension en Belgique le 1er oct."
-   }
+   "accessible": false,
+   "motif_inaccessible": "Relecture 8, G3 : critère non résoluble, aucune source officielle ne publie le nombre d'établissements bloqués."
   },
   {
    "id": "EV-11",
@@ -321,12 +292,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": "Le nombre de communes touchées n'est publié qu'au cas par cas ; ACLED exige un compte.",
-   "source_accessible": false,
-   "contexte_v1": {
-    "critere": "Plus de 200 communes touchées en 7 jours. Taux de base (calcul de B) : ~2 épisodes en ~20 ans, de l'ordre de 10 % par an.",
-    "mesure": "ACLED « riots » ; Intérieur (véhicules incendiés, interpellations)."
-   }
+   "accessible": false,
+   "motif_inaccessible": "Le nombre de communes touchées n'est publié qu'au cas par cas ; ACLED exige un compte."
   },
   {
    "id": "EV-12",
@@ -347,12 +314,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": "Résolution sur ACLED, qui exige un compte. Remplacé par EV-39 (relecture 8).",
-   "source_accessible": false,
-   "contexte_v1": {
-    "critere": "Plus de 400 rassemblements le même jour hors appel syndical. Taux de base (calcul de B) : ~25 % par an.",
-    "mesure": "ACLED hebdomadaire ; Intérieur."
-   }
+   "accessible": false,
+   "motif_inaccessible": "Résolution sur ACLED, qui exige un compte. Remplacé par EV-39 (relecture 8)."
   },
   {
    "id": "EV-13",
@@ -373,12 +336,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Taux de grévistes de la FPE > 18 % lors d'une journée avant le 31/12/2026.",
-    "mesure": "DGAFP, taux de grévistes par versant : 29/09/2026 9,64 % État, 5,68 % territoriale, 4,5 % hospitalière ; 18,8 % le 05/12/2024."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-14",
@@ -399,12 +358,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": "Résolution sur ACLED, qui exige un compte.",
-   "source_accessible": false,
-   "contexte_v1": {
-    "critere": "Plus de 100 blocages agricoles ACLED en un mois. Taux de base (calcul de B) : au moins 1 vague par an.",
-    "mesure": "ACLED, manifestations d'agriculteurs, France."
-   }
+   "accessible": false,
+   "motif_inaccessible": "Résolution sur ACLED, qui exige un compte."
   },
   {
    "id": "EV-15",
@@ -425,12 +380,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Adoption d'une motion de censure avant le 31/12/2026. Taux de base (calcul de B) : 1 censure (Barnier, déc. 2024) et 1 chute sur question de confiance (Bayrou, sept. 2025) en 4 budgets. Pas de marché.",
-    "mesure": "Scrutins de l'AN sur les motions de censure."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-16a",
@@ -451,12 +402,8 @@
    "pool": "P2b",
    "mensuelle": true,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Critère élargi par la fusion à toute la période : décret de dissolution entre le 03/10/2026 et le 30/09/2028, avec deux fenêtres à résoudre séparément (avant / après le second tour 2027). Polymarket : ~5 % d'annonce avant le 31/12/2026 ; aucune cote pour la fenêtre post-présidentielle.",
-    "mesure": "Décret de dissolution (JO)."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-16b",
@@ -477,12 +424,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Critère élargi par la fusion à toute la période : décret de dissolution entre le 03/10/2026 et le 30/09/2028, avec deux fenêtres à résoudre séparément (avant / après le second tour 2027). Polymarket : ~5 % d'annonce avant le 31/12/2026 ; aucune cote pour la fenêtre post-présidentielle.",
-    "mesure": "Décret de dissolution (JO)."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-17",
@@ -503,12 +446,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Correction de la fusion : B suppose des législatives en juin 2027, qui ne sont pas au calendrier et supposent une dissolution (EV-16). Critère : à l'issue des premières législatives tenues sur la période, aucun bloc soutenant le président n'atteint 289 sièges ; si aucune législative n'a lieu, résolution sur la composition existante. Pas de probabilité externe.",
-    "mesure": "Composition de l'AN après des législatives."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-C1",
@@ -529,12 +468,8 @@
    "pool": "P2b",
    "mensuelle": true,
    "origine": "balayage C, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Attentat pour lequel le PNAT se saisit, faisant au moins un mort hors assaillant, entre le 03/10/2026 et le 30/09/2028. Pas de probabilité externe ; taux de base à calculer depuis les TE-SAT 2016-2026.",
-    "mesure": "Europol TE-SAT (annuel) ; PNAT, saisines ; chronologie Wikipédia ; niveau Vigipirate (SGDSN)."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-C2",
@@ -555,12 +490,8 @@
    "pool": "P2b",
    "mensuelle": true,
    "origine": "balayage C, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "État d'urgence (loi de 1955) déclaré, ou couvre-feu préfectoral couvrant l'agglomération principale d'un territoire ultramarin pendant au moins 7 jours, entre le 03/10/2026 et le 30/09/2028. Pas de probabilité externe ; précédents : NC 2024, Martinique 2024.",
-    "mesure": "Arrêtés préfectoraux (couvre-feu), décrets d'état d'urgence (JO) ; ACLED, émeutes par territoire."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-C3a",
@@ -581,12 +512,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage C, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Accord unanime du Conseil européen sur le CFP 2028-2034 : (a) avant le 31/12/2026 (objectif du 17-18/12/2026, sommet extraordinaire les 26-27/11) ; (b) avant le 30/09/2028. Pas de probabilité externe.",
-    "mesure": "Conclusions du Conseil européen ; accord du Parlement européen. Proposition : 1 986,2 Md€ (prix courants)."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-C3b",
@@ -607,12 +534,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage C, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Accord unanime du Conseil européen sur le CFP 2028-2034 : (a) avant le 31/12/2026 (objectif du 17-18/12/2026, sommet extraordinaire les 26-27/11) ; (b) avant le 30/09/2028. Pas de probabilité externe.",
-    "mesure": "Conclusions du Conseil européen ; accord du Parlement européen. Proposition : 1 986,2 Md€ (prix courants)."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-C4",
@@ -634,12 +557,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage C, critère réécrit (relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true,
-   "contexte_v1": {
-    "critere": "Avis rendu entre le 03/10/2026 et le 30/09/2028 ; modalités : compatible / incompatible ; binaire dérivé : suspension de l'application provisoire. Délai évoqué : jusqu'à 18 mois après la saisine, soit vers juillet 2027. Pas de probabilité externe.",
-    "mesure": "Registre de la CJUE (avis 1/26 ou numéro à vérifier) ; Parlement européen, procédure d'approbation."
-   }
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-18",
@@ -661,8 +580,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-19",
@@ -685,8 +604,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-20",
@@ -709,8 +628,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-21",
@@ -731,8 +650,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-23",
@@ -755,8 +674,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-40a",
@@ -784,8 +703,8 @@
      "oui": "Marine Le Pen"
     }
    },
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-40b",
@@ -813,8 +732,8 @@
      "oui": "Édouard Philippe"
     }
    },
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-40c",
@@ -842,8 +761,8 @@
      "oui": "Jean-Luc Mélenchon"
     }
    },
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-40d",
@@ -871,8 +790,8 @@
      "oui": "David Lisnard"
     }
    },
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-40e",
@@ -900,8 +819,8 @@
      "oui": "Gabriel Attal"
     }
    },
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-40f",
@@ -929,8 +848,8 @@
      "oui": "Raphaël Glucksmann"
     }
    },
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-40g",
@@ -958,8 +877,8 @@
      "oui": "Bruno Retailleau"
     }
    },
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-41",
@@ -992,8 +911,8 @@
      "aucun des deux": "Neither"
     }
    },
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-39",
@@ -1014,8 +933,8 @@
    "pool": "P2b",
    "mensuelle": true,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-42",
@@ -1036,8 +955,8 @@
    "pool": "P2b",
    "mensuelle": true,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-38",
@@ -1058,8 +977,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-29",
@@ -1080,8 +999,8 @@
    "pool": "P2b",
    "mensuelle": true,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-36",
@@ -1102,8 +1021,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-35",
@@ -1124,8 +1043,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-43",
@@ -1146,8 +1065,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-44",
@@ -1169,8 +1088,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-45",
@@ -1191,8 +1110,8 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-28",
@@ -1213,8 +1132,8 @@
    "pool": "P2e",
    "mensuelle": true,
    "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-30",
@@ -1235,8 +1154,8 @@
    "pool": "P2e",
    "mensuelle": false,
    "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-32",
@@ -1257,8 +1176,8 @@
    "pool": "P2e",
    "mensuelle": false,
    "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   },
   {
    "id": "EV-33",
@@ -1279,8 +1198,8 @@
    "pool": "P2e",
    "mensuelle": true,
    "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
-   "motif_inaccessible": null,
-   "source_accessible": true
+   "accessible": true,
+   "motif_inaccessible": null
   }
  ]
 }

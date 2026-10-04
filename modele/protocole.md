@@ -1,14 +1,14 @@
-# Protocole Psychohistoire — version 1.10
+# Protocole Psychohistoire — version 1.11
 
-Statut : soumis à relecture (relecture 7). Rédigé le 3 octobre 2026, avant toute estimation produite selon ce protocole. Gelé jusqu'au bilan de la phase 1, sauf corrections exigées par une relecture (section 12).
-Remplace la version 1.9. Les changements répondent aux relectures 6 et 6 bis et sont justifiés dans `v1.10/reponse_relecture_6.md` et `journal.md`. Le texte est scindé : ce noyau (sections 0 à 9, 12 et 13) et l'annexe `annexe_phase3.md` (sections 10 et 11), gelés et tagués séparément. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
+Statut : soumis à relecture (relecture 9). Rédigé le 3 octobre 2026, avant toute estimation produite selon ce protocole. Gelé jusqu'au bilan de la phase 1, sauf les exceptions de la section 12.
+Remplace la version 1.10. Les changements répondent à la relecture 8, qui portait sur le fond (périmètre de la banque) et sur la méthode ; ils sont justifiés dans `v1.11/reponse_relecture_8.md` et `journal.md`. Le texte est scindé : ce noyau (sections 0 à 9, 12 et 13) et l'annexe `annexe_phase3.md` (sections 10 et 11), gelés et tagués séparément. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
 
 ## 0. Pistes et registres
 
 - **Piste exploratoire (v0, v0.2, 3 octobre 2026).** Les probabilités produites avant tout protocole sont figées dans `registre/exploratoire.jsonl`, en ajout seul. Les mises à jour ultérieures de cette piste y sont ajoutées sans réécrire les lignes antérieures. Elles ne servent ni à paramétrer ni à évaluer le modèle du protocole. `data.json` reste l'état vivant de la page, pas un registre.
 - **Piste protocole.** Seules les prévisions émises selon ce protocole, après son tag, entrent dans `registre/protocole.jsonl`, en ajout seul.
 - **Format d'une ligne de registre :** `question` (identifiant), `emise` (date et heure), `probabilites` (en %), `piste` (et `phase` pour la piste protocole), `origine` (estimation initiale, cycle mensuel, jalon ou fait imprévu, avec sa référence), `donnees` (commit ou état des données gelées). Le champ `emise` est écrit par `scripts/registre.py` à partir de l'horloge système, jamais par un agent, et contrôlé à la poussée (section 12). Une erreur se corrige par une ligne d'erratum, jamais par réécriture.
-- **Matière première :** le balayage v1 (`modele/v1`), conservé tel quel.
+- **Matière première :** le balayage v1 (`modele/v1`), conservé tel quel. Les critères de résolution qui en sont tirés sont réécrits dans `modele/banque/criteres.json` (section 8.8).
 
 ## 1. Question centrale et frontières
 
@@ -146,13 +146,14 @@ Les données sont gelées à une date, puis les prévisions sont commitées avan
 | P2b | Événements et décisions sans cote | Structure et jugement |
 | P2c | Questions conjointes | Dépendances |
 | P2d | Jalons : « J observé dans sa fenêtre » | Descriptif : calibration des jalons, sans décision attachée (annexe, section 10.9) |
+| P2e | Indicateurs internationaux : un événement par grand sujet mondial (Ukraine, États-Unis, Chine, Proche-Orient) | Descriptif : calibration publiée, sans décision attachée ; exclu des critères de la section 8.6 |
 
-Une grappe correspond à une variable source, ou à un lien pour les jalons et les questions conjointes, sur une fenêtre trimestrielle sans chevauchement. L'objectif est d'au moins 40 grappes pour P2b et P2c réunis. La puissance est simulée et publiée avant le premier cycle de chaque phase.
+Une grappe correspond à une variable source sur une fenêtre trimestrielle sans chevauchement ; à un événement, dont la question de fenêtre et les questions mensuelles forment une seule grappe ; ou à un lien pour les jalons et les questions conjointes. L'objectif est d'au moins 40 grappes pour P2b et P2c réunis. La puissance est simulée et publiée avant le premier cycle de chaque phase.
 
 ### 8.4 Comparateurs
 
 1. **Persistance** pour les variables : marche aléatoire à la volatilité historique.
-2. **Taux de base** pour les événements, sur la période de la question (un statu quo à 0 % rendrait le score logarithmique infini), et **50 %**.
+2. **Taux de base** pour les événements, sur la période de la question (un statu quo à 0 % rendrait le score logarithmique infini), et **50 %**. Pour un événement sans classe de référence pertinente (le vainqueur d'une élection dont un candidat n'a jamais gagné), la loi uniforme tient lieu de taux de base.
 3. **Références externes** sur P1 : prévision communautaire Metaculus ou prix Polymarket. Ce sont les seuls comparateurs extérieurs à la famille de modèles utilisée ; l'écart à ces références, mesuré avant calage, est publié à chaque bilan, même si le pool P1 ne sert pas aux critères d'échec. Si son signe est systématique (test de signe au seuil de 10 %), les estimations de P2 du modèle et de l'ensemble direct sont corrigées du même décalage moyen en log-cotes à l'analyse trimestrielle, avec trace. Les critères de la section 8.6 sont jugés sur les estimations non corrigées.
 4. **Ensemble direct** : au moins cinq prévisionnistes IA avec recherche, médiane non extrémisée. Son écart au taux de base est publié à chaque bilan, sans décision attachée : si l'ensemble ne bat pas le taux de base, une victoire du modèle sur l'ensemble prouve peu.
 5. **Modèle témoin** : mêmes marginales, nœuds indépendants, sans dépendances.
@@ -180,8 +181,20 @@ Ces critères portent sur les estimations non corrigées du biais commun (sectio
 
 ### 8.8 Résolution des questions
 
-- **Banque d'événements de la phase 1.** Avant le 1er novembre 2026, un fichier `modele/evenements.json` reprend tous les événements et décisions du balayage v1 dotés d'un critère de résolution (écrits dans `modele/v1/fusion.md`), sans sélection par l'agent. Il est commité avant le premier cycle et ne change qu'à l'analyse trimestrielle, par ajout.
-- **Qui résout.** Les questions sur des séries sont résolues par script, sur la série collectée. Les questions sur des événements le sont sur une source primaire officielle (Journal officiel, Assemblée nationale, Conseil constitutionnel, ministère), citée avec sa date.
+- **Banque d'événements de la phase 1.** Elle est fixée avant le premier cycle dans `modele/banque/criteres.json`, d'où `scripts/evenements.py` tire `modele/evenements.json`. Elle comprend les événements du balayage v1 dotés d'un critère, avec un critère réécrit à la relecture 8 (le texte d'origine est conservé dans le champ `contexte_v1`), et les ajouts de la relecture 8. Seul le critère est transmis aux prévisionnistes : ni cote, ni sondage, ni taux de base.
+- **Ajouts en cours de phase.** Exception au gel (section 12), encadrée ainsi :
+  - au plus cinq ajouts par cycle, inscrits avant le gel du cycle dans `modele/banque/ajouts.jsonl`, en ajout seul, contrôlé à la poussée ;
+  - chacun porte un critère, une source de résolution et un motif ; il est proposé par un agent sans accès aux registres ni aux prévisions, ou par une décision humaine journalisée ;
+  - son taux de base est estimé sur une classe de référence historique, sans recherche d'actualité ;
+  - aucun retrait d'événement, aucune modification du critère d'une question émise ;
+  - les bilans sont publiés avec et sans les questions ajoutées après le premier cycle ; les critères de la section 8.6 sont jugés sur les deux ensembles, et un verdict qui diffère de l'un à l'autre est déclaré non concluant, avec motif.
+- **Qui résout.** Les questions sur des séries sont résolues par script, sur la série collectée. Les questions sur des événements le sont, avec la date de la source :
+  - sur une source primaire officielle (Journal officiel, Assemblée nationale, Conseil constitutionnel, ministère, juridiction, institution européenne), qui ne l'est que pour ses propres actes et données ;
+  - sur un institut, seulement si le critère le nomme ;
+  - sur une partie prenante, seulement pour sa propre décision et si le critère le prévoit (vote interne d'un parti) ;
+  - à défaut de toute autorité qui publie l'acte, sur deux agences de presse concordantes (AFP, Reuters, AP).
+  La méthode de classement des sources est dans `modele/sources.md`.
+- **Date du fait.** Toute proposition de résolution porte la date du fait. Une prévision émise le jour du fait ou après est annulée pour son auteur. Le gel d'un cycle est daté du jour réel de son exécution.
 - **Cas ambigu.** Deux agents résolvent indépendamment. S'ils divergent, un troisième tranche. Si le désaccord persiste ou si la source primaire manque 30 jours après l'échéance, la question est annulée pour tous les comparateurs, avec motif.
 - **Résolution antérieure à la poussée.** Une prévision dont la question était déjà résolue à la date de poussée de sa ligne de registre (section 12) est annulée, pour le comparateur concerné, avec motif.
 
@@ -217,7 +230,7 @@ Ces deux sections forment l'annexe `annexe_phase3.md`, qui ne s'applique qu'à p
 - **Protocole.**
   - Il ne change que par une nouvelle version, numérotée en première ligne et journalisée.
   - Le noyau et l'annexe sont versionnés séparément. Les tags et releases `protocole-vX.Y` et `annexe-phase3-vX.Y` sont créés automatiquement au premier commit de chaque version sur `main`. Le contrôle échoue si un texte change sans nouveau numéro.
-  - Le noyau et l'annexe sont gelés jusqu'au bilan de la phase 1, tenu à la première analyse trimestrielle (début février 2027). Pendant le gel, une version n'est possible que pour corriger un défaut relevé en relecture, ou pour retirer une exigence devenue inexécutable, sur décision humaine journalisée. Tout ajout est exclu.
+  - Le noyau et l'annexe sont gelés jusqu'au bilan de la phase 1, tenu à la première analyse trimestrielle (début février 2027). Pendant le gel, une version n'est possible que pour corriger un défaut relevé en relecture, ou pour retirer une exigence devenue inexécutable, sur décision humaine journalisée. Tout ajout au texte est exclu. Les ajouts d'événements à la banque, encadrés par la section 8.8, sont la seule exception ; ils ne modifient pas le texte.
 - **Interventions humaines.** Toutes sont tracées.
 - **Relecture.** Obligatoire à chaque version. Le critère d'arrêt est de deux relectures consécutives sans défaut bloquant ni important. Le relecteur est de la même famille que les auteurs ; ses relectures sont conduites en sessions séparées, sans accès aux échanges de rédaction.
 

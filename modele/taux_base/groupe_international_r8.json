@@ -1,0 +1,459 @@
+{
+ "groupe": "international (relecture 8)",
+ "etabli_le": "2026-10-04",
+ "questions": [
+  {
+   "id": "EV-28",
+   "classes": [
+    {
+     "definition": "Guerres interétatiques COW 1816-2007 ayant duré au moins 4,6 ans (âge de la guerre russo-ukrainienne au 3/10/2026, début 24/02/2022) : part de celles qui se sont terminées dans les 0,99 an suivants. Cas : Franco-mexicaine (4,8 ans, oui), Lopez/Paraguay (5,3, oui), Pacifique (4,8, oui), Second Laotian phase 2 (5,3, oui), Seconde Guerre mondiale (6,0, non), Vietnam phase 2 (10,2, non), Iran-Irak (7,9, non).",
+     "periode": "1816-2007",
+     "k": 4,
+     "n": 7,
+     "unite": "guerres ayant atteint 4,6 ans",
+     "frequence": 0.5714,
+     "probabilite_fenetre": 57.1,
+     "calcul": "p = k/n = 4/7 = 57,1 % (fenêtre 03/10/2026-30/09/2027 = 0,99 an ; durées calculées sur les dates de début/fin COW agrégées par guerre)",
+     "sources": [
+      {
+       "titre": "Correlates of War, Inter-State War Data v4.0 (CSV)",
+       "url": "https://correlatesofwar.org/wp-content/uploads/Inter-StateWarData_v4.0.csv"
+      },
+      {
+       "titre": "Correlates of War, Inter-State Wars v4.0 codebook",
+       "url": "https://correlatesofwar.org/wp-content/uploads/Inter-StateWars_Codebook.pdf"
+      }
+     ],
+     "incertitude": "n = 7. La fin COW (retrait, conquête, mort d'un dirigeant, traité) est plus large que le critère (annonce par les DEUX gouvernements d'un cessez-le-feu général ou d'un accord de paix) : surestime. Guerres du XIXe siècle peu comparables."
+    },
+    {
+     "definition": "Guerres interétatiques COW postérieures à 1945 ayant duré au moins 2 ans (Corée, Vietnam phase 2, Second Laotian phase 2, Iran-Irak, Badme/Érythrée-Éthiopie), plus la guerre russo-ukrainienne comme cas censuré (exposition du 24/02/2024 au 03/10/2026, sans fin) : taux de fin par année d'exposition au-delà de 2 ans, supposé constant.",
+     "periode": "1945-2026",
+     "k": 5,
+     "n": 21.7,
+     "unite": "années-guerre d'exposition au-delà de 2 ans",
+     "frequence": 0.2304,
+     "probabilite_fenetre": 20.4,
+     "calcul": "lambda = 5 fins / 21,7 années (19,1 + 2,6 pour l'Ukraine) = 0,230/an ; p = 1 - exp(-0,230 x 0,99) = 20,4 %",
+     "sources": [
+      {
+       "titre": "Correlates of War, Inter-State War Data v4.0 (CSV)",
+       "url": "https://correlatesofwar.org/wp-content/uploads/Inter-StateWarData_v4.0.csv"
+      },
+      {
+       "titre": "Correlates of War, Inter-State Wars v4.0 codebook",
+       "url": "https://correlatesofwar.org/wp-content/uploads/Inter-StateWars_Codebook.pdf"
+      }
+     ],
+     "incertitude": "n faible (5 fins). Hypothèse de risque constant. Les fins de Corée (armistice 1953) et d'Iran-Irak (cessez-le-feu résolution 598, 1988) correspondent bien au critère ; Vietnam 1975 (victoire militaire) non. Données COW arrêtées en 2007 ; pas d'autre guerre interétatique longue identifiée 2008-2025 (vérification non exhaustive)."
+    },
+    {
+     "definition": "Toutes guerres interétatiques COW 1816-2007 ayant duré au moins 2 ans (14 guerres), plus l'Ukraine censurée : taux de fin par année d'exposition au-delà de 2 ans.",
+     "periode": "1816-2026",
+     "k": 14,
+     "n": 42.0,
+     "unite": "années-guerre d'exposition au-delà de 2 ans",
+     "frequence": 0.3333,
+     "probabilite_fenetre": 28.1,
+     "calcul": "lambda = 14 / (39,4 + 2,6) = 0,333/an ; p = 1 - exp(-0,333 x 0,99) = 28,1 %",
+     "sources": [
+      {
+       "titre": "Correlates of War, Inter-State War Data v4.0 (CSV)",
+       "url": "https://correlatesofwar.org/wp-content/uploads/Inter-StateWarData_v4.0.csv"
+      },
+      {
+       "titre": "Correlates of War, Inter-State Wars v4.0 codebook",
+       "url": "https://correlatesofwar.org/wp-content/uploads/Inter-StateWars_Codebook.pdf"
+      }
+     ],
+     "incertitude": "Même définition large de la fin de guerre que la classe 0 ; hétérogénéité historique forte."
+    }
+   ],
+   "fourchette": [
+    20.4,
+    57.1
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 20.4,
+    "motif": "Classe la plus proche (guerres longues de l'ère post-1945, dont le cas lui-même comme exposition censurée) ; les classes 0 et 2 reposent sur une définition de la fin de guerre plus large que l'exigence d'annonce conjointe d'un cessez-le-feu général, donc biaisées vers le haut."
+   },
+   "issues": {
+    "oui": 20.4,
+    "non": 79.6
+   }
+  },
+  {
+   "id": "EV-29",
+   "classes": [
+    {
+     "definition": "Informations du Parlement au titre de l'article 35, alinéa 2, pour un nouveau théâtre, tous pays confondus, depuis la révision du 23/07/2008 : Libye (Harmattan, mars 2011), Mali (Serval, janv. 2013), Centrafrique (Sangaris, déc. 2013), Irak (Chammal, sept. 2014), Syrie (sept. 2015).",
+     "periode": "08/2008-10/2026",
+     "k": 5,
+     "n": 18.2,
+     "unite": "années",
+     "frequence": 0.2747,
+     "probabilite_fenetre": 42.3,
+     "calcul": "lambda = 5/18,2 = 0,275/an ; p(au moins une sur 2,0 ans) = 1 - exp(-0,275 x 2,0) = 42,3 %",
+     "sources": [
+      {
+       "titre": "Légifrance, Constitution du 4 octobre 1958, article 35",
+       "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019241022"
+      },
+      {
+       "titre": "Revue française de droit constitutionnel 2016/1, Article 35 de la Constitution : état de l'information du Parlement sur les interventions militaires à l'étranger",
+       "url": "https://www.cairn.info/revue-francaise-de-droit-constitutionnel-2016-1-page-3.htm"
+      },
+      {
+       "titre": "Wikipédia, Article 35 de la Constitution de la Cinquième République française (liste des prolongations alinéa 3)",
+       "url": "https://fr.wikipedia.org/wiki/Article_35_de_la_Constitution_de_la_Cinqui%C3%A8me_R%C3%A9publique_fran%C3%A7aise"
+      }
+     ],
+     "incertitude": "Borne haute non spécifique : n'importe quel théâtre, pas l'Ukraine. Liste établie à partir des prolongations votées (alinéa 3) et de ma connaissance ; d'éventuelles informations sans prolongation (opérations de moins de 4 mois) n'ont pas été vérifiées."
+    },
+    {
+     "definition": "Composée : (a) probabilité de cessez-le-feu russo-ukrainien assez tôt pour un déploiement avant le 30/09/2028 (taux de la classe 1 de EV-28, 0,230/an, sur 1,74 an, soit jusqu'à fin juin 2028) x (b) part des fins de conflits armés en Europe et au Proche-Orient depuis 1995 suivies d'un déploiement de troupes françaises sur le territoire concerné : Bosnie 1995 (IFOR, oui), Kosovo 1999 (KFOR, oui), Liban 2006 (FINUL renforcée, oui), Géorgie 2008 (EUMM civile, non), Donbass 2015 (OSCE civile, non), Haut-Karabakh 2020 (soldats russes, non).",
+     "periode": "1995-2026",
+     "k": 3,
+     "n": 6,
+     "unite": "fins de conflit",
+     "frequence": 0.5,
+     "probabilite_fenetre": 16.5,
+     "calcul": "p = [1 - exp(-0,230 x 1,74)] x 3/6 = 0,330 x 0,5 = 16,5 %",
+     "sources": [
+      {
+       "titre": "Correlates of War, Inter-State War Data v4.0 (CSV)",
+       "url": "https://correlatesofwar.org/wp-content/uploads/Inter-StateWarData_v4.0.csv"
+      },
+      {
+       "titre": "Correlates of War, Inter-State Wars v4.0 codebook",
+       "url": "https://correlatesofwar.org/wp-content/uploads/Inter-StateWars_Codebook.pdf"
+      },
+      {
+       "titre": "OTAN, KFOR (Kosovo Force)",
+       "url": "https://jfcnaples.nato.int/kfor"
+      },
+      {
+       "titre": "FINUL, mandat et historique",
+       "url": "https://unifil.unmissions.org/unifil-mandate"
+      }
+     ],
+     "incertitude": "Deux taux de base multipliés (indépendance supposée). Les cas Bosnie et Kosovo sont antérieurs à l'alinéa 2 (2008) : rien ne garantit qu'un déploiement de stabilisation serait notifié au titre de l'article 35 (non vérifié pour les renforcements OTAN de 2022). Composition de (b) issue de ma connaissance, URL partiellement vérifiées."
+    },
+    {
+     "definition": "Même composée, (b) restreint aux conflits où la Russie est belligérante : Géorgie 2008 et Donbass 2014-2015, aucun déploiement de troupes françaises (0/2), lissage de Laplace (0+1)/(2+2) = 0,25.",
+     "periode": "2008-2026",
+     "k": 0,
+     "n": 2,
+     "unite": "fins de conflit avec la Russie belligérante",
+     "frequence": 0.25,
+     "probabilite_fenetre": 8.3,
+     "calcul": "p = 0,330 x 0,25 = 8,3 %",
+     "sources": [
+      {
+       "titre": "Légifrance, Constitution du 4 octobre 1958, article 35",
+       "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019241022"
+      },
+      {
+       "titre": "Revue française de droit constitutionnel 2016/1, Article 35 de la Constitution : état de l'information du Parlement sur les interventions militaires à l'étranger",
+       "url": "https://www.cairn.info/revue-francaise-de-droit-constitutionnel-2016-1-page-3.htm"
+      },
+      {
+       "titre": "Wikipédia, Article 35 de la Constitution de la Cinquième République française (liste des prolongations alinéa 3)",
+       "url": "https://fr.wikipedia.org/wiki/Article_35_de_la_Constitution_de_la_Cinqui%C3%A8me_R%C3%A9publique_fran%C3%A7aise"
+      }
+     ],
+     "incertitude": "n = 2 ; lissage arbitraire. Les deux cas n'ont abouti qu'à des cessez-le-feu partiels, pas à un accord couvrant toute la ligne de front."
+    },
+    {
+     "definition": "Interventions françaises notifiées au titre de l'article 35 concernant l'Ukraine depuis le 24/02/2022 : aucune en 4,6 ans de guerre ; taux de Jeffreys (0 + 0,5)/4,6 par an.",
+     "periode": "02/2022-10/2026",
+     "k": 0,
+     "n": 4.6,
+     "unite": "années",
+     "frequence": 0.1087,
+     "probabilite_fenetre": 19.5,
+     "calcul": "lambda = 0,5/4,6 = 0,109/an ; p = 1 - exp(-0,109 x 2,0) = 19,5 %",
+     "sources": [
+      {
+       "titre": "Légifrance, Constitution du 4 octobre 1958, article 35",
+       "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019241022"
+      },
+      {
+       "titre": "Revue française de droit constitutionnel 2016/1, Article 35 de la Constitution : état de l'information du Parlement sur les interventions militaires à l'étranger",
+       "url": "https://www.cairn.info/revue-francaise-de-droit-constitutionnel-2016-1-page-3.htm"
+      },
+      {
+       "titre": "Wikipédia, Article 35 de la Constitution de la Cinquième République française (liste des prolongations alinéa 3)",
+       "url": "https://fr.wikipedia.org/wiki/Article_35_de_la_Constitution_de_la_Cinqui%C3%A8me_R%C3%A9publique_fran%C3%A7aise"
+      }
+     ],
+     "incertitude": "Estimation dominée par l'a priori (exposition courte, 0 événement) ; peu informative."
+    }
+   ],
+   "fourchette": [
+    8.3,
+    42.3
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 16.5,
+    "motif": "Le critère ne peut être rempli en pratique que par un déploiement après cessez-le-feu (aucun précédent occidental d'intervention terrestre contre une puissance nucléaire en guerre) ; la classe composée générale (16,5 %) est retenue, la variante Russie (8,3 %) étant fondée sur n = 2 et la classe 0 n'étant pas spécifique à l'Ukraine."
+   },
+   "issues": {
+    "oui": 16.5,
+    "non": 83.5
+   }
+  },
+  {
+   "id": "EV-30",
+   "classes": [
+    {
+     "definition": "Élections de mi-mandat 1946-2022 où le parti présidentiel détenait la majorité de la Chambre avant le scrutin : 1946, 1950, 1954, 1962, 1966, 1978, 1994, 2002, 2006, 2010, 2018, 2022 (n = 12) ; majorité perdue en 1946, 1954, 1994, 2006, 2010, 2018, 2022 (k = 7).",
+     "periode": "1946-2022",
+     "k": 7,
+     "n": 12,
+     "unite": "élections de mi-mandat",
+     "frequence": 0.5833,
+     "probabilite_fenetre": 58.3,
+     "calcul": "p = k/n = 7/12 = 58,3 % (un scrutin = la fenêtre ; certification avant le 31/12)",
+     "sources": [
+      {
+       "titre": "History, Art & Archives, U.S. House of Representatives (Office of the Clerk / Historian), Party Divisions of the House",
+       "url": "https://history.house.gov/Institution/Party-Divisions/Party-Divisions/"
+      },
+      {
+       "titre": "The American Presidency Project (UCSB), Seats in Congress gained/lost by the President's party in mid-term elections",
+       "url": "https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections"
+      }
+     ],
+     "incertitude": "Comptage établi d'après les tableaux de composition du Clerk/Historian et ma connaissance, non revérifié ligne à ligne. Hors tiers partis, perte de la majorité républicaine équivaut à au moins 218 sièges démocrates (435 sièges, majorité 218)."
+    },
+    {
+     "definition": "Sous-classe : parti présidentiel avec une majorité étroite (au plus 222 sièges) avant le scrutin : 1954 (R 221 après 1952, perdue), 2002 (R 221 après 2000, conservée), 2022 (D 222 après 2020, perdue). Configuration de départ 2026 : R 220 après 2024.",
+     "periode": "1946-2022",
+     "k": 2,
+     "n": 3,
+     "unite": "élections de mi-mandat",
+     "frequence": 0.6667,
+     "probabilite_fenetre": 66.7,
+     "calcul": "p = 2/3 = 66,7 %",
+     "sources": [
+      {
+       "titre": "History, Art & Archives, U.S. House of Representatives (Office of the Clerk / Historian), Party Divisions of the House",
+       "url": "https://history.house.gov/Institution/Party-Divisions/Party-Divisions/"
+      },
+      {
+       "titre": "The American Presidency Project (UCSB), Seats in Congress gained/lost by the President's party in mid-term elections",
+       "url": "https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections"
+      }
+     ],
+     "incertitude": "n = 3, très instable."
+    },
+    {
+     "definition": "Toutes les élections de mi-mandat 1946-2022 : le parti d'opposition au président détient la majorité de la Chambre après le scrutin dans 15 cas sur 20 (exceptions 1950, 1962, 1966, 1978, 2002).",
+     "periode": "1946-2022",
+     "k": 15,
+     "n": 20,
+     "unite": "élections de mi-mandat",
+     "frequence": 0.75,
+     "probabilite_fenetre": 75.0,
+     "calcul": "p = 15/20 = 75,0 %",
+     "sources": [
+      {
+       "titre": "History, Art & Archives, U.S. House of Representatives (Office of the Clerk / Historian), Party Divisions of the House",
+       "url": "https://history.house.gov/Institution/Party-Divisions/Party-Divisions/"
+      },
+      {
+       "titre": "The American Presidency Project (UCSB), Seats in Congress gained/lost by the President's party in mid-term elections",
+       "url": "https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections"
+      }
+     ],
+     "incertitude": "Mélange des cas où l'opposition détenait déjà la Chambre (rétention, plus facile) : biais vers le haut pour une conquête."
+    }
+   ],
+   "fourchette": [
+    58.3,
+    75.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 58.3,
+    "motif": "Classe qui correspond exactement à la situation (opposition minoritaire devant conquérir la majorité à mi-mandat), avec un n acceptable ; la sous-classe à majorité étroite (n = 3) va dans le même sens mais est trop petite."
+   },
+   "issues": {
+    "oui": 58.3,
+    "non": 41.7
+   }
+  },
+  {
+   "id": "EV-32",
+   "classes": [
+    {
+     "definition": "Suspensions chinoises à échéance de contre-mesures commerciales visant les États-Unis, arrivées à échéance 2019-2025 : droits additionnels sur les automobiles (échéance 31/03/2019, prolongée) ; reprise annoncée au 15/12/2019 (suspendue à nouveau le 15/12/2019) ; suspension de 24 points de droits additionnels (échéance 12/08/2025, prolongée 90 jours ; échéance 10/11/2025, prolongée d'un an). Aucune suspension n'a laissé la mesure s'appliquer.",
+     "periode": "2019-2025",
+     "k": 0,
+     "n": 4,
+     "unite": "échéances de suspension",
+     "frequence": 0.1667,
+     "probabilite_fenetre": 16.7,
+     "calcul": "k = 0 sur n = 4 ; lissage de Laplace (0+1)/(4+2) = 16,7 % (une seule échéance, le 10/11/2026, tombe avant le 31/03/2027)",
+     "sources": [
+      {
+       "titre": "Euronews/Reuters, China will continue to suspend extra tariffs on U.S. vehicles, auto parts (31/03/2019)",
+       "url": "https://www.euronews.com/2019/03/31/china-says-it-will-continue-to-suspend-additional-tariffs-on-us-vehicles-auto-parts"
+      },
+      {
+       "titre": "Gouvernement chinois (english.gov.cn), China to resume tariff hikes on US auto imports from Dec 15 (23/08/2019)",
+       "url": "https://english.www.gov.cn/statecouncil/ministries/201908/23/content_WS5d5feef3c6d0c6695ff7f33a.html"
+      },
+      {
+       "titre": "SCIO, China to extend tariff suspension on imported US products (05/11/2025)",
+       "url": "http://english.scio.gov.cn/pressroom/2025-11/05/content_118161597.html"
+      },
+      {
+       "titre": "Morrison Foerster, United States and China Reach Trade Agreement: Takeaways for Export and Supply Chain Controls (13/11/2025)",
+       "url": "https://www.mofo.com/resources/insights/251113-united-states-and-china-reach-trade-agreement"
+      }
+     ],
+     "incertitude": "n petit ; cas non indépendants (même relation, mêmes cycles de négociation). La date de la reprise suspendue du 15/12/2019 et la prolongation d'août 2025 proviennent de ma connaissance, non revérifiées ici."
+    },
+    {
+     "definition": "Épisodes de trêve commerciale sino-américaine depuis 2018 dans lesquels des mesures suspendues ont finalement été appliquées dans les 16 mois : Buenos Aires (déc. 2018, oui : hausse américaine de 10 à 25 % appliquée le 10/05/2019), Phase One (déc. 2019, non), Genève (mai 2025, non : suspensions reconduites à Busan).",
+     "periode": "2018-2026",
+     "k": 1,
+     "n": 3,
+     "unite": "épisodes de trêve",
+     "frequence": 0.3333,
+     "probabilite_fenetre": 33.3,
+     "calcul": "p = 1/3 = 33,3 %",
+     "sources": [
+      {
+       "titre": "Euronews/Reuters, China will continue to suspend extra tariffs on U.S. vehicles, auto parts (31/03/2019)",
+       "url": "https://www.euronews.com/2019/03/31/china-says-it-will-continue-to-suspend-additional-tariffs-on-us-vehicles-auto-parts"
+      },
+      {
+       "titre": "Gouvernement chinois (english.gov.cn), China to resume tariff hikes on US auto imports from Dec 15 (23/08/2019)",
+       "url": "https://english.www.gov.cn/statecouncil/ministries/201908/23/content_WS5d5feef3c6d0c6695ff7f33a.html"
+      },
+      {
+       "titre": "SCIO, China to extend tariff suspension on imported US products (05/11/2025)",
+       "url": "http://english.scio.gov.cn/pressroom/2025-11/05/content_118161597.html"
+      },
+      {
+       "titre": "Morrison Foerster, United States and China Reach Trade Agreement: Takeaways for Export and Supply Chain Controls (13/11/2025)",
+       "url": "https://www.mofo.com/resources/insights/251113-united-states-and-china-reach-trade-agreement"
+      }
+     ],
+     "incertitude": "Classe plus large (mesures des deux parties) ; n = 3 ; l'épisode de Busan (nov. 2025) en cours n'est pas compté."
+    }
+   ],
+   "fourchette": [
+    16.7,
+    33.3
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 16.7,
+    "motif": "Classe la plus proche du mécanisme du critère (sort d'une suspension chinoise à son échéance) ; la classe 1 sert de borne haute."
+   },
+   "issues": {
+    "oui": 16.7,
+    "non": 83.3
+   }
+  },
+  {
+   "id": "EV-33",
+   "classes": [
+    {
+     "definition": "Décisions du Conseil suspendant tout ou partie d'un accord d'association ou de coopération avec un pays tiers (hors mécanisme ACP de l'art. 96 Cotonou) : Yougoslavie (11/11/1991), Syrie (2011) ; rapportées à environ 50 partenaires conventionnels sur 35 ans.",
+     "periode": "1991-2025",
+     "k": 2,
+     "n": 1750,
+     "unite": "partenaires-années",
+     "frequence": 0.0011,
+     "probabilite_fenetre": 0.1,
+     "calcul": "lambda = 2/(35 x 50) = 0,0011 par partenaire-an ; p = 0,0011 x 0,74 an = 0,08 % (fenêtre 03/10/2026-30/06/2027 = 0,74 an)",
+     "sources": [
+      {
+       "titre": "EUR-Lex, Décision 91/586/CECA, CEE du Conseil et des représentants des États membres du 11/11/1991 suspendant l'accord de coopération avec la Yougoslavie",
+       "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:41991D0586"
+      },
+      {
+       "titre": "EUR-Lex, Décision 2011/523/UE du Conseil suspendant partiellement l'accord de coopération CEE-Syrie",
+       "url": "https://eur-lex.europa.eu/eli/dec/2011/523/oj/eng"
+      },
+      {
+       "titre": "Conseil de l'UE, Syria: Council restores full application of EU-Syria Cooperation Agreement (11/05/2026)",
+       "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/05/11/syria-council-restores-full-application-of-eu-syria-cooperation-agreement/"
+      }
+     ],
+     "incertitude": "Le dénominateur (50 partenaires) est un ordre de grandeur. Classe non conditionnée à une crise : borne basse."
+    },
+    {
+     "definition": "Épisodes de crise grave où la suspension d'un accord a été débattue au niveau de l'UE : Yougoslavie 1991 et Syrie 2011 (suspension dans l'année) ; Israël 2002, Égypte 2013, Russie 2014, Turquie 2016, Russie 2022, Israël 2024-2025 (pas de suspension). Taux de suspension au-delà de la première année de crise : 0 événement sur environ 20 années d'exposition (Russie 2015-2025, Turquie 2017-2025, Égypte 2014, Israël 2025-2026).",
+     "periode": "1991-2026",
+     "k": 0,
+     "n": 20,
+     "unite": "années de crise au-delà de la première",
+     "frequence": 0.0244,
+     "probabilite_fenetre": 1.8,
+     "calcul": "lambda (Jeffreys) = 0,5/20,5 = 0,024/an ; p = 1 - exp(-0,024 x 0,74) = 1,8 %",
+     "sources": [
+      {
+       "titre": "EUR-Lex, Décision 91/586/CECA, CEE du Conseil et des représentants des États membres du 11/11/1991 suspendant l'accord de coopération avec la Yougoslavie",
+       "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:41991D0586"
+      },
+      {
+       "titre": "EUR-Lex, Décision 2011/523/UE du Conseil suspendant partiellement l'accord de coopération CEE-Syrie",
+       "url": "https://eur-lex.europa.eu/eli/dec/2011/523/oj/eng"
+      },
+      {
+       "titre": "Conseil de l'UE, Syria: Council restores full application of EU-Syria Cooperation Agreement (11/05/2026)",
+       "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/05/11/syria-council-restores-full-application-of-eu-syria-cooperation-agreement/"
+      }
+     ],
+     "incertitude": "Liste d'épisodes et expositions établies de ma connaissance (non vérifiées en source primaire) ; absence de suspension formelle de l'APC UE-Russie supposée. L'épisode israélien est déjà au-delà de sa première année."
+    },
+    {
+     "definition": "Même liste d'épisodes, au niveau de l'épisode entier : 2 suspensions sur 8 épisodes.",
+     "periode": "1991-2026",
+     "k": 2,
+     "n": 8,
+     "unite": "épisodes de crise",
+     "frequence": 0.25,
+     "probabilite_fenetre": 25.0,
+     "calcul": "p = 2/8 = 25,0 % (sans ramener à la fenêtre)",
+     "sources": [
+      {
+       "titre": "EUR-Lex, Décision 91/586/CECA, CEE du Conseil et des représentants des États membres du 11/11/1991 suspendant l'accord de coopération avec la Yougoslavie",
+       "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:41991D0586"
+      },
+      {
+       "titre": "EUR-Lex, Décision 2011/523/UE du Conseil suspendant partiellement l'accord de coopération CEE-Syrie",
+       "url": "https://eur-lex.europa.eu/eli/dec/2011/523/oj/eng"
+      },
+      {
+       "titre": "Conseil de l'UE, Syria: Council restores full application of EU-Syria Cooperation Agreement (11/05/2026)",
+       "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/05/11/syria-council-restores-full-application-of-eu-syria-cooperation-agreement/"
+      }
+     ],
+     "incertitude": "Probabilité par épisode, pas par fenêtre de 9 mois : borne haute ; ignore que les deux suspensions sont intervenues dans la première année."
+    }
+   ],
+   "fourchette": [
+    0.1,
+    25.0
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 1.8,
+    "motif": "Classe conditionnée à la durée déjà écoulée de la crise, ramenée à la fenêtre ; les suspensions historiques (Yougoslavie, Syrie) sont toutes intervenues dans l'année du déclenchement, et aucun épisode plus long n'a débouché sur une suspension."
+   },
+   "issues": {
+    "oui": 1.8,
+    "non": 98.2
+   }
+  }
+ ]
+}

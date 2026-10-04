@@ -9,6 +9,11 @@ Par défaut, écrit dans registre/protocole.jsonl ; un cycle à blanc passe un a
   restante de la question par un risque constant : p = 1 − (1 − p_fenêtre)^(durée restante / durée
   de la fenêtre de l'événement). Distribution par issue inchangée pour une question à plusieurs issues.
 - 50 % : probabilité uniforme sur les issues.
+- Référence externe (noyau, section 8.4, point 3) : pour une question de fenêtre dont l'événement porte
+  une « reference_externe » (modele/banque/criteres.json), prix Polymarket gelés (gel/cotes.json),
+  renormalisés sur les issues ; le reste va à l'issue « reste ». La ligne indique si toutes les cotes
+  utilisées au-dessus de 5 % sont fiables (section 4.5) ; seule une référence fiable place la question en P1.
+- Un événement marqué « taux_base: uniforme » (EV-05, relecture 8) reçoit la loi uniforme comme taux de base.
 Toutes les probabilités sont bornées entre 2 et 98 % avant renormalisation.
 """
 import sys
@@ -31,9 +36,33 @@ def normaliser(d):
     return {k: round(v * 100 / s, 1) for k, v in b.items()}
 
 
+def reference_externe(q, e, cotes):
+    ref = e.get("reference_externe")
+    if not ref or q["id"] != f"Q-{e['id']}":
+        return None
+    marches = {m["libelle_issue"]: m for m in cotes if m["source"] == ref["source"] and m["evenement"] == ref["evenement"]}
+    dist, fiable = {}, True
+    for issue, lib in ref["issues"].items():
+        m = marches.get(lib)
+        if m is None:
+            return None
+        dist[issue] = m["probabilite"]
+        if m["probabilite"] > 0.05 and not m.get("fiable"):
+            fiable = False
+    if "reste" in ref:
+        dist[ref["reste"]] = max(1 - sum(dist.values()), 0.0)
+    if len(q["issues"]) == 2 and set(dist) == {"oui"}:
+        dist["non"] = 1 - dist["oui"]
+    if set(dist) != set(q["issues"]):
+        return None
+    return dist, fiable
+
+
 def previsions(cycle):
     banque = lire_json(f"data/cycles/{cycle}/questions.json")
-    evts = {e["id"]: e for e in lire_json("modele/evenements.json")["evenements"]}
+    gel = f"data/cycles/{cycle}/gel"
+    evts = {e["id"]: e for e in (lire_json(f"{gel}/evenements.json") or lire_json("modele/evenements.json"))["evenements"]}
+    cotes = (lire_json(f"{gel}/cotes.json") or lire_json("data/cotes.json") or {"marches": []})["marches"]
     tb = lire_json("modele/taux_base.json")["questions"]
     lignes = []
     for q in banque["questions"]:
@@ -44,7 +73,11 @@ def previsions(cycle):
             sortie.append(("persistance", {"oui": p, "non": 1 - p}))
         else:
             e = evts[q["details"]["evenement"]]
-            u = tb[e["id"]]["utilisee"]
+            u = ({k: 100 / len(e["issues"]) for k in e["issues"]} if e.get("taux_base") == "uniforme"
+                 else tb[e["id"]]["utilisee"])
+            ref = reference_externe(q, e, cotes)
+            if ref:
+                sortie.append((f"référence externe {e['reference_externe']['source']}" + ("" if ref[1] else " (non fiable)"), ref[0]))
             if len(q["issues"]) > 2:
                 sortie.append(("taux de base", {k: v / 100 for k, v in u.items()}))
             else:

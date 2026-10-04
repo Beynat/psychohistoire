@@ -8,9 +8,10 @@ Usage :
 Chaque ligne d'entrée est un objet JSON : une prévision (question, probabilites, piste, origine,
 donnees, et phase pour la piste protocole ; auteur facultatif), un erratum (erratum: true, objet,
 correction, piste), une proposition de résolution par un agent (proposition: true, question, issue,
-source, agent) ou une résolution (resolution: true, question, issue, source, methode).
+source, agent, date_fait) ou une résolution (resolution: true, question, issue, source, methode).
 """
 import json
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -20,7 +21,7 @@ RACINE = Path(__file__).resolve().parent.parent
 PREVISION = {"question", "probabilites", "piste", "origine", "donnees"}
 ERRATUM = {"erratum", "objet", "correction", "piste"}
 RESOLUTION = {"resolution", "question", "issue", "source", "methode"}   # issue = null si la question est annulée
-PROPOSITION = {"proposition", "question", "issue", "source", "agent"}
+PROPOSITION = {"proposition", "question", "issue", "source", "agent", "date_fait"}   # date_fait : AAAA-MM-JJ du fait (relecture 8, G2)
 
 
 def horodatage():
@@ -36,6 +37,8 @@ def valider(l):
         manque = RESOLUTION - l.keys()
     elif l.get("proposition"):
         manque = PROPOSITION - l.keys()
+        if not manque and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(l["date_fait"])):
+            raise ValueError("date_fait doit être au format AAAA-MM-JJ")
     else:
         manque = PREVISION - l.keys()
         if l.get("piste") == "protocole" and "phase" not in l:

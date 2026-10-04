@@ -130,6 +130,18 @@ def inflation_energie_fr():
     return sorted(fusion.items())
 
 
+def insee_bdm(idbank, debut="1990-01"):
+    """Série de la BDM de l'Insee (SDMX), sans clé."""
+    import re
+    txt = get(f"https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/{idbank}?startPeriod={debut}")
+    return sorted((p, float(v)) for p, v in re.findall(r'TIME_PERIOD="([^"]+)" OBS_VALUE="([^"]+)"', txt) if v not in ("NaN", ""))
+
+
+def confiance_menages_fr():
+    """Indicateur synthétique de confiance des ménages, CVS (Insee, idbank 001587668)."""
+    return insee_bdm("001587668")
+
+
 def bund_journalier():
     """Rendement 10 ans de la courbe Svensson des titres fédéraux (Bundesbank), journalier depuis 2010.
     Ce n'est pas le Bund benchmark coté mais une courbe lissée : à ne comparer qu'avec une jambe française de même nature."""
@@ -167,6 +179,7 @@ SERIES = {
     "brent_journalier": brent_journalier,
     "brent_mensuel": brent_mensuel,
     "inflation_energie_FR": inflation_energie_fr,
+    "confiance_menages_FR": confiance_menages_fr,
 }
 
 

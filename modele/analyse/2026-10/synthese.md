@@ -1,6 +1,6 @@
 # Périmètre du modèle — analyse du 4 octobre 2026
 
-Statut : proposition, soumise à la relecture 8 avec la demande `modele/v1.11/demande_relecture_8.md`. Rien n'est encore intégré à la banque d'événements.
+Statut : proposition soumise à la relecture 8, puis traitée. La banque retenue est dans `modele/banque/criteres.json` ; les écarts avec cette proposition sont justifiés dans `modele/v1.11/reponse_relecture_8.md`. Ce document reste en l'état, comme trace.
 
 Rapports sources, avec leurs sources typées : `campagne.md` (enjeux de la présidentielle) et `international.md` (moteurs internationaux). Indicateur de fiabilité (`modele/sources.md`) : 59 et 60 % de sources de rang 1 à 3. Les faits signalés « non vérifié » dans ces rapports ne servent à fixer aucun seuil.
 

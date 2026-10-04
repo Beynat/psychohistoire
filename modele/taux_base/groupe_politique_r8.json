@@ -1,0 +1,1070 @@
+{
+ "groupe": "politique (relecture 8)",
+ "etabli_le": "2026-10-04",
+ "questions": [
+  {
+   "id": "EV-17",
+   "classes": [
+    {
+     "definition": "Toutes les présidentielles au suffrage universel (1965-2022) : le groupe du parti du président élu compte-t-il moins que la majorité absolue de l'Assemblée (apparentés compris) environ 16 mois après l'élection ? Oui : 1965 (UNR-UDT, sous la majorité de l'Assemblée de 1962), 1974 (RI, groupe minoritaire de la majorité), 1988 (PS 275/577), 1995 (RPR 258/577), 2022 (Renaissance ~170/577). Non : 1969 (UDR élue en 1968), 1981 (PS ~285/491), 2002 (UMP ~365), 2007 (UMP ~320), 2012 (SRC ~295), 2017 (LREM ~314).",
+     "periode": "1965-2022",
+     "k": 5,
+     "n": 11,
+     "unite": "élections présidentielles",
+     "frequence": 0.4545,
+     "probabilite_fenetre": 45.5,
+     "calcul": "p = 5/11 = 45,5 % (seuil = majorité absolue de l'effectif de l'époque ; 289 depuis 1988)",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, composition des groupes et historique des législatures",
+       "url": "https://www.assemblee-nationale.fr/dyn/vos-deputes/groupes-politiques"
+      },
+      {
+       "titre": "Assemblée nationale, base historique des députés et des groupes (Sycomore / législatures de la Ve)",
+       "url": "https://www2.assemblee-nationale.fr/sycomore/recherche"
+      },
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Effectifs de groupes tirés de ma connaissance, non revérifiés groupe par groupe ; 1965 et 1974 qualifiés de 'oui' car le groupe du parti du président n'avait pas la majorité seul (la majorité était une coalition)."
+    },
+    {
+     "definition": "Présidentielles non suivies de législatives automatiques (Assemblée élue hors calendrier présidentiel, ce qui est le cas en 2027 : Assemblée élue en juillet 2024) : 1965, 1969, 1974, 1981, 1988, 1995. Oui : 1965, 1974, 1988, 1995 ; non : 1969, 1981 (dissolution réussie).",
+     "periode": "1965-1995",
+     "k": 4,
+     "n": 6,
+     "unite": "élections présidentielles",
+     "frequence": 0.6667,
+     "probabilite_fenetre": 66.7,
+     "calcul": "p = 4/6 = 66,7 %",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, composition des groupes et historique des législatures",
+       "url": "https://www.assemblee-nationale.fr/dyn/vos-deputes/groupes-politiques"
+      },
+      {
+       "titre": "Assemblée nationale, base historique des députés et des groupes (Sycomore / législatures de la Ve)",
+       "url": "https://www2.assemblee-nationale.fr/sycomore/recherche"
+      },
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "n=6 ; inclut deux cas de dissolution (1981 réussie, 1988 partielle). Calendrier 2027 déduit de la dissolution de 2024 (fait institutionnel, non une actualité 2026)."
+    },
+    {
+     "definition": "Quinquennat avec calendrier inversé (législatives dans la foulée) : 2002, 2007, 2012, 2017, 2022. Oui : 2022.",
+     "periode": "2002-2022",
+     "k": 1,
+     "n": 5,
+     "unite": "élections présidentielles",
+     "frequence": 0.2,
+     "probabilite_fenetre": 20.0,
+     "calcul": "p = 1/5 = 20,0 %",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, composition des groupes et historique des législatures",
+       "url": "https://www.assemblee-nationale.fr/dyn/vos-deputes/groupes-politiques"
+      },
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Configuration institutionnelle différente de 2027 (pas de législatives automatiques) ; n=5."
+    }
+   ],
+   "fourchette": [
+    20.0,
+    66.7
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 66.7,
+    "motif": "Classe la plus proche de la configuration de la fenêtre (président élu face à une Assemblée élue auparavant, majorité absolue du groupe seul rarement obtenue) ; la classe 0 (45,5 %, n=11) sert d'ancrage, la classe 2 ne correspond pas au calendrier 2027."
+   },
+   "issues": {
+    "oui": 66.7,
+    "non": 33.3
+   }
+  },
+  {
+   "id": "EV-18",
+   "classes": [
+    {
+     "definition": "Désignations présidentielles des Verts / EELV par vote interne ou primaire tenu et publié avant le 31/12 de l'année précédant l'élection : 1994 (Voynet), 2001 (Lipietz puis Mamère, oct. 2001), 2006 (Voynet), 2011 (Joly), 2016 (Jadot), 2021 (Jadot). Issue 'candidature autonome' dans 6 cas sur 6.",
+     "periode": "1994-2021",
+     "k": 6,
+     "n": 6,
+     "unite": "désignations présidentielles",
+     "frequence": 1.0,
+     "probabilite_fenetre": 77.8,
+     "calcul": "p(candidature autonome) = 6/6 ; lissage de Laplace sur 3 issues : (6+1)/(6+3) = 77,8 % ; soutien 1/9 = 11,1 % ; autre 1/9 = 11,1 %",
+     "sources": [
+      {
+       "titre": "Les Écologistes (ex-EELV), historique des primaires internes / désignations présidentielles (1994, 2001, 2006, 2011, 2016, 2021)",
+       "url": "https://www.lesecologistes.fr/"
+      },
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Dates et modalités des votes internes de 1994 et 2006 de mémoire, non revérifiées ; ces votes étaient des désignations de candidat, non des votes 'sur la stratégie', ce qui diffère du critère."
+    },
+    {
+     "definition": "Décision finale du parti écologiste à chaque présidentielle depuis 1988 : candidature autonome 1988, 1995, 2002, 2007, 2012, 2022 ; soutien à un autre candidat 2017 (retrait de Jadot pour Hamon, consultation des électeurs de la primaire en février 2017).",
+     "periode": "1988-2022",
+     "k": 6,
+     "n": 7,
+     "unite": "élections présidentielles",
+     "frequence": 0.8571,
+     "probabilite_fenetre": 70.0,
+     "calcul": "p(autonome) = 6/7 ; Laplace sur 3 issues : autonome (6+1)/10 = 70 %, soutien (1+1)/10 = 20 %, autre (0+1)/10 = 10 %",
+     "sources": [
+      {
+       "titre": "Les Écologistes (ex-EELV), historique des primaires internes / désignations présidentielles (1994, 2001, 2006, 2011, 2016, 2021)",
+       "url": "https://www.lesecologistes.fr/"
+      },
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Mesure la décision finale, pas le résultat d'un vote publié avant le 31/12 ; le retrait de 2017 est intervenu après la date équivalente."
+    }
+   ],
+   "fourchette": [
+    70.0,
+    77.8
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 70.0,
+    "motif": "Classe la plus longue et incluant le seul précédent de soutien externe ; aucune classe historique ne couvre une option 'primaire commune', ce qui justifie de garder une masse non nulle pour 'autre'."
+   },
+   "issues": {
+    "candidature autonome": 70.0,
+    "soutien à un autre candidat": 20.0,
+    "autre ou vote non tenu": 10.0
+   }
+  },
+  {
+   "id": "EV-19",
+   "classes": [
+    {
+     "definition": "Nombre de candidats sur la liste du Conseil constitutionnel investis ou soutenus par les partis équivalents à la liste du critère (PS, PCF, Verts/EELV, LO, LCR/NPA, PG-LFI) : 1995 = 4 (Jospin, Hue, Voynet, Laguiller) ; 2002 = 5 (Jospin, Hue, Mamère, Laguiller, Besancenot) ; 2007 = 5 (Royal, Buffet, Voynet, Laguiller, Besancenot) ; 2012 = 5 (Hollande, Mélenchon, Joly, Arthaud, Poutou) ; 2017 = 4 (Hamon, Mélenchon, Arthaud, Poutou) ; 2022 = 6 (Mélenchon, Hidalgo, Jadot, Roussel, Arthaud, Poutou).",
+     "periode": "1995-2022",
+     "k": 3,
+     "n": 6,
+     "unite": "élections présidentielles",
+     "frequence": 0.5,
+     "probabilite_fenetre": 40.0,
+     "calcul": "Comptes par issue : ≤3 : 0, 4 : 2, 5 : 3, 6+ : 1 ; Laplace sur 4 issues (n+4=10) : 10 / 30 / 40 / 20 %. k/n affiché = issue modale '5' (3/6).",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      },
+      {
+       "titre": "Ministère de l'Intérieur, archives des résultats électoraux",
+       "url": "https://www.archives-resultats-elections.interieur.gouv.fr/"
+      }
+     ],
+     "incertitude": "Correspondance des partis d'hier avec ceux du critère (LCR→NPA, PG/FdG→LFI) ; Debout ! et Place publique sans équivalent historique."
+    },
+    {
+     "definition": "Tous les candidats de gauche et écologistes sur la liste officielle (définition large, y compris PT, MDC, PRG, PSU, alter) : 1965 = 1, 1969 = 4, 1974 = 3, 1981 = 5, 1988 = 6, 1995 = 4, 2002 = 8, 2007 = 7, 2012 = 5, 2017 = 4, 2022 = 6.",
+     "periode": "1965-2022",
+     "k": 4,
+     "n": 11,
+     "unite": "élections présidentielles",
+     "frequence": 0.3636,
+     "probabilite_fenetre": 36.4,
+     "calcul": "Comptes : ≤3 : 2, 4 : 3, 5 : 2, 6+ : 4 ; issue '6 ou plus' = 4/11 = 36,4 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      },
+      {
+       "titre": "Ministère de l'Intérieur, archives des résultats électoraux",
+       "url": "https://www.archives-resultats-elections.interieur.gouv.fr/"
+      }
+     ],
+     "incertitude": "Définition plus large que le critère (inclut des formations hors liste) ; surestime donc les issues hautes."
+    }
+   ],
+   "fourchette": [
+    36.4,
+    40.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 40.0,
+    "motif": "Classe la plus proche du critère (mêmes familles de partis, période où toutes existent) ; lissage de Laplace pour ne pas exclure '3 ou moins' (jamais observé depuis 1995)."
+   },
+   "issues": {
+    "3 ou moins": 10.0,
+    "4": 30.0,
+    "5": 40.0,
+    "6 ou plus": 20.0
+   }
+  },
+  {
+   "id": "EV-20",
+   "classes": [
+    {
+     "definition": "Pourvois en cassation de personnalités politiques nationales contre un arrêt de cour d'appel en matière d'atteinte à la probité, récents : Fillon (CA 09/05/2022 → Cass. 24/04/2024, cassation partielle sur la peine, ~23,5 mois), Sarkozy 'Bismuth' (CA 17/05/2023 → Cass. 18/12/2024, rejet, ~19 mois), Sarkozy 'Bygmalion' (CA 14/02/2024 → Cass. 26/11/2025, rejet, ~21 mois). Arrêt rendu en moins de 8,8 mois (07/07/2026 → 31/03/2027) : 0 sur 3.",
+     "periode": "2022-2025",
+     "k": 0,
+     "n": 3,
+     "unite": "pourvois",
+     "frequence": 0.0,
+     "probabilite_fenetre": 80.0,
+     "calcul": "Arrêt dans la fenêtre : 0/3 ; Laplace (0+1)/(3+2) = 20 % d'arrêt, donc 80 % 'pas d'arrêt'. Issue conditionnelle à un arrêt : rejet 2/3, cassation 1/3.",
+     "sources": [
+      {
+       "titre": "Actu-Juridique, affaire Fillon : audience de cassation du 28/02/2024, décision au 24/04/2024",
+       "url": "https://www.actu-juridique.fr/penal/affaire-fillon-face-au-poison-du-doute-lantidote-cest-la-cassation-totale-plaide-la-defense/"
+      },
+      {
+       "titre": "Le Club des Juristes, Bygmalion : la Cour de cassation rejette le pourvoi de Nicolas Sarkozy",
+       "url": "https://www.leclubdesjuristes.com/en-bref/affaire-bygmalion-la-cour-de-cassation-rejette-le-pourvoi-de-nicolas-sarkozy-13123/"
+      },
+      {
+       "titre": "Euronews, la Cour de cassation confirme la condamnation de Nicolas Sarkozy (affaire Bygmalion, 26/11/2025)",
+       "url": "https://euronews.com/2025/11/26/frances-top-court-upholds-ex-president-sarkozys-conviction-for-illegal-campaign-financing"
+      }
+     ],
+     "incertitude": "n=3 ; le délai Fillon a été allongé par une QPC ; dates des arrêts Bismuth et Fillon en partie de mémoire (Fillon confirmé par la source)."
+    },
+    {
+     "definition": "Ensemble des pourvois de la chambre criminelle : 6 977 pourvois en 2024, 42 % terminés par arrêt (le reste par ordonnance : non-admission, désistement, déchéance), délais en hausse de 5 mois entre 2020 et 2024 ; pourvois 'à délai' (détention) 28 %. Le désistement est une issue observée mais minoritaire.",
+     "periode": "2020-2024",
+     "k": 42,
+     "n": 100,
+     "unite": "pourvois (pourcentage terminé par arrêt)",
+     "frequence": 0.42,
+     "probabilite_fenetre": 42.0,
+     "calcul": "Pas de taux de délai exploitable vérifié ; part des terminaisons par arrêt = 42 %. Utilisée seulement pour confirmer que désistement et ordonnances existent et que l'issue 'cassation' est minoritaire.",
+     "sources": [
+      {
+       "titre": "Analyse du rapport d'activité 2024 de la Cour de cassation (chambre criminelle : 6 977 pourvois, 42 % terminés par arrêt, délais en hausse de 5 mois 2020-2024)",
+       "url": "https://www.avocat-caresche.fr/quelles-conclusions-tirer-du-rapport-d---activite-de-la-cour-de-cassation-de-2024----_ad641.html"
+      }
+     ],
+     "incertitude": "Chiffres de délai moyen et taux de cassation de la chambre criminelle non vérifiés ici ; classe peu comparable (majorité de pourvois sans avocat aux Conseils et de contentieux de la détention)."
+    }
+   ],
+   "fourchette": [
+    42.0,
+    80.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 78.0,
+    "motif": "Seule classe comparable (personnalités politiques, pourvois de fond, avocats aux Conseils) ; aucun précédent jugé en moins de 19 mois. Répartition : pas d'arrêt 78, puis les 20 % d'arrêt répartis rejet ~2/3, cassation ~1/3, avec 3 points pour le désistement (issue observée en général, jamais dans la classe). Probabilité retenue affichée = issue 'pas d'arrêt' (80 % de la classe, moins 2 points transférés au désistement)."
+   },
+   "issues": {
+    "rejet": 13.0,
+    "cassation totale ou partielle": 6.0,
+    "désistement": 3.0,
+    "pas d'arrêt au 31 mars 2027": 78.0
+   }
+  },
+  {
+   "id": "EV-21",
+   "classes": [
+    {
+     "definition": "Finalistes battus au second tour figurant sur la liste officielle de l'élection suivante : Mitterrand 1965→1969 non ; Poher 1969→1974 non ; Mitterrand 1974→1981 oui ; Giscard 1981→1988 non ; Chirac 1988→1995 oui ; Jospin 1995→2002 oui ; J.-M. Le Pen 2002→2007 oui ; Royal 2007→2012 non ; Sarkozy 2012→2017 non ; M. Le Pen 2017→2022 oui.",
+     "periode": "1965-2022",
+     "k": 5,
+     "n": 10,
+     "unite": "finalistes battus",
+     "frequence": 0.5,
+     "probabilite_fenetre": 50.0,
+     "calcul": "p = 5/10 = 50,0 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Classe générique qui ignore la situation pénale (condamnation en première instance du 31/03/2025 à une inéligibilité avec exécution provisoire), faute de précédent."
+    },
+    {
+     "definition": "Présidentielles où le président du FN/RN (ou son candidat désigné) figure sur la liste officielle : 1974, 1988, 1995, 2002, 2007, 2012, 2017, 2022 oui ; 1981 non (parrainages insuffisants).",
+     "periode": "1974-2022",
+     "k": 8,
+     "n": 9,
+     "unite": "élections présidentielles",
+     "frequence": 0.8889,
+     "probabilite_fenetre": 88.9,
+     "calcul": "p = 8/9 = 88,9 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Classe de parti, pas de personne : ne mesure pas la probabilité que ce soit Marine Le Pen."
+    },
+    {
+     "definition": "Responsables politiques nationaux frappés en première instance d'une inéligibilité avec exécution provisoire avant une présidentielle : aucun précédent sous la Ve.",
+     "periode": "1958-2026",
+     "k": 0,
+     "n": 0,
+     "unite": "cas",
+     "frequence": null,
+     "probabilite_fenetre": 50.0,
+     "calcul": "Aucune classe : probabilité non informative 50 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Absence de classe de référence ; 50 % retenu comme valeur non informative."
+    }
+   ],
+   "fourchette": [
+    50.0,
+    88.9
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 50.0,
+    "motif": "Classe personnelle la plus proche (finaliste battue se représentant) ; elle coïncide avec la valeur non informative de la classe 2 ; la classe parti (88,9 %) ne dit rien de la personne."
+   },
+   "issues": {
+    "oui": 50.0,
+    "non": 50.0
+   }
+  },
+  {
+   "id": "EV-23",
+   "classes": [
+    {
+     "definition": "Participation au 1er tour des présidentielles (inscrits, France entière) : 1965 84,75 ; 1969 77,59 ; 1974 84,23 ; 1981 81,09 ; 1988 81,38 ; 1995 78,38 ; 2002 71,60 ; 2007 83,77 ; 2012 79,48 ; 2017 77,77 ; 2022 73,69.",
+     "periode": "1965-2022",
+     "k": 5,
+     "n": 11,
+     "unite": "élections présidentielles",
+     "frequence": 0.4545,
+     "probabilite_fenetre": 45.5,
+     "calcul": "Comptes : <70 : 0 ; 70-75 : 2 ; 75-80 : 4 ; ≥80 : 5. Issue modale '80 % ou plus' = 5/11 = 45,5 %",
+     "sources": [
+      {
+       "titre": "Insee, série : taux de participation au 1er tour des élections présidentielles",
+       "url": "https://www.insee.fr/fr/statistiques/serie/001778322"
+      },
+      {
+       "titre": "Ministère de l'Intérieur, archives des résultats électoraux",
+       "url": "https://www.archives-resultats-elections.interieur.gouv.fr/"
+      },
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Valeurs de mémoire, cohérentes avec les séries Insee et Intérieur ; écarts métropole / France entière inférieurs à 1 point, sans effet sur les classes sauf 2012 (79,5)."
+    },
+    {
+     "definition": "Même série depuis 1995 (6 élections : 1995, 2002, 2007, 2012, 2017, 2022) : <70 : 0 ; 70-75 : 2002, 2022 ; 75-80 : 1995, 2012, 2017 ; ≥80 : 2007.",
+     "periode": "1995-2022",
+     "k": 3,
+     "n": 6,
+     "unite": "élections présidentielles",
+     "frequence": 0.5,
+     "probabilite_fenetre": 40.0,
+     "calcul": "Comptes 0/2/3/1 ; Laplace sur 4 issues (n+4 = 10) : <70 : 10 % ; 70-75 : 30 % ; 75-80 : 40 % ; ≥80 : 20 %. k/n affiché = issue modale 75-80 (3/6).",
+     "sources": [
+      {
+       "titre": "Ministère de l'Intérieur, annexe 4 du dossier de presse 2017 : taux de participation depuis 1995",
+       "url": "https://www.interieur.gouv.fr/Archives/Archives-ministres-de-l-Interieur/Archives-Gerard-Collomb-mai-2017-octobre-2018/Dossiers-de-presse/Dossier-de-presse-de-l-election-du-President-de-la-Republique-2017/Annexe-n-4-les-taux-de-participation-aux-1er-et-2nd-tours-de-l-election-presidentielle-depuis-1995"
+      },
+      {
+       "titre": "Insee, série : taux de participation au 1er tour des élections présidentielles",
+       "url": "https://www.insee.fr/fr/statistiques/serie/001778322"
+      }
+     ],
+     "incertitude": "n=6 ; tendance à la baisse non modélisée."
+    },
+    {
+     "definition": "Trois dernières élections (2012, 2017, 2022) : 75-80 : 2 ; 70-75 : 1.",
+     "periode": "2012-2022",
+     "k": 2,
+     "n": 3,
+     "unite": "élections présidentielles",
+     "frequence": 0.6667,
+     "probabilite_fenetre": 66.7,
+     "calcul": "p(75-80) = 2/3 = 66,7 %",
+     "sources": [
+      {
+       "titre": "Ministère de l'Intérieur, annexe 4 du dossier de presse 2017 : taux de participation depuis 1995",
+       "url": "https://www.interieur.gouv.fr/Archives/Archives-ministres-de-l-Interieur/Archives-Gerard-Collomb-mai-2017-octobre-2018/Dossiers-de-presse/Dossier-de-presse-de-l-election-du-President-de-la-Republique-2017/Annexe-n-4-les-taux-de-participation-aux-1er-et-2nd-tours-de-l-election-presidentielle-depuis-1995"
+      }
+     ],
+     "incertitude": "n=3, très instable."
+    }
+   ],
+   "fourchette": [
+    40.0,
+    66.7
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 40.0,
+    "motif": "Période récente (post-2002) plus représentative du niveau actuel de participation que les années 1960-1980 ; lissage pour ne pas exclure '<70 %'."
+   },
+   "issues": {
+    "moins de 70 %": 10.0,
+    "70 à moins de 75 %": 30.0,
+    "75 à moins de 80 %": 40.0,
+    "80 % ou plus": 20.0
+   }
+  },
+  {
+   "id": "EV-40a",
+   "classes": [
+    {
+     "definition": "Finalistes battus au second tour : qualifiés au second tour de l'élection suivante (inconditionnel, candidature incluse) : Mitterrand 1974→1981, Chirac 1988→1995, M. Le Pen 2017→2022 oui ; Mitterrand 1965→69, Poher, Giscard 1981→88, Jospin 1995→2002, J.-M. Le Pen 2002→07, Royal, Sarkozy non.",
+     "periode": "1965-2022",
+     "k": 3,
+     "n": 10,
+     "unite": "finalistes battus",
+     "frequence": 0.3,
+     "probabilite_fenetre": 30.0,
+     "calcul": "p = 3/10 = 30,0 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "n=10 ; inclut le risque de non-candidature (cohérent avec EV-21 : 30/50 = 60 % conditionnel)."
+    },
+    {
+     "definition": "Candidat FN/RN qualifié au second tour, élections où le parti était présent : 2002, 2017, 2022 sur 1974, 1988, 1995, 2002, 2007, 2012, 2017, 2022.",
+     "periode": "1974-2022",
+     "k": 3,
+     "n": 8,
+     "unite": "élections présidentielles",
+     "frequence": 0.375,
+     "probabilite_fenetre": 37.5,
+     "calcul": "p = 3/8 = 37,5 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Classe de parti, conditionnelle à la présence d'un candidat."
+    },
+    {
+     "definition": "Même classe depuis 1995 : 2002, 2017, 2022 qualifiés sur 1995, 2002, 2007, 2012, 2017, 2022.",
+     "periode": "1995-2022",
+     "k": 3,
+     "n": 6,
+     "unite": "élections présidentielles",
+     "frequence": 0.5,
+     "probabilite_fenetre": 50.0,
+     "calcul": "p = 3/6 = 50,0 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Conditionnelle à la candidature ; ne porte pas sur la personne."
+    }
+   ],
+   "fourchette": [
+    30.0,
+    50.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 30.0,
+    "motif": "Le critère porte sur la personne, donc la classe doit inclure le risque de non-candidature ; la classe 0 est personnelle et inconditionnelle."
+   },
+   "issues": {
+    "oui": 30.0,
+    "non": 70.0
+   }
+  },
+  {
+   "id": "EV-40b",
+   "classes": [
+    {
+     "definition": "Anciens Premiers ministres (ou PM en fonction) déclarés candidats ou s'étant lancés dans la course (primaire comprise), qualifiés au second tour : Pompidou 1969 oui, Chirac 1988 oui, Chirac 1995 oui ; Chaban 1974, Chirac 1981, Debré 1981, Barre 1988, Balladur 1995, Jospin 2002, Villepin 2012 (non candidat in fine), Juppé 2017 (primaire), Fillon 2017, Valls 2017 (primaire) non.",
+     "periode": "1969-2022",
+     "k": 3,
+     "n": 13,
+     "unite": "ex-PM déclarés",
+     "frequence": 0.2308,
+     "probabilite_fenetre": 23.1,
+     "calcul": "p = 3/13 = 23,1 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      },
+      {
+       "titre": "Gouvernement.fr, liste des gouvernements de la Ve République",
+       "url": "https://www.info.gouv.fr/historique-des-gouvernements"
+      }
+     ],
+     "incertitude": "Liste de déclarations de mémoire ; inclut l'échec à figurer sur la liste (inconditionnel)."
+    },
+    {
+     "definition": "Candidat principal du bloc central (centre, centre-droit non gaulliste ou majorité présidentielle centriste) qualifié : Poher 1969, Giscard 1974, Giscard 1981, Macron 2017, Macron 2022 oui ; Lecanuet 1965, Barre 1988, Balladur 1995, Bayrou 2002, 2007, 2012 non.",
+     "periode": "1965-2022",
+     "k": 5,
+     "n": 11,
+     "unite": "élections présidentielles",
+     "frequence": 0.4545,
+     "probabilite_fenetre": 45.5,
+     "calcul": "p = 5/11 = 45,5 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Classe de bloc ; ne dit pas quel candidat du bloc qualifie si plusieurs se présentent."
+    },
+    {
+     "definition": "Anciens PM ou PM en fonction figurant sur la liste, qualifiés (conditionnel à la candidature) : Pompidou 1969, Chirac 1988, Chirac 1995 oui ; Chaban 1974, Chirac 1981, Debré 1981, Barre 1988, Balladur 1995, Jospin 2002, Fillon 2017 non.",
+     "periode": "1969-2022",
+     "k": 3,
+     "n": 10,
+     "unite": "ex-PM candidats",
+     "frequence": 0.3,
+     "probabilite_fenetre": 30.0,
+     "calcul": "p = 3/10 = 30,0 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Conditionnelle à la candidature."
+    }
+   ],
+   "fourchette": [
+    23.1,
+    45.5
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 23.1,
+    "motif": "Classe personnelle et inconditionnelle (ex-PM ayant déclaré une ambition présidentielle) ; la classe bloc (45,5 %) surestime la part d'un individu quand le bloc peut avoir plusieurs candidats."
+   },
+   "issues": {
+    "oui": 23.1,
+    "non": 76.9
+   }
+  },
+  {
+   "id": "EV-40c",
+   "classes": [
+    {
+     "definition": "Candidats ayant obtenu au moins 10 % au 1er tour sans qualifier : qualifiés à l'élection suivante (inconditionnel). Oui : Chirac 1981→1988, J.-M. Le Pen 1995→2002, M. Le Pen 2012→2017. Non : Lecanuet 1965, Duclos 1969, Chaban 1974, Marchais 1981, Barre 1988, J.-M. Le Pen 1988, Balladur 1995, Bayrou 2007, Mélenchon 2012, Fillon 2017, Mélenchon 2017.",
+     "periode": "1965-2022",
+     "k": 3,
+     "n": 14,
+     "unite": "candidats ≥10 % non qualifiés",
+     "frequence": 0.2143,
+     "probabilite_fenetre": 21.4,
+     "calcul": "p = 3/14 = 21,4 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Seuil de 10 % arbitraire ; scores de mémoire."
+    },
+    {
+     "definition": "Candidats ayant déjà échoué au moins une fois au 1er tour et se représentant : qualifiés (Chirac 1988, J.-M. Le Pen 2002, M. Le Pen 2017) sur 27 candidatures (Laguiller ×5, Krivine, J.-M. Le Pen 1988 et 1995, Hue, Besancenot, Bayrou ×2, Mélenchon ×2, Dupont-Aignan ×2, Arthaud ×2, Poutou ×2, Cheminade ×2, Lassalle, Voynet…).",
+     "periode": "1974-2022",
+     "k": 3,
+     "n": 27,
+     "unite": "candidatures répétées",
+     "frequence": 0.1111,
+     "probabilite_fenetre": 11.1,
+     "calcul": "p = 3/27 = 11,1 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Conditionnelle à la candidature ; mélange petits et grands candidats."
+    },
+    {
+     "definition": "Même classe que 0, restreinte à ceux qui se sont représentés : Chirac 1988, J.-M. Le Pen 1995 (non) puis 2002 (oui), M. Le Pen 2017, Bayrou 2012, Mélenchon 2017 et 2022 : 3/6.",
+     "periode": "1981-2022",
+     "k": 3,
+     "n": 6,
+     "unite": "candidats ≥10 % se représentant",
+     "frequence": 0.5,
+     "probabilite_fenetre": 50.0,
+     "calcul": "p = 3/6 = 50,0 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Conditionnelle à la candidature ; n=6."
+    }
+   ],
+   "fourchette": [
+    11.1,
+    50.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 21.4,
+    "motif": "Classe inconditionnelle et ciblée sur des candidats de son niveau (≥10 %), au risque de non-candidature inclus."
+   },
+   "issues": {
+    "oui": 21.4,
+    "non": 78.6
+   }
+  },
+  {
+   "id": "EV-40d",
+   "classes": [
+    {
+     "definition": "Primo-candidats sans expérience ministérielle et ne dirigeant pas un parti ayant fait ≥10 % à la présidentielle précédente (Tixier-Vignancour, Barbu, Rocard 1969, Krivine, Dumont, J.-M. Le Pen 1974, Royer exclu, Lalonde, Bouchardeau, Garaud, Waechter, Juquin, Voynet, Cheminade, Mamère, Besancenot, Boutin, Mégret, Taubira, Bové, Nihous, Joly, Poutou, Arthaud, M. Le Pen 2012, Lassalle, Asselineau, Zemmour, Roussel, Jadot…) : aucun qualifié.",
+     "periode": "1965-2022",
+     "k": 0,
+     "n": 40,
+     "unite": "primo-candidats (environ)",
+     "frequence": 0.0,
+     "probabilite_fenetre": 2.4,
+     "calcul": "Laplace : (0+1)/(40+2) = 2,4 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "n approximatif (≈40) ; conditionnelle à la candidature (l'inconditionnelle serait plus basse)."
+    },
+    {
+     "definition": "Candidat principal de la droite gaulliste qualifié (1965-2022) : 7/11 ; depuis 2017 : 0/2.",
+     "periode": "1965-2022",
+     "k": 7,
+     "n": 11,
+     "unite": "élections présidentielles",
+     "frequence": 0.6364,
+     "probabilite_fenetre": 63.6,
+     "calcul": "p = 7/11 = 63,6 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Classe de bloc, pertinente seulement si Lisnard était le candidat unique de ce bloc, ce que la classe ne mesure pas."
+    }
+   ],
+   "fourchette": [
+    2.4,
+    63.6
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 2.4,
+    "motif": "Personne n'ayant jamais été candidat ni ministre, à la tête d'une petite formation : la classe individuelle s'applique ; la classe bloc ne porte pas sur la personne."
+   },
+   "issues": {
+    "oui": 2.4,
+    "non": 97.6
+   }
+  },
+  {
+   "id": "EV-40e",
+   "classes": [
+    {
+     "definition": "Ex-PM présidentiables (déclarés ou non) : probabilité de figurer sur la liste (classe EV-41, 7/12 ≈ 58 %) × probabilité de qualification conditionnelle d'un ex-PM candidat (3/10 = 30 %).",
+     "periode": "1969-2022",
+     "k": 3,
+     "n": 10,
+     "unite": "ex-PM",
+     "frequence": 0.3,
+     "probabilite_fenetre": 17.4,
+     "calcul": "p = 0,58 × 0,30 = 17,4 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      },
+      {
+       "titre": "Gouvernement.fr, liste des gouvernements de la Ve République",
+       "url": "https://www.info.gouv.fr/historique-des-gouvernements"
+      }
+     ],
+     "incertitude": "Produit de deux classes estimées sur de petits n ; indépendance supposée."
+    },
+    {
+     "definition": "Ex-PM déclarés candidats, qualification inconditionnelle (classe EV-40b) : 3/13.",
+     "periode": "1969-2022",
+     "k": 3,
+     "n": 13,
+     "unite": "ex-PM déclarés",
+     "frequence": 0.2308,
+     "probabilite_fenetre": 23.1,
+     "calcul": "p = 23,1 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Suppose une déclaration de candidature, non constatée historiquement pour Attal à la date de la classe."
+    },
+    {
+     "definition": "Candidat principal du bloc central qualifié : 5/11.",
+     "periode": "1965-2022",
+     "k": 5,
+     "n": 11,
+     "unite": "élections présidentielles",
+     "frequence": 0.4545,
+     "probabilite_fenetre": 45.5,
+     "calcul": "p = 45,5 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Classe de bloc."
+    }
+   ],
+   "fourchette": [
+    17.4,
+    45.5
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 17.4,
+    "motif": "Combine la probabilité historique qu'un ex-PM présidentiable se présente effectivement et la qualification conditionnelle d'un ex-PM candidat."
+   },
+   "issues": {
+    "oui": 17.4,
+    "non": 82.6
+   }
+  },
+  {
+   "id": "EV-40f",
+   "classes": [
+    {
+     "definition": "Têtes de liste arrivées dans les trois premières aux européennes à liste nationale (1979, 1984, 1989, 1994, 1999, 2019) qualifiées à la présidentielle suivante : seul Mitterrand (1979→1981) ; 1 sur 18.",
+     "periode": "1979-2022",
+     "k": 1,
+     "n": 18,
+     "unite": "têtes de liste",
+     "frequence": 0.0556,
+     "probabilite_fenetre": 5.6,
+     "calcul": "p = 1/18 = 5,6 %",
+     "sources": [
+      {
+       "titre": "Ministère de l'Intérieur, résultats des élections européennes (listes nationales 1979-1999, 2019)",
+       "url": "https://www.archives-resultats-elections.interieur.gouv.fr/"
+      },
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Exclut les européennes à huit circonscriptions (2004-2014) ; inconditionnel."
+    },
+    {
+     "definition": "Primo-candidats sans expérience ministérielle et ne dirigeant pas un parti à ≥10 % à la présidentielle précédente : 0/40 qualifiés.",
+     "periode": "1965-2022",
+     "k": 0,
+     "n": 40,
+     "unite": "primo-candidats (environ)",
+     "frequence": 0.0,
+     "probabilite_fenetre": 2.4,
+     "calcul": "Laplace : 1/42 = 2,4 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Conditionnelle à la candidature ; n approximatif."
+    },
+    {
+     "definition": "Candidat principal de la gauche non communiste (PS ou équivalent) qualifié : 1965, 1974, 1981, 1988, 1995, 2007, 2012 oui ; 1969, 2002, 2017, 2022 non.",
+     "periode": "1965-2022",
+     "k": 7,
+     "n": 11,
+     "unite": "élections présidentielles",
+     "frequence": 0.6364,
+     "probabilite_fenetre": 63.6,
+     "calcul": "p = 7/11 = 63,6 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Classe de bloc ; ne porte pas sur la personne et ignore la concurrence LFI."
+    }
+   ],
+   "fourchette": [
+    2.4,
+    63.6
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 5.6,
+    "motif": "Classe individuelle la plus spécifique (tête de liste européenne en bonne position, jamais candidat à la présidentielle)."
+   },
+   "issues": {
+    "oui": 5.6,
+    "non": 94.4
+   }
+  },
+  {
+   "id": "EV-40g",
+   "classes": [
+    {
+     "definition": "Dirigeant du principal parti gaulliste l'année précédant une présidentielle sans sortant de ce parti, qualifié : Chirac 1988 et 1995, Sarkozy 2007 oui ; Poujade 1969, Sanguinetti 1974, Chirac 1981, Alliot-Marie 2002, Sarkozy 2017 (primaire), Jacob 2022 non.",
+     "periode": "1969-2022",
+     "k": 3,
+     "n": 9,
+     "unite": "dirigeants de parti",
+     "frequence": 0.3333,
+     "probabilite_fenetre": 33.3,
+     "calcul": "p = 3/9 = 33,3 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Identité des dirigeants de 1969 et 1974 de mémoire ; inconditionnel (inclut le risque de ne pas être le candidat)."
+    },
+    {
+     "definition": "Candidat principal de la droite gaulliste qualifié : 1965, 1969, 1988, 1995, 2002, 2007, 2012 oui ; 1974, 1981, 2017, 2022 non.",
+     "periode": "1965-2022",
+     "k": 7,
+     "n": 11,
+     "unite": "élections présidentielles",
+     "frequence": 0.6364,
+     "probabilite_fenetre": 63.6,
+     "calcul": "p = 7/11 = 63,6 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Conditionnelle à être le candidat du bloc."
+    },
+    {
+     "definition": "Même classe depuis 2017 : 0/2.",
+     "periode": "2017-2022",
+     "k": 0,
+     "n": 2,
+     "unite": "élections présidentielles",
+     "frequence": 0.0,
+     "probabilite_fenetre": 25.0,
+     "calcul": "p = 0/2 = 0 % ; Laplace 1/4 = 25 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "n=2."
+    }
+   ],
+   "fourchette": [
+    25.0,
+    63.6
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 33.3,
+    "motif": "Classe personnelle (chef du parti) et inconditionnelle, entre la classe bloc longue (63,6 %) et la classe récente (25 %)."
+   },
+   "issues": {
+    "oui": 33.3,
+    "non": 66.7
+   }
+  },
+  {
+   "id": "EV-41",
+   "classes": [
+    {
+     "definition": "Anciens PM présidentiables (ambition publique dans les deux ans précédant le scrutin) figurant sur la liste : Chaban 1974, Chirac 1981, Chirac 1988, Barre 1988, Balladur 1995, Jospin 2002, Fillon 2017 oui ; Rocard 1988 et 1995, Villepin 2012, Juppé 2017, Valls 2017 non.",
+     "periode": "1974-2022",
+     "k": 7,
+     "n": 12,
+     "unite": "ex-PM présidentiables",
+     "frequence": 0.5833,
+     "probabilite_fenetre": 58.3,
+     "calcul": "p = 7/12 = 58,3 % (appliqué à Attal)",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      },
+      {
+       "titre": "Gouvernement.fr, liste des gouvernements de la Ve République",
+       "url": "https://www.info.gouv.fr/historique-des-gouvernements"
+      }
+     ],
+     "incertitude": "Notion de 'présidentiable' subjective ; liste de mémoire."
+    },
+    {
+     "definition": "Anciens PM (ou PM en fonction) ayant déclaré leur candidature à la présidentielle ou à une primaire, figurant sur la liste : Chaban 1974, Chirac 1981, Chirac 1988, Barre 1988, Balladur 1995, Jospin 2002, Fillon 2017 oui ; Villepin 2012, Juppé 2017, Valls 2017 non.",
+     "periode": "1974-2022",
+     "k": 7,
+     "n": 10,
+     "unite": "ex-PM déclarés",
+     "frequence": 0.7,
+     "probabilite_fenetre": 70.0,
+     "calcul": "p = 7/10 = 70,0 % (appliqué à Philippe, déclaré en 2024)",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "Déclarations de mémoire ; n=10 ; la déclaration de Philippe (2024) est un fait antérieur à la fenêtre, utilisé seulement pour choisir la classe."
+    },
+    {
+     "definition": "Cas où deux anciens PM du même camp visaient l'Élysée : tous deux sur la liste en 1981 (Chirac, Debré), 1988 (Chirac, Barre), 1995 (Chirac, Balladur) ; un seul en 2012 (Sarkozy sortant / Villepin) et 2017 (Juppé, Fillon via primaire).",
+     "periode": "1981-2017",
+     "k": 3,
+     "n": 5,
+     "unite": "élections",
+     "frequence": 0.6,
+     "probabilite_fenetre": 60.0,
+     "calcul": "p(les deux) = 3/5 = 60,0 %",
+     "sources": [
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "n=5 ; 2012 inclut un président sortant."
+    }
+   ],
+   "fourchette": [
+    58.3,
+    70.0
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 40.8,
+    "motif": "Probabilités individuelles des classes 0 (Attal 58,3 %) et 1 (Philippe 70 %), combinées sous hypothèse d'indépendance : les deux 0,70×0,583 = 40,8 ; Philippe seul 29,2 ; Attal seul 17,5 ; aucun 12,5. La classe 2 (60 % les deux) borne le haut. Probabilité retenue affichée = issue 'les deux'."
+   },
+   "issues": {
+    "les deux": 40.8,
+    "Philippe seul": 29.2,
+    "Attal seul": 17.5,
+    "aucun des deux": 12.5
+   }
+  },
+  {
+   "id": "EV-43",
+   "classes": [
+    {
+     "definition": "Au 30 septembre de l'année suivant chaque présidentielle (≈16 mois), PM membre d'un parti ayant soutenu un autre candidat au 1er tour : oui 1975 (Chirac, UDR, qui soutenait Chaban en 1974) ; non 1966, 1970, 1982, 1989, 1996, 2003, 2008, 2013, 2018, 2023.",
+     "periode": "1965-2022",
+     "k": 1,
+     "n": 11,
+     "unite": "présidentielles",
+     "frequence": 0.0909,
+     "probabilite_fenetre": 9.1,
+     "calcul": "p = 1/11 = 9,1 %",
+     "sources": [
+      {
+       "titre": "Gouvernement.fr, liste des gouvernements de la Ve République",
+       "url": "https://www.info.gouv.fr/historique-des-gouvernements"
+      },
+      {
+       "titre": "Légifrance, décrets de nomination des Premiers ministres (JO)",
+       "url": "https://www.legifrance.gouv.fr/"
+      },
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "2003 : Raffarin membre de l'UMP, créée après le 1er tour de 2002 (compté non) ; 2018 : Philippe sans parti après son départ de LR (compté non)."
+    },
+    {
+     "definition": "Présidentielles non suivies de législatives automatiques (1965, 1969, 1974, 1981, 1988, 1995) : oui 1974.",
+     "periode": "1965-1995",
+     "k": 1,
+     "n": 6,
+     "unite": "présidentielles",
+     "frequence": 0.1667,
+     "probabilite_fenetre": 16.7,
+     "calcul": "p = 1/6 = 16,7 %",
+     "sources": [
+      {
+       "titre": "Gouvernement.fr, liste des gouvernements de la Ve République",
+       "url": "https://www.info.gouv.fr/historique-des-gouvernements"
+      },
+      {
+       "titre": "Conseil constitutionnel, élections présidentielles (listes des candidats et proclamations des résultats)",
+       "url": "https://www.conseil-constitutionnel.fr/les-decisions/elections-presidentielles"
+      }
+     ],
+     "incertitude": "n=6 ; configuration de calendrier proche de 2027."
+    },
+    {
+     "definition": "Part du temps sous la Ve (08/01/1959-04/10/2026, 67,7 ans) où le PM appartenait à un parti ayant soutenu un autre candidat au 1er tour de la dernière présidentielle : Chirac 1974-76 (2,25 ans), Chirac 1986-88 (2,14), Balladur 1993-95 (2,13), Jospin 1997-2002 (4,93), Barnier 2024 (0,27) = 11,7 ans.",
+     "periode": "1959-2026",
+     "k": 117,
+     "n": 677,
+     "unite": "dixièmes d'année",
+     "frequence": 0.1728,
+     "probabilite_fenetre": 17.3,
+     "calcul": "p = 11,7/67,7 = 17,3 %",
+     "sources": [
+      {
+       "titre": "Gouvernement.fr, liste des gouvernements de la Ve République",
+       "url": "https://www.info.gouv.fr/historique-des-gouvernements"
+      },
+      {
+       "titre": "Légifrance, décrets de nomination des Premiers ministres (JO)",
+       "url": "https://www.legifrance.gouv.fr/"
+      }
+     ],
+     "incertitude": "Durées arrondies de mémoire ; Barnier compté (LR soutenait Pécresse en 2022)."
+    }
+   ],
+   "fourchette": [
+    9.1,
+    17.3
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 16.7,
+    "motif": "Classe la plus proche de la configuration 2027 (Assemblée élue avant la présidentielle) ; la classe temporelle (17,3 %) la confirme."
+   },
+   "issues": {
+    "oui": 16.7,
+    "non": 83.3
+   }
+  }
+ ]
+}

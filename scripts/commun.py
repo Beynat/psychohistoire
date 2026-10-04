@@ -17,9 +17,14 @@ VARIABLES = {
                        "proxy": "ecart_FR_DE_journalier_pb"},
     "inflation_ipch_FR": {"nom": "inflation IPCH France sur un an", "unite": "%", "delai": 1},
     "chomage_FR": {"nom": "taux de chômage France (Eurostat, CVS)", "unite": "%", "delai": 1},
+    # Ajouts de la relecture 8 (4 octobre 2026) : énergie et confiance, canal prix → vote.
+    "brent_mensuel": {"nom": "prix du Brent, moyenne mensuelle (EIA)", "unite": "$/baril", "delai": 1,
+                      "proxy": "brent_journalier"},
+    "inflation_energie_FR": {"nom": "inflation IPCH énergie France sur un an (Eurostat)", "unite": "%", "delai": 1},
+    "confiance_menages_FR": {"nom": "indicateur synthétique de confiance des ménages (Insee, CVS)", "unite": "points", "delai": 1},
 }
 # Ancrage quotidien (cycle à blanc) : quand une série mensuelle publiée tard a un équivalent quotidien
-# (« proxy »), le niveau de départ est la moyenne des 5 dernières observations quotidiennes, corrigée
+# (« proxy »), le niveau de départ est la dernière observation quotidienne (moyenne des 5 dernières jusqu'à l'essai du 4 octobre 2026), corrigée
 # du décalage moyen entre la série mensuelle et la moyenne mensuelle du proxy sur les 12 derniers mois
 # communs. Le mois de départ est celui de la dernière observation quotidienne.
 HORIZONS = (1, 2, 3)          # mois après le mois du gel

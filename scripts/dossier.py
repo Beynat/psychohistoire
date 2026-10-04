@@ -39,6 +39,7 @@ LIBELLES = {
     "brent_journalier": ("Prix spot du Brent, quotidien (EIA)", "$/baril"),
     "brent_mensuel": ("Prix spot du Brent, moyenne mensuelle (EIA)", "$/baril"),
     "inflation_energie_FR": ("Inflation IPCH énergie, France, sur un an (Eurostat)", "%"),
+    "confiance_menages_FR": ("Indicateur synthétique de confiance des ménages (Insee, CVS)", "points"),
 }
 
 

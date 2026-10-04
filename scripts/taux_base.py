@@ -29,12 +29,14 @@ def utilisee(q):
 if __name__ == "__main__":
     evts = {e["id"]: e for e in json.loads((RACINE / "modele/evenements.json").read_text("utf-8"))["evenements"]}
     sortie, manquants = {}, []
-    for f in sorted((RACINE / "modele/taux_base").glob("groupe_*.json")):
+    # Les fichiers de la relecture 8 (suffixe _r8) passent en dernier : ils remplacent les estimations
+    # des critères réécrits (EV-07, EV-09, EV-17).
+    for f in sorted((RACINE / "modele/taux_base").glob("groupe_*.json"), key=lambda f: (f.stem.endswith("_r8"), f.name)):
         g = json.loads(f.read_text("utf-8"))
         for q in g["questions"]:
             sortie[q["id"]] = {**q, "groupe": g["groupe"], "utilisee": utilisee(q)}
     for i, e in evts.items():
-        if e["source_accessible"] and i not in sortie:
+        if e["source_accessible"] and i not in sortie and e.get("taux_base") != "uniforme":
             manquants.append(i)
     doc = {"description": "Taux de base des questions d'événement : au moins deux classes de référence, fourchette, classe retenue (sections 7.3 et 8.4). Probabilités en %. « utilisee » est la valeur du comparateur, bornée entre 2 et 98 %.",
            "fusionne_le": datetime.now(ZoneInfo("Europe/Paris")).isoformat(timespec="seconds"),

@@ -9,8 +9,9 @@ un registre d'essai), en ajout seul, par scripts/registre.py.
   avec sa source primaire. Deux propositions concordantes résolvent la question. En cas de
   désaccord, une troisième tranche à la majorité. Si le désaccord persiste avec trois avis, ou si
   aucune proposition n'existe 30 jours après l'échéance, la question est annulée pour tous.
-- Une prévision émise après la résolution publique de sa question est annulée pour son auteur ;
-  ce contrôle est fait par scripts/notation.py, qui compare les dates.
+- Une prévision émise après la résolution publique de sa question, ou à la date du fait ou après
+  (champ date_fait des propositions, relecture 8, G2), est annulée pour son auteur ; ce contrôle est
+  fait par scripts/notation.py, qui compare les dates.
 """
 import sys
 from datetime import date, timedelta
@@ -40,6 +41,12 @@ def toutes_les_questions():
     return qs
 
 
+def date_fait(proposition):
+    """Date du fait (relecture 8, G2). Les propositions antérieures au 4 octobre 2026 n'en ont pas : on
+    retient alors la date d'émission de la proposition, borne supérieure."""
+    return proposition.get("date_fait") or proposition["emise"][:10]
+
+
 def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
     aujourdhui = aujourdhui or date.today().isoformat()
     sfx = suffixe(reg)
@@ -63,12 +70,13 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
         avis = props.get(qid, [])
         issues = [a["issue"] for a in avis]
         if len(avis) >= 2 and issues[0] == issues[1]:
-            nouvelles.append({"resolution": True, "question": qid, "issue": issues[0],
+            nouvelles.append({"resolution": True, "question": qid, "issue": issues[0], "date_fait": min(date_fait(a) for a in avis[:2]),
                               "source": " ; ".join(a["source"] for a in avis[:2]), "methode": "deux agents concordants"})
         elif len(avis) >= 3:
             maj = max(set(issues[:3]), key=issues[:3].count)
             if issues[:3].count(maj) >= 2:
                 nouvelles.append({"resolution": True, "question": qid, "issue": maj,
+                                  "date_fait": min(date_fait(a) for a in avis[:3] if a["issue"] == maj),
                                   "source": " ; ".join(a["source"] for a in avis[:3]), "methode": "troisième agent, majorité"})
             else:
                 nouvelles.append({"resolution": True, "question": qid, "issue": None, "source": "—",

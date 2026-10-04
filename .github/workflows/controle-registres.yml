@@ -1,7 +1,7 @@
 name: Contrôle des registres
 
 # Protocole, sections 0 et 12. Vérifie à chaque poussée sur main :
-# 1. que les registres de prévisions, les journaux de jalons et les décisions de tri
+# 1. que les registres de prévisions, les journaux de jalons, les décisions de tri et les ajouts à la banque
 #    ne sont modifiés que par ajout de lignes (aucune ligne supprimée ou réécrite,
 #    aucun fichier supprimé ni renommé) ;
 # 2. que chaque nouvelle ligne de registre (« emise ») et chaque nouvelle définition de
@@ -13,7 +13,7 @@ name: Contrôle des registres
 on:
   push:
     branches: [main]
-    paths: ["registre/**", "modele/jalons/**", "data/tri/**"]
+    paths: ["registre/**", "modele/jalons/**", "data/tri/**", "modele/banque/ajouts.jsonl"]
   workflow_dispatch: {}
 
 permissions:
@@ -42,7 +42,7 @@ jobs:
               avant = git("rev-parse", "HEAD~1").strip()
           debut = datetime.now(timezone.utc)
           erreurs = []
-          suivis = ("registre/", "modele/jalons/", "data/tri/")
+          suivis = ("registre/", "modele/jalons/", "data/tri/", "modele/banque/ajouts.jsonl")
           for ligne in git("diff", "--no-renames", "--name-status", avant, "HEAD").splitlines():
               statut, f = ligne.split("\t", 1)
               if not f.startswith(suivis) or not f.endswith((".json", ".jsonl")):
@@ -55,7 +55,8 @@ jobs:
               if supp:
                   erreurs.append(f"{f} : {len(supp)} ligne(s) supprimée(s) ou réécrite(s)")
               champ = "emise" if f.startswith("registre/") and f.endswith(".jsonl") else \
-                      "defini_le" if f == "modele/jalons/definitions.jsonl" else None
+                      "defini_le" if f == "modele/jalons/definitions.jsonl" else \
+                      "ajoute_le" if f == "modele/banque/ajouts.jsonl" else None
               if champ:
                   for l in diff:
                       if not l.startswith("+") or l.startswith("+++"):

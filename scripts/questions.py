@@ -86,14 +86,17 @@ def generer(gel, etiquette=None):
             ecartees.append((qid, "déjà résolue"))
             continue
         commun_e = {"type": "evenement", "issues": e["issues"], "details": {"evenement": e["id"], "critere": e["critere"]}}
-        qs.append({**commun_e, "id": qid, "pool": correspondances.get(qid, {}).get("pool", "P2b"),
-                   "grappe": f"{e['evenement']}-{trimestre(fin)}",
-                   "texte": f"{e['nom']}{' (' + e['sous_question'] + ')' if e['sous_question'] else ''} : le critère est-il rempli entre le {debut} et le {fin} ?",
+        # Une grappe par événement : la question de fenêtre et ses questions mensuelles sont corrélées
+        # (relecture 8, souhaitable « grappes »).
+        qs.append({**commun_e, "id": qid, "pool": correspondances.get(qid, {}).get("pool", e.get("pool", "P2b")),
+                   "grappe": e["evenement"],
+                   "texte": (f"{e['nom']} : le critère est-il rempli ? (fenêtre du {debut} au {fin})"
+                             if len(e["issues"]) == 2 else f"{e['nom']} : quelle issue, selon le critère ? (échéance : {fin})"),
                    "echeance": fin, "fenetre": {"debut": debut, "fin": fin}})
         if len(e["issues"]) == 2 and e.get("mensuelle", True) and ecart_mois(gel[:7], fin[:7]) > 3 and e["fenetre"]["debut"] <= gel:
             mid = f"Q-{e['id']}-{cycle}"
-            qs.append({**commun_e, "id": mid, "pool": correspondances.get(mid, {}).get("pool", "P2b"),
-                       "grappe": f"{e['evenement']}-{trimestre(mois)}",
+            qs.append({**commun_e, "id": mid, "pool": correspondances.get(mid, {}).get("pool", e.get("pool", "P2b")),
+                       "grappe": e["evenement"],
                        "texte": f"{e['nom']} : le critère est-il rempli au cours du mois {mois} ?",
                        "echeance": iso_fin_mois(mois), "fenetre": {"debut": gel, "fin": iso_fin_mois(mois)}})
     return {"cycle": cycle, "gel": gel, "genere_le": maintenant(), "questions": qs,

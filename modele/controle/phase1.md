@@ -30,9 +30,9 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [x] Procédure du tri écrite : `modele/controle/tri.md`, avec `scripts/tri.py` (4 octobre 2026).
 
 - [x] Tâches planifiées créées : tri (lundi, mercredi, vendredi, 17 h 47), cycle mensuel (du 1er au 7 de chaque mois, 7 h 52, à partir du 1er novembre 2026), le 4 octobre 2026.
-- [ ] Règle de rattrapage testée sur un passage manqué simulé.
+- [ ] Règle de rattrapage testée sur un passage manqué simulé (la tâche du cycle se déclenche du 1er au 7 et reprend à la première étape non faite ; test à faire avant le 1er novembre).
 - [x] Clé API Webstat en secret GitHub `WEBSTAT_KEY` ; OAT quotidienne (TEC 10, depuis 2010) collectée chaque nuit par `collecte/webstat.py` ; seuils de l'écart calés sur le niveau quotidien corrigé du décalage avec la série BCE (4 octobre 2026).
-- [ ] Workflow de contrôle des registres actif : ajout seul, `--no-renames`, horodatage dans la fenêtre de poussée, décisions de tri en JSONL (section 12).
+- [x] Workflow de contrôle des registres actif : ajout seul, `--no-renames`, horodatage dans la fenêtre de poussée, décisions de tri en JSONL (section 12). Passé avec succès sur les poussées du cycle à blanc et de l'essai planifié (4 octobre 2026) ; étendu aux ajouts à la banque (`modele/banque/ajouts.jsonl`).
 - [x] Tags `protocole-v*` et `annexe-phase3-v*` protégés contre la suppression et la mise à jour (ruleset actif depuis le 4 octobre 2026).
 - [x] Branche `main` protégée contre la poussée forcée et la suppression (ruleset actif depuis le 4 octobre 2026).
 - [x] Cycle à blanc sur la piste exploratoire, chaîne complète (4 octobre 2026) : `data/cycles/2026-10/ESSAI.md`. Quatre problèmes trouvés et corrigés ; un reste ouvert (série quotidienne de l'OAT).
