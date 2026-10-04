@@ -1,0 +1,471 @@
+{
+ "description": "Banque d'événements de la phase 1 (noyau, section 8.8). Générée par scripts/evenements.py ; ne change qu'à l'analyse trimestrielle, par ajout.",
+ "genere_le": "2026-10-04T09:55:33+02:00",
+ "second_tour_a_verifier": "2027-05-02",
+ "evenements": [
+  {
+   "id": "EV-01",
+   "evenement": "EV-01",
+   "nom": "Dégradation de la note souveraine",
+   "domaine": "économique",
+   "critere": "Au moins une agence (Moody's, S&P, Fitch) abaisse d'au moins un cran la note long terme entre le 03/10/2026 et le 30/09/2028. Échéances : Moody's 23/10/2026, S&P 27/11/2026. Pas de probabilité de marché.",
+   "sous_question": null,
+   "source_resolution": "AFT, page des notations ; communiqués des agences.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-02",
+   "evenement": "EV-02",
+   "nom": "Budget 2027 non adopté par la voie ordinaire au 31/12/2026",
+   "domaine": "politique",
+   "critere": "Aucune LFI 2027 votée publiée au JO au 31/12/2026. Modalités à enregistrer : (a) loi spéciale ; (b) ordonnance budgétaire au titre de l'art. 47 (B : aucun précédent sous la Ve République à sa connaissance, non vérifié). Pas de probabilité de marché.",
+   "sous_question": null,
+   "source_resolution": "Légifrance, JO ; dossier législatif AN. Vote attendu le 17/11/2026 (B).",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-03",
+   "evenement": "EV-03",
+   "nom": "Déficit 2027 au-dessus de la cible du PLF",
+   "domaine": "économique",
+   "critere": "Déficit 2027 notifié > 5,0 % du PIB.",
+   "sous_question": null,
+   "source_resolution": "INSEE, notification de mars 2028.",
+   "fenetre": {
+    "debut": "2028-03-01",
+    "fin": "2028-04-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-04",
+   "evenement": "EV-04",
+   "nom": "Durcissement de la procédure de déficit excessif",
+   "domaine": "international",
+   "critere": "Décision du Conseil au titre de l'art. 126(8) ou 126(9) TFUE visant la France entre le 03/10/2026 et le 30/09/2028.",
+   "sous_question": null,
+   "source_resolution": "Conseil de l'UE / Commission, Semestre européen.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-05",
+   "evenement": "EV-05",
+   "nom": "Issue de l'élection présidentielle 2027 (dont victoire du RN)",
+   "domaine": "politique",
+   "critere": "Critère catégoriel : vainqueur proclamé ; binaire dérivé : victoire du candidat RN. Polymarket au 03/10/2026 : Le Pen 45 %, Philippe 19 %, Lisnard 12 %, Mélenchon 12-13 %, Bardella 5 %, Hollande 5 %. Metaculus : Le Pen 34,3 %, Philippe 25,5 %, Mélenchon 9,8 %. Date à vérifier : B et Fondapol donnent le 1er tour le 18/04/2027, l'URL Polymarket de A porte « 04-11 ».",
+   "sous_question": null,
+   "source_resolution": "Conseil constitutionnel ; sondages : 1er tour Le Pen 34-37 %, Philippe 14-19 %, Mélenchon 16-19 % (sept. 2026) ; 2nd tour Le Pen 51-54 % contre Philippe (juil. 2026).",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-05-02"
+   },
+   "issues": [
+    "RN",
+    "bloc central",
+    "gauche",
+    "droite LR ou autre",
+    "autre"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-06",
+   "evenement": "EV-06",
+   "nom": "Récession technique",
+   "domaine": "économique",
+   "critere": "Deux trimestres consécutifs < 0 en 1re estimation entre T3 2026 et T2 2028.",
+   "sous_question": null,
+   "source_resolution": "INSEE, comptes trimestriels (1re estimation).",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-07-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-07",
+   "evenement": "EV-07",
+   "nom": "Cyberattaque majeure contre une infrastructure critique ou le système financier",
+   "domaine": "technologique",
+   "critere": "Incident confirmé par l'ANSSI ou un régulateur, interruption > 24 h d'un OIV ou d'un établissement financier systémique.",
+   "sous_question": null,
+   "source_resolution": "ANSSI, panorama annuel ; ACPR, BdF.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-08",
+   "evenement": "EV-08",
+   "nom": "Campagne d'ingérence étrangère visant la présidentielle",
+   "domaine": "politique",
+   "critere": "Rapport VIGINUM ou gouvernemental attribuant à un acteur étranger une campagne visant la présidentielle 2027.",
+   "sous_question": null,
+   "source_resolution": "SGDSN/VIGINUM, rapports publics.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-09",
+   "evenement": "EV-09",
+   "nom": "Épisode climatique extrême en France",
+   "domaine": "environnemental",
+   "critere": "Vigilance rouge canicule sur au moins un département à l'été 2027 ou 2028, ou perte agricole chiffrée par l'INSEE ≥ 0,1 pt de PIB. Remarque : le premier volet est peu discriminant (probabilité élevée) ; le second est le plus informatif.",
+   "sous_question": null,
+   "source_resolution": "Météo-France, vigilances et bilans ; Agreste.",
+   "fenetre": {
+    "debut": "2027-06-01",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-10",
+   "evenement": "EV-10",
+   "nom": "Extension du mouvement lycéen de septembre 2026",
+   "domaine": "social",
+   "critere": "Plus de 300 établissements bloqués au moins 2 semaines consécutives OU extension aux universités avant le 15/11/2026. Taux de base (calcul de B) : les vagues de 2005 ont duré ~3 semaines.",
+   "sous_question": null,
+   "source_resolution": "~416 établissements bloqués le 29 sept., > 350 le 30 ; 440 puis 625 interpellations ; > 100 blessés ; extension en Belgique le 1er oct.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-11-15"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-11",
+   "evenement": "EV-11",
+   "nom": "Émeutes urbaines nationales (type 2005 ou 2023)",
+   "domaine": "social",
+   "critere": "Plus de 200 communes touchées en 7 jours. Taux de base (calcul de B) : ~2 épisodes en ~20 ans, de l'ordre de 10 % par an.",
+   "sous_question": null,
+   "source_resolution": "ACLED « riots » ; Intérieur (véhicules incendiés, interpellations).",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": false,
+   "motif_inaccessible": "Le nombre de communes touchées n'est publié par le ministère de l'Intérieur qu'au cas par cas ; ACLED exige un compte.",
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-12",
+   "evenement": "EV-12",
+   "nom": "Mouvement de masse décentralisé (type Gilets jaunes ou « Bloquons tout »)",
+   "domaine": "social",
+   "critere": "Plus de 400 rassemblements le même jour hors appel syndical. Taux de base (calcul de B) : ~25 % par an.",
+   "sous_question": null,
+   "source_resolution": "ACLED hebdomadaire ; Intérieur.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": false,
+   "motif_inaccessible": "Résolution sur ACLED, qui exige un compte : source inaccessible au projet.",
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-13",
+   "evenement": "EV-13",
+   "nom": "Grève massive dans la fonction publique ou interprofessionnelle contre le budget 2027",
+   "domaine": "social (B : économique ; corrigé car il s'agit d'une mobilisation)",
+   "critere": "Taux de grévistes de la FPE > 18 % lors d'une journée avant le 31/12/2026.",
+   "sous_question": null,
+   "source_resolution": "DGAFP, taux de grévistes par versant : 29/09/2026 9,64 % État, 5,68 % territoriale, 4,5 % hospitalière ; 18,8 % le 05/12/2024.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-14",
+   "evenement": "EV-14",
+   "nom": "Mobilisation agricole (Mercosur, crises sanitaires animales)",
+   "domaine": "économique et social",
+   "critere": "Plus de 100 blocages agricoles ACLED en un mois. Taux de base (calcul de B) : au moins 1 vague par an.",
+   "sous_question": null,
+   "source_resolution": "ACLED, manifestations d'agriculteurs, France.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": false,
+   "motif_inaccessible": "Résolution sur ACLED, qui exige un compte : source inaccessible au projet.",
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-15",
+   "evenement": "EV-15",
+   "nom": "Censure du gouvernement Lecornu sur le budget 2027",
+   "domaine": "politique",
+   "critere": "Adoption d'une motion de censure avant le 31/12/2026. Taux de base (calcul de B) : 1 censure (Barnier, déc. 2024) et 1 chute sur question de confiance (Bayrou, sept. 2025) en 4 budgets. Pas de marché.",
+   "sous_question": null,
+   "source_resolution": "Scrutins de l'AN sur les motions de censure.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-16a",
+   "evenement": "EV-16",
+   "nom": "Dissolution de l'Assemblée nationale",
+   "domaine": "politique",
+   "critere": "Critère élargi par la fusion à toute la période : décret de dissolution entre le 03/10/2026 et le 30/09/2028, avec deux fenêtres à résoudre séparément (avant / après le second tour 2027). Polymarket : ~5 % d'annonce avant le 31/12/2026 ; aucune cote pour la fenêtre post-présidentielle.",
+   "sous_question": "avant le second tour",
+   "source_resolution": "Décret de dissolution (JO).",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-05-02"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-16b",
+   "evenement": "EV-16",
+   "nom": "Dissolution de l'Assemblée nationale",
+   "domaine": "politique",
+   "critere": "Critère élargi par la fusion à toute la période : décret de dissolution entre le 03/10/2026 et le 30/09/2028, avec deux fenêtres à résoudre séparément (avant / après le second tour 2027). Polymarket : ~5 % d'annonce avant le 31/12/2026 ; aucune cote pour la fenêtre post-présidentielle.",
+   "sous_question": "après le second tour",
+   "source_resolution": "Décret de dissolution (JO).",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-17",
+   "evenement": "EV-17",
+   "nom": "Président élu sans majorité absolue à l'Assemblée",
+   "domaine": "politique",
+   "critere": "Correction de la fusion : B suppose des législatives en juin 2027, qui ne sont pas au calendrier et supposent une dissolution (EV-16). Critère : à l'issue des premières législatives tenues sur la période, aucun bloc soutenant le président n'atteint 289 sièges ; si aucune législative n'a lieu, résolution sur la composition existante. Pas de probabilité externe.",
+   "sous_question": null,
+   "source_resolution": "Composition de l'AN après des législatives.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "fusion A+B"
+  },
+  {
+   "id": "EV-C1",
+   "evenement": "EV-C1",
+   "nom": "Attentat terroriste meurtrier en France",
+   "domaine": "politique ; social",
+   "critere": "Attentat pour lequel le PNAT se saisit, faisant au moins un mort hors assaillant, entre le 03/10/2026 et le 30/09/2028. Pas de probabilité externe ; taux de base à calculer depuis les TE-SAT 2016-2026.",
+   "sous_question": null,
+   "source_resolution": "Europol TE-SAT (annuel) ; PNAT, saisines ; chronologie Wikipédia ; niveau Vigipirate (SGDSN).",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "balayage C"
+  },
+  {
+   "id": "EV-C2",
+   "evenement": "EV-C2",
+   "nom": "Crise d'ordre public grave outre-mer (Nouvelle-Calédonie, Antilles)",
+   "domaine": "politique ; social",
+   "critere": "État d'urgence (loi de 1955) déclaré, ou couvre-feu préfectoral couvrant l'agglomération principale d'un territoire ultramarin pendant au moins 7 jours, entre le 03/10/2026 et le 30/09/2028. Pas de probabilité externe ; précédents : NC 2024, Martinique 2024.",
+   "sous_question": null,
+   "source_resolution": "Arrêtés préfectoraux (couvre-feu), décrets d'état d'urgence (JO) ; ACLED, émeutes par territoire.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "balayage C"
+  },
+  {
+   "id": "EV-C3a",
+   "evenement": "EV-C3",
+   "nom": "Accord du Conseil européen sur le cadre financier 2028-2034",
+   "domaine": "international",
+   "critere": "Accord unanime du Conseil européen sur le CFP 2028-2034 : (a) avant le 31/12/2026 (objectif du 17-18/12/2026, sommet extraordinaire les 26-27/11) ; (b) avant le 30/09/2028. Pas de probabilité externe.",
+   "sous_question": "avant le 31/12/2026",
+   "source_resolution": "Conclusions du Conseil européen ; accord du Parlement européen. Proposition : 1 986,2 Md€ (prix courants).",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "balayage C"
+  },
+  {
+   "id": "EV-C3b",
+   "evenement": "EV-C3",
+   "nom": "Accord du Conseil européen sur le cadre financier 2028-2034",
+   "domaine": "international",
+   "critere": "Accord unanime du Conseil européen sur le CFP 2028-2034 : (a) avant le 31/12/2026 (objectif du 17-18/12/2026, sommet extraordinaire les 26-27/11) ; (b) avant le 30/09/2028. Pas de probabilité externe.",
+   "sous_question": "avant le 30/09/2028",
+   "source_resolution": "Conclusions du Conseil européen ; accord du Parlement européen. Proposition : 1 986,2 Md€ (prix courants).",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "balayage C"
+  },
+  {
+   "id": "EV-C4",
+   "evenement": "EV-C4",
+   "nom": "Avis de la CJUE sur l'accord UE-Mercosur",
+   "domaine": "international ; économique",
+   "critere": "Avis rendu entre le 03/10/2026 et le 30/09/2028 ; modalités : compatible / incompatible ; binaire dérivé : suspension de l'application provisoire. Délai évoqué : jusqu'à 18 mois après la saisine, soit vers juillet 2027. Pas de probabilité externe.",
+   "sous_question": null,
+   "source_resolution": "Registre de la CJUE (avis 1/26 ou numéro à vérifier) ; Parlement européen, procédure d'approbation.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "avis rendu, compatible",
+    "avis rendu, incompatible",
+    "pas d'avis"
+   ],
+   "source_accessible": true,
+   "motif_inaccessible": null,
+   "origine": "balayage C"
+  }
+ ]
+}

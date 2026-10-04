@@ -13,9 +13,9 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 
 ## Données et questions
 
-- [ ] `modele/evenements.json` : événements et décisions de la phase 1, tirés du balayage v1, avec leurs critères de résolution (section 8.8).
-- [ ] Historique long des séries (au moins 2010-2025) pour les quantiles de la marche aléatoire (section 8.1) ; la collecte ne garde que 24 mois.
-- [ ] Collecte des cotes externes pour P1 : Polymarket et Metaculus, avec volume et écart entre offre et demande (section 4.5).
+- [x] `modele/evenements.json` : 21 événements du balayage v1 dotés d'un critère, 23 questions, dont 20 résolubles ; 3 non émises faute de source accessible (ACLED). Généré par `scripts/evenements.py` (4 octobre 2026).
+- [x] Historique long des séries mensuelles et trimestrielles (taux 10 ans FR et DE et écart depuis 1990, IPCH depuis 1997, dette, PIB, chômage) : `collecte/historique.py`, `data/historique/` (4 octobre 2026).
+- [x] Collecte des cotes externes pour P1 : Polymarket (232 marchés France, volume, écart offre-demande, drapeau de fiabilité), `collecte/cotes.py`. Metaculus exige un jeton : inaccessible, limite consignée (4 octobre 2026).
 - [ ] Taux de base des comparateurs, avec leurs deux classes de référence (sections 7.3 et 8.4).
 - [ ] Script de résolution : séries par script, événements sur source primaire, double résolution des cas ambigus (section 8.8).
 
@@ -35,6 +35,6 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 
 ## Prérequis de la phase 2 (1er décembre 2026)
 
-- [ ] Écart de taux OAT-Bund journalier collecté (source primaire à identifier : Banque de France, Bundesbank).
+- [ ] Écart de taux OAT-Bund journalier collecté. Aucune source gratuite sans clé trouvée pour l'OAT journalière (Webstat exige une clé, AFT bloque les scripts) ; le Bund journalier est disponible (Bundesbank). Piste : clé Webstat gratuite de la Banque de France.
 - [ ] Historique journalier 2010-2025 pour le rétro-test (section 7.1).
 - [ ] Source des sondages de la présidentielle identifiée et collectée (agrégat public ou instituts), avec l'historique des présidentielles 2002 à 2022 pour l'erreur des sondages (section 7.1).
