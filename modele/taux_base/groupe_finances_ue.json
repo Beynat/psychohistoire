@@ -465,8 +465,8 @@
    ],
    "retenue": {
     "classe": 0,
-    "probabilite": 100.0,
-    "motif": "Classe la plus proche du critère (accord sur la durée écoulée depuis la proposition) ; les deux classes concordent. Valeur extrême due à n = 6, à lire avec un lissage possible à 87,5 %."
+    "probabilite": 92.9,
+    "motif": "Classe la plus proche du critère (accord sur la durée écoulée depuis la proposition) ; les deux classes concordent (6/6). Estimateur lissé (k + ½)/(n + 1) = 6,5/7 = 92,9 %, pour qu'un échantillon de six cas ne donne pas une certitude (relecture de suivi 18, sur I3 de la relecture 17)."
    },
    "issues": null
   },
@@ -530,13 +530,13 @@
    ],
    "retenue": {
     "classe": 0,
-    "probabilite": 100.0,
-    "motif": "Probabilité d'un avis dans la fenêtre réelle (jusqu'au 30/09/2028, soit 32,3 mois), la classe 1 retenant une borne de 24 mois qui n'est pas dans le critère. Fourchette et probabilité retenue portent sur la probabilité qu'un avis soit rendu ; le binaire dérivé (suspension de l'application provisoire) n'a pas de classe de référence."
+    "probabilite": 92.9,
+    "motif": "Probabilité d'un avis dans la fenêtre réelle (jusqu'au 30/09/2028, soit 32,3 mois), la classe 1 retenant une borne de 24 mois qui n'est pas dans le critère. Fourchette et probabilité retenue portent sur la probabilité qu'un avis soit rendu ; le binaire dérivé (suspension de l'application provisoire) n'a pas de classe de référence. Estimateur lissé (k + ½)/(n + 1) = 6,5/7 = 92,9 % pour la probabilité d'un avis (relecture de suivi 18), répartie à parts égales entre les deux avis."
    },
    "issues": {
-    "avis rendu, compatible": 50.0,
-    "avis rendu, incompatible": 50.0,
-    "pas d'avis": 0.0
+    "avis rendu, compatible": 46.45,
+    "avis rendu, incompatible": 46.45,
+    "pas d'avis": 7.1
    }
   }
  ]

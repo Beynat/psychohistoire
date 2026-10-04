@@ -57,7 +57,7 @@ def test_brier_pondere_propre():
     """Relecture 17, I1 : sur des questions de fenêtre « survenue » à risque constant, la prévision honnête a le
     meilleur Brier pondéré moyen ; gonfler ou réduire les probabilités ne paie pas (mêmes trajectoires)."""
     from datetime import date, timedelta
-    def moyenne(facteur, n=3000, h=0.1, mois=9):
+    def moyenne(facteur, n=3000, h=0.1, mois=9, manques=()):
         rnd, tot = random.Random(1), 0.0
         debuts, ech = [date(2027, 1 + k, 1) for k in range(mois)], date(2027, 9, 30)
         for _ in range(n):
@@ -72,6 +72,8 @@ def test_brier_pondere_propre():
                 if fait and debuts[k] >= fait:
                     break
                 p = min(1.0, facteur * (1 - (1 - h) ** (mois - k)))
+                if k in manques:
+                    continue
                 lignes.append({"emise": debuts[k].isoformat() + "T08:00:00+01:00",
                                "probabilites": {"oui": 100 * p, "non": 100 - 100 * p}})
             if lignes:
@@ -80,6 +82,8 @@ def test_brier_pondere_propre():
         return tot / n
     honnete = moyenne(1.0)
     assert honnete < moyenne(1.25) and honnete < moyenne(0.8), honnete
+    # Relecture de suivi 18 : manquer des cycles ne doit pas faire gagner un auteur, à prévisions égales.
+    assert moyenne(1.0, manques=(3, 5)) >= honnete, (moyenne(1.0, manques=(3, 5)), honnete)
 
 
 def test_bout_en_bout():

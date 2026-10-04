@@ -115,22 +115,13 @@ def fin_brier(q, r):
     return q["echeance"]
 
 
-def un_mois_apres(d):
-    """Même jour du mois suivant (dernier jour du mois s'il n'existe pas)."""
-    a, m = (d.year + (d.month == 12), d.month % 12 + 1)
-    for jour in (d.day, 30, 29, 28):
-        try:
-            return date(a, m, jour)
-        except ValueError:
-            continue
-
-
 def brier_pondere(lignes, issue, debut, echeance, date_fait=None):
     """Brier pondéré dans le temps, règle propre (relecture 17, I1).
 
     Chaque prévision vaut pour sa durée prévue : de son jour (ou de debut) au jour de la prévision suivante ;
-    la dernière, si le fait survient dans la fenêtre, vaut jusqu'au même jour du mois suivant (date du cycle
-    suivant prévu), sinon jusqu'à l'échéance. Aucune durée n'est tronquée au fait, et la somme est divisée par
+    la dernière, si le fait survient dans la fenêtre, vaut jusqu'au 1er du mois qui suit le fait (cycle prévu
+    suivant le fait, relecture de suivi 18 : un cycle manqué avant le fait ne crée pas de jours à zéro), sinon
+    jusqu'à l'échéance. Aucune durée n'est tronquée au fait, et la somme est divisée par
     la longueur fixe de la période, de debut à l'échéance : les jours postérieurs au fait comptent pour zéro,
     comme une prévision devenue certaine. Le poids de chaque prévision ne dépend donc pas de l'issue, et la
     prévision honnête est optimale. lignes : prévisions triées, toutes émises avant le jour du fait."""
@@ -145,7 +136,11 @@ def brier_pondere(lignes, issue, debut, echeance, date_fait=None):
         if k + 1 < len(lignes):
             suivant = date.fromisoformat(lignes[k + 1]["emise"][:10])
         else:
-            suivant = un_mois_apres(jour) if fait_dans_fenetre else fin + timedelta(days=1)
+            if fait_dans_fenetre:
+                f = date.fromisoformat(date_fait)
+                suivant = date(f.year + (f.month == 12), f.month % 12 + 1, 1)
+            else:
+                suivant = fin + timedelta(days=1)
         a, b = max(jour, d0), min(suivant, fin + timedelta(days=1))
         if b > a:
             cumul += (b - a).days * brier(l["probabilites"], issue)
