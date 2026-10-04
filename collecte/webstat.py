@@ -1,8 +1,9 @@
 """Séries quotidiennes de la Banque de France (Webstat), avec la clé WEBSTAT_KEY (secret GitHub).
 
 Sans IA, bibliothèque standard. La clé n'est jamais écrite ni affichée.
-- OAT : « Taux de l'Echéance Constante - 10 ans » (TEC 10), quotidien, jeu
-  fm-d-fr-eur-fr2-bb-frmoytec10-hsta → data/historique/oat_tec10_journalier_FR.csv
+- OAT : « Taux de l'Echéance Constante - 10 ans » (TEC 10), quotidien, série
+  FM.D.FR.EUR.FR2.BB.FRMOYTEC10.HSTA du jeu « observations » (visible avec une clé)
+  → data/historique/oat_tec10_journalier_FR.csv
 - Écart quotidien France-Allemagne en points de base : TEC 10 moins le taux allemand à 10 ans de la
   Bundesbank (courbe Svensson, data/historique/bund_10a_journalier_DE.csv), aux dates communes →
   data/historique/ecart_FR_DE_journalier_pb.csv. Les deux instruments diffèrent légèrement (taux
@@ -21,11 +22,12 @@ from pathlib import Path
 RACINE = Path(__file__).resolve().parent.parent
 HISTO = RACINE / "data" / "historique"
 BASE = "https://webstat.banque-france.fr/api/explore/v2.1/catalog/datasets"
-TEC10 = "fm-d-fr-eur-fr2-bb-frmoytec10-hsta"
+TEC10 = "FM.D.FR.EUR.FR2.BB.FRMOYTEC10.HSTA"
 
 
-def telecharger(dataset, cle):
-    url = f"{BASE}/{dataset}/exports/json?" + urllib.parse.urlencode({"limit": -1})
+def telecharger(serie, cle):
+    url = f"{BASE}/observations/exports/json?" + urllib.parse.urlencode(
+        {"where": f'series_key="{serie}"', "select": "time_period,obs_value", "order_by": "time_period", "limit": -1})
     req = urllib.request.Request(url, headers={"Authorization": f"Apikey {cle}",
                                                "User-Agent": "psychohistoire-collecte/1.0"})
     with urllib.request.urlopen(req, timeout=120) as r:
