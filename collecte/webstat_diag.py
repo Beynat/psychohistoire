@@ -5,26 +5,21 @@ import urllib.parse
 import urllib.request
 
 K = os.environ.get("WEBSTAT_KEY", "").strip()
-B = "https://webstat.banque-france.fr/api/explore/v2.1"
-D = "fm-d-fr-eur-fr2-bb-frmoytec10-hsta"
+B = "https://webstat.banque-france.fr/api/explore/v2.1/catalog/datasets/observations"
 
 
-def essai(nom, url, entete=True):
-    h = {"User-Agent": "psychohistoire-diag/1.0"}
-    if entete:
-        h["Authorization"] = f"Apikey {K}"
+def essai(nom, chemin):
+    h = {"User-Agent": "psychohistoire-diag/1.0", "Authorization": f"Apikey {K}"}
     try:
-        with urllib.request.urlopen(urllib.request.Request(url, headers=h), timeout=60) as r:
-            corps = r.read().decode("utf-8")[:600]
-            print(f"[{nom}] HTTP {r.status} : {corps.replace(K, '***') if K else corps}")
+        with urllib.request.urlopen(urllib.request.Request(B + chemin, headers=h), timeout=60) as r:
+            print(f"[{nom}] HTTP {r.status} : {r.read().decode('utf-8')[:1500]}")
     except Exception as e:
         print(f"[{nom}] {type(e).__name__} {getattr(e, 'code', '')} {getattr(e, 'read', lambda: b'')()[:300]!r}")
 
 
-print("clé présente :", bool(K), "longueur :", len(K))
-essai("métadonnées avec clé", f"{B}/catalog/datasets/{D}?select=has_records,metas")
-essai("records en-tête", f"{B}/catalog/datasets/{D}/records?limit=3")
-essai("records paramètre", f"{B}/catalog/datasets/{D}/records?limit=3&apikey={urllib.parse.quote(K)}", entete=False)
-essai("jeux avec données (clé)", f"{B}/catalog/datasets?limit=5&where=has_records%3Dtrue&select=dataset_id,metas.default.title,metas.default.records_count")
-essai("recherche observations (clé)", f"{B}/catalog/datasets?limit=5&where=search(%22observations%22)%20and%20has_records%3Dtrue&select=dataset_id")
-essai("compte utilisateur", "https://webstat.banque-france.fr/api/explore/v2.1/catalog/facets?facet=publisher")
+essai("schéma", "?select=fields")
+essai("un enregistrement", "/records?limit=1")
+q = urllib.parse.quote('series_key="FM.D.FR.EUR.FR2.BB.FRMOYTEC10.HSTA"')
+essai("TEC10 par series_key", f"/records?limit=3&where={q}&order_by=time_period%20desc")
+q2 = urllib.parse.quote('search("FRMOYTEC10")')
+essai("TEC10 par recherche", f"/records?limit=3&where={q2}")
