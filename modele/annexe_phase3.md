@@ -1,6 +1,6 @@
-# Annexe phase 3 — liens, jalons et faits imprévus — version 1.1
+# Annexe phase 3 — liens, jalons et faits imprévus — version 1.2
 
-Statut : soumise à relecture avec le noyau v1.10 (relecture 7). Rédigée le 4 octobre 2026. Elle complète `protocole.md` (le noyau) et ne s'applique qu'à partir de la phase 3, sauf le cas b (section 8.9 du noyau) et le pilote sur la piste exploratoire. Elle conserve la numérotation 10 et 11 pour la continuité des renvois. Elle est versionnée et taguée séparément (`annexe-phase3-vX.Y`), et gelée dans les mêmes conditions que le noyau (section 12). Seuls la veille et le tri (section 11.2), limités au cas « donnée », servent dès la phase 1.
+Statut : soumise à relecture avec le noyau v1.13. Rédigée le 4 octobre 2026 ; version 1.2 : caractérisation des faits, mesure de reprise et règle d'abandon (sections 11.2 et 11.3), à la demande de Nathan. Elle complète `protocole.md` (le noyau) et ne s'applique qu'à partir de la phase 3, sauf le cas b (section 8.9 du noyau) et le pilote sur la piste exploratoire. Elle conserve la numérotation 10 et 11 pour la continuité des renvois. Elle est versionnée et taguée séparément (`annexe-phase3-vX.Y`), et gelée dans les mêmes conditions que le noyau (section 12). Dès la phase 1 servent la veille et le tri (section 11.2) : pour le cas « donnée », avec effet ; pour la caractérisation et la reprise des faits qui concernent une question, à titre descriptif seulement, sans effet sur aucune probabilité.
 
 ## 10. Liens causaux et jalons
 
@@ -115,13 +115,19 @@ Le modèle doit réagir à l'actualité en jours, sans réagir au bruit. Les fai
 
 ### 11.2 Veille et tri
 
-- **Veille.** Chaque nuit, `collect.py` relève sans IA les titres des flux de franceinfo, Le Monde, LCP (Assemblée nationale) et Public Sénat dans `data/veille.json`. Les agences et le Journal officiel n'offrent pas de flux libre ; une décision officielle est vérifiée sur sa source primaire au moment du tri.
+- **Veille.** Chaque nuit, `collect.py` relève sans IA les titres des flux de franceinfo, Le Monde, LCP (Assemblée nationale), Public Sénat, Le Figaro, Libération et Mediapart dans `data/veille.json`. La pluralité des lignes éditoriales sert la mesure de reprise ; elle ne change pas la règle selon laquelle une révélation reste une allégation. Les agences et le Journal officiel n'offrent pas de flux libre ; une décision officielle est vérifiée sur sa source primaire au moment du tri.
 - **Conservation.** Un titre non trié n'est jamais purgé. Les titres triés sont conservés 10 jours.
 - **Tri.** Au moins trois fois par semaine, un modèle léger :
   - regroupe les titres par fait, en supprimant les doublons ;
   - rattache chaque fait à un jalon attendu, à un nœud ou à rien.
 
   Il ne juge pas la matérialité : c'est le rôle du panel (section 11.4). Les décisions de tri sont écrites dans un fichier par mois, `data/tri/AAAA-MM.jsonl`, en ajout seul ; la collecte le lit sans le modifier. Chaque ligne porte un seul titre et contient les clés `lien` (adresse du titre, obligatoire), `passage` (date du tri), `fait` (identifiant du fait qui regroupe les titres), `decision` (jalon, nœud ou « non rattaché ») et `motif`.
+- **Caractérisation.** Chaque fait rattaché à un nœud ou à une question est caractérisé, avant toute estimation, sur trois axes :
+  - **nature** : pénal lié à la fonction ou au mandat (détournement, corruption, financement illégal) ; pénal sans lien avec la fonction ; manquement éthique ou politique non pénal ; vie privée ; décision ou déclaration publique ; autre ;
+  - **stade** : allégation (révélation de presse, accusation) ; procédure engagée (plainte déposée, enquête ouverte, perquisition, saisine) ; mise en cause formelle (mise en examen, renvoi, poursuite) ; décision (jugement, arrêt, décision administrative) ;
+  - **appui** : catégorie de la meilleure source qui établit le fait (`modele/sources.md`) et nature de la preuve publiée (document, témoignages, déclaration de l'intéressé).
+  La caractérisation est transmise aux évaluateurs (section 11.4). Un fait au stade « allégation » est un fait contesté (section 11.5) : il va en observation (cas f), quelle que soit la réputation du média qui le publie ; la distinction utile est entre allégation et fait établi, pas entre rédactions de référence.
+- **Reprise.** Pour chaque fait, un script compte, à partir de la veille et des décisions de tri, le nombre de sources distinctes et le nombre de jours où il apparaît (`data/reprise.json`). C'est une mesure descriptive : elle fixe la date de réexamen d'un fait en observation et s'affiche dans le volet actualité, mais n'entre dans aucune probabilité. L'effet d'une affaire sur l'opinion passe par les sondages (section 11.5).
 - **Trace.** Toute décision est consignée, y compris « non rattaché », avec son motif.
 - **Contrôle du tri.** Chaque trimestre, un second modèle réexamine 60 faits non rattachés tirés au sort. Plus de 10 % de faux négatifs (borne inférieure de l'intervalle à 80 % au-dessus de 5 %) entraînent une révision de la consigne de tri.
 
@@ -134,7 +140,13 @@ Le modèle doit réagir à l'actualité en jours, sans réagir au bruit. Les fai
 | c. Évidence | Le fait renseigne un nœud non résolu, par un canal qu'aucune donnée ne mesure | Preuve virtuelle (section 11.4) |
 | d. Paramètre | Le fait changerait encore l'enfant si le parent était connu : il modifie une relation, pas la probabilité d'un nœud | En phase 3 : classé en observation (cas f) jusqu'à l'analyse trimestrielle suivante, qui peut réviser les lignes. En phase 4 : révision ciblée des lignes concernées, en un tour, sans montrer la ligne actuelle ; l'écart en log-cotes entre la ligne estimée et la ligne actuelle tient lieu de log-rapport pour le seuil et le plafond |
 | e. Hors modèle | Aucun nœud ne correspond | Question ad hoc prévue directement, notée dans un pool séparé. Nœud candidat à l'analyse trimestrielle |
-| f. En observation | Fait contesté, ou dont l'effet passe d'abord par une donnée à venir | Aucune mise à jour ; date de réexamen fixée |
+| f. En observation | Fait contesté, ou dont l'effet passe d'abord par une donnée à venir | Aucune mise à jour ; date de réexamen fixée (règle ci-dessous) |
+
+**Réexamen et abandon d'un fait en observation.**
+- La date de réexamen est fixée à 30 jours ; à 14 jours si la reprise dépasse cinq sources distinctes la première semaine.
+- Chaque étape officielle ultérieure (enquête ouverte, perquisition, mise en examen, décision) est un fait nouveau, daté et caractérisé, traité selon le tableau : une étape qui établit ou aggrave le fait renseigne le nœud (cas c) ou le résout (cas b).
+- À la date de réexamen, sans étape officielle nouvelle ni effet mesurable sur une série suivie (sondages, écart de taux), le fait est classé sans effet (cas a), avec motif « retombé ». S'il a suscité une étape nouvelle, ou si sa reprise a augmenté, il reste en observation une seule fois, 30 jours de plus.
+- Une affaire qui produit au moins deux étapes officielles ou un effet mesurable devient candidate à un lien et à ses jalons (section 10), ou à un ajout à la banque (noyau, section 8.8), à l'analyse trimestrielle suivante.
 
 ### 11.4 Preuve virtuelle
 
@@ -144,7 +156,7 @@ Le modèle doit réagir à l'actualité en jours, sans réagir au bruit. Les fai
   - Le fait est postérieur au gel de la dernière estimation du nœud.
   - Il est rattaché au nœud le plus en amont quand plusieurs nœuds sont concernés.
   - Le rapport est estimé sachant les faits déjà intégrés sur ce nœud, qui sont présentés aux évaluateurs.
-- **Estimation.** Cinq évaluateurs aveugles, en un tour, répartis sur au moins trois modèles, estiment P(fait | issue) pour chaque issue, en citant au moins une classe de référence. Agrégation par moyenne des log-rapports.
+- **Estimation.** Cinq évaluateurs aveugles, en un tour, répartis sur au moins trois modèles, reçoivent le fait et sa caractérisation (section 11.2) et estiment P(fait | issue) pour chaque issue, en citant au moins une classe de référence de même nature et de même stade. Agrégation par moyenne des log-rapports.
 - **Seuil d'application.** Pas de mise à jour si les évaluateurs divergent de signe, si la moyenne des log-rapports est à moins de deux erreurs types de zéro, ou si le rapport appliqué est compris entre 0,8 et 1,25. Pour ce calcul, la dispersion des log-rapports entre évaluateurs, en log-cotes, ne peut être inférieure au plancher σ_plancher (section 4.4 du noyau) ; l'erreur type est cette dispersion divisée par √n. Un consensus de famille ne passe donc pas pour une preuve. Le fait est alors classé sans effet, avec ce motif.
 - **Plafond.** Rapport brut entre 1/3 et 3, appliqué avant la réduction par k. Un fait jugé très diagnostique peut être porté à sept évaluateurs, avec un plafond de 10.
 - **Réduction.** Le rapport appliqué est le rapport plafonné, élevé à la puissance k_faits. k_faits vaut 0,5 tant qu'il n'est pas estimé ; il est estimé comme k (section 10.4), sur tous les avis de panel enregistrés, y compris ceux restés sous le seuil.

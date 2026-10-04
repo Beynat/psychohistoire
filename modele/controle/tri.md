@@ -1,13 +1,14 @@
 # Procédure du tri de l'actualité — phases 1 et 2
 
-Exécutée lundi, mercredi et vendredi par la tâche planifiée du tri (noyau, section 12 ; annexe, section 11.2). En phases 1 et 2, le tri ne sert qu'au cas « donnée » (noyau, section 8.9) : repérer un fait qui résout une question d'événement ouverte. Il ne juge aucune matérialité et ne modifie aucune probabilité.
+Exécutée lundi, mercredi et vendredi par la tâche planifiée du tri (noyau, section 12 ; annexe, section 11.2). En phases 1 et 2, le tri sert au cas « donnée » (noyau, section 8.9) : repérer un fait qui résout une question d'événement ouverte. Il caractérise aussi, à titre descriptif, les faits qui concernent une question sans la résoudre, et mesure leur reprise (annexe, section 11.2). Il ne juge aucune matérialité et ne modifie aucune probabilité.
 
 1. **Titres à trier.** `python scripts/tri.py a-trier /tmp/tri.json`. Si aucun titre n'est à trier, s'arrêter sans commit.
 2. **Tri.** Un sous-agent léger (modèle sonnet) lit `/tmp/tri.json` et rien d'autre du dépôt :
    - il regroupe les titres par fait, en supprimant les doublons ;
    - il rattache chaque fait à une question ouverte dont il pourrait remplir le critère, ou à « non rattaché » ;
-   - il écrit une décision par titre, au format JSONL, dans `/tmp/decisions.jsonl` : `{"lien": …, "fait": "<identifiant court du fait>", "decision": "Q-EV-xx" | "non rattaché", "motif": "<une phrase>"}`.
-   Puis `python scripts/tri.py ajouter < /tmp/decisions.jsonl`.
+   - il écrit une décision par titre, au format JSONL, dans `/tmp/decisions.jsonl` : `{"lien": …, "fait": "<identifiant court du fait>", "decision": "Q-EV-xx" | "non rattaché", "motif": "<une phrase>"}` ;
+   - pour un fait qui peut changer la probabilité d'une question ouverte sans la résoudre, il ajoute `"concerne": ["Q-…"]` et la caractérisation de l'annexe, section 11.2 : `"caracterisation": {"nature": …, "stade": …, "appui": "<catégorie de la meilleure source et nature de la preuve>"}`. C'est descriptif : rien ne change dans les probabilités en phases 1 et 2. Une révélation de presse est au stade « allégation », quel que soit le média.
+   Puis `python scripts/tri.py ajouter < /tmp/decisions.jsonl`, puis `python scripts/tri.py reprise` (mesure de reprise, `data/reprise.json`).
 3. **Vérification des faits rattachés.** Pour chaque question à laquelle un fait est rattaché, deux sous-agents distincts (modèle sonnet), sans se consulter, cherchent la source primaire officielle (Journal officiel, Conseil constitutionnel, Assemblée nationale, Insee, agence de notation, etc.) et jugent si le critère de la question est rempli, au mot près. Un comptage produit par une partie prenante n'est jamais une donnée. Chacun ajoute une proposition par `scripts/registre.py registre/propositions.jsonl` (`proposition: true, question, issue, source, agent, date_fait`) seulement s'il conclut que le critère est rempli ; `date_fait` est la date du fait selon la source (AAAA-MM-JJ). La source suit la règle de résolution du noyau (section 8.8) : primaire officielle, ou celle que le critère nomme.
 4. **Résolution.** Si des propositions ont été ajoutées : `python scripts/resolution.py`.
 5. **Commit et poussée** dans l'heure (contrôle d'horodatage), message « Tri du AAAA-MM-JJ ».

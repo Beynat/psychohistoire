@@ -177,6 +177,11 @@ FLUX = {
     "Le Monde · économie": "https://www.lemonde.fr/economie/rss_full.xml",
     "LCP · Assemblée nationale": "https://lcp.fr/rss.xml",
     "Public Sénat": "https://www.publicsenat.fr/feed",
+    # Ajouts du 4 octobre 2026 : pluralité des lignes éditoriales et presse d'investigation, pour la
+    # mesure de reprise des faits (annexe, section 11.2).
+    "Le Figaro · politique": "https://www.lefigaro.fr/rss/figaro_politique.xml",
+    "Libération": "https://www.liberation.fr/arc/outboundfeeds/rss-all/collection/accueil-une/",
+    "Mediapart": "https://www.mediapart.fr/articles/feed",
 }
 
 
