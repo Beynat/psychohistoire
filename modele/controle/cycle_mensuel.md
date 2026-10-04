@@ -7,7 +7,8 @@ Exécutée le 1er de chaque mois par la tâche planifiée du cycle mensuel (noya
 2. **Questions.** `python scripts/questions.py AAAA-MM-01`, puis commit et poussée de `questions.json`.
 3. **Comparateurs.** `python scripts/comparateurs.py AAAA-MM`, puis commit et poussée du registre.
 4. **Ensemble direct.**
-   - Lancer cinq prévisionnistes indépendants, sur au moins trois modèles, avec `modele/consigne_ensemble.md` (v1.1 : au moins 10 recherches web déclarées) et la seule liste de questions.
+   - Préparer le fichier remis aux prévisionnistes : `python scripts/dossier.py AAAA-MM /tmp/previsionnistes.json` (questions et dossier de données gelées, rien d'autre).
+   - Lancer cinq prévisionnistes indépendants, sur au moins trois modèles, avec `modele/consigne_ensemble.md` (v1.2 : dossier de données, au moins 10 recherches web déclarées, consacrées aux événements) et ce seul fichier.
    - Lire les motifs : un seuil signalé comme décalé ou une question signalée comme déjà résolue est consigné pour le cycle suivant.
    - Chacun écrit `data/cycles/AAAA-MM/ensemble/<identifiant>.json`.
    - Puis `python scripts/ensemble.py AAAA-MM`, et commit et poussée dans l'heure (contrôle d'horodatage).
