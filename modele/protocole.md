@@ -1,7 +1,7 @@
-# Protocole Psychohistoire — version 1.14
+# Protocole Psychohistoire — version 1.15
 
 Statut : en relecture, pas encore définitif (section 12). Rédigé le 3 octobre 2026, avant toute estimation produite selon ce protocole.
-Remplace la version 1.13. Les changements répondent à la relecture 10 et sont justifiés dans `v1.14/reponse_relecture_10.md` ; la version 1.13 précisait le gel (décision de Nathan). La version 1.12 répondait à la relecture 9 ; ils sont justifiés dans `v1.12/reponse_relecture_9.md` et `journal.md`. La version 1.11 répondait à la relecture 8, sur le fond et la méthode (`v1.11/reponse_relecture_8.md`). Le texte est scindé : ce noyau (sections 0 à 9, 12 et 13) et l'annexe `annexe_phase3.md` (sections 10 et 11), gelés et tagués séparément. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
+Remplace la version 1.14. Les changements répondent à la relecture 11 et sont justifiés dans `v1.15/reponse_relecture_11.md`. La version 1.14 répondait à la relecture 10 (`v1.14/reponse_relecture_10.md`) ; la version 1.13 précisait le gel (décision de Nathan). La version 1.12 répondait à la relecture 9 ; ils sont justifiés dans `v1.12/reponse_relecture_9.md` et `journal.md`. La version 1.11 répondait à la relecture 8, sur le fond et la méthode (`v1.11/reponse_relecture_8.md`). Le texte est scindé : ce noyau (sections 0 à 9, 12 et 13) et l'annexe `annexe_phase3.md` (sections 10 et 11), gelés et tagués séparément. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
 
 ## 0. Pistes et registres
 
@@ -37,9 +37,9 @@ Les phases 2 et 3 sont construites selon le calendrier ; la phase 4 seulement si
 
 | Phase | Date | Contenu | Condition pour passer à la suivante |
 | --- | --- | --- | --- |
-| 1 | 1er novembre 2026 | Banque de questions, lignes de base, ensemble direct, registre, données arrivées en cours de cycle (section 8.9) | Scripts listés dans `modele/controle/phase1.md` en service |
-| 2 | 1er décembre 2026 | Modèle de l'écart de taux (série journalière collectée), moyenne de sondages corrigée de l'erreur historique | Rétro-test publié |
-| 3 | 1er janvier 2027 au plus tard | Réseau réduit de 10 à 15 nœuds sur la séquence politique et budgétaire, chaînes de jalons et faits imprévus (annexe phase 3) | Test du jugement passé (section 8.7) et relectures conformes au critère d'arrêt (section 12) |
+| 1 | Premier cycle (P), le 1er du mois qui suit la première version définitive (section 12), au plus tôt le 1er novembre 2026 | Banque de questions, lignes de base, ensemble direct, registre, données arrivées en cours de cycle (section 8.9) | Scripts listés dans `modele/controle/phase1.md` en service |
+| 2 | P + 1 mois | Modèle de l'écart de taux (série journalière collectée), moyenne de sondages corrigée de l'erreur historique | Rétro-test publié |
+| 3 | P + 2 mois au plus tard | Réseau réduit de 10 à 15 nœuds sur la séquence politique et budgétaire, chaînes de jalons et faits imprévus (annexe phase 3) | Test du jugement passé (section 8.7) et relectures conformes au critère d'arrêt (section 12) |
 | 4 | Après le bilan de la phase 3 | Extension du réseau, analyse structurelle complète | La phase 3 bat la phase 1 sur P2b et P2c (section 8.6) |
 
 Avant la phase 3, les chaînes de jalons peuvent être pilotées sur la piste exploratoire, sans effet sur la piste protocole. Chaque phase dispose d'une liste de contrôle dans `modele/controle/`. Tout ce qui est mécanique est scripté : génération des questions, agrégation, notation, puissance.
@@ -168,13 +168,13 @@ Une grappe correspond à une variable source sur une fenêtre trimestrielle sans
 ### 8.6 Critères d'échec fixés à l'avance
 
 Évalués au 30 septembre 2027, sur toutes les grappes résolues de P2b et P2c à cette date :
-- **Valeur ajoutée.** Comparaison de la phase 3 à l'ensemble direct (phase 1) sur P2b et P2c, au seuil unilatéral de 10 % dans chaque sens. Trois verdicts : la phase 3 fait mieux (valeur ajoutée démontrée) ; elle fait moins bien (sans valeur ajoutée, retour à la phase 2) ; ni l'un ni l'autre (non concluant). Un verdict non concluant n'est pas un résultat négatif : il est publié comme tel, avec la puissance du test. La règle de décision par défaut s'applique alors (section 13) : on revient à la phase 2, la plus simple, pour la suite du projet.
+- **Valeur ajoutée.** Comparaison de la phase 3 à l'ensemble direct (phase 1) sur P2b et P2c, au seuil unilatéral de 10 % dans chaque sens. Trois verdicts : la phase 3 fait mieux (valeur ajoutée démontrée) ; elle fait moins bien (sans valeur ajoutée, retour à la phase 2) ; ni l'un ni l'autre (non concluant). Un verdict non concluant n'est pas un résultat négatif : il est publié comme tel, avec l'écart moyen par question, son intervalle à 80 % (rééchantillonnage des grappes) et la puissance recalculée sur les grappes réellement présentes à la date du test. Deux tests unilatéraux à 10 % donnent un risque global de 20 % de conclure à tort dans un sens ou dans l'autre. La règle de décision par défaut s'applique alors (section 13) : on revient à la phase 2, la plus simple, pour la suite du projet.
 - **Calibration.** Si l'erreur de calibration dépasse le 90e centile de sa distribution simulée sous calibration parfaite, au même nombre de questions, les probabilités sont recalibrées et la cause est cherchée.
 - **Persistance.** Si la persistance (variables) ou le taux de base (événements) bat le modèle sur P2 au seuil de 10 %, le projet est déclaré en échec méthodologique.
 
 Ces critères portent sur les estimations non corrigées du biais commun (section 8.4).
 
-**Calendrier attendu.** Le réseau démarre au plus tard le 1er janvier 2027. Sur la banque réelle, en ne comptant que les questions émises après son démarrage et échues au 30 septembre 2027, P2b fournit 19 grappes et 90 questions, dont 12 seulement sont informatives : les autres sont des questions mensuelles sur des événements rares, où deux prévisions ne diffèrent presque pas en Brier. La puissance simulée (`data/puissance.json`, σ = 0,12 ; écart et dispersion de chaque question proportionnés à 4p(1 − p)) est, pour P2b seul, de 20 à 24 % pour un écart de Brier de 0,02 et de 37 à 43 % pour 0,04. Avec 15 grappes de P2c, elle passerait à 36 à 44 % et 74 à 82 %. Repousser la butée au 30 septembre 2028 ne change guère ces ordres de grandeur. Le test ne peut donc détecter qu'un écart net, porté surtout par les questions conjointes de la phase 3 ; un verdict non concluant est le cas le plus probable.
+**Calendrier attendu.** Le réseau démarre au plus tard deux mois après le premier cycle, soit le 1er janvier 2027 si le premier cycle a lieu le 1er novembre 2026 ; la simulation ci-dessous retient cette date. Sur la banque réelle, en ne comptant que les questions émises après son démarrage et échues au 30 septembre 2027, P2b fournit 19 grappes et 90 questions, dont 12 seulement sont informatives : les autres sont des questions mensuelles sur des événements rares, où deux prévisions ne diffèrent presque pas en Brier. La puissance simulée (`data/puissance.json`, σ = 0,12 ; écart et dispersion de chaque question proportionnés à 4p(1 − p)) est, pour P2b seul, de 20 à 24 % pour un écart de Brier de 0,02 et de 37 à 43 % pour 0,04. Avec 15 grappes de P2c, elle passerait à 36 à 44 % et 74 à 82 %. Repousser la butée au 30 septembre 2028 ne change guère ces ordres de grandeur. Le test ne peut donc détecter qu'un écart net, porté surtout par les questions conjointes de la phase 3 ; un verdict non concluant est le cas le plus probable.
 
 ### 8.7 Tests sur le passé
 
@@ -202,7 +202,7 @@ Ces critères portent sur les estimations non corrigées du biais commun (sectio
 
 ### 8.9 Données arrivées en cours de cycle
 
-Dès la phase 1, un fait qui résout une question ou mesure une variable, selon une source primaire officielle ou la collecte (censure votée, candidature déposée, note abaissée, série publiée), est appliqué sans jugement : la question est résolue, et les prévisions qui en dépendent reçoivent de nouvelles lignes de registre (en phase 3, le nœud correspondant est fixé à son issue). La détection passe par la veille et le tri décrits dans l'annexe (section 11.2), limités en phases 1 et 2 à ce seul cas. Un comptage produit par une partie prenante (syndicat, parti, organisateur) n'est jamais une donnée.
+Dès la phase 1, un fait qui résout une question ou mesure une variable, selon une source primaire officielle ou la collecte (censure votée, candidature déposée, note abaissée, série publiée), est appliqué sans jugement : la question est résolue, et les prévisions qui en dépendent reçoivent de nouvelles lignes de registre (en phase 3, le nœud correspondant est fixé à son issue). La détection passe par la veille et le tri décrits dans l'annexe (section 11.2). En phases 1 et 2, le tri n'agit sur les probabilités que dans ce cas ; il caractérise aussi les faits qui concernent une question et mesure leur reprise, à titre descriptif seulement (affichage, sans effet sur aucune probabilité). Un comptage produit par une partie prenante (syndicat, parti, organisateur) n'est jamais une donnée.
 
 ## 9. Scénarios
 
@@ -213,7 +213,7 @@ Dès la phase 1, un fait qui résout une question ou mesure une variable, selon 
 
 ## 10 et 11. Liens, jalons et faits imprévus
 
-Ces deux sections forment l'annexe `annexe_phase3.md`, qui ne s'applique qu'à partir de la phase 3 (sauf la section 8.9 et le pilote sur la piste exploratoire). En résumé :
+Ces deux sections forment l'annexe `annexe_phase3.md`, qui ne s'applique qu'à partir de la phase 3, sauf la section 8.9, l'usage descriptif de la caractérisation et de la reprise des faits dès la phase 1, et le pilote sur la piste exploratoire. En résumé :
 - les liens influents sont décomposés en jalons datés et gelés à l'avance, affichés et notés, mais sans effet sur les probabilités tant que la direction de leurs mises à jour fantômes n'est pas validée ;
 - les faits imprévus ne déplacent un nœud que s'ils franchissent un seuil d'application.
 
@@ -232,10 +232,10 @@ Ces deux sections forment l'annexe `annexe_phase3.md`, qui ne s'applique qu'à p
 - **Protocole.**
   - Il ne change que par une nouvelle version, numérotée en première ligne et journalisée.
   - Le noyau et l'annexe sont versionnés séparément. Les tags et releases `protocole-vX.Y` et `annexe-phase3-vX.Y` sont créés automatiquement au premier commit de chaque version sur `main`. Le contrôle échoue si un texte change sans nouveau numéro.
-  - **Version définitive.** Tant que le processus de relecture n'a pas abouti, le protocole évolue librement, par versions datées et journalisées. La première version définitive est la première qui satisfait le critère d'arrêt (deux relectures consécutives sans défaut bloquant ni important) ; elle est déclarée au journal et dans `modele/statut.json`. Aucun cycle de la piste protocole n'est exécuté avant elle : le premier cycle est décalé au mois suivant si besoin.
+  - **Version définitive.** Tant que le processus de relecture n'a pas abouti, le protocole évolue librement, par versions datées et journalisées. La première version définitive est la première qui satisfait le critère d'arrêt (deux relectures consécutives sans défaut bloquant ni important) ; le passage de `modele/statut.json` à « définitif » est une décision humaine (Nathan), journalisée. Le contrôle de la banque échoue si un gel d'un cycle réel existe alors que le statut n'est pas définitif. Aucun cycle de la piste protocole n'est exécuté avant elle : le premier cycle est décalé au mois suivant si besoin.
   - Le noyau et l'annexe sont gelés de la première version définitive au bilan de la phase 1, tenu à la première analyse trimestrielle après le premier cycle. Pendant le gel, une version n'est possible que pour corriger un défaut relevé en relecture, ou pour retirer une exigence devenue inexécutable, sur décision humaine journalisée. Tout ajout au texte est exclu. Les ajouts d'événements à la banque, encadrés par la section 8.8, sont la seule exception ; ils ne modifient pas le texte. La banque (`modele/banque/criteres.json`) est figée au premier gel d'un cycle réel : à chaque poussée, un contrôle échoue si le critère, les issues, la fenêtre, la nature, le pool, l'accessibilité, les questions mensuelles ou la source de résolution d'un événement diffère de sa valeur au premier gel où il apparaît, ou si l'empreinte d'un fichier gelé diffère de celle de son manifeste.
 - **Interventions humaines.** Toutes sont tracées.
-- **Relecture.** Obligatoire à chaque version. Le critère d'arrêt est de deux relectures consécutives sans défaut bloquant ni important. Le relecteur est de la même famille que les auteurs ; ses relectures sont conduites en sessions séparées, sans accès aux échanges de rédaction.
+- **Relecture.** Obligatoire à chaque version. Le critère d'arrêt est de deux relectures consécutives sans défaut bloquant ni important. Le compteur repart de zéro après une relecture qui relève un défaut bloquant ou important ; la correction de souhaitables, ou un changement de texte relu par la relecture suivante, ne le remet pas à zéro si cette relecture est elle-même sans défaut bloquant ni important. Le relecteur est de la même famille que les auteurs ; ses relectures sont conduites en sessions séparées, sans accès aux échanges de rédaction.
 
 ## 13. Limites assumées
 

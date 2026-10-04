@@ -1,6 +1,6 @@
-# Annexe phase 3 — liens, jalons et faits imprévus — version 1.3
+# Annexe phase 3 — liens, jalons et faits imprévus — version 1.4
 
-Statut : soumise à relecture avec le noyau v1.13. Rédigée le 4 octobre 2026 ; version 1.2 : caractérisation des faits, mesure de reprise et règle d'abandon (sections 11.2 et 11.3), à la demande de Nathan ; version 1.3 : définition de l'étape officielle (section 11.2). Elle complète `protocole.md` (le noyau) et ne s'applique qu'à partir de la phase 3, sauf le cas b (section 8.9 du noyau) et le pilote sur la piste exploratoire. Elle conserve la numérotation 10 et 11 pour la continuité des renvois. Elle est versionnée et taguée séparément (`annexe-phase3-vX.Y`), et gelée dans les mêmes conditions que le noyau (section 12). Dès la phase 1 servent la veille et le tri (section 11.2) : pour le cas « donnée », avec effet ; pour la caractérisation et la reprise des faits qui concernent une question, à titre descriptif seulement, sans effet sur aucune probabilité.
+Statut : soumise à relecture avec le noyau v1.13. Rédigée le 4 octobre 2026 ; version 1.2 : caractérisation des faits, mesure de reprise et règle d'abandon (sections 11.2 et 11.3), à la demande de Nathan ; version 1.3 : définition de l'étape officielle (section 11.2) ; version 1.4 : réponse à la relecture 11 (stade vérifié, reprise glissante, table de réexamen, affichage). Elle complète `protocole.md` (le noyau) et ne s'applique qu'à partir de la phase 3, sauf le cas b (section 8.9 du noyau) et le pilote sur la piste exploratoire. Elle conserve la numérotation 10 et 11 pour la continuité des renvois. Elle est versionnée et taguée séparément (`annexe-phase3-vX.Y`), et gelée dans les mêmes conditions que le noyau (section 12). Dès la phase 1 servent la veille et le tri (section 11.2) : pour le cas « donnée », avec effet ; pour la caractérisation et la reprise des faits qui concernent une question, à titre descriptif seulement, sans effet sur aucune probabilité.
 
 ## 10. Liens causaux et jalons
 
@@ -123,20 +123,21 @@ Le modèle doit réagir à l'actualité en jours, sans réagir au bruit. Les fai
 
   Il ne juge pas la matérialité : c'est le rôle du panel (section 11.4). Les décisions de tri sont écrites dans un fichier par mois, `data/tri/AAAA-MM.jsonl`, en ajout seul ; la collecte le lit sans le modifier. Chaque ligne porte un seul titre et contient les clés `lien` (adresse du titre, obligatoire), `passage` (date du tri), `fait` (identifiant du fait qui regroupe les titres), `decision` (jalon, nœud ou « non rattaché ») et `motif`.
 - **Caractérisation.** Chaque fait rattaché à un nœud ou à une question est caractérisé, avant toute estimation, sur trois axes :
-  - **nature** : pénal lié à la fonction ou au mandat (détournement, corruption, financement illégal) ; pénal sans lien avec la fonction ; manquement éthique ou politique non pénal ; vie privée ; décision ou déclaration publique ; autre ;
-  - **stade** : allégation (révélation de presse, accusation) ; procédure engagée (plainte déposée, enquête ouverte, perquisition, saisine) ; mise en cause formelle (mise en examen, renvoi, poursuite) ; décision (jugement, arrêt, décision administrative) ;
+  - **nature**, proposée par l'agent de tri : pénal lié à la fonction ou au mandat (détournement, corruption, financement illégal) ; pénal sans lien avec la fonction ; manquement éthique ou politique non pénal ; vie privée ; décision ou déclaration publique ; autre ;
+  - **stade**, aligné sur les étapes officielles ci-dessous : allégation (révélation de presse, accusation, plainte annoncée, saisine ou signalement par un tiers) ; procédure engagée (enquête ouverte par le parquet, information judiciaire, perquisition, procédure ouverte par une autorité de contrôle, commission d'enquête créée) ; mise en cause formelle (mise en examen, témoin assisté, renvoi devant une juridiction, levée d'immunité) ; décision (jugement ou arrêt, décision d'une autorité de contrôle, décision de l'intéressé ou de son parti sur sa propre situation) ;
   - **appui** : catégorie de la meilleure source qui établit le fait (`modele/sources.md`) et nature de la preuve publiée (document, témoignages, déclaration de l'intéressé).
-  La caractérisation est transmise aux évaluateurs (section 11.4). Un fait au stade « allégation » est un fait contesté (section 11.5) : il va en observation (cas f), quelle que soit la réputation du média qui le publie ; la distinction utile est entre allégation et fait établi, pas entre rédactions de référence.
-- **Étape officielle.** Acte d'une autorité habilitée à agir sur l'affaire, établi par une source de résolution du noyau (section 8.8) :
+
+  **Stade retenu.** L'agent de tri, qui ne lit que des titres, ne fait que proposer un stade. Le stade retenu est « allégation » par défaut. Un stade supérieur n'est retenu qu'après vérification de l'étape officielle correspondante par deux agents distincts, sur une source de résolution du noyau (section 8.8), comme pour le cas « donnée » ; chaque vérification est inscrite en ajout seul dans `data/tri/etapes.jsonl`. Le stade retenu est transmis aux évaluateurs (section 11.4), qui citent une classe de référence de même nature et de même stade. Un fait au stade « allégation » est un fait contesté (section 11.5) : il va en observation (cas f), quelle que soit la réputation du média qui le publie ; la distinction utile est entre allégation et fait établi, pas entre rédactions de référence.
+- **Étape officielle.** Acte d'une autorité habilitée à agir sur l'affaire, accompli par cette autorité elle-même, et établi par une source de résolution du noyau (section 8.8) :
   - judiciaire : ouverture d'une enquête par le parquet, perquisition, ouverture d'une information judiciaire, mise en examen ou statut de témoin assisté, renvoi, jugement, appel, arrêt ;
-  - administratif ou de contrôle : saisine ou décision de la HATVP, de la CNCCFP, de la Cour des comptes ou d'un organe de déontologie, signalement au parquet au titre de l'article 40 du code de procédure pénale ;
+  - administratif ou de contrôle : ouverture d'une procédure ou décision de la HATVP, de la CNCCFP, de la Cour des comptes ou d'un organe de déontologie ; une saisine de ces autorités ou un signalement au parquet par un tiers (adversaire politique, association, élu) n'en est pas une ;
   - parlementaire : création d'une commission d'enquête, levée d'immunité ;
   - décision de l'intéressé ou de son parti sur sa propre situation : démission, retrait de candidature, suspension, exclusion.
 
   Ne sont pas des étapes officielles : une nouvelle révélation de presse, une plainte seulement annoncée par le plaignant (elle compte quand le parquet en confirme la réception ou ouvre une enquête), une réaction ou une déclaration d'un tiers. À défaut de publication par l'autorité, l'étape est établie par deux agences de presse concordantes ou par une déclaration de l'intéressé ou de son avocat sur sa propre situation.
-- **Reprise.** Pour chaque fait, un script compte, à partir de la veille et des décisions de tri, le nombre de sources distinctes et le nombre de jours où il apparaît (`data/reprise.json`). C'est une mesure descriptive : elle fixe la date de réexamen d'un fait en observation et s'affiche dans le volet actualité, mais n'entre dans aucune probabilité. L'effet d'une affaire sur l'opinion passe par les sondages (section 11.5).
+- **Reprise.** Pour chaque fait, un script compte, à partir de la veille et des décisions de tri, le nombre de sources distinctes sur les sept premiers jours et sur les sept derniers jours (fenêtre glissante), et le nombre de jours où il apparaît (`data/reprise.json`). L'agent de tri reçoit la liste des faits suivis avec leur identifiant, pour qu'un même fait garde son identifiant d'un passage à l'autre. C'est une mesure descriptive : elle fixe la date de réexamen d'un fait en observation et s'affiche dans le volet actualité, mais n'entre dans aucune probabilité. L'effet d'une affaire sur l'opinion passe par les sondages (section 11.5).
 - **Trace.** Toute décision est consignée, y compris « non rattaché », avec son motif.
-- **Contrôle du tri.** Chaque trimestre, un second modèle réexamine 60 faits non rattachés tirés au sort. Plus de 10 % de faux négatifs (borne inférieure de l'intervalle à 80 % au-dessus de 5 %) entraînent une révision de la consigne de tri.
+- **Contrôle du tri.** Chaque trimestre, un second modèle réexamine 60 faits non rattachés tirés au sort, et 30 caractérisations (nature proposée, rattachement) tirées au sort. Plus de 10 % de faux négatifs (borne inférieure de l'intervalle à 80 % au-dessus de 5 %) entraînent une révision de la consigne de tri.
 
 ### 11.3 Traitements
 
@@ -149,11 +150,15 @@ Le modèle doit réagir à l'actualité en jours, sans réagir au bruit. Les fai
 | e. Hors modèle | Aucun nœud ne correspond | Question ad hoc prévue directement, notée dans un pool séparé. Nœud candidat à l'analyse trimestrielle |
 | f. En observation | Fait contesté, ou dont l'effet passe d'abord par une donnée à venir | Aucune mise à jour ; date de réexamen fixée (règle ci-dessous) |
 
-**Réexamen et abandon d'un fait en observation.**
-- La date de réexamen est fixée à 30 jours ; à 14 jours si la reprise dépasse cinq sources distinctes la première semaine.
-- Chaque étape officielle ultérieure (enquête ouverte, perquisition, mise en examen, décision) est un fait nouveau, daté et caractérisé, traité selon le tableau : une étape qui établit ou aggrave le fait renseigne le nœud (cas c) ou le résout (cas b).
-- À la date de réexamen, sans étape officielle nouvelle ni effet mesurable sur une série suivie (sondages, écart de taux), le fait est classé sans effet (cas a), avec motif « retombé ». S'il a suscité une étape nouvelle, ou si sa reprise a augmenté, il reste en observation une seule fois, 30 jours de plus.
-- Une affaire qui produit au moins deux étapes officielles ou un effet mesurable devient candidate à un lien et à ses jalons (section 10), ou à un ajout à la banque (noyau, section 8.8), à l'analyse trimestrielle suivante.
+**Réexamen et abandon d'un fait en observation.** La date de réexamen est fixée à l'entrée en observation, à 30 jours ; elle est ramenée à 14 jours au septième jour si au moins cinq sources distinctes ont repris le fait pendant la première semaine. À la date de réexamen :
+
+| Situation | Traitement |
+| --- | --- |
+| Une étape officielle a été vérifiée depuis l'entrée | L'étape est un fait nouveau, daté et caractérisé, traité selon le tableau ci-dessus (cas c, ou cas b si elle résout une question) ; le fait d'origine est clos |
+| Pas d'étape, et la reprise des sept derniers jours est au moins égale à celle des sept premiers | Une seule prolongation de 30 jours ; à son terme, sans étape, classement sans effet (cas a), motif « retombé » |
+| Ni l'un ni l'autre | Classement sans effet (cas a), motif « retombé » |
+
+L'effet d'une affaire sur l'opinion n'entre pas dans cette règle : il passe par les sondages (section 11.5), sans attribution causale. Une affaire qui produit au moins deux étapes officielles vérifiées devient candidate à un lien et à ses jalons (section 10), ou à un ajout à la banque (noyau, section 8.8), à l'analyse trimestrielle suivante. Le statut de chaque fait est calculé par `scripts/tri.py reprise`.
 
 ### 11.4 Preuve virtuelle
 
@@ -182,6 +187,8 @@ Chaque mise à jour b, c ou d produit de nouvelles lignes de registre pour toute
 - le nœud touché, avec sa probabilité avant et après ;
 - l'effet propagé sur les pivots principaux ;
 - la portée maximale : l'écart des pivots principaux entre les issues extrêmes du nœud.
+
+**Faits visant des personnes nommées.** Le volet actualité est public. Pour un fait au stade « allégation », il affiche le titre et le lien de la source, avec la mention « allégation non vérifiée » ; il n'affiche aucune qualification pénale produite par un agent, seulement le stade retenu et l'étape officielle vérifiée, avec sa source. La nature « vie privée » n'est jamais affichée.
 
 ### 11.7 Critère de maintien
 

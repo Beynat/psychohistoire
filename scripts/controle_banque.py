@@ -5,7 +5,8 @@ Usage : python scripts/controle_banque.py   (code de sortie 1 en cas d'erreur)
    ne change plus : critère, issues, fenêtre, nature, pool, accessibilité, questions mensuelles et
    source de résolution doivent être identiques, dans modele/evenements.json, à leur valeur dans le
    PREMIER gel où l'événement apparaît (relecture 10, I3). Seuls les ajouts sont permis.
-3. Gels : l'empreinte de chaque fichier gelé est égale à celle inscrite dans son manifeste
+3. Aucun gel de cycle réel tant que modele/statut.json n'est pas « définitif » (relecture 11, S1).
+4. Gels : l'empreinte de chaque fichier gelé est égale à celle inscrite dans son manifeste
    (relecture 10, S5).
 2. Ajouts (modele/banque/ajouts.jsonl) : identifiants uniques (entre eux et avec criteres.json), champ
    « ajoute_le » présent, au plus cinq ajouts entre deux gels successifs.
@@ -34,6 +35,9 @@ def controler():
     erreurs = []
     actuels = {e["id"]: e for e in lire_json("modele/evenements.json")["evenements"]}
     gels = gels_reels()
+    statut = lire_json("modele/statut.json", {"definitif": False})
+    if gels and not statut.get("definitif"):
+        erreurs.append(f"gel du cycle réel {gels[0][0]} présent alors que le protocole n'est pas déclaré définitif (noyau, section 12)")
     premiers = {}
     for et, _ in gels:
         for e in lire_json(f"data/cycles/{et}/gel/evenements.json")["evenements"]:

@@ -37,6 +37,21 @@ def test_grappes_sous_hypothese_nulle():
     assert 0.05 < rejets / 400 < 0.15, rejets / 400
 
 
+def test_brier_periode_commune():
+    """Relecture 11, J1 : mêmes probabilités aux mêmes dates, plus deux prévisions anciennes pour A ;
+    sur la période commune, les deux Brier pondérés sont égaux."""
+    import notation
+    commun_ = [{"emise": "2027-01-02T08:00:00+01:00", "probabilites": {"oui": 30, "non": 70}},
+               {"emise": "2027-02-01T08:00:00+01:00", "probabilites": {"oui": 60, "non": 40}}]
+    a = [{"emise": "2026-11-02T08:00:00+01:00", "probabilites": {"oui": 5, "non": 95}},
+         {"emise": "2026-12-01T08:00:00+01:00", "probabilites": {"oui": 10, "non": 90}}] + commun_
+    debut = max(a[0]["emise"][:10], commun_[0]["emise"][:10])
+    ba = notation.brier_pondere(a, "oui", debut, "2027-03-31")
+    bb = notation.brier_pondere(commun_, "oui", debut, "2027-03-31")
+    assert abs(ba - bb) < 1e-12, (ba, bb)
+    assert notation.brier_pondere(a, "oui", a[0]["emise"][:10], "2027-03-31") > ba  # l'artefact corrigé
+
+
 def test_registre():
     tmp = Path(tempfile.mkdtemp())
     ancien = registre.RACINE

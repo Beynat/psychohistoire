@@ -13,7 +13,8 @@ Pour chaque auteur (comparateurs, ensemble direct, puis modèle) et chaque pool 
 Comparaison de la référence (par défaut l'ensemble direct en phase 1) à chaque autre auteur sur
 les questions communes dont l'échéance est passée à la date du test, quelle que soit leur issue
 (relecture 10, I1 : une question de fenêtre résolue « oui » avant son échéance n'entre pas seule
-dans le test). Score testé : Brier pondéré dans le temps (noyau, section 8.5). Différences sommées par grappe, statistique
+dans le test). Score testé : Brier pondéré dans le temps (noyau, section 8.5), calculé pour chaque
+comparaison sur la période commune aux deux auteurs (relecture 11, J1). Différences sommées par grappe, statistique
 t = Σ D_g / √(Σ D_g²) ; valeur p unilatérale par permutation des signes des grappes (exacte sous
 16 grappes, 20 000 tirages au-delà). Une prévision émise après la résolution publique de sa
 question est exclue (section 8.8).
@@ -66,8 +67,39 @@ def test_grappes(diffs):
     p_autre = sum(1 for x in sims if x >= obs) / len(sims)
     # Trois verdicts au seuil de 10 % dans chaque sens (noyau, section 8.6).
     verdict = ("référence meilleure" if p < 0.10 else "autre meilleur" if p_autre < 0.10 else "non concluant")
-    return {"grappes": G, "t": round(t, 3), "p_unilaterale": round(p, 4), "p_unilaterale_autre": round(p_autre, 4),
-            "verdict": verdict}
+    # Écart moyen par question et intervalle à 80 % par rééchantillonnage des grappes (relecture 11, S8).
+    nq = [len(v) for v in diffs.values()]
+    moyen = sum(D) / sum(nq)
+    rb = random.Random(1)
+    boots = []
+    for _ in range(2000):
+        idx = [rb.randrange(G) for _ in range(G)]
+        boots.append(sum(D[i] for i in idx) / sum(nq[i] for i in idx))
+    boots.sort()
+    return {"grappes": G, "questions": sum(nq), "t": round(t, 3), "p_unilaterale": round(p, 4),
+            "p_unilaterale_autre": round(p_autre, 4), "verdict": verdict, "ecart_moyen": round(moyen, 4),
+            "intervalle_80": [round(boots[200], 4), round(boots[1799], 4)]}
+
+
+def fin_brier(q, r):
+    """Dernier jour du Brier pondéré : l'échéance, ou la veille du fait s'il la précède."""
+    if r.get("date_fait"):
+        return min(q["echeance"], (date.fromisoformat(r["date_fait"]) - timedelta(days=1)).isoformat())
+    return q["echeance"]
+
+
+def brier_pondere(lignes, issue, debut, fin):
+    """Moyenne journalière, de debut à fin inclus, du Brier de la dernière prévision inscrite ce jour-là.
+    Les jours antérieurs à la première prévision de l'auteur ne sont pas comptés : l'appelant fixe debut."""
+    jour, k, cumul, n = date.fromisoformat(debut), -1, 0.0, 0
+    while jour <= date.fromisoformat(fin):
+        while k + 1 < len(lignes) and lignes[k + 1]["emise"][:10] <= jour.isoformat():
+            k += 1
+        if k >= 0:
+            cumul += brier(lignes[k]["probabilites"], issue)
+            n += 1
+        jour += timedelta(days=1)
+    return cumul / n if n else None
 
 
 def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhui=None):
@@ -91,19 +123,12 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
             exclues.append({"auteur": auteur, "question": qid, "motif": "émise après l'échéance ou la résolution"})
             continue
         # Brier pondéré : du jour d'émission à l'échéance, arrêté la veille du fait (relecture 9).
-        fin = min(q["echeance"], (date.fromisoformat(r["date_fait"]) - timedelta(days=1)).isoformat()) \
-            if r.get("date_fait") else q["echeance"]
+        fin = fin_brier(q, r)
         d0 = lignes[0]["emise"][:10]
-        jour, k, cumul, n = date.fromisoformat(d0), 0, 0.0, 0
-        while jour <= date.fromisoformat(fin):
-            while k + 1 < len(lignes) and lignes[k + 1]["emise"][:10] <= jour.isoformat():
-                k += 1
-            cumul += brier(lignes[k]["probabilites"], r["issue"])
-            n += 1
-            jour += timedelta(days=1)
         der = lignes[-1]["probabilites"]
         scores[(auteur, qid)] = {"brier": brier(der, r["issue"]), "log": logs(der, r["issue"]),
-                                 "brier_temps": cumul / max(n, 1), "pool": q["pool"], "grappe": q["grappe"],
+                                 "brier_temps": brier_pondere(lignes, r["issue"], d0, fin), "pool": q["pool"], "grappe": q["grappe"],
+                                 "lignes": lignes, "debut": d0, "fin": fin,
                                  "binaire": len(q["issues"]) == 2,
                                  "p_oui": der.get("oui", 0) / 100, "y": r["issue"] == "oui"}
     auteurs = sorted({a for a, _ in scores})
@@ -123,11 +148,32 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
         for a in auteurs:
             if a == reference:
                 continue
-            diffs = {}
+            diffs, echelles = {}, {}
             for (aa, qid), s in scores.items():
                 if aa == reference and (a, qid) in scores and qs[qid]["echeance"] <= aujourdhui:
-                    diffs.setdefault(s["grappe"], []).append(s["brier_temps"] - scores[(a, qid)]["brier_temps"])
+                    # Période commune (relecture 11, J1) : du plus tardif des deux premiers jours de
+                    # prévision à la veille du fait ou à l'échéance.
+                    o = scores[(a, qid)]
+                    debut = max(s["debut"], o["debut"])
+                    if debut > s["fin"]:
+                        continue
+                    issue = res[qid]["issue"]
+                    br, bo = brier_pondere(s["lignes"], issue, debut, s["fin"]), brier_pondere(o["lignes"], issue, debut, o["fin"])
+                    if br is not None and bo is not None:
+                        diffs.setdefault(s["grappe"], []).append(br - bo)
+                        pr = s["p_oui"] if s["binaire"] else None
+                        echelles.setdefault(s["grappe"], []).append(4 * pr * (1 - pr) if pr is not None else 1.0)
             comparaisons[a] = test_grappes(diffs)
+            # Puissance recalculée sur les grappes réellement présentes (relecture 11, S8).
+            if len(echelles) >= 2:
+                import puissance
+                rnd = random.Random(2)
+                comparaisons[a]["puissance_recalculee"] = {
+                    f"delta_{d}": round(puissance.puissance_echelles(list(echelles.values()), d, 0.3, 0.12, 1000, rnd), 3)
+                    for d in (0.02, 0.04)}
+    for v in scores.values():
+        for k in ("lignes", "debut", "fin"):
+            v.pop(k, None)
     sortie = {"etabli_le": maintenant(), "registre": reg, "reference": reference,
               "questions_resolues": len(res), "auteurs": par_auteur, "comparaisons": comparaisons, "exclues": exclues}
     ecrire_json(f"data/bilans/bilan{sfx}_{aujourdhui}.json", sortie)
