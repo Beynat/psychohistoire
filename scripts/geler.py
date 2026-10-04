@@ -1,6 +1,6 @@
 """Gel des données d'un cycle (noyau, section 8.2).
 
-Usage : python scripts/geler.py AAAA-MM-JJ
+Usage : python scripts/geler.py AAAA-MM-JJ [ETIQUETTE]   (étiquette du cycle, par défaut AAAA-MM)
 Copie les données utilisées par le cycle dans data/cycles/<AAAA-MM>/gel/ et écrit un manifeste
 avec l'empreinte SHA-256 de chaque fichier et l'heure du gel. Le commit du gel doit précéder
 toute prévision du cycle ; un gel déjà fait n'est jamais réécrit.
@@ -15,9 +15,9 @@ A_GELER = ["data/collecte.json", "data/cotes.json", "modele/evenements.json", "m
     str(p.relative_to(RACINE)) for p in (RACINE / "data/historique").glob("*.csv"))
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        sys.exit("usage : python scripts/geler.py AAAA-MM-JJ")
-    cycle = sys.argv[1][:7]
+    if len(sys.argv) not in (2, 3):
+        sys.exit("usage : python scripts/geler.py AAAA-MM-JJ [ETIQUETTE]")
+    cycle = sys.argv[2] if len(sys.argv) == 3 else sys.argv[1][:7]
     dest = RACINE / "data" / "cycles" / cycle / "gel"
     if (dest / "manifeste.json").exists():
         sys.exit(f"Le cycle {cycle} est déjà gelé : un gel n'est jamais réécrit.")

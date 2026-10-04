@@ -1,6 +1,6 @@
 """Génère la banque de questions d'un cycle mensuel (noyau, sections 8.1 à 8.3).
 
-Usage : python scripts/questions.py AAAA-MM-JJ   (date du gel, en général le 1er du mois)
+Usage : python scripts/questions.py AAAA-MM-JJ [ETIQUETTE]   (date du gel ; étiquette du cycle, par défaut AAAA-MM)
 Écrit data/cycles/<AAAA-MM>/questions.json. Lit les données gelées du cycle si elles existent
 (data/cycles/<AAAA-MM>/gel/), sinon les données courantes.
 
@@ -30,8 +30,9 @@ def arrondi(v, unite):
     return round(v) if unite == "pb" else round(v, 1)
 
 
-def generer(gel):
-    cycle = gel[:7]
+def generer(gel, etiquette=None):
+    mois = gel[:7]
+    cycle = etiquette or mois
     gel_dir = RACINE / "data" / "cycles" / cycle / "gel" / "historique"
     lire = (lambda n: commun.serie(n)) if not gel_dir.exists() else (
         lambda n: [(p, float(v)) for p, v in (l.split(",") for l in (gel_dir / f"{n}.csv").read_text("utf-8").splitlines()[1:] if l)])
@@ -43,7 +44,7 @@ def generer(gel):
         s = lire(nom)
         dernier, base = s[-1]
         for h in HORIZONS:
-            cible = mois_suivant(cycle, h - 1)
+            cible = mois_suivant(mois, h - 1)
             if cible <= dernier:
                 ecartees.append((f"{nom} {cible}", "valeur déjà publiée"))
                 continue
@@ -81,17 +82,17 @@ def generer(gel):
         if len(e["issues"]) == 2 and e.get("mensuelle", True) and ecart_mois(gel[:7], fin[:7]) > 3 and e["fenetre"]["debut"] <= gel:
             mid = f"Q-{e['id']}-{cycle}"
             qs.append({**commun_e, "id": mid, "pool": correspondances.get(mid, {}).get("pool", "P2b"),
-                       "grappe": f"{e['evenement']}-{trimestre(cycle)}",
-                       "texte": f"{e['nom']} : le critère est-il rempli au cours du mois {cycle} ?",
-                       "echeance": iso_fin_mois(cycle), "fenetre": {"debut": gel, "fin": iso_fin_mois(cycle)}})
+                       "grappe": f"{e['evenement']}-{trimestre(mois)}",
+                       "texte": f"{e['nom']} : le critère est-il rempli au cours du mois {mois} ?",
+                       "echeance": iso_fin_mois(mois), "fenetre": {"debut": gel, "fin": iso_fin_mois(mois)}})
     return {"cycle": cycle, "gel": gel, "genere_le": maintenant(), "questions": qs,
             "ecartees": [{"objet": o, "motif": m} for o, m in ecartees]}
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        sys.exit("usage : python scripts/questions.py AAAA-MM-JJ")
-    banque = generer(sys.argv[1])
+    if len(sys.argv) not in (2, 3):
+        sys.exit("usage : python scripts/questions.py AAAA-MM-JJ [ETIQUETTE]")
+    banque = generer(sys.argv[1], sys.argv[2] if len(sys.argv) == 3 else None)
     ecrire_json(f"data/cycles/{banque['cycle']}/questions.json", banque)
     n = len(banque["questions"])
     g = len({q["grappe"] for q in banque["questions"]})
