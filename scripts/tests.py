@@ -158,6 +158,21 @@ out["annulation60"] = [(x["question"], x["issue"]) for x in r]
 (R / 'resolutions_t.jsonl').write_text('')
 props([])
 out["sans_avis"] = [x["question"] for x in resolution.resoudre("registre/t.jsonl", "2027-03-03")]
+# 5. Annulation à 30 jours : deux recherches vaines consignées (relecture 13, S13).
+props([P("Q-EV-15", None, "A", "2027-01-10"), P("Q-EV-15", None, "B", "2027-01-10")])
+out["annulation30"] = [(x["question"], x["issue"]) for x in resolution.resoudre("registre/t.jsonl", "2027-02-01")]
+(R / 'resolutions_t.jsonl').write_text('')
+# 6. « Non » prématuré déposé avant l'échéance : toujours ignoré après l'échéance (relecture 14, N1).
+props([P("Q-EV-01", "non", "A", "2026-11-20"), P("Q-EV-01", "non", "B", "2026-11-20")])
+out["non_premature_apres"] = [x["question"] for x in resolution.resoudre("registre/t.jsonl", "2028-10-01")]
+(R / 'resolutions_t.jsonl').write_text('')
+# 7. Réouverture par erratum : les propositions antérieures ne la referment pas (relecture 14, N1).
+# Propositions datées avant l'erratum, que registre.py horodate à l'heure réelle.
+props([P("Q-EV-15", "oui", "A", "2026-09-20"), P("Q-EV-15", "oui", "B", "2026-09-20")])
+r1 = resolution.resoudre("registre/t.jsonl", "2026-11-21")
+registre.ajouter("registre/resolutions_t.jsonl", [{"erratum": True, "objet": "Q-EV-15", "correction": {"rouverte": True}, "piste": "protocole"}])
+r2 = resolution.resoudre("registre/t.jsonl", "2026-11-22")
+out["reouverture"] = [[x["question"] for x in r1], [x["question"] for x in r2], "Q-EV-15" in resolution.resolutions_effectives("_t")]
 print(json.dumps(out))
 """
         out = json.loads(run("-c", code).strip().splitlines()[-1])
@@ -165,6 +180,9 @@ print(json.dumps(out))
         assert "Q-EV-01" not in out["non_premature"], out
         assert ("Q-EV-15", None) in [tuple(x) for x in out["annulation60"]], out
         assert out["sans_avis"] == [], out
+        assert ["Q-EV-15", None] in out["annulation30"], out
+        assert "Q-EV-01" not in out["non_premature_apres"], out
+        assert out["reouverture"] == [["Q-EV-15"], [], False], out
         # 4. Première valeur collectée (relecture 13, L1) : collectée, révisée, puis résolue.
         code2 = r"""
 import json, resolution

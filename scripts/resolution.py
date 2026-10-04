@@ -91,8 +91,16 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
     aujourdhui = aujourdhui or date.today().isoformat()
     sfx = suffixe(reg)
     deja = set(resolutions_effectives(sfx))
+    # Dernière réouverture par erratum de chaque question (relecture 14, N1) : les propositions émises
+    # avant elle ne comptent plus.
+    reouv = {}
+    for r in lire_jsonl(f"registre/resolutions{sfx}.jsonl"):
+        if r.get("erratum") and isinstance(r.get("correction"), dict) and r["correction"].get("rouverte"):
+            reouv[r["objet"]] = max(reouv.get(r["objet"], ""), r.get("emise", ""))
     props = {}
     for p in lire_jsonl(f"registre/propositions{sfx}.jsonl"):
+        if p.get("emise", "") <= reouv.get(p["question"], ""):
+            continue
         props.setdefault(p["question"], []).append(p)
     emises = {l["question"] for l in lire_jsonl(reg) if "question" in l and "probabilites" in l}
     nouvelles = []
@@ -126,8 +134,8 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
             if a["issue"] is None:
                 vaines.add(a["agent"])
                 continue
-            if a["issue"] == "non" and nature(qid, q) == "survenue" and aujourdhui <= q["echeance"]:
-                continue
+            if a["issue"] == "non" and nature(qid, q) == "survenue" and a.get("emise", "")[:10] <= q["echeance"]:
+                continue   # émise avant l'échéance : ignorée, même après l'échéance (relecture 14, N1)
             avis.append(a)
         issues = [a["issue"] for a in avis]
         def df(issue, avis_retenus):

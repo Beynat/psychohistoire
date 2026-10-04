@@ -1,5 +1,5 @@
 {
- "etabli_le": "2026-10-04T14:56:26+02:00",
+ "etabli_le": "2026-10-04T15:10:24+02:00",
  "sigma": 0.12,
  "simulations": 4000,
  "seuil": "unilatéral 10 %",
@@ -533,5 +533,14 @@
    "questions_informatives": 1,
    "puissance_0.04": 0.187
   }
+ },
+ "persistance_P2a": {
+  "grappes_max_2027": 4,
+  "p_minimale_par_grappes": {
+   "2": 0.25,
+   "3": 0.125,
+   "4": 0.0625
+  },
+  "commentaire": "Avec 3 grappes, rejet impossible ; avec 4, seulement si les quatre écarts ont le même signe."
  }
 }

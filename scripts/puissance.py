@@ -139,7 +139,14 @@ if __name__ == "__main__":
                                    "puissance": round(puissance_echelles(grappes, delta, rho, sigma, nsim, rnd), 3)})
     ecrire_json("data/puissance.json", {"etabli_le": maintenant(), "sigma": sigma, "simulations": nsim,
                                         "seuil": "unilatéral 10 %", "taux_fausse_alarme_delta_0": nulle, "table": lignes,
-                                        "banque_reelle": banque, "demarrage_tardif": tardif})
+                                        "banque_reelle": banque, "demarrage_tardif": tardif,
+                                        # Critère de persistance sur P2a pour le modèle : écart de taux seul,
+                                        # au plus quatre grappes trimestrielles au 30 septembre 2027. Le test exact
+                                        # par permutation des signes ne peut rejeter au seuil de 10 % que si
+                                        # 1/2^G < 0,10, soit G ≥ 4 (relecture 14, S7).
+                                        "persistance_P2a": {"grappes_max_2027": 4,
+                                                            "p_minimale_par_grappes": {str(g): round(0.5 ** g, 4) for g in (2, 3, 4)},
+                                                            "commentaire": "Avec 3 grappes, rejet impossible ; avec 4, seulement si les quatre écarts ont le même signe."}})
     print("démarrage tardif :", tardif)
     for b in banque:
         print(f"butée {b['butee']} : {b['grappes_P2b']} + {b['grappes_P2c']} grappes, {b['questions']} questions ({b['questions_informatives']} informatives), ρ={b['rho']} δ={b['delta_brier']} → {b['puissance']:.2f}")

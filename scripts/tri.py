@@ -245,15 +245,24 @@ def reprise(aujourdhui=None):
         public = v["type"] in ("fait public", "fait établi")
         if public and stade == "fait établi":
             statut, stade, reex = "fait établi", None, None
+        elif public and any(x["decision"] == "retombé" for x in deja):
+            statut, stade = "retombé", None
+        elif public and any(x["decision"] == "prolongé" for x in deja):
+            # Fait public non vérifié : même table de réexamen qu'une mise en cause (relecture 14, S5).
+            stade = None
+            reex = date.fromisoformat([x for x in deja if x["decision"] == "prolongé"][0]["date"]) + timedelta(days=30)
+            statut = "fait public non vérifié, prolongé" if auj < reex else "retombé"
+            if statut == "retombé":
+                nouvelles_decisions.append({"fait": k, "decision": "retombé", "date": reex.isoformat()})
         elif public:
-            stade = None   # un fait public non vérifié est contesté : il suit la table de réexamen
-            if any(x["decision"] == "retombé" for x in deja):
-                statut = "retombé"
-            elif auj < reex:
+            stade = None
+            if auj < reex:
                 statut = "fait public non vérifié, en observation"
             else:
-                statut = "retombé"
-                nouvelles_decisions.append({"fait": k, "decision": "retombé", "date": reex.isoformat()})
+                statut = "fait public non vérifié, prolongé" if len(s7d) >= len(s7p) else "retombé"
+                nouvelles_decisions.append({"fait": k, "decision": "prolongé" if "prolongé" in statut else "retombé", "date": reex.isoformat()})
+                if "prolongé" in statut:
+                    reex = reex + timedelta(days=30)
         elif date_etape and date_etape >= jours[0]:
             statut = "étape officielle vérifiée"
         elif any(x["decision"] == "retombé" for x in deja):

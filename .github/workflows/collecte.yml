@@ -35,7 +35,13 @@ jobs:
           WEBSTAT_KEY: ${{ secrets.WEBSTAT_KEY }}
         continue-on-error: true
       - name: Journal des premières valeurs collectées (noyau, section 8.8)
-        run: python scripts/premieres_valeurs.py
+        run: |
+          python scripts/premieres_valeurs.py
+          # Une poussée faite par ce workflow ne déclenche pas le contrôle des registres : on vérifie ici
+          # que le journal n'est modifié que par ajout (relecture 14, N4).
+          if git diff --unified=0 HEAD -- data/premieres_valeurs.jsonl | grep -q '^-[^-]'; then
+            echo "::error::data/premieres_valeurs.jsonl modifié autrement que par ajout"; exit 1
+          fi
       - name: Enregistrer les données si elles ont changé
         run: |
           git config user.name "collecte-psychohistoire"
