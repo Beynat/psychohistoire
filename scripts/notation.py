@@ -149,7 +149,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
     fa = RACINE / "modele/banque/ajouts.jsonl"
     ajoutes = {_json.loads(l)["id"] for l in fa.read_text("utf-8").splitlines() if l.strip()} if fa.exists() else set()
 
-    def comparer(a, garder):
+    def comparer(a, garder, instantanes=True):
         diffs, echelles = {}, {}
         for (aa, qid), s in scores.items():
             if aa != reference or (a, qid) not in scores or qs[qid]["echeance"] > aujourdhui or not garder(qid, s):
@@ -157,11 +157,19 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
             # Période commune (relecture 11, J1) : du plus tardif des deux premiers jours de prévision
             # à la veille du fait ou à l'échéance.
             o = scores[(a, qid)]
-            debut = max(s["debut"], o["debut"])
+            ls, lo = s["lignes"], o["lignes"]
+            if instantanes:
+                # Instantanés mensuels (relecture 12, K3) : seules les prévisions des cycles mensuels
+                # (origine « cycle … ») ; les mises à jour continues de la phase 3 sont exclues du test.
+                ls = [l for l in ls if str(l.get("origine", "")).startswith("cycle")]
+                lo = [l for l in lo if str(l.get("origine", "")).startswith("cycle")]
+                if not ls or not lo:
+                    continue
+            debut = max(ls[0]["emise"][:10], lo[0]["emise"][:10])
             if debut > s["fin"]:
                 continue
             issue = res[qid]["issue"]
-            br, bo = brier_pondere(s["lignes"], issue, debut, s["fin"]), brier_pondere(o["lignes"], issue, debut, o["fin"])
+            br, bo = brier_pondere(ls, issue, debut, s["fin"]), brier_pondere(lo, issue, debut, o["fin"])
             if br is not None and bo is not None:
                 diffs.setdefault(s["grappe"], []).append(br - bo)
                 pr = s["p_oui"] if s["binaire"] else None
@@ -187,6 +195,8 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
                 "critere_8_6": comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c")),
                 "critere_8_6_sans_ajouts": comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c") and evenement(qid) not in ajoutes),
                 "toutes_questions_descriptif": comparer(a, lambda qid, s: True),
+                # Apport des mises à jour continues, descriptif, sans décision (relecture 12, K3).
+                "mises_a_jour_continues_descriptif": comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c"), instantanes=False),
             }
     for v in scores.values():
         for k in ("lignes", "debut", "fin"):

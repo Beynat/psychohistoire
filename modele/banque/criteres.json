@@ -1,7 +1,7 @@
 {
- "version": "1.2",
+ "version": "1.3",
  "date": "2026-10-04",
- "description": "Critères de résolution de la banque d'événements, seuls transmis aux prévisionnistes. Le texte d'origine du balayage v1 reste dans modele/v1 et figure dans evenements.json sous « contexte_v1 », jamais transmis (relecture 8, G1). Sources de résolution : modele/sources.md, règle 1. Champ « nature » (relecture 9, H1) : « survenue » pour un événement qui peut se produire à tout moment de la fenêtre (taux de base ramené à la fenêtre restante par un risque constant), « constat » pour une issue constatée à date fixe (taux de base non converti).",
+ "description": "Critères de résolution de la banque d'événements, seuls transmis aux prévisionnistes. Le texte d'origine du balayage v1 reste dans modele/v1 et figure dans evenements.json sous « contexte_v1 », jamais transmis (relecture 8, G1). Sources de résolution : modele/sources.md, règle 1. Champ « nature » (relecture 9, H1) : « survenue » pour un événement qui peut se produire à tout moment de la fenêtre (taux de base ramené à la fenêtre restante par un risque constant), « constat » pour une issue constatée à date fixe (taux de base non converti). Champ « acte » (relecture 12, K4) : les questions tranchées par le même acte officiel (liste des candidats et résultats du premier tour de 2027) forment une seule grappe.",
  "second_tour": "2027-05-02",
  "premier_tour": "2027-04-18",
  "source_dates": "https://www.info.gouv.fr/actualite/presidentielle-2027-date-a-retenir-et-informations-cles",
@@ -659,7 +659,8 @@
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
    "motif_inaccessible": null,
-   "nature": "constat"
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour"
   },
   {
    "id": "EV-20",
@@ -708,7 +709,8 @@
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
    "motif_inaccessible": null,
-   "nature": "constat"
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour"
   },
   {
    "id": "EV-23",
@@ -734,7 +736,8 @@
    "accessible": true,
    "motif_inaccessible": null,
    "revise": "relecture 9",
-   "nature": "constat"
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour"
   },
   {
    "id": "EV-40a",
@@ -765,7 +768,8 @@
    "accessible": true,
    "motif_inaccessible": null,
    "revise": "relecture 9",
-   "nature": "constat"
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour"
   },
   {
    "id": "EV-40b",
@@ -796,7 +800,8 @@
    "accessible": true,
    "motif_inaccessible": null,
    "revise": "relecture 9",
-   "nature": "constat"
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour"
   },
   {
    "id": "EV-40c",
@@ -827,7 +832,8 @@
    "accessible": true,
    "motif_inaccessible": null,
    "revise": "relecture 9",
-   "nature": "constat"
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour"
   },
   {
    "id": "EV-40d",
@@ -858,7 +864,8 @@
    "accessible": true,
    "motif_inaccessible": null,
    "revise": "relecture 9",
-   "nature": "constat"
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour"
   },
   {
    "id": "EV-40e",
@@ -889,7 +896,8 @@
    "accessible": true,
    "motif_inaccessible": null,
    "revise": "relecture 9",
-   "nature": "constat"
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour"
   },
   {
    "id": "EV-40f",
@@ -920,7 +928,8 @@
    "accessible": true,
    "motif_inaccessible": null,
    "revise": "relecture 9",
-   "nature": "constat"
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour"
   },
   {
    "id": "EV-40g",
@@ -951,7 +960,8 @@
    "accessible": true,
    "motif_inaccessible": null,
    "revise": "relecture 9",
-   "nature": "constat"
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour"
   },
   {
    "id": "EV-41",
@@ -986,7 +996,8 @@
    },
    "accessible": true,
    "motif_inaccessible": null,
-   "nature": "constat"
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour"
   },
   {
    "id": "EV-39",

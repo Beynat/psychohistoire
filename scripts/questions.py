@@ -82,7 +82,8 @@ def generer(gel, etiquette=None):
     fins = {}
     for e in evts:
         fins.setdefault(e["evenement"], set()).add(e["fenetre"]["fin"])
-    grappe = lambda e: e["id"] if len(fins[e["evenement"]]) > 1 else e["evenement"]
+    # Les questions tranchées par un même acte officiel forment une grappe (relecture 12, K4).
+    grappe = lambda e: e["acte"] if e.get("acte") else (e["id"] if len(fins[e["evenement"]]) > 1 else e["evenement"])
     for e in evts:
         if not e["source_accessible"]:
             ecartees.append((e["id"], e["motif_inaccessible"]))
