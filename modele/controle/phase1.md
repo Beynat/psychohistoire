@@ -1,4 +1,4 @@
-# Liste de contrôle — phase 1 (démarrage au 1er novembre 2026)
+# Liste de contrôle — phase 1 (premier cycle P : le 1er du mois qui suit la première version définitive, au plus tôt le 1er novembre 2026)
 
 La phase 1 ne démarre que si chaque point est coché, avec le commit correspondant (protocole, section 3).
 
@@ -8,12 +8,12 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [x] `scripts/geler.py` : gel des données, manifeste à empreintes SHA-256, gel jamais réécrit.
 - [x] `scripts/registre.py` : ajout au registre, horodatage par l'horloge système, propositions et résolutions ; tests dans `scripts/tests.py`.
 - [x] `scripts/notation.py` : Brier, logarithmique, Murphy, Brier pondéré dans le temps, test par grappes à permutation de signes.
-- [x] `scripts/puissance.py` : puissance publiée dans `data/puissance.json` (environ 61 à 79 % à 40 grappes pour un écart de Brier de 0,02 ; fausse alarme 9 à 10 %).
+- [x] `scripts/puissance.py` : puissance publiée dans `data/puissance.json` sur la banque réelle (P2b seul au 30 septembre 2027 : 17 à 19 % pour un écart de Brier de 0,02, 26 à 35 % pour 0,04 ; noyau, section 8.6).
 - [x] `scripts/comparateurs.py` : persistance, taux de base ramené à la fenêtre, 50 %.
 
 ## Données et questions
 
-- [x] `modele/evenements.json` : 21 événements du balayage v1 dotés d'un critère, 23 questions, dont 20 résolubles ; 3 non émises faute de source accessible (ACLED). Généré par `scripts/evenements.py` (4 octobre 2026).
+- [x] `modele/evenements.json` : généré par `scripts/evenements.py` depuis `modele/banque/criteres.json` (critères réécrits et ajouts des relectures 8 à 12) ; 41 événements, 50 questions d'événement, 46 résolubles (4 octobre 2026).
 - [x] Historique long des séries mensuelles et trimestrielles (taux 10 ans FR et DE et écart depuis 1990, IPCH depuis 1997, dette, PIB, chômage) : `collecte/historique.py`, `data/historique/` (4 octobre 2026).
 - [x] Collecte des cotes externes pour P1 : Polymarket (232 marchés France, volume, écart offre-demande, drapeau de fiabilité), `collecte/cotes.py`. Metaculus exige un jeton : inaccessible, limite consignée (4 octobre 2026).
 - [x] Taux de base des 20 questions résolubles, deux classes de référence ou plus, fourchette et classe retenue : `modele/taux_base/`, fusion `scripts/taux_base.py` → `modele/taux_base.json` (4 octobre 2026). Bornés entre 2 et 98 % pour le score logarithmique. Plusieurs comptages reposent sur des sources partielles, signalées dans le champ « incertitude » : à revoir au premier bilan.
@@ -37,7 +37,7 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [x] Branche `main` protégée contre la poussée forcée et la suppression (ruleset actif depuis le 4 octobre 2026).
 - [x] Cycle à blanc sur la piste exploratoire, chaîne complète (4 octobre 2026) : `data/cycles/2026-10/ESSAI.md`. Quatre problèmes trouvés et corrigés ; un reste ouvert (série quotidienne de l'OAT).
 
-## Prérequis de la phase 2 (1er décembre 2026)
+## Prérequis de la phase 2 (P + 1 mois)
 
 - [x] Écart de taux OAT-Bund journalier collecté depuis 2010 : TEC 10 (Banque de France) moins Bund 10 ans (Bundesbank, courbe Svensson). Décalage moyen avec la série BCE : environ −9 pb sur 12 mois, corrigé à l'ancrage.
 - [ ] Historique journalier 2010-2025 pour le rétro-test (section 7.1).

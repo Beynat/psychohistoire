@@ -50,6 +50,15 @@ def controler():
         for c in CHAMPS:
             if e.get(c) != a.get(c):
                 erreurs.append(f"{i} : champ « {c} » modifié depuis son premier gel (cycle {et})")
+    # Taux de base figés au premier gel de chaque événement (relecture 12, S3).
+    tb_actuel = lire_json("modele/taux_base.json", {"questions": {}})["questions"]
+    tb_premier = {}
+    for et, _ in gels:
+        for i, q in (lire_json(f"data/cycles/{et}/gel/taux_base.json") or {"questions": {}})["questions"].items():
+            tb_premier.setdefault(i, (et, q.get("utilisee")))
+    for i, (et, u) in tb_premier.items():
+        if i in tb_actuel and tb_actuel[i].get("utilisee") != u:
+            erreurs.append(f"{i} : taux de base modifié depuis son premier gel (cycle {et})")
     for et, m in gels:
         for src, emp in m.get("fichiers", {}).items():
             nom = src.split("/")[-1]

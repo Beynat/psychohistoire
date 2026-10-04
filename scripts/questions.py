@@ -36,7 +36,7 @@ def generer(gel, etiquette=None):
     gel_dir = RACINE / "data" / "cycles" / cycle / "gel" / "historique"
     lire = (lambda n: commun.serie(n)) if not gel_dir.exists() else (
         lambda n: [(p, float(v)) for p, v in (l.split(",") for l in (gel_dir / f"{n}.csv").read_text("utf-8").splitlines()[1:] if l)])
-    resolues = {r["question"] for r in lire_jsonl("registre/resolutions.jsonl")}
+    resolues = {r["question"] for r in lire_jsonl("registre/resolutions.jsonl") if r.get("resolution")}
     correspondances = lire_json("modele/correspondances_p1.json", {"correspondances": {}})["correspondances"]
     qs, ecartees = [], []
 

@@ -44,7 +44,6 @@ ETAPES = {
     "information judiciaire ouverte": "procédure engagée",
     "perquisition": "procédure engagée",
     "procédure ouverte par une autorité de contrôle": "procédure engagée",
-    "commission d'enquête créée": "procédure engagée",
     "mise en examen": "mise en cause formelle",
     "témoin assisté": "mise en cause formelle",
     "renvoi devant une juridiction": "mise en cause formelle",
@@ -52,6 +51,8 @@ ETAPES = {
     "jugement ou arrêt": "décision",
     "décision d'une autorité de contrôle": "décision",
     "décision de l'intéressé ou de son parti": "décision",
+    # Fait public établi (décision, vote, accord publié) vérifié sur la source de son auteur (relecture 12, K5).
+    "fait public vérifié": "fait établi",
 }
 TRI = RACINE / "data" / "tri"
 
@@ -71,7 +72,8 @@ def questions_ouvertes():
     resolues = set()
     f = RACINE / "registre" / "resolutions.jsonl"
     if f.exists():
-        resolues = {json.loads(l)["question"] for l in f.read_text("utf-8").splitlines() if l.strip()}
+        resolues = {json.loads(l)["question"] for l in f.read_text("utf-8").splitlines()
+                    if l.strip() and json.loads(l).get("resolution")}
     return [{"question": f"Q-{e['id']}", "nom": e["nom"], "critere": e["critere"], "fenetre": e["fenetre"]}
             for e in lire_json("modele/evenements.json")["evenements"]
             if e["source_accessible"] and f"Q-{e['id']}" not in resolues]
@@ -84,8 +86,8 @@ def a_trier(sortie):
     with open(sortie, "w", encoding="utf-8") as f:
         rep = lire_json("data/reprise.json", {"faits": {}})["faits"]
         suivis = [{"fait": k, "premier_jour": v["premier_jour"], "dernier_jour": v["dernier_jour"],
-                   "concerne": v["concerne"], "stade_retenu": v.get("stade_retenu")}
-                  for k, v in rep.items() if v.get("statut") not in ("retombé",)]
+                   "concerne": v["concerne"], "stade_retenu": v.get("stade_retenu"), "statut": v.get("statut")}
+                  for k, v in rep.items()]  # un fait retombé reste listé : il garde son identifiant et reste clos
         json.dump({"titres": items, "questions_ouvertes": questions_ouvertes(), "faits_suivis": suivis},
                   f, ensure_ascii=False, indent=1)
     print(f"{len(items)} titres à trier ; {len(questions_ouvertes())} questions d'événement ouvertes ; écrit dans {sortie}")
@@ -157,19 +159,40 @@ def etape():
 
 
 def stades_retenus():
-    """Stade retenu par fait : le plus élevé vérifié par au moins deux agents distincts, sinon « allégation »."""
+    """Stade retenu par fait : le plus élevé dont la MÊME étape a été vérifiée par au moins deux agents
+    distincts (relecture 12, S8), sinon « allégation ». Le stade « fait établi » est à part."""
     f = TRI / "etapes.jsonl"
     par = {}
     if f.exists():
         for l in f.read_text("utf-8").splitlines():
             if l.strip():
                 d = json.loads(l)
-                par.setdefault((d["fait"], d["stade"]), {}).setdefault(d["agent"], d["date_fait"])
+                par.setdefault((d["fait"], d["etape"]), {}).setdefault(d["agent"], d["date_fait"])
     retenu = {}
-    for (fait, stade), agents in par.items():
-        if len(agents) >= 2 and STADES.index(stade) > STADES.index(retenu.get(fait, ("allégation", None))[0]):
+    for (fait, etape_), agents in par.items():
+        stade = ETAPES[etape_]
+        if len(agents) < 2:
+            continue
+        if stade == "fait établi":
             retenu[fait] = (stade, min(agents.values()))
+        else:
+            actuel = retenu.get(fait, ("allégation", None))[0]
+            if actuel == "fait établi" or STADES.index(stade) > STADES.index(actuel):
+                retenu[fait] = (stade, min(agents.values()))
     return retenu
+
+
+def decisions_statut():
+    """Décisions de réexamen déjà prises, en ajout seul (data/tri/statuts.jsonl) : la table de l'annexe,
+    section 11.3, décide une fois, à la date de réexamen (relecture 12, S8)."""
+    f = TRI / "statuts.jsonl"
+    out = {}
+    if f.exists():
+        for l in f.read_text("utf-8").splitlines():
+            if l.strip():
+                d = json.loads(l)
+                out.setdefault(d["fait"], []).append(d)
+    return out
 
 
 def reprise(aujourdhui=None):
@@ -179,7 +202,7 @@ def reprise(aujourdhui=None):
     titres = {i["lien"]: i for i in lire_json("data/veille.json")["items"]}
     faits = {}
     for f in sorted(TRI.glob("*.jsonl")):
-        if f.name == "etapes.jsonl":
+        if f.name in ("etapes.jsonl", "statuts.jsonl"):
             continue
         for l in f.read_text("utf-8").splitlines():
             if not l.strip():
@@ -196,6 +219,7 @@ def reprise(aujourdhui=None):
             if d["decision"] != "non rattaché":
                 x["decision"].add(d["decision"])
     stades = stades_retenus()
+    nouvelles_decisions = []
     natures = {}
     fe = TRI / "etapes.jsonl"
     if fe.exists():
@@ -212,22 +236,36 @@ def reprise(aujourdhui=None):
         # Réexamen : 30 jours après l'entrée ; 14 jours si au moins cinq sources distinctes la première semaine
         # (constaté au septième jour). Table de décision de l'annexe, section 11.3.
         reex = d0 + timedelta(days=14 if len(s7p) >= 5 and auj >= d0 + timedelta(days=7) else 30)
+        deja = decisions_statut().get(k, [])
         if v["type"] == "fait établi":
-            statut, stade, reex = "fait établi", None, None
+            statut = "fait établi" if stade == "fait établi" else "fait public non vérifié"
+            stade, reex = None, None
         elif date_etape and date_etape >= jours[0]:
             statut = "étape officielle vérifiée"
+        elif any(x["decision"] == "retombé" for x in deja):
+            statut, reex = "retombé", date.fromisoformat([x for x in deja if x["decision"] == "retombé"][0]["date"])
+        elif any(x["decision"] == "prolongé" for x in deja):
+            reex = date.fromisoformat([x for x in deja if x["decision"] == "prolongé"][0]["date"]) + timedelta(days=30)
+            statut = "prolongé" if auj < reex else "retombé"
+            if statut == "retombé":
+                nouvelles_decisions.append({"fait": k, "decision": "retombé", "date": reex.isoformat()})
         elif auj < reex:
             statut = "en observation"
-        elif auj < reex + timedelta(days=30) and len(s7d) >= len(s7p):
-            statut, reex = "prolongé", reex + timedelta(days=30)
         else:
-            statut = "retombé"
+            statut = "prolongé" if len(s7d) >= len(s7p) else "retombé"
+            nouvelles_decisions.append({"fait": k, "decision": statut, "date": reex.isoformat()})
+            if statut == "prolongé":
+                reex = reex + timedelta(days=30)
         sortie[k] = {"sources_distinctes": len({s for _, s in v["obs"]}), "sources": sorted({s for _, s in v["obs"]}),
                      "sources_7_premiers_jours": len(s7p), "sources_7_derniers_jours": len(s7d), "titres": len(v["obs"]),
                      "jours": len(jours), "premier_jour": jours[0], "dernier_jour": jours[-1],
                      "concerne": sorted(v["concerne"]), "peut_resoudre": sorted(v["decision"]),
                      "stade_retenu": stade, "nature_verifiee": natures.get(k),
                      "type_fait": v["type"], "date_reexamen": reex.isoformat() if reex else None, "statut": statut}
+    if nouvelles_decisions:
+        with (TRI / "statuts.jsonl").open("a", encoding="utf-8") as h:
+            for x in nouvelles_decisions:
+                h.write(json.dumps({**x, "decide_le": auj.isoformat()}, ensure_ascii=False) + "\n")
     (RACINE / "data" / "reprise.json").write_text(json.dumps(
         {"description": "Reprise et statut des faits (annexe, sections 11.2 et 11.3) : descriptif, sans effet sur les probabilités. Sept flux suivis (franceinfo, Le Monde, LCP, Public Sénat, Le Figaro, Libération, Mediapart). Stade retenu : « allégation » sauf étape officielle vérifiée par deux agents ; la nature n'est publiée qu'avec une étape vérifiée, jamais « vie privée ».",
          "etabli_le": auj.isoformat(), "faits": sortie}, ensure_ascii=False, indent=1), "utf-8")

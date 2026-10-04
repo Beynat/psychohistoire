@@ -76,7 +76,7 @@ def previsions(cycle):
             sortie.append(("persistance", {"oui": p, "non": 1 - p}))
         else:
             e = evts[q["details"]["evenement"]]
-            u = ({k: 100 / len(e["issues"]) for k in e["issues"]} if e.get("taux_base") == "uniforme"
+            u = ({k: 100 / len(e["issues"]) for k in e["issues"]} if e.get("taux_base_mode") == "uniforme"
                  else tb[e["id"]]["utilisee"])
             ref = reference_externe(q, e, cotes)
             if ref:

@@ -25,8 +25,10 @@ def defauts(etiquette, chemin):
         return d
     if not isinstance(r["recherches"], int) or r["recherches"] < 10:
         d.append(f"recherches déclarées : {r['recherches']} (minimum 10)")
+    anon = (lire_json(f"data/cycles/{etiquette}/anonymisation.json") or {}).get("correspondance", {})
+    previsions = {anon.get(k, k): v for k, v in r["previsions"].items()}   # identifiants remis → banque
     for q in lire_json(f"data/cycles/{etiquette}/questions.json")["questions"]:
-        p = r["previsions"].get(q["id"])
+        p = previsions.get(q["id"])
         if not p or "probabilites" not in p:
             d.append(f"{q['id']} : réponse absente")
             continue

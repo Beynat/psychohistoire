@@ -39,11 +39,21 @@ if __name__ == "__main__":
         g = json.loads(f.read_text("utf-8"))
         for q in g["questions"]:
             sortie[q["id"]] = {**q, "groupe": g["groupe"], "utilisee": utilisee(q)}
+    # Ajouts en cours de phase (noyau, section 8.8 ; relecture 12, S4) : chaque ajout porte son taux de
+    # base, au format d'un fichier de groupe, dans le champ « taux_base_estime ».
+    fa = RACINE / "modele/banque/ajouts.jsonl"
+    if fa.exists():
+        for l in fa.read_text("utf-8").splitlines():
+            if l.strip():
+                a = json.loads(l)
+                if a.get("taux_base_estime"):
+                    q = {**a["taux_base_estime"], "id": a["id"]}
+                    sortie[a["id"]] = {**q, "groupe": "ajout en cours de phase", "utilisee": utilisee(q)}
     for i, e in evts.items():
-        if e["source_accessible"] and i not in sortie and e.get("taux_base") != "uniforme":
+        if e["source_accessible"] and i not in sortie and e.get("taux_base_mode") != "uniforme":
             manquants.append(i)
     # Entrées périmées (relecture 9) : événement retiré, non émis ou à taux de base uniforme.
-    perimes = sorted(i for i in sortie if i not in evts or not evts[i]["source_accessible"] or evts[i].get("taux_base") == "uniforme")
+    perimes = sorted(i for i in sortie if i not in evts or not evts[i]["source_accessible"] or evts[i].get("taux_base_mode") == "uniforme")
     for i in perimes:
         del sortie[i]
     ecarts = [i for i, q in sortie.items() if i in evts and set(q["utilisee"]) != set(evts[i]["issues"])]
@@ -55,5 +65,8 @@ if __name__ == "__main__":
            "questions": sortie, "manquants": manquants, "retires": perimes}
     (RACINE / "modele/taux_base.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1), "utf-8")
     print(f"{len(sortie)} questions, manquantes : {manquants or 'aucune'}")
+    if manquants:
+        import sys
+        sys.exit(f"Taux de base manquants : {manquants}")
     for i, q in sortie.items():
         print(f"{i:7} brut {q['retenue']['probabilite']:5} · utilisée {q['utilisee']}")

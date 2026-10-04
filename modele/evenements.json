@@ -1,6 +1,6 @@
 {
  "description": "Banque d'événements (noyau, section 8.8). Générée par scripts/evenements.py depuis modele/banque/criteres.json. Seul le champ « critere » est transmis aux prévisionnistes.",
- "genere_le": "2026-10-04T14:01:54+02:00",
+ "genere_le": "2026-10-04T14:06:38+02:00",
  "premier_tour": "2027-04-18",
  "second_tour": "2027-05-02",
  "evenements": [
@@ -139,7 +139,6 @@
    "pool": "P1",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "taux_base": "uniforme",
    "blocs": {
     "Marine Le Pen": "RN",
     "Jordan Bardella": "RN",
@@ -170,6 +169,7 @@
    },
    "motif_inaccessible": null,
    "nature": "constat",
+   "taux_base_mode": "uniforme",
    "source_accessible": true,
    "contexte_v1": {
     "critere": "Critère catégoriel : vainqueur proclamé ; binaire dérivé : victoire du candidat RN. Polymarket au 03/10/2026 : Le Pen 45 %, Philippe 19 %, Lisnard 12 %, Mélenchon 12-13 %, Bardella 5 %, Hollande 5 %. Metaculus : Le Pen 34,3 %, Philippe 25,5 %, Mélenchon 9,8 %. Date à vérifier : B et Fondapol donnent le 1er tour le 18/04/2027, l'URL Polymarket de A porte « 04-11 ».",
@@ -186,7 +186,7 @@
    "source_resolution": "Insee, comptes trimestriels (première estimation)",
    "fenetre": {
     "debut": "2026-10-03",
-    "fin": "2028-07-31"
+    "fin": "2028-08-15"
    },
    "issues": [
     "oui",
@@ -197,6 +197,7 @@
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "motif_inaccessible": null,
    "nature": "survenue",
+   "revise": "relecture 12 (S9)",
    "source_accessible": true,
    "contexte_v1": {
     "critere": "Deux trimestres consécutifs < 0 en 1re estimation entre T3 2026 et T2 2028.",
@@ -279,8 +280,8 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "motif_inaccessible": null,
-   "nature": "constat",
-   "revise": "relecture 10 (S1)",
+   "nature": "survenue",
+   "revise": "relecture 12 (S9)",
    "source_accessible": true,
    "contexte_v1": {
     "critere": "Vigilance rouge canicule sur au moins un département à l'été 2027 ou 2028, ou perte agricole chiffrée par l'INSEE ≥ 0,1 pt de PIB. Remarque : le premier volet est peu discriminant (probabilité élevée) ; le second est le plus informatif.",
@@ -307,8 +308,8 @@
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "motif_inaccessible": null,
-   "nature": "constat",
-   "revise": "relecture 10 (S1)",
+   "nature": "survenue",
+   "revise": "relecture 12 (S9)",
    "source_accessible": true,
    "contexte_v1": {
     "critere": "Vigilance rouge canicule sur au moins un département à l'été 2027 ou 2028, ou perte agricole chiffrée par l'INSEE ≥ 0,1 pt de PIB. Remarque : le premier volet est peu discriminant (probabilité élevée) ; le second est le plus informatif.",
@@ -771,6 +772,7 @@
    "motif_inaccessible": null,
    "revise": "relecture 9",
    "nature": "constat",
+   "acte": "présidentielle 2027, premier tour",
    "source_accessible": true
   },
   {

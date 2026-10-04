@@ -86,7 +86,12 @@ if __name__ == "__main__":
     ecrire_json(f"data/cycles/{et}/dossier.json", dos)
     if len(sys.argv) == 3:
         banque = lire_json(f"data/cycles/{et}/questions.json")
-        qs = [{k: q[k] for k in ("id", "texte", "issues", "echeance")} | (
+        # Identifiants anonymisés (relecture 12, S7) : l'identifiant d'une question de variable contient
+        # le quantile du seuil, dont on déduirait la probabilité du comparateur de persistance.
+        anon = {f"Q{k + 1:03d}": q["id"] for k, q in enumerate(banque["questions"])}
+        reel = {v: k for k, v in anon.items()}
+        ecrire_json(f"data/cycles/{et}/anonymisation.json", {"description": "Identifiant remis aux prévisionnistes → identifiant de la banque (relecture 12, S7).", "correspondance": anon})
+        qs = [{"id": reel[q["id"]], **{k: q[k] for k in ("texte", "issues", "echeance")}} | (
             {"critere": q["details"]["critere"]} if q["type"] == "evenement" else {}) for q in banque["questions"]]
         import json
         with open(sys.argv[2], "w", encoding="utf-8") as f:

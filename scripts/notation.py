@@ -26,11 +26,13 @@ import sys
 from datetime import date, timedelta
 
 from commun import ecrire_json, lire_jsonl, log_score, maintenant
-from resolution import cycles_du_registre, suffixe, toutes_les_questions
+from resolution import cycles_du_registre, resolutions_effectives, suffixe, toutes_les_questions
 
 
 def brier(dist, issue):
-    return sum((dist.get(k, 0) / 100 - (1.0 if k == issue else 0.0)) ** 2 for k in dist)
+    """Brier normalisé (relecture 12, S1) : ½ Σ_k (p_k − y_k)², qui vaut (p − y)² pour une question
+    binaire, comme la formule de la section 8.5 ; les écarts de 8.6 (0,02, 0,04) sont dans cette unité."""
+    return 0.5 * sum((dist.get(k, 0) / 100 - (1.0 if k == issue else 0.0)) ** 2 for k in dist)
 
 
 def logs(dist, issue):
@@ -106,7 +108,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
     aujourdhui = aujourdhui or date.today().isoformat()
     sfx = suffixe(reg)
     qs = toutes_les_questions(cycles_du_registre(reg))
-    res = {r["question"]: r for r in lire_jsonl(f"registre/resolutions{sfx}.jsonl") if r.get("issue") is not None}
+    res = {q: r for q, r in resolutions_effectives(sfx).items() if r.get("issue") is not None}
     prev = {}
     for l in lire_jsonl(reg):
         if "probabilites" in l and l["question"] in res:
@@ -195,6 +197,10 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
                 "critere_8_6": comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c")),
                 "critere_8_6_sans_ajouts": comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c") and evenement(qid) not in ajoutes),
                 "toutes_questions_descriptif": comparer(a, lambda qid, s: True),
+                # Critère de persistance (section 8.6) : variables contre la persistance (P2a),
+                # événements contre le taux de base (P2b).
+                **({"critere_persistance_P2a": comparer(a, lambda qid, s: s["pool"] == "P2a")} if a == "comparateur : persistance" else {}),
+                **({"critere_taux_de_base_P2b": comparer(a, lambda qid, s: s["pool"] == "P2b")} if a == "comparateur : taux de base" else {}),
                 # Apport des mises à jour continues, descriptif, sans décision (relecture 12, K3).
                 "mises_a_jour_continues_descriptif": comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c"), instantanes=False),
             }

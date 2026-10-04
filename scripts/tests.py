@@ -1,6 +1,7 @@
 """Tests des scripts de la phase 1 sur données fictives. Usage : python scripts/tests.py"""
 import json
 import random
+import sys
 import shutil
 import tempfile
 from pathlib import Path
@@ -22,7 +23,7 @@ def test_quantiles_et_marche():
 
 
 def test_scores():
-    assert abs(notation.brier({"oui": 70, "non": 30}, "oui") - 0.18) < 1e-9
+    assert abs(notation.brier({"oui": 70, "non": 30}, "oui") - 0.09) < 1e-9   # (p − y)², relecture 12, S1
     assert notation.brier({"a": 100, "b": 0, "c": 0}, "a") == 0
     m = notation.murphy([(0.9, True)] * 9 + [(0.9, False)] + [(0.1, False)] * 9 + [(0.1, True)])
     assert m["fiabilite"] == 0 and abs(m["incertitude"] - 0.25) < 1e-9
@@ -50,6 +51,65 @@ def test_brier_periode_commune():
     bb = notation.brier_pondere(commun_, "oui", debut, "2027-03-31")
     assert abs(ba - bb) < 1e-12, (ba, bb)
     assert notation.brier_pondere(a, "oui", a[0]["emise"][:10], "2027-03-31") > ba  # l'artefact corrigé
+
+
+def test_bout_en_bout():
+    """Relecture 12, S15 : un cycle fictif de bout en bout sur une copie du dépôt (gel, questions,
+    comparateurs, prévisions de deux auteurs, propositions, résolution, bilan). Vérifie : une seule
+    grappe par événement (fenêtre et mensuelles), cycles d'essai ignorés, test de 8.6 limité à P2b et
+    P2c, période commune sur le chemin du bilan, un avis par agent."""
+    import subprocess
+    racine = Path(__file__).resolve().parent.parent
+    tmp = Path(tempfile.mkdtemp()) / "depot"
+    shutil.copytree(racine, tmp, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+    try:
+        env = {**__import__("os").environ, "PYTHONPATH": str(tmp / "scripts")}
+        def run(*a):
+            r = subprocess.run([sys.executable, *a], cwd=tmp, env=env, capture_output=True, text=True)
+            assert r.returncode == 0, r.stderr[-2000:]
+            return r
+        (tmp / "modele/statut.json").write_text(json.dumps({"definitif": True}))
+        run("scripts/geler.py", "2026-11-01", "2026-11")
+        run("scripts/questions.py", "2026-11-01", "2026-11")
+        run("scripts/comparateurs.py", "2026-11", "registre/e2e.jsonl")
+        banque = json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())
+        g = {q["id"]: q["grappe"] for q in banque["questions"]}
+        assert g["Q-EV-15"] == g["Q-EV-15-2026-11"] == "EV-15" if "Q-EV-15-2026-11" in g else g["Q-EV-15"] == "EV-15"
+        assert g["Q-EV-01"] == g["Q-EV-01-2026-11"]
+        # Deux auteurs : l'ensemble prévoit dès novembre, le modèle à partir de décembre avec les mêmes valeurs.
+        lignes = []
+        for qid, pool_ok in (("Q-EV-15", True), ("Q-EV-30", False)):
+            for auteur, dates in (("ensemble direct", ("2026-11-02", "2026-12-01")), ("modèle", ("2026-12-01",))):
+                for k, d in enumerate(dates):
+                    p = 30 if d == "2026-12-01" else 5
+                    lignes.append({"question": qid, "probabilites": {"oui": p, "non": 100 - p}, "piste": "protocole", "phase": 1,
+                                   "auteur": auteur, "origine": "cycle 2026-11", "donnees": "t",
+                                   "emise": f"{d}T08:00:00+01:00"})
+        with (tmp / "registre/e2e.jsonl").open("a", encoding="utf-8") as f:
+            for l in lignes:
+                f.write(json.dumps(l, ensure_ascii=False) + "\n")
+        props = [{"proposition": True, "question": q, "issue": "non", "source": "s", "agent": a, "date_fait": "2026-12-31",
+                  "emise": "2027-01-05T08:00:00+01:00"} for q in ("Q-EV-15", "Q-EV-30") for a in ("A", "A", "B")]
+        (tmp / "registre/propositions_e2e.jsonl").write_text("\n".join(json.dumps(x) for x in props) + "\n")
+        code = (
+            "import json, resolution, notation\n"
+            "r = resolution.resoudre('registre/e2e.jsonl', '2027-01-10')\n"
+            # L'horloge réelle date la résolution d'aujourd'hui : on la recale au 10 janvier 2027 pour la notation.
+            "import pathlib\n"
+            "f = pathlib.Path('registre/resolutions_e2e.jsonl')\n"
+            "L = [json.loads(l) for l in f.read_text().splitlines() if l.strip()]\n"
+            "f.write_text(''.join(json.dumps({**l, 'emise': '2027-01-10T08:00:00+01:00'}) + '\\n' for l in L))\n"
+            "b = notation.bilan('registre/e2e.jsonl', 'ensemble direct', '2027-02-01')\n"
+            "print(json.dumps({'r': r, 'c': b['comparaisons']['modèle']}, ensure_ascii=False))")
+        out = json.loads(run("-c", code).stdout.strip().splitlines()[-1])
+        res = {x["question"]: x for x in out["r"]}
+        assert res["Q-EV-15"]["issue"] == res["Q-EV-30"]["issue"] == "non"
+        assert all(res[q]["methode"] == "deux agents concordants" for q in ("Q-EV-15", "Q-EV-30"))
+        # Q-EV-30 est en P2e : hors du critère ; Q-EV-15 : mêmes prévisions sur la période commune.
+        c = out["c"]["critere_8_6"]
+        assert c["grappes"] == 1 and c["t"] is None and c["verdict"] == "non concluant", c
+    finally:
+        shutil.rmtree(tmp.parent)
 
 
 def test_registre():

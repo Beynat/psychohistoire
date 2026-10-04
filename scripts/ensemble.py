@@ -25,6 +25,10 @@ def agreger(cycle, exiger_recherches=True):
     banque = lire_json(f"data/cycles/{cycle}/questions.json")
     fichiers = sorted((RACINE / "data" / "cycles" / cycle / "ensemble").glob("*.json"))
     prev = [lire_json(str(f.relative_to(RACINE))) for f in fichiers]
+    # Identifiants remis aux prévisionnistes → identifiants de la banque (relecture 12, S7).
+    anon = (lire_json(f"data/cycles/{cycle}/anonymisation.json") or {}).get("correspondance", {})
+    for p in prev:
+        p["previsions"] = {anon.get(k, k): v for k, v in p["previsions"].items()}
     if len(prev) < 5 or len({p["modele"] for p in prev}) < 3:
         raise SystemExit(f"Ensemble incomplet : {len(prev)} prévisionnistes, {len({p['modele'] for p in prev})} modèles (minimum 5 et 3).")
     faibles = [p["previsionniste"] for p in prev if p.get("recherches", 0) < 10]

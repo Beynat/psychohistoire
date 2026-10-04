@@ -69,10 +69,24 @@ def date_fait(proposition):
     return proposition.get("date_fait") or proposition["emise"][:10]
 
 
+def resolutions_effectives(sfx):
+    """Résolutions avec les errata appliqués (relecture 12, S5) : une ligne d'erratum
+    {erratum: true, objet: <question>, correction: {champs corrigés}, piste} remplace les champs
+    indiqués de la résolution de cette question ; le dernier erratum l'emporte."""
+    res = {}
+    for r in lire_jsonl(f"registre/resolutions{sfx}.jsonl"):
+        if r.get("resolution"):
+            res.setdefault(r["question"], dict(r))
+        elif r.get("erratum") and r.get("objet") in res and isinstance(r.get("correction"), dict):
+            res[r["objet"]].update(r["correction"])
+            res[r["objet"]]["corrigee_par_erratum"] = r.get("emise")
+    return res
+
+
 def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
     aujourdhui = aujourdhui or date.today().isoformat()
     sfx = suffixe(reg)
-    deja = {r["question"] for r in lire_jsonl(f"registre/resolutions{sfx}.jsonl")}
+    deja = set(resolutions_effectives(sfx))
     props = {}
     for p in lire_jsonl(f"registre/propositions{sfx}.jsonl"):
         props.setdefault(p["question"], []).append(p)
@@ -86,8 +100,11 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
             s = series.setdefault(d["serie"], dict(commun.serie(d["serie"])))
             if d["periode"] in s:
                 v = s[d["periode"]]
+                # Fait foi la première valeur collectée de la période ; sa date de collecte est la date
+                # du fait (relecture 12, S6) : une révision ultérieure de la série ne change pas l'issue.
                 nouvelles.append({"resolution": True, "question": qid, "issue": "oui" if v >= d["seuil"] else "non",
-                                  "valeur": v, "source": f"data/historique/{d['serie']}.csv", "methode": "script"})
+                                  "valeur": v, "date_fait": aujourdhui, "publie_le": aujourdhui,
+                                  "source": f"data/historique/{d['serie']}.csv (première valeur collectée)", "methode": "script"})
             continue
         # Une proposition par agent : deux propositions du même agent ne valent pas deux avis (relecture 12).
         avis, agents = [], set()
@@ -118,6 +135,10 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
         elif date.fromisoformat(q["echeance"]) + timedelta(days=30) < date.fromisoformat(aujourdhui) and not avis:
             nouvelles.append({"resolution": True, "question": qid, "issue": None, "source": "—",
                               "methode": "annulée : aucune source primaire 30 jours après l'échéance"})
+        elif date.fromisoformat(q["echeance"]) + timedelta(days=60) < date.fromisoformat(aujourdhui):
+            # Un seul avis, ou deux avis divergents sans troisième, 60 jours après l'échéance (relecture 12, S5).
+            nouvelles.append({"resolution": True, "question": qid, "issue": None, "source": "—",
+                              "methode": "annulée : pas de résolution concordante 60 jours après l'échéance"})
     if nouvelles:
         ajouter(f"registre/resolutions{sfx}.jsonl", nouvelles)
     return nouvelles

@@ -1,4 +1,4 @@
-# Liste de contrôle — phase 3 (au plus tard le 1er janvier 2027)
+# Liste de contrôle — phase 3 (au plus tard P + 2 mois)
 
 Ouverte le 4 octobre 2026 à partir de la relecture 7. À compléter avant le démarrage de la phase 3.
 

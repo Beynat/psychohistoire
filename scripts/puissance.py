@@ -114,6 +114,12 @@ if __name__ == "__main__":
                     lignes.append({"grappes": G, "questions_par_grappe": m, "rho": rho, "delta_brier": delta,
                                    "puissance": round(puissance(G, m, delta, rho, sigma, nsim, rnd), 3)})
     nulle = {G: round(puissance(G, 6, 0.0, 0.3, sigma, nsim, rnd), 3) for G in (12, 40)}
+    # Démarrage tardif de la phase 3 (relecture 12, S10) : questions informatives restantes.
+    tardif = {}
+    for debut in ("2027-01-01", "2027-02-01", "2027-03-01", "2027-04-01", "2027-05-01"):
+        G = questions_banque(debut_p3=debut)
+        tardif[debut] = {"grappes_P2b": len(G), "questions_informatives": sum(1 for g in G.values() for e in g if e >= 0.5),
+                         "puissance_0.04": round(puissance_echelles(list(G.values()), 0.04, 0.3, sigma, nsim, rnd), 3) if len(G) > 1 else None}
     # Banque réelle (relecture 10, I2) : questions effectivement émises, échéance passée à la butée,
     # écart proportionné à la probabilité de chaque question ; P2c compté de 0 à 15 grappes de
     # 3 questions d'échelle 1, faute de réseau défini.
@@ -121,7 +127,9 @@ if __name__ == "__main__":
     for butoir in ("2027-09-30", "2028-09-30"):
         G = questions_banque(butoir=butoir)
         for conj in (0, 15):
-            grappes = list(G.values()) + [[1.0] * 3] * conj
+            # Questions conjointes « A et B » : plus rares qu'une issue à 50 % ; échelle d'une probabilité
+            # de 10 % (relecture 12, S10).
+            grappes = list(G.values()) + [[4 * 0.1 * 0.9] * 3] * conj
             for rho in (0.1, 0.3):
                 for delta in (0.02, 0.04):
                     banque.append({"butee": butoir, "grappes_P2b": len(G), "grappes_P2c": conj,
@@ -131,7 +139,8 @@ if __name__ == "__main__":
                                    "puissance": round(puissance_echelles(grappes, delta, rho, sigma, nsim, rnd), 3)})
     ecrire_json("data/puissance.json", {"etabli_le": maintenant(), "sigma": sigma, "simulations": nsim,
                                         "seuil": "unilatéral 10 %", "taux_fausse_alarme_delta_0": nulle, "table": lignes,
-                                        "banque_reelle": banque})
+                                        "banque_reelle": banque, "demarrage_tardif": tardif})
+    print("démarrage tardif :", tardif)
     for b in banque:
         print(f"butée {b['butee']} : {b['grappes_P2b']} + {b['grappes_P2c']} grappes, {b['questions']} questions ({b['questions_informatives']} informatives), ρ={b['rho']} δ={b['delta_brier']} → {b['puissance']:.2f}")
     print(f"σ = {sigma}, {nsim} simulations ; fausse alarme (δ = 0, ρ = 0,3, m = 6) : {nulle}")
