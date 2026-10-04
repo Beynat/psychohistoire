@@ -1,7 +1,7 @@
-# Protocole Psychohistoire — version 1.20
+# Protocole Psychohistoire — version 1.21
 
 Statut : voir `modele/statut.json` (section 12). Rédigé le 3 octobre 2026, avant toute estimation produite selon ce protocole.
-Remplace la version 1.19. Les changements répondent à la relecture de suivi 16 (`v1.20/reponse_relecture_16.md`) ; l'historique des versions et de leurs motifs est dans `journal.md`. Le texte est scindé : ce noyau (sections 0 à 9, 12 et 13) et l'annexe `annexe_phase3.md` (sections 10 et 11), gelés et tagués séparément. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
+Remplace la version 1.20. Elle fixe la grille de classement des défauts de relecture (section 12, décision de Nathan) ; l'historique des versions et de leurs motifs est dans `journal.md`. Le texte est scindé : ce noyau (sections 0 à 9, 12 et 13) et l'annexe `annexe_phase3.md` (sections 10 et 11), gelés et tagués séparément. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
 
 ## 0. Pistes et registres
 
@@ -248,6 +248,12 @@ Ces deux sections forment l'annexe `annexe_phase3.md`, qui ne s'applique qu'à p
   - Le noyau et l'annexe sont gelés de la première version définitive au bilan de la phase 1, tenu à la première analyse trimestrielle après le premier cycle. Pendant le gel, une version n'est possible que pour corriger un défaut relevé en relecture, ou pour retirer une exigence devenue inexécutable, sur décision humaine journalisée. Tout ajout au texte est exclu. Les ajouts d'événements à la banque, encadrés par la section 8.8, sont la seule exception ; ils ne modifient pas le texte. La banque (`modele/banque/criteres.json`) est figée au premier gel d'un cycle réel : à chaque poussée, un contrôle échoue si le critère, les issues, la fenêtre, la nature, le pool, l'accessibilité, les questions mensuelles, la source de résolution, l'acte, l'événement de rattachement, le mode de taux de base, la référence externe, le nom ou la sous-question d'un événement diffère de sa valeur au premier gel où il apparaît, ou si l'empreinte d'un fichier gelé diffère de celle de son manifeste.
 - **Interventions humaines.** Toutes sont tracées.
 - **Relecture.** Obligatoire à chaque version. Le critère d'arrêt est de deux relectures consécutives sans défaut bloquant ni important. Le compteur repart de zéro après une relecture qui relève un défaut bloquant ou important ; la correction de souhaitables, ou un changement de texte relu par la relecture suivante, ne le remet pas à zéro si cette relecture est elle-même sans défaut bloquant ni important. Le relecteur est de la même famille que les auteurs. Deux sortes de relectures : une relecture de suivi, dans la session courante du relecteur, vérifie seulement les corrections et ne compte pas pour le critère d'arrêt ; une relecture de validation, complète, est conduite en session neuve, sans accès aux échanges de rédaction. Seules les relectures de validation comptent pour le critère d'arrêt. Un défaut bloquant ou important relevé par une relecture de suivi est corrigé, puis relu par la relecture de validation suivante, qui seule fait foi pour le compteur.
+- **Classement des défauts.** Il s'apprécie sur l'effet, non sur l'intérêt de la remarque :
+  - **bloquant** : compromet l'antériorité ou l'intégrité des registres (prévision modifiable après coup, issue connue avant la prévision), ou empêche l'exécution d'un cycle ;
+  - **important** : biaise de façon systématique, dans un sens déterminé, un verdict de la section 8.6 (valeur ajoutée, persistance, taux de base, calibration), ou rend l'issue d'une question indéterminable ou contestable entre deux lectures raisonnables du critère. Le relecteur décrit le scénario concret et le sens du biais ;
+  - **souhaitable** : tout le reste, notamment la couverture de la banque, une précision de critère sans ambiguïté avérée, la rédaction, la robustesse sans biais démontré, la procédure des phases ultérieures, et un biais qui joue dans le sens prudent (vers « non concluant » ou la règle par défaut).
+
+  Un défaut présenté comme important sans scénario ni sens de biais est traité comme souhaitable. La réponse peut reclasser un défaut, avec motif ; la relecture suivante juge le reclassement.
 
 ## 13. Limites assumées
 
