@@ -1,0 +1,1370 @@
+{
+ "cycle": "2026-10-planifie",
+ "gel": "2026-10-04",
+ "genere_le": "2026-10-04T11:31:13+02:00",
+ "questions": [
+  {
+   "id": "Q-2026-10-planifie-ecart_FR_DE_pb-2026-10-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-10 est-elle supérieure ou égale à 114 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 118 pb)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-10",
+    "seuil": 114,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 118.46,
+    "pas": 1,
+    "quantile": 20,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 118.5,
+     "correction": 9.4
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-ecart_FR_DE_pb-2026-10-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-10 est-elle supérieure ou égale à 118 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 118 pb)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-10",
+    "seuil": 118,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 118.46,
+    "pas": 1,
+    "quantile": 50,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 118.5,
+     "correction": 9.4
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-ecart_FR_DE_pb-2026-10-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-10 est-elle supérieure ou égale à 122 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 118 pb)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-10",
+    "seuil": 122,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 118.46,
+    "pas": 1,
+    "quantile": 80,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 118.5,
+     "correction": 9.4
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-ecart_FR_DE_pb-2026-11-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-11 est-elle supérieure ou égale à 114 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 118 pb)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-11",
+    "seuil": 114,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 118.46,
+    "pas": 1,
+    "quantile": 20,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 118.5,
+     "correction": 9.4
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-ecart_FR_DE_pb-2026-11-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-11 est-elle supérieure ou égale à 118 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 118 pb)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-11",
+    "seuil": 118,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 118.46,
+    "pas": 1,
+    "quantile": 50,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 118.5,
+     "correction": 9.4
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-ecart_FR_DE_pb-2026-11-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-11 est-elle supérieure ou égale à 122 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 118 pb)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-11",
+    "seuil": 122,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 118.46,
+    "pas": 1,
+    "quantile": 80,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 118.5,
+     "correction": 9.4
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-ecart_FR_DE_pb-2026-12-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-12 est-elle supérieure ou égale à 112 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 118 pb)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-12",
+    "seuil": 112,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 118.46,
+    "pas": 2,
+    "quantile": 20,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 118.5,
+     "correction": 9.4
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-ecart_FR_DE_pb-2026-12-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-12 est-elle supérieure ou égale à 119 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 118 pb)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-12",
+    "seuil": 119,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 118.46,
+    "pas": 2,
+    "quantile": 50,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 118.5,
+     "correction": 9.4
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-ecart_FR_DE_pb-2026-12-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-12 est-elle supérieure ou égale à 125 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 118 pb)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-12",
+    "seuil": 125,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 118.46,
+    "pas": 2,
+    "quantile": 80,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 118.5,
+     "correction": 9.4
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-inflation_ipch_FR-2026-10-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-10 est-elle supérieure ou égale à 3.2 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-10",
+    "seuil": 3.2,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 1,
+    "quantile": 20,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-inflation_ipch_FR-2026-10-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-10 est-elle supérieure ou égale à 3.4 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-10",
+    "seuil": 3.4,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 1,
+    "quantile": 50,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-inflation_ipch_FR-2026-10-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-10 est-elle supérieure ou égale à 3.6 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-10",
+    "seuil": 3.6,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 1,
+    "quantile": 80,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-inflation_ipch_FR-2026-11-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-11 est-elle supérieure ou égale à 3.1 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-11",
+    "seuil": 3.1,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 2,
+    "quantile": 20,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-inflation_ipch_FR-2026-11-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-11 est-elle supérieure ou égale à 3.4 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-11",
+    "seuil": 3.4,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 2,
+    "quantile": 50,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-inflation_ipch_FR-2026-11-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-11 est-elle supérieure ou égale à 3.7 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-11",
+    "seuil": 3.7,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 2,
+    "quantile": 80,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-inflation_ipch_FR-2026-12-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-12 est-elle supérieure ou égale à 3.0 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-12",
+    "seuil": 3.0,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 3,
+    "quantile": 20,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-inflation_ipch_FR-2026-12-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-12 est-elle supérieure ou égale à 3.4 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-12",
+    "seuil": 3.4,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 3,
+    "quantile": 50,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-inflation_ipch_FR-2026-12-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-12 est-elle supérieure ou égale à 3.8 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-12",
+    "seuil": 3.8,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 3,
+    "quantile": 80,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-chomage_FR-2026-10-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-10 est-elle supérieure ou égale à 8.1 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-10",
+    "seuil": 8.1,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 2,
+    "quantile": 20,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-chomage_FR-2026-10-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-10 est-elle supérieure ou égale à 8.2 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-10",
+    "seuil": 8.2,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 2,
+    "quantile": 50,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-chomage_FR-2026-10-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-10 est-elle supérieure ou égale à 8.3 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-10",
+    "seuil": 8.3,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 2,
+    "quantile": 80,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-chomage_FR-2026-11-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-11 est-elle supérieure ou égale à 8.0 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-11",
+    "seuil": 8.0,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 3,
+    "quantile": 20,
+    "n_variations": 197,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-chomage_FR-2026-11-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-11 est-elle supérieure ou égale à 8.2 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-11",
+    "seuil": 8.2,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 3,
+    "quantile": 50,
+    "n_variations": 197,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-chomage_FR-2026-11-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-11 est-elle supérieure ou égale à 8.4 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-11",
+    "seuil": 8.4,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 3,
+    "quantile": 80,
+    "n_variations": 197,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-chomage_FR-2026-12-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-12 est-elle supérieure ou égale à 8.0 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-12",
+    "seuil": 8.0,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 4,
+    "quantile": 20,
+    "n_variations": 196,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-chomage_FR-2026-12-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-12 est-elle supérieure ou égale à 8.2 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-12",
+    "seuil": 8.2,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 4,
+    "quantile": 50,
+    "n_variations": 196,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-planifie-chomage_FR-2026-12-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-12 est-elle supérieure ou égale à 8.4 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08)",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-12",
+    "seuil": 8.4,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 4,
+    "quantile": 80,
+    "n_variations": 196,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-01",
+    "critere": "Au moins une agence (Moody's, S&P, Fitch) abaisse d'au moins un cran la note long terme entre le 03/10/2026 et le 30/09/2028. Échéances : Moody's 23/10/2026, S&P 27/11/2026. Pas de probabilité de marché."
+   },
+   "id": "Q-EV-01",
+   "pool": "P2b",
+   "grappe": "EV-01-2028-T3",
+   "texte": "Dégradation de la note souveraine : le critère est-il rempli entre le 2026-10-04 et le 2028-09-30 ?",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-01",
+    "critere": "Au moins une agence (Moody's, S&P, Fitch) abaisse d'au moins un cran la note long terme entre le 03/10/2026 et le 30/09/2028. Échéances : Moody's 23/10/2026, S&P 27/11/2026. Pas de probabilité de marché."
+   },
+   "id": "Q-EV-01-2026-10-planifie",
+   "pool": "P2b",
+   "grappe": "EV-01-2026-T4",
+   "texte": "Dégradation de la note souveraine : le critère est-il rempli au cours du mois 2026-10 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-02",
+    "critere": "Aucune LFI 2027 votée publiée au JO au 31/12/2026. Modalités à enregistrer : (a) loi spéciale ; (b) ordonnance budgétaire au titre de l'art. 47 (B : aucun précédent sous la Ve République à sa connaissance, non vérifié). Pas de probabilité de marché."
+   },
+   "id": "Q-EV-02",
+   "pool": "P2b",
+   "grappe": "EV-02-2026-T4",
+   "texte": "Budget 2027 non adopté par la voie ordinaire au 31/12/2026 : le critère est-il rempli entre le 2026-10-04 et le 2026-12-31 ?",
+   "echeance": "2026-12-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-12-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-03",
+    "critere": "Déficit 2027 notifié > 5,0 % du PIB."
+   },
+   "id": "Q-EV-03",
+   "pool": "P2b",
+   "grappe": "EV-03-2028-T2",
+   "texte": "Déficit 2027 au-dessus de la cible du PLF : le critère est-il rempli entre le 2028-03-01 et le 2028-04-30 ?",
+   "echeance": "2028-04-30",
+   "fenetre": {
+    "debut": "2028-03-01",
+    "fin": "2028-04-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-04",
+    "critere": "Décision du Conseil au titre de l'art. 126(8) ou 126(9) TFUE visant la France entre le 03/10/2026 et le 30/09/2028."
+   },
+   "id": "Q-EV-04",
+   "pool": "P2b",
+   "grappe": "EV-04-2028-T3",
+   "texte": "Durcissement de la procédure de déficit excessif : le critère est-il rempli entre le 2026-10-04 et le 2028-09-30 ?",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-04",
+    "critere": "Décision du Conseil au titre de l'art. 126(8) ou 126(9) TFUE visant la France entre le 03/10/2026 et le 30/09/2028."
+   },
+   "id": "Q-EV-04-2026-10-planifie",
+   "pool": "P2b",
+   "grappe": "EV-04-2026-T4",
+   "texte": "Durcissement de la procédure de déficit excessif : le critère est-il rempli au cours du mois 2026-10 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "RN",
+    "bloc central",
+    "gauche",
+    "droite LR ou autre",
+    "autre"
+   ],
+   "details": {
+    "evenement": "EV-05",
+    "critere": "Critère catégoriel : vainqueur proclamé ; binaire dérivé : victoire du candidat RN. Polymarket au 03/10/2026 : Le Pen 45 %, Philippe 19 %, Lisnard 12 %, Mélenchon 12-13 %, Bardella 5 %, Hollande 5 %. Metaculus : Le Pen 34,3 %, Philippe 25,5 %, Mélenchon 9,8 %. Date à vérifier : B et Fondapol donnent le 1er tour le 18/04/2027, l'URL Polymarket de A porte « 04-11 »."
+   },
+   "id": "Q-EV-05",
+   "pool": "P2b",
+   "grappe": "EV-05-2027-T2",
+   "texte": "Issue de l'élection présidentielle 2027 (dont victoire du RN) : le critère est-il rempli entre le 2026-10-04 et le 2027-05-02 ?",
+   "echeance": "2027-05-02",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2027-05-02"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-06",
+    "critere": "Deux trimestres consécutifs < 0 en 1re estimation entre T3 2026 et T2 2028."
+   },
+   "id": "Q-EV-06",
+   "pool": "P2b",
+   "grappe": "EV-06-2028-T3",
+   "texte": "Récession technique : le critère est-il rempli entre le 2026-10-04 et le 2028-07-31 ?",
+   "echeance": "2028-07-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2028-07-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-06",
+    "critere": "Deux trimestres consécutifs < 0 en 1re estimation entre T3 2026 et T2 2028."
+   },
+   "id": "Q-EV-06-2026-10-planifie",
+   "pool": "P2b",
+   "grappe": "EV-06-2026-T4",
+   "texte": "Récession technique : le critère est-il rempli au cours du mois 2026-10 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-07",
+    "critere": "Incident confirmé par l'ANSSI ou un régulateur, interruption > 24 h d'un OIV ou d'un établissement financier systémique."
+   },
+   "id": "Q-EV-07",
+   "pool": "P2b",
+   "grappe": "EV-07-2028-T3",
+   "texte": "Cyberattaque majeure contre une infrastructure critique ou le système financier : le critère est-il rempli entre le 2026-10-04 et le 2028-09-30 ?",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-07",
+    "critere": "Incident confirmé par l'ANSSI ou un régulateur, interruption > 24 h d'un OIV ou d'un établissement financier systémique."
+   },
+   "id": "Q-EV-07-2026-10-planifie",
+   "pool": "P2b",
+   "grappe": "EV-07-2026-T4",
+   "texte": "Cyberattaque majeure contre une infrastructure critique ou le système financier : le critère est-il rempli au cours du mois 2026-10 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-08",
+    "critere": "Rapport VIGINUM ou gouvernemental attribuant à un acteur étranger une campagne visant la présidentielle 2027."
+   },
+   "id": "Q-EV-08",
+   "pool": "P2b",
+   "grappe": "EV-08-2028-T3",
+   "texte": "Campagne d'ingérence étrangère visant la présidentielle : le critère est-il rempli entre le 2026-10-04 et le 2028-09-30 ?",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-08",
+    "critere": "Rapport VIGINUM ou gouvernemental attribuant à un acteur étranger une campagne visant la présidentielle 2027."
+   },
+   "id": "Q-EV-08-2026-10-planifie",
+   "pool": "P2b",
+   "grappe": "EV-08-2026-T4",
+   "texte": "Campagne d'ingérence étrangère visant la présidentielle : le critère est-il rempli au cours du mois 2026-10 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-09",
+    "critere": "Vigilance rouge canicule sur au moins un département à l'été 2027 ou 2028, ou perte agricole chiffrée par l'INSEE ≥ 0,1 pt de PIB. Remarque : le premier volet est peu discriminant (probabilité élevée) ; le second est le plus informatif."
+   },
+   "id": "Q-EV-09",
+   "pool": "P2b",
+   "grappe": "EV-09-2028-T3",
+   "texte": "Épisode climatique extrême en France : le critère est-il rempli entre le 2027-06-01 et le 2028-09-30 ?",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2027-06-01",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-10",
+    "critere": "Plus de 300 établissements bloqués au moins 2 semaines consécutives OU extension aux universités avant le 15/11/2026. Taux de base (calcul de B) : les vagues de 2005 ont duré ~3 semaines."
+   },
+   "id": "Q-EV-10",
+   "pool": "P2b",
+   "grappe": "EV-10-2026-T4",
+   "texte": "Extension du mouvement lycéen de septembre 2026 : le critère est-il rempli entre le 2026-10-04 et le 2026-11-15 ?",
+   "echeance": "2026-11-15",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-11-15"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-13",
+    "critere": "Taux de grévistes de la FPE > 18 % lors d'une journée avant le 31/12/2026."
+   },
+   "id": "Q-EV-13",
+   "pool": "P2b",
+   "grappe": "EV-13-2026-T4",
+   "texte": "Grève massive dans la fonction publique ou interprofessionnelle contre le budget 2027 : le critère est-il rempli entre le 2026-10-04 et le 2026-12-31 ?",
+   "echeance": "2026-12-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-12-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-15",
+    "critere": "Adoption d'une motion de censure avant le 31/12/2026. Taux de base (calcul de B) : 1 censure (Barnier, déc. 2024) et 1 chute sur question de confiance (Bayrou, sept. 2025) en 4 budgets. Pas de marché."
+   },
+   "id": "Q-EV-15",
+   "pool": "P2b",
+   "grappe": "EV-15-2026-T4",
+   "texte": "Censure du gouvernement Lecornu sur le budget 2027 : le critère est-il rempli entre le 2026-10-04 et le 2026-12-31 ?",
+   "echeance": "2026-12-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-12-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-16a",
+    "critere": "Critère élargi par la fusion à toute la période : décret de dissolution entre le 03/10/2026 et le 30/09/2028, avec deux fenêtres à résoudre séparément (avant / après le second tour 2027). Polymarket : ~5 % d'annonce avant le 31/12/2026 ; aucune cote pour la fenêtre post-présidentielle."
+   },
+   "id": "Q-EV-16a",
+   "pool": "P2b",
+   "grappe": "EV-16-2027-T2",
+   "texte": "Dissolution de l'Assemblée nationale (avant le second tour) : le critère est-il rempli entre le 2026-10-04 et le 2027-05-02 ?",
+   "echeance": "2027-05-02",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2027-05-02"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-16a",
+    "critere": "Critère élargi par la fusion à toute la période : décret de dissolution entre le 03/10/2026 et le 30/09/2028, avec deux fenêtres à résoudre séparément (avant / après le second tour 2027). Polymarket : ~5 % d'annonce avant le 31/12/2026 ; aucune cote pour la fenêtre post-présidentielle."
+   },
+   "id": "Q-EV-16a-2026-10-planifie",
+   "pool": "P2b",
+   "grappe": "EV-16-2026-T4",
+   "texte": "Dissolution de l'Assemblée nationale : le critère est-il rempli au cours du mois 2026-10 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-16b",
+    "critere": "Critère élargi par la fusion à toute la période : décret de dissolution entre le 03/10/2026 et le 30/09/2028, avec deux fenêtres à résoudre séparément (avant / après le second tour 2027). Polymarket : ~5 % d'annonce avant le 31/12/2026 ; aucune cote pour la fenêtre post-présidentielle."
+   },
+   "id": "Q-EV-16b",
+   "pool": "P2b",
+   "grappe": "EV-16-2028-T3",
+   "texte": "Dissolution de l'Assemblée nationale (après le second tour) : le critère est-il rempli entre le 2027-05-02 et le 2028-09-30 ?",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-17",
+    "critere": "Correction de la fusion : B suppose des législatives en juin 2027, qui ne sont pas au calendrier et supposent une dissolution (EV-16). Critère : à l'issue des premières législatives tenues sur la période, aucun bloc soutenant le président n'atteint 289 sièges ; si aucune législative n'a lieu, résolution sur la composition existante. Pas de probabilité externe."
+   },
+   "id": "Q-EV-17",
+   "pool": "P2b",
+   "grappe": "EV-17-2028-T3",
+   "texte": "Président élu sans majorité absolue à l'Assemblée : le critère est-il rempli entre le 2026-10-04 et le 2028-09-30 ?",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-C1",
+    "critere": "Attentat pour lequel le PNAT se saisit, faisant au moins un mort hors assaillant, entre le 03/10/2026 et le 30/09/2028. Pas de probabilité externe ; taux de base à calculer depuis les TE-SAT 2016-2026."
+   },
+   "id": "Q-EV-C1",
+   "pool": "P2b",
+   "grappe": "EV-C1-2028-T3",
+   "texte": "Attentat terroriste meurtrier en France : le critère est-il rempli entre le 2026-10-04 et le 2028-09-30 ?",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-C1",
+    "critere": "Attentat pour lequel le PNAT se saisit, faisant au moins un mort hors assaillant, entre le 03/10/2026 et le 30/09/2028. Pas de probabilité externe ; taux de base à calculer depuis les TE-SAT 2016-2026."
+   },
+   "id": "Q-EV-C1-2026-10-planifie",
+   "pool": "P2b",
+   "grappe": "EV-C1-2026-T4",
+   "texte": "Attentat terroriste meurtrier en France : le critère est-il rempli au cours du mois 2026-10 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-C2",
+    "critere": "État d'urgence (loi de 1955) déclaré, ou couvre-feu préfectoral couvrant l'agglomération principale d'un territoire ultramarin pendant au moins 7 jours, entre le 03/10/2026 et le 30/09/2028. Pas de probabilité externe ; précédents : NC 2024, Martinique 2024."
+   },
+   "id": "Q-EV-C2",
+   "pool": "P2b",
+   "grappe": "EV-C2-2028-T3",
+   "texte": "Crise d'ordre public grave outre-mer (Nouvelle-Calédonie, Antilles) : le critère est-il rempli entre le 2026-10-04 et le 2028-09-30 ?",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-C2",
+    "critere": "État d'urgence (loi de 1955) déclaré, ou couvre-feu préfectoral couvrant l'agglomération principale d'un territoire ultramarin pendant au moins 7 jours, entre le 03/10/2026 et le 30/09/2028. Pas de probabilité externe ; précédents : NC 2024, Martinique 2024."
+   },
+   "id": "Q-EV-C2-2026-10-planifie",
+   "pool": "P2b",
+   "grappe": "EV-C2-2026-T4",
+   "texte": "Crise d'ordre public grave outre-mer (Nouvelle-Calédonie, Antilles) : le critère est-il rempli au cours du mois 2026-10 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-C3a",
+    "critere": "Accord unanime du Conseil européen sur le CFP 2028-2034 : (a) avant le 31/12/2026 (objectif du 17-18/12/2026, sommet extraordinaire les 26-27/11) ; (b) avant le 30/09/2028. Pas de probabilité externe."
+   },
+   "id": "Q-EV-C3a",
+   "pool": "P2b",
+   "grappe": "EV-C3-2026-T4",
+   "texte": "Accord du Conseil européen sur le cadre financier 2028-2034 (avant le 31/12/2026) : le critère est-il rempli entre le 2026-10-04 et le 2026-12-31 ?",
+   "echeance": "2026-12-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-12-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-C3b",
+    "critere": "Accord unanime du Conseil européen sur le CFP 2028-2034 : (a) avant le 31/12/2026 (objectif du 17-18/12/2026, sommet extraordinaire les 26-27/11) ; (b) avant le 30/09/2028. Pas de probabilité externe."
+   },
+   "id": "Q-EV-C3b",
+   "pool": "P2b",
+   "grappe": "EV-C3-2028-T3",
+   "texte": "Accord du Conseil européen sur le cadre financier 2028-2034 (avant le 30/09/2028) : le critère est-il rempli entre le 2026-10-04 et le 2028-09-30 ?",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-C3b",
+    "critere": "Accord unanime du Conseil européen sur le CFP 2028-2034 : (a) avant le 31/12/2026 (objectif du 17-18/12/2026, sommet extraordinaire les 26-27/11) ; (b) avant le 30/09/2028. Pas de probabilité externe."
+   },
+   "id": "Q-EV-C3b-2026-10-planifie",
+   "pool": "P2b",
+   "grappe": "EV-C3-2026-T4",
+   "texte": "Accord du Conseil européen sur le cadre financier 2028-2034 : le critère est-il rempli au cours du mois 2026-10 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "avis rendu, compatible",
+    "avis rendu, incompatible",
+    "pas d'avis"
+   ],
+   "details": {
+    "evenement": "EV-C4",
+    "critere": "Avis rendu entre le 03/10/2026 et le 30/09/2028 ; modalités : compatible / incompatible ; binaire dérivé : suspension de l'application provisoire. Délai évoqué : jusqu'à 18 mois après la saisine, soit vers juillet 2027. Pas de probabilité externe."
+   },
+   "id": "Q-EV-C4",
+   "pool": "P2b",
+   "grappe": "EV-C4-2028-T3",
+   "texte": "Avis de la CJUE sur l'accord UE-Mercosur : le critère est-il rempli entre le 2026-10-04 et le 2028-09-30 ?",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-04",
+    "fin": "2028-09-30"
+   }
+  }
+ ],
+ "ecartees": [
+  {
+   "objet": "EV-11",
+   "motif": "Le nombre de communes touchées n'est publié par le ministère de l'Intérieur qu'au cas par cas ; ACLED exige un compte."
+  },
+  {
+   "objet": "EV-12",
+   "motif": "Résolution sur ACLED, qui exige un compte : source inaccessible au projet."
+  },
+  {
+   "objet": "EV-14",
+   "motif": "Résolution sur ACLED, qui exige un compte : source inaccessible au projet."
+  }
+ ]
+}

@@ -1,0 +1,404 @@
+{
+ "previsionniste": "P4",
+ "modele": "sonnet",
+ "gel": "2026-10-04",
+ "recherches": 13,
+ "previsions": {
+  "Q-2026-10-planifie-ecart_FR_DE_pb-2026-10-q20": {
+   "probabilites": {
+    "oui": 70,
+    "non": 30
+   },
+   "motif": "Écart BCE ≈ journalier + 9 pb ; dernier journalier 124 pb au 1er octobre après un sommet, reflux possible ; seuil plausible."
+  },
+  "Q-2026-10-planifie-ecart_FR_DE_pb-2026-10-q50": {
+   "probabilites": {
+    "oui": 60,
+    "non": 40
+   },
+   "motif": "Écart BCE ≈ journalier + 9 pb ; dernier journalier 124 pb au 1er octobre après un sommet, reflux possible ; seuil plausible."
+  },
+  "Q-2026-10-planifie-ecart_FR_DE_pb-2026-10-q80": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Écart BCE ≈ journalier + 9 pb ; dernier journalier 124 pb au 1er octobre après un sommet, reflux possible ; seuil plausible."
+  },
+  "Q-2026-10-planifie-ecart_FR_DE_pb-2026-11-q20": {
+   "probabilites": {
+    "oui": 62,
+    "non": 38
+   },
+   "motif": "Écart BCE ≈ journalier + 9 pb ; dernier journalier 124 pb au 1er octobre après un sommet, reflux possible ; seuil plausible."
+  },
+  "Q-2026-10-planifie-ecart_FR_DE_pb-2026-11-q50": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Écart BCE ≈ journalier + 9 pb ; dernier journalier 124 pb au 1er octobre après un sommet, reflux possible ; seuil plausible."
+  },
+  "Q-2026-10-planifie-ecart_FR_DE_pb-2026-11-q80": {
+   "probabilites": {
+    "oui": 42,
+    "non": 58
+   },
+   "motif": "Écart BCE ≈ journalier + 9 pb ; dernier journalier 124 pb au 1er octobre après un sommet, reflux possible ; seuil plausible."
+  },
+  "Q-2026-10-planifie-ecart_FR_DE_pb-2026-12-q20": {
+   "probabilites": {
+    "oui": 58,
+    "non": 42
+   },
+   "motif": "Écart BCE ≈ journalier + 9 pb ; dernier journalier 124 pb au 1er octobre après un sommet, reflux possible ; seuil plausible."
+  },
+  "Q-2026-10-planifie-ecart_FR_DE_pb-2026-12-q50": {
+   "probabilites": {
+    "oui": 47,
+    "non": 53
+   },
+   "motif": "Écart BCE ≈ journalier + 9 pb ; dernier journalier 124 pb au 1er octobre après un sommet, reflux possible ; seuil plausible."
+  },
+  "Q-2026-10-planifie-ecart_FR_DE_pb-2026-12-q80": {
+   "probabilites": {
+    "oui": 38,
+    "non": 62
+   },
+   "motif": "Écart BCE ≈ journalier + 9 pb ; dernier journalier 124 pb au 1er octobre après un sommet, reflux possible ; seuil plausible."
+  },
+  "Q-2026-10-planifie-inflation_ipch_FR-2026-10-q20": {
+   "probabilites": {
+    "oui": 75,
+    "non": 25
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-inflation_ipch_FR-2026-10-q50": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-inflation_ipch_FR-2026-10-q80": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-inflation_ipch_FR-2026-11-q20": {
+   "probabilites": {
+    "oui": 60,
+    "non": 40
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-inflation_ipch_FR-2026-11-q50": {
+   "probabilites": {
+    "oui": 38,
+    "non": 62
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-inflation_ipch_FR-2026-11-q80": {
+   "probabilites": {
+    "oui": 17,
+    "non": 83
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-inflation_ipch_FR-2026-12-q20": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-inflation_ipch_FR-2026-12-q50": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-inflation_ipch_FR-2026-12-q80": {
+   "probabilites": {
+    "oui": 11,
+    "non": 89
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-chomage_FR-2026-10-q20": {
+   "probabilites": {
+    "oui": 75,
+    "non": 25
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-chomage_FR-2026-10-q50": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-chomage_FR-2026-10-q80": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-chomage_FR-2026-11-q20": {
+   "probabilites": {
+    "oui": 82,
+    "non": 18
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-chomage_FR-2026-11-q50": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-chomage_FR-2026-11-q80": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-chomage_FR-2026-12-q20": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-chomage_FR-2026-12-q50": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-2026-10-planifie-chomage_FR-2026-12-q80": {
+   "probabilites": {
+    "oui": 18,
+    "non": 82
+   },
+   "motif": "Dernier point du dossier et tendance récente ; incertitude de la dynamique."
+  },
+  "Q-EV-01": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-01-2026-10-planifie": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-02": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-03": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-04": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-04-2026-10-planifie": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-05": {
+   "probabilites": {
+    "RN": 40,
+    "bloc central": 20,
+    "gauche": 12,
+    "droite LR ou autre": 20,
+    "autre": 8
+   },
+   "motif": "Bardella largement en tête des sondages, mais second tour incertain."
+  },
+  "Q-EV-06": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-06-2026-10-planifie": {
+   "probabilites": {
+    "oui": 6,
+    "non": 94
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-07": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-07-2026-10-planifie": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-08": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-08-2026-10-planifie": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-09": {
+   "probabilites": {
+    "oui": 65,
+    "non": 35
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-10": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-13": {
+   "probabilites": {
+    "oui": 70,
+    "non": 30
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-15": {
+   "probabilites": {
+    "oui": 38,
+    "non": 62
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-16a": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-16a-2026-10-planifie": {
+   "probabilites": {
+    "oui": 1.5,
+    "non": 98.5
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-16b": {
+   "probabilites": {
+    "oui": 35,
+    "non": 65
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-17": {
+   "probabilites": {
+    "oui": 60,
+    "non": 40
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-C1": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-C1-2026-10-planifie": {
+   "probabilites": {
+    "oui": 4,
+    "non": 96
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-C2": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-C2-2026-10-planifie": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-C3a": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-C3b": {
+   "probabilites": {
+    "oui": 35,
+    "non": 65
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-C3b-2026-10-planifie": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Taux de base ajusté par les recherches (budget 2027 présenté le 1er octobre, PS menaçant de censure, grève fonction publique du 29 septembre, tensions obligataires)."
+  },
+  "Q-EV-C4": {
+   "probabilites": {
+    "avis rendu, compatible": 40,
+    "avis rendu, incompatible": 25,
+    "pas d'avis": 35
+   },
+   "motif": "Saisine par le Parlement européen en janvier 2026 ; les avis de la CJUE prennent 16 à 24 mois, échéance probablement atteinte."
+  }
+ }
+}
