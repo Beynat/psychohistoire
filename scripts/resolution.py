@@ -26,7 +26,15 @@ def suffixe(reg):
     return "" if nom == "protocole" else f"_{nom}"
 
 
-def toutes_les_questions():
+def cycles_du_registre(reg):
+    """Étiquettes des cycles dont le registre contient des prévisions (champ origine « cycle X ») :
+    seules leurs banques de questions sont lues (relecture 12, K2 : un cycle d'essai ne doit pas entrer
+    dans le bilan du registre du protocole)."""
+    import re
+    return {m.group(1) for l in lire_jsonl(reg) for m in [re.match(r"cycle ([^\s,]+)", str(l.get("origine", "")))] if m}
+
+
+def toutes_les_questions(cycles=None):
     """Questions de toutes les banques de cycle, plus la question de fenêtre de chaque événement
     (« Q-<id> »), pour pouvoir constater avant émission qu'un événement s'est déjà produit."""
     qs = {}
@@ -34,6 +42,8 @@ def toutes_les_questions():
         qs[f"Q-{e['id']}"] = {"id": f"Q-{e['id']}", "type": "evenement", "issues": e["issues"], "pool": "P2b",
                               "grappe": f"{e['evenement']}", "echeance": e["fenetre"]["fin"], "avant_emission": True}
     for f in sorted((RACINE / "data" / "cycles").glob("*/questions.json")):
+        if cycles is not None and f.parent.name not in cycles:
+            continue
         for q in lire_json(str(f.relative_to(RACINE)))["questions"]:
             if qs.get(q["id"], {}).get("avant_emission"):
                 del qs[q["id"]]
@@ -68,7 +78,7 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
         props.setdefault(p["question"], []).append(p)
     emises = {l["question"] for l in lire_jsonl(reg) if "question" in l and "probabilites" in l}
     nouvelles, series = [], {}
-    for qid, q in toutes_les_questions().items():
+    for qid, q in toutes_les_questions(cycles_du_registre(reg)).items():
         if qid in deja or (qid not in emises and not (q.get("avant_emission") and qid in props)):
             continue
         if q["type"] == "variable":
@@ -79,7 +89,12 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
                 nouvelles.append({"resolution": True, "question": qid, "issue": "oui" if v >= d["seuil"] else "non",
                                   "valeur": v, "source": f"data/historique/{d['serie']}.csv", "methode": "script"})
             continue
-        avis = props.get(qid, [])
+        # Une proposition par agent : deux propositions du même agent ne valent pas deux avis (relecture 12).
+        avis, agents = [], set()
+        for a in props.get(qid, []):
+            if a["agent"] not in agents:
+                agents.add(a["agent"])
+                avis.append(a)
         issues = [a["issue"] for a in avis]
         def df(issue, avis_retenus):
             # Événement « survenue » et issue « non » : la date du fait est la fin de la fenêtre

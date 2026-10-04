@@ -45,9 +45,10 @@ jobs:
           suivis = ("registre/", "modele/jalons/", "data/tri/", "modele/banque/ajouts.jsonl")
           for ligne in git("diff", "--no-renames", "--name-status", avant, "HEAD").splitlines():
               statut, f = ligne.split("\t", 1)
-              # Fichiers gelés d'un cycle : jamais modifiés ni supprimés (relecture 11, S5).
-              if re.match(r"data/cycles/[^/]+/gel/", f) and not statut.startswith("A"):
-                  erreurs.append(f"{f} : fichier gelé modifié ou supprimé")
+              # Fichiers d'un cycle (gel, questions et seuils, dossier, réponses de l'ensemble) : jamais
+              # modifiés ni supprimés une fois poussés (relecture 11, S5 ; relecture 12).
+              if re.match(r"data/cycles/[^/]+/", f) and not statut.startswith("A"):
+                  erreurs.append(f"{f} : fichier de cycle modifié ou supprimé")
                   continue
               if not f.startswith(suivis) or not f.endswith((".json", ".jsonl")):
                   continue

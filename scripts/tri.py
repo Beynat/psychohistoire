@@ -10,7 +10,8 @@ Usage :
         Ajoute les décisions à data/tri/AAAA-MM.jsonl (mois du passage), en ajout seul. Chaque ligne
         d'entrée porte les clés lien, fait, decision, motif, et facultativement concerne (questions
         dont le fait peut changer la probabilité, à titre descriptif) et caracterisation (nature,
-        stade, appui : annexe, section 11.2) ; « passage » est fixé ici, à partir de l'horloge système.
+        stade_propose, appui : annexe, section 11.2), contrôlée mais NON écrite dans le dépôt public
+        (relecture 12, K6) ; « passage » est fixé ici, à partir de l'horloge système.
         Refuse une ligne incomplète, une clé inconnue, une caractérisation hors liste ou un lien déjà
         trié. decision vaut l'identifiant d'une question qu'il pourrait résoudre (« Q-EV-08 ») ou
         « non rattaché ».
@@ -114,8 +115,15 @@ def ajouter():
             sys.exit(f"ligne {n} : décision « {d['decision']} » inconnue (question ouverte ou « non rattaché »)")
         vus.add(d["lien"])
         t = titres.get(d["lien"], {})
+        # La caractérisation proposée par l'agent de tri n'est pas écrite dans le dépôt, qui est public
+        # (relecture 12, K6) : seul « concerne » est conservé. La nature n'est publiée qu'avec une étape
+        # officielle vérifiée (data/tri/etapes.jsonl).
         lignes.append({"lien": d["lien"], "passage": passage, "fait": d["fait"], "decision": d["decision"], "motif": d["motif"],
-                       **{k: d[k] for k in FACULTATIVES if k in d},
+                       **({"concerne": d["concerne"]} if "concerne" in d else {}),
+                       # Seul le type est conservé (relecture 12, K5) : un fait public établi par la source
+                       # de son auteur (décision, vote, accord publié) n'est pas une allégation.
+                       **({"type_fait": "fait établi" if c["nature"] == "décision ou déclaration publique" else "mise en cause"}
+                          if c is not None else {}),
                        # Source et date du titre, conservées pour la mesure de reprise (la veille purge les titres triés).
                        "source": t.get("source"), "date_titre": t.get("date")})
     f = TRI / f"{passage[:7]}.jsonl"
@@ -135,8 +143,10 @@ def etape():
         if not l.strip():
             continue
         d = json.loads(l)
-        if set(d) != {"fait", "etape", "source", "date_fait", "agent"}:
-            sys.exit(f"ligne {n} : clés attendues fait, etape, source, date_fait, agent")
+        if not {"fait", "etape", "source", "date_fait", "agent"} <= set(d) <= {"fait", "etape", "source", "date_fait", "agent", "nature"}:
+            sys.exit(f"ligne {n} : clés attendues fait, etape, source, date_fait, agent (nature facultative)")
+        if "nature" in d and d["nature"] not in NATURES - {"vie privée"}:
+            sys.exit(f"ligne {n} : nature hors liste ou « vie privée » (jamais publiée)")
         if d["etape"] not in ETAPES:
             sys.exit(f"ligne {n} : étape « {d['etape']} » hors liste {sorted(ETAPES)}")
         lignes.append({**d, "stade": ETAPES[d["etape"]], "verifie_le": passage})
@@ -177,15 +187,21 @@ def reprise(aujourdhui=None):
             d = json.loads(l)
             if d["decision"] == "non rattaché" and not d.get("concerne"):
                 continue
-            x = faits.setdefault(d["fait"], {"obs": [], "concerne": set(), "decision": set(), "caracterisation": None})
+            x = faits.setdefault(d["fait"], {"obs": [], "concerne": set(), "decision": set(), "type": None})
+            x["type"] = d.get("type_fait") or x["type"]
             t = titres.get(d["lien"], {})
             src = (d.get("source") or t.get("source") or "?").split(" · ")[0]
             x["obs"].append(((d.get("date_titre") or t.get("date") or d["passage"])[:10], src))
             x["concerne"] |= set(d.get("concerne", []))
             if d["decision"] != "non rattaché":
                 x["decision"].add(d["decision"])
-            x["caracterisation"] = d.get("caracterisation") or x["caracterisation"]
     stades = stades_retenus()
+    natures = {}
+    fe = TRI / "etapes.jsonl"
+    if fe.exists():
+        for l in fe.read_text("utf-8").splitlines():
+            if l.strip() and "nature" in json.loads(l) and json.loads(l)["fait"] in stades:
+                natures[json.loads(l)["fait"]] = json.loads(l)["nature"]
     sortie = {}
     for k, v in faits.items():
         jours = sorted({j for j, _ in v["obs"]})
@@ -196,7 +212,9 @@ def reprise(aujourdhui=None):
         # Réexamen : 30 jours après l'entrée ; 14 jours si au moins cinq sources distinctes la première semaine
         # (constaté au septième jour). Table de décision de l'annexe, section 11.3.
         reex = d0 + timedelta(days=14 if len(s7p) >= 5 and auj >= d0 + timedelta(days=7) else 30)
-        if date_etape and date_etape >= jours[0]:
+        if v["type"] == "fait établi":
+            statut, stade, reex = "fait établi", None, None
+        elif date_etape and date_etape >= jours[0]:
             statut = "étape officielle vérifiée"
         elif auj < reex:
             statut = "en observation"
@@ -208,10 +226,10 @@ def reprise(aujourdhui=None):
                      "sources_7_premiers_jours": len(s7p), "sources_7_derniers_jours": len(s7d), "titres": len(v["obs"]),
                      "jours": len(jours), "premier_jour": jours[0], "dernier_jour": jours[-1],
                      "concerne": sorted(v["concerne"]), "peut_resoudre": sorted(v["decision"]),
-                     "caracterisation_proposee": v["caracterisation"], "stade_retenu": stade,
-                     "date_reexamen": reex.isoformat(), "statut": statut}
+                     "stade_retenu": stade, "nature_verifiee": natures.get(k),
+                     "type_fait": v["type"], "date_reexamen": reex.isoformat() if reex else None, "statut": statut}
     (RACINE / "data" / "reprise.json").write_text(json.dumps(
-        {"description": "Reprise et statut des faits (annexe, sections 11.2 et 11.3) : descriptif, sans effet sur les probabilités. Sept flux suivis (franceinfo, Le Monde, LCP, Public Sénat, Le Figaro, Libération, Mediapart). Stade retenu : « allégation » sauf étape officielle vérifiée par deux agents.",
+        {"description": "Reprise et statut des faits (annexe, sections 11.2 et 11.3) : descriptif, sans effet sur les probabilités. Sept flux suivis (franceinfo, Le Monde, LCP, Public Sénat, Le Figaro, Libération, Mediapart). Stade retenu : « allégation » sauf étape officielle vérifiée par deux agents ; la nature n'est publiée qu'avec une étape vérifiée, jamais « vie privée ».",
          "etabli_le": auj.isoformat(), "faits": sortie}, ensure_ascii=False, indent=1), "utf-8")
     print(f"{len(sortie)} faits suivis dans data/reprise.json")
 

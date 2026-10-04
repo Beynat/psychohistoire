@@ -73,7 +73,10 @@ def generer(gel, etiquette=None):
                                 "derniere_publiee": [publie, base_publiee], "ancrage_quotidien": ancrage},
                 })
 
-    evts = lire_json("modele/evenements.json")["evenements"]
+    # Banque gelée avec le cycle si elle existe (relecture 12) : un ajout fait après le gel vaut pour le
+    # cycle suivant, et questions.py, comparateurs.py et dossier.py lisent la même banque.
+    gel_ev = RACINE / "data" / "cycles" / cycle / "gel" / "evenements.json"
+    evts = lire_json(str(gel_ev.relative_to(RACINE)) if gel_ev.exists() else "modele/evenements.json")["evenements"]
     # Grappe : l'événement ; ses sous-questions à fenêtres distinctes forment des grappes séparées
     # (noyau, section 8.3, relecture 9).
     fins = {}

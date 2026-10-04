@@ -26,7 +26,7 @@ import sys
 from datetime import date, timedelta
 
 from commun import ecrire_json, lire_jsonl, log_score, maintenant
-from resolution import suffixe, toutes_les_questions
+from resolution import cycles_du_registre, suffixe, toutes_les_questions
 
 
 def brier(dist, issue):
@@ -105,7 +105,7 @@ def brier_pondere(lignes, issue, debut, fin):
 def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhui=None):
     aujourdhui = aujourdhui or date.today().isoformat()
     sfx = suffixe(reg)
-    qs = toutes_les_questions()
+    qs = toutes_les_questions(cycles_du_registre(reg))
     res = {r["question"]: r for r in lire_jsonl(f"registre/resolutions{sfx}.jsonl") if r.get("issue") is not None}
     prev = {}
     for l in lire_jsonl(reg):
@@ -143,34 +143,51 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
                 "log": round(sum(x["log"] for x in v) / len(v), 4),
                 "brier_temps": round(sum(x["brier_temps"] for x in v) / len(v), 4),
                 "murphy": murphy([(x["p_oui"], x["y"]) for x in v if x["binaire"]])} for p, v in pools.items()}}
+    # Événements ajoutés en cours de phase (noyau, section 8.8) : bilan avec et sans eux.
+    import json as _json
+    from commun import RACINE
+    fa = RACINE / "modele/banque/ajouts.jsonl"
+    ajoutes = {_json.loads(l)["id"] for l in fa.read_text("utf-8").splitlines() if l.strip()} if fa.exists() else set()
+
+    def comparer(a, garder):
+        diffs, echelles = {}, {}
+        for (aa, qid), s in scores.items():
+            if aa != reference or (a, qid) not in scores or qs[qid]["echeance"] > aujourdhui or not garder(qid, s):
+                continue
+            # Période commune (relecture 11, J1) : du plus tardif des deux premiers jours de prévision
+            # à la veille du fait ou à l'échéance.
+            o = scores[(a, qid)]
+            debut = max(s["debut"], o["debut"])
+            if debut > s["fin"]:
+                continue
+            issue = res[qid]["issue"]
+            br, bo = brier_pondere(s["lignes"], issue, debut, s["fin"]), brier_pondere(o["lignes"], issue, debut, o["fin"])
+            if br is not None and bo is not None:
+                diffs.setdefault(s["grappe"], []).append(br - bo)
+                pr = s["p_oui"] if s["binaire"] else None
+                echelles.setdefault(s["grappe"], []).append(4 * pr * (1 - pr) if pr is not None else 1.0)
+        t = test_grappes(diffs)
+        # Puissance recalculée sur les grappes réellement présentes (relecture 11, S8).
+        if len(echelles) >= 2:
+            import puissance
+            rnd = random.Random(2)
+            t["puissance_recalculee"] = {
+                f"delta_{d}": round(puissance.puissance_echelles(list(echelles.values()), d, 0.3, 0.12, 1000, rnd), 3)
+                for d in (0.02, 0.04)}
+        return t
+
+    evenement = lambda qid: (qs[qid].get("details") or {}).get("evenement") or qid.removeprefix("Q-")
     comparaisons = {}
     if reference in auteurs:
         for a in auteurs:
             if a == reference:
                 continue
-            diffs, echelles = {}, {}
-            for (aa, qid), s in scores.items():
-                if aa == reference and (a, qid) in scores and qs[qid]["echeance"] <= aujourdhui:
-                    # Période commune (relecture 11, J1) : du plus tardif des deux premiers jours de
-                    # prévision à la veille du fait ou à l'échéance.
-                    o = scores[(a, qid)]
-                    debut = max(s["debut"], o["debut"])
-                    if debut > s["fin"]:
-                        continue
-                    issue = res[qid]["issue"]
-                    br, bo = brier_pondere(s["lignes"], issue, debut, s["fin"]), brier_pondere(o["lignes"], issue, debut, o["fin"])
-                    if br is not None and bo is not None:
-                        diffs.setdefault(s["grappe"], []).append(br - bo)
-                        pr = s["p_oui"] if s["binaire"] else None
-                        echelles.setdefault(s["grappe"], []).append(4 * pr * (1 - pr) if pr is not None else 1.0)
-            comparaisons[a] = test_grappes(diffs)
-            # Puissance recalculée sur les grappes réellement présentes (relecture 11, S8).
-            if len(echelles) >= 2:
-                import puissance
-                rnd = random.Random(2)
-                comparaisons[a]["puissance_recalculee"] = {
-                    f"delta_{d}": round(puissance.puissance_echelles(list(echelles.values()), d, 0.3, 0.12, 1000, rnd), 3)
-                    for d in (0.02, 0.04)}
+            # Test de la section 8.6 : pools P2b et P2c seulement (relecture 12, K2), avec et sans ajouts.
+            comparaisons[a] = {
+                "critere_8_6": comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c")),
+                "critere_8_6_sans_ajouts": comparer(a, lambda qid, s: s["pool"] in ("P2b", "P2c") and evenement(qid) not in ajoutes),
+                "toutes_questions_descriptif": comparer(a, lambda qid, s: True),
+            }
     for v in scores.values():
         for k in ("lignes", "debut", "fin"):
             v.pop(k, None)
@@ -190,4 +207,4 @@ if __name__ == "__main__":
     for a, v in b["auteurs"].items():
         print(f"- {a} : " + " ; ".join(f"{p} n={x['n']} Brier {x['brier']} log {x['log']}" for p, x in v["pools"].items()))
     for a, c in b["comparaisons"].items():
-        print(f"  {b['reference']} contre {a} : {c}")
+        print(f"  {b['reference']} contre {a} : {c['critere_8_6']}")
