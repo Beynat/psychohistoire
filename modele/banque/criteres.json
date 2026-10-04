@@ -1,5 +1,5 @@
 {
- "version": "1.5",
+ "version": "1.6",
  "date": "2026-10-04",
  "description": "Critères de résolution de la banque d'événements, seuls transmis aux prévisionnistes. Le texte d'origine du balayage v1 reste dans modele/v1 et figure dans evenements.json sous « contexte_v1 », jamais transmis (relecture 8, G1). Sources de résolution : modele/sources.md, règle 1. Champ « nature » (relecture 9, H1) : « survenue » pour un événement qui peut se produire à tout moment de la fenêtre (taux de base ramené à la fenêtre restante par un risque constant), « constat » pour une issue constatée à date fixe (taux de base non converti). Champ « acte » (relecture 12, K4) : les questions tranchées par le même acte officiel ou liées à la même candidature (pourvoi de Marine Le Pen, liste des candidats et résultats du premier tour de 2027) forment une seule grappe. « taux_base_mode: uniforme » remplace l'ancien drapeau « taux_base » (relecture 12, S4).",
  "second_tour": "2027-05-02",
@@ -1263,9 +1263,9 @@
   {
    "id": "EV-46",
    "evenement": "EV-46",
-   "nom": "Activation du TPI de la BCE pour la France",
+   "nom": "Achats ciblés de la BCE (TPI ou OMT) pour la France",
    "domaine": "finances publiques",
-   "critere": "Pendant la fenêtre, la Banque centrale européenne annonce, par un communiqué ou une décision publiée, l'activation de l'instrument de protection de la transmission (TPI) avec des achats de titres de dette publique française. Des achats au titre d'autres programmes (APP, PEPP, y compris la flexibilité des réinvestissements) ne comptent pas.",
+   "critere": "Pendant la fenêtre, la Banque centrale européenne annonce, par un communiqué ou une décision publiée, des achats de titres de dette publique française au titre de l'instrument de protection de la transmission (TPI) ou des opérations monétaires sur titres (OMT). Des achats au titre d'autres programmes (APP, PEPP, y compris la flexibilité des réinvestissements) ne comptent pas.",
    "sous_question": null,
    "source_resolution": "Banque centrale européenne, communiqués et décisions",
    "fenetre": {
@@ -1312,7 +1312,7 @@
    "evenement": "EV-28",
    "nom": "Cessez-le-feu en Ukraine (seconde période)",
    "domaine": "international : Ukraine",
-   "critere": "Pendant la fenêtre, les gouvernements russe et ukrainien annoncent tous deux un cessez-le-feu général couvrant l'ensemble de la ligne de front, sans terme fixé ou d'une durée prévue d'au moins 30 jours, ou un accord de paix. Une trêve de durée plus courte ne compte pas.",
+   "critere": "Pendant la fenêtre, les gouvernements russe et ukrainien annoncent tous deux un cessez-le-feu général couvrant l'ensemble de la ligne de front, sans terme fixé ou d'une durée prévue d'au moins 30 jours, ou un accord de paix. Une trêve de durée plus courte ne compte pas. Seule compte une annonce faite pendant la fenêtre : un cessez-le-feu ou un accord annoncé avant elle ne compte pas, même s'il est toujours en vigueur.",
    "sous_question": "du 1er octobre 2027 au 30 septembre 2028",
    "source_resolution": "Présidences russe et ukrainienne ; Conseil de sécurité de l'ONU",
    "fenetre": {
@@ -1406,7 +1406,7 @@
    "evenement": "EV-33",
    "nom": "Suspension de l'accord UE-Israël (seconde période)",
    "domaine": "international : Proche-Orient",
-   "critere": "Pendant la fenêtre, le Conseil de l'Union européenne adopte une décision suspendant tout ou partie de l'accord d'association entre l'UE et Israël.",
+   "critere": "Pendant la fenêtre, le Conseil de l'Union européenne adopte une décision suspendant tout ou partie de l'accord d'association entre l'UE et Israël. Seule compte une décision adoptée pendant la fenêtre : une suspension décidée avant elle ne compte pas, même si elle est toujours en vigueur ; une nouvelle décision qui l'étend compte.",
    "sous_question": "du 1er juillet 2027 au 30 septembre 2028",
    "source_resolution": "Conseil de l'UE ; Journal officiel de l'UE",
    "fenetre": {

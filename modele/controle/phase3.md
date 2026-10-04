@@ -5,6 +5,9 @@ Ouverte le 4 octobre 2026 à partir de la relecture 7. À compléter avant le d�
 - [ ] `scripts/jalons.py` : écriture des définitions de jalons dans `modele/jalons/definitions.jsonl`, avec `defini_le` fixé par l'horloge système (annexe, section 10.7).
 - [ ] `scripts/fantome.py` : calcul hebdomadaire du registre fantôme (annexe, section 10.6).
 - [ ] `scripts/direction.py` : statistique Z par grappes, avec la loi de Student sous 15 grappes (annexe, section 10.11).
+- [ ] Script du réseau : à chaque cycle, écrire au registre la marginale du réseau entièrement non calé avant toute sortie calée (noyau, section 4.5 ; relecture de suivi 16).
+- [ ] Notation : une question d'un événement du périmètre sans prévision du modèle est notée sur le taux de base (noyau, section 8.6, « Périmètre »).
+- [ ] Copie aveugle du dépôt pour les évaluateurs et l'opérateur, sans les chemins listés au noyau (section 8.6, « Aveuglement »), et contrôle de leurs adresses consultées.
 
 ## À reporter à la prochaine version du noyau
 

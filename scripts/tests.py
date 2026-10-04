@@ -319,6 +319,28 @@ print(json.dumps(res, ensure_ascii=False))
         shutil.rmtree(tmp.parent)
 
 
+def test_ancrage_pas_nul():
+    """Relecture de suivi 16, N4 : quand le point quotidien d'ancrage tombe dans le mois du gel, la question à
+    horizon 1 (cible = ce mois) a un pas nul, et sa loi est celle du point du jour J à la moyenne du même mois."""
+    tmp, run = _copie()
+    try:
+        code = r"""
+import json, commun
+a = commun.ancrage_quotidien(commun.serie('ecart_FR_DE_pb'), commun.serie('ecart_FR_DE_journalier_pb'))
+print(json.dumps(a[3]))
+"""
+        jour = json.loads(run("-c", code).strip().splitlines()[-1])
+        run("scripts/geler.py", jour, "essai-n4", "--essai")
+        run("scripts/questions.py", jour, "essai-n4")
+        qs = json.loads((tmp / "data/cycles/essai-n4/questions.json").read_text())["questions"]
+        d = [q["details"] for q in qs if q["id"].startswith("Q-essai-n4-ecart_FR_DE_pb-" + jour[:7])]
+        assert d and all(x["pas"] == 0 and x["ancrage_quotidien"] for x in d), d[:1]
+        suiv = [q["details"]["pas"] for q in qs if q["id"].startswith("Q-essai-n4-ecart_FR_DE_pb-" + commun.mois_suivant(jour[:7]))]
+        assert suiv and set(suiv) == {1}, suiv
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
 def test_registre():
     tmp = Path(tempfile.mkdtemp())
     ancien = registre.RACINE

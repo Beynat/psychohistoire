@@ -69,7 +69,9 @@ def generer(gel, etiquette=None):
             if cible <= publie:
                 ecartees.append((f"{nom} {cible}", "valeur déjà publiée"))
                 continue
-            pas = max(1, ecart_mois(dernier, cible))
+            # Question ancrée : le pas peut être nul quand le point quotidien tombe dans le mois cible (loi « point
+            # du jour J → moyenne du même mois ») ; sans ancrage, au moins un mois (relecture de suivi 16, N4).
+            pas = ecart_mois(dernier, cible) if ancrage else max(1, ecart_mois(dernier, cible))
             # Ancrage quotidien : loi du point quotidien à la moyenne du mois cible (relecture 15, S5).
             var = variations_question(lire, {"serie": nom, "pas": pas, "ancrage_quotidien": ancrage})
             for q in QUANTILES:

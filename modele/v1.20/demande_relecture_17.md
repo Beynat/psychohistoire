@@ -2,7 +2,7 @@ Bonjour,
 
 Je vous demande une **relecture de validation** du protocole Psychohistoire. Vous n'avez pas participé aux échanges de rédaction ; c'est voulu. Cette relecture est complète et compte pour le critère d'arrêt (noyau, section 12) : deux relectures de validation consécutives sans défaut bloquant ni important.
 
-Dépôt : https://github.com/Beynat/psychohistoire, tags `protocole-v1.19` et `annexe-phase3-v1.7`.
+Dépôt : https://github.com/Beynat/psychohistoire, tags `protocole-v1.20` et `annexe-phase3-v1.7`.
 
 À lire :
 - `modele/protocole.md` (noyau) et `modele/annexe_phase3.md` (annexe) ;

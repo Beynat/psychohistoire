@@ -20,7 +20,10 @@ from commun import lire_json
 # Adresses interdites (consigne, « Interdits ») : le dépôt et sa page publiée, les marchés et agrégateurs.
 INTERDITES = re.compile(r"(github\.com/beynat/psychohistoire|beynat\.github\.io/psychohistoire|"
                         r"raw\.githubusercontent\.com/beynat/psychohistoire|polymarket\.|kalshi\.|metaculus\.|"
-                        r"manifold\.markets|predictit\.)", re.I)
+                        r"manifold\.markets|predictit\.|api\.github\.com/repos/beynat/psychohistoire|"
+                        # cotes de paris (relecture de suivi 16)
+                        r"betfair\.|oddschecker\.|winamax\.|betclic\.|unibet\.|parionssport|zebet\.|bet365\.|"
+                        r"paddypower\.|williamhill\.|smarkets\.)", re.I)
 
 
 def defauts(etiquette, chemin):

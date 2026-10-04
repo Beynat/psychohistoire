@@ -88,7 +88,7 @@
    "retenue": {
     "classe": 1,
     "probabilite": 7.4,
-    "motif": "Configuration de la fenêtre (Assemblée sans majorité), comme pour EV-15 ; n petit, donc très incertain."
+    "motif": "Classe de l'Assemblée sans majorité absolue, configuration de la fenêtre. C'est une borne haute : le taux annuel inclut la censure budgétaire de décembre 2024, alors que la fenêtre de janvier à mai ne contient pas de vote du budget initial. EV-15 retient une autre classe (sessions budgétaires, une sur quatre), propre à sa fenêtre."
    },
    "issues": {
     "oui": 7.4,
@@ -172,6 +172,40 @@
       }
      ],
      "incertitude": "Fenêtres presque toutes à majorité absolue (élections législatives suivant la présidentielle)."
+    },
+    {
+     "definition": "Périodes de la Ve République à majorité absolue d'un groupe ou d'une coalition gouvernementale (novembre 1962-juin 1988, avril 1993-juin 2022) : aucune motion de censure adoptée.",
+     "periode": "1962-1988 et 1993-2022 (54,5 ans)",
+     "k": 0,
+     "n": 54.5,
+     "unite": "années",
+     "frequence": 0.0092,
+     "probabilite_fenetre": 1.3,
+     "calcul": "λ (Jeffreys) = 0,5/54,5 = 0.0092/an ; T = 1.415 an ; p = 1.3 %",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      }
+     ],
+     "incertitude": "Délimitation des périodes à majorité absolue de mémoire ; la législature 1988-1993 (majorité relative, aucune censure adoptée) est exclue des deux classes de configuration."
+    },
+    {
+     "definition": "Mélange des classes 1 (Assemblée sans majorité absolue) et 3 (majorité absolue), pondéré par la probabilité que l'Assemblée élue après la présidentielle n'ait pas de majorité absolue.",
+     "periode": "—",
+     "k": null,
+     "n": null,
+     "unite": "mélange",
+     "frequence": null,
+     "probabilite_fenetre": 14.7,
+     "calcul": "p = 0,5 × 28.0 % + 0,5 × 1.3 % = 14.7 %. Poids déclaré : 0,5, inférieur aux 66,7 % du taux de base d'EV-17, qui mesure l'absence de majorité du seul groupe présidentiel et surestime donc l'absence de toute majorité (une coalition peut en former une).",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      }
+     ],
+     "incertitude": "Le poids est un choix déclaré, entre 0,33 et 0,67 ; il donne une fourchette de 10 à 19 %."
     }
    ],
    "fourchette": [
@@ -179,20 +213,20 @@
     28.0
    ],
    "retenue": {
-    "classe": 0,
-    "probabilite": 4.1,
-    "motif": "La configuration de l'Assemblée après 2027 n'est pas connue : le taux de la Ve République, toutes configurations confondues, est retenu ; la classe 1 (majorité relative maintenue) est la borne haute."
+    "classe": 4,
+    "probabilite": 14.7,
+    "motif": "La banque estime elle-même, par EV-17, qu'une Assemblée sans majorité absolue est probable après 2027 : la classe de la Ve République, dominée par des périodes à majorité absolue, la contredirait (relecture de suivi 16, N1). Le mélange pondéré est retenu, avec un poids déclaré de 0,5."
    },
    "issues": {
-    "oui": 4.1,
-    "non": 95.9
+    "oui": 14.7,
+    "non": 85.3
    }
   },
   {
    "id": "EV-46",
    "classes": [
     {
-     "definition": "Achats ciblés de la BCE sur la dette d'un État de la zone euro en tension (SMP mai 2010 : Grèce, Irlande, Portugal ; extension d'août 2011 : Italie, Espagne), par État-membre et par an, 1999-2026 ; aucune activation du TPI depuis sa création (21 juillet 2022) ; aucune intervention ciblée sur la France.",
+     "definition": "Achats ciblés de la BCE sur la dette d'un État de la zone euro en tension (SMP mai 2010 : Grèce, Irlande, Portugal ; extension d'août 2011 : Italie, Espagne), par État-membre et par an, 1999-2026 ; aucune activation du TPI depuis sa création (21 juillet 2022) ni de l'OMT depuis son annonce (2012) ; aucune intervention ciblée sur la France.",
      "periode": "1999-2026 (27,75 ans, environ 16 États membres en moyenne)",
      "k": 5,
      "n": 444.0,
@@ -207,20 +241,37 @@
       }
      ],
      "incertitude": "Nombre moyen d'États membres approché (11 en 1999, 20 depuis 2023) ; liste des États couverts par le SMP de mémoire, non revérifiée ici ; la France n'a jamais été ciblée, ce qui plaide pour moins."
+    },
+    {
+     "definition": "Même comptage restreint aux trois grands États de la zone euro (Italie, Espagne, France), 1999-2026 : deux interventions ciblées (Italie et Espagne, SMP d'août 2011), aucune sur la France.",
+     "periode": "1999-2026 (3 × 27,75 États-années)",
+     "k": 2,
+     "n": 83.25,
+     "unite": "États-années",
+     "frequence": 0.024,
+     "probabilite_fenetre": 4.7,
+     "calcul": "λ = 2/83,25 = 0.0240 par État-année ; T = 2.00 ans ; p = 1 − exp(−λT) = 4.7 %",
+     "sources": [
+      {
+       "titre": "BCE, The Transmission Protection Instrument (communiqué du 21 juillet 2022)",
+       "url": "https://www.ecb.europa.eu/press/pr/date/2022/html/ecb.pr220721~973e6e7273.en.html"
+      }
+     ],
+     "incertitude": "Deux cas seulement ; ils datent d'avant l'OMT et le TPI, qui ont pu dissuader les attaques de marché."
     }
    ],
    "fourchette": [
     2.2,
-    2.2
+    4.7
    ],
    "retenue": {
-    "classe": 0,
-    "probabilite": 2.2,
-    "motif": "Seule classe disponible ; ramenée à 2 % par la borne mécanique."
+    "classe": 1,
+    "probabilite": 4.7,
+    "motif": "Classe des grands États, plus proche de la France que l'ensemble des États membres, où les petits États sous programme dominent ; la classe 0 (2,2 %) est la borne basse."
    },
    "issues": {
-    "oui": 2.2,
-    "non": 97.8
+    "oui": 4.7,
+    "non": 95.3
    }
   },
   {
