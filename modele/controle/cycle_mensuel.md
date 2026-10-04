@@ -1,6 +1,6 @@
 # Procédure du cycle mensuel — phase 1
 
-Exécutée le 1er de chaque mois par la tâche planifiée du cycle mensuel (noyau, section 12). Chaque étape est commitée et poussée avant la suivante ; l'ordre garantit que les prévisions sont postérieures au gel et antérieures à toute autre recherche (section 8.2).
+Exécutée le 1er de chaque mois par la tâche planifiée du cycle mensuel (noyau, section 12). La tâche se déclenche chaque jour du 1er au 7 : si le cycle du mois est complet (lignes « ensemble direct » d'origine « cycle AAAA-MM » au registre), elle s'arrête aussitôt ; sinon elle reprend à la première étape non faite (le gel n'est jamais refait). Au-delà du 7, le cycle est déclaré manqué au journal, sans prévision rétroactive (règle de rattrapage). Chaque étape est commitée et poussée avant la suivante ; l'ordre garantit que les prévisions sont postérieures au gel et antérieures à toute autre recherche (section 8.2).
 
 1. **Gel.** `python scripts/geler.py AAAA-MM-01`, puis commit et poussée du dossier `data/cycles/AAAA-MM/gel/`.
 1 bis. **Événements déjà survenus.** Avant de générer les questions, deux agents distincts vérifient, pour chaque événement de `modele/evenements.json` encore ouvert, s'il s'est déjà produit au regard de son critère. Chaque constat positif est ajouté comme proposition (`registre/propositions.jsonl`), puis `python scripts/resolution.py` le résout. La question n'est alors pas émise (section 8.2).

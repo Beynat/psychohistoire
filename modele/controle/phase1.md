@@ -27,6 +27,7 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 ## Exécution
 
 - [x] Procédure du cycle mensuel écrite : `modele/controle/cycle_mensuel.md`.
+- [x] Procédure du tri écrite : `modele/controle/tri.md`, avec `scripts/tri.py` (4 octobre 2026).
 
 - [ ] Tâches planifiées créées : tri (trois fois par semaine), cycle mensuel (section 12).
 - [ ] Règle de rattrapage testée sur un passage manqué simulé.
