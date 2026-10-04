@@ -1,0 +1,564 @@
+{
+ "groupe": "politique et institutions",
+ "etabli_le": "2026-10-04",
+ "questions": [
+  {
+   "id": "EV-02",
+   "classes": [
+    {
+     "definition": "Budgets de la Ve République dont la LFI n'a pas été votée et publiée avant le 31/12 (recours à une loi spéciale ou équivalent) : automnes 1959 à 2025 (LFI 1960 à 2026). Précédents : décembre 1979 (LFI 1980 censurée par le Conseil constitutionnel le 24/12, loi autorisant la perception des impôts), décembre 2024 (LFI 2025), décembre 2025 (LFI 2026, loi spéciale annoncée le 22/12).",
+     "periode": "1959-2025",
+     "k": 3,
+     "n": 67,
+     "unite": "budgets (automnes budgétaires)",
+     "frequence": 0.0448,
+     "probabilite_fenetre": 4.5,
+     "calcul": "p = k/n = 3/67 = 4,5 % (un budget = une fenêtre ; pas d'annualisation). Modalité (b) ordonnance art. 47 : 0 cas sous la Ve hors budget 1959 pris par ordonnance en déc. 1958 (régime transitoire, exclu de n).",
+     "sources": [
+      {
+       "titre": "Le Club des Juristes, Spéciale, vous avez dit spéciale ? (précédents de loi spéciale 1979, 2024, 2025)",
+       "url": "https://www.leclubdesjuristes.com/opinion/speciale-vous-avez-dit-speciale-les-limites-du-dilatoire-13470/"
+      },
+      {
+       "titre": "The Conversation, Loi de finances spéciale : une entorse à la Constitution ?",
+       "url": "https://theconversation.com/loi-de-finances-speciale-une-entorse-a-la-constitution-272712"
+      },
+      {
+       "titre": "INA, Pourquoi la France ne peut pas se retrouver sans budget : les exemples de 1962 et 1979",
+       "url": "https://www.ina.fr/ina-eclaire-actu/vote-budget-assemblee-nationale-493-censure-shutdown-impot-constitution-article-45-article-47-loi-speciale"
+      },
+      {
+       "titre": "The Conversation, Loi de finances : le Parlement sous la menace d'un recours à l'ordonnance",
+       "url": "https://theconversation.com/loi-de-finances-le-parlement-sous-la-menace-dun-recours-a-lordonnance-270085"
+      }
+     ],
+     "incertitude": "Comptage des 3 précédents confirmé par article de doctrine ; le cas 1962 (évoqué par l'INA) n'a pas été vérifié et n'est pas compté ; l'absence d'autre cas entre 1959 et 2023 repose sur ma connaissance (non vérifiée budget par budget). Le budget 1959 (ordonnance de déc. 1958) est exclu."
+    },
+    {
+     "definition": "Budgets sous majorité relative (XVIe-XVIIe législatures) : LFI 2023 (promulguée 30/12/2022, art. 49.3), LFI 2024 (29/12/2023, art. 49.3), LFI 2025 (loi spéciale, déc. 2024), LFI 2026 (loi spéciale, déc. 2025).",
+     "periode": "automnes 2022-2025",
+     "k": 2,
+     "n": 4,
+     "unite": "budgets",
+     "frequence": 0.5,
+     "probabilite_fenetre": 50.0,
+     "calcul": "p = k/n = 2/4 = 50,0 %",
+     "sources": [
+      {
+       "titre": "Le Club des Juristes, Spéciale, vous avez dit spéciale ? (précédents de loi spéciale 1979, 2024, 2025)",
+       "url": "https://www.leclubdesjuristes.com/opinion/speciale-vous-avez-dit-speciale-les-limites-du-dilatoire-13470/"
+      },
+      {
+       "titre": "The Conversation, Loi de finances spéciale : une entorse à la Constitution ?",
+       "url": "https://theconversation.com/loi-de-finances-speciale-une-entorse-a-la-constitution-272712"
+      }
+     ],
+     "incertitude": "n très faible (4). Les LFI 2023 et 2024 adoptées par 49.3 sont comptées comme voie ordinaire (LFI publiées au JO avant le 31/12) ; dates de promulgation 2022/2023 issues de ma connaissance, non revérifiées ici."
+    },
+    {
+     "definition": "Budgets depuis 2000 (automnes 2000 à 2025, LFI 2001 à 2026), période récente de pratique de la loi organique relative aux lois de finances (LOLF 2001).",
+     "periode": "2000-2025",
+     "k": 2,
+     "n": 26,
+     "unite": "budgets",
+     "frequence": 0.0769,
+     "probabilite_fenetre": 7.7,
+     "calcul": "p = k/n = 2/26 = 7,7 %",
+     "sources": [
+      {
+       "titre": "Le Club des Juristes, Spéciale, vous avez dit spéciale ? (précédents de loi spéciale 1979, 2024, 2025)",
+       "url": "https://www.leclubdesjuristes.com/opinion/speciale-vous-avez-dit-speciale-les-limites-du-dilatoire-13470/"
+      },
+      {
+       "titre": "The Conversation, Loi de finances spéciale : une entorse à la Constitution ?",
+       "url": "https://theconversation.com/loi-de-finances-speciale-une-entorse-a-la-constitution-272712"
+      }
+     ],
+     "incertitude": "Même incertitude de comptage que la classe 0 ; classe imbriquée dans la classe 0 (pas indépendante)."
+    }
+   ],
+   "fourchette": [
+    4.5,
+    50.0
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 50.0,
+    "motif": "Classe la plus proche du critère (budget voté sans majorité absolue, 2 cas sur 4 récents) ; mais n=4 : la classe 0 (4,5 %, mieux mesurée sur 67 budgets) est l'ancrage long terme. Retenue de la classe 1 car elle correspond à la configuration institutionnelle de la fenêtre."
+   },
+   "issues": {
+    "oui": 50.0,
+    "non": 50.0
+   }
+  },
+  {
+   "id": "EV-05",
+   "classes": [
+    {
+     "definition": "Élections présidentielles au suffrage universel direct de la Ve République, vainqueur classé par bloc : droite LR/gaulliste/centre-droit 6 (1965, 1969, 1974, 1995, 2002, 2007) ; gauche 3 (1981, 1988, 2012) ; bloc central 2 (2017, 2022) ; RN/extrême droite 0 ; autre 0.",
+     "periode": "1965-2022",
+     "k": 0,
+     "n": 11,
+     "unite": "élections présidentielles (k = victoires RN)",
+     "frequence": 0.0,
+     "probabilite_fenetre": 0.0,
+     "calcul": "Par issue : droite 6/11=54,5 % ; gauche 3/11=27,3 % ; centre 2/11=18,2 % ; RN 0/11=0 % ; autre 0 %. Pour RN : p = 0/11 = 0 %.",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      }
+     ],
+     "incertitude": "Classement partisan à ma charge, non sourcé (Giscard 1974 classé droite/centre-droit ; Macron = bloc central ; gaullistes 1965-69 = droite). Aucun site ne fournit ce classement ; les vainqueurs sont connus de tous. Fréquence 0 : pas d'information sur le taux réel, d'où lissage dans la classe retenue."
+    },
+    {
+     "definition": "Présidentielles depuis 1981 (alternances régulières, système partisan moderne).",
+     "periode": "1981-2022",
+     "k": 0,
+     "n": 8,
+     "unite": "élections présidentielles (k = victoires RN)",
+     "frequence": 0.0,
+     "probabilite_fenetre": 0.0,
+     "calcul": "Par issue : droite 3/8=37,5 % (1995, 2002, 2007) ; gauche 3/8=37,5 % (1981, 1988, 2012) ; centre 2/8=25,0 % ; RN 0/8 = 0 %.",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      }
+     ],
+     "incertitude": "Même réserve de classement que la classe 0."
+    },
+    {
+     "definition": "Candidats d'extrême droite (FN/RN) parvenus au second tour : 2002 (J.-M. Le Pen), 2017 et 2022 (M. Le Pen), tous battus.",
+     "periode": "2002-2022",
+     "k": 0,
+     "n": 3,
+     "unite": "seconds tours disputés par FN/RN (k = victoires)",
+     "frequence": 0.0,
+     "probabilite_fenetre": 0.0,
+     "calcul": "p = 0/3 = 0 % brut ; règle de succession de Laplace (0+1)/(3+2) = 20,0 % indicatif (non retenu).",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      }
+     ],
+     "incertitude": "Scores de second tour (17,8 %, 33,9 %, 41,5 %) cités de mémoire, non vérifiés ici ; n=3, conditionnel à la qualification."
+    }
+   ],
+   "fourchette": [
+    0.0,
+    0.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 3.7,
+    "motif": "Classe la plus longue (11 scrutins). Un taux brut de 0 % étant inutilisable comme comparateur (log-score infini), lissage de Jeffreys (k+0,5)/(n+2,5) sur les 5 issues : droite 6,5/13,5, gauche 3,5/13,5, centre 2,5/13,5, RN et autre 0,5/13,5 ; le résultat 3,7 % pour RN est donc hors de la fourchette brute [0,0] par construction. Le lissage est un choix de ma part, pas une fréquence observée."
+   },
+   "issues": {
+    "RN": 3.7,
+    "bloc central": 18.5,
+    "gauche": 25.9,
+    "droite LR ou autre": 48.2,
+    "autre": 3.7
+   }
+  },
+  {
+   "id": "EV-08",
+   "classes": [
+    {
+     "definition": "Présidentielles françaises 2017 et 2022 : rapport public (VIGINUM/gouvernement) attribuant à un acteur étranger une campagne visant le scrutin.",
+     "periode": "2017-2022",
+     "k": 0,
+     "n": 2,
+     "unite": "élections présidentielles",
+     "frequence": 0.0,
+     "probabilite_fenetre": 0.0,
+     "calcul": "p = k/n = 0/2 = 0 % (lecture stricte).",
+     "sources": [
+      {
+       "titre": "SGDSN/VIGINUM, Rapport d'activité 2024",
+       "url": "https://www.sgdsn.gouv.fr/files/files/Publications/VIGINUM_rapport_activit%C3%A9_24_vd.pdf"
+      },
+      {
+       "titre": "SGDSN/VIGINUM, Matriochka (juin 2024)",
+       "url": "https://www.sgdsn.gouv.fr/files/files/20240610_NP_SGDSN_VIGINUM_Matriochka_VD.pdf"
+      }
+     ],
+     "incertitude": "Je n'ai trouvé aucune attribution officielle pour 2022 ; VIGINUM n'existe que depuis juillet 2021 (rapports publics attribués à partir de 2023). Pour 2017 (MacronLeaks), je n'ai pas vérifié l'état d'une éventuelle attribution formelle ; k pourrait être 1 en lecture large. L'absence de preuve n'est pas une preuve d'absence."
+    },
+    {
+     "definition": "Présidentielles américaines 2016, 2020, 2024 : évaluation officielle (ODNI/NIC/communauté du renseignement) attribuant à un État étranger une campagne d'influence visant l'élection.",
+     "periode": "2016-2024",
+     "k": 3,
+     "n": 3,
+     "unite": "élections présidentielles",
+     "frequence": 1.0,
+     "probabilite_fenetre": 100.0,
+     "calcul": "p = 3/3 = 100 %",
+     "sources": [
+      {
+       "titre": "Wikipedia, Foreign interference in the 2024 United States elections (renvoie aux évaluations ODNI/NIC 2020, 2024)",
+       "url": "https://en.wikipedia.org/wiki/Foreign_interference_in_the_2024_United_States_elections"
+      }
+     ],
+     "incertitude": "Source consultée confirme 2020 (rapport mars 2021) et 2024 (déclarations ODNI/FBI/DOJ) ; 2016 (évaluation de janvier 2017) non confirmé dans la source, connu de mémoire. Pays plus exposé, institutions de renseignement publiant systématiquement : classe peu comparable."
+    },
+    {
+     "definition": "Élections nationales 2024-2025 dans des démocraties européennes comparables (France 2024 européennes, France 2024 législatives, Roumanie présidentielle 2024, Allemagne fédérales 2025, Pologne présidentielle 2025) : attribution officielle d'une campagne à un acteur étranger (Russie).",
+     "periode": "2024-2025",
+     "k": 3,
+     "n": 5,
+     "unite": "scrutins nationaux",
+     "frequence": 0.6,
+     "probabilite_fenetre": 60.0,
+     "calcul": "p = k/n = 3/5 = 60,0 % (Roumanie, Allemagne, Pologne comptés ; France 2024 : 25 manoeuvres détectées par VIGINUM mais sans attribution formelle par scrutin selon son rapport d'activité 2024, donc non comptée).",
+     "sources": [
+      {
+       "titre": "The Record, Poland uncovers Russia-linked disinformation campaign targeting upcoming presidential election",
+       "url": "https://therecord.media/poland-uncovers-russia-linked-disinformation-campaign-presidential-election"
+      },
+      {
+       "titre": "Euronews, Germany summons Russian ambassador over alleged election interference and cyberattacks (12/12/2025)",
+       "url": "https://www.euronews.com/2025/12/12/germany-summons-russian-ambassador-over-alleged-election-interference-and-cyberattacks"
+      },
+      {
+       "titre": "Euronews, Declassified Romanian intelligence suggests state actor behind Georgescu's campaign",
+       "url": "https://www.euronews.com/2024/12/04/declassified-romanian-intelligence-suggests-state-actor-behind-georgescus-campaign"
+      },
+      {
+       "titre": "SGDSN/VIGINUM, Rapport d'activité 2024",
+       "url": "https://www.sgdsn.gouv.fr/files/files/Publications/VIGINUM_rapport_activit%C3%A9_24_vd.pdf"
+      },
+      {
+       "titre": "SGDSN/VIGINUM, Storm-1516 : détection d'une opération d'ingérence numérique étrangère ciblant Emmanuel Macron",
+       "url": "https://www.sgdsn.gouv.fr/publications/storm-1516-detection-dune-operation-dingerence-numerique-etrangere-ciblant-emmanuel"
+      }
+     ],
+     "incertitude": "Comptage fragile : Roumanie = documents déclassifiés évoquant un « acteur étatique » sans attribution nominative explicite ; Allemagne = attribution tardive (déc. 2025) ; sélection de scrutins à ma discrétion, sensible aux choix (ajouter l'Autriche, la Moldavie, etc. modifierait le taux)."
+    }
+   ],
+   "fourchette": [
+    0.0,
+    100.0
+   ],
+   "retenue": {
+    "classe": 2,
+    "probabilite": 60.0,
+    "motif": "Fenêtre longue (24 mois) englobant campagne et suites ; la pratique de publication d'attributions a changé depuis 2023 (VIGINUM : RRN 2023, Portal Kombat 2024, Matriochka 2024, Storm-1516 2025), donc la classe 0 (antérieure à cette pratique, n=2) est moins pertinente, et la classe américaine moins comparable. Fourchette très large : confiance faible."
+   },
+   "issues": {
+    "oui": 60.0,
+    "non": 40.0
+   }
+  },
+  {
+   "id": "EV-15",
+   "classes": [
+    {
+     "definition": "Sessions d'automne (3 oct.-31 déc., budget) de la Ve République : motion de censure adoptée. Cas : 4 octobre 1962 (gouvernement Pompidou, hors sujet budgétaire) et 4 décembre 2024 (Barnier, budget).",
+     "periode": "automnes 1959-2025",
+     "k": 2,
+     "n": 67,
+     "unite": "sessions d'automne",
+     "frequence": 0.0299,
+     "probabilite_fenetre": 3.0,
+     "calcul": "p = k/n = 2/67 = 3,0 % (une session = la fenêtre)",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      },
+      {
+       "titre": "LCP, Le gouvernement Barnier censuré (4 déc. 2024)",
+       "url": "https://lcp.fr/actualites/le-gouvernement-barnier-censure-par-l-assemblee-nationale-qui-adopte-la-motion-du"
+      }
+     ],
+     "incertitude": "Le site AN consulté (via résumé automatique) ne mentionne que 1962 comme motion adoptée, sans 2024 : incohérence du résumé ; 4/12/2024 confirmé par LCP. La session d'automne 1962 est comptée bien que sans lien avec le budget. Exclut la chute de Bayrou (confiance, sept. 2025), non assimilable à une motion de censure."
+    },
+    {
+     "definition": "Budgets sous majorité relative (automnes 2022 à 2025) : motion de censure adoptée avant le 31/12 : 2024 (Barnier) oui ; 2022, 2023 non ; 2025 non (motions rejetées en octobre 2025, la chute de Bayrou en septembre étant une question de confiance).",
+     "periode": "automnes 2022-2025",
+     "k": 1,
+     "n": 4,
+     "unite": "budgets",
+     "frequence": 0.25,
+     "probabilite_fenetre": 25.0,
+     "calcul": "p = k/n = 1/4 = 25,0 %. (Si la chute Bayrou était comptée : 2/4 = 50 %, hors critère.)",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      },
+      {
+       "titre": "LCP, Le gouvernement Barnier censuré (4 déc. 2024)",
+       "url": "https://lcp.fr/actualites/le-gouvernement-barnier-censure-par-l-assemblee-nationale-qui-adopte-la-motion-du"
+      }
+     ],
+     "incertitude": "n=4 ; rejet des motions d'octobre 2025 et chute de Bayrou issus de ma connaissance, non revérifiés ici. Cohérent avec le taux de base de B cité au critère (1 censure + 1 confiance en 4 budgets)."
+    },
+    {
+     "definition": "Taux annuel de motions de censure adoptées, toute l'année (2 en 67 ans), ramené à la fenêtre du 3/10 au 31/12.",
+     "periode": "1958-2025",
+     "k": 2,
+     "n": 67,
+     "unite": "années",
+     "frequence": 0.0299,
+     "probabilite_fenetre": 0.7,
+     "calcul": "λ = 2/67 = 0,0299/an ; T = 89/365,25 = 0,244 an ; p = 1 − exp(−0,0299×0,244) = 0,7 %",
+     "sources": [
+      {
+       "titre": "Assemblée nationale, Motions de censure depuis 1958",
+       "url": "https://www.assemblee-nationale.fr/dyn/decouvrir-l-assemblee/motions-de-censure-depuis-1958"
+      },
+      {
+       "titre": "LCP, Le gouvernement Barnier censuré (4 déc. 2024)",
+       "url": "https://lcp.fr/actualites/le-gouvernement-barnier-censure-par-l-assemblee-nationale-qui-adopte-la-motion-du"
+      }
+     ],
+     "incertitude": "Ignore la saisonnalité budgétaire ; borne basse."
+    }
+   ],
+   "fourchette": [
+    0.7,
+    25.0
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 25.0,
+    "motif": "Seule classe en situation de majorité relative, ce qui est la configuration de la fenêtre ; n=4 donc très incertain. La classe 0 (3,0 %) est l'ancrage long terme."
+   },
+   "issues": {
+    "oui": 25.0,
+    "non": 75.0
+   }
+  },
+  {
+   "id": "EV-16a",
+   "classes": [
+    {
+     "definition": "Décrets de dissolution de l'AN sous la Ve République : 9/10/1962, 30/5/1968, 22/5/1981, 14/5/1988, 21/4/1997, 9/6/2024.",
+     "periode": "4/10/1958-3/10/2026 (68 ans)",
+     "k": 6,
+     "n": 68,
+     "unite": "années",
+     "frequence": 0.0882,
+     "probabilite_fenetre": 5.0,
+     "calcul": "λ = 6/68 = 0,0882/an ; T = 211 j = 0,578 an ; p = 1 − exp(−0,0882×0,578) = 5,0 %",
+     "sources": [
+      {
+       "titre": "Dalloz Étudiant, Dissolution de l'Assemblée nationale (six dissolutions sous la Ve République)",
+       "url": "https://actu.dalloz-etudiant.fr/a-la-une/article/dissolution-de-lassemblee-nationale/h/97f6e210dc23e48b07a7a8d97f3b422a.html"
+      }
+     ],
+     "incertitude": "Comptage de 6 dissolutions confirmé. Le taux ignore les contraintes juridiques (art. 12 : pas de dissolution dans l'année suivant la précédente, levée depuis juin 2025) et le contexte."
+    },
+    {
+     "definition": "Dissolutions depuis 2000 (quinquennat) : seule celle de 2024.",
+     "periode": "1/1/2000-3/10/2026 (26,75 ans)",
+     "k": 1,
+     "n": 26.75,
+     "unite": "années",
+     "frequence": 0.0374,
+     "probabilite_fenetre": 2.1,
+     "calcul": "λ = 1/26,75 = 0,0374/an ; p = 1 − exp(−0,0374×0,578) = 2,1 %",
+     "sources": [
+      {
+       "titre": "Dalloz Étudiant, Dissolution de l'Assemblée nationale (six dissolutions sous la Ve République)",
+       "url": "https://actu.dalloz-etudiant.fr/a-la-une/article/dissolution-de-lassemblee-nationale/h/97f6e210dc23e48b07a7a8d97f3b422a.html"
+      }
+     ],
+     "incertitude": "k=1 : taux très instable."
+    },
+    {
+     "definition": "Fenêtres de 7 mois précédant le second tour de chacune des 11 présidentielles (1965-2022) : dissolution dans la fenêtre.",
+     "periode": "1965-2022",
+     "k": 0,
+     "n": 11,
+     "unite": "fenêtres pré-présidentielles",
+     "frequence": 0.0,
+     "probabilite_fenetre": 0.0,
+     "calcul": "p = 0/11 = 0 % (par opportunité)",
+     "sources": [
+      {
+       "titre": "Dalloz Étudiant, Dissolution de l'Assemblée nationale (six dissolutions sous la Ve République)",
+       "url": "https://actu.dalloz-etudiant.fr/a-la-une/article/dissolution-de-lassemblee-nationale/h/97f6e210dc23e48b07a7a8d97f3b422a.html"
+      }
+     ],
+     "incertitude": "Vérifié sur la liste des 6 dates : aucune ne tombe dans les 7 mois avant une présidentielle (1962 : 3 ans avant ; 1997 : 5 ans ; 2024 : 3 ans). Fréquence 0 : borne basse."
+    }
+   ],
+   "fourchette": [
+    0.0,
+    5.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 5.0,
+    "motif": "Classe la mieux mesurée (6 cas) ; la classe 2 suggère une valeur plus basse en pré-présidentielle, mais n'a pas de cas observé."
+   },
+   "issues": {
+    "oui": 5.0,
+    "non": 95.0
+   }
+  },
+  {
+   "id": "EV-16b",
+   "classes": [
+    {
+     "definition": "Taux annuel de dissolution Ve République (6 en 68 ans) appliqué à la fenêtre du 2/5/2027 au 30/9/2028.",
+     "periode": "4/10/1958-3/10/2026",
+     "k": 6,
+     "n": 68,
+     "unite": "années",
+     "frequence": 0.0882,
+     "probabilite_fenetre": 11.7,
+     "calcul": "λ = 6/68 = 0,0882/an ; T = 517 j = 1,416 an ; p = 1 − exp(−0,0882×1,416) = 11,7 %",
+     "sources": [
+      {
+       "titre": "Dalloz Étudiant, Dissolution de l'Assemblée nationale (six dissolutions sous la Ve République)",
+       "url": "https://actu.dalloz-etudiant.fr/a-la-une/article/dissolution-de-lassemblee-nationale/h/97f6e210dc23e48b07a7a8d97f3b422a.html"
+      }
+     ],
+     "incertitude": "Comptage confirmé ; taux homogène supposé."
+    },
+    {
+     "definition": "Fenêtres de 517 jours suivant le second tour de chacune des 11 présidentielles 1965-2022 : dissolution dans la fenêtre (1981 : 22/5/1981 ; 1988 : 14/5/1988).",
+     "periode": "1965-2022",
+     "k": 2,
+     "n": 11,
+     "unite": "fenêtres post-présidentielles",
+     "frequence": 0.1818,
+     "probabilite_fenetre": 18.2,
+     "calcul": "p = k/n = 2/11 = 18,2 % (par opportunité ; fenêtre = 517 j)",
+     "sources": [
+      {
+       "titre": "Dalloz Étudiant, Dissolution de l'Assemblée nationale (six dissolutions sous la Ve République)",
+       "url": "https://actu.dalloz-etudiant.fr/a-la-une/article/dissolution-de-lassemblee-nationale/h/97f6e210dc23e48b07a7a8d97f3b422a.html"
+      }
+     ],
+     "incertitude": "Dates de présidentielles et absence de dissolution dans les autres fenêtres (1965, 1969, 1974, 1995, 2002, 2007, 2012, 2017, 2022) vérifiées de mémoire contre la liste confirmée des 6 dissolutions ; les 2 cas (1981, 1988) correspondent à un président sans majorité à l'AN. n=11."
+    },
+    {
+     "definition": "Taux de dissolution depuis 2000 (1 en 26,75 ans) appliqué à la fenêtre.",
+     "periode": "2000-2026",
+     "k": 1,
+     "n": 26.75,
+     "unite": "années",
+     "frequence": 0.0374,
+     "probabilite_fenetre": 5.1,
+     "calcul": "λ = 1/26,75 = 0,03738/an ; p = 1 − exp(−0,03738×1,416) = 1 − exp(−0,05293) = 5,1 %",
+     "sources": [
+      {
+       "titre": "Dalloz Étudiant, Dissolution de l'Assemblée nationale (six dissolutions sous la Ve République)",
+       "url": "https://actu.dalloz-etudiant.fr/a-la-une/article/dissolution-de-lassemblee-nationale/h/97f6e210dc23e48b07a7a8d97f3b422a.html"
+      }
+     ],
+     "incertitude": "k=1 : instable."
+    }
+   ],
+   "fourchette": [
+    5.1,
+    18.2
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 18.2,
+    "motif": "Fenêtre calée sur la période post-présidentielle, où se sont produites 2 des 6 dissolutions ; n=11 donc incertain. Le taux homogène (11,7 %) est la valeur centrale alternative."
+   },
+   "issues": {
+    "oui": 18.2,
+    "non": 81.8
+   }
+  },
+  {
+   "id": "EV-17",
+   "classes": [
+    {
+     "definition": "Composite : p = 1 − P(législatives)·(1 − q). P(législatives) = P(dissolution sur 3/10/2026-30/9/2028) = 16,1 % (λ=6/68, T=728 j=1,993 an), faute de scrutin prévu (terme de l'AN élue en 2024 : 2029). q = part des législatives anticipées (post-dissolution) sans majorité absolue (289) pour le camp présidentiel : 1962 oui-majorité, 1968 oui, 1981 oui, 1988 non, 1997 non, 2024 non. Sans législatives, résolution sur l'AN existante (aucun bloc à 289 en 2024).",
+     "periode": "1962-2024",
+     "k": 3,
+     "n": 6,
+     "unite": "législatives anticipées (k = sans majorité absolue)",
+     "frequence": 0.5,
+     "probabilite_fenetre": 91.9,
+     "calcul": "P_diss = 1 − exp(−0,0882×1,993) = 16,1 % ; p = 1 − 0,161×(1 − 0,5) = 91,9 %",
+     "sources": [
+      {
+       "titre": "Dalloz Étudiant, Dissolution de l'Assemblée nationale (six dissolutions sous la Ve République)",
+       "url": "https://actu.dalloz-etudiant.fr/a-la-une/article/dissolution-de-lassemblee-nationale/h/97f6e210dc23e48b07a7a8d97f3b422a.html"
+      },
+      {
+       "titre": "Wikipédia, Élections législatives françaises de 1988",
+       "url": "https://fr.wikipedia.org/wiki/Élections_législatives_françaises_de_1988"
+      },
+      {
+       "titre": "Wikipédia, Élections législatives françaises de 1967",
+       "url": "https://fr.wikipedia.org/wiki/Élections_législatives_françaises_de_1967"
+      }
+     ],
+     "incertitude": "1962 et 1968 : majorité gaulliste de mémoire (non vérifiée) ; 1988 confirmé (majorité relative PS) ; la lecture « AN existante sans bloc à 289 » repose sur le résultat de 2024 (connu). Hypothèse que le président élu n'a pas de bloc à 289 dans l'AN actuelle."
+    },
+    {
+     "definition": "Composite avec q = part des législatives suivant immédiatement une présidentielle, sans majorité absolue pour le président élu : 1981 oui-majorité, 1988 non, 2002, 2007, 2012, 2017 oui-majorité, 2022 non.",
+     "periode": "1981-2022",
+     "k": 2,
+     "n": 7,
+     "unite": "législatives post-présidentielles",
+     "frequence": 0.2857,
+     "probabilite_fenetre": 88.5,
+     "calcul": "p = 1 − 0,161×(1 − 2/7) = 88,5 %",
+     "sources": [
+      {
+       "titre": "Dalloz Étudiant, Dissolution de l'Assemblée nationale (six dissolutions sous la Ve République)",
+       "url": "https://actu.dalloz-etudiant.fr/a-la-une/article/dissolution-de-lassemblee-nationale/h/97f6e210dc23e48b07a7a8d97f3b422a.html"
+      },
+      {
+       "titre": "Wikipédia, Élections législatives françaises de 1988",
+       "url": "https://fr.wikipedia.org/wiki/Élections_législatives_françaises_de_1988"
+      }
+     ],
+     "incertitude": "2002-2017 : majorités absolues de l'UMP, du PS et alliés, de LREM connues de mémoire ; 2022 (245 sièges Ensemble) de mémoire. Classe peu informative sur les législatives anticipées."
+    },
+    {
+     "definition": "Composite avec q = part de toutes les législatives 1962-2024 sans majorité absolue du camp présidentiel : 1986, 1988, 1993, 1997, 2022, 2024 sur 16 scrutins (1962, 67, 68, 73, 78, 81, 86, 88, 93, 97, 2002, 07, 12, 17, 22, 24).",
+     "periode": "1962-2024",
+     "k": 6,
+     "n": 16,
+     "unite": "législatives",
+     "frequence": 0.375,
+     "probabilite_fenetre": 89.9,
+     "calcul": "p = 1 − 0,161×(1 − 0,375) = 89,9 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Élections législatives françaises de 1967",
+       "url": "https://fr.wikipedia.org/wiki/Élections_législatives_françaises_de_1967"
+      },
+      {
+       "titre": "Wikipédia, Élections législatives françaises de 1988",
+       "url": "https://fr.wikipedia.org/wiki/Élections_législatives_françaises_de_1988"
+      },
+      {
+       "titre": "Wikipédia, Élections législatives françaises de 1962",
+       "url": "https://fr.wikipedia.org/wiki/Élections_législatives_françaises_de_1962"
+      }
+     ],
+     "incertitude": "1967 : 247 sièges sur 487, majorité absolue 244 atteinte (vérifié) ; 1973 et 1978 de mémoire ; 1962 non vérifié (source consultée sans chiffres). Classification de « camp présidentiel » à ma charge."
+    }
+   ],
+   "fourchette": [
+    88.5,
+    91.9
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 91.9,
+    "motif": "Seule classe tirée des législatives anticipées, seule voie de changement d'AN dans la fenêtre ; le résultat est dominé par l'absence probable de législatives (83,9 %), où le critère se résout sur l'AN de 2024 sans bloc à 289. Ce raisonnement dépend de la structure institutionnelle, pas de l'actualité 2026."
+   },
+   "issues": {
+    "oui": 91.9,
+    "non": 8.1
+   }
+  }
+ ]
+}

@@ -16,7 +16,7 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [x] `modele/evenements.json` : 21 événements du balayage v1 dotés d'un critère, 23 questions, dont 20 résolubles ; 3 non émises faute de source accessible (ACLED). Généré par `scripts/evenements.py` (4 octobre 2026).
 - [x] Historique long des séries mensuelles et trimestrielles (taux 10 ans FR et DE et écart depuis 1990, IPCH depuis 1997, dette, PIB, chômage) : `collecte/historique.py`, `data/historique/` (4 octobre 2026).
 - [x] Collecte des cotes externes pour P1 : Polymarket (232 marchés France, volume, écart offre-demande, drapeau de fiabilité), `collecte/cotes.py`. Metaculus exige un jeton : inaccessible, limite consignée (4 octobre 2026).
-- [ ] Taux de base des comparateurs, avec leurs deux classes de référence (sections 7.3 et 8.4).
+- [x] Taux de base des 20 questions résolubles, deux classes de référence ou plus, fourchette et classe retenue : `modele/taux_base/`, fusion `scripts/taux_base.py` → `modele/taux_base.json` (4 octobre 2026). Bornés entre 2 et 98 % pour le score logarithmique. Plusieurs comptages reposent sur des sources partielles, signalées dans le champ « incertitude » : à revoir au premier bilan.
 - [ ] Script de résolution : séries par script, événements sur source primaire, double résolution des cas ambigus (section 8.8).
 
 ## Ensemble direct

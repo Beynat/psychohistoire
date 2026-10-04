@@ -1,0 +1,431 @@
+{
+ "groupe": "société, sécurité et climat",
+ "etabli_le": "2026-10-04",
+ "questions": [
+  {
+   "id": "EV-07",
+   "classes": [
+    {
+     "definition": "France : incidents de rançongiciel à interruption documentée > 24 h sur un hôpital ou autre entité critique suivie par l'ANSSI (proxy large du critère, qui exige un OIV ou un établissement financier systémique)",
+     "periode": "2019-2025",
+     "k": 5,
+     "n": 7,
+     "unite": "années",
+     "frequence": 0.714,
+     "probabilite_fenetre": 75.9,
+     "calcul": "λ = 5/7 = 0,714 /an ; T = 728 j / 365,25 = 1,993 an ; p = 1 − exp(−0,714 × 1,993) = 75,9 %",
+     "sources": [
+      {
+       "titre": "Le Quotidien du Médecin : trente hôpitaux français visés par des cyberattaques en deux ans (ANSSI)",
+       "url": "https://www.lequotidiendumedecin.fr/hopital/securite-des-soins/trente-hopitaux-francais-ont-ete-vises-par-des-cyberattaques-en-deux-ans"
+      },
+      {
+       "titre": "IT-Connect : CH Sud Francilien (Corbeil-Essonnes) victime d'un ransomware",
+       "url": "https://www.it-connect.fr/cyberattaque-le-centre-hospitalier-de-corbeil-essonnes-victime-dun-ransomware/"
+      },
+      {
+       "titre": "ANSSI, Panorama de la cybermenace 2024",
+       "url": "https://www.cert.ssi.gouv.fr/uploads/CERTFR-2025-CTI-003.pdf"
+      }
+     ],
+     "incertitude": "Comptage k=5 (Rouen 2019, Dax 2021, Villefranche 2021, Corbeil-Essonnes 2022, Brest 2023) établi de mémoire ; seul Corbeil-Essonnes vérifié par source. Statut OIV de ces hôpitaux non vérifié (la plupart sont OSE, pas OIV) : cette classe surestime le critère. L'ANSSI recense par ailleurs 30 hôpitaux victimes de rançongiciels en 2022-2023 sans durée d'indisponibilité."
+    },
+    {
+     "definition": "France : incident confirmé par l'ANSSI ou un régulateur avec interruption > 24 h d'un OIV stricto sensu ou d'un établissement financier systémique (critère strict)",
+     "periode": "2015-2025",
+     "k": 0,
+     "n": 11,
+     "unite": "années",
+     "frequence": 0.0,
+     "probabilite_fenetre": 8.7,
+     "calcul": "k = 0 : estimateur de Jeffreys λ = 0,5/11 = 0,0455 /an ; p = 1 − exp(−0,0455 × 1,993) = 8,7 % (la fréquence brute 0 donnerait 0 %, jugé peu crédible ; règle de trois : borne haute de λ ≈ 3/11 soit p ≤ 41,9 %)",
+     "sources": [
+      {
+       "titre": "ANSSI, Panorama de la cybermenace 2024",
+       "url": "https://www.cert.ssi.gouv.fr/uploads/CERTFR-2025-CTI-003.pdf"
+      },
+      {
+       "titre": "ITForBusiness : révélations du panorama 2024 de l'ANSSI",
+       "url": "https://www.itforbusiness.fr/les-revelations-du-panorama-des-cybermenaces-2024-de-l-anssi-89567"
+      }
+     ],
+     "incertitude": "Aucun cas public correspondant au critère strict trouvé ; le panorama ANSSI ne publie pas de statistiques OIV/OSE ni de durées d'indisponibilité. Absence de preuve : k=0 peut refléter la confidentialité des incidents OIV."
+    }
+   ],
+   "fourchette": [
+    8.7,
+    75.9
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 8.7,
+    "motif": "Classe la plus proche du critère littéral (OIV ou établissement financier systémique, > 24 h) ; la classe 0 est mieux mesurée mais n'est qu'un proxy qui ignore le statut OIV. Risque de résolution plus large si un hôpital est assimilé à un OIV."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-09",
+   "classes": [
+    {
+     "definition": "Étés avec vigilance rouge canicule sur au moins un département (volet 1) ; l'échelon rouge n'existe que depuis 2019",
+     "periode": "étés 2019-2025",
+     "k": 5,
+     "n": 7,
+     "unite": "étés",
+     "frequence": 0.714,
+     "probabilite_fenetre": 91.8,
+     "calcul": "q = 5/7 = 0,714 par été ; deux étés (2027, 2028) : p = 1 − (1 − 0,714)^2 = 91,8 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Canicule en France",
+       "url": "https://fr.wikipedia.org/wiki/Canicule_en_France"
+      },
+      {
+       "titre": "Franceinfo : vigilance rouge maintenue dans 16 départements (juillet 2025)",
+       "url": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/canicule-le-pic-de-chaleur-attendu-mardi-la-vigilance-rouge-prolongee-mercredi-dans-les-16-departements-concernes_7348344.html"
+      }
+     ],
+     "incertitude": "Étés comptés : 2019, 2020, 2022, 2023, 2025 ; aucun en 2021 et 2024. 2019, 2020, 2023, 2025 recoupés par sources ; 2022 (juin) retenu de mémoire, non confirmé. Échantillon de 7 ans seulement. Les données de 2026 sont volontairement exclues."
+    },
+    {
+     "definition": "Années où la valeur ajoutée agricole (INSEE) baisse d'au moins 0,1 pt de PIB (≈ 3 Md€) (volet 2, proxy de la « perte agricole chiffrée »)",
+     "periode": "2010-2025",
+     "k": 2,
+     "n": 16,
+     "unite": "années",
+     "frequence": 0.125,
+     "probabilite_fenetre": 23.4,
+     "calcul": "q = 2/16 = 0,125 par an ; deux années de récolte (2027, 2028) : p = 1 − (1 − 0,125)^2 = 23,4 %",
+     "sources": [
+      {
+       "titre": "INSEE, L'agriculture en 2016",
+       "url": "https://www.insee.fr/fr/statistiques/2891247?sommaire=2528915"
+      },
+      {
+       "titre": "INSEE Première 2062, Le compte provisoire de l'agriculture en 2024",
+       "url": "https://www.insee.fr/fr/statistiques/8600618"
+      },
+      {
+       "titre": "INSEE Première 2001, Le compte provisoire de l'agriculture en 2023",
+       "url": "https://www.insee.fr/fr/statistiques/8211334"
+      }
+     ],
+     "incertitude": "2016 : −9,1 % soit −3,6 Md€ (≈ 0,16 pt de PIB) ; 2024 : −11,7 % sur ≈ 40 Md€ (≈ 0,18 pt) ; 2023 : −4,8 % (≈ 0,08 pt, exclu). Années 2010-2015 et 2017-2020 non vérifiées une à une. Baisses en partie dues aux prix, pas seulement au climat ; l'INSEE ne publie pas de « perte climatique » dédiée, donc critère ambigu."
+    },
+    {
+     "definition": "Union des deux volets (vigilance rouge OU baisse agricole ≥ 0,1 pt), indépendance supposée entre classes 0 et 1",
+     "periode": "2019-2025 / 2010-2025",
+     "k": null,
+     "n": null,
+     "unite": "combinaison des classes 0 et 1",
+     "frequence": null,
+     "probabilite_fenetre": 93.7,
+     "calcul": "p = 1 − (1 − 0,918)(1 − 0,234) = 93,7 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Canicule en France",
+       "url": "https://fr.wikipedia.org/wiki/Canicule_en_France"
+      },
+      {
+       "titre": "INSEE Première 2062",
+       "url": "https://www.insee.fr/fr/statistiques/8600618"
+      }
+     ],
+     "incertitude": "L'indépendance est fausse (les étés caniculaires et les mauvaises récoltes sont corrélés) : p réel entre 91,8 et 93,7."
+    }
+   ],
+   "fourchette": [
+    23.4,
+    93.7
+   ],
+   "retenue": {
+    "classe": 2,
+    "probabilite": 93.7,
+    "motif": "Le critère est une disjonction des deux volets ; la classe 2 la reflète. Le volet 1 domine (91,8 %), le volet 2 n'ajoute que ≈ 2 points."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-10",
+   "classes": [
+    {
+     "definition": "Grands mouvements lycéens/étudiants nationaux depuis 1986 ayant gagné les universités (ou y étant nés)",
+     "periode": "1986-2018",
+     "k": 5,
+     "n": 7,
+     "unite": "mouvements",
+     "frequence": 0.714,
+     "probabilite_fenetre": 71.4,
+     "calcul": "p = k/n = 5/7 = 71,4 % (par mouvement, pas de conversion temporelle)",
+     "sources": [
+      {
+       "titre": "Wikipédia, Mouvement lycéen en France",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_lyc%C3%A9en_en_France"
+      },
+      {
+       "titre": "Public Sénat : blocus lycéens de 2010 (400 établissements fermés)",
+       "url": "https://www.maire-info.com/socia%C2%A9ta%C2%A9/400-etablissements-scolaires-fermes-face-%EF%BF%BD-lextension-du-mouvement-lyceen-et-la-flambee-de-violences-article-31137"
+      }
+     ],
+     "incertitude": "n=7 : 1986, 1990, 1994, 2005, 2006, 2010, 2018. k=5 : 1986, 1990, 1994, 2006, 2018 (extension aux universités selon la synthèse Wikipédia, détails non vérifiés) ; 2010 probablement un 6e cas (k=6, 85,7 %) mais non vérifié ; 2005 non confirmé. Biais de sélection : on ne compte que les mouvements devenus notables, et le délai (avant le 15/11, soit ~6 semaines) n'est pas contrôlé cas par cas."
+    },
+    {
+     "definition": "Mouvements lycéens massifs ayant dépassé 300 établissements bloqués pendant au moins 2 semaines consécutives",
+     "periode": "1986-2018",
+     "k": 1,
+     "n": 7,
+     "unite": "mouvements",
+     "frequence": 0.143,
+     "probabilite_fenetre": 14.3,
+     "calcul": "p = k/n = 1/7 = 14,3 %",
+     "sources": [
+      {
+       "titre": "Public Sénat : blocus lycéens, établissements perturbés",
+       "url": "https://www.publicsenat.fr/actualites/politique/blocus-lyceens-564-etablissements-perturbes-le-gouvernement-cherche-une-sortie-de-crise"
+      },
+      {
+       "titre": "Wikipédia, Mouvement lycéen en France",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_lyc%C3%A9en_en_France"
+      }
+     ],
+     "incertitude": "k=1 (2010 : ~400 établissements fermés, durée exacte à confirmer). 2005 : « près de 300 lycées » pendant ~3 semaines, cas limite non compté ; 2018 : ~100 bloqués. Les décomptes d'établissements bloqués ne sont pas homogènes (ministère, syndicats) ; la source de public sénat date de 2026 et n'a pas été utilisée dans le calcul."
+    }
+   ],
+   "fourchette": [
+    14.3,
+    71.4
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 71.4,
+    "motif": "Le critère est une disjonction ; l'extension aux universités est la branche la plus fréquente historiquement. Classe 1 (branche de durée) conservée comme borne basse. Écart très large : estimation fragile."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-13",
+   "classes": [
+    {
+     "definition": "Automnes (3 oct.-31 déc.) comportant au moins une journée avec taux de grévistes FPE > 18 %",
+     "periode": "automnes 2010-2025",
+     "k": 3,
+     "n": 16,
+     "unite": "automnes",
+     "frequence": 0.1875,
+     "probabilite_fenetre": 18.8,
+     "calcul": "p = k/n = 3/16 = 18,8 % (par fenêtre d'automne, pas de conversion)",
+     "sources": [
+      {
+       "titre": "Acteurs Publics : retraites, forte mobilisation (FPE 32,82 % le 5/12/2019, 29,5 % le 19/01/2023)",
+       "url": "https://acteurspublics.fr/articles/retraites-forte-mobilisation-dans-la-fonction-publique/"
+      },
+      {
+       "titre": "Acteurs Publics : la grève reste limitée (18,8 % le 5/12/2024)",
+       "url": "https://acteurspublics.fr/articles/la-greve-dans-la-fonction-publique-reste-limitee-avec-une-mobilisation-plus-forte-au-sein-de-letat-que-dans-les-autres-versants/"
+      },
+      {
+       "titre": "DGAFP, La représentation professionnelle et les grèves, éd. 2024",
+       "url": "https://www.fonction-publique.gouv.fr/toutes-les-publications/la-representation-professionnelle-et-les-greves-edition-2024"
+      }
+     ],
+     "incertitude": "Automnes comptés : 2019 (5/12, 32,8 %), 2024 (5/12, 18,8 % selon le dossier de résolution), 2010 (retraites, 1,85 M de journées perdues en FPE sur l'année ; taux journalier non vérifié). Sans 2010 : 2/16 = 12,5 %. Les taux DGAFP journaliers ne sont pas disponibles en série continue ; les années 2011-2018, 2020-2023 supposées sans journée > 18 % en automne, non vérifié."
+    },
+    {
+     "definition": "Années avec au moins une journée de grève FPE > 18 %, converti à la fenêtre de 89 jours",
+     "periode": "2019-2025",
+     "k": 3,
+     "n": 7,
+     "unite": "années",
+     "frequence": 0.429,
+     "probabilite_fenetre": 9.9,
+     "calcul": "λ = 3/7 = 0,429 /an ; T = 89/365,25 = 0,244 an ; p = 1 − exp(−0,429 × 0,244) = 9,9 %",
+     "sources": [
+      {
+       "titre": "Acteurs Publics : retraites, forte mobilisation",
+       "url": "https://acteurspublics.fr/articles/retraites-forte-mobilisation-dans-la-fonction-publique/"
+      },
+      {
+       "titre": "Acteurs Publics : la grève reste limitée",
+       "url": "https://acteurspublics.fr/articles/la-greve-dans-la-fonction-publique-reste-limitee-avec-une-mobilisation-plus-forte-au-sein-de-letat-que-dans-les-autres-versants/"
+      }
+     ],
+     "incertitude": "Années : 2019, 2023, 2024. Taux annuel supposé uniforme dans l'année, ce qui sous-estime l'automne (saison du budget). Échantillon court."
+    },
+    {
+     "definition": "Automnes sous gouvernement sans majorité absolue (débat budgétaire contraint)",
+     "periode": "automnes 2022-2025",
+     "k": 1,
+     "n": 4,
+     "unite": "automnes",
+     "frequence": 0.25,
+     "probabilite_fenetre": 25.0,
+     "calcul": "p = k/n = 1/4 = 25,0 %",
+     "sources": [
+      {
+       "titre": "Acteurs Publics : la grève reste limitée (rappel du 5/12/2024)",
+       "url": "https://acteurspublics.fr/articles/la-greve-dans-la-fonction-publique-reste-limitee-avec-une-mobilisation-plus-forte-au-sein-de-letat-que-dans-les-autres-versants/"
+      }
+     ],
+     "incertitude": "k=1 (2024) ; échantillon de 4, quasi anecdotique. Les automnes 2022, 2023 et 2025 supposés sans journée > 18 %, non vérifié journée par journée."
+    }
+   ],
+   "fourchette": [
+    9.9,
+    25.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 18.8,
+    "motif": "Série la plus longue et fenêtre calée sur la saison du critère (automne) ; la classe 1 sous-estime la saisonnalité, la classe 2 est trop courte."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-C1",
+   "classes": [
+    {
+     "definition": "France : attentats terroristes avec au moins un mort hors assaillant, décomptés par événement (hors cas non qualifiés PNAT)",
+     "periode": "2016-2025",
+     "k": 17,
+     "n": 10,
+     "unite": "années",
+     "frequence": 1.7,
+     "probabilite_fenetre": 96.6,
+     "calcul": "λ = 17/10 = 1,7 /an ; T = 1,993 an ; p = 1 − exp(−1,7 × 1,993) = 96,6 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Chronologie des actes terroristes en France",
+       "url": "https://fr.wikipedia.org/wiki/Chronologie_des_actes_terroristes_en_France"
+      },
+      {
+       "titre": "Wikipédia (EN), List of terrorist incidents in France",
+       "url": "https://en.wikipedia.org/wiki/List_of_terrorist_incidents_in_France"
+      },
+      {
+       "titre": "Europol, TE-SAT 2026",
+       "url": "https://www.europol.europa.eu/cms/sites/default/files/documents/EU-TE-SAT-2026.pdf"
+      }
+     ],
+     "incertitude": "Par année : 2016:3, 2017:2, 2018:3, 2019:1, 2020:4, 2021:1, 2022:0 (strict ; Wikipédia signale 1 mort, saisine PNAT non vérifiée, donc k=18 si inclus), 2023:2, 2024:0, 2025:1. Décompte reconstitué à partir de synthèses annuelles (morts par année) et de mémoire pour le détail des événements ; les listes consultées sont incomplètes ou contradictoires. Le Poisson surestime en présence de regroupement d'événements."
+    },
+    {
+     "definition": "France : années comportant au moins un attentat meurtrier ; probabilité sur 2 années supposées indépendantes",
+     "periode": "2016-2025",
+     "k": 8,
+     "n": 10,
+     "unite": "années",
+     "frequence": 0.8,
+     "probabilite_fenetre": 96.0,
+     "calcul": "q = 8/10 = 0,8 par an ; p = 1 − (1 − 0,8)^2 = 96,0 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Chronologie des actes terroristes en France",
+       "url": "https://fr.wikipedia.org/wiki/Chronologie_des_actes_terroristes_en_France"
+      },
+      {
+       "titre": "Wikipédia (EN), List of terrorist incidents in France",
+       "url": "https://en.wikipedia.org/wiki/List_of_terrorist_incidents_in_France"
+      }
+     ],
+     "incertitude": "Années avec attentat : 2016-2021, 2023, 2025 ; 2022 exclu (strict) et 2024 sans mort. Si 2022 compté : 9/10 et 99,0 %. Indépendance interannuelle discutable."
+    },
+    {
+     "definition": "France : régime récent après la vague 2015-2020, attentats meurtriers par événement",
+     "periode": "2021-2025",
+     "k": 4,
+     "n": 5,
+     "unite": "années",
+     "frequence": 0.8,
+     "probabilite_fenetre": 79.7,
+     "calcul": "λ = 4/5 = 0,8 /an ; T = 1,993 an ; p = 1 − exp(−0,8 × 1,993) = 79,7 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Chronologie des actes terroristes en France",
+       "url": "https://fr.wikipedia.org/wiki/Chronologie_des_actes_terroristes_en_France"
+      },
+      {
+       "titre": "Europol, TE-SAT 2026",
+       "url": "https://www.europol.europa.eu/cms/sites/default/files/documents/EU-TE-SAT-2026.pdf"
+      }
+     ],
+     "incertitude": "Événements : Rambouillet 2021, Arras et Bir-Hakeim 2023, Mulhouse 2025 ; 2022 exclu (non vérifié PNAT), 2024 aucun. Échantillon de 5 ans seulement."
+    }
+   ],
+   "fourchette": [
+    79.7,
+    96.6
+   ],
+   "retenue": {
+    "classe": 2,
+    "probabilite": 79.7,
+    "motif": "Régime le plus récent, hors pic 2015-2020 des attentats de grande ampleur, donc moins biaisé à la hausse ; classes 0 et 1 plus longues mais dominées par 2016-2020. Échantillon petit : estimation incertaine."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-C2",
+   "classes": [
+    {
+     "definition": "État d'urgence (loi de 1955) déclaré dans un territoire d'outre-mer (Nouvelle-Calédonie 1985, Wallis-et-Futuna 1986, Polynésie 1987, Nouvelle-Calédonie 2024)",
+     "periode": "1958-2025",
+     "k": 4,
+     "n": 68,
+     "unite": "années",
+     "frequence": 0.0588,
+     "probabilite_fenetre": 11.1,
+     "calcul": "λ = 4/68 = 0,0588 /an ; T = 1,993 an ; p = 1 − exp(−0,0588 × 1,993) = 11,1 %",
+     "sources": [
+      {
+       "titre": "Franceinfo : Nouvelle-Calédonie, état d'urgence levé après douze jours (2024)",
+       "url": "https://www.franceinfo.fr/france/nouvelle-caledonie/nouvelle-caledonie-l-etat-d-urgence-sera-leve-mardi-matin-dans-l-archipel-annonce-l-elysee_6568016.html"
+      },
+      {
+       "titre": "Le Club des juristes : état d'urgence en Nouvelle-Calédonie",
+       "url": "https://www.leclubdesjuristes.com/politique/etat-durgence-en-nouvelle-caledonie-les-contours-dun-droit-dexception-6044/"
+      },
+      {
+       "titre": "Wikipédia, État d'urgence en France",
+       "url": "https://fr.wikipedia.org/wiki/%C3%89tat_d'urgence_en_France"
+      }
+     ],
+     "incertitude": "2024 vérifié (15-28 mai) ; 1985 appuyé par les archives de l'Assemblée ; 1986 (Wallis-et-Futuna) et 1987 (Polynésie) retenus de mémoire, non vérifiés (la page Wikipédia n'a pas pu être lue). Critère ne retient que la déclaration, sans seuil de durée."
+    },
+    {
+     "definition": "Outre-mer : état d'urgence ou couvre-feu préfectoral d'au moins 7 jours dans l'agglomération principale (Guadeloupe nov. 2021 ; Nouvelle-Calédonie mai 2024 ; Martinique sept.-oct. 2024)",
+     "periode": "2000-2025",
+     "k": 3,
+     "n": 26,
+     "unite": "années",
+     "frequence": 0.1154,
+     "probabilite_fenetre": 20.5,
+     "calcul": "λ = 3/26 = 0,1154 /an ; T = 1,993 an ; p = 1 − exp(−0,1154 × 1,993) = 20,5 %",
+     "sources": [
+      {
+       "titre": "Franceinfo : crise sociale en Guadeloupe, couvre-feu prolongé jusqu'au 28 novembre",
+       "url": "https://www.franceinfo.fr/france/crise-sociale-en-guadeloupe-le-couvre-feu-sera-prolonge-jusqu-au-28-novembre-dans-le-departement-annonce-le-prefet_4856445.html"
+      },
+      {
+       "titre": "Franceinfo : Martinique, couvre-feu partiel prolongé",
+       "url": "https://www.franceinfo.fr/france/martinique/le-couvre-feu-partiel-en-vigueur-en-martinique-est-prolonge-jusqu-a-jeudi-matin-et-etendu-a-un-autre-quartier-de-fort-de-france-en-raison-des-violences_6798757.html"
+      },
+      {
+       "titre": "Politis : prolongation du couvre-feu en Martinique et en Nouvelle-Calédonie (oct. 2024)",
+       "url": "https://www.politis.fr/articles/2024/10/prolongation-du-couvre-feu-en-martinique/"
+      }
+     ],
+     "incertitude": "Les couvre-feux de Guadeloupe 2021 (quartiers de Pointe-à-Pitre et des Abymes) et de Martinique 2024 (partiel, quartiers de Fort-de-France) ne couvrent pas forcément toute l'agglomération ; durées exactes ≥ 7 jours non vérifiées. Mayotte (couvre-feux ponctuels, dont après le cyclone Chido fin 2024) non compté, non vérifié. Couvre-feux sanitaires covid exclus."
+    }
+   ],
+   "fourchette": [
+    11.1,
+    20.5
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 20.5,
+    "motif": "Seule classe couvrant les couvre-feux (critère alternatif à l'état d'urgence) et la période où ils sont fréquents ; classe 0 plus longue mais ignore les couvre-feux. Fragile (3 cas, périmètre incertain)."
+   },
+   "issues": null
+  }
+ ]
+}

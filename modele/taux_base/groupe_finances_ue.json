@@ -1,0 +1,543 @@
+{
+ "groupe": "finances et UE",
+ "etabli_le": "2026-10-04",
+ "questions": [
+  {
+   "id": "EV-01",
+   "classes": [
+    {
+     "definition": "France, abaissements de note long terme par Moody's, S&P ou Fitch, couverture des trois agences. Tous les abaissements comptés (k = nombre d'actions).",
+     "periode": "1994-2025 (Fitch couvre depuis 1994 ; la France était AAA chez les trois jusqu'en 2012)",
+     "k": 11,
+     "n": 32,
+     "unite": "années",
+     "frequence": 0.344,
+     "probabilite_fenetre": 49.6,
+     "calcul": "lambda = 11/32 = 0,344 par an ; T = 728 j = 1,993 an ; p = 1 - exp(-0,344 x 1,993) = 49,6 %. Surestime car les abaissements sont groupés (les 11 événements tombent en 2012-2015 et 2023-2025).",
+     "sources": [
+      {
+       "titre": "countryeconomy.com, Rating: France",
+       "url": "https://countryeconomy.com/ratings/france"
+      },
+      {
+       "titre": "EDHEC Vox, France downgrades (Fitch 12/09/2025, S&P 17-18/10/2025, Moody's outlook 24/10/2025)",
+       "url": "https://www.edhec.edu/en/research-and-faculty/edhec-vox/why-france-despite-credit-rating-downgrade-by-financial-agencies-remain-risk-free-borrower-for-regulators"
+      },
+      {
+       "titre": "MarketScreener, Moody's cuts France to Aa3 (13/12/2024)",
+       "url": "https://uk.marketscreener.com/news/latest/Moody-s-cuts-France-s-rating-to-Aa3-on-waning-public-finances-48592106/"
+      },
+      {
+       "titre": "FXDD, Fitch downgrades France to AA+ from AAA (juillet 2013)",
+       "url": "http://blog.fxdd.com/2013/07/12/fitch-downgrades-france-to-aa-from-aaa-rating-equals-moodys-and-sp-now/"
+      },
+      {
+       "titre": "Bloomberg, France's credit rating cut by Fitch to AA (12/12/2014)",
+       "url": "https://www.bloomberg.com/news/articles/2014-12-12/france-s-credit-rating-cut-by-fitch-to-aa-outlook-stable"
+      },
+      {
+       "titre": "Business Standard, France takes note of Moody's decision to lower rating (sept. 2015)",
+       "url": "https://www.business-standard.com/amp/article/news-ians/france-takes-note-of-moody-s-decision-to-lower-rating-115092000050_1.html"
+      },
+      {
+       "titre": "MarketScreener, Fitch Downgrades France to AA- (avril 2023)",
+       "url": "https://marketscreener.com/amp/news/latest/Fitch-Downgrades-France-to-AA---43685553"
+      },
+      {
+       "titre": "Malay Mail, S&P downgrades French credit score (31/05/2024)",
+       "url": "https://www.malaymail.com/news/money/2024/06/01/ratings-agency-sp-downgrades-french-credit-score/137549"
+      }
+     ],
+     "incertitude": "11 abaissements de note long terme (3 agences) : S&P 13/01/2012 (AAA>AA+), 08/11/2013 (AA+>AA), 31/05/2024 (AA>AA-), 17/10/2025 (AA->A+) ; Moody's 19/11/2012 (Aaa>Aa1), 18/09/2015 (Aa1>Aa2), 13/12/2024 (Aa2>Aa3) ; Fitch 12/07/2013 (AAA>AA+), 12/12/2014 (AA+>AA), 28/04/2023 (AA>AA-), 12/09/2025 (AA->A+). Dates reconstituées de sources de presse ; la date exacte de Fitch en juillet 2013 est à confirmer (12/07 retenu). Comptage de la période 1994-2011 (aucun abaissement) fondé sur le tableau countryeconomy, non recoupé auprès des agences."
+    },
+    {
+     "definition": "France, même comptage, période de la crise des dettes souveraines à aujourd'hui.",
+     "periode": "2012-2025",
+     "k": 11,
+     "n": 14,
+     "unite": "années",
+     "frequence": 0.786,
+     "probabilite_fenetre": 79.1,
+     "calcul": "lambda = 11/14 = 0,786 ; p = 1 - exp(-0,786 x 1,993) = 79,1 %. Classe biaisée vers le haut : elle commence au premier abaissement.",
+     "sources": [
+      {
+       "titre": "countryeconomy.com, Rating: France",
+       "url": "https://countryeconomy.com/ratings/france"
+      },
+      {
+       "titre": "EDHEC Vox, France downgrades (Fitch 12/09/2025, S&P 17-18/10/2025, Moody's outlook 24/10/2025)",
+       "url": "https://www.edhec.edu/en/research-and-faculty/edhec-vox/why-france-despite-credit-rating-downgrade-by-financial-agencies-remain-risk-free-borrower-for-regulators"
+      },
+      {
+       "titre": "MarketScreener, Moody's cuts France to Aa3 (13/12/2024)",
+       "url": "https://uk.marketscreener.com/news/latest/Moody-s-cuts-France-s-rating-to-Aa3-on-waning-public-finances-48592106/"
+      },
+      {
+       "titre": "FXDD, Fitch downgrades France to AA+ from AAA (juillet 2013)",
+       "url": "http://blog.fxdd.com/2013/07/12/fitch-downgrades-france-to-aa-from-aaa-rating-equals-moodys-and-sp-now/"
+      },
+      {
+       "titre": "Bloomberg, France's credit rating cut by Fitch to AA (12/12/2014)",
+       "url": "https://www.bloomberg.com/news/articles/2014-12-12/france-s-credit-rating-cut-by-fitch-to-aa-outlook-stable"
+      },
+      {
+       "titre": "Business Standard, France takes note of Moody's decision to lower rating (sept. 2015)",
+       "url": "https://www.business-standard.com/amp/article/news-ians/france-takes-note-of-moody-s-decision-to-lower-rating-115092000050_1.html"
+      },
+      {
+       "titre": "MarketScreener, Fitch Downgrades France to AA- (avril 2023)",
+       "url": "https://marketscreener.com/amp/news/latest/Fitch-Downgrades-France-to-AA---43685553"
+      },
+      {
+       "titre": "Malay Mail, S&P downgrades French credit score (31/05/2024)",
+       "url": "https://www.malaymail.com/news/money/2024/06/01/ratings-agency-sp-downgrades-french-credit-score/137549"
+      }
+     ],
+     "incertitude": "Même comptage que la classe 0. Période choisie a posteriori, donc non représentative d'un tirage au hasard."
+    },
+    {
+     "definition": "France, fréquence empirique des fenêtres glissantes de 1,993 an (728 j) contenant au moins un abaissement par l'une des trois agences ; tient compte du groupement des événements.",
+     "periode": "débuts de fenêtre du 01/01/1994 au 01/10/2023 (fenêtres entièrement dans 1994-2025)",
+     "k": 3052,
+     "n": 10960,
+     "unite": "fenêtres glissantes (pas d'un jour, fortement autocorrélées ; environ 15 fenêtres indépendantes)",
+     "frequence": 0.278,
+     "probabilite_fenetre": 27.8,
+     "calcul": "p = k/n = 3052/10960 = 27,8 % (calcul direct, sans conversion).",
+     "sources": [
+      {
+       "titre": "countryeconomy.com, Rating: France",
+       "url": "https://countryeconomy.com/ratings/france"
+      },
+      {
+       "titre": "EDHEC Vox, France downgrades (Fitch 12/09/2025, S&P 17-18/10/2025, Moody's outlook 24/10/2025)",
+       "url": "https://www.edhec.edu/en/research-and-faculty/edhec-vox/why-france-despite-credit-rating-downgrade-by-financial-agencies-remain-risk-free-borrower-for-regulators"
+      },
+      {
+       "titre": "MarketScreener, Moody's cuts France to Aa3 (13/12/2024)",
+       "url": "https://uk.marketscreener.com/news/latest/Moody-s-cuts-France-s-rating-to-Aa3-on-waning-public-finances-48592106/"
+      },
+      {
+       "titre": "FXDD, Fitch downgrades France to AA+ from AAA (juillet 2013)",
+       "url": "http://blog.fxdd.com/2013/07/12/fitch-downgrades-france-to-aa-from-aaa-rating-equals-moodys-and-sp-now/"
+      },
+      {
+       "titre": "Bloomberg, France's credit rating cut by Fitch to AA (12/12/2014)",
+       "url": "https://www.bloomberg.com/news/articles/2014-12-12/france-s-credit-rating-cut-by-fitch-to-aa-outlook-stable"
+      },
+      {
+       "titre": "Business Standard, France takes note of Moody's decision to lower rating (sept. 2015)",
+       "url": "https://www.business-standard.com/amp/article/news-ians/france-takes-note-of-moody-s-decision-to-lower-rating-115092000050_1.html"
+      },
+      {
+       "titre": "MarketScreener, Fitch Downgrades France to AA- (avril 2023)",
+       "url": "https://marketscreener.com/amp/news/latest/Fitch-Downgrades-France-to-AA---43685553"
+      },
+      {
+       "titre": "Malay Mail, S&P downgrades French credit score (31/05/2024)",
+       "url": "https://www.malaymail.com/news/money/2024/06/01/ratings-agency-sp-downgrades-french-credit-score/137549"
+      }
+     ],
+     "incertitude": "Les 3052 fenêtres positives correspondent à 7 années civiles avec abaissement (2012, 2013, 2014, 2015, 2023, 2024, 2025) ; la taille efficace de l'échantillon est de l'ordre de 15 fenêtres indépendantes."
+    }
+   ],
+   "fourchette": [
+    27.8,
+    79.1
+   ],
+   "retenue": {
+    "classe": 2,
+    "probabilite": 27.8,
+    "motif": "Fréquence directe de l'événement tel que défini (au moins un abaissement dans une fenêtre de 2 ans), qui respecte le groupement des abaissements ; la classe 0 le surestime par hypothèse poissonienne et la classe 1 est biaisée par le choix de la période."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-03",
+   "classes": [
+    {
+     "definition": "France, années où le déficit public (APU, % du PIB) est supérieur à 5,0 %, séries INSEE actuelles. Seuil de la question appliqué à toutes les années.",
+     "periode": "2008-2025",
+     "k": 9,
+     "n": 18,
+     "unite": "années",
+     "frequence": 0.5,
+     "probabilite_fenetre": 50.0,
+     "calcul": "Un événement par année (déficit de l'année 2027 notifié en 2028) : p = k/n = 9/18 = 50,0 %. Années > 5,0 : 2009 (7,4), 2010 (7,2), 2011 (5,3), 2012 (5,2), 2020 (8,9), 2021 (6,6), 2023 (5,4), 2024 (5,8), 2025 (5,1).",
+     "sources": [
+      {
+       "titre": "INSEE, Le compte des administrations publiques en 2025 (Insee Première 2106)",
+       "url": "https://www.insee.fr/fr/statistiques/8997691"
+      },
+      {
+       "titre": "INSEE, En 2025 le déficit public s'élève à 5,1 % du PIB",
+       "url": "https://www.insee.fr/fr/statistiques/8956575"
+      }
+     ],
+     "incertitude": "Chiffres de la dernière édition de la série (révisions de base 2020), pas les première notifications (2023 : 5,5 initialement, 2012 : 4,8 en première notification, ce qui changerait 2012). Antérieur à 2008 non compté faute de série vérifiée. Le tableau de la source était incomplet (liste 2013 à 4,9 dans les années >5 par erreur, écartée ici). Années de crise majoritaires dans l'échantillon."
+    },
+    {
+     "definition": "France, lois de finances initiales et PLF : le déficit notifié dépasse la cible du PLF de l'année (c'est la lecture littérale du titre de la question).",
+     "periode": "2023-2025 (seules années dont j'ai pu vérifier cible et réalisé)",
+     "k": 3,
+     "n": 3,
+     "unite": "exercices budgétaires",
+     "frequence": 1.0,
+     "probabilite_fenetre": 100.0,
+     "calcul": "p = k/n = 3/3 = 100,0 %. Cibles PLF et réalisés : 2023, 4,9 puis 5,5 ; 2024, 4,4 puis 5,8 ; 2025, 5,0 puis 5,1 (la cible de la LFI, 5,4, a été respectée).",
+     "sources": [
+      {
+       "titre": "Trésor, Retour sur les prévisions de finances publiques pour 2023 et 2024",
+       "url": "https://www.tresor.economie.gouv.fr/Articles/2025/01/20/retour-sur-les-previsions-de-finances-publiques-pour-les-annees-2023-et-2024"
+      },
+      {
+       "titre": "Trésor, Retour sur les prévisions de finances publiques du Gouvernement pour 2025",
+       "url": "https://www.tresor.economie.gouv.fr/Articles/2026/08/24/retour-sur-les-previsions-de-finances-publiques-du-gouvernement-pour-l-annee-2025"
+      }
+     ],
+     "incertitude": "Échantillon de 3, sans valeur statistique ; je n'ai trouvé aucune série longue cible/réalisé (FIPECO, Cour des comptes, Sénat consultés sans tableau exploitable). La cible du PLF 2027 n'est pas connue pour ce comparateur ; seuil de 5,0 % pris dans le critère."
+    }
+   ],
+   "fourchette": [
+    50.0,
+    100.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 50.0,
+    "motif": "Classe la plus proche du critère chiffré (déficit notifié > 5,0 %) et la mieux mesurée (18 observations contre 3). La classe 1 sert de borne haute, trop petite pour être retenue."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-04",
+   "classes": [
+    {
+     "definition": "France : décisions du Conseil au titre de l'art. 126(8) ou 126(9) TFUE pendant les procédures de déficit excessif.",
+     "periode": "PDE ouvertes en avril 2009 (clôturée en juin 2018) et en juillet 2024 (en cours)",
+     "k": 0,
+     "n": 11.4,
+     "unite": "années sous PDE (9,2 + 2,2 à fin 2026)",
+     "frequence": 0.0,
+     "probabilite_fenetre": 0.0,
+     "calcul": "lambda = 0/11,4 = 0 ; p = 1 - exp(0 x 1,993) = 0,0 %. Borne haute à 95 % (règle de trois) : 3/11,4 = 0,26 par an, soit environ 41 % sur 2 ans.",
+     "sources": [
+      {
+       "titre": "Commission, Excessive Deficit Procedure and France",
+       "url": "https://economy-finance.ec.europa.eu/economic-governance-framework/stability-and-growth-pact/corrective-arm-excessive-deficit-procedure/excessive-deficit-procedures-overview/france_en"
+      },
+      {
+       "titre": "Conseil de l'UE, France's deficit below 3% of GDP, procedure closed (2018)",
+       "url": "https://www.consilium.europa.eu/en/press/press-releases/2018/06/22/france-s-deficit-below-3-of-gdp-procedure-closed/"
+      }
+     ],
+     "incertitude": "Aucune décision 126(8)/(9) visant la France n'est apparue dans les pages consultées, sans consultation de l'ensemble du registre. La PDE de 2003-2007 n'est pas comptée (non vérifiée). Zéro sur un petit n : peu informatif."
+    },
+    {
+     "definition": "États membres de l'UE ayant fait l'objet d'une PDE : épisodes ayant atteint une décision du Conseil de l'art. 126(8) (défaut d'action suivie d'effets) ou 126(9) (mise en demeure).",
+     "periode": "2009-2026",
+     "k": 4,
+     "n": 28,
+     "unite": "États membres ayant eu une PDE (10 en cours, 18 clôturées listées)",
+     "frequence": 0.143,
+     "probabilite_fenetre": 14.3,
+     "calcul": "Par épisode, p = k/n = 4/28 = 14,3 %. k = Grèce (126(9), 2010), Hongrie (2012), Espagne et Portugal (126(8), juillet 2016). Surestime la fenêtre de 2 ans : une PDE dure plusieurs années.",
+     "sources": [
+      {
+       "titre": "Commission, Excessive deficit procedures overview",
+       "url": "https://economy-finance.ec.europa.eu/economic-governance-framework/stability-and-growth-pact/corrective-arm-excessive-deficit-procedure/excessive-deficit-procedures-overview_en"
+      },
+      {
+       "titre": "Commission, Excessive Deficit Procedure and Portugal",
+       "url": "https://economy-finance.ec.europa.eu/economic-governance-framework/stability-and-growth-pact/corrective-arm-excessive-deficit-procedure/excessive-deficit-procedures-overview/portugal_en"
+      },
+      {
+       "titre": "Commission, EDP report on Hungary and others (11/01/2012)",
+       "url": "https://ec.europa.eu/economy_finance/articles/sgp/2012-01-11-edp_en.htm"
+      }
+     ],
+     "incertitude": "Seul le cas du Portugal est étayé par une page consultée ; Grèce, Hongrie et Espagne viennent de ma connaissance, non revérifiés (la page Portugal citait aussi à tort une amende ; les amendes de 2016 ont été annulées). Le dénominateur compte les pays, pas les épisodes (la Roumanie et la Hongrie en ont eu plusieurs). Je n'ai pas trouvé de décompte officiel."
+    }
+   ],
+   "fourchette": [
+    0.0,
+    14.3
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 14.3,
+    "motif": "La classe 0 est nulle par construction sur un très petit nombre d'années et ne permet pas de comparaison ; la classe 1 mesure ce qui arrive aux États déjà en PDE, ce qu'est la France sur toute la fenêtre. Valeur plutôt haute car l'unité est l'épisode."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-06",
+   "classes": [
+    {
+     "definition": "France : épisodes de PIB trimestriel en baisse deux trimestres consécutifs ou plus, séries INSEE depuis 1949.",
+     "periode": "T1 1949 - T2 2026 (77,5 ans)",
+     "k": 5,
+     "n": 77.5,
+     "unite": "années",
+     "frequence": 0.0645,
+     "probabilite_fenetre": 12.1,
+     "calcul": "lambda = 5/77,5 = 0,0645 par an ; fenêtre T3 2026 - T2 2028 = 8 trimestres, T = 2,0 ; p = 1 - exp(-0,0645 x 2,0) = 12,1 %. Épisodes : 1974-75, 1992-93, 2008-09, 2012-13, 2020.",
+     "sources": [
+      {
+       "titre": "CNews, Quand ont eu lieu les précédentes périodes de récession en France ?",
+       "url": "https://www.cnews.fr/france/2020-04-08/quand-ont-eu-lieu-les-precedentes-periodes-de-recession-en-france-945083"
+      },
+      {
+       "titre": "eco3min, PIB France en volume, données trimestrielles depuis 1949 (INSEE)",
+       "url": "https://eco3min.fr/pib-france-volume-dataset/"
+      }
+     ],
+     "incertitude": "Comptage de 5 épisodes jusqu'en 2020 (source presse) ; je n'ai pas recompté trimestre par trimestre ni vérifié 2020-2026 sur la série INSEE. Les séries actuelles diffèrent des premières estimations : 2012-13 et 1992-93 sont à confirmer en première estimation."
+    },
+    {
+     "definition": "France : même événement, depuis 1980 (après les chocs pétroliers).",
+     "periode": "1980-2026 (46,5 ans)",
+     "k": 4,
+     "n": 46.5,
+     "unite": "années",
+     "frequence": 0.086,
+     "probabilite_fenetre": 15.8,
+     "calcul": "lambda = 4/46,5 = 0,0860 ; p = 1 - exp(-0,0860 x 2,0) = 15,8 %.",
+     "sources": [
+      {
+       "titre": "CNews, Quand ont eu lieu les précédentes périodes de récession en France ?",
+       "url": "https://www.cnews.fr/france/2020-04-08/quand-ont-eu-lieu-les-precedentes-periodes-de-recession-en-france-945083"
+      }
+     ],
+     "incertitude": "Mêmes limites que la classe 0."
+    },
+    {
+     "definition": "France : même événement, depuis 1990 (période des premières estimations trimestrielles modernes et de la monnaie unique).",
+     "periode": "1990-2026 (36,5 ans)",
+     "k": 4,
+     "n": 36.5,
+     "unite": "années",
+     "frequence": 0.1096,
+     "probabilite_fenetre": 19.7,
+     "calcul": "lambda = 4/36,5 = 0,1096 ; p = 1 - exp(-0,1096 x 2,0) = 19,7 %. Épisodes : 1992-93, 2008-09, 2012-13, 2020.",
+     "sources": [
+      {
+       "titre": "CNews, Quand ont eu lieu les précédentes périodes de récession en France ?",
+       "url": "https://www.cnews.fr/france/2020-04-08/quand-ont-eu-lieu-les-precedentes-periodes-de-recession-en-france-945083"
+      }
+     ],
+     "incertitude": "Mêmes limites ; 4 événements seulement ; 2020 est un choc exogène."
+    }
+   ],
+   "fourchette": [
+    12.1,
+    19.7
+   ],
+   "retenue": {
+    "classe": 2,
+    "probabilite": 19.7,
+    "motif": "Régime macroéconomique et de mesure le plus proche de la fenêtre (comptes trimestriels modernes) ; les trois classes se recoupent (mêmes épisodes) et l'écart n'est pas élevé."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-C3a",
+   "classes": [
+    {
+     "definition": "CFP depuis 1988 : accords du Conseil européen intervenus au plus 17,5 mois après la proposition de la Commission (délai entre le 16/07/2025 et le 31/12/2026).",
+     "periode": "six cycles, 1988-2020",
+     "k": 2,
+     "n": 6,
+     "unite": "cycles de CFP",
+     "frequence": 0.333,
+     "probabilite_fenetre": 33.3,
+     "calcul": "p = k/n = 2/6 = 33,3 %. Les deux cas : Delors I (12 mois) et Delors II (10 mois), à 12 États membres. Si l'on date la proposition 2007-2013 de juillet 2004 (17 mois), k = 3 et p = 50,0 %.",
+     "sources": [
+      {
+       "titre": "Conseil de l'UE, Timeline - EU long-term budget 2028-2034 (proposition 16/07/2025)",
+       "url": "https://www.consilium.europa.eu/en/policies/the-eu-s-long-term-budget-2028-2034/timeline-eu-long-term-budget-2028-2034/"
+      },
+      {
+       "titre": "Grokipedia, Multiannual Financial Framework (tableau proposition/accord)",
+       "url": "https://grokipedia.com/page/Multiannual_Financial_Framework"
+      },
+      {
+       "titre": "Parlement européen, Multiannual financial framework (fiche)",
+       "url": "https://www.europarl.europa.eu/factsheets/en/sheet/29/multiannual-financial-framework"
+      }
+     ],
+     "incertitude": "Les dates d'accord du Conseil européen (févr. 1988, déc. 1992, mars 1999, déc. 2005, févr. 2013, juil. 2020) et de proposition (1987, févr. 1992, juil. 1997, févr. 2004, juin 2011, mai 2018) proviennent en partie de ma connaissance : seules 2018-2020 et 2025 sont étayées par les pages consultées, et le tableau Grokipedia est inexact pour 2000-2006. Durées proposition-accord estimées : 12, 10, 20, 22, 19 et 26 mois."
+    },
+    {
+     "definition": "CFP depuis Agenda 2000 (élargissements, 15 puis 27 États) : accords au plus 17,5 mois après la proposition.",
+     "periode": "quatre cycles, 1997-2020",
+     "k": 0,
+     "n": 4,
+     "unite": "cycles de CFP",
+     "frequence": 0.0,
+     "probabilite_fenetre": 0.0,
+     "calcul": "p = k/n = 0/4 = 0,0 %. Durées : 20, 22, 19 et 26 mois. Aucun accord n'est venu à la date politique visée initialement.",
+     "sources": [
+      {
+       "titre": "Conseil de l'UE, Timeline - EU long-term budget 2028-2034 (proposition 16/07/2025)",
+       "url": "https://www.consilium.europa.eu/en/policies/the-eu-s-long-term-budget-2028-2034/timeline-eu-long-term-budget-2028-2034/"
+      },
+      {
+       "titre": "Grokipedia, Multiannual Financial Framework (tableau proposition/accord)",
+       "url": "https://grokipedia.com/page/Multiannual_Financial_Framework"
+      },
+      {
+       "titre": "Parlement européen, Multiannual financial framework (fiche)",
+       "url": "https://www.europarl.europa.eu/factsheets/en/sheet/29/multiannual-financial-framework"
+      }
+     ],
+     "incertitude": "Les dates d'accord du Conseil européen (févr. 1988, déc. 1992, mars 1999, déc. 2005, févr. 2013, juil. 2020) et de proposition (1987, févr. 1992, juil. 1997, févr. 2004, juin 2011, mai 2018) proviennent en partie de ma connaissance : seules 2018-2020 et 2025 sont étayées par les pages consultées, et le tableau Grokipedia est inexact pour 2000-2006. Durées proposition-accord estimées : 12, 10, 20, 22, 19 et 26 mois. Zéro sur n = 4 : la borne haute à 95 % est d'environ 75 % (règle de trois : 3/4)."
+    }
+   ],
+   "fourchette": [
+    0.0,
+    33.3
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 33.3,
+    "motif": "Classe la plus large et non dégénérée ; la classe 1 est plus proche du contexte (unanimité à 27) mais donne 0 sur 4 cas, ce qui n'est pas utilisable comme point de comparaison. Valeur de la classe 0 à lire comme plafond."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-C3b",
+   "classes": [
+    {
+     "definition": "CFP depuis 1988 : accords du Conseil européen intervenus dans les 38,5 mois suivant la proposition (délai du 16/07/2025 au 30/09/2028).",
+     "periode": "six cycles, 1988-2020",
+     "k": 6,
+     "n": 6,
+     "unite": "cycles de CFP",
+     "frequence": 1.0,
+     "probabilite_fenetre": 100.0,
+     "calcul": "p = k/n = 6/6 = 100,0 %. Durée maximale observée : 26 mois (2018-2020).",
+     "sources": [
+      {
+       "titre": "Conseil de l'UE, Timeline - EU long-term budget 2028-2034 (proposition 16/07/2025)",
+       "url": "https://www.consilium.europa.eu/en/policies/the-eu-s-long-term-budget-2028-2034/timeline-eu-long-term-budget-2028-2034/"
+      },
+      {
+       "titre": "Grokipedia, Multiannual Financial Framework (tableau proposition/accord)",
+       "url": "https://grokipedia.com/page/Multiannual_Financial_Framework"
+      },
+      {
+       "titre": "Parlement européen, Multiannual financial framework (fiche)",
+       "url": "https://www.europarl.europa.eu/factsheets/en/sheet/29/multiannual-financial-framework"
+      }
+     ],
+     "incertitude": "Les dates d'accord du Conseil européen (févr. 1988, déc. 1992, mars 1999, déc. 2005, févr. 2013, juil. 2020) et de proposition (1987, févr. 1992, juil. 1997, févr. 2004, juin 2011, mai 2018) proviennent en partie de ma connaissance : seules 2018-2020 et 2025 sont étayées par les pages consultées, et le tableau Grokipedia est inexact pour 2000-2006. Durées proposition-accord estimées : 12, 10, 20, 22, 19 et 26 mois. Lissage de Laplace (6+1)/(6+2) = 87,5 %."
+    },
+    {
+     "definition": "CFP depuis 1988 : accords du Conseil européen avant le début de la période financière suivante (ici 01/01/2028) ; la fenêtre de la question va 9 mois plus loin.",
+     "periode": "six cycles, 1988-2020",
+     "k": 6,
+     "n": 6,
+     "unite": "cycles de CFP",
+     "frequence": 1.0,
+     "probabilite_fenetre": 100.0,
+     "calcul": "p = k/n = 6/6 = 100,0 %. Tous les CFP ont été agréés avant la première année d'application (à partir de 2020, le règlement a toutefois été adopté en décembre 2020, après l'accord de juillet).",
+     "sources": [
+      {
+       "titre": "Conseil de l'UE, Timeline - EU long-term budget 2028-2034 (proposition 16/07/2025)",
+       "url": "https://www.consilium.europa.eu/en/policies/the-eu-s-long-term-budget-2028-2034/timeline-eu-long-term-budget-2028-2034/"
+      },
+      {
+       "titre": "Grokipedia, Multiannual Financial Framework (tableau proposition/accord)",
+       "url": "https://grokipedia.com/page/Multiannual_Financial_Framework"
+      },
+      {
+       "titre": "Parlement européen, Multiannual financial framework (fiche)",
+       "url": "https://www.europarl.europa.eu/factsheets/en/sheet/29/multiannual-financial-framework"
+      }
+     ],
+     "incertitude": "Les dates d'accord du Conseil européen (févr. 1988, déc. 1992, mars 1999, déc. 2005, févr. 2013, juil. 2020) et de proposition (1987, févr. 1992, juil. 1997, févr. 2004, juin 2011, mai 2018) proviennent en partie de ma connaissance : seules 2018-2020 et 2025 sont étayées par les pages consultées, et le tableau Grokipedia est inexact pour 2000-2006. Durées proposition-accord estimées : 12, 10, 20, 22, 19 et 26 mois. Le critère de la question porte sur l'accord du Conseil européen, pas sur l'adoption finale du règlement."
+    }
+   ],
+   "fourchette": [
+    100.0,
+    100.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 100.0,
+    "motif": "Classe la plus proche du critère (accord sur la durée écoulée depuis la proposition) ; les deux classes concordent. Valeur extrême due à n = 6, à lire avec un lissage possible à 87,5 %."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-C4",
+   "classes": [
+    {
+     "definition": "Avis de la Cour de justice au titre de l'art. 218(11) TFUE depuis 2009 : délai entre saisine et avis (fenêtre de 8,5 à 32,3 mois) et sens de l'avis.",
+     "periode": "2009-2021, six avis",
+     "k": 6,
+     "n": 6,
+     "unite": "avis rendus",
+     "frequence": 1.0,
+     "probabilite_fenetre": 100.0,
+     "calcul": "Avis dans la fenêtre : 6/6 = 100,0 %. Sens : 3 incompatibles sur 6 = 50,0 %, 3 compatibles = 50,0 %. Issues : compatible 50,0 ; incompatible 50,0 ; pas d'avis 0,0.",
+     "sources": [
+      {
+       "titre": "Parlement européen, EU-Mercosur: request for Court of Justice opinions",
+       "url": "https://www.europarl.europa.eu/news/en/agenda/plenary-news/2026-01-19/5/eu-mercosur-request-for-court-of-justice-opinions-and-motion-of-censure"
+      },
+      {
+       "titre": "White & Case, EU to provisionally apply EU-Mercosur pending CJEU opinion",
+       "url": "https://www.whitecase.com/insight-alert/eu-provisionally-apply-eu-mercosur-interim-trade-agreement-pending-cjeu-opinion"
+      },
+      {
+       "titre": "Real Instituto Elcano, The European Parliament halts the EU-Mercosur agreement in court",
+       "url": "https://www.realinstitutoelcano.org/en/commentaries/the-european-parliament-halts-the-eu-mercosur-agreement-in-court-what-is-at-stake/"
+      }
+     ],
+     "incertitude": "Saisine du 21/01/2026 ; fenêtre = de 8,5 à 32,3 mois après saisine. Durées de six avis art. 218(11) depuis 2009 (1/09 : environ 20 mois ; 2/13 : 17,5 ; 1/15 : 32 ; 2/15 : 22 selon White & Case ; 1/17 : 19 ; 1/19 : 27) et sens (incompatible : 1/09, 2/13, 1/15 ; compatible : 2/15, 1/17, 1/19) : sauf 2/15, tirés de ma connaissance et non vérifiés dans les pages consultées. L'avis 1/15 (32 mois) est à la limite de la fenêtre. Les sources ne donnent pas de série statistique. Zéro pour « pas d'avis » : peu crédible comme probabilité (retrait de la demande, délai exceptionnel non exclus)."
+    },
+    {
+     "definition": "Mêmes avis, fenêtre resserrée : avis rendu au plus 24 mois après saisine (soit avant la fin janvier 2028), pour tester la sensibilité à la durée.",
+     "periode": "2009-2021, six avis",
+     "k": 4,
+     "n": 6,
+     "unite": "avis rendus",
+     "frequence": 0.667,
+     "probabilite_fenetre": 66.7,
+     "calcul": "Durées de 24 mois ou moins : 4/6 = 66,7 % (1/09, 2/13, 2/15, 1/17). Sens réparti à parts égales : compatible 33,3 ; incompatible 33,3 ; pas d'avis 33,3.",
+     "sources": [
+      {
+       "titre": "Parlement européen, EU-Mercosur: request for Court of Justice opinions",
+       "url": "https://www.europarl.europa.eu/news/en/agenda/plenary-news/2026-01-19/5/eu-mercosur-request-for-court-of-justice-opinions-and-motion-of-censure"
+      },
+      {
+       "titre": "White & Case, EU to provisionally apply EU-Mercosur pending CJEU opinion",
+       "url": "https://www.whitecase.com/insight-alert/eu-provisionally-apply-eu-mercosur-interim-trade-agreement-pending-cjeu-opinion"
+      },
+      {
+       "titre": "Real Instituto Elcano, The European Parliament halts the EU-Mercosur agreement in court",
+       "url": "https://www.realinstitutoelcano.org/en/commentaries/the-european-parliament-halts-the-eu-mercosur-agreement-in-court-what-is-at-stake/"
+      }
+     ],
+     "incertitude": "Saisine du 21/01/2026 ; fenêtre = de 8,5 à 32,3 mois après saisine. Durées de six avis art. 218(11) depuis 2009 (1/09 : environ 20 mois ; 2/13 : 17,5 ; 1/15 : 32 ; 2/15 : 22 selon White & Case ; 1/17 : 19 ; 1/19 : 27) et sens (incompatible : 1/09, 2/13, 1/15 ; compatible : 2/15, 1/17, 1/19) : sauf 2/15, tirés de ma connaissance et non vérifiés dans les pages consultées. L'avis 1/15 (32 mois) est à la limite de la fenêtre. Les sources ne donnent pas de série statistique."
+    }
+   ],
+   "fourchette": [
+    66.7,
+    100.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 100.0,
+    "motif": "Probabilité d'un avis dans la fenêtre réelle (jusqu'au 30/09/2028, soit 32,3 mois), la classe 1 retenant une borne de 24 mois qui n'est pas dans le critère. Fourchette et probabilité retenue portent sur la probabilité qu'un avis soit rendu ; le binaire dérivé (suspension de l'application provisoire) n'a pas de classe de référence."
+   },
+   "issues": {
+    "avis rendu, compatible": 50.0,
+    "avis rendu, incompatible": 50.0,
+    "pas d'avis": 0.0
+   }
+  }
+ ]
+}
