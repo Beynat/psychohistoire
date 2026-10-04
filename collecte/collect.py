@@ -164,8 +164,8 @@ def main():
 
 
 
-# --- Veille d'actualité (protocole v1.7, section 11.2) : titres seulement, sans IA ---
-# La collecte n'écrit que data/veille.json. Les décisions de tri sont dans data/tri/AAAA-MM.json,
+# --- Veille d'actualité (annexe phase 3, section 11.2) : titres seulement, sans IA ---
+# La collecte n'écrit que data/veille.json. Les décisions de tri sont dans data/tri/AAAA-MM.jsonl (une par ligne),
 # écrit par l'agent de tri et seulement lu ici : un titre non trié n'est jamais purgé.
 VEILLE = Path(__file__).resolve().parent.parent / "data" / "veille.json"
 TRI = Path(__file__).resolve().parent.parent / "data" / "tri"
@@ -190,11 +190,15 @@ def veille(jours=10):
         except ValueError:
             old = []
     tries = set()
-    for f in sorted(TRI.glob("*.json")) if TRI.exists() else []:
+    for f in sorted(TRI.glob("*.json*")) if TRI.exists() else []:
         try:
-            tries |= set(json.loads(f.read_text("utf-8")).get("decides", []))
+            if f.suffix == ".jsonl":  # une décision par ligne (depuis la v1.8)
+                tries |= {json.loads(l).get("lien") for l in f.read_text("utf-8").splitlines() if l.strip()}
+            else:  # fichier d'octobre 2026, antérieur à la v1.8, gelé
+                tries |= set(json.loads(f.read_text("utf-8")).get("decides", []))
         except ValueError:
             pass
+    tries.discard(None)
     vus = {i["lien"] for i in old}
     statut, neufs = {}, []
     for nom, url in FLUX.items():

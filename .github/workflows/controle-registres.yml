@@ -1,8 +1,13 @@
 name: Contrôle des registres
 
-# Vérifie que les registres de prévisions, les journaux de jalons et les décisions de tri ne sont modifiés
-# que par ajout (protocole, sections 0 et 12). Échoue si une ligne existante est
-# supprimée ou réécrite.
+# Protocole, sections 0 et 12. Vérifie à chaque poussée sur main :
+# 1. que les registres de prévisions, les journaux de jalons et les décisions de tri
+#    ne sont modifiés que par ajout de lignes (aucune ligne supprimée ou réécrite,
+#    aucun fichier supprimé ni renommé) ;
+# 2. que chaque nouvelle ligne de registre porte un horodatage « emise » compris entre
+#    deux heures avant le début du contrôle et le début du contrôle. La date de poussée
+#    fait foi : une question résolue avant elle est annulée (section 8.8).
+# Le contrôle est détectif : un échec est public et se corrige par une ligne d'erratum.
 
 on:
   push:
@@ -20,21 +25,47 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Aucune ligne supprimée ni modifiée
+      - name: Ajout seul et horodatage
         env:
           AVANT: ${{ github.event.before }}
         run: |
-          if [ -z "$AVANT" ] || ! git cat-file -e "$AVANT^{commit}" 2>/dev/null || [ "$AVANT" = "0000000000000000000000000000000000000000" ]; then
-            AVANT=$(git rev-parse HEAD~1)
-          fi
-          echc=0
-          for f in $(git diff --name-only "$AVANT" HEAD -- registre modele/jalons data/tri | grep -E '\.(jsonl|json)$'); do
-            if git cat-file -e "$AVANT:$f" 2>/dev/null; then
-              supp=$(git diff --unified=0 "$AVANT" HEAD -- "$f" | grep -E '^-[^-]' | wc -l)
-              if [ "$supp" -gt 0 ]; then
-                echo "::error file=$f::$supp ligne(s) supprimée(s) ou modifiée(s) : les registres sont en ajout seul. Corriger par une ligne d'erratum."
-                echc=1
-              fi
-            fi
-          done
-          exit $echc
+          python3 - <<'PY'
+          import json, os, subprocess, sys
+          from datetime import datetime, timedelta, timezone
+
+          def git(*a):
+              return subprocess.run(["git", *a], capture_output=True, text=True).stdout
+
+          avant = os.environ.get("AVANT", "")
+          if not avant or set(avant) == {"0"} or subprocess.run(["git", "cat-file", "-e", avant + "^{commit}"]).returncode:
+              avant = git("rev-parse", "HEAD~1").strip()
+          debut = datetime.now(timezone.utc)
+          erreurs = []
+          suivis = ("registre/", "modele/jalons/", "data/tri/")
+          for ligne in git("diff", "--no-renames", "--name-status", avant, "HEAD").splitlines():
+              statut, f = ligne.split("\t", 1)
+              if not f.startswith(suivis) or not f.endswith((".json", ".jsonl")):
+                  continue
+              if statut.startswith("D"):
+                  erreurs.append(f"{f} : fichier supprimé ou renommé")
+                  continue
+              diff = git("diff", "--no-renames", "--unified=0", avant, "HEAD", "--", f).splitlines()
+              supp = [l for l in diff if l.startswith("-") and not l.startswith("---")]
+              if supp:
+                  erreurs.append(f"{f} : {len(supp)} ligne(s) supprimée(s) ou réécrite(s)")
+              if f.startswith("registre/") and f.endswith(".jsonl"):
+                  for l in diff:
+                      if not l.startswith("+") or l.startswith("+++"):
+                          continue
+                      try:
+                          e = datetime.fromisoformat(json.loads(l[1:])["emise"])
+                      except Exception as exc:
+                          erreurs.append(f"{f} : ligne sans horodatage lisible ({exc})")
+                          continue
+                      if not (debut - timedelta(hours=2) <= e <= debut + timedelta(minutes=5)):
+                          erreurs.append(f"{f} : « emise » {e.isoformat()} hors de la fenêtre de poussée ({debut.isoformat()})")
+          for x in erreurs:
+              print(f"::error::{x}")
+          print("Contrôle conforme." if not erreurs else f"{len(erreurs)} anomalie(s).")
+          sys.exit(1 if erreurs else 0)
+          PY

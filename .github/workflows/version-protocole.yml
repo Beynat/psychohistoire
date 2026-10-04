@@ -1,14 +1,15 @@
 name: Version du protocole
 
-# Crée automatiquement le tag et la release « protocole-vX.Y » dès qu'une nouvelle
-# version de modele/protocole.md arrive sur main. Le numéro est lu sur la première ligne.
-# Si le texte change sans changement de numéro, le contrôle échoue : toute modification
-# du protocole doit créer une version (protocole, section 12).
+# Crée automatiquement le tag et la release de chaque nouvelle version du noyau
+# (modele/protocole.md, tag protocole-vX.Y) et de l'annexe phase 3
+# (modele/annexe_phase3.md, tag annexe-phase3-vX.Y). Le numéro est lu sur la première
+# ligne. Si un texte change sans changement de numéro, le contrôle échoue : toute
+# modification doit créer une version (noyau, section 12).
 
 on:
   push:
     branches: [main]
-    paths: [modele/protocole.md]
+    paths: [modele/protocole.md, modele/annexe_phase3.md]
   workflow_dispatch: {}
 
 permissions:
@@ -21,30 +22,30 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Lire le numéro de version
-        id: v
-        run: |
-          v=$(head -1 modele/protocole.md | sed -nE 's/.*version ([0-9]+(\.[0-9]+)*).*/\1/p')
-          if [ -z "$v" ]; then echo "::error::Numéro de version introuvable en première ligne de modele/protocole.md"; exit 1; fi
-          echo "tag=protocole-v$v" >> "$GITHUB_OUTPUT"
-          echo "num=$v" >> "$GITHUB_OUTPUT"
-      - name: Créer le tag et la release, ou vérifier qu'ils sont à jour
+      - name: Créer les tags et releases, ou vérifier qu'ils sont à jour
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ steps.v.outputs.tag }}
-          NUM: ${{ steps.v.outputs.num }}
         run: |
           git fetch --tags --quiet
-          if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
-            if git diff --quiet "$TAG" HEAD -- modele/protocole.md; then
-              echo "Tag $TAG déjà posé, protocole inchangé."
+          echec=0
+          for paire in "modele/protocole.md:protocole:Protocole" "modele/annexe_phase3.md:annexe-phase3:Annexe phase 3"; do
+            f=${paire%%:*}; reste=${paire#*:}; prefixe=${reste%%:*}; titre=${reste#*:}
+            [ -f "$f" ] || continue
+            v=$(head -1 "$f" | sed -nE 's/.*version ([0-9]+(\.[0-9]+)*).*/\1/p')
+            if [ -z "$v" ]; then echo "::error file=$f::Numéro de version introuvable en première ligne"; echec=1; continue; fi
+            tag="$prefixe-v$v"
+            if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+              if git diff --quiet "$tag" HEAD -- "$f"; then
+                echo "$tag déjà posé, texte inchangé."
+              else
+                echo "::error file=$f::Le texte a changé depuis $tag sans nouveau numéro de version."
+                echec=1
+              fi
             else
-              echo "::error::modele/protocole.md a changé depuis $TAG sans nouveau numéro de version. Incrémentez la version et journalisez le changement."
-              exit 1
+              statut=$(sed -n '3p' "$f")
+              notes=$(printf '%s\n\nTag posé automatiquement au premier commit de cette version sur main (%s). Il fait foi pour l antériorité. Changements : modele/journal.md.' "$statut" "$GITHUB_SHA")
+              gh release create "$tag" --target "$GITHUB_SHA" --title "$titre v$v" --notes "$notes"
+              echo "Release $tag créée sur $GITHUB_SHA."
             fi
-          else
-            statut=$(sed -n '3p' modele/protocole.md)
-            notes=$(printf '%s\n\nTag posé automatiquement au premier commit de cette version sur main (%s). Il fait foi pour l antériorité du protocole. Changements : modele/journal.md.' "$statut" "$GITHUB_SHA")
-            gh release create "$TAG" --target "$GITHUB_SHA" --title "Protocole v$NUM" --notes "$notes"
-            echo "Release $TAG créée sur $GITHUB_SHA."
-          fi
+          done
+          exit $echec
