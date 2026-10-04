@@ -1,0 +1,17 @@
+name: Diagnostic Webstat
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Essais d'accès
+        run: python collecte/webstat_diag.py
+        env:
+          WEBSTAT_KEY: ${{ secrets.WEBSTAT_KEY }}
