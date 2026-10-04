@@ -65,7 +65,8 @@ def previsions(cycle):
     gel = f"data/cycles/{cycle}/gel"
     evts = {e["id"]: e for e in (lire_json(f"{gel}/evenements.json") or lire_json("modele/evenements.json"))["evenements"]}
     cotes = (lire_json(f"{gel}/cotes.json") or lire_json("data/cotes.json") or {"marches": []})["marches"]
-    tb = lire_json("modele/taux_base.json")["questions"]
+    # Taux de base gelés avec le cycle (relecture 10, S5) ; à défaut (cycle d'essai sans gel), fichier courant.
+    tb = (lire_json(f"{gel}/taux_base.json") or lire_json("modele/taux_base.json"))["questions"]
     lignes = []
     for q in banque["questions"]:
         sortie = []

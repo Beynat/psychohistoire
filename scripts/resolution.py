@@ -41,6 +41,18 @@ def toutes_les_questions():
     return qs
 
 
+_NATURES = None
+
+
+def nature(qid, q):
+    """Nature de l'événement d'une question (« survenue » ou « constat ») ; « survenue » par défaut."""
+    global _NATURES
+    if _NATURES is None:
+        _NATURES = {e["id"]: e.get("nature", "survenue") for e in lire_json("modele/evenements.json")["evenements"]}
+    ev = (q.get("details") or {}).get("evenement") or qid.removeprefix("Q-")
+    return _NATURES.get(ev, "survenue")
+
+
 def date_fait(proposition):
     """Date du fait (relecture 8, G2). Les propositions antérieures au 4 octobre 2026 n'en ont pas : on
     retient alors la date d'émission de la proposition, borne supérieure."""
@@ -70,8 +82,12 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
         avis = props.get(qid, [])
         issues = [a["issue"] for a in avis]
         def df(issue, avis_retenus):
-            # Issue « non » : la date du fait est la fin de la fenêtre (relecture 9).
-            return q["echeance"] if issue == "non" else min(date_fait(a) for a in avis_retenus)
+            # Événement « survenue » et issue « non » : la date du fait est la fin de la fenêtre
+            # (relecture 9). Événement « constat » : date de publication du constat, quelle que soit
+            # l'issue (relecture 10, I1 c).
+            if issue == "non" and nature(qid, q) == "survenue":
+                return q["echeance"]
+            return min(date_fait(a) for a in avis_retenus)
         if len(avis) >= 2 and issues[0] == issues[1]:
             nouvelles.append({"resolution": True, "question": qid, "issue": issues[0], "date_fait": df(issues[0], avis[:2]),
                               "source": " ; ".join(a["source"] for a in avis[:2]), "methode": "deux agents concordants"})

@@ -1,6 +1,6 @@
 {
  "description": "Banque d'événements (noyau, section 8.8). Générée par scripts/evenements.py depuis modele/banque/criteres.json. Seul le champ « critere » est transmis aux prévisionnistes.",
- "genere_le": "2026-10-04T13:02:19+02:00",
+ "genere_le": "2026-10-04T13:27:27+02:00",
  "premier_tour": "2027-04-18",
  "second_tour": "2027-05-02",
  "evenements": [
@@ -260,15 +260,43 @@
    }
   },
   {
-   "id": "EV-09",
+   "id": "EV-09a",
    "evenement": "EV-09",
-   "nom": "Canicule extrême",
+   "nom": "Canicule extrême à l'été 2027",
    "domaine": "climat",
-   "critere": "Météo-France place au moins un département métropolitain en vigilance rouge canicule entre le 1er juin et le 15 septembre 2027, ou entre le 1er juin et le 15 septembre 2028.",
-   "sous_question": null,
+   "critere": "Météo-France place au moins un département métropolitain en vigilance rouge canicule entre le 1er juin et le 15 septembre 2027.",
+   "sous_question": "été 2027",
    "source_resolution": "Météo-France, vigilances",
    "fenetre": {
     "debut": "2027-06-01",
+    "fin": "2027-09-15"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "constat",
+   "revise": "relecture 10 (S1)",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Vigilance rouge canicule sur au moins un département à l'été 2027 ou 2028, ou perte agricole chiffrée par l'INSEE ≥ 0,1 pt de PIB. Remarque : le premier volet est peu discriminant (probabilité élevée) ; le second est le plus informatif.",
+    "mesure": "Météo-France, vigilances et bilans ; Agreste."
+   }
+  },
+  {
+   "id": "EV-09b",
+   "evenement": "EV-09",
+   "nom": "Canicule extrême à l'été 2028",
+   "domaine": "climat",
+   "critere": "Météo-France place au moins un département métropolitain en vigilance rouge canicule entre le 1er juin et le 15 septembre 2028.",
+   "sous_question": "été 2028",
+   "source_resolution": "Météo-France, vigilances",
+   "fenetre": {
+    "debut": "2028-06-01",
     "fin": "2028-09-15"
    },
    "issues": [
@@ -280,6 +308,7 @@
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "motif_inaccessible": null,
    "nature": "constat",
+   "revise": "relecture 10 (S1)",
    "source_accessible": true,
    "contexte_v1": {
     "critere": "Vigilance rouge canicule sur au moins un département à l'été 2027 ou 2028, ou perte agricole chiffrée par l'INSEE ≥ 0,1 pt de PIB. Remarque : le premier volet est peu discriminant (probabilité élevée) ; le second est le plus informatif.",
@@ -563,7 +592,7 @@
    "evenement": "EV-C2",
    "nom": "Crise d'ordre public grave outre-mer",
    "domaine": "outre-mer",
-   "critere": "Pendant la fenêtre, un décret déclarant l'état d'urgence (loi du 3 avril 1955) sur tout ou partie d'un département, d'une région ou d'une collectivité d'outre-mer, ou de la Nouvelle-Calédonie, est publié au Journal officiel ; ou un couvre-feu général (applicable à toute la population, pour un motif d'ordre public) couvrant la commune la plus peuplée de l'un de ces territoires est en vigueur au moins 7 jours consécutifs. Un couvre-feu limité aux mineurs ou motivé par un phénomène naturel ne compte pas.",
+   "critere": "Pendant la fenêtre, un décret déclarant l'état d'urgence (loi du 3 avril 1955) sur tout ou partie d'un territoire situé outre-mer (département, région ou collectivité d'outre-mer, ou Nouvelle-Calédonie), est publié au Journal officiel ; ou un couvre-feu général (applicable à toute la population, pour un motif d'ordre public) couvrant la commune la plus peuplée de l'un de ces territoires est en vigueur au moins 7 jours consécutifs. Un couvre-feu limité aux mineurs ou motivé par un phénomène naturel ne compte pas.",
    "sous_question": null,
    "source_resolution": "Journal officiel ; recueils des actes administratifs des préfectures",
    "fenetre": {
@@ -578,7 +607,7 @@
    "mensuelle": true,
    "origine": "balayage C, critère réécrit (relecture 8)",
    "motif_inaccessible": null,
-   "revise": "relecture 9",
+   "revise": "relecture 10",
    "nature": "survenue",
    "source_accessible": true,
    "contexte_v1": {
@@ -1309,7 +1338,7 @@
    "evenement": "EV-32",
    "nom": "Restrictions chinoises sur les terres rares visant l'UE",
    "domaine": "international : Chine",
-   "critere": "Pendant la fenêtre, le ministère chinois du Commerce (MOFCOM) annonce l'entrée en application de contrôles à l'exportation sur des terres rares ou des aimants à base de terres rares qui s'appliquent aux exportations vers l'Union européenne, qu'il s'agisse de nouvelles mesures ou de la fin d'une suspension. La prolongation d'une suspension ne compte pas.",
+   "critere": "Pendant la fenêtre, des contrôles chinois à l'exportation sur des terres rares ou des aimants à base de terres rares entrent en application et s'appliquent aux exportations vers l'Union européenne, qu'il s'agisse de nouvelles mesures ou de la fin d'une suspension sans prolongation, selon les annonces ou les textes du ministère chinois du Commerce (MOFCOM). La prolongation d'une suspension ne compte pas.",
    "sous_question": null,
    "source_resolution": "Ministère chinois du Commerce (MOFCOM)",
    "fenetre": {
@@ -1324,7 +1353,7 @@
    "mensuelle": true,
    "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
    "motif_inaccessible": null,
-   "revise": "relecture 9",
+   "revise": "relecture 10",
    "nature": "survenue",
    "source_accessible": true
   },

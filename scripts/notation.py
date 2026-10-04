@@ -11,7 +11,9 @@ Pour chaque auteur (comparateurs, ensemble direct, puis modèle) et chaque pool 
 - décomposition de Murphy (fiabilité, résolution, incertitude) sur les questions binaires, en
   dix classes de probabilité.
 Comparaison de la référence (par défaut l'ensemble direct en phase 1) à chaque autre auteur sur
-les questions communes : différences de Brier sommées par grappe, statistique
+les questions communes dont l'échéance est passée à la date du test, quelle que soit leur issue
+(relecture 10, I1 : une question de fenêtre résolue « oui » avant son échéance n'entre pas seule
+dans le test). Score testé : Brier pondéré dans le temps (noyau, section 8.5). Différences sommées par grappe, statistique
 t = Σ D_g / √(Σ D_g²) ; valeur p unilatérale par permutation des signes des grappes (exacte sous
 16 grappes, 20 000 tirages au-delà). Une prévision émise après la résolution publique de sa
 question est exclue (section 8.8).
@@ -52,7 +54,7 @@ def test_grappes(diffs):
     D = [sum(v) for v in diffs.values()]
     G = len(D)
     if G == 0 or all(d == 0 for d in D):
-        return {"grappes": G, "t": None, "p_unilaterale": None}
+        return {"grappes": G, "t": None, "p_unilaterale": None, "p_unilaterale_autre": None, "verdict": "non concluant"}
     t = sum(D) / math.sqrt(sum(d * d for d in D))
     obs = sum(D)
     if G <= 16:
@@ -61,7 +63,11 @@ def test_grappes(diffs):
         rnd = random.Random(0)
         sims = [sum(d if rnd.random() < .5 else -d for d in D) for _ in range(20000)]
     p = sum(1 for x in sims if x <= obs) / len(sims)
-    return {"grappes": G, "t": round(t, 3), "p_unilaterale": round(p, 4)}
+    p_autre = sum(1 for x in sims if x >= obs) / len(sims)
+    # Trois verdicts au seuil de 10 % dans chaque sens (noyau, section 8.6).
+    verdict = ("référence meilleure" if p < 0.10 else "autre meilleur" if p_autre < 0.10 else "non concluant")
+    return {"grappes": G, "t": round(t, 3), "p_unilaterale": round(p, 4), "p_unilaterale_autre": round(p_autre, 4),
+            "verdict": verdict}
 
 
 def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhui=None):
@@ -119,8 +125,8 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
                 continue
             diffs = {}
             for (aa, qid), s in scores.items():
-                if aa == reference and (a, qid) in scores:
-                    diffs.setdefault(s["grappe"], []).append(s["brier"] - scores[(a, qid)]["brier"])
+                if aa == reference and (a, qid) in scores and qs[qid]["echeance"] <= aujourdhui:
+                    diffs.setdefault(s["grappe"], []).append(s["brier_temps"] - scores[(a, qid)]["brier_temps"])
             comparaisons[a] = test_grappes(diffs)
     sortie = {"etabli_le": maintenant(), "registre": reg, "reference": reference,
               "questions_resolues": len(res), "auteurs": par_auteur, "comparaisons": comparaisons, "exclues": exclues}

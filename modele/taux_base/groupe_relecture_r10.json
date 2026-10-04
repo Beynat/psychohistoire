@@ -1,0 +1,256 @@
+{
+ "groupe": "relecture 10",
+ "etabli_le": "2026-10-04",
+ "questions": [
+  {
+   "id": "EV-09a",
+   "classes": [
+    {
+     "definition": "Étés 2004-2026 (vigilance canicule intégrée en 2004) avec au moins un département métropolitain en vigilance rouge canicule entre le 1er juin et le 15 septembre : 2019 (juin, juillet), 2020 (août), 2022 (juin), 2023 (août), 2025 (juillet, août), 2026 (juillet).",
+     "periode": "2004-2026",
+     "k": 6,
+     "n": 23,
+     "unite": "étés",
+     "frequence": 0.2609,
+     "probabilite_fenetre": 45.4,
+     "calcul": "p = 6/23 = 26,1 % par été ; deux étés (2027, 2028) : 1-(1-0,261)^2 = 45,4 %.",
+     "sources": [
+      {
+       "titre": "Wikipédia, Canicule en France (vigilances rouges 2019, 2020, 2023)",
+       "url": "https://fr.wikipedia.org/wiki/Canicule_en_France"
+      },
+      {
+       "titre": "Wikipédia, Vigilance météorologique de Météo-France (canicule intégrée en 2004, première rouge juin 2019)",
+       "url": "https://fr.wikipedia.org/wiki/Vigilance_m%C3%A9t%C3%A9orologique_de_M%C3%A9t%C3%A9o-France"
+      },
+      {
+       "titre": "Franceinfo, Canicule : 12 départements en vigilance rouge (juin 2022)",
+       "url": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/canicule-12-departements-en-vigilance-rouge_5203594.html"
+      },
+      {
+       "titre": "Franceinfo, vigilance rouge canicule dans 37 départements, 12 juillet 2026",
+       "url": "https://www.franceinfo.fr/environnement/meteo/alertes-meteo-et-vigilances/alerte-vigilance-rouge-canicule-risque-tres-eleve-pour-la-sante-dans-37-departements-ce-12-juillet-2026_8104817.html"
+      },
+      {
+       "titre": "Météo-France, Bilan 2023 de la Vigilance météorologique",
+       "url": "https://meteofrance.fr/actualite/presse/bilan-2023-de-la-vigilance"
+      },
+      {
+       "titre": "Préfecture de région Île-de-France, Déclenchement de la vigilance rouge canicule extrême (2025)",
+       "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/Region-et-institutions/L-action-de-l-Etat/Amenagement-du-territoire-transport-et-environnement/DECLENCHEMENT-DE-LA-VIGILANCE-ROUGE-CANICULE-EXTREME"
+      }
+     ],
+     "incertitude": "Aucune vigilance rouge avant 2019 malgré des canicules fortes (2006, 2015, 2018) : la pratique de déclenchement a changé, ce qui sous-estime la fréquence actuelle. Absence de rouge en 2021 et 2024 établie par ma connaissance, non vérifiée sur un bilan officiel."
+    },
+    {
+     "definition": "Étés 2015-2026 (douze derniers étés) : 6 étés avec vigilance rouge canicule.",
+     "periode": "2015-2026",
+     "k": 6,
+     "n": 12,
+     "unite": "étés",
+     "frequence": 0.5,
+     "probabilite_fenetre": 75.0,
+     "calcul": "p = 6/12 = 50 % par été ; deux étés : 1-0,5^2 = 75,0 %. Contrôle par paires d'étés consécutives 2019-20, 2021-22, 2023-24, 2025-26 : 4/4.",
+     "sources": [
+      {
+       "titre": "Wikipédia, Canicule en France (vigilances rouges 2019, 2020, 2023)",
+       "url": "https://fr.wikipedia.org/wiki/Canicule_en_France"
+      },
+      {
+       "titre": "Wikipédia, Vigilance météorologique de Météo-France (canicule intégrée en 2004, première rouge juin 2019)",
+       "url": "https://fr.wikipedia.org/wiki/Vigilance_m%C3%A9t%C3%A9orologique_de_M%C3%A9t%C3%A9o-France"
+      },
+      {
+       "titre": "Franceinfo, Canicule : 12 départements en vigilance rouge (juin 2022)",
+       "url": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/canicule-12-departements-en-vigilance-rouge_5203594.html"
+      },
+      {
+       "titre": "Franceinfo, vigilance rouge canicule dans 37 départements, 12 juillet 2026",
+       "url": "https://www.franceinfo.fr/environnement/meteo/alertes-meteo-et-vigilances/alerte-vigilance-rouge-canicule-risque-tres-eleve-pour-la-sante-dans-37-departements-ce-12-juillet-2026_8104817.html"
+      },
+      {
+       "titre": "Météo-France, Bilan 2023 de la Vigilance météorologique",
+       "url": "https://meteofrance.fr/actualite/presse/bilan-2023-de-la-vigilance"
+      },
+      {
+       "titre": "Préfecture de région Île-de-France, Déclenchement de la vigilance rouge canicule extrême (2025)",
+       "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/Region-et-institutions/L-action-de-l-Etat/Amenagement-du-territoire-transport-et-environnement/DECLENCHEMENT-DE-LA-VIGILANCE-ROUGE-CANICULE-EXTREME"
+      }
+     ],
+     "incertitude": "n faible ; étés non indépendants (tendance climatique)."
+    },
+    {
+     "definition": "Étés 2019-2026 (période où la vigilance rouge canicule est effectivement utilisée) : 6/8.",
+     "periode": "2019-2026",
+     "k": 6,
+     "n": 8,
+     "unite": "étés",
+     "frequence": 0.75,
+     "probabilite_fenetre": 93.8,
+     "calcul": "p = 6/8 = 75 % par été ; deux étés : 1-0,25^2 = 93,8 %.",
+     "sources": [
+      {
+       "titre": "Wikipédia, Canicule en France (vigilances rouges 2019, 2020, 2023)",
+       "url": "https://fr.wikipedia.org/wiki/Canicule_en_France"
+      },
+      {
+       "titre": "Wikipédia, Vigilance météorologique de Météo-France (canicule intégrée en 2004, première rouge juin 2019)",
+       "url": "https://fr.wikipedia.org/wiki/Vigilance_m%C3%A9t%C3%A9orologique_de_M%C3%A9t%C3%A9o-France"
+      },
+      {
+       "titre": "Franceinfo, Canicule : 12 départements en vigilance rouge (juin 2022)",
+       "url": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/canicule-12-departements-en-vigilance-rouge_5203594.html"
+      },
+      {
+       "titre": "Franceinfo, vigilance rouge canicule dans 37 départements, 12 juillet 2026",
+       "url": "https://www.franceinfo.fr/environnement/meteo/alertes-meteo-et-vigilances/alerte-vigilance-rouge-canicule-risque-tres-eleve-pour-la-sante-dans-37-departements-ce-12-juillet-2026_8104817.html"
+      },
+      {
+       "titre": "Météo-France, Bilan 2023 de la Vigilance météorologique",
+       "url": "https://meteofrance.fr/actualite/presse/bilan-2023-de-la-vigilance"
+      },
+      {
+       "titre": "Préfecture de région Île-de-France, Déclenchement de la vigilance rouge canicule extrême (2025)",
+       "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/Region-et-institutions/L-action-de-l-Etat/Amenagement-du-territoire-transport-et-environnement/DECLENCHEMENT-DE-LA-VIGILANCE-ROUGE-CANICULE-EXTREME"
+      }
+     ],
+     "incertitude": "Biais de sélection : la classe démarre à la première occurrence ; n=8."
+    }
+   ],
+   "fourchette": [
+    45.4,
+    93.8
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 50.0,
+    "motif": "Même classe que l'ancien EV-09 (étés 2015-2026 avec au moins une vigilance rouge canicule : 6 sur 12), ramenée à un seul été : 50 %. Scission de la relecture 10 (S1)."
+   }
+  },
+  {
+   "id": "EV-09b",
+   "classes": [
+    {
+     "definition": "Étés 2004-2026 (vigilance canicule intégrée en 2004) avec au moins un département métropolitain en vigilance rouge canicule entre le 1er juin et le 15 septembre : 2019 (juin, juillet), 2020 (août), 2022 (juin), 2023 (août), 2025 (juillet, août), 2026 (juillet).",
+     "periode": "2004-2026",
+     "k": 6,
+     "n": 23,
+     "unite": "étés",
+     "frequence": 0.2609,
+     "probabilite_fenetre": 45.4,
+     "calcul": "p = 6/23 = 26,1 % par été ; deux étés (2027, 2028) : 1-(1-0,261)^2 = 45,4 %.",
+     "sources": [
+      {
+       "titre": "Wikipédia, Canicule en France (vigilances rouges 2019, 2020, 2023)",
+       "url": "https://fr.wikipedia.org/wiki/Canicule_en_France"
+      },
+      {
+       "titre": "Wikipédia, Vigilance météorologique de Météo-France (canicule intégrée en 2004, première rouge juin 2019)",
+       "url": "https://fr.wikipedia.org/wiki/Vigilance_m%C3%A9t%C3%A9orologique_de_M%C3%A9t%C3%A9o-France"
+      },
+      {
+       "titre": "Franceinfo, Canicule : 12 départements en vigilance rouge (juin 2022)",
+       "url": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/canicule-12-departements-en-vigilance-rouge_5203594.html"
+      },
+      {
+       "titre": "Franceinfo, vigilance rouge canicule dans 37 départements, 12 juillet 2026",
+       "url": "https://www.franceinfo.fr/environnement/meteo/alertes-meteo-et-vigilances/alerte-vigilance-rouge-canicule-risque-tres-eleve-pour-la-sante-dans-37-departements-ce-12-juillet-2026_8104817.html"
+      },
+      {
+       "titre": "Météo-France, Bilan 2023 de la Vigilance météorologique",
+       "url": "https://meteofrance.fr/actualite/presse/bilan-2023-de-la-vigilance"
+      },
+      {
+       "titre": "Préfecture de région Île-de-France, Déclenchement de la vigilance rouge canicule extrême (2025)",
+       "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/Region-et-institutions/L-action-de-l-Etat/Amenagement-du-territoire-transport-et-environnement/DECLENCHEMENT-DE-LA-VIGILANCE-ROUGE-CANICULE-EXTREME"
+      }
+     ],
+     "incertitude": "Aucune vigilance rouge avant 2019 malgré des canicules fortes (2006, 2015, 2018) : la pratique de déclenchement a changé, ce qui sous-estime la fréquence actuelle. Absence de rouge en 2021 et 2024 établie par ma connaissance, non vérifiée sur un bilan officiel."
+    },
+    {
+     "definition": "Étés 2015-2026 (douze derniers étés) : 6 étés avec vigilance rouge canicule.",
+     "periode": "2015-2026",
+     "k": 6,
+     "n": 12,
+     "unite": "étés",
+     "frequence": 0.5,
+     "probabilite_fenetre": 75.0,
+     "calcul": "p = 6/12 = 50 % par été ; deux étés : 1-0,5^2 = 75,0 %. Contrôle par paires d'étés consécutives 2019-20, 2021-22, 2023-24, 2025-26 : 4/4.",
+     "sources": [
+      {
+       "titre": "Wikipédia, Canicule en France (vigilances rouges 2019, 2020, 2023)",
+       "url": "https://fr.wikipedia.org/wiki/Canicule_en_France"
+      },
+      {
+       "titre": "Wikipédia, Vigilance météorologique de Météo-France (canicule intégrée en 2004, première rouge juin 2019)",
+       "url": "https://fr.wikipedia.org/wiki/Vigilance_m%C3%A9t%C3%A9orologique_de_M%C3%A9t%C3%A9o-France"
+      },
+      {
+       "titre": "Franceinfo, Canicule : 12 départements en vigilance rouge (juin 2022)",
+       "url": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/canicule-12-departements-en-vigilance-rouge_5203594.html"
+      },
+      {
+       "titre": "Franceinfo, vigilance rouge canicule dans 37 départements, 12 juillet 2026",
+       "url": "https://www.franceinfo.fr/environnement/meteo/alertes-meteo-et-vigilances/alerte-vigilance-rouge-canicule-risque-tres-eleve-pour-la-sante-dans-37-departements-ce-12-juillet-2026_8104817.html"
+      },
+      {
+       "titre": "Météo-France, Bilan 2023 de la Vigilance météorologique",
+       "url": "https://meteofrance.fr/actualite/presse/bilan-2023-de-la-vigilance"
+      },
+      {
+       "titre": "Préfecture de région Île-de-France, Déclenchement de la vigilance rouge canicule extrême (2025)",
+       "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/Region-et-institutions/L-action-de-l-Etat/Amenagement-du-territoire-transport-et-environnement/DECLENCHEMENT-DE-LA-VIGILANCE-ROUGE-CANICULE-EXTREME"
+      }
+     ],
+     "incertitude": "n faible ; étés non indépendants (tendance climatique)."
+    },
+    {
+     "definition": "Étés 2019-2026 (période où la vigilance rouge canicule est effectivement utilisée) : 6/8.",
+     "periode": "2019-2026",
+     "k": 6,
+     "n": 8,
+     "unite": "étés",
+     "frequence": 0.75,
+     "probabilite_fenetre": 93.8,
+     "calcul": "p = 6/8 = 75 % par été ; deux étés : 1-0,25^2 = 93,8 %.",
+     "sources": [
+      {
+       "titre": "Wikipédia, Canicule en France (vigilances rouges 2019, 2020, 2023)",
+       "url": "https://fr.wikipedia.org/wiki/Canicule_en_France"
+      },
+      {
+       "titre": "Wikipédia, Vigilance météorologique de Météo-France (canicule intégrée en 2004, première rouge juin 2019)",
+       "url": "https://fr.wikipedia.org/wiki/Vigilance_m%C3%A9t%C3%A9orologique_de_M%C3%A9t%C3%A9o-France"
+      },
+      {
+       "titre": "Franceinfo, Canicule : 12 départements en vigilance rouge (juin 2022)",
+       "url": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/canicule-12-departements-en-vigilance-rouge_5203594.html"
+      },
+      {
+       "titre": "Franceinfo, vigilance rouge canicule dans 37 départements, 12 juillet 2026",
+       "url": "https://www.franceinfo.fr/environnement/meteo/alertes-meteo-et-vigilances/alerte-vigilance-rouge-canicule-risque-tres-eleve-pour-la-sante-dans-37-departements-ce-12-juillet-2026_8104817.html"
+      },
+      {
+       "titre": "Météo-France, Bilan 2023 de la Vigilance météorologique",
+       "url": "https://meteofrance.fr/actualite/presse/bilan-2023-de-la-vigilance"
+      },
+      {
+       "titre": "Préfecture de région Île-de-France, Déclenchement de la vigilance rouge canicule extrême (2025)",
+       "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/Region-et-institutions/L-action-de-l-Etat/Amenagement-du-territoire-transport-et-environnement/DECLENCHEMENT-DE-LA-VIGILANCE-ROUGE-CANICULE-EXTREME"
+      }
+     ],
+     "incertitude": "Biais de sélection : la classe démarre à la première occurrence ; n=8."
+    }
+   ],
+   "fourchette": [
+    45.4,
+    93.8
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 50.0,
+    "motif": "Même classe que l'ancien EV-09 (étés 2015-2026 avec au moins une vigilance rouge canicule : 6 sur 12), ramenée à un seul été : 50 %. Scission de la relecture 10 (S1)."
+   }
+  }
+ ]
+}

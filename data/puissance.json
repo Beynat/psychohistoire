@@ -1,5 +1,5 @@
 {
- "etabli_le": "2026-10-04T13:08:51+02:00",
+ "etabli_le": "2026-10-04T13:28:03+02:00",
  "sigma": 0.12,
  "simulations": 2000,
  "seuil": "unilatéral 10 %",
@@ -348,147 +348,163 @@
  "banque_reelle": [
   {
    "butee": "2027-09-30",
-   "grappes_P2b": 18,
+   "grappes_P2b": 19,
    "grappes_P2c": 0,
-   "questions": 97,
+   "questions": 90,
+   "questions_informatives": 12,
    "rho": 0.1,
    "delta_brier": 0.02,
-   "puissance": 0.467
+   "puissance": 0.241
   },
   {
    "butee": "2027-09-30",
-   "grappes_P2b": 18,
+   "grappes_P2b": 19,
    "grappes_P2c": 0,
-   "questions": 97,
+   "questions": 90,
+   "questions_informatives": 12,
    "rho": 0.1,
    "delta_brier": 0.04,
-   "puissance": 0.878
+   "puissance": 0.432
   },
   {
    "butee": "2027-09-30",
-   "grappes_P2b": 18,
+   "grappes_P2b": 19,
    "grappes_P2c": 0,
-   "questions": 97,
+   "questions": 90,
+   "questions_informatives": 12,
    "rho": 0.3,
    "delta_brier": 0.02,
-   "puissance": 0.355
+   "puissance": 0.205
   },
   {
    "butee": "2027-09-30",
-   "grappes_P2b": 18,
+   "grappes_P2b": 19,
    "grappes_P2c": 0,
-   "questions": 97,
+   "questions": 90,
+   "questions_informatives": 12,
    "rho": 0.3,
    "delta_brier": 0.04,
-   "puissance": 0.701
+   "puissance": 0.37
   },
   {
    "butee": "2027-09-30",
-   "grappes_P2b": 18,
+   "grappes_P2b": 19,
    "grappes_P2c": 15,
-   "questions": 142,
+   "questions": 135,
+   "questions_informatives": 57,
    "rho": 0.1,
    "delta_brier": 0.02,
-   "puissance": 0.606
+   "puissance": 0.437
   },
   {
    "butee": "2027-09-30",
-   "grappes_P2b": 18,
+   "grappes_P2b": 19,
    "grappes_P2c": 15,
-   "questions": 142,
+   "questions": 135,
+   "questions_informatives": 57,
    "rho": 0.1,
    "delta_brier": 0.04,
-   "puissance": 0.962
+   "puissance": 0.824
   },
   {
    "butee": "2027-09-30",
-   "grappes_P2b": 18,
+   "grappes_P2b": 19,
    "grappes_P2c": 15,
-   "questions": 142,
+   "questions": 135,
+   "questions_informatives": 57,
    "rho": 0.3,
    "delta_brier": 0.02,
-   "puissance": 0.48
+   "puissance": 0.364
   },
   {
    "butee": "2027-09-30",
-   "grappes_P2b": 18,
+   "grappes_P2b": 19,
    "grappes_P2c": 15,
-   "questions": 142,
+   "questions": 135,
+   "questions_informatives": 57,
    "rho": 0.3,
    "delta_brier": 0.04,
-   "puissance": 0.879
+   "puissance": 0.738
   },
   {
    "butee": "2028-09-30",
-   "grappes_P2b": 29,
+   "grappes_P2b": 30,
    "grappes_P2c": 0,
-   "questions": 212,
+   "questions": 173,
+   "questions_informatives": 26,
    "rho": 0.1,
    "delta_brier": 0.02,
-   "puissance": 0.55
+   "puissance": 0.298
   },
   {
    "butee": "2028-09-30",
-   "grappes_P2b": 29,
+   "grappes_P2b": 30,
    "grappes_P2c": 0,
-   "questions": 212,
+   "questions": 173,
+   "questions_informatives": 26,
    "rho": 0.1,
    "delta_brier": 0.04,
-   "puissance": 0.936
+   "puissance": 0.585
   },
   {
    "butee": "2028-09-30",
-   "grappes_P2b": 29,
+   "grappes_P2b": 30,
    "grappes_P2c": 0,
-   "questions": 212,
+   "questions": 173,
+   "questions_informatives": 26,
    "rho": 0.3,
    "delta_brier": 0.02,
-   "puissance": 0.389
+   "puissance": 0.225
   },
   {
    "butee": "2028-09-30",
-   "grappes_P2b": 29,
+   "grappes_P2b": 30,
    "grappes_P2c": 0,
-   "questions": 212,
+   "questions": 173,
+   "questions_informatives": 26,
    "rho": 0.3,
    "delta_brier": 0.04,
-   "puissance": 0.736
+   "puissance": 0.427
   },
   {
    "butee": "2028-09-30",
-   "grappes_P2b": 29,
+   "grappes_P2b": 30,
    "grappes_P2c": 15,
-   "questions": 257,
+   "questions": 218,
+   "questions_informatives": 71,
    "rho": 0.1,
    "delta_brier": 0.02,
-   "puissance": 0.652
+   "puissance": 0.483
   },
   {
    "butee": "2028-09-30",
-   "grappes_P2b": 29,
+   "grappes_P2b": 30,
    "grappes_P2c": 15,
-   "questions": 257,
+   "questions": 218,
+   "questions_informatives": 71,
    "rho": 0.1,
    "delta_brier": 0.04,
-   "puissance": 0.977
+   "puissance": 0.873
   },
   {
    "butee": "2028-09-30",
-   "grappes_P2b": 29,
+   "grappes_P2b": 30,
    "grappes_P2c": 15,
-   "questions": 257,
+   "questions": 218,
+   "questions_informatives": 71,
    "rho": 0.3,
    "delta_brier": 0.02,
-   "puissance": 0.455
+   "puissance": 0.373
   },
   {
    "butee": "2028-09-30",
-   "grappes_P2b": 29,
+   "grappes_P2b": 30,
    "grappes_P2c": 15,
-   "questions": 257,
+   "questions": 218,
+   "questions_informatives": 71,
    "rho": 0.3,
    "delta_brier": 0.04,
-   "puissance": 0.823
+   "puissance": 0.734
   }
  ]
 }

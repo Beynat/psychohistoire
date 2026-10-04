@@ -2,8 +2,11 @@
 
 Usage : python scripts/controle_banque.py   (code de sortie 1 en cas d'erreur)
 1. Après le premier gel d'un cycle réel (étiquette AAAA-MM à partir de 2026-11), un événement déjà gelé
-   ne change plus : critère, issues, fenêtre, nature et pool de chaque identifiant présent dans le
-   dernier gel doivent être identiques dans modele/evenements.json. Seuls les ajouts sont permis.
+   ne change plus : critère, issues, fenêtre, nature, pool, accessibilité, questions mensuelles et
+   source de résolution doivent être identiques, dans modele/evenements.json, à leur valeur dans le
+   PREMIER gel où l'événement apparaît (relecture 10, I3). Seuls les ajouts sont permis.
+3. Gels : l'empreinte de chaque fichier gelé est égale à celle inscrite dans son manifeste
+   (relecture 10, S5).
 2. Ajouts (modele/banque/ajouts.jsonl) : identifiants uniques (entre eux et avec criteres.json), champ
    « ajoute_le » présent, au plus cinq ajouts entre deux gels successifs.
 """
@@ -12,9 +15,9 @@ import re
 import sys
 from datetime import datetime
 
-from commun import RACINE, lire_json
+from commun import RACINE, empreinte, lire_json
 
-CHAMPS = ("critere", "issues", "fenetre", "nature", "pool")
+CHAMPS = ("critere", "issues", "fenetre", "nature", "pool", "source_accessible", "mensuelle", "source_resolution")
 PREMIER_CYCLE = "2026-11"
 
 
@@ -31,17 +34,26 @@ def controler():
     erreurs = []
     actuels = {e["id"]: e for e in lire_json("modele/evenements.json")["evenements"]}
     gels = gels_reels()
-    if gels:
-        et, _ = gels[-1]
-        figes = lire_json(f"data/cycles/{et}/gel/evenements.json")["evenements"]
-        for e in figes:
-            a = actuels.get(e["id"])
-            if a is None:
-                erreurs.append(f"{e['id']} : gelé au cycle {et}, absent de la banque (retrait interdit)")
-                continue
-            for c in CHAMPS:
-                if e.get(c) != a.get(c):
-                    erreurs.append(f"{e['id']} : champ « {c} » modifié depuis le gel du cycle {et}")
+    premiers = {}
+    for et, _ in gels:
+        for e in lire_json(f"data/cycles/{et}/gel/evenements.json")["evenements"]:
+            premiers.setdefault(e["id"], (et, e))
+    for i, (et, e) in premiers.items():
+        a = actuels.get(i)
+        if a is None:
+            erreurs.append(f"{i} : gelé au cycle {et}, absent de la banque (retrait interdit)")
+            continue
+        for c in CHAMPS:
+            if e.get(c) != a.get(c):
+                erreurs.append(f"{i} : champ « {c} » modifié depuis son premier gel (cycle {et})")
+    for et, m in gels:
+        for src, emp in m.get("fichiers", {}).items():
+            nom = src.split("/")[-1]
+            copie = f"data/cycles/{et}/gel/" + (f"historique/{nom}" if src.startswith("data/historique") else nom)
+            if not (RACINE / copie).exists():
+                erreurs.append(f"{copie} : fichier gelé absent")
+            elif empreinte(copie) != emp:
+                erreurs.append(f"{copie} : empreinte différente de celle du manifeste")
     base = [e["id"] for e in lire_json("modele/banque/criteres.json")["evenements"]]
     f = RACINE / "modele/banque/ajouts.jsonl"
     ajouts = [json.loads(l) for l in f.read_text("utf-8").splitlines() if l.strip()] if f.exists() else []

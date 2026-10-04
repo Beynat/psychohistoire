@@ -41,28 +41,51 @@ def puissance_banque(ms, delta, rho, sigma, nsim, rnd):
     return ok / nsim
 
 
-def grappes_banque(debut_p3="2027-01-01", butoir="2027-09-30", conjointes=0):
-    """Grappes de P2b (une par événement, ou par sous-question à fenêtre distincte) ayant au moins une
-    question émise après le début de la phase 3 et résolue avant la butée, avec leur nombre de
-    questions : question de fenêtre close dans l'intervalle, plus une question mensuelle par cycle.
-    Les grappes de questions conjointes (P2c, phase 3) sont ajoutées à part, à 3 questions chacune."""
-    from commun import lire_json
-    G = {}
-    for e in lire_json("modele/evenements.json")["evenements"]:
-        if not e["source_accessible"] or e.get("pool", "P2b") != "P2b":
-            continue
-        g = e["id"] if e["evenement"] in ("EV-16", "EV-C3") else e["evenement"]
-        f, n = e["fenetre"]["fin"], 0
-        if debut_p3 <= f <= butoir:
-            n += 1
-        if e.get("mensuelle"):
-            y, mo = int(debut_p3[:4]), int(debut_p3[5:7])
-            while f"{y:04d}-{mo:02d}" <= min(butoir[:7], f[:7]):
-                n += 1
-                y, mo = (y + 1, 1) if mo == 12 else (y, mo + 1)
-        if n:
-            G[g] = G.get(g, 0) + n
-    return sorted(G.values()) + [3] * conjointes
+def questions_banque(debut_p3="2027-01-01", butoir="2027-09-30"):
+    """Questions de P2b réellement émises par scripts/questions.py à chaque cycle mensuel, du début de
+    la phase 3 à la butée, et comptées dans le test de la section 8.6 : échéance passée à la butée,
+    quelle que soit l'issue (relecture 10, I1). Chaque question porte une échelle 4p(1 − p), où p est
+    son taux de base sur sa fenêtre (1 pour une question à plusieurs issues) : deux prévisions sur un
+    événement rare ne peuvent différer que de peu en Brier (relecture 10, I2). Renvoie {grappe: [échelles]}."""
+    import questions as gq
+    from commun import lire_json, jours
+    evts = {e["id"]: e for e in lire_json("modele/evenements.json")["evenements"]}
+    tb = lire_json("modele/taux_base.json")["questions"]
+    vues, G = set(), {}
+    y, m = int(debut_p3[:4]), int(debut_p3[5:7])
+    while f"{y:04d}-{m:02d}" <= butoir[:7]:
+        banque = gq.generer(f"{y:04d}-{m:02d}-01", f"sim-{y:04d}-{m:02d}")
+        for q in banque["questions"]:
+            if q["type"] != "evenement" or q["pool"] != "P2b" or q["id"] in vues or q["echeance"] > butoir:
+                continue
+            vues.add(q["id"])
+            e = evts[q["details"]["evenement"]]
+            if len(q["issues"]) > 2 or e["id"] not in tb:
+                ech = 1.0
+            else:
+                pf = tb[e["id"]]["utilisee"]["oui"] / 100
+                if e.get("nature") == "survenue":
+                    r = max(jours(q["fenetre"]["debut"], q["fenetre"]["fin"]), 1) / max(jours(e["fenetre"]["debut"], e["fenetre"]["fin"]), 1)
+                    pf = 1 - (1 - pf) ** min(r, 1)
+                ech = 4 * pf * (1 - pf)
+            G.setdefault(q["grappe"], []).append(ech)
+        y, m = (y + 1, 1) if m == 12 else (y, m + 1)
+    return G
+
+
+def puissance_echelles(grappes, delta, rho, sigma, nsim, rnd):
+    """Test de scripts/notation.py ; écart et dispersion de chaque question multipliés par son échelle
+    (écart δ·e, écart-type σ·√e), effet de grappe commun de variance ρσ² × échelle moyenne."""
+    ok = 0
+    seuil = t_critique(len(grappes) - 1)
+    for _ in range(nsim):
+        D = []
+        for ech in grappes:
+            em = sum(ech) / len(ech)
+            u = rnd.gauss(0, math.sqrt(rho * em) * sigma)
+            D.append(sum(-delta * e + u + rnd.gauss(0, math.sqrt((1 - rho) * e) * sigma) for e in ech))
+        ok += -sum(D) / math.sqrt(sum(d * d for d in D)) > seuil
+    return ok / nsim
 
 
 def puissance(G, m, delta, rho, sigma, nsim, rnd):
@@ -91,22 +114,26 @@ if __name__ == "__main__":
                     lignes.append({"grappes": G, "questions_par_grappe": m, "rho": rho, "delta_brier": delta,
                                    "puissance": round(puissance(G, m, delta, rho, sigma, nsim, rnd), 3)})
     nulle = {G: round(puissance(G, 6, 0.0, 0.3, sigma, nsim, rnd), 3) for G in (12, 40)}
-    # Banque réelle (relecture 9, H2) : butée intermédiaire du 30 septembre 2027 et butée finale du
-    # 30 septembre 2028 ; P2c compté de 0 à 15 grappes, faute de réseau défini.
+    # Banque réelle (relecture 10, I2) : questions effectivement émises, échéance passée à la butée,
+    # écart proportionné à la probabilité de chaque question ; P2c compté de 0 à 15 grappes de
+    # 3 questions d'échelle 1, faute de réseau défini.
     banque = []
     for butoir in ("2027-09-30", "2028-09-30"):
+        G = questions_banque(butoir=butoir)
         for conj in (0, 15):
-            ms = grappes_banque(butoir=butoir, conjointes=conj)
+            grappes = list(G.values()) + [[1.0] * 3] * conj
             for rho in (0.1, 0.3):
                 for delta in (0.02, 0.04):
-                    banque.append({"butee": butoir, "grappes_P2b": len(ms) - conj, "grappes_P2c": conj,
-                                   "questions": sum(ms), "rho": rho, "delta_brier": delta,
-                                   "puissance": round(puissance_banque(ms, delta, rho, sigma, nsim, rnd), 3)})
+                    banque.append({"butee": butoir, "grappes_P2b": len(G), "grappes_P2c": conj,
+                                   "questions": sum(len(g) for g in grappes),
+                                   "questions_informatives": sum(1 for g in grappes for e in g if e >= 0.5),
+                                   "rho": rho, "delta_brier": delta,
+                                   "puissance": round(puissance_echelles(grappes, delta, rho, sigma, nsim, rnd), 3)})
     ecrire_json("data/puissance.json", {"etabli_le": maintenant(), "sigma": sigma, "simulations": nsim,
                                         "seuil": "unilatéral 10 %", "taux_fausse_alarme_delta_0": nulle, "table": lignes,
                                         "banque_reelle": banque})
     for b in banque:
-        print(f"butée {b['butee']} : {b['grappes_P2b']} + {b['grappes_P2c']} grappes, {b['questions']} questions, ρ={b['rho']} δ={b['delta_brier']} → {b['puissance']:.2f}")
+        print(f"butée {b['butee']} : {b['grappes_P2b']} + {b['grappes_P2c']} grappes, {b['questions']} questions ({b['questions_informatives']} informatives), ρ={b['rho']} δ={b['delta_brier']} → {b['puissance']:.2f}")
     print(f"σ = {sigma}, {nsim} simulations ; fausse alarme (δ = 0, ρ = 0,3, m = 6) : {nulle}")
     for l in lignes:
         if l["questions_par_grappe"] == 6:
