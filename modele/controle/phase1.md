@@ -29,7 +29,7 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [x] Procédure du cycle mensuel écrite : `modele/controle/cycle_mensuel.md`.
 - [x] Procédure du tri écrite : `modele/controle/tri.md`, avec `scripts/tri.py` (4 octobre 2026).
 
-- [ ] Tâches planifiées créées : tri (trois fois par semaine), cycle mensuel (section 12).
+- [x] Tâches planifiées créées : tri (lundi, mercredi, vendredi, 17 h 47), cycle mensuel (du 1er au 7 de chaque mois, 7 h 52, à partir du 1er novembre 2026), le 4 octobre 2026.
 - [ ] Règle de rattrapage testée sur un passage manqué simulé.
 - [x] Clé API Webstat en secret GitHub `WEBSTAT_KEY` ; OAT quotidienne (TEC 10, depuis 2010) collectée chaque nuit par `collecte/webstat.py` ; seuils de l'écart calés sur le niveau quotidien corrigé du décalage avec la série BCE (4 octobre 2026).
 - [ ] Workflow de contrôle des registres actif : ajout seul, `--no-renames`, horodatage dans la fenêtre de poussée, décisions de tri en JSONL (section 12).
