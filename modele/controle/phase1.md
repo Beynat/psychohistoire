@@ -29,7 +29,7 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [ ] Tâches planifiées créées : tri (trois fois par semaine), cycle mensuel (section 12).
 - [ ] Règle de rattrapage testée sur un passage manqué simulé.
 - [ ] Workflow de contrôle des registres actif.
-- [ ] Branche `main` protégée contre la poussée forcée et la suppression (réglage GitHub, par Nathan).
+- [x] Branche `main` protégée contre la poussée forcée et la suppression (ruleset actif depuis le 4 octobre 2026).
 - [ ] Cycle à blanc mi-octobre sur la piste exploratoire, chaîne complète : gel, questions, prévisions, registre, notation.
 
 ## Prérequis de la phase 2 (1er décembre 2026)
