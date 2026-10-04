@@ -29,6 +29,11 @@ jobs:
       - name: Mettre à jour les historiques longs
         run: python collecte/historique.py
         continue-on-error: true
+      - name: Séries quotidiennes Banque de France (Webstat)
+        run: python collecte/webstat.py
+        env:
+          WEBSTAT_KEY: ${{ secrets.WEBSTAT_KEY }}
+        continue-on-error: true
       - name: Enregistrer les données si elles ont changé
         run: |
           git config user.name "collecte-psychohistoire"
