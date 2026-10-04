@@ -163,6 +163,15 @@ footer{font-size:var(--s-sm);color:var(--muted)}
 tr.old td{color:var(--muted)}
 .desk{display:block}
 @media (max-width:860px){.desk{display:none}}
+.mapctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.seg{display:inline-flex;background:var(--soft);border-radius:999px;padding:3px}
+.seg button{all:unset;cursor:pointer;font-size:var(--s-sm);font-weight:700;padding:6px 14px;border-radius:999px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.seg button:focus-visible{outline:2px solid var(--accent)}
+.mapctl label{display:flex;align-items:center;gap:8px;color:var(--muted);flex:1 1 280px;justify-content:flex-end}
+.mapctl select{font:inherit;font-size:var(--s-sm);color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;padding:6px 8px;max-width:100%;min-width:0;flex:0 1 380px}
+@media (max-width:860px){.mapctl label{justify-content:flex-start;flex-basis:100%;flex-wrap:wrap;min-width:0}.mapctl select{flex:1 1 100%;width:100%;max-width:100%}}
+.tmap .svgw svg{min-width:680px}
 </style>
 </head>
 <body>
@@ -176,7 +185,7 @@ tr.old td{color:var(--muted)}
 <script>
 document.documentElement.lang="fr";
 const NAV=[
-  ["vue","Vue d'ensemble",[["synthese","Synthèse"],["carte","Carte des pivots"]]],
+  ["vue","Vue d'ensemble",[["synthese","Synthèse"],["carte","Carte"]]],
   ["ind","Indicateurs",[["indicateurs","Indicateurs structurels"],["sous-indicateurs","Sous-indicateurs"]]],
   ["suivi","Suivi",[["pivots","Moments pivots"],["actualite","Actualité"],["previsions","Prévisions"]]],
   ["ref","Référence",[["precedents","Précédents"],["methodologie","Méthode et glossaire"]]]
@@ -193,6 +202,7 @@ function to100(v){const t=v.reduce((a,b)=>a+b,0)||1;const raw=v.map(x=>x*100/t);
 /* --- glossaire --- */
 const G={
   "rv":["Rapport de vraisemblance","À quel point un fait est plus probable si l'issue se produit que si elle ne se produit pas. 1 : fait neutre ; 2 : deux fois plus probable. Il multiplie les cotes de l'issue, puis le réseau propage l'effet."],
+  "declencheur":["Déclencheur daté","Événement attendu à une date connue qui peut faire basculer un pivot dans un sens ou dans l'autre."],
   "portee":["Portée","Probabilité des pivots suivis selon chaque issue du nœud touché : l'effet maximal qu'un fait pourrait avoir s'il faisait basculer ce nœud."],
   "cas-a":["Sans effet","Fait sans lien avec un nœud du modèle, ou trop faible pour le déplacer d'au moins 3 points. Consigné avec son motif."],
   "cas-b":["Donnée","Fait qui tranche une issue ou mesure une variable (vote, décision, série publiée). Appliqué sans jugement."],
@@ -385,7 +395,91 @@ function mapMobile(){const per=D.periodes;return per.map((ph,k)=>{const ns=D.piv
     <div class="stack" style="height:6px">${n.issues.map((o,j)=>`<span style="width:${m[j]}%;background:var(--accent);opacity:${j===dm.i?1:.28}"></span>`).join("")}</div>
     ${n.parents.length?`<div class="sm muted">Dépend de ${n.parents.map(p=>`${esc(N(p.id).court)} <span class="${M.sens[p.id+">"+n.id]>=CRIT?"crit-l":""}">±${M.sens[p.id+">"+n.id]}</span>`).join(", ")}</div>`:""}</div>`}).join("")}</div>`}).join("")}
 const mapKey=`<div class="legend nog"><span><i style="width:18px;border-top:2.4px solid var(--accent)"></i>${T("critique","chemin critique")}</span><span><b style="color:var(--muted)">±n</b> ${T("sensibilite","écart d'influence")} en points</span><span><i style="width:14px;height:10px;background:var(--zone);border:1px dashed var(--zone-line)"></i>${T("projection","projection")}</span></div>`;
-const mapBlock=()=>`<div class="desk"><div class="svgw">${mapSvg()}</div>${mapKey}</div><div class="mob">${mapMobile()}<div style="margin-top:10px">${mapKey}</div></div>`;
+/* --- carte temporelle (vue d'ensemble, vue semaine, chemin vers une issue) --- */
+const MAPV={vue:"macro",cible:""};
+const ROW={"PV-03":0,"PV-08":0,"PV-01":1,"PV-07":1,"PV-04":2,"PV-05":3,"PV-06":4,"PV-02":5};
+const LANES=[["Économie",0,0],["Budget et institutions",1,1],["Société",2,2],["Élection",3,5]];
+const dU=s=>Date.UTC(+s.slice(0,4),+s.slice(5,7)-1,+s.slice(8,10));
+const DAY=864e5;
+const pdate=t=>{const m=(t||"").match(/(\d{1,2})(?:-\d{1,2})?\/(\d{2})\/(\d{4})/);return m?Date.UTC(+m[3],+m[2]-1,+m[1]):null};
+const iso=t=>new Date(t).toISOString().slice(0,10);
+const mois=["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
+function mpe(J,c){let b=null;J.forEach(x=>{if(c&&!c(x.a))return;if(!b||x.p>b.p)b=x});return b}
+function pathInfo(){const base=mpe(M.Jm);let tgt=null;
+  if(MAPV.cible){const [t,o]=MAPV.cible.split(":");const pt=prob(M.Jm,a=>a[t]===o);
+    if(pt>0)tgt={t,o,pt,best:mpe(M.Jm,a=>a[t]===o),cp:id=>N(id).issues.map(x=>prob(M.Jm,a=>a[t]===o&&a[id]===x.id)/pt*100)}}
+  const issueOf=id=>tgt?tgt.best.a[id]:base.a[id];
+  const pOf=id=>{const n=N(id),j=n.issues.findIndex(x=>x.id===issueOf(id));return {j,ord:M.marg[id][j],sur:tgt?(id===tgt.t?null:Math.round(tgt.cp(id)[j])):M.marg[id][j]}};
+  return {base,tgt,issueOf,pOf,diff:id=>!!tgt&&tgt.best.a[id]!==base.a[id]}}
+function todayU(){const d=new Date();return Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())}
+function scaleOf(vue,L,PW){
+  if(vue==="semaine"){const t=todayU(),dow=(new Date(t).getUTCDay()+6)%7,s=t-(dow+7)*DAY,e=s+11*7*DAY;
+    const ticks=[];for(let k=0;k<=11;k++){const u=s+k*7*DAY,d=new Date(u);ticks.push([u,`${d.getUTCDate()} ${mois[d.getUTCMonth()]}`])}
+    return {s,e,x:u=>L+(u-s)/(e-s)*PW,ticks,zone:null}}
+  const s=dU("2026-10-01"),m=dU("2027-06-15"),e=dU("2028-10-01");
+  const x=u=>u<=m?L+(u-s)/(m-s)*PW*.74:L+PW*.74+(u-m)/(e-m)*PW*.26;
+  const ticks=[];for(let k=0;k<9;k++){const d=Date.UTC(2026,9+k,1),D0=new Date(d);ticks.push([d,D0.getUTCMonth()===0?`${mois[0]} 2027`:mois[D0.getUTCMonth()]])}
+  [[2028,0],[2028,6]].forEach(([y,mm])=>ticks.push([Date.UTC(y,mm,1),`${mois[mm]} ${y}`]));
+  return {s,e,x,ticks,zone:dU("2027-05-03")}}
+function tmapSvg(pi){
+  const W=900,L=150,R=16,PW=W-L-R,Y0=74,RH=58,BW=124,BH=44,H=Y0+5.5*RH+18;
+  const sc=scaleOf(MAPV.vue,L,PW);const xc=u=>Math.max(L+BW/2+2,Math.min(W-R-BW/2,sc.x(u)));const yc=id=>Y0+ROW[id]*RH;
+  const tx=(x,y,t,o="")=>`<text x="${x}" y="${y}" ${o}>${t}</text>`;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Carte temporelle des moments pivots" font-family="Public Sans, system-ui, sans-serif"><defs><marker id="ta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--line-strong)"/></marker><marker id="tac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker></defs>`;
+  LANES.forEach(([nm,a,b],k)=>{const y1=Y0+a*RH-RH/2,y2=Y0+b*RH+RH/2;s+=`<rect x="0" y="${y1}" width="${W}" height="${y2-y1}" fill="${k%2?"var(--soft)":"transparent"}" opacity=".7"/>`+tx(10,(y1+y2)/2+4,nm,'font-size="12" font-weight="700" fill="var(--muted)"')});
+  if(sc.zone){const zx=sc.x(sc.zone);s+=`<rect x="${zx}" y="${Y0-RH/2}" width="${W-R-zx}" height="${5.5*RH+RH/2}" fill="var(--zone)" stroke="var(--zone-line)" stroke-dasharray="5 4"/>`+tx(W-R-8,H-14,"Projection après l'élection",'text-anchor="end" font-size="11" fill="var(--muted)"');
+    const bx=L+PW*.74;s+=`<line x1="${bx}" y1="36" x2="${bx}" y2="${Y0-RH/2}" stroke="var(--muted)" stroke-dasharray="1 3"/>`}
+  sc.ticks.forEach(([u,l])=>{const x=sc.x(u);if(x<L-1||x>W-R+1)return;s+=`<line x1="${x}" y1="38" x2="${x}" y2="${H-8}" stroke="var(--line)"/>`+(x<W-R-46?tx(x+3,30,l,'font-size="11" fill="var(--muted)"'):"")});
+  const t0=todayU();if(t0>=sc.s&&t0<=sc.e){const x=sc.x(t0);s+=`<line x1="${x}" y1="38" x2="${x}" y2="${H-8}" stroke="var(--accent)" stroke-dasharray="3 3"/>`+tx(x+3,14,"Aujourd'hui",'font-size="11" font-weight="700" fill="var(--accent)"')}
+  const inWin=id=>{const u=dU(N(id).echeance);return u>=sc.s&&u<=sc.e};
+  const vis=D.pivots.filter(n=>MAPV.vue==="macro"||inWin(n.id)).map(n=>n.id);
+  const edgeHi=(a,b)=>pi.tgt?(pi.diff(a)||pi.diff(b)||b===pi.tgt.t||a===pi.tgt.t):(M.sens[a+">"+b]>=CRIT);
+  D.pivots.forEach(n=>n.parents.forEach(p=>{if(!vis.includes(n.id)||!vis.includes(p.id))return;
+    const xa=xc(dU(N(p.id).echeance)),ya=yc(p.id),xb=xc(dU(n.echeance)),yb=yc(n.id),hi=edgeHi(p.id,n.id);let d;
+    if(Math.abs(xb-xa)>BW){const x1=xa+BW/2,x2=xb-BW/2-2,mx=(x1+x2)/2;d=`M${x1} ${ya} C ${mx} ${ya}, ${mx} ${yb}, ${x2} ${yb}`}
+    else{const up=yb<ya;const y1=ya+(up?-BH/2:BH/2),y2=yb+(up?BH/2+2:-BH/2-2);d=`M${xa+8} ${y1} C ${xa+8} ${(y1+y2)/2}, ${xb+8} ${(y1+y2)/2}, ${xb+8} ${y2}`}
+    s+=`<path d="${d}" fill="none" stroke="${hi?"var(--accent)":"var(--line-strong)"}" stroke-width="${hi?2.2:1.3}" ${pi.tgt&&hi?'stroke-dasharray="6 4"':""} marker-end="url(#ta${hi?"c":""})"><title>${esc(N(p.id).court)} → ${esc(n.court)} : écart d'influence ±${M.sens[p.id+">"+n.id]} points</title></path>`}));
+  if(MAPV.vue==="semaine"){
+    D.pivots.forEach(n=>{(n.declencheurs||[]).forEach(dc=>{const u=pdate(dc.date);if(u==null||u<sc.s||u>sc.e)return;const x=sc.x(u),y=yc(n.id)+9;
+      s+=`<path d="M${x} ${y-5} l5 5 l-5 5 l-5 -5z" fill="var(--surface)" stroke="var(--muted)" stroke-width="1.3"><title>${esc(dc.texte)} (${esc(dc.date)}) · vers : ${esc(dc.vers)}</title></path>`})});
+    D.actualite.forEach(e=>{const t=e.traitement||{};const id=t.noeud||(e.effets.find(f=>f.cible.startsWith("PV"))||{}).cible;if(!id)return;const u=dU(e.date);if(u<sc.s||u>sc.e)return;
+      const x=sc.x(u),y=yc(id)-9,col={b:"var(--ok)",c:"var(--accent)",d:"var(--warn)"}[t.cas]||"var(--muted)";
+      s+=`<circle cx="${x}" cy="${y}" r="5" fill="${col}" data-go="actualite" style="cursor:pointer"><title>${esc(dfr(e.date))} · ${esc(e.titre)} (${esc((CAS[t.cas]||["non trié"])[0])})</title></circle>`});
+    const proch={};D.pivots.filter(n=>!inWin(n.id)&&dU(n.echeance)>sc.e).forEach(n=>{const r=ROW[n.id];if(!proch[r]||n.echeance<proch[r].echeance)proch[r]=n});
+    Object.values(proch).forEach(n=>{const y=yc(n.id);const lbl=`${n.court} · ${dfr(n.echeance)} →`;
+      s+=`<g data-go="pivot-${n.id}" style="cursor:pointer">`+tx(W-R-4,y+4,esc(lbl),'text-anchor="end" font-size="11.5" fill="var(--muted)"')+`</g>`})}
+  vis.forEach(id=>{const n=N(id),x=xc(dU(n.echeance)),y=yc(id),p=pi.pOf(id),o=n.issues[p.j],isT=pi.tgt&&id===pi.tgt.t,df=pi.diff(id);
+    const st=isT?"var(--accent)":df?"var(--accent)":"var(--line-strong)",fill=isT||df?"var(--accent-soft)":"var(--surface)";
+    s+=`<g data-go="pivot-${id}" style="cursor:pointer"><rect x="${x-BW/2}" y="${y-BH/2}" width="${BW}" height="${BH}" rx="8" fill="${fill}" stroke="${st}" stroke-width="${isT?2.4:df?1.8:1}" ${df&&!isT?'stroke-dasharray="5 3"':""}/>`;
+    s+=tx(x-BW/2+10,y-5,esc(n.court),'font-size="12.5" font-weight="700" fill="var(--ink)"');
+    s+=tx(x-BW/2+10,y+13,esc(o.court),'font-size="12" fill="var(--muted)"')+tx(x+BW/2-10,y+13,P(pi.tgt&&p.sur!=null?p.sur:p.ord),'text-anchor="end" font-size="13" font-weight="700" fill="var(--ink)"');
+    s+=`<title>${esc(n.nom)}, échéance ${esc(dfr(n.echeance))} : ${esc(o.nom)}, ${pi.tgt&&p.sur!=null?`${p.ord} % en général, ${p.sur} % sur ce chemin`:`${p.ord} %`}${isT?" (issue choisie)":""}</title></g>`});
+  return s+`</svg>`}
+function tmapList(pi){const t0=todayU();
+  if(MAPV.vue==="semaine"){const sc=scaleOf("semaine",0,1);const it=[];
+    D.pivots.forEach(n=>{const u=dU(n.echeance);if(u>=sc.s&&u<=sc.e)it.push([u,`<span class="b">${esc(n.court)}</span> · échéance`,"pivot-"+n.id]);(n.declencheurs||[]).forEach(dc=>{const v=pdate(dc.date);if(v!=null&&v>=sc.s&&v<=sc.e)it.push([v,`${esc(dc.texte)} <span class="muted">· ${esc(n.court)}</span>`,"pivot-"+n.id])})});
+    D.actualite.forEach(e=>{const u=dU(e.date);if(u>=sc.s&&u<=sc.e)it.push([u,`${esc(e.titre)} <span class="muted">· fait ${esc((CAS[(e.traitement||{}).cas]||["non trié"])[0].toLowerCase())}</span>`,"actualite"])});
+    it.sort((a,b)=>a[0]-b[0]);return `<div class="rows">${it.map(([u,h,g])=>`<div class="rowlink sm" tabindex="0" role="link" data-go="${g}"><span class="muted">${dfr(iso(u))}${u<t0?"":" · à venir"}</span><div>${h}</div></div>`).join("")||`<p class="empty">Rien de daté dans les semaines affichées.</p>`}</div>`}
+  const ns=D.pivots.slice().sort((a,b)=>a.echeance.localeCompare(b.echeance));
+  return `<div class="rows">${ns.map(n=>{const p=pi.pOf(n.id),o=n.issues[p.j],df=pi.diff(n.id)||(pi.tgt&&n.id===pi.tgt.t);
+    return `<div class="rowlink" tabindex="0" role="link" data-go="pivot-${n.id}" style="${df?"border-left:3px solid var(--accent);padding-left:10px":""}"><div class="sm muted">${dfr(n.echeance)}</div><div class="rowx sp"><span class="b">${esc(n.court)}</span><span>${esc(o.court)} <span class="b">${P(pi.tgt&&p.sur!=null?p.sur:p.ord)}</span></span></div></div>`}).join("")}</div>`}
+function pathPanel(pi){const ns=D.pivots.slice().sort((a,b)=>a.echeance.localeCompare(b.echeance));
+  const rows=ns.map(n=>{const p=pi.pOf(n.id),o=n.issues[p.j],df=pi.diff(n.id),isT=pi.tgt&&n.id===pi.tgt.t;
+    return `<tr${df||isT?' style="background:var(--accent-soft)"':""}><td class="lead" style="white-space:nowrap">${dfr(n.echeance)}</td><td data-l="Pivot">${link(n.id)}</td><td data-l="Issue">${esc(o.court)}${isT?' <span class="tag a">cible</span>':df?' <span class="tag n">diffère</span>':""}</td><td data-l="En général">${P(p.ord)}</td>${pi.tgt?`<td data-l="Sur ce chemin"><span class="b">${p.sur==null?"issue choisie":P(p.sur)}</span></td>`:""}</tr>`}).join("");
+  const head0=pi.tgt?`Chemin vers « ${esc(N(pi.tgt.t).court)} : ${esc(N(pi.tgt.t).issues.find(x=>x.id===pi.tgt.o).court)} »`:"Chemin le plus probable";
+  const intro=pi.tgt?`<p style="margin:0 0 10px">Cette issue a une probabilité de <span class="b">${P(Math.round(pi.tgt.pt*100))}</span>. Le tableau donne la combinaison d'issues la plus probable <i>sachant</i> qu'elle se réalise, calculée à rebours par le réseau, sans nouvelle estimation. Les lignes surlignées diffèrent du chemin le plus probable.</p>${pi.tgt.pt<.1?`<p class="sm" style="margin:0 0 10px;color:var(--warn)">Issue peu probable : ce chemin se lit comme une condition, pas comme un scénario attendu.</p>`:""}`
+    :`<p style="margin:0 0 10px">La combinaison d'issues la plus probable sur l'ensemble du réseau. Elle n'a qu'une probabilité de <span class="b">${P(Math.round(pi.base.p*100))}</span> en tant que combinaison exacte : chaque étape reste incertaine.</p>`;
+  return sec(head0,intro+`<div class="tw"><table class="resp"><thead><tr><th>Échéance</th><th>Pivot</th><th>Issue sur le chemin</th><th>En général</th>${pi.tgt?"<th>Sur ce chemin</th>":""}</tr></thead><tbody>${rows}</tbody></table></div>`)}
+function tmapInner(withPanel){const pi=pathInfo();
+  const opts=D.pivots.map(n=>`<optgroup label="${esc(n.nom)}">${n.issues.map((o,j)=>{const v=n.id+":"+o.id,isB=pi.base.a[n.id]===o.id;return `<option value="${v}"${MAPV.cible===v?" selected":""}>${esc(n.court)} : ${esc(o.court)} (${P(M.marg[n.id][j])})${isB?" · chemin le plus probable":""}</option>`}).join("")}</optgroup>`).join("");
+  const ctl=`<div class="mapctl"><div class="seg" role="group" aria-label="Échelle de temps"><button data-mapv="macro" aria-pressed="${MAPV.vue==="macro"}">Vue d'ensemble</button><button data-mapv="semaine" aria-pressed="${MAPV.vue==="semaine"}">Vue semaine</button></div>
+    <label class="sm">Chemin affiché <select id="mapc"><option value="">Le plus probable</option>${opts}</select></label></div>`;
+  const key=`<div class="legend nog"><span><i style="width:16px;height:10px;border:1.8px dashed var(--accent);background:var(--accent-soft);border-radius:3px"></i>étape qui diffère du chemin le plus probable</span>${MAPV.vue==="semaine"?`<span><i style="width:9px;height:9px;border-radius:50%;background:var(--accent)"></i>fait relevé</span><span><i style="width:8px;height:8px;border:1.3px solid var(--muted);transform:rotate(45deg)"></i>${T("declencheur","déclencheur daté")}</span>`:`<span><i style="width:18px;border-top:2.2px solid var(--accent)"></i>${T("critique","lien critique")}</span><span><i style="width:14px;height:10px;background:var(--zone);border:1px dashed var(--zone-line)"></i>${T("projection","projection")}</span>`}</div>`;
+  return ctl+`<div class="desk"><div class="svgw">${tmapSvg(pi)}</div>${key}${MAPV.vue==="semaine"?`<div style="margin-top:14px">${tmapList(pi)}</div>`:""}</div><div class="mob">${tmapList(pi)}</div>`+(withPanel?pathPanel(pi):"")}
+const mapBlock=(withPanel)=>`<div class="tmap" data-panel="${withPanel?1:0}">${tmapInner(withPanel)}</div>`;
+function redrawMap(){document.querySelectorAll(".tmap").forEach(el=>{el.innerHTML=tmapInner(el.dataset.panel==="1");glossify(el)})}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-mapv]");if(b){MAPV.vue=b.dataset.mapv;redrawMap()}});
+document.addEventListener("change",e=>{if(e.target.id==="mapc"){MAPV.cible=e.target.value;redrawMap()}});
 
 function forecasts(){const out=[];
   D.pivots.forEach(n=>out.push({id:n.id,piv:n.id,texte:n.question,dist:n.issues.map((o,i)=>[o.nom,M.marg[n.id][i]]),rg:M.rng[n.id],echeance:n.echeance}));
@@ -401,18 +495,18 @@ function synthese(){
   const alerts=D.sousIndicateurs.map(s=>({s,sc:score(s)})).filter(x=>x.sc>=5.8).sort((a,b)=>b.sc-a.sc);const fc=forecasts().filter(f=>f.echeance<"2027-06-01").slice(0,5);
   return head(`Scénario dominant : ${SCN[sc.o.id].replace("Victoire","victoire")}, à ${P(sc.p)}`,
     `Il l'emporte presque autant après un budget 2027 adopté (${fr(sc.viaA,0)} points) qu'après un échec (${fr(sc.viaX,0)} points). Avant l'élection, le lien le plus influent relie ${esc(N(pa).nom.toLowerCase())} et ${esc(N(pc).nom.toLowerCase())} (±${pre[1]} points). Huit moments pivots sont ${T("calcule","calculés")} ensemble.`)
+  +sec("Carte",mapBlock(false),`<button class="lnk sm" data-go="carte">Chemins détaillés</button>`)
   +sec("Scénarios France",scenList())
-  +sec("Carte des pivots",mapBlock(),`<button class="lnk sm" data-go="carte">Détail</button>`)
   +`<div class="grid2">${sec("Indicateurs structurels",indBox(ind))}${sec("Alertes",`<div class="rows">${alerts.map(({s,sc})=>{const [c,l]=etat(sc);return `<div class="rowx sp rowlink" tabindex="0" role="link" data-go="ind-${s.ind}"><div style="min-width:0;flex:1 1 200px"><div class="b">${esc(s.nom)}</div><div class="sm muted">${esc(s.affiche)} · ${esc(marge(s))}</div></div><span class="tag ${c}">${l}</span></div>`}).join("")}</div>`)}</div>`
   +sec("Prochaines échéances",`<div class="rows">${fc.map(f=>{const top=f.dist.reduce((a,b)=>b[1]>a[1]?b:a);return `<div class="rowx sp rowlink" tabindex="0" role="link" data-go="previsions" data-hl="${f.id}"><div style="min-width:0;flex:1 1 200px"><div class="sm muted">${dfr(f.echeance)}</div><div>${esc(f.texte)}</div></div><span class="tag n">${esc(top[0])} ${P(top[1])}</span></div>`}).join("")}</div>`)
   +sec("Fiabilité du modèle",`<div class="rowx"><span class="tag n">0 sur ${forecasts().length} prévisions résolues</span><span class="sm muted">Premier ${T("Brier","score")} le 31 octobre.</span></div>`);
 }
 
 function carte(){const edges=[];D.pivots.forEach(n=>n.parents.forEach(p=>edges.push([p.id,n.id,M.sens[p.id+">"+n.id]])));edges.sort((a,b)=>b[2]-a[2]);
-  return head("Carte des pivots","Comment les moments pivots s'enchaînent et pèsent les uns sur les autres, d'octobre 2026 à septembre 2028.")
-  +mapBlock()
+  return head("Carte","Les moments pivots sur l'axe du temps, d'octobre 2026 à septembre 2028. Choisissez une issue pour voir le chemin qui y mène.")
+  +mapBlock(true)
   +sec("Liens les plus influents",`<div class="tw"><table class="resp"><thead><tr><th>Pivot amont</th><th>Pivot aval</th><th>${T("sensibilite","Écart d'influence")}</th></tr></thead><tbody>${edges.map(([a,b,v])=>`<tr><td class="lead">${link(a)}</td><td data-l="Pivot aval">${link(b)}</td><td data-l="Écart"><span class="${v>=CRIT?"b":""}" style="${v>=CRIT?"color:var(--accent)":""}">±${v} pts</span></td></tr>`).join("")}</tbody></table></div>`)
-  +`<details class="more" style="margin-top:16px"><summary>Comment le réseau est calculé</summary><div class="in sm"><p style="margin:0">Chaque pivot reçoit des probabilités conditionnelles à l'issue de ses pivots amont, au plus trois. L'outil combine l'ensemble pour obtenir les probabilités de chaque pivot et de chaque scénario, sans jamais compter deux fois un même facteur.</p><p style="margin:0">L'écart d'influence mesure de combien l'issue principale d'un pivot varie selon l'issue de son pivot amont. Les liens d'au moins ${CRIT} points forment le chemin critique.</p></div></details>`}
+  +`<details class="more" style="margin-top:16px"><summary>Comment la carte est calculée</summary><div class="in sm"><p style="margin:0">Chaque pivot est placé à son échéance. Les liens relient un pivot à ceux dont il change les probabilités. Le chemin le plus probable est la combinaison d'issues la plus probable sur l'ensemble du réseau.</p><p style="margin:0">Le chemin vers une issue choisie est calculé à rebours : on suppose l'issue réalisée, et le réseau recalcule ce qui devient le plus probable en amont et en aval. Rien n'est estimé de nouveau, et aucune prévision du registre ne change.</p><p style="margin:0">La vue semaine montre les onze semaines autour d'aujourd'hui : échéances, déclencheurs datés et faits relevés.</p></div></details>`}
 
 function indicateurs(){return head("Indicateurs structurels",`Les grandes forces lentes qui conditionnent la stabilité, chacune résumée par une ${T("note","note sur 10")}.`)
   +`<div class="grid2">${D.indicateurs.map(indBox).join("")}</div>`
