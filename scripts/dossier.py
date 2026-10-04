@@ -36,6 +36,9 @@ LIBELLES = {
     "webstat_taux_10a_DE_mensuel": ("Taux 10 ans Allemagne, mensuel (Banque de France)", "%"),
     "webstat_ecart_IT_DE_pb": ("Écart de taux 10 ans Italie-Allemagne, mensuel", "pb"),
     "webstat_eur_usd_journalier": ("Cours de l'euro en dollars, quotidien", "USD"),
+    "brent_journalier": ("Prix spot du Brent, quotidien (EIA)", "$/baril"),
+    "brent_mensuel": ("Prix spot du Brent, moyenne mensuelle (EIA)", "$/baril"),
+    "inflation_energie_FR": ("Inflation IPCH énergie, France, sur un an (Eurostat)", "%"),
 }
 
 

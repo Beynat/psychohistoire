@@ -100,6 +100,36 @@ def chomage_fr():
     return eurostat("une_rt_m", {"geo": "FR", "unit": "PC_ACT", "s_adj": "SA", "age": "TOTAL", "sex": "T"})
 
 
+def brent_journalier():
+    """Prix spot du Brent, $/baril, quotidien (EIA, diffusé par FRED : DCOILBRENTEU)."""
+    txt = get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU")
+    rows = list(csv.reader(io.StringIO(txt)))[1:]
+    return [(r[0], float(r[1])) for r in rows if len(r) == 2 and r[1] not in ("", ".") and r[0] >= "2010-01-01"]
+
+
+def brent_mensuel():
+    """Moyenne mensuelle du Brent spot (EIA via FRED)."""
+    m = {}
+    for p, v in brent_journalier():
+        m.setdefault(p[:7], []).append(v)
+    return sorted((k, round(sum(x) / len(x), 2)) for k, x in m.items())
+
+
+def inflation_energie_fr():
+    """IPCH énergie, France, glissement annuel en % (Eurostat), nomenclature récente complétée par l'ancienne."""
+    candidats = [("prc_hicp_minr", {"geo": "FR", "unit": "RCH_A", "coicop18": "NRG"}),
+                 ("prc_hicp_manr", {"geo": "FR", "unit": "RCH_A", "coicop": "NRG"})]
+    fusion = {}
+    for ds, prm in reversed(candidats):
+        try:
+            fusion.update(dict(eurostat(ds, prm)))
+        except Exception:
+            continue
+    if not fusion:
+        raise ValueError("aucun jeu IPCH énergie disponible")
+    return sorted(fusion.items())
+
+
 def bund_journalier():
     """Rendement 10 ans de la courbe Svensson des titres fédéraux (Bundesbank), journalier depuis 2010.
     Ce n'est pas le Bund benchmark coté mais une courbe lissée : à ne comparer qu'avec une jambe française de même nature."""
@@ -134,6 +164,9 @@ SERIES = {
     "pib_croissance_ga_FR": pib_fr_ga,
     "chomage_FR": chomage_fr,
     "bund_10a_journalier_DE": bund_journalier,
+    "brent_journalier": brent_journalier,
+    "brent_mensuel": brent_mensuel,
+    "inflation_energie_FR": inflation_energie_fr,
 }
 
 
