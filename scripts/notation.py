@@ -162,14 +162,23 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
     for l in lire_jsonl(reg):
         if "probabilites" in l and l["question"] in res:
             prev.setdefault((l.get("auteur", "modèle"), l["question"]), []).append(l)
+    # Actes annoncés comme décidés (relecture 20, N1 ; audit interne v1.25) : chaque question est coupée au jour de
+    # la première annonce consignée pour son événement, quelle que soit l'issue. Sinon les prévisions émises après
+    # l'annonce ne seraient exclues que si l'annonce se vérifie (date du fait), et gardées si elle échoue.
+    annonce = {}
+    for a in lire_jsonl("registre/annonces.jsonl"):
+        if a.get("annonce"):
+            annonce[a["question"]] = min(annonce.get(a["question"], "9999-12-31"), a["date_annonce"])
     scores, exclues = {}, []
     for (auteur, qid), lignes in prev.items():
         q, r = qs[qid], res[qid]
         lignes.sort(key=lambda l: l["emise"])
         # Exclues : émises après l'échéance, après l'enregistrement de la résolution, ou le jour du fait
         # ou après (relecture 8, G2 : un prévisionniste lancé après le fait ne doit pas être noté).
+        coupure = min(r.get("date_fait") or "9999-12-31",
+                      annonce.get((q.get("details") or {}).get("evenement"), "9999-12-31"))
         lignes = [l for l in lignes if l["emise"][:10] <= q["echeance"] and l["emise"] < r["emise"]
-                  and l["emise"][:10] < r.get("date_fait", "9999-12-31")]
+                  and l["emise"][:10] < coupure]
         if not lignes:
             exclues.append({"auteur": auteur, "question": qid, "motif": "émise après l'échéance ou la résolution"})
             continue

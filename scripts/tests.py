@@ -451,6 +451,66 @@ def test_correspondances_figees():
         shutil.rmtree(tmp.parent)
 
 
+def test_annonces_et_grappes_d_ajout():
+    """Relecture 20. N1 : un acte annoncé comme décidé (deux agents) n'est pas émis, mais l'annonce ne résout pas
+    la question. N2 : un ajout emboîté dans une sous-question déjà émise rejoint sa grappe."""
+    tmp, run = _copie()
+    try:
+        a = [{"annonce": True, "question": "EV-42", "date_annonce": "2026-10-20", "source": "s", "agent": ag,
+              "emise": "2026-10-21T08:00:00+02:00"} for ag in ("agent-1", "agent-2")]
+        (tmp / "registre/annonces.jsonl").write_text("".join(json.dumps(x) + chr(10) for x in a))
+        run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
+        run("scripts/questions.py", "2026-11-01", "2026-11")
+        b = json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())
+        assert not any(q["id"].startswith("Q-EV-42") for q in b["questions"])
+        run("scripts/resolution.py")
+        res = (tmp / "registre/resolutions.jsonl")
+        assert not res.exists() or "Q-EV-42" not in res.read_text()
+        # N2 : ajout d'EV-15d (janvier-mars 2027), emboîté dans EV-15b.
+        c = tmp / "modele/banque/criteres.json"
+        d = json.loads(c.read_text())
+        e15b = next(e for e in d["evenements"] if e["id"] == "EV-15b")
+        d["evenements"].append({**e15b, "id": "EV-15d", "nom": "Censure du 1er janvier au 31 mars 2027",
+                                "fenetre": {"debut": "2027-01-01", "fin": "2027-03-31"}})
+        c.write_text(json.dumps(d, ensure_ascii=False))
+        run("scripts/evenements.py")
+        run("scripts/geler.py", "2026-12-01", "2026-12", "--essai")
+        run("scripts/questions.py", "2026-12-01", "2026-12")
+        g = {q["id"]: q["grappe"] for q in json.loads((tmp / "data/cycles/2026-12/questions.json").read_text())["questions"]}
+        assert g["Q-EV-15d"] == g["Q-EV-15b"] == "EV-15b", (g.get("Q-EV-15d"), g.get("Q-EV-15b"))
+        # Audit v1.25, D2 : EV-15e (15 déc.-15 janv.) relie EV-15 et EV-15b ; EV-15g (févr.-mars), emboîté dans
+        # EV-15b seul, rejoint EV-15b et non la grappe de la liaison.
+        d = json.loads(c.read_text())
+        d["evenements"].append({**e15b, "id": "EV-15e", "nom": "Censure à cheval", "fenetre": {"debut": "2026-12-15", "fin": "2027-01-15"}})
+        d["evenements"].append({**e15b, "id": "EV-15g", "nom": "Censure février-mars", "fenetre": {"debut": "2027-02-01", "fin": "2027-03-31"}})
+        c.write_text(json.dumps(d, ensure_ascii=False))
+        run("scripts/evenements.py")
+        run("scripts/geler.py", "2027-01-01", "2027-01", "--essai")
+        run("scripts/questions.py", "2027-01-01", "2027-01")
+        b3 = json.loads((tmp / "data/cycles/2027-01/questions.json").read_text())
+        g = {q["id"]: q["grappe"] for q in b3["questions"]}
+        assert g["Q-EV-15g"] == "EV-15b", g.get("Q-EV-15g")
+        assert any(e["objet"] == "EV-15e" and "reliant" in e["motif"] for e in b3["ecartees"]), b3["ecartees"][-3:]
+        # Audit v1.25, D1 : coupure à la première annonce, quelle que soit l'issue (ici « non »).
+        (tmp / "registre/annonces.jsonl").open("a").write(json.dumps({"annonce": True, "question": "EV-15", "date_annonce": "2026-11-02",
+            "source": "s", "agent": "agent-1", "emise": "2026-11-03T08:00:00+01:00"}) + chr(10))
+        code = r"""
+import json, notation
+from pathlib import Path
+L = [{"question": "Q-EV-15", "probabilites": {"oui": p, "non": 100 - p}, "piste": "protocole", "phase": 1, "auteur": a,
+      "origine": "cycle 2026-11", "donnees": "t", "emise": d + "T08:00:00+01:00"}
+     for a, p, d in (("modèle", 20, "2026-11-01"), ("ensemble direct", 90, "2026-11-04"))]
+Path('registre/v.jsonl').write_text(''.join(json.dumps(x) + chr(10) for x in L))
+Path('registre/resolutions_v.jsonl').write_text(json.dumps({"resolution": True, "question": "Q-EV-15", "issue": "non",
+    "date_fait": "2026-12-31", "source": "s", "methode": "m", "emise": "2027-01-05T08:00:00+01:00"}) + chr(10))
+b = notation.bilan('registre/v.jsonl', 'ensemble direct', '2027-02-01')
+print(json.dumps([e["auteur"] for e in b["exclues"] if e["question"] == "Q-EV-15"]))
+"""
+        assert json.loads(run("-c", code).strip().splitlines()[-1]) == ["ensemble direct"]
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
 def test_registre():
     tmp = Path(tempfile.mkdtemp())
     ancien = registre.RACINE

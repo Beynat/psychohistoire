@@ -18,6 +18,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 RACINE = Path(__file__).resolve().parent.parent
+ANNONCE = {"annonce", "question", "date_annonce", "source", "agent"}   # acte annoncé comme décidé (relecture 20, N1)
 PREVISION = {"question", "probabilites", "piste", "origine", "donnees"}
 ERRATUM = {"erratum", "objet", "correction", "piste"}
 RESOLUTION = {"resolution", "question", "issue", "source", "methode"}   # issue = null si la question est annulée
@@ -35,6 +36,14 @@ def valider(l):
         manque = ERRATUM - l.keys()
     elif l.get("resolution"):
         manque = RESOLUTION - l.keys()
+    elif l.get("annonce"):
+        manque = ANNONCE - l.keys()
+        if not manque and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(l["date_annonce"])):
+            raise ValueError("date_annonce doit être au format AAAA-MM-JJ")
+        if not manque:
+            ids = {e["id"] for e in json.loads((RACINE / "modele/evenements.json").read_text("utf-8"))["evenements"]}
+            if l["question"] not in ids:
+                raise ValueError(f"annonce : « {l['question']} » n'est pas un identifiant d'événement de la banque (EV-xx)")
     elif l.get("proposition"):
         manque = PROPOSITION - l.keys()
         if not manque and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(l["date_fait"])):

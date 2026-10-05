@@ -124,7 +124,30 @@ def generer(gel, etiquette=None):
                 ev = (q.get("details") or {}).get("evenement")
                 if ev:
                     figees.setdefault(ev, q["grappe"])
-    grappe = lambda e: figees.get(e["id"]) or (e["acte"] if e.get("acte") else comp[e["id"]])
+    reliees = {}
+    def grappe(e):
+        # Un ajout rejoint la grappe figée d'un événement déjà émis de sa composante (relecture 20, N2) ; si
+        # plusieurs grappes figées sont reliées par l'ajout, la première par ordre alphabétique est retenue.
+        if e["id"] in figees:
+            return figees[e["id"]]
+        if e.get("acte"):
+            return e["acte"]
+        f = e["fenetre"]
+        chevauche = lambda x: x["fenetre"]["debut"] <= f["fin"] and f["debut"] <= x["fenetre"]["fin"]
+        # D'abord les événements dont la fenêtre chevauche directement celle de l'ajout (audit interne v1.25),
+        # puis le reste de sa composante.
+        directs = sorted({figees[x["id"]] for x in freres[e["evenement"]] if x["id"] in figees and chevauche(x)})
+        if len(directs) > 1:
+            reliees[e["id"]] = directs
+        voisins = directs or sorted(figees[x] for x, g in comp.items() if g == comp[e["id"]] and x in figees)
+        return voisins[0] if voisins else comp[e["id"]]
+    # Actes annoncés comme décidés (relecture 20, N1) : la question n'est pas émise si deux agents distincts, ou
+    # deux passages, ont consigné une annonce datée au plus tard du gel. L'annonce ne résout pas la question.
+    vus_a = {}
+    for a in lire_jsonl("registre/annonces.jsonl"):
+        if a.get("annonce") and a["date_annonce"] <= gel:
+            vus_a.setdefault(a["question"], set()).add((a["agent"], a["emise"][:10]))
+    annoncees = {ev for ev, cles in vus_a.items() if len(cles) >= 2}
     for e in evts:
         if not e["source_accessible"]:
             ecartees.append((e["id"], e["motif_inaccessible"]))
@@ -133,6 +156,9 @@ def generer(gel, etiquette=None):
         if fin <= gel:   # échéance le jour du gel : issue en général déjà publique (audit interne, v1.24)
             continue
         qid = f"Q-{e['id']}"
+        if e["id"] in annoncees:
+            ecartees.append((qid, "acte annoncé comme décidé avant le gel (registre/annonces.jsonl)"))
+            continue
         if qid in resolues:
             ecartees.append((qid, "déjà résolue"))
             continue
@@ -150,6 +176,8 @@ def generer(gel, etiquette=None):
                        "grappe": grappe(e),
                        "texte": f"{e['nom']} : le critère est-il rempli entre le {gel} et le {iso_fin_mois(mois)} ?",
                        "echeance": iso_fin_mois(mois), "fenetre": {"debut": gel, "fin": iso_fin_mois(mois)}})
+    for i, gs in reliees.items():
+        ecartees.append((i, f"ajout reliant plusieurs grappes figées {gs} : grappe {gs[0]} retenue (consigné, non écarté)"))
     return {"cycle": cycle, "gel": gel, "genere_le": maintenant(), "questions": qs,
             "ecartees": [{"objet": o, "motif": m} for o, m in ecartees]}
 

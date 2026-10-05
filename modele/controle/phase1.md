@@ -43,3 +43,7 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [x] Écart de taux OAT-Bund journalier collecté depuis 2010 : TEC 10 (Banque de France) moins Bund 10 ans (Bundesbank, courbe Svensson). Décalage moyen avec la série BCE : environ −9 pb sur 12 mois, corrigé à l'ancrage.
 - [ ] Historique journalier 2010-2025 pour le rétro-test (section 7.1).
 - [ ] Source des sondages de la présidentielle identifiée et collectée (agrégat public ou instituts), avec l'historique des présidentielles 2002 à 2022 pour l'erreur des sondages (section 7.1).
+
+## À examiner au bilan de la phase 1 (relecture 20)
+
+- Contrôle des correspondances P1 : il se fait par événement ; un événement déjà en P1 au premier gel peut y faire passer d'autres questions mensuelles, et les questions de variable ne sont pas couvertes.
