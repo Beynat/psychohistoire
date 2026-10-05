@@ -11,6 +11,8 @@ prévisionniste (consigne v1.1).
 import statistics
 import sys
 
+import commun
+
 from commun import RACINE, lire_json
 from registre import ajouter
 
@@ -58,6 +60,9 @@ if __name__ == "__main__":
     if len(sys.argv) not in (2, 3):
         sys.exit("usage : python scripts/ensemble.py AAAA-MM [registre/<fichier>.jsonl]")
     cible = sys.argv[2] if len(sys.argv) == 3 else "registre/protocole.jsonl"
+    # Rattrapage : une étape déjà faite n'est jamais rejouée (pas de lignes en double au registre).
+    if any(l.get("auteur") == "ensemble direct" and l.get("origine", "").startswith(f"cycle {sys.argv[1]},") for l in commun.lire_jsonl(cible)):
+        sys.exit(f"Les lignes de l'ensemble direct du cycle {sys.argv[1]} sont déjà dans {cible} : étape déjà faite.")
     lignes = agreger(sys.argv[1])
     t = ajouter(cible, lignes)
     print(f"{len(lignes)} lignes de l'ensemble direct ajoutées à {cible}, émises le {t}")
