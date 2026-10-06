@@ -3,27 +3,29 @@
 
 Usage : python scripts/controle_registres.py   (dans la racine d'un dépôt Git)
 Variables d'environnement :
-- BASE : dernier commit déjà contrôlé (déterminé par le workflow à partir de l'historique de ses exécutions) ;
-  à défaut, AVANT (github.event.before), puis HEAD~1.
-- POUSSE_LE : heure de la poussée (horodatage Unix de github.event.repository.pushed_at) ; à défaut, maintenant.
-- ECRIRE_JOURNAL=1 : inscrire les lignes hors fenêtre au journal des contrôles (première tentative d'une
-  exécution déclenchée par une poussée seulement ; jamais pour une relance ni un déclenchement manuel).
-- GITHUB_RUN_ID : numéro d'exécution, recopié dans le journal.
+- JOURNAL_CONTROLES : chemin d'une copie du journal des contrôles (branche « controles », fichier
+  controles.jsonl), lue pour le dernier commit contrôlé et les empreintes déjà inscrites ; absent = journal vide.
+- JOURNAL_NOUVEAU : fichier où écrire les entrées à ajouter au journal (le workflow les pousse sur la branche).
+- AVANT : github.event.before, utilisé seulement si le journal ne contient encore aucun repère.
+- POUSSE_LE : heure de la poussée (github.event.repository.pushed_at, horodatage Unix ou ISO) ; à défaut, maintenant.
+- GITHUB_RUN_ID, GITHUB_RUN_ATTEMPT : recopiés dans le journal.
 
-Vérifie, sur tous les commits de BASE à HEAD (y compris ceux qu'une poussée n'a pas fait contrôler :
-« [skip ci] », poussée par un jeton de workflow) :
+Contrôle tous les commits depuis le dernier repère « controle_jusqua » du journal (le dernier commit contrôlé
+jusqu'au bout), y compris ceux qu'une poussée n'a pas fait contrôler (« [skip ci] », jeton de workflow, exécution
+en attente annulée, exécution échouée avant son inscription) :
 1. fichiers de cycle jamais modifiés ni supprimés ;
 2. registres, jalons, décisions de tri, ajouts à la banque et premières valeurs en ajout seul ;
 3. chaque nouvelle ligne de registre (« emise »), définition de jalon (« defini_le ») et ajout à la banque
-   (« ajoute_le ») datée avec le décalage horaire de Paris à cet instant, dans les deux heures qui précèdent la
-   poussée ; une ligne de registre hors fenêtre, sans fuseau, avec un autre décalage ou illisible est inscrite au
-   journal des contrôles (registre/controles.jsonl), ce qui l'annule pour la notation ;
-4. aucune ligne recopiée à l'identique d'une ligne déjà présente (elle n'est pas inscrite : seule la ligne
-   nouvelle peut l'être, par son empreinte) ;
+   (« ajoute_le ») porte le décalage horaire de Paris à cet instant et est datée dans les deux heures qui
+   précèdent la poussée ; une ligne de registre hors fenêtre, sans fuseau, avec un autre décalage ou illisible est
+   inscrite au journal par l'empreinte de sa ligne brute, ce qui l'écarte de toute lecture des registres ;
+4. aucune ligne recopiée à l'identique d'une ligne déjà présente (elle n'est pas inscrite) ;
 5. aucune seconde prévision d'un même cycle pour un auteur et une question (relecture 21, I1) ;
-6. fichiers écrits par les workflows (registre/controles.jsonl, data/premieres_valeurs.jsonl) modifiés
-   seulement par des commits de ces workflows.
-Le contrôle est détectif : un échec est public.
+6. data/premieres_valeurs.jsonl modifié seulement par la collecte ; aucun fichier registre/controles.jsonl sur main.
+Toute erreur de lecture d'une ligne la rend « illisible », sans interrompre le contrôle. En fin de contrôle, un
+repère « controle_jusqua » est écrit, même en cas d'anomalie : la plage a été contrôlée et ses anomalies inscrites.
+Le contrôle est détectif : un échec est public. Il ne protège pas contre une manœuvre délibérée de l'opérateur
+(noyau, section 12, « Limites du contrôle »), qui reste visible dans l'historique public.
 """
 import hashlib
 import json
@@ -35,13 +37,12 @@ from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 PARIS = ZoneInfo("Europe/Paris")
-JOURNAL = "registre/controles.jsonl"
-ECRITS_PAR_WORKFLOW = {JOURNAL: "controle-psychohistoire", "data/premieres_valeurs.jsonl": "collecte-psychohistoire"}
+ECRITS_PAR_WORKFLOW = {"data/premieres_valeurs.jsonl": "collecte-psychohistoire"}
 SUIVIS = ("registre/", "modele/jalons/", "data/tri/", "modele/banque/ajouts.jsonl", "data/premieres_valeurs.jsonl")
 
 
 def git(*a):
-    return subprocess.run(["git", *a], capture_output=True, text=True).stdout
+    return subprocess.run(["git", *a], capture_output=True).stdout.decode("utf-8", errors="replace")
 
 
 def empreinte(brut):
@@ -49,42 +50,66 @@ def empreinte(brut):
 
 
 def lire_journal():
-    """Lecture tolérante : une ligne illisible ou incomplète est ignorée (audit interne v1.27, B2)."""
+    """Lecture tolérante du journal : une ligne illisible ou incomplète est ignorée."""
+    chemin = os.environ.get("JOURNAL_CONTROLES")
     sortie = []
-    if os.path.exists(JOURNAL):
-        for brut in open(JOURNAL, encoding="utf-8").read().splitlines():
+    if chemin and os.path.exists(chemin):
+        for brut in open(chemin, encoding="utf-8", errors="replace").read().split("\n"):
             try:
                 x = json.loads(brut)
             except Exception:
                 continue
-            if isinstance(x, dict) and x.get("fichier") and x.get("empreinte"):
+            if isinstance(x, dict):
                 sortie.append(x)
     return sortie
+
+
+def base_controlee(journal):
+    """Dernier repère « controle_jusqua » du journal qui est un ancêtre de HEAD ; à défaut, AVANT, puis HEAD~1."""
+    for e in reversed(journal):
+        sha = e.get("controle_jusqua")
+        if sha and subprocess.run(["git", "merge-base", "--is-ancestor", sha, "HEAD"], capture_output=True).returncode == 0:
+            return sha
+    avant = os.environ.get("AVANT", "")
+    if avant and set(avant) != {"0"} and not subprocess.run(["git", "cat-file", "-e", avant + "^{commit}"],
+                                                             capture_output=True).returncode:
+        print("::warning::Aucun repère au journal des contrôles : contrôle depuis github.event.before.")
+        return avant
+    return git("rev-parse", "HEAD~1").strip()
+
+
+def heure_poussee():
+    v = os.environ.get("POUSSE_LE", "")
+    if v.isdigit():
+        return datetime.fromtimestamp(int(v), timezone.utc)
+    try:
+        return datetime.fromisoformat(v.replace("Z", "+00:00"))
+    except Exception:
+        return datetime.now(timezone.utc)
 
 
 def date_conforme(valeur):
     """Renvoie (datetime, motif d'écart ou None). L'horodatage doit porter le décalage de Paris à cet instant."""
     try:
         e = datetime.fromisoformat(str(valeur))
-    except Exception:
+        if e.tzinfo is None:
+            return e, "sans fuseau horaire"
+        if e.utcoffset() != e.astimezone(PARIS).utcoffset():
+            return e, f"décalage {e.utcoffset()} différent de celui de Paris"
+        return e, None
+    except Exception:   # chaîne illisible, année hors bornes (audit interne v1.27)
         return None, "illisible"
-    if e.tzinfo is None:
-        return e, "sans fuseau horaire"
-    if e.utcoffset() != e.astimezone(PARIS).utcoffset():
-        return e, f"décalage {e.utcoffset()} différent de celui de Paris"
-    return e, None
 
 
 def controler():
-    base = os.environ.get("BASE") or os.environ.get("AVANT", "")
-    if not base or set(base) == {"0"} or subprocess.run(["git", "cat-file", "-e", base + "^{commit}"],
-                                                        capture_output=True).returncode:
-        base = git("rev-parse", "HEAD~1").strip()
-    pousse = os.environ.get("POUSSE_LE")
-    debut = datetime.fromtimestamp(int(pousse), timezone.utc) if pousse else datetime.now(timezone.utc)
+    journal = lire_journal()
+    base = base_controlee(journal)
+    debut = heure_poussee()
     erreurs, hors = [], []
 
-    # 6. Fichiers écrits par les workflows : seuls leurs commits les modifient.
+    # 6. Fichiers écrits par les workflows : seuls leurs commits les modifient ; le journal vit sur sa branche.
+    if os.path.exists("registre/controles.jsonl"):
+        erreurs.append("registre/controles.jsonl présent sur main : le journal des contrôles vit sur la branche « controles »")
     for f, bot in ECRITS_PAR_WORKFLOW.items():
         for l in git("log", "--format=%H\t%an", f"{base}..HEAD", "--", f).splitlines():
             h, auteur = l.split("\t", 1)
@@ -101,12 +126,12 @@ def controler():
         if statut.startswith("D"):
             erreurs.append(f"{f} : fichier supprimé ou renommé")
             continue
-        diff = git("diff", "--no-renames", "--unified=0", base, "HEAD", "--", f).splitlines()
+        diff = git("diff", "--no-renames", "--unified=0", base, "HEAD", "--", f).split("\n")
         if [l for l in diff if l.startswith("-") and not l.startswith("---")]:
             erreurs.append(f"{f} : ligne(s) supprimée(s) ou réécrite(s)")
         ajoutees = [l[1:] for l in diff if l.startswith("+") and not l.startswith("+++")]
-        avant = set(git("show", f"{base}:{f}").splitlines()) if statut.startswith("M") else set()
-        registre = f.startswith("registre/") and f.endswith(".jsonl") and f != JOURNAL
+        avant = set(git("show", f"{base}:{f}").split("\n")) if statut.startswith("M") else set()
+        registre = f.startswith("registre/") and f.endswith(".jsonl") and f != "registre/controles.jsonl"
         champ = "emise" if registre else "defini_le" if f == "modele/jalons/definitions.jsonl" else \
                 "ajoute_le" if f == "modele/banque/ajouts.jsonl" else None
         for brut in ajoutees:
@@ -117,7 +142,8 @@ def controler():
                 continue
             try:
                 x = json.loads(brut)
-                valeur = x[champ]
+                valeur = x[champ] if isinstance(x, dict) else None
+                x = x if isinstance(x, dict) else {}
             except Exception:
                 x, valeur = {}, None
             e, ecart = date_conforme(valeur)
@@ -133,7 +159,7 @@ def controler():
         # 5. Une seule prévision de cycle par auteur, question et cycle.
         if registre:
             nouvelles, vus = set(ajoutees), set()
-            for brut in open(f, encoding="utf-8").read().splitlines():
+            for brut in open(f, encoding="utf-8", errors="replace").read().split("\n"):
                 try:
                     x = json.loads(brut)
                 except Exception:
@@ -148,16 +174,43 @@ def controler():
                     erreurs.append(f"{f} : seconde prévision du cycle {cle[2]} pour {cle[0]}, {cle[1]}")
                 vus.add(cle)
 
-    if hors and os.environ.get("ECRIRE_JOURNAL") == "1":
-        connues = {(j["fichier"], j["empreinte"]) for j in lire_journal()}
-        with open(JOURNAL, "a", encoding="utf-8") as fj:
-            for h in hors:
-                if (h["fichier"], h["empreinte"]) not in connues:
-                    fj.write(json.dumps(h, ensure_ascii=False) + "\n")
+    # Entrées à ajouter au journal : lignes hors fenêtre non encore inscrites, puis le repère de fin de contrôle.
+    connues = {(j.get("fichier"), j.get("empreinte")) for j in journal}
+    run = {"execution": os.environ.get("GITHUB_RUN_ID", ""), "tentative": os.environ.get("GITHUB_RUN_ATTEMPT", ""),
+           "detecte_le": debut.isoformat(timespec="seconds")}
+    nouveau = [{**h, **run} for h in hors if (h["fichier"], h["empreinte"]) not in connues]
+    nouveau.append({"controle_jusqua": git("rev-parse", "HEAD").strip(), "depuis": base, **run})
+    if os.environ.get("JOURNAL_NOUVEAU"):
+        with open(os.environ["JOURNAL_NOUVEAU"], "w", encoding="utf-8") as fj:
+            fj.write("".join(json.dumps(x, ensure_ascii=True) + "\n" for x in nouveau))
     return erreurs, hors
 
 
+def inscrire(chemin):
+    """Ajoute au journal (fichier de la branche « controles ») les entrées de JOURNAL_NOUVEAU, en ajout seul,
+    sans réinscrire une empreinte déjà présente (une relance n'inscrit rien deux fois)."""
+    deja = open(chemin, encoding="utf-8", errors="replace").read() if os.path.exists(chemin) else ""
+    cles = set()
+    for l in deja.split("\n"):
+        try:
+            x = json.loads(l)
+            cles.add((x.get("fichier"), x.get("empreinte")))
+        except Exception:
+            pass
+    with open(chemin, "a", encoding="utf-8") as f:
+        if deja and not deja.endswith("\n"):
+            f.write("\n")
+        for l in open(os.environ["JOURNAL_NOUVEAU"], encoding="utf-8").read().split("\n"):
+            if l.strip():
+                x = json.loads(l)
+                if x.get("controle_jusqua") or (x.get("fichier"), x.get("empreinte")) not in cles:
+                    f.write(l + "\n")
+
+
 if __name__ == "__main__":
+    if len(sys.argv) == 3 and sys.argv[1] == "--inscrire":
+        inscrire(sys.argv[2])
+        sys.exit(0)
     erreurs, hors = controler()
     for x in erreurs:
         print(f"::error::{x}")

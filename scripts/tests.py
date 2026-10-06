@@ -513,6 +513,15 @@ print(json.dumps([e["auteur"] for e in b["exclues"] if e["question"] == "Q-EV-15
         (tmp / "registre/annonces.jsonl").write_text(json.dumps({"annonce": True, "question": "EV-15", "date_annonce": "2026-11-02",
             "source": "s", "agent": "agent-1", "emise": "2027-01-20T08:00:00+01:00"}) + chr(10))
         assert json.loads(run("-c", code).strip().splitlines()[-1]) == []
+        # Audit interne v1.27 : une annonce inscrite au journal des contrôles (poussée hors fenêtre) est écartée.
+        import hashlib
+        brut = json.dumps({"annonce": True, "question": "EV-15", "date_annonce": "2026-11-02", "source": "s",
+                           "agent": "agent-1", "emise": "2026-11-03T08:00:00+01:00"})
+        (tmp / "registre/annonces.jsonl").write_text(brut + chr(10))
+        assert json.loads(run("-c", code).strip().splitlines()[-1]) == ["ensemble direct"]
+        (tmp / "registre/controles.jsonl").write_text(json.dumps({"fichier": "registre/annonces.jsonl",
+            "empreinte": hashlib.sha256(brut.encode()).hexdigest()}) + chr(10))
+        assert json.loads(run("-c", code).strip().splitlines()[-1]) == []
     finally:
         shutil.rmtree(tmp.parent)
 
@@ -571,58 +580,71 @@ print(json.dumps({"auteurs": sorted(b["auteurs"]), "motifs": [e["motif"] for e i
 
 
 def test_controle_registres():
-    """Suivi 22, N1, et audit interne v1.27 (B1 à B5) : contrôle à la poussée sur un dépôt Git jetable."""
+    """Suivi 22, N1, et audits internes v1.27 : contrôle à la poussée sur un dépôt Git jetable, journal sur fichier
+    à part (branche « controles » en production), repère « controle_jusqua »."""
     import subprocess, os, hashlib
     from datetime import datetime, timedelta
     from zoneinfo import ZoneInfo
     script = Path(__file__).resolve().parent / "controle_registres.py"
     tmp = Path(tempfile.mkdtemp())
-    g = lambda *a, auteur="agent": subprocess.run(["git", "-c", f"user.name={auteur}", "-c", "user.email=a@b", *a], cwd=tmp,
+    depot, journal, nouveau = tmp / "d", tmp / "controles.jsonl", tmp / "nouveau.jsonl"
+    depot.mkdir()
+    g = lambda *a, auteur="agent": subprocess.run(["git", "-c", f"user.name={auteur}", "-c", "user.email=a@b", *a], cwd=depot,
                                                   capture_output=True, text=True).stdout.strip()
     maintenant = datetime.now(ZoneInfo("Europe/Paris")).replace(microsecond=0)
     L = lambda q, t, auteur="modèle": json.dumps({"question": q, "probabilites": {"oui": 50, "non": 50}, "auteur": auteur,
                                                   "origine": "cycle 2026-11", "emise": t})
-    def pousser(lignes, auteur="agent", f="registre/protocole.jsonl"):
-        (tmp / f).parent.mkdir(parents=True, exist_ok=True)
-        with (tmp / f).open("a") as h:
-            h.write("".join(x + "\n" for x in lignes))
+    def pousser(lignes, auteur="agent", f="registre/protocole.jsonl", binaire=False):
+        (depot / f).parent.mkdir(parents=True, exist_ok=True)
+        with (depot / f).open("ab") as h:
+            h.write(lignes if binaire else "".join(x + "\n" for x in lignes).encode())
         g("add", "-A"); g("commit", "-qm", "c", auteur=auteur)
-    def controler(base):
-        env = {**os.environ, "BASE": base, "ECRIRE_JOURNAL": "1", "GITHUB_RUN_ID": "7",
-               "POUSSE_LE": str(int(maintenant.timestamp()))}
-        r = subprocess.run([sys.executable, str(script)], cwd=tmp, env=env, capture_output=True, text=True)
-        j = tmp / "registre/controles.jsonl"
-        journal = [json.loads(x) for x in j.read_text().splitlines()] if j.exists() else []
-        return r.returncode, r.stdout, journal
+    def controler(avant=""):
+        env = {**os.environ, "AVANT": avant, "JOURNAL_CONTROLES": str(journal), "JOURNAL_NOUVEAU": str(nouveau),
+               "GITHUB_RUN_ID": "7", "POUSSE_LE": str(int(maintenant.timestamp()))}
+        r = subprocess.run([sys.executable, str(script)], cwd=depot, env=env, capture_output=True, text=True)
+        subprocess.run([sys.executable, str(script), "--inscrire", str(journal)], cwd=depot, env=env, check=True)
+        j = [json.loads(x) for x in journal.read_text().splitlines() if x.strip()]
+        return r.returncode, r.stdout + r.stderr, [x for x in j if x.get("empreinte")]
+    h = lambda x: hashlib.sha256(x.encode()).hexdigest()
     try:
         g("init", "-q")
         a_l_heure = L("Q1", maintenant.isoformat())
         pousser([a_l_heure]); b0 = g("rev-parse", "HEAD")
-        pousser([L("Q2", maintenant.isoformat())]); b1 = g("rev-parse", "HEAD")
+        pousser([L("Q2", maintenant.isoformat())])
         code, out, j = controler(b0)
         assert code == 0 and not j, out
-        # Ligne tardive : inscrite par son empreinte. Copie d'une ligne régulière (même texte) : signalée, non inscrite.
+        # Ligne tardive : inscrite par son empreinte. Copie d'une ligne régulière : signalée, non inscrite.
         tardive = L("Q3", (maintenant - timedelta(days=12)).isoformat())
         pousser([tardive, a_l_heure])
-        code, out, j = controler(b1)
-        assert code == 1 and "recopiée" in out and [x["empreinte"] for x in j] == [hashlib.sha256(tardive.encode()).hexdigest()], (out, j)
-        # Décalage autre que celui de Paris, ou sans fuseau : inscrite, même dans la fenêtre (audit v1.27, B3).
-        b2 = g("rev-parse", "HEAD")
+        code, out, j = controler()
+        assert code == 1 and "recopiée" in out and [x["empreinte"] for x in j] == [h(tardive)], (out, j)
+        # Inscription rejouée (journal lu avant une autre écriture, relance) : rien n'est inscrit deux fois.
+        subprocess.run([sys.executable, str(script), "--inscrire", str(journal)], cwd=depot,
+                       env={**os.environ, "JOURNAL_NOUVEAU": str(nouveau)}, check=True)
+        j = [json.loads(x) for x in journal.read_text().splitlines() if x.strip()]
+        assert [x["empreinte"] for x in j if x.get("empreinte")] == [h(tardive)], j
+        # Décalage autre que celui de Paris, ou sans fuseau : inscrites, même dans la fenêtre.
         decalee = L("Q4", maintenant.astimezone(ZoneInfo("Pacific/Kiritimati")).isoformat())
-        pousser([decalee, L("Q5", maintenant.replace(tzinfo=None).isoformat())])
-        code, out, j = controler(b2)
-        assert code == 1 and len(j) == 3, (out, j)
-        # Commit non contrôlé (« [skip ci] ») : couvert depuis le dernier commit contrôlé (audit v1.27, B5).
-        b3 = g("rev-parse", "HEAD")
+        sans = L("Q5", maintenant.replace(tzinfo=None).isoformat())
+        pousser([decalee, sans])
+        code, out, j = controler()
+        assert code == 1 and {h(decalee), h(sans)} <= {x["empreinte"] for x in j}, (out, j)
+        # Commits non contrôlés (« [skip ci] », exécution interrompue) : couverts depuis le dernier repère.
         sautee = L("Q6", (maintenant - timedelta(hours=5)).isoformat())
         pousser([sautee]); pousser([L("Q7", maintenant.isoformat())])
-        code, out, j = controler(b3)
-        assert hashlib.sha256(sautee.encode()).hexdigest() in {x["empreinte"] for x in j}, (out, j)
-        # Journal modifié par un autre que le workflow : signalé (audit v1.27, B2).
-        b4 = g("rev-parse", "HEAD")
+        code, out, j = controler()
+        assert h(sautee) in {x["empreinte"] for x in j}, (out, j)
+        # Lignes « poison » (octet non UTF-8, année hors bornes) : illisibles, inscrites, sans interrompre le contrôle.
+        poison = L("Q8", "9999-12-31T23:59:59-23:59")
+        pousser(b"\xff\xfe{\n" + (poison + "\n").encode() + (L("Q9", (maintenant - timedelta(days=3)).isoformat()) + "\n").encode(), binaire=True)
+        code, out, j = controler()
+        assert "Traceback" not in out and h(poison) in {x["empreinte"] for x in j}, (out, j)
+        # Premières valeurs modifiées par un autre que la collecte ; journal présent sur main : signalés.
+        pousser(['{"serie": "x"}'], f="data/premieres_valeurs.jsonl")
         pousser(['{"note": "x"}'], f="registre/controles.jsonl")
-        code, out, j = controler(b4)
-        assert code == 1 and "et non par le workflow" in out, out
+        code, out, j = controler()
+        assert code == 1 and "et non par le workflow" in out and "branche « controles »" in out, out
     finally:
         shutil.rmtree(tmp)
 
@@ -636,7 +658,26 @@ def test_registre():
                                                "piste": "protocole", "phase": 1, "origine": "test", "donnees": "test"}])
         registre.valider({"erratum": True, "objet": {"question": "Q", "auteur": "modèle", "emise": "x"},
                           "correction": {"annulee": True}, "motif": "m", "piste": "protocole"})
-        l = json.loads((tmp / "registre/t.jsonl").read_text())
+        # Audit interne v1.27 : U+2028 dans un champ ne coupe pas la ligne à la relecture.
+        registre.ajouter("registre/t.jsonl", [{"question": "Q", "probabilites": {"oui": 60, "non": 40}, "piste": "protocole",
+                                               "phase": 1, "origine": "test", "donnees": "a\u2028b\u0085c"}])
+        ancien_c = commun.RACINE
+        commun.RACINE = tmp
+        try:
+            lues = commun.lire_jsonl("registre/t.jsonl")
+        finally:
+            commun.RACINE = ancien_c
+        assert len(lues) == 2 and lues[1]["donnees"] == "a\u2028b\u0085c", lues
+        # Ligne écrite avec un U+2028 littéral (sans échappement) : lue en une seule ligne.
+        with (tmp / "registre/t.jsonl").open("a", encoding="utf-8") as f:
+            f.write(json.dumps({"question": "Q", "source": "x\u2028y"}, ensure_ascii=False) + "\n")
+        commun.RACINE = tmp
+        try:
+            lues = commun.lire_jsonl("registre/t.jsonl")
+        finally:
+            commun.RACINE = ancien_c
+        assert len(lues) == 3 and lues[2]["source"] == "x\u2028y", lues
+        l = json.loads((tmp / "registre/t.jsonl").read_text().split("\n")[0])
         assert l["emise"].endswith("+02:00") or l["emise"].endswith("+01:00")
         for mauvaise in ({"question": "Q", "probabilites": {"oui": 60, "non": 40}, "piste": "protocole", "origine": "o",
                           "donnees": "d"},                                   # phase manquante

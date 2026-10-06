@@ -63,7 +63,7 @@ def deja_tries():
     tries = set()
     for f in TRI.glob("*.json*"):
         if f.suffix == ".jsonl":
-            tries |= {json.loads(l).get("lien") for l in f.read_text("utf-8").splitlines() if l.strip()}
+            tries |= {json.loads(l).get("lien") for l in f.read_text("utf-8").split("\n") if l.strip()}
         else:
             tries |= set(json.loads(f.read_text("utf-8")).get("decides", []))
     tries.discard(None)
@@ -133,7 +133,7 @@ def ajouter():
     f = TRI / f"{passage[:7]}.jsonl"
     with f.open("a", encoding="utf-8") as h:
         for x in lignes:
-            h.write(json.dumps(x, ensure_ascii=False) + "\n")
+            h.write(json.dumps(x, ensure_ascii=True) + "\n")
     r = sum(x["decision"] != "non rattaché" for x in lignes)
     print(f"{len(lignes)} décisions ajoutées à {f.relative_to(RACINE)} ({r} rattachées), passage {passage}")
 
@@ -156,7 +156,7 @@ def etape():
         lignes.append({**d, "stade": ETAPES[d["etape"]], "verifie_le": passage})
     with f.open("a", encoding="utf-8") as h:
         for x in lignes:
-            h.write(json.dumps(x, ensure_ascii=False) + "\n")
+            h.write(json.dumps(x, ensure_ascii=True) + "\n")
     print(f"{len(lignes)} vérification(s) d'étape ajoutée(s) à {f.relative_to(RACINE)}")
 
 
@@ -168,7 +168,7 @@ def stades_retenus():
     f = TRI / "etapes.jsonl"
     par = {}
     if f.exists():
-        for l in f.read_text("utf-8").splitlines():
+        for l in f.read_text("utf-8").split("\n"):
             if l.strip():
                 d = json.loads(l)
                 par.setdefault((d["fait"], d["etape"]), {}).setdefault(d["agent"], d["date_fait"])
@@ -190,7 +190,7 @@ def decisions_statut():
     f = TRI / "statuts.jsonl"
     out = {}
     if f.exists():
-        for l in f.read_text("utf-8").splitlines():
+        for l in f.read_text("utf-8").split("\n"):
             if l.strip():
                 d = json.loads(l)
                 out.setdefault(d["fait"], []).append(d)
@@ -206,7 +206,7 @@ def reprise(aujourdhui=None):
     for f in sorted(TRI.glob("*.jsonl")):
         if f.name in ("etapes.jsonl", "statuts.jsonl"):
             continue
-        for l in f.read_text("utf-8").splitlines():
+        for l in f.read_text("utf-8").split("\n"):
             if not l.strip():
                 continue
             d = json.loads(l)
@@ -225,7 +225,7 @@ def reprise(aujourdhui=None):
     natures = {}
     fe = TRI / "etapes.jsonl"
     if fe.exists():
-        for l in fe.read_text("utf-8").splitlines():
+        for l in fe.read_text("utf-8").split("\n"):
             if l.strip() and "nature" in json.loads(l) and json.loads(l)["fait"] in stades:   # étape judiciaire vérifiée
                 natures[json.loads(l)["fait"]] = json.loads(l)["nature"]
     sortie = {}
@@ -288,7 +288,7 @@ def reprise(aujourdhui=None):
     if nouvelles_decisions:
         with (TRI / "statuts.jsonl").open("a", encoding="utf-8") as h:
             for x in nouvelles_decisions:
-                h.write(json.dumps({**x, "decide_le": auj.isoformat()}, ensure_ascii=False) + "\n")
+                h.write(json.dumps({**x, "decide_le": auj.isoformat()}, ensure_ascii=True) + "\n")
     (RACINE / "data" / "reprise.json").write_text(json.dumps(
         {"description": "Reprise et statut des faits (annexe, sections 11.2 et 11.3) : descriptif, sans effet sur les probabilités. Sept flux suivis (franceinfo, Le Monde, LCP, Public Sénat, Le Figaro, Libération, Mediapart). Stade retenu : « allégation » sauf étape officielle vérifiée par deux agents ; la nature n'est publiée qu'avec une étape vérifiée, jamais « vie privée ».",
          "etabli_le": auj.isoformat(), "faits": sortie}, ensure_ascii=False, indent=1), "utf-8")

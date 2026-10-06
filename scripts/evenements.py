@@ -51,7 +51,7 @@ def construire():
     ref = json.loads((RACINE / "modele/banque/criteres.json").read_text("utf-8"))
     # Ajouts en cours de phase (noyau, section 8.8) : une ligne par événement, en ajout seul.
     f = RACINE / "modele/banque/ajouts.jsonl"
-    ajouts = [json.loads(l) for l in f.read_text("utf-8").splitlines() if l.strip()] if f.exists() else []
+    ajouts = [json.loads(l) for l in f.read_text("utf-8").split("\n") if l.strip()] if f.exists() else []
     ctx = contexte_v1()
     evts = []
     for e in ref["evenements"] + ajouts:

@@ -90,7 +90,7 @@ def controler():
                 erreurs.append(f"{copie} : empreinte différente de celle du manifeste")
     base = [e["id"] for e in lire_json("modele/banque/criteres.json")["evenements"]]
     f = RACINE / "modele/banque/ajouts.jsonl"
-    ajouts = [json.loads(l) for l in f.read_text("utf-8").splitlines() if l.strip()] if f.exists() else []
+    ajouts = [json.loads(l) for l in f.read_text("utf-8").split("\n") if l.strip()] if f.exists() else []
     ids = base + [a.get("id") for a in ajouts]
     doublons = sorted({i for i in ids if ids.count(i) > 1})
     if doublons:

@@ -19,7 +19,7 @@ JOURNAL = RACINE / "data" / "premieres_valeurs.jsonl"
 def lire():
     vus = {}
     if JOURNAL.exists():
-        for l in JOURNAL.read_text("utf-8").splitlines():
+        for l in JOURNAL.read_text("utf-8").split("\n"):
             if l.strip():
                 d = json.loads(l)
                 vus.setdefault((d["serie"], d["periode"]), d)
@@ -41,7 +41,7 @@ def mettre_a_jour(maintenant=None):
     if neuves:
         with JOURNAL.open("a", encoding="utf-8") as f:
             for d in neuves:
-                f.write(json.dumps(d, ensure_ascii=False) + "\n")
+                f.write(json.dumps(d, ensure_ascii=True) + "\n")
     return neuves
 
 

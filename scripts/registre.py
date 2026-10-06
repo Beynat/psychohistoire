@@ -73,7 +73,7 @@ def ajouter(chemin, lignes):
     cible.parent.mkdir(parents=True, exist_ok=True)
     with cible.open("a", encoding="utf-8") as f:
         for l in lignes:
-            f.write(json.dumps({**l, "emise": t}, ensure_ascii=False) + "\n")
+            f.write(json.dumps({**l, "emise": t}, ensure_ascii=True) + "\n")   # U+2028 et voisins échappés (audit v1.27)
     return t
 
 

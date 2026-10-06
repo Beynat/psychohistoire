@@ -26,6 +26,7 @@ import sys
 from datetime import date, timedelta
 
 from commun import ecrire_json, lire_jsonl, log_score, maintenant
+import commun as commun_mod
 from resolution import cycles_du_registre, resolutions_effectives, suffixe, toutes_les_questions
 
 
@@ -155,42 +156,14 @@ def etiquette_cycle(l):
     return o[1].rstrip(",") if len(o) >= 2 and o[0] == "cycle" else None
 
 
-def lire_jsonl_tolerant(chemin):
-    """Lecture qui ignore les lignes illisibles (journal des contrôles ; audit interne v1.27, B2)."""
-    import json
-    from commun import RACINE
-    p, sortie = RACINE / chemin, []
-    for brut in (p.read_text("utf-8").splitlines() if p.exists() else []):
-        try:
-            sortie.append(json.loads(brut))
-        except Exception:
-            pass
-    return sortie
-
-
-def lire_registre(reg):
-    """Lignes du registre, chacune avec l'empreinte SHA-256 de sa ligne brute (« _empreinte »)."""
-    import hashlib
-    import json
-    from commun import RACINE
-    p = RACINE / reg
-    sortie = []
-    for brut in (p.read_text("utf-8").splitlines() if p.exists() else []):
-        if brut.strip():
-            sortie.append({**json.loads(brut), "_empreinte": hashlib.sha256(brut.encode("utf-8")).hexdigest()})
-    return sortie
-
-
 def annulations(lignes, exclues=None, reg="registre/protocole.jsonl"):
-    """Empreintes des lignes annulées (relecture 21, B1 ; suivi 22, N1 ; audit interne v1.27, B1). L'annulation est
-    mécanique : le workflow « Contrôle des registres » inscrit au journal des contrôles (registre/controles.jsonl)
-    l'empreinte de chaque ligne poussée hors de sa fenêtre, et seule la ligne de cette empreinte est annulée, sans
-    délai ni décision prise après l'issue ; une copie d'une ligne régulière ne peut pas l'annuler. Un erratum
-    d'annulation n'a d'effet que s'il vise une ligne inscrite ; sinon il est ignoré et publié."""
-    inscrites = set()
-    for c in lire_jsonl_tolerant("registre/controles.jsonl"):
-        if isinstance(c, dict) and c.get("fichier") == reg and c.get("empreinte"):
-            inscrites.add(c["empreinte"])
+    """Empreintes des lignes annulées (relecture 21, B1 ; suivi 22, N1 ; audits internes v1.27). L'annulation est
+    mécanique : le workflow « Contrôle des registres » inscrit au journal des contrôles l'empreinte de chaque ligne
+    poussée hors de sa fenêtre, et seule la ligne de cette empreinte est annulée, sans délai ni décision prise
+    après l'issue ; une copie d'une ligne régulière ne peut pas l'annuler. Un erratum d'annulation n'a d'effet que
+    s'il vise une ligne inscrite ; sinon il est ignoré et publié."""
+    import commun
+    inscrites = commun.empreintes_inscrites(reg)
     cle = {l["_empreinte"]: (l.get("question"), l.get("auteur", "modèle"), l.get("emise")) for l in lignes if "_empreinte" in l}
     cles_inscrites = {cle[e] for e in inscrites if e in cle}
     for e in lignes:
@@ -213,10 +186,10 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
     # Questions échues à la date du test sans résolution ni annulation (relecture 17, I4) : publiées, pour
     # que la sélection par le délai de résolution reste visible.
     echues_ouvertes = sorted(q for q, v in qs.items() if v["echeance"] <= aujourdhui and q not in toutes)
-    lignes_reg = lire_registre(reg)
+    lignes_reg = lire_jsonl(reg, empreintes=True, garder_inscrites=True)
     exclues = []
     # Annulations (relecture 21, B1 ; suivi 22, N1) : lignes inscrites par le workflow au journal des contrôles
-    # (registre/controles.jsonl) comme poussées hors fenêtre. Appliquées avant tout calcul, publiées.
+    # (branche « controles ») comme poussées hors fenêtre. Appliquées avant tout calcul, publiées.
     annulees = annulations(lignes_reg, exclues, reg)
     prev = {}
     for l in lignes_reg:
@@ -291,7 +264,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
     import json as _json
     from commun import RACINE
     fa = RACINE / "modele/banque/ajouts.jsonl"
-    ajoutes = {_json.loads(l)["id"] for l in fa.read_text("utf-8").splitlines() if l.strip()} if fa.exists() else set()
+    ajoutes = {_json.loads(l)["id"] for l in fa.read_text("utf-8").split("\n") if l.strip()} if fa.exists() else set()
     evenement = lambda qid: (qs[qid].get("details") or {}).get("evenement") or qid.removeprefix("Q-")
     echue = lambda qid: qs[qid]["echeance"] <= aujourdhui
     par_auteur = {}
@@ -427,7 +400,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
     sortie = {"etabli_le": maintenant(), "registre": reg, "reference": reference,
               "questions_resolues": len(res), "auteurs": par_auteur, "comparaisons": comparaisons,
               "date_du_test": aujourdhui, "echues_non_resolues": echues_ouvertes,
-              "bilan_8_6_modele": bilan_8_6, "exclues": exclues}
+              "bilan_8_6_modele": bilan_8_6, "exclues": exclues, "lignes_illisibles": list(commun_mod.ILLISIBLES)}
     ecrire_json(f"data/bilans/bilan{sfx}_{aujourdhui}.json", sortie)
     return sortie
 

@@ -1,14 +1,16 @@
 name: Contrôle des registres
 
 # Protocole, sections 0, 8.8 et 12. Logique dans scripts/controle_registres.py (testée par scripts/tests.py).
-# Contrôle tous les commits depuis le dernier commit contrôlé (historique des exécutions de ce workflow), y compris
-# ceux qu'une poussée n'a pas fait contrôler. Les lignes de registre poussées hors fenêtre, sans fuseau ou avec un
-# autre décalage que celui de Paris sont inscrites au journal des contrôles (registre/controles.jsonl), ce qui les
-# annule pour la notation. Le contrôle est détectif : un échec est public.
+# Contrôle tous les commits de main depuis le dernier repère du journal des contrôles. Le journal vit sur la
+# branche « controles » (fichier controles.jsonl), écrite par ce seul workflow : il y inscrit l'empreinte de chaque
+# ligne de registre poussée hors fenêtre, sans fuseau, avec un autre décalage que celui de Paris ou illisible
+# (ce qui l'écarte de toute lecture des registres), puis un repère « controle_jusqua ». Une poussée directe sur la
+# branche « controles » déclenche ce workflow, et seulement elle (les écritures du workflow ne le déclenchent pas) :
+# elle est signalée en échec. Le contrôle est détectif : un échec est public.
 
 on:
   push:
-    branches: [main]
+    branches: [main, controles]
   workflow_dispatch: {}
 
 concurrency:
@@ -16,52 +18,65 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write   # inscription au journal des contrôles
-  actions: read     # dernier commit contrôlé
+  contents: write   # écriture de la branche « controles »
 
 jobs:
   ajout-seul:
     runs-on: ubuntu-latest
     steps:
+      - name: Poussée directe sur la branche du journal
+        if: github.ref == 'refs/heads/controles'
+        run: |
+          echo "::error::La branche « controles » a été modifiée par une poussée ($GITHUB_SHA), et non par le workflow."
+          exit 1
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Dernier commit contrôlé
-        env:
-          GH_TOKEN: ${{ github.token }}
-          AVANT: ${{ github.event.before }}
+      - name: Journal des contrôles
         run: |
-          # Exécution terminée (réussie ou en échec, pas annulée) la plus récente d'une poussée, hors celle-ci.
-          base=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/controle-registres.yml/runs?event=push&status=completed&per_page=30" \
-                 --jq "[.workflow_runs[] | select(.id != ${GITHUB_RUN_ID} and (.conclusion == \"success\" or .conclusion == \"failure\"))][0].head_sha // empty" || true)
-          if [ -z "$base" ] || ! git merge-base --is-ancestor "$base" HEAD; then
-            echo "::warning::Dernier commit contrôlé introuvable : contrôle depuis github.event.before."
-            base="$AVANT"
+          set +e
+          git ls-remote --exit-code origin controles > /dev/null
+          code=$?
+          set -e
+          if [ "$code" = "0" ]; then
+            git fetch -q origin controles:refs/remotes/origin/controles
+            git show origin/controles:controles.jsonl > "$RUNNER_TEMP/journal.jsonl"
+          elif [ "$code" = "2" ]; then
+            : > "$RUNNER_TEMP/journal.jsonl"
+          else
+            echo "::error::Branche « controles » inaccessible"; exit 1
           fi
-          echo "BASE=$base" >> "$GITHUB_ENV"
-      - name: Ajout seul, horodatage, journal des contrôles
+          echo "JOURNAL_CONTROLES=$RUNNER_TEMP/journal.jsonl" >> "$GITHUB_ENV"
+          echo "JOURNAL_NOUVEAU=$RUNNER_TEMP/nouveau.jsonl" >> "$GITHUB_ENV"
+      - name: Ajout seul, horodatage, lignes à inscrire
         env:
+          AVANT: ${{ github.event.before }}
           POUSSE_LE: ${{ github.event.repository.pushed_at }}
-          ECRIRE_JOURNAL: ${{ github.event_name == 'push' && github.run_attempt == '1' && '1' || '0' }}
         run: python3 scripts/controle_registres.py
       - name: Inscription au journal des contrôles
-        if: always() && github.event_name == 'push' && github.run_attempt == '1'
+        # Toute exécution déclenchée par une poussée sur main, relances comprises (écriture idempotente), même si le
+        # contrôle a relevé des anomalies ; jamais un déclenchement manuel.
+        if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          if [ -n "$(git status --porcelain registre/controles.jsonl)" ]; then
-            if git diff --unified=0 HEAD -- registre/controles.jsonl | grep -q '^-[^-]'; then
-              echo "::error::registre/controles.jsonl modifié autrement que par ajout"; exit 1
+          test -s "$JOURNAL_NOUVEAU" || { echo "::error::Contrôle interrompu : rien à inscrire, la plage sera recontrôlée"; exit 1; }
+          git config user.name "controle-psychohistoire"
+          git config user.email "actions@users.noreply.github.com"
+          for i in 1 2 3; do
+            rm -rf "$RUNNER_TEMP/j"; git worktree prune
+            if git fetch -q origin controles 2>/dev/null; then
+              git worktree add -q -B controles "$RUNNER_TEMP/j" FETCH_HEAD
+            else
+              git worktree add -q --detach "$RUNNER_TEMP/j"
+              git -C "$RUNNER_TEMP/j" checkout -q --orphan controles
+              git -C "$RUNNER_TEMP/j" rm -rqf .
             fi
-            git config user.name "controle-psychohistoire"
-            git config user.email "actions@users.noreply.github.com"
-            git add registre/controles.jsonl
-            git commit -q -m "Journal des contrôles : lignes poussées hors fenêtre (exécution $GITHUB_RUN_ID)"
-            for i in 1 2 3; do
-              git fetch -q origin main
-              if git rebase -q origin/main && git push -q origin HEAD:main; then exit 0; fi
-              git rebase --abort 2>/dev/null || true
-              sleep 5
-            done
-            echo "::error::Inscription au journal des contrôles impossible après trois essais"; exit 1
-          fi
+            python3 scripts/controle_registres.py --inscrire "$RUNNER_TEMP/j/controles.jsonl"
+            git -C "$RUNNER_TEMP/j" add controles.jsonl
+            git -C "$RUNNER_TEMP/j" commit -q -m "Contrôle de $GITHUB_SHA (exécution $GITHUB_RUN_ID, tentative $GITHUB_RUN_ATTEMPT)"
+            if git -C "$RUNNER_TEMP/j" push -q origin controles; then exit 0; fi
+            sleep 5
+          done
+          echo "::error::Inscription au journal des contrôles impossible après trois essais"; exit 1
       - name: Banque d'événements figée après le premier gel, ajouts plafonnés (noyau, sections 8.8 et 12)
+        if: github.ref == 'refs/heads/main'
         run: python3 scripts/controle_banque.py

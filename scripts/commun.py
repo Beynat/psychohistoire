@@ -47,11 +47,77 @@ def ecrire_json(chemin, obj):
     p.write_text(json.dumps(obj, ensure_ascii=False, indent=1), "utf-8")
 
 
-def lire_jsonl(chemin):
+ILLISIBLES = []          # lignes illisibles rencontrées (chemin, numéro), publiées par la notation
+_JOURNAL = {}
+
+
+def journal_controles():
+    """Journal des contrôles (noyau, sections 0 et 12) : entrées écrites par le workflow « Contrôle des registres »
+    sur la branche « controles » (fichier controles.jsonl). Ordre de lecture : variable JOURNAL_CONTROLES (chemin
+    d'un fichier) ; dans un dépôt Git, la branche distante « controles » (récupérée ; un échec de récupération est
+    une erreur, jamais un journal vide) ; sinon registre/controles.jsonl (copies de test)."""
+    import os
+    import subprocess
+    cle = str(RACINE)
+    if cle in _JOURNAL:
+        return _JOURNAL[cle]
+    texte = ""
+    if os.environ.get("JOURNAL_CONTROLES"):
+        texte = Path(os.environ["JOURNAL_CONTROLES"]).read_text("utf-8")
+    elif (RACINE / ".git").exists() and subprocess.run(["git", "remote"], cwd=RACINE, capture_output=True, text=True).stdout.strip():
+        r = subprocess.run(["git", "ls-remote", "--exit-code", "origin", "controles"], cwd=RACINE, capture_output=True)
+        if r.returncode == 0:
+            f = subprocess.run(["git", "fetch", "-q", "origin", "controles:refs/remotes/origin/controles"], cwd=RACINE)
+            if f.returncode:
+                raise SystemExit("Journal des contrôles : récupération de la branche « controles » impossible.")
+            texte = subprocess.run(["git", "show", "origin/controles:controles.jsonl"], cwd=RACINE,
+                                   capture_output=True, text=True).stdout
+        elif r.returncode != 2:
+            raise SystemExit("Journal des contrôles : dépôt distant inaccessible.")
+    elif (RACINE / "registre/controles.jsonl").exists():
+        texte = (RACINE / "registre/controles.jsonl").read_text("utf-8")
+    entrees = []
+    for brut in texte.split("\n"):
+        try:
+            x = json.loads(brut)
+        except Exception:
+            continue
+        if isinstance(x, dict):
+            entrees.append(x)
+    _JOURNAL[cle] = entrees
+    return entrees
+
+
+def empreintes_inscrites(chemin):
+    """Empreintes des lignes de ce registre inscrites au journal des contrôles (poussées hors fenêtre)."""
+    return {e["empreinte"] for e in journal_controles() if e.get("fichier") == chemin and e.get("empreinte")}
+
+
+def lire_jsonl(chemin, empreintes=False, garder_inscrites=False):
+    """Lignes d'un fichier JSONL, découpé sur « \\n » seulement (U+2028 et voisins restent dans la ligne). Une ligne
+    illisible est écartée et consignée dans ILLISIBLES. Dans registre/, une ligne inscrite au journal des contrôles
+    est écartée (audit interne v1.27 : annonces, propositions et résolutions comprises), sauf garder_inscrites.
+    empreintes=True ajoute à chaque ligne l'empreinte SHA-256 de sa ligne brute (« _empreinte »)."""
     p = RACINE / chemin
     if not p.exists():
         return []
-    return [json.loads(l) for l in p.read_text("utf-8").splitlines() if l.strip()]
+    inscrites = empreintes_inscrites(chemin) if chemin.startswith("registre/") and not garder_inscrites else set()
+    sortie = []
+    for n, brut in enumerate(p.read_text("utf-8", errors="replace").split("\n"), 1):
+        if not brut.strip():
+            continue
+        try:
+            x = json.loads(brut)
+            if not isinstance(x, dict):
+                raise ValueError
+        except Exception:
+            ILLISIBLES.append({"fichier": chemin, "ligne": n})
+            continue
+        e = hashlib.sha256(brut.encode("utf-8")).hexdigest()
+        if e in inscrites:
+            continue
+        sortie.append({**x, "_empreinte": e} if empreintes else x)
+    return sortie
 
 
 def serie(nom):

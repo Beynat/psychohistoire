@@ -36,7 +36,7 @@ if __name__ == "__main__":
     # base, au format d'un fichier de groupe, dans le champ « taux_base_estime ».
     fa = RACINE / "modele/banque/ajouts.jsonl"
     if fa.exists():
-        for l in fa.read_text("utf-8").splitlines():
+        for l in fa.read_text("utf-8").split("\n"):
             if l.strip():
                 a = json.loads(l)
                 if a.get("taux_base_estime"):
