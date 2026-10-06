@@ -1,6 +1,6 @@
 # Réponse à la relecture de suivi 22
 
-Noyau v1.27 ; annexe v1.7 (inchangée) ; banque v1.10. Registre du protocole vide.
+Noyau v1.28 (la v1.27 a été taguée en cours d'audit interne, avant le texte final) ; annexe v1.7 (inchangée) ; banque v1.10. Registre du protocole vide.
 
 La relecture 22 est une relecture de suivi : elle ne compte pas pour le critère d'arrêt, qui reste à zéro. Elle juge I1 et D1 corrigés, et le classement de D1 fondé. Elle relève un défaut bloquant (N1), un important (N2) et deux souhaitables (N3, N4).
 

@@ -1,7 +1,7 @@
-# Protocole Psychohistoire — version 1.27
+# Protocole Psychohistoire — version 1.28
 
 Statut : voir `modele/statut.json` (section 12). Rédigé le 3 octobre 2026, avant toute estimation produite selon ce protocole.
-Remplace la version 1.26. Les changements répondent à la relecture de suivi 22 et à l'audit interne qui l'a suivie (`v1.27/reponse_relecture_22.md`) ; l'historique des versions et de leurs motifs est dans `journal.md`. Le texte est scindé : ce noyau (sections 0 à 9, 12 et 13) et l'annexe `annexe_phase3.md` (sections 10 et 11), gelés et tagués séparément. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
+Remplace la version 1.26 ; la version 1.27, taguée en cours d'audit interne, n'a pas été soumise à relecture. Les changements répondent à la relecture de suivi 22 et aux audits internes qui l'ont suivie (`v1.27/reponse_relecture_22.md`) ; l'historique des versions et de leurs motifs est dans `journal.md`. Le texte est scindé : ce noyau (sections 0 à 9, 12 et 13) et l'annexe `annexe_phase3.md` (sections 10 et 11), gelés et tagués séparément. Toute modification crée une version datée. Le tag Git `protocole-vX.Y` est posé automatiquement au premier commit de chaque version (section 12).
 
 ## 0. Pistes et registres
 

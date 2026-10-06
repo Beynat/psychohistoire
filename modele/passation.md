@@ -8,9 +8,9 @@ Psychohistoire : des prévisions datées et notées sur la France, d'octobre 202
 
 ## État
 
-- **Versions.** Noyau v1.27, annexe de la phase 3 v1.7, banque v1.10 (55 questions, 42 événements), consigne de l'ensemble v1.5. Les tags `protocole-vX.Y` et `annexe-phase3-vX.Y` sont posés automatiquement.
+- **Versions.** Noyau v1.28, annexe de la phase 3 v1.7, banque v1.10 (55 questions, 42 événements), consigne de l'ensemble v1.5. Les tags `protocole-vX.Y` et `annexe-phase3-vX.Y` sont posés automatiquement.
 - **Statut.** `modele/statut.json` vaut `definitif: false` : aucun cycle réel ne peut tourner. Le premier cycle prévu est celui du 1er novembre 2026.
-- **Relectures.** Le compteur du critère d'arrêt est à zéro. La relecture de validation 21 (v1.26) puis la relecture de suivi 22 (v1.27, avec trois audits internes) ont été traitées. Prochaine étape : relecture de validation 23, en session neuve (`modele/v1.27/demande_relecture_23.md`).
+- **Relectures.** Le compteur du critère d'arrêt est à zéro. La relecture de validation 21 (v1.26) puis la relecture de suivi 22 (v1.28, avec trois audits internes) ont été traitées. Prochaine étape : relecture de validation 23, en session neuve (`modele/v1.27/demande_relecture_23.md`).
 - **Tests.** `python scripts/tests.py` (19 tests) et `python scripts/controle_banque.py` doivent passer avant chaque commit.
 
 ## Processus de relecture (noyau, section 12)
