@@ -197,6 +197,9 @@ if __name__ == "__main__":
     if manifeste and manifeste["date_gel"] != gel:
         print(f"Date de gel du manifeste retenue : {manifeste['date_gel']} (et non {gel}).")
         gel = manifeste["date_gel"]
+    # Une banque déjà écrite n'est jamais régénérée (audit interne v1.27, S3) : à la reprise, l'étape est faite.
+    if (RACINE / "data" / "cycles" / (etiquette or gel[:7]) / "questions.json").exists():
+        sys.exit(f"Les questions du cycle {etiquette or gel[:7]} existent déjà : étape déjà faite.")
     banque = generer(gel, etiquette)
     ecrire_json(f"data/cycles/{banque['cycle']}/questions.json", banque)
     n = len(banque["questions"])

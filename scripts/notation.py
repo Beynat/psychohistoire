@@ -155,26 +155,53 @@ def etiquette_cycle(l):
     return o[1].rstrip(",") if len(o) >= 2 and o[0] == "cycle" else None
 
 
+def lire_jsonl_tolerant(chemin):
+    """Lecture qui ignore les lignes illisibles (journal des contrôles ; audit interne v1.27, B2)."""
+    import json
+    from commun import RACINE
+    p, sortie = RACINE / chemin, []
+    for brut in (p.read_text("utf-8").splitlines() if p.exists() else []):
+        try:
+            sortie.append(json.loads(brut))
+        except Exception:
+            pass
+    return sortie
+
+
+def lire_registre(reg):
+    """Lignes du registre, chacune avec l'empreinte SHA-256 de sa ligne brute (« _empreinte »)."""
+    import hashlib
+    import json
+    from commun import RACINE
+    p = RACINE / reg
+    sortie = []
+    for brut in (p.read_text("utf-8").splitlines() if p.exists() else []):
+        if brut.strip():
+            sortie.append({**json.loads(brut), "_empreinte": hashlib.sha256(brut.encode("utf-8")).hexdigest()})
+    return sortie
+
+
 def annulations(lignes, exclues=None, reg="registre/protocole.jsonl"):
-    """Lignes de prévision annulées (relecture 21, B1 ; relecture de suivi 22, N1) : clés (question, auteur, emise).
-    L'annulation est mécanique : le workflow « Contrôle des registres » inscrit chaque ligne poussée hors de sa
-    fenêtre dans registre/controles.jsonl, et toute ligne inscrite est annulée, sans délai ni décision prise après
-    l'issue. Un erratum d'annulation n'a d'effet que s'il vise une ligne inscrite à ce journal ; sinon il est
-    ignoré et publié."""
-    inscrites = {(c.get("question"), c.get("auteur", "modèle"), c.get("emise")) for c in lire_jsonl("registre/controles.jsonl")
-                 if c.get("fichier") == reg}
-    emises = {(l["question"], l.get("auteur", "modèle"), l["emise"]) for l in lignes
-              if "probabilites" in l and not l.get("erratum")}
-    sortie = inscrites & emises
+    """Empreintes des lignes annulées (relecture 21, B1 ; suivi 22, N1 ; audit interne v1.27, B1). L'annulation est
+    mécanique : le workflow « Contrôle des registres » inscrit au journal des contrôles (registre/controles.jsonl)
+    l'empreinte de chaque ligne poussée hors de sa fenêtre, et seule la ligne de cette empreinte est annulée, sans
+    délai ni décision prise après l'issue ; une copie d'une ligne régulière ne peut pas l'annuler. Un erratum
+    d'annulation n'a d'effet que s'il vise une ligne inscrite ; sinon il est ignoré et publié."""
+    inscrites = set()
+    for c in lire_jsonl_tolerant("registre/controles.jsonl"):
+        if isinstance(c, dict) and c.get("fichier") == reg and c.get("empreinte"):
+            inscrites.add(c["empreinte"])
+    cle = {l["_empreinte"]: (l.get("question"), l.get("auteur", "modèle"), l.get("emise")) for l in lignes if "_empreinte" in l}
+    cles_inscrites = {cle[e] for e in inscrites if e in cle}
     for e in lignes:
         o = e.get("objet")
         if not (e.get("erratum") and isinstance(o, dict) and (e.get("correction") or {}).get("annulee")):
             continue
-        cle = (o.get("question"), o.get("auteur", "modèle"), o.get("emise"))
-        if cle not in inscrites and exclues is not None:
-            exclues.append({"auteur": cle[1], "question": cle[0], "emise": cle[2],
+        k = (o.get("question"), o.get("auteur", "modèle"), o.get("emise"))
+        if k not in cles_inscrites and exclues is not None:
+            exclues.append({"auteur": k[1], "question": k[0], "emise": k[2],
                             "motif": "erratum d'annulation sans inscription au journal des contrôles : ignoré"})
-    return sortie
+    return inscrites & set(cle)
 
 
 def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhui=None):
@@ -186,7 +213,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
     # Questions échues à la date du test sans résolution ni annulation (relecture 17, I4) : publiées, pour
     # que la sélection par le délai de résolution reste visible.
     echues_ouvertes = sorted(q for q, v in qs.items() if v["echeance"] <= aujourdhui and q not in toutes)
-    lignes_reg = lire_jsonl(reg)
+    lignes_reg = lire_registre(reg)
     exclues = []
     # Annulations (relecture 21, B1 ; suivi 22, N1) : lignes inscrites par le workflow au journal des contrôles
     # (registre/controles.jsonl) comme poussées hors fenêtre. Appliquées avant tout calcul, publiées.
@@ -211,7 +238,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
                 continue
             if c is not None:
                 vus.add(c)
-            if (qid, auteur, l["emise"]) in annulees:
+            if l["_empreinte"] in annulees:
                 exclues.append({"auteur": auteur, "question": qid, "emise": l["emise"], "motif": "annulée (journal des contrôles)"})
                 continue
             garde.append(l)
@@ -220,10 +247,15 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
     # Actes annoncés comme décidés (relecture 20, N1 ; audit interne v1.25) : chaque question est coupée au jour de
     # la première annonce consignée pour son événement, quelle que soit l'issue. Sinon les prévisions émises après
     # l'annonce ne seraient exclues que si l'annonce se vérifie (date du fait), et gardées si elle échoue.
-    annonce = {}
+    # Seules comptent les annonces consignées avant l'enregistrement de la résolution (audit interne v1.27, S1) :
+    # une annonce consignée après coup, et datée d'avant, ne peut plus couper la question.
+    annonces = {}
     for a in lire_jsonl("registre/annonces.jsonl"):
         if a.get("annonce"):
-            annonce[a["question"]] = min(annonce.get(a["question"], "9999-12-31"), a["date_annonce"])
+            annonces.setdefault(a["question"], []).append(a)
+    def annonce_avant(ev, r):
+        ds = [a["date_annonce"] for a in annonces.get(ev, []) if str(a.get("emise", "")) < str(r.get("emise", "9999"))]
+        return min(ds) if ds else "9999-12-31"
     scores = {}
     for (auteur, qid), lignes in prev.items():
         q, r = qs[qid], res[qid]
@@ -231,7 +263,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
         # Exclues : émises après l'échéance, après l'enregistrement de la résolution, ou le jour du fait
         # ou après (relecture 8, G2 : un prévisionniste lancé après le fait ne doit pas être noté).
         coupure = min(r.get("date_fait") or "9999-12-31",
-                      annonce.get((q.get("details") or {}).get("evenement"), "9999-12-31"))
+                      annonce_avant((q.get("details") or {}).get("evenement"), r))
         lignes = [l for l in lignes if l["emise"][:10] <= q["echeance"] and l["emise"] < r["emise"]
                   and l["emise"][:10] < coupure]
         if not lignes:

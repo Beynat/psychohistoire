@@ -261,11 +261,13 @@ def test_regles_du_bilan():
         assert not any("non collectée" in e["motif"] for e in banque["ecartees"])
         etat = tmp / "data/cycles/2026-11/gel/historique/_collecte.json"
         e = json.loads(etat.read_text()); e["brent_journalier"] = "2026-10-20"; etat.write_text(json.dumps(e))
+        (tmp / "data/cycles/2026-11/questions.json").unlink()
         run("scripts/questions.py", "2026-11-01", "2026-11")
         b2 = json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())
         assert {"objet": "brent_mensuel", "motif": "série non collectée depuis plus de trois jours au gel"} in b2["ecartees"]
         assert not any(q["id"].startswith("Q-2026-11-brent") for q in b2["questions"])
         etat.write_text(json.dumps({**e, "brent_journalier": "2026-10-31"}))
+        (tmp / "data/cycles/2026-11/questions.json").unlink()
         run("scripts/questions.py", "2026-11-01", "2026-11")
         code = r"""
 import json, resolution, notation
@@ -507,6 +509,10 @@ b = notation.bilan('registre/v.jsonl', 'ensemble direct', '2027-02-01')
 print(json.dumps([e["auteur"] for e in b["exclues"] if e["question"] == "Q-EV-15"]))
 """
         assert json.loads(run("-c", code).strip().splitlines()[-1]) == ["ensemble direct"]
+        # Audit interne v1.27, S1 : une annonce consignée après la résolution, même datée d'avant, ne coupe rien.
+        (tmp / "registre/annonces.jsonl").write_text(json.dumps({"annonce": True, "question": "EV-15", "date_annonce": "2026-11-02",
+            "source": "s", "agent": "agent-1", "emise": "2027-01-20T08:00:00+01:00"}) + chr(10))
+        assert json.loads(run("-c", code).strip().splitlines()[-1]) == []
     finally:
         shutil.rmtree(tmp.parent)
 
@@ -535,9 +541,13 @@ if cas == "seconde":
 else:
     L = [P("modèle", 95, "2026-11-01"), P("ensemble direct", 30, "2026-11-03")] + ([E("2026-11-12")] if cas == "erratum_seul" else [])
     issue, fait = "oui", "2026-11-10"
-    if cas == "journal":
-        Path('registre/controles.jsonl').write_text(json.dumps({"fichier": "registre/v.jsonl", "question": "Q-EV-15",
-            "auteur": "modèle", "emise": "2026-11-01T08:00:00+01:00", "execution": "1", "detecte_le": "2026-11-12T08:00:00+00:00"}) + chr(10))
+    if cas in ("journal", "copie"):
+        import hashlib
+        brut = json.dumps(P("modèle", 95, "2026-11-01") if cas == "journal" else {**P("modèle", 95, "2026-11-01"), "probabilites": {"oui": 94, "non": 6}})
+        if cas == "copie":   # copie tardive inscrite : elle ne doit pas annuler la ligne régulière (audit v1.27, B1)
+            L.append(json.loads(brut))
+        Path('registre/controles.jsonl').write_text("ligne illisible" + chr(10) + json.dumps({"fichier": "registre/v.jsonl",
+            "empreinte": hashlib.sha256(brut.encode()).hexdigest(), "execution": "1"}) + chr(10))
 Path('registre/v.jsonl').write_text(''.join(json.dumps(x) + chr(10) for x in L))
 Path('registre/resolutions_v.jsonl').write_text(json.dumps({"resolution": True, "question": "Q-EV-15", "issue": issue,
     "date_fait": fait, "source": "s", "methode": "m", "emise": "2028-12-01T08:00:00+01:00"}) + chr(10))
@@ -549,6 +559,8 @@ print(json.dumps({"auteurs": sorted(b["auteurs"]), "motifs": [e["motif"] for e i
         r = lambda cas: json.loads(run("-c", code, ech, cas).strip().splitlines()[-1])
         o = r("journal")
         assert "modèle" not in o["auteurs"] and "annulée (journal des contrôles)" in o["motifs"], o
+        o = r("copie")
+        assert "modèle" in o["auteurs"], o
         (tmp / "registre/controles.jsonl").unlink()
         o = r("erratum_seul")
         assert "modèle" in o["auteurs"] and any("ignoré" in m for m in o["motifs"]), o
@@ -556,6 +568,63 @@ print(json.dumps({"auteurs": sorted(b["auteurs"]), "motifs": [e["motif"] for e i
         assert "seconde prévision du cycle 2026-11" in o["motifs"] and o["grappes"] == 1 and o["t"] is None, o
     finally:
         shutil.rmtree(tmp.parent)
+
+
+def test_controle_registres():
+    """Suivi 22, N1, et audit interne v1.27 (B1 à B5) : contrôle à la poussée sur un dépôt Git jetable."""
+    import subprocess, os, hashlib
+    from datetime import datetime, timedelta
+    from zoneinfo import ZoneInfo
+    script = Path(__file__).resolve().parent / "controle_registres.py"
+    tmp = Path(tempfile.mkdtemp())
+    g = lambda *a, auteur="agent": subprocess.run(["git", "-c", f"user.name={auteur}", "-c", "user.email=a@b", *a], cwd=tmp,
+                                                  capture_output=True, text=True).stdout.strip()
+    maintenant = datetime.now(ZoneInfo("Europe/Paris")).replace(microsecond=0)
+    L = lambda q, t, auteur="modèle": json.dumps({"question": q, "probabilites": {"oui": 50, "non": 50}, "auteur": auteur,
+                                                  "origine": "cycle 2026-11", "emise": t})
+    def pousser(lignes, auteur="agent", f="registre/protocole.jsonl"):
+        (tmp / f).parent.mkdir(parents=True, exist_ok=True)
+        with (tmp / f).open("a") as h:
+            h.write("".join(x + "\n" for x in lignes))
+        g("add", "-A"); g("commit", "-qm", "c", auteur=auteur)
+    def controler(base):
+        env = {**os.environ, "BASE": base, "ECRIRE_JOURNAL": "1", "GITHUB_RUN_ID": "7",
+               "POUSSE_LE": str(int(maintenant.timestamp()))}
+        r = subprocess.run([sys.executable, str(script)], cwd=tmp, env=env, capture_output=True, text=True)
+        j = tmp / "registre/controles.jsonl"
+        journal = [json.loads(x) for x in j.read_text().splitlines()] if j.exists() else []
+        return r.returncode, r.stdout, journal
+    try:
+        g("init", "-q")
+        a_l_heure = L("Q1", maintenant.isoformat())
+        pousser([a_l_heure]); b0 = g("rev-parse", "HEAD")
+        pousser([L("Q2", maintenant.isoformat())]); b1 = g("rev-parse", "HEAD")
+        code, out, j = controler(b0)
+        assert code == 0 and not j, out
+        # Ligne tardive : inscrite par son empreinte. Copie d'une ligne régulière (même texte) : signalée, non inscrite.
+        tardive = L("Q3", (maintenant - timedelta(days=12)).isoformat())
+        pousser([tardive, a_l_heure])
+        code, out, j = controler(b1)
+        assert code == 1 and "recopiée" in out and [x["empreinte"] for x in j] == [hashlib.sha256(tardive.encode()).hexdigest()], (out, j)
+        # Décalage autre que celui de Paris, ou sans fuseau : inscrite, même dans la fenêtre (audit v1.27, B3).
+        b2 = g("rev-parse", "HEAD")
+        decalee = L("Q4", maintenant.astimezone(ZoneInfo("Pacific/Kiritimati")).isoformat())
+        pousser([decalee, L("Q5", maintenant.replace(tzinfo=None).isoformat())])
+        code, out, j = controler(b2)
+        assert code == 1 and len(j) == 3, (out, j)
+        # Commit non contrôlé (« [skip ci] ») : couvert depuis le dernier commit contrôlé (audit v1.27, B5).
+        b3 = g("rev-parse", "HEAD")
+        sautee = L("Q6", (maintenant - timedelta(hours=5)).isoformat())
+        pousser([sautee]); pousser([L("Q7", maintenant.isoformat())])
+        code, out, j = controler(b3)
+        assert hashlib.sha256(sautee.encode()).hexdigest() in {x["empreinte"] for x in j}, (out, j)
+        # Journal modifié par un autre que le workflow : signalé (audit v1.27, B2).
+        b4 = g("rev-parse", "HEAD")
+        pousser(['{"note": "x"}'], f="registre/controles.jsonl")
+        code, out, j = controler(b4)
+        assert code == 1 and "et non par le workflow" in out, out
+    finally:
+        shutil.rmtree(tmp)
 
 
 def test_registre():
@@ -609,8 +678,11 @@ def test_rattrapage():
         assert run("scripts/geler.py", "2026-11-01", "2026-11", "--essai").returncode == 0
         assert run("scripts/questions.py", "2026-11-01", "2026-11").returncode == 0
         q1 = json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())
-        # Reprise le 5 : le gel n'est pas refait, les questions sont régénérées avec la date du jour.
+        # Reprise le 5 : le gel n'est pas refait ; une banque déjà écrite n'est pas régénérée (audit v1.27, S3) ;
+        # si elle ne l'était pas, elle l'est à la date du gel du manifeste.
         assert run("scripts/geler.py", "2026-11-05", "2026-11", "--essai").returncode != 0
+        assert run("scripts/questions.py", "2026-11-05", "2026-11").returncode != 0
+        (tmp / "data/cycles/2026-11/questions.json").unlink()
         assert run("scripts/questions.py", "2026-11-05", "2026-11").returncode == 0
         q5 = json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())
         assert q5["gel"] == "2026-11-01"
@@ -621,9 +693,11 @@ def test_rattrapage():
         for jour, present in (("2026-11-03", True), ("2026-10-30", False)):
             (tmp / "registre/resolutions.jsonl").write_text(json.dumps({"resolution": True, "question": "Q-EV-07", "issue": "oui",
                 "date_fait": jour, "source": "s", "methode": "m", "emise": "2026-11-04T08:00:00+01:00"}) + "\n")
+            (tmp / "data/cycles/2026-11/questions.json").unlink()
             assert run("scripts/questions.py", "2026-11-05", "2026-11").returncode == 0
             assert ("Q-EV-07" in ids()) == present, (jour, present)
         (tmp / "registre/resolutions.jsonl").unlink()
+        (tmp / "data/cycles/2026-11/questions.json").unlink()
         assert run("scripts/questions.py", "2026-11-05", "2026-11").returncode == 0
         reg = tmp / "registre/rattrapage.jsonl"
         assert run("scripts/comparateurs.py", "2026-11", "registre/rattrapage.jsonl").returncode == 0

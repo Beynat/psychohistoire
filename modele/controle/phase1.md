@@ -54,3 +54,8 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [ ] S9 : levée d'une annonce consignée à tort par erratum dans `registre/annonces.jsonl`, et terme à l'exclusion d'émission quand l'acte annoncé échoue.
 - [ ] S10 : `geler.py --essai` refusé pour une étiquette AAAA-MM à partir de 2026-11 ; tests réétiquetés (étiquettes d'essai distinctes).
 - [ ] S1 et S2 : ajouts par la procédure d'ajout (fin des fonctions du Premier ministre par décret, quelle qu'en soit la cause ; référendum ; écart OAT-BTP de signe positif ; clause pour une présidentielle anticipée).
+
+## Souhaitables de l'audit interne v1.27 reportés
+
+- [ ] Calibration (I1 de l'audit, classé souhaitable : sens prudent) : un fait survenu entre le gel et une émission tardive (rattrapage) retire des « oui » de la calibration de l'auteur concerné, ce qui pousse vers « recalibrer ». Publier le nombre de questions ainsi retirées ; envisager de faire partir les questions au lendemain de la date limite d'émission.
+- [ ] S2 : le Brier pondéré descriptif publié par auteur dépend de sa date de première émission ; le signaler dans le bilan (le test de 8.6, sur période commune, n'est pas touché).

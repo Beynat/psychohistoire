@@ -1,24 +1,23 @@
 name: Contrôle des registres
 
-# Protocole, sections 0 et 12. Vérifie à chaque poussée sur main :
-# 1. que les registres de prévisions, les journaux de jalons, les décisions de tri et les ajouts à la banque
-#    ne sont modifiés que par ajout de lignes (aucune ligne supprimée ou réécrite,
-#    aucun fichier supprimé ni renommé) ;
-# 2. que chaque nouvelle ligne de registre (« emise ») et chaque nouvelle définition de
-#    jalon (« defini_le ») porte un horodatage avec fuseau, compris entre
-#    deux heures avant le début du contrôle et le début du contrôle. Une ligne hors fenêtre est
-#    inscrite au journal des contrôles (registre/controles.jsonl), qui l'annule pour la notation (sections 8.8 et 12) ;
-# 3. qu'aucune nouvelle ligne n'est une seconde prévision d'un même cycle pour un auteur et une question.
-# Le contrôle est détectif : un échec est public et se corrige par une ligne d'erratum.
+# Protocole, sections 0, 8.8 et 12. Logique dans scripts/controle_registres.py (testée par scripts/tests.py).
+# Contrôle tous les commits depuis le dernier commit contrôlé (historique des exécutions de ce workflow), y compris
+# ceux qu'une poussée n'a pas fait contrôler. Les lignes de registre poussées hors fenêtre, sans fuseau ou avec un
+# autre décalage que celui de Paris sont inscrites au journal des contrôles (registre/controles.jsonl), ce qui les
+# annule pour la notation. Le contrôle est détectif : un échec est public.
 
 on:
   push:
     branches: [main]
-    paths: ["registre/**", "modele/jalons/**", "data/tri/**", "modele/banque/**", "modele/evenements.json", "data/cycles/**", "data/premieres_valeurs.jsonl"]
   workflow_dispatch: {}
 
+concurrency:
+  group: controle-registres
+  cancel-in-progress: false
+
 permissions:
-  contents: write   # inscription au journal des contrôles (registre/controles.jsonl)
+  contents: write   # inscription au journal des contrôles
+  actions: read     # dernier commit contrôlé
 
 jobs:
   ajout-seul:
@@ -27,96 +26,26 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Ajout seul et horodatage
+      - name: Dernier commit contrôlé
         env:
+          GH_TOKEN: ${{ github.token }}
           AVANT: ${{ github.event.before }}
         run: |
-          python3 - <<'PY'
-          import json, re, os, subprocess, sys
-          from datetime import datetime, timedelta, timezone
-
-          def git(*a):
-              return subprocess.run(["git", *a], capture_output=True, text=True).stdout
-
-          avant = os.environ.get("AVANT", "")
-          if not avant or set(avant) == {"0"} or subprocess.run(["git", "cat-file", "-e", avant + "^{commit}"]).returncode:
-              avant = git("rev-parse", "HEAD~1").strip()
-          debut = datetime.now(timezone.utc)
-          erreurs, hors = [], []
-          suivis = ("registre/", "modele/jalons/", "data/tri/", "modele/banque/ajouts.jsonl", "data/premieres_valeurs.jsonl")
-          for ligne in git("diff", "--no-renames", "--name-status", avant, "HEAD").splitlines():
-              statut, f = ligne.split("\t", 1)
-              # Fichiers d'un cycle (gel, questions et seuils, dossier, réponses de l'ensemble) : jamais
-              # modifiés ni supprimés une fois poussés (relecture 11, S5 ; relecture 12).
-              if re.match(r"data/cycles/[^/]+/", f) and not statut.startswith("A"):
-                  erreurs.append(f"{f} : fichier de cycle modifié ou supprimé")
-                  continue
-              if not f.startswith(suivis) or not f.endswith((".json", ".jsonl")):
-                  continue
-              if statut.startswith("D"):
-                  erreurs.append(f"{f} : fichier supprimé ou renommé")
-                  continue
-              diff = git("diff", "--no-renames", "--unified=0", avant, "HEAD", "--", f).splitlines()
-              supp = [l for l in diff if l.startswith("-") and not l.startswith("---")]
-              if supp:
-                  erreurs.append(f"{f} : {len(supp)} ligne(s) supprimée(s) ou réécrite(s)")
-              champ = "emise" if f.startswith("registre/") and f.endswith(".jsonl") and f != "registre/controles.jsonl" else \
-                      "defini_le" if f == "modele/jalons/definitions.jsonl" else \
-                      "ajoute_le" if f == "modele/banque/ajouts.jsonl" else None
-              if champ:
-                  for l in diff:
-                      if not l.startswith("+") or l.startswith("+++"):
-                          continue
-                      try:
-                          e = datetime.fromisoformat(json.loads(l[1:])[champ])
-                      except Exception as exc:
-                          erreurs.append(f"{f} : champ « {champ} » absent ou illisible ({type(exc).__name__})")
-                          continue
-                      if e.tzinfo is None:
-                          erreurs.append(f"{f} : « {champ} » {e.isoformat()} sans fuseau horaire")
-                          continue
-                      if not (debut - timedelta(hours=2) <= e <= debut + timedelta(minutes=5)):
-                          erreurs.append(f"{f} : « {champ} » {e.isoformat()} hors de la fenêtre de poussée ({debut.isoformat()})")
-                          if champ == "emise":
-                              x = json.loads(l[1:])
-                              hors.append({"fichier": f, "question": x.get("question"), "auteur": x.get("auteur", "modèle"),
-                                           "emise": x["emise"], "execution": os.environ.get("GITHUB_RUN_ID", ""),
-                                           "detecte_le": debut.isoformat(timespec="seconds")})
-              # Une seule prévision de cycle par auteur, question et cycle (relecture 21, I1) : une seconde ligne
-              # est signalée ; la notation ne garde que la première.
-              if f.startswith("registre/") and f.endswith(".jsonl"):
-                  nouvelles = {l[1:] for l in diff if l.startswith("+") and not l.startswith("+++")}
-                  vus = {}
-                  for brut in open(f, encoding="utf-8").read().splitlines():
-                      try:
-                          x = json.loads(brut)
-                      except Exception:
-                          continue
-                      o = str(x.get("origine", "")).split()
-                      if "probabilites" not in x or x.get("erratum") or len(o) < 2 or o[0] != "cycle":
-                          continue
-                      cle = (x.get("auteur", "modèle"), x.get("question"), o[1].rstrip(","))
-                      if cle in vus and brut in nouvelles:
-                          erreurs.append(f"{f} : seconde prévision du cycle {cle[2]} pour {cle[0]}, {cle[1]}")
-                      vus[cle] = True
-          # Journal des contrôles (relecture de suivi 22, N1) : chaque ligne poussée hors fenêtre y est inscrite,
-          # en ajout seul ; la notation annule toute ligne de prévision inscrite, sans délai ni erratum.
-          if hors:
-              chemin = "registre/controles.jsonl"
-              deja = set(open(chemin, encoding="utf-8").read().splitlines()) if os.path.exists(chemin) else set()
-              connues = {(json.loads(d)["fichier"], json.loads(d)["question"], json.loads(d)["auteur"], json.loads(d)["emise"])
-                         for d in deja if d.strip()}
-              with open(chemin, "a", encoding="utf-8") as fj:
-                  for h in hors:
-                      if (h["fichier"], h["question"], h["auteur"], h["emise"]) not in connues:
-                          fj.write(json.dumps(h, ensure_ascii=False) + "\n")
-          for x in erreurs:
-              print(f"::error::{x}")
-          print("Contrôle conforme." if not erreurs else f"{len(erreurs)} anomalie(s).")
-          sys.exit(1 if erreurs else 0)
-          PY
+          # Exécution terminée (réussie ou en échec, pas annulée) la plus récente d'une poussée, hors celle-ci.
+          base=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/controle-registres.yml/runs?event=push&status=completed&per_page=30" \
+                 --jq "[.workflow_runs[] | select(.id != ${GITHUB_RUN_ID} and (.conclusion == \"success\" or .conclusion == \"failure\"))][0].head_sha // empty" || true)
+          if [ -z "$base" ] || ! git merge-base --is-ancestor "$base" HEAD; then
+            echo "::warning::Dernier commit contrôlé introuvable : contrôle depuis github.event.before."
+            base="$AVANT"
+          fi
+          echo "BASE=$base" >> "$GITHUB_ENV"
+      - name: Ajout seul, horodatage, journal des contrôles
+        env:
+          POUSSE_LE: ${{ github.event.repository.pushed_at }}
+          ECRIRE_JOURNAL: ${{ github.event_name == 'push' && github.run_attempt == '1' && '1' || '0' }}
+        run: python3 scripts/controle_registres.py
       - name: Inscription au journal des contrôles
-        if: always()
+        if: always() && github.event_name == 'push' && github.run_attempt == '1'
         run: |
           if [ -n "$(git status --porcelain registre/controles.jsonl)" ]; then
             if git diff --unified=0 HEAD -- registre/controles.jsonl | grep -q '^-[^-]'; then
@@ -125,8 +54,14 @@ jobs:
             git config user.name "controle-psychohistoire"
             git config user.email "actions@users.noreply.github.com"
             git add registre/controles.jsonl
-            git commit -m "Journal des contrôles : lignes poussées hors fenêtre (exécution $GITHUB_RUN_ID)"
-            for i in 1 2 3; do git fetch -q origin main && git rebase -q origin/main && git push -q origin HEAD:main && break; sleep 5; done
+            git commit -q -m "Journal des contrôles : lignes poussées hors fenêtre (exécution $GITHUB_RUN_ID)"
+            for i in 1 2 3; do
+              git fetch -q origin main
+              if git rebase -q origin/main && git push -q origin HEAD:main; then exit 0; fi
+              git rebase --abort 2>/dev/null || true
+              sleep 5
+            done
+            echo "::error::Inscription au journal des contrôles impossible après trois essais"; exit 1
           fi
       - name: Banque d'événements figée après le premier gel, ajouts plafonnés (noyau, sections 8.8 et 12)
         run: python3 scripts/controle_banque.py
