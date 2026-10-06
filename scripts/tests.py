@@ -119,7 +119,7 @@ def test_bout_en_bout():
                 for k, d in enumerate(dates):
                     p = 30 if d == "2026-12-01" else 5
                     lignes.append({"question": qid, "probabilites": {"oui": p, "non": 100 - p}, "piste": "protocole", "phase": 1,
-                                   "auteur": auteur, "origine": "cycle 2026-11", "donnees": "t",
+                                   "auteur": auteur, "origine": f"cycle {d[:7]}", "donnees": "t",
                                    "emise": f"{d}T08:00:00+01:00"})
         with (tmp / "registre/e2e.jsonl").open("a", encoding="utf-8") as f:
             for l in lignes:
@@ -511,6 +511,49 @@ print(json.dumps([e["auteur"] for e in b["exclues"] if e["question"] == "Q-EV-15
         shutil.rmtree(tmp.parent)
 
 
+def test_errata_et_unicite_du_cycle():
+    """Relecture 21. B1 : une ligne annulée par erratum n'est plus notée ; un erratum tardif (plus de sept jours)
+    est ignoré et publié. I1 : une seconde prévision d'un même cycle est écartée, quelle que soit l'issue."""
+    tmp, run = _copie()
+    try:
+        run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
+        run("scripts/questions.py", "2026-11-01", "2026-11")
+        ech = next(q["echeance"] for q in json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())["questions"]
+                   if q["id"] == "Q-EV-15")
+        code = r"""
+import json, sys, notation
+from pathlib import Path
+ech, cas = sys.argv[1], sys.argv[2]
+P = lambda a, p, d, c="2026-11": {"question": "Q-EV-15", "probabilites": {"oui": p, "non": 100 - p}, "piste": "protocole",
+    "phase": 1, "auteur": a, "origine": "cycle " + c, "donnees": "t", "emise": d + "T08:00:00+01:00"}
+E = lambda d: {"erratum": True, "objet": {"question": "Q-EV-15", "auteur": "modèle", "emise": "2026-11-01T08:00:00+01:00"},
+    "correction": {"annulee": True}, "motif": "poussée hors fenêtre", "piste": "protocole", "emise": d + "T09:00:00+01:00"}
+if cas == "seconde":
+    L = [P("modèle", 30, "2026-11-01"), P("ensemble direct", 30, "2026-11-03"), P("modèle", 1, "2026-11-28")]
+    issue, fait = "non", ech
+else:
+    L = [P("modèle", 95, "2026-11-01"), P("ensemble direct", 30, "2026-11-03"),
+         E("2026-11-03" if cas == "erratum" else "2026-11-20")]
+    issue, fait = "oui", "2026-11-10"
+Path('registre/v.jsonl').write_text(''.join(json.dumps(x) + chr(10) for x in L))
+Path('registre/resolutions_v.jsonl').write_text(json.dumps({"resolution": True, "question": "Q-EV-15", "issue": issue,
+    "date_fait": fait, "source": "s", "methode": "m", "emise": "2028-12-01T08:00:00+01:00"}) + chr(10))
+b = notation.bilan('registre/v.jsonl', 'ensemble direct', '2028-12-31')
+c = b["comparaisons"].get("modèle", {}).get("critere_8_6", {})
+print(json.dumps({"auteurs": sorted(b["auteurs"]), "motifs": [e["motif"] for e in b["exclues"]], "t": c.get("t"),
+                  "grappes": c.get("grappes")}))
+"""
+        r = lambda cas: json.loads(run("-c", code, ech, cas).strip().splitlines()[-1])
+        o = r("erratum")
+        assert "modèle" not in o["auteurs"] and "annulée par erratum" in o["motifs"], o
+        o = r("erratum_tardif")
+        assert "modèle" in o["auteurs"] and any("ignoré" in m for m in o["motifs"]), o
+        o = r("seconde")
+        assert "seconde prévision du cycle 2026-11" in o["motifs"] and o["grappes"] == 1 and o["t"] is None, o
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
 def test_registre():
     tmp = Path(tempfile.mkdtemp())
     ancien = registre.RACINE
@@ -518,6 +561,8 @@ def test_registre():
     try:
         registre.ajouter("registre/t.jsonl", [{"question": "Q", "probabilites": {"oui": 60, "non": 40},
                                                "piste": "protocole", "phase": 1, "origine": "test", "donnees": "test"}])
+        registre.valider({"erratum": True, "objet": {"question": "Q", "auteur": "modèle", "emise": "x"},
+                          "correction": {"annulee": True}, "motif": "m", "piste": "protocole"})
         l = json.loads((tmp / "registre/t.jsonl").read_text())
         assert l["emise"].endswith("+02:00") or l["emise"].endswith("+01:00")
         for mauvaise in ({"question": "Q", "probabilites": {"oui": 60, "non": 40}, "piste": "protocole", "origine": "o",
@@ -526,6 +571,10 @@ def test_registre():
                           "origine": "o", "donnees": "d"},                   # somme ≠ 100
                          {"question": "Q", "probabilites": {"oui": 60, "non": 40}, "piste": "exploratoire",
                           "origine": "o", "donnees": "d", "emise": "2026-01-01T00:00:00+01:00"},  # horodatage fourni
+                         {"erratum": True, "objet": {"question": "Q", "auteur": "modèle", "emise": "x"},
+                          "correction": {"issue": "oui"}, "piste": "protocole", "motif": "m"},  # erratum de prévision non admis
+                         {"erratum": True, "objet": {"question": "Q", "auteur": "modèle", "emise": "x"},
+                          "correction": {"annulee": True}, "piste": "protocole"},             # sans motif
                          {"proposition": True, "question": "Q", "issue": "oui", "source": "s", "agent": "a"},  # sans date du fait
                          {"proposition": True, "question": "Q", "issue": "oui", "source": "s", "agent": "a",
                           "date_fait": "3 novembre"}):                       # date du fait mal formée

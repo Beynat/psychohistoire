@@ -1,6 +1,6 @@
 {
- "version": "1.8",
- "date": "2026-10-04",
+ "version": "1.9",
+ "date": "2026-10-06",
  "description": "Critères de résolution de la banque d'événements, seuls transmis aux prévisionnistes. Le texte d'origine du balayage v1 reste dans modele/v1 et figure dans evenements.json sous « contexte_v1 », jamais transmis (relecture 8, G1). Sources de résolution : modele/sources.md, règle 1. Champ « nature » (relecture 9, H1) : « survenue » pour un événement qui peut se produire à tout moment de la fenêtre (taux de base ramené à la fenêtre restante par un risque constant), « constat » pour une issue constatée à date fixe (taux de base non converti). Champ « acte » (relecture 12, K4) : les questions tranchées par le même acte officiel ou liées à la même candidature (pourvoi de Marine Le Pen, liste des candidats et résultats du premier tour de 2027) forment une seule grappe. « taux_base_mode: uniforme » remplace l'ancien drapeau « taux_base » (relecture 12, S4).",
  "second_tour": "2027-05-02",
  "premier_tour": "2027-04-18",
@@ -220,7 +220,7 @@
    "evenement": "EV-08",
    "nom": "Ingérence étrangère visant la présidentielle",
    "domaine": "sécurité",
-   "critere": "Pendant la fenêtre, le SGDSN (VIGINUM) ou le gouvernement publie un rapport ou un communiqué qui attribue à un État étranger, ou à un acteur qu'il présente comme lié à un État étranger, une campagne de manipulation de l'information et présente expressément l'élection présidentielle de 2027 comme l'objectif de cette campagne, et non seulement comme son contexte. Une publication antérieure à la fenêtre ne compte pas. Une mise en garde générale sur un risque d'ingérence ne suffit pas : il faut une campagne déterminée, attribuée et visant l'élection.",
+   "critere": "Pendant la fenêtre, le SGDSN (VIGINUM) ou le gouvernement publie un rapport ou un communiqué qui attribue à un État étranger, ou à un acteur qu'il présente comme lié à un État étranger, une campagne de manipulation de l'information et présente expressément l'élection présidentielle de 2027 comme l'objectif de cette campagne, et non seulement comme son contexte. Une publication antérieure à la fenêtre ne compte pas. Une mise en garde générale sur un risque d'ingérence ne suffit pas : il faut une campagne déterminée, attribuée et visant l'élection. Exemple qui compte : un rapport qui écrit qu'une campagne attribuée « vise à influencer l'élection présidentielle de 2027 ». Exemple qui ne compte pas : un rapport qui décrit une campagne « dans le contexte » ou « à l'approche » de l'élection sans lui en attribuer l'objectif.",
    "sous_question": null,
    "source_resolution": "SGDSN, VIGINUM ; communiqués du gouvernement",
    "fenetre": {
@@ -236,7 +236,7 @@
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
    "motif_inaccessible": null,
-   "revise": "relecture 9",
+   "revise": "relecture 21",
    "nature": "survenue"
   },
   {
@@ -361,9 +361,9 @@
    "evenement": "EV-13",
    "nom": "Grève massive dans la fonction publique",
    "domaine": "société",
-   "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État publié par la DGAFP dépasse 18 %. La valeur retenue est celle que publie la DGAFP pour cette journée, lue 30 jours après la journée (à défaut, à la première lecture qui suit).",
+   "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État communiqué par le ministère chargé de la fonction publique (chiffres de la DGAFP) dépasse 18 %. La valeur retenue est celle publiée par le ministère ou la DGAFP, lue 30 jours après la journée (à défaut, à la première lecture qui suit) ; faute de page de publication, le chiffre du ministère rapporté par deux agences concordantes.",
    "sous_question": null,
-   "source_resolution": "DGAFP, taux de grévistes",
+   "source_resolution": "Ministère chargé de la fonction publique (chiffres de la DGAFP) ; à défaut, deux agences concordantes rapportant ce chiffre",
    "fenetre": {
     "debut": "2026-10-03",
     "fin": "2026-12-31"
@@ -377,7 +377,7 @@
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
    "motif_inaccessible": null,
-   "revise": "relecture 9",
+   "revise": "relecture 21",
    "nature": "survenue"
   },
   {
@@ -523,7 +523,7 @@
    "evenement": "EV-17",
    "nom": "Président élu sans majorité de son groupe",
    "domaine": "politique",
-   "critere": "Le 30 septembre 2028, selon la composition des groupes publiée par l'Assemblée nationale, le groupe politique auquel appartiennent les députés du parti dont le président élu en 2027 est membre au jour du second tour compte moins de 289 membres, apparentés compris. Si le président élu n'est membre d'aucun parti, le groupe retenu est celui qui a déclaré le soutenir au premier tour et compte le plus de membres.",
+   "critere": "Le 30 septembre 2028, selon la composition des groupes publiée par l'Assemblée nationale, le groupe qui compte le plus de députés membres du parti dont le président élu en 2027 est membre au jour du second tour compte moins de 289 membres, apparentés compris ; si aucun groupe ne compte de député de ce parti, la réponse est « oui ». Si le président élu n'est membre d'aucun parti, le groupe retenu est celui qui a déclaré le soutenir au premier tour et compte le plus de membres.",
    "sous_question": null,
    "source_resolution": "Assemblée nationale, composition des groupes",
    "fenetre": {
@@ -539,7 +539,7 @@
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
    "motif_inaccessible": null,
-   "revise": "relecture 9",
+   "revise": "relecture 21",
    "nature": "constat"
   },
   {
@@ -1100,7 +1100,7 @@
    "evenement": "EV-38",
    "nom": "Stocks de gaz bas à la sortie de l'hiver",
    "domaine": "énergie",
-   "critere": "Le taux de remplissage agrégé des stockages de gaz de l'Union européenne publié par AGSI+ (Gas Infrastructure Europe) pour le 1er février 2027 est strictement inférieur à 35 %, tel qu'affiché par AGSI+ le 3 février 2027 (capture archivée ce jour-là ; à défaut, la capture archivée la plus proche après cette date). Une révision ultérieure ne change pas l'issue.",
+   "critere": "Le taux de remplissage agrégé des stockages de gaz de l'Union européenne publié par AGSI+ (Gas Infrastructure Europe) pour le 1er février 2027 est strictement inférieur à 35 %. La valeur retenue est celle relevée par la collecte nocturne (API AGSI+) les 2 et 3 février 2027 et inscrite en ajout seul ; à défaut, celle affichée par AGSI+ le 3 février 2027 (capture archivée ce jour-là, ou la plus proche après). Une révision ultérieure ne change pas l'issue.",
    "sous_question": null,
    "source_resolution": "AGSI+ (plateforme de transparence prévue par le droit de l'UE)",
    "fenetre": {
@@ -1116,7 +1116,8 @@
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
    "motif_inaccessible": null,
-   "nature": "constat"
+   "nature": "constat",
+   "revise": "relecture 21"
   },
   {
    "id": "EV-29",
@@ -1170,9 +1171,9 @@
    "evenement": "EV-35",
    "nom": "Hausse des actes antimusulmans en 2026",
    "domaine": "société",
-   "critere": "Le bilan annuel 2026 des actes antireligieux publié par le ministère de l'Intérieur fait état de plus de 326 actes antimusulmans (nombre de 2025).",
+   "critere": "Le premier document publié pendant la fenêtre par le ministère de l'Intérieur qui donne le nombre d'actes antimusulmans recensés en 2026, qu'il s'intitule « tendances » ou « bilan annuel », fait état de plus de 326 actes. Le seuil de 326 est le nombre de 2025 publié dans le communiqué « Actes antireligieux – Tendances 2025 » du 12 février 2026. Si aucun nombre pour 2026 n'est publié au 31 mars 2027, la question est annulée.",
    "sous_question": null,
-   "source_resolution": "Ministère de l'Intérieur, bilan annuel",
+   "source_resolution": "Ministère de l'Intérieur, premier document donnant le nombre d'actes antimusulmans de 2026 (tendances ou bilan annuel)",
    "fenetre": {
     "debut": "2026-10-03",
     "fin": "2027-03-31"
@@ -1186,7 +1187,8 @@
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
    "motif_inaccessible": null,
-   "nature": "constat"
+   "nature": "constat",
+   "revise": "relecture 21"
   },
   {
    "id": "EV-43",
@@ -1217,7 +1219,7 @@
    "evenement": "EV-44",
    "nom": "Déficit visé par le premier budget du nouveau président",
    "domaine": "finances publiques",
-   "critere": "Déficit public 2028 prévu par l'article liminaire de la loi de finances initiale pour 2028 publiée au Journal officiel.",
+   "critere": "Solde public effectif (et non structurel ni conjoncturel) de 2028 prévu par l'article liminaire de la loi de finances initiale pour 2028 publiée au Journal officiel.",
    "sous_question": null,
    "source_resolution": "Journal officiel (loi de finances pour 2028)",
    "fenetre": {
@@ -1234,7 +1236,8 @@
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "accessible": true,
    "motif_inaccessible": null,
-   "nature": "constat"
+   "nature": "constat",
+   "revise": "relecture 21"
   },
   {
    "id": "EV-45",

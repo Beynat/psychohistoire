@@ -8,6 +8,7 @@ Ouverte le 4 octobre 2026 à partir de la relecture 7. À compléter avant le d�
 - [ ] Script du réseau : à chaque cycle, écrire au registre la marginale du réseau entièrement non calé avant toute sortie calée (noyau, section 4.5 ; relecture de suivi 16).
 - [ ] Notation : une question d'un événement du périmètre sans prévision du modèle est notée sur le taux de base (noyau, section 8.6, « Périmètre »).
 - [ ] Questions conjointes : les ranger dans la grappe de A, ou fusionner les grappes de A, de B et du lien, comme pour la règle de l'acte, avant la première question conjointe (relecture 19, S3).
+- [ ] Notation : coder le verdict « non concluant d'avance » si la phase 3 démarre après le 1er avril 2027 (noyau, section 8.6), plutôt que de le déclarer (relecture 21, S11).
 - [ ] Copie aveugle du dépôt pour les évaluateurs et l'opérateur, sans les chemins listés au noyau (section 8.6, « Aveuglement »), et contrôle de leurs adresses consultées.
 
 ## À reporter à la prochaine version du noyau

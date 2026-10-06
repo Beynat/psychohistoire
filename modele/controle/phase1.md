@@ -29,8 +29,8 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [x] Procédure du cycle mensuel écrite : `modele/controle/cycle_mensuel.md`.
 - [x] Procédure du tri écrite : `modele/controle/tri.md`, avec `scripts/tri.py` (4 octobre 2026).
 
-- [x] Tâches planifiées créées : tri (lundi, mercredi, vendredi, 17 h 47), cycle mensuel (du 1er au 7 de chaque mois, 7 h 52, à partir du 1er novembre 2026), le 4 octobre 2026.
-- [ ] Règle de rattrapage testée sur un passage manqué simulé (la tâche du cycle se déclenche du 1er au 7 et reprend à la première étape non faite). Condition de la phase 1 (section 3) : à faire avant le premier cycle.
+- [x] Tâches planifiées créées : tri (lundi, mercredi, vendredi, 17 h 47), cycle mensuel (du 1er au 7 de chaque mois, 7 h 52, à partir du 1er novembre 2026), le 4 octobre 2026. À passer du 1er au 8 (v1.26), avec la date de gel du manifeste à la reprise.
+- [x] Règle de rattrapage testée sur un passage manqué simulé (`test_rattrapage`, 5-6 octobre 2026) : reprise sur la date du gel du manifeste, étapes déjà faites non rejouées. Reste l'alignement de la tâche planifiée (1er au 8, date de gel du manifeste).
 - [x] Journal des premières valeurs collectées (`scripts/premieres_valeurs.py`, `data/premieres_valeurs.jsonl`), lancé par la collecte nocturne (relecture 13, L1).
 - [x] Clé API Webstat en secret GitHub `WEBSTAT_KEY` ; OAT quotidienne (TEC 10, depuis 2010) collectée chaque nuit par `collecte/webstat.py` ; seuils de l'écart calés sur le niveau quotidien corrigé du décalage avec la série BCE (4 octobre 2026).
 - [x] Workflow de contrôle des registres actif : ajout seul, `--no-renames`, horodatage dans la fenêtre de poussée, décisions de tri en JSONL (section 12). Passé avec succès sur les poussées du cycle à blanc et de l'essai planifié (4 octobre 2026) ; étendu aux ajouts à la banque (`modele/banque/ajouts.jsonl`).
@@ -47,3 +47,10 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 ## À examiner au bilan de la phase 1 (relecture 20)
 
 - Contrôle des correspondances P1 : il se fait par événement ; un événement déjà en P1 au premier gel peut y faire passer d'autres questions mensuelles, et les questions de variable ne sont pas couvertes.
+
+## Souhaitables de la relecture 21 reportés
+
+- [ ] S4 : collecte nocturne de la valeur AGSI+ du 1er février 2027 (API), à écrire avant le 2 février 2027 ; le critère d'EV-38 la retient en premier (v1.26).
+- [ ] S9 : levée d'une annonce consignée à tort par erratum dans `registre/annonces.jsonl`, et terme à l'exclusion d'émission quand l'acte annoncé échoue.
+- [ ] S10 : `geler.py --essai` refusé pour une étiquette AAAA-MM à partir de 2026-11 ; tests réétiquetés (étiquettes d'essai distinctes).
+- [ ] S1 et S2 : ajouts par la procédure d'ajout (fin des fonctions du Premier ministre par décret, quelle qu'en soit la cause ; référendum ; écart OAT-BTP de signe positif ; clause pour une présidentielle anticipée).

@@ -1,4 +1,4 @@
-# Passation — état du projet au 5 octobre 2026
+# Passation — état du projet au 6 octobre 2026
 
 Document de reprise pour une nouvelle session. Le dépôt fait foi ; ce fichier ne remplace pas `modele/protocole.md` ni `modele/journal.md`.
 
@@ -8,10 +8,10 @@ Psychohistoire : des prévisions datées et notées sur la France, d'octobre 202
 
 ## État
 
-- **Versions.** Noyau v1.25, annexe de la phase 3 v1.7, banque v1.8 (55 questions, 42 événements), consigne de l'ensemble v1.5. Les tags `protocole-vX.Y` et `annexe-phase3-vX.Y` sont posés automatiquement.
+- **Versions.** Noyau v1.26, annexe de la phase 3 v1.7, banque v1.9 (55 questions, 42 événements), consigne de l'ensemble v1.5. Les tags `protocole-vX.Y` et `annexe-phase3-vX.Y` sont posés automatiquement.
 - **Statut.** `modele/statut.json` vaut `definitif: false` : aucun cycle réel ne peut tourner. Le premier cycle prévu est celui du 1er novembre 2026.
-- **Relectures.** Le compteur du critère d'arrêt est à zéro. Prochaine étape : relecture de validation 21, en session neuve, demandée par `modele/v1.25/demande_relecture_21.md`.
-- **Tests.** `python scripts/tests.py` (15 tests) et `python scripts/controle_banque.py` doivent passer avant chaque commit.
+- **Relectures.** Le compteur du critère d'arrêt est à zéro. La relecture de validation 21 a relevé un bloquant et deux importants, corrigés en v1.26. Prochaine étape : relecture de suivi 22, dans la session du relecteur 21 (`modele/v1.26/demande_relecture_22_suivi.md`), puis audit interne et relecture de validation 23 en session neuve.
+- **Tests.** `python scripts/tests.py` (17 tests) et `python scripts/controle_banque.py` doivent passer avant chaque commit.
 
 ## Processus de relecture (noyau, section 12)
 
@@ -42,15 +42,15 @@ Psychohistoire : des prévisions datées et notées sur la France, d'octobre 202
 
 ## Travaux en attente
 
-1. Relecture de validation 21, puis la suite du processus jusqu'au critère d'arrêt.
-2. Test du rattrapage d'un passage manqué, sur un passage simulé (liste de la phase 1). C'est une condition du premier cycle.
+1. Relecture de suivi 22, puis audit interne et validation 23, jusqu'au critère d'arrêt.
+2. Rattrapage : testé (`test_rattrapage`). Reste à aligner la tâche du cycle mensuel (déclenchement du 1er au 8, date de gel du manifeste à la reprise), avec l'accord de Nathan.
 3. Première collecte de données complète, puis v1 de l'outil et de l'interface.
 4. Volet actualité de l'interface (`modele/interface/actualite.md`), qui doit montrer :
    - les ajouts quotidiens ;
    - les jalons et questions qu'ils peuvent influencer ;
    - un niveau de vigilance (important ou peu important).
 5. Avant la phase 3 : la liste `modele/controle/phase3.md` (périmètre, copie aveugle, grappes des questions conjointes, statistique Z et facteur k sur une prévision indépendante de l'issue, marginale non calée).
-6. Ajouts différés à la banque, par la procédure d'ajout : législatives anticipées, Nouvelle-Calédonie, régionales et départementales 2028, croissance du PIB, taux de la BCE, droits de douane entre les États-Unis et l'UE, grève dans la fonction publique en 2027.
+6. Ajouts différés à la banque, par la procédure d'ajout : législatives anticipées, Nouvelle-Calédonie, régionales et départementales 2028, croissance du PIB, taux de la BCE, droits de douane entre les États-Unis et l'UE, grève dans la fonction publique en 2027 ; et, depuis la relecture 21, fin des fonctions du Premier ministre quelle qu'en soit la cause, référendum, écart OAT-BTP de signe positif, clause pour une présidentielle anticipée. Autres souhaitables reportés : `modele/controle/phase1.md`.
 
 ## Préférences de Nathan
 

@@ -6,8 +6,9 @@ name: Contrôle des registres
 #    aucun fichier supprimé ni renommé) ;
 # 2. que chaque nouvelle ligne de registre (« emise ») et chaque nouvelle définition de
 #    jalon (« defini_le ») porte un horodatage avec fuseau, compris entre
-#    deux heures avant le début du contrôle et le début du contrôle. La date de poussée
-#    fait foi : une question résolue avant elle est annulée (section 8.8).
+#    deux heures avant le début du contrôle et le début du contrôle. Une ligne hors fenêtre est
+#    annulée par un erratum dans les sept jours (sections 8.8 et 12) ;
+# 3. qu'aucune nouvelle ligne n'est une seconde prévision d'un même cycle pour un auteur et une question.
 # Le contrôle est détectif : un échec est public et se corrige par une ligne d'erratum.
 
 on:
@@ -76,6 +77,23 @@ jobs:
                           continue
                       if not (debut - timedelta(hours=2) <= e <= debut + timedelta(minutes=5)):
                           erreurs.append(f"{f} : « {champ} » {e.isoformat()} hors de la fenêtre de poussée ({debut.isoformat()})")
+              # Une seule prévision de cycle par auteur, question et cycle (relecture 21, I1) : une seconde ligne
+              # est signalée ; la notation ne garde que la première.
+              if f.startswith("registre/") and f.endswith(".jsonl"):
+                  nouvelles = {l[1:] for l in diff if l.startswith("+") and not l.startswith("+++")}
+                  vus = {}
+                  for brut in open(f, encoding="utf-8").read().splitlines():
+                      try:
+                          x = json.loads(brut)
+                      except Exception:
+                          continue
+                      o = str(x.get("origine", "")).split()
+                      if "probabilites" not in x or x.get("erratum") or len(o) < 2 or o[0] != "cycle":
+                          continue
+                      cle = (x.get("auteur", "modèle"), x.get("question"), o[1].rstrip(","))
+                      if cle in vus and brut in nouvelles:
+                          erreurs.append(f"{f} : seconde prévision du cycle {cle[2]} pour {cle[0]}, {cle[1]}")
+                      vus[cle] = True
           for x in erreurs:
               print(f"::error::{x}")
           print("Contrôle conforme." if not erreurs else f"{len(erreurs)} anomalie(s).")

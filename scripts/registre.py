@@ -34,6 +34,11 @@ def valider(l):
         raise ValueError("le champ « emise » est fixé par le script, pas fourni en entrée")
     if l.get("erratum"):
         manque = ERRATUM - l.keys()
+        if not manque and isinstance(l["objet"], dict):
+            # Erratum de prévision (relecture 21, B1) : annulation d'une ligne désignée par question, auteur, emise.
+            manque = ({"question", "auteur", "emise"} - l["objet"].keys()) | ({"motif"} - l.keys())
+            if not manque and l["correction"] != {"annulee": True}:
+                raise ValueError("erratum de prévision : seule la correction {\"annulee\": true} est admise")
     elif l.get("resolution"):
         manque = RESOLUTION - l.keys()
     elif l.get("annonce"):

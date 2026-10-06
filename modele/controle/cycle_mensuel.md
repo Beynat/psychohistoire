@@ -1,6 +1,6 @@
 # Procédure du cycle mensuel — phase 1
 
-Exécutée le 1er de chaque mois par la tâche planifiée du cycle mensuel (noyau, section 12). La tâche se déclenche chaque jour du 1er au 7 : si le cycle du mois est complet (lignes « ensemble direct » d'origine « cycle AAAA-MM » au registre), elle s'arrête aussitôt ; sinon elle reprend à la première étape non faite (le gel n'est jamais refait). Au-delà du 7, le cycle est déclaré manqué au journal, sans prévision rétroactive (règle de rattrapage). Chaque étape est commitée et poussée avant la suivante ; l'ordre garantit que les prévisions sont postérieures au gel et antérieures à toute autre recherche (section 8.2).
+Exécutée le 1er de chaque mois par la tâche planifiée du cycle mensuel (noyau, section 12). La tâche se déclenche chaque jour du 1er au 8 : si le cycle du mois est complet (lignes « ensemble direct » d'origine « cycle AAAA-MM » au registre), elle s'arrête aussitôt ; sinon, jusqu'au 7, elle reprend à la première étape non faite. À la reprise, le gel n'est jamais refait et la date de gel G est celle de `data/cycles/AAAA-MM/gel/manifeste.json`, pas la date du jour ; une étape dont les lignes sont déjà au registre n'est pas rejouée (`comparateurs.py` et `ensemble.py` le refusent). Le 8, un cycle incomplet est déclaré manqué au journal, sans prévision rétroactive (règle de rattrapage). Chaque étape est commitée et poussée avant la suivante ; l'ordre garantit que les prévisions sont postérieures au gel et antérieures à toute autre recherche (section 8.2).
 
 **Préalable : statut du protocole.** Si `modele/statut.json` indique `"definitif": false`, s'arrêter : aucun cycle n'est exécuté avant la première version définitive (noyau, section 12). Le consigner au journal une seule fois par mois.
 
@@ -23,3 +23,5 @@ Exécutée le 1er de chaque mois par la tâche planifiée du cycle mensuel (noya
 7. **Journal.** Une ligne dans `modele/journal.md` si un passage a été manqué ou rattrapé (règle de rattrapage, section 12).
 
 En cas d'échec d'une étape : ne pas passer à la suivante, consigner l'échec au journal, reprendre au passage suivant sans prévision rétroactive.
+
+**Échec du contrôle d'horodatage.** Si le workflow « Contrôle des registres » signale une ligne hors fenêtre de poussée, chaque ligne en cause est annulée par un erratum `{"erratum": true, "objet": {"question", "auteur", "emise"}, "correction": {"annulee": true}, "motif", "controle": <numéro d'exécution du workflow>, "piste": "protocole"}`, ajouté par `scripts/registre.py` dans les sept jours (noyau, sections 0 et 8.8). La ligne annulée n'est pas réémise.

@@ -149,6 +149,37 @@ def brier_pondere(lignes, issue, debut, echeance, date_fait=None):
     return cumul / longueur if couvert else None
 
 
+def etiquette_cycle(l):
+    """Étiquette du cycle d'une ligne d'origine « cycle AAAA-MM… », None pour une autre origine."""
+    o = str(l.get("origine", "")).split()
+    return o[1].rstrip(",") if len(o) >= 2 and o[0] == "cycle" else None
+
+
+def annulations(lignes, exclues=None, delai=7):
+    """Lignes de prévision annulées par erratum (relecture 21, B1) : clés (question, auteur, emise). Un erratum
+    émis plus de `delai` jours après la ligne visée, ou qui ne vise aucune ligne, est ignoré et publié : il ne
+    peut pas servir à retirer après coup une prévision dont l'issue est connue."""
+    from datetime import datetime
+    emises = {(l["question"], l.get("auteur", "modèle"), l["emise"]) for l in lignes
+              if "probabilites" in l and not l.get("erratum")}
+    sortie = set()
+    for e in lignes:
+        o = e.get("objet")
+        if not (e.get("erratum") and isinstance(o, dict) and (e.get("correction") or {}).get("annulee")):
+            continue
+        cle = (o.get("question"), o.get("auteur", "modèle"), o.get("emise"))
+        if cle not in emises:
+            motif = "erratum sans ligne visée"
+        elif (datetime.fromisoformat(e["emise"]) - datetime.fromisoformat(cle[2])).days > delai:
+            motif = f"erratum émis plus de {delai} jours après la ligne"
+        else:
+            sortie.add(cle)
+            continue
+        if exclues is not None:
+            exclues.append({"auteur": cle[1], "question": cle[0], "emise": cle[2], "motif": f"{motif} : ignoré"})
+    return sortie
+
+
 def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhui=None):
     aujourdhui = aujourdhui or date.today().isoformat()
     sfx = suffixe(reg)
@@ -158,10 +189,38 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
     # Questions échues à la date du test sans résolution ni annulation (relecture 17, I4) : publiées, pour
     # que la sélection par le délai de résolution reste visible.
     echues_ouvertes = sorted(q for q, v in qs.items() if v["echeance"] <= aujourdhui and q not in toutes)
+    lignes_reg = lire_jsonl(reg)
+    exclues = []
+    # Errata d'annulation (relecture 21, B1) : une ligne poussée hors de la fenêtre du contrôle d'horodatage
+    # (section 12) est annulée par un erratum {erratum, objet: {question, auteur, emise}, correction: {annulee},
+    # motif, controle}, émis au plus tard sept jours après la ligne. Appliqué avant tout calcul, publié.
+    annulees = annulations(lignes_reg, exclues)
     prev = {}
-    for l in lire_jsonl(reg):
-        if "probabilites" in l and l["question"] in res:
+    for l in lignes_reg:
+        if "probabilites" in l and l["question"] in res and not l.get("erratum"):
             prev.setdefault((l.get("auteur", "modèle"), l["question"]), []).append(l)
+    # Une seule prévision de cycle par auteur, question et cycle (relecture 21, I1) : la première émise. Une
+    # seconde ligne du même cycle remplaçait la première sur tout le cycle (départ commun), mais n'était retenue
+    # que si le fait ne l'avait pas précédée : la ligne notée dépendait de l'issue. Une ligne annulée compte
+    # comme première : le cycle n'est pas réémis, il est alors retiré pour les deux auteurs (cycles communs).
+    # Écartées avant toute exclusion liée au fait, et publiées.
+    for (auteur, qid), lignes in prev.items():
+        lignes.sort(key=lambda l: l["emise"])
+        vus, garde = set(), []
+        for l in lignes:
+            c = etiquette_cycle(l)
+            if c is not None and c in vus:
+                exclues.append({"auteur": auteur, "question": qid, "emise": l["emise"],
+                                "motif": f"seconde prévision du cycle {c}"})
+                continue
+            if c is not None:
+                vus.add(c)
+            if (qid, auteur, l["emise"]) in annulees:
+                exclues.append({"auteur": auteur, "question": qid, "emise": l["emise"], "motif": "annulée par erratum"})
+                continue
+            garde.append(l)
+        lignes[:] = garde
+    prev = {k: v for k, v in prev.items() if v}
     # Actes annoncés comme décidés (relecture 20, N1 ; audit interne v1.25) : chaque question est coupée au jour de
     # la première annonce consignée pour son événement, quelle que soit l'issue. Sinon les prévisions émises après
     # l'annonce ne seraient exclues que si l'annonce se vérifie (date du fait), et gardées si elle échoue.
@@ -169,7 +228,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
     for a in lire_jsonl("registre/annonces.jsonl"):
         if a.get("annonce"):
             annonce[a["question"]] = min(annonce.get(a["question"], "9999-12-31"), a["date_annonce"])
-    scores, exclues = {}, []
+    scores = {}
     for (auteur, qid), lignes in prev.items():
         q, r = qs[qid], res[qid]
         lignes.sort(key=lambda l: l["emise"])
@@ -230,6 +289,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
     def comparer(a, garder, instantanes=True, ref=None):
         ref = ref or reference
         diffs, echelles = {}, {}
+        retires = questions_retirees = 0
         for (aa, qid), s in scores.items():
             if aa != ref or (a, qid) not in scores or not echue(qid) or not garder(qid, s):
                 continue
@@ -245,8 +305,12 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
                 # Cycles communs aux deux auteurs (relecture 19, I1) : un cycle manqué par l'un est retiré pour
                 # les deux, chacun étant alors couvert par sa prévision de cycle précédente. Sinon, l'auteur qui
                 # a prévu au dernier cycle avant le fait est avantagé à prévisions également informées.
-                etiq = lambda l: str(l["origine"]).split()[1].rstrip(",")
+                etiq = etiquette_cycle
                 communs = {etiq(l) for l in ls} & {etiq(l) for l in lo}
+                # Cycles retirés faute de prévision des deux auteurs (relecture 21, S8) : publiés.
+                retires += len(({etiq(l) for l in ls} | {etiq(l) for l in lo}) - communs)
+                if not communs:
+                    questions_retirees += 1
                 ls = [l for l in ls if etiq(l) in communs]
                 lo = [l for l in lo if etiq(l) in communs]
                 if not ls or not lo:
@@ -272,6 +336,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
                 echelles.setdefault(s["grappe"], []).append(4 * pr * (1 - pr) if pr is not None else 1.0)
         t = test_grappes(diffs)
         t["reference"], t["autre"] = ref, a
+        t["cycles_retires_non_communs"], t["questions_sans_cycle_commun"] = retires, questions_retirees
         # Puissance recalculée sur les grappes réellement présentes (relecture 11, S8).
         if len(echelles) >= 2:
             import puissance
