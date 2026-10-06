@@ -51,33 +51,61 @@ ILLISIBLES = []          # lignes illisibles rencontrées (chemin, numéro), pub
 _JOURNAL = {}
 
 
+def ligne_valide(x):
+    """Types attendus des champs d'une ligne de registre (troisième audit v1.27, défaut 1) : une ligne qui ne les
+    respecte pas est traitée comme illisible (écartée à la lecture, inscrite au journal par le contrôle)."""
+    if not isinstance(x, dict):
+        return False
+    for k in ("question", "auteur", "agent", "origine", "piste", "source", "date_fait", "date_annonce", "emise"):
+        if k in x and not isinstance(x[k], str):
+            return False
+    if "issue" in x and x["issue"] is not None and not isinstance(x["issue"], str):
+        return False
+    if "probabilites" in x:
+        pr = x["probabilites"]
+        if not isinstance(pr, dict) or not pr or not all(isinstance(k, str) and isinstance(v, (int, float))
+                                                          and not isinstance(v, bool) for k, v in pr.items()):
+            return False
+    if "objet" in x and not isinstance(x["objet"], (str, dict)):
+        return False
+    return True
+
+
 def journal_controles():
     """Journal des contrôles (noyau, sections 0 et 12) : entrées écrites par le workflow « Contrôle des registres »
     sur la branche « controles » (fichier controles.jsonl). Ordre de lecture : variable JOURNAL_CONTROLES (chemin
-    d'un fichier) ; dans un dépôt Git, la branche distante « controles » (récupérée ; un échec de récupération est
-    une erreur, jamais un journal vide) ; sinon registre/controles.jsonl (copies de test)."""
+    d'un fichier, par exemple pour une relecture hors ligne) ; dans un dépôt Git doté d'un dépôt distant « origin »,
+    la branche distante « controles », dont le commit racine doit être celui de modele/controles_racine.txt (une
+    branche absente ou recréée est une erreur, jamais un journal vide) ; sinon registre/controles.jsonl (copies de
+    test)."""
     import os
     import subprocess
     cle = str(RACINE)
     if cle in _JOURNAL:
         return _JOURNAL[cle]
-    texte = ""
+    donnees = b""
+    racine_attendue = (RACINE / "modele/controles_racine.txt").read_text("utf-8").strip() \
+        if (RACINE / "modele/controles_racine.txt").exists() else ""
     if os.environ.get("JOURNAL_CONTROLES"):
-        texte = Path(os.environ["JOURNAL_CONTROLES"]).read_text("utf-8")
-    elif (RACINE / ".git").exists() and subprocess.run(["git", "remote"], cwd=RACINE, capture_output=True, text=True).stdout.strip():
-        r = subprocess.run(["git", "ls-remote", "--exit-code", "origin", "controles"], cwd=RACINE, capture_output=True)
-        if r.returncode == 0:
-            f = subprocess.run(["git", "fetch", "-q", "origin", "controles:refs/remotes/origin/controles"], cwd=RACINE)
-            if f.returncode:
-                raise SystemExit("Journal des contrôles : récupération de la branche « controles » impossible.")
-            texte = subprocess.run(["git", "show", "origin/controles:controles.jsonl"], cwd=RACINE,
-                                   capture_output=True, text=True).stdout
-        elif r.returncode != 2:
-            raise SystemExit("Journal des contrôles : dépôt distant inaccessible.")
+        donnees = Path(os.environ["JOURNAL_CONTROLES"]).read_bytes()
+    elif (RACINE / ".git").exists() and "origin" in subprocess.run(["git", "remote"], cwd=RACINE, capture_output=True,
+                                                                  text=True).stdout.split():
+        f = subprocess.run(["git", "fetch", "-q", "origin", "+controles:refs/remotes/origin/controles"], cwd=RACINE,
+                           capture_output=True)
+        if f.returncode:
+            raise SystemExit("Journal des contrôles : branche « controles » introuvable ou inaccessible "
+                             "(définir JOURNAL_CONTROLES pour travailler hors ligne).")
+        racine = subprocess.run(["git", "rev-list", "--max-parents=0", "origin/controles"], cwd=RACINE,
+                                capture_output=True, text=True).stdout.split()
+        if racine_attendue and racine_attendue not in racine:
+            raise SystemExit(f"Journal des contrôles : branche « controles » recréée (racine {racine}, attendue "
+                             f"{racine_attendue}).")
+        donnees = subprocess.run(["git", "show", "origin/controles:controles.jsonl"], cwd=RACINE,
+                                 capture_output=True).stdout
     elif (RACINE / "registre/controles.jsonl").exists():
-        texte = (RACINE / "registre/controles.jsonl").read_text("utf-8")
+        donnees = (RACINE / "registre/controles.jsonl").read_bytes()
     entrees = []
-    for brut in texte.split("\n"):
+    for brut in donnees.split(b"\n"):
         try:
             x = json.loads(brut)
         except Exception:
@@ -89,31 +117,32 @@ def journal_controles():
 
 
 def empreintes_inscrites(chemin):
-    """Empreintes des lignes de ce registre inscrites au journal des contrôles (poussées hors fenêtre)."""
-    return {e["empreinte"] for e in journal_controles() if e.get("fichier") == chemin and e.get("empreinte")}
+    """Empreintes des lignes de ce registre inscrites au journal des contrôles."""
+    return {e["empreinte"] for e in journal_controles() if e.get("fichier") == chemin and isinstance(e.get("empreinte"), str)}
 
 
 def lire_jsonl(chemin, empreintes=False, garder_inscrites=False):
-    """Lignes d'un fichier JSONL, découpé sur « \\n » seulement (U+2028 et voisins restent dans la ligne). Une ligne
-    illisible est écartée et consignée dans ILLISIBLES. Dans registre/, une ligne inscrite au journal des contrôles
-    est écartée (audit interne v1.27 : annonces, propositions et résolutions comprises), sauf garder_inscrites.
-    empreintes=True ajoute à chaque ligne l'empreinte SHA-256 de sa ligne brute (« _empreinte »)."""
+    """Lignes d'un fichier JSONL, lu en octets et découpé sur « \\n » seulement (U+2028 et voisins restent dans la
+    ligne ; un retour chariot final reste dans l'empreinte, comme pour le contrôle). Une ligne illisible ou de types
+    inattendus est écartée et consignée dans ILLISIBLES. Dans registre/, une ligne inscrite au journal des contrôles
+    est écartée (annonces, propositions et résolutions comprises), sauf garder_inscrites. empreintes=True ajoute à
+    chaque ligne l'empreinte SHA-256 de sa ligne brute (« _empreinte »)."""
     p = RACINE / chemin
     if not p.exists():
         return []
     inscrites = empreintes_inscrites(chemin) if chemin.startswith("registre/") and not garder_inscrites else set()
     sortie = []
-    for n, brut in enumerate(p.read_text("utf-8", errors="replace").split("\n"), 1):
+    for n, brut in enumerate(p.read_bytes().split(b"\n"), 1):
         if not brut.strip():
             continue
         try:
             x = json.loads(brut)
-            if not isinstance(x, dict):
+            if not isinstance(x, dict) or (chemin.startswith("registre/") and not ligne_valide(x)):
                 raise ValueError
         except Exception:
             ILLISIBLES.append({"fichier": chemin, "ligne": n})
             continue
-        e = hashlib.sha256(brut.encode("utf-8")).hexdigest()
+        e = hashlib.sha256(brut).hexdigest()
         if e in inscrites:
             continue
         sortie.append({**x, "_empreinte": e} if empreintes else x)

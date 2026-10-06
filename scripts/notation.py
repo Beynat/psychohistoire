@@ -80,6 +80,7 @@ def test_calibration(items, rho=0.3, nsim=2000, graine=3):
 
 def test_grappes(diffs):
     """diffs : {grappe: [différences de Brier référence − autre]}. Négatif = la référence est meilleure."""
+    diffs = {g: diffs[g] for g in sorted(diffs)}   # ordre indépendant du registre (troisième audit v1.27)
     D = [sum(v) for v in diffs.values()]
     G = len(D)
     if G == 0 or all(d == 0 for d in D):

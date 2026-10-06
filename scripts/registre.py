@@ -32,6 +32,9 @@ def horodatage():
 def valider(l):
     if "emise" in l:
         raise ValueError("le champ « emise » est fixé par le script, pas fourni en entrée")
+    from commun import ligne_valide
+    if not ligne_valide(l):
+        raise ValueError("types de champs inattendus (question, auteur, agent, issue en chaînes ; probabilités en nombres)")
     if l.get("erratum"):
         manque = ERRATUM - l.keys()
         if not manque and isinstance(l["objet"], dict):
@@ -71,7 +74,7 @@ def ajouter(chemin, lignes):
         valider(l)
     cible = RACINE / chemin
     cible.parent.mkdir(parents=True, exist_ok=True)
-    with cible.open("a", encoding="utf-8") as f:
+    with cible.open("a", encoding="utf-8", newline="\n") as f:   # jamais de CRLF (troisième audit v1.27)
         for l in lignes:
             f.write(json.dumps({**l, "emise": t}, ensure_ascii=True) + "\n")   # U+2028 et voisins échappés (audit v1.27)
     return t

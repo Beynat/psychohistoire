@@ -599,9 +599,11 @@ def test_controle_registres():
         with (depot / f).open("ab") as h:
             h.write(lignes if binaire else "".join(x + "\n" for x in lignes).encode())
         g("add", "-A"); g("commit", "-qm", "c", auteur=auteur)
-    def controler(avant=""):
+    def controler(avant="", pousses=None, pousse_le=None):
         env = {**os.environ, "AVANT": avant, "JOURNAL_CONTROLES": str(journal), "JOURNAL_NOUVEAU": str(nouveau),
-               "GITHUB_RUN_ID": "7", "POUSSE_LE": str(int(maintenant.timestamp()))}
+               "GITHUB_RUN_ID": "7", "POUSSE_LE": str(int((pousse_le or maintenant).timestamp()))}
+        if pousses is not None:
+            (tmp / "pousses.json").write_text(json.dumps(pousses)); env["POUSSES"] = str(tmp / "pousses.json")
         r = subprocess.run([sys.executable, str(script)], cwd=depot, env=env, capture_output=True, text=True)
         subprocess.run([sys.executable, str(script), "--inscrire", str(journal)], cwd=depot, env=env, check=True)
         j = [json.loads(x) for x in journal.read_text().splitlines() if x.strip()]
@@ -640,11 +642,73 @@ def test_controle_registres():
         pousser(b"\xff\xfe{\n" + (poison + "\n").encode() + (L("Q9", (maintenant - timedelta(days=3)).isoformat()) + "\n").encode(), binaire=True)
         code, out, j = controler()
         assert "Traceback" not in out and h(poison) in {x["empreinte"] for x in j}, (out, j)
+        # Troisième audit v1.27. Ligne de types inattendus : sans plantage, inscrite ; retour chariot et octet NUL :
+        # l'empreinte est celle de la ligne brute, et le fichier reste contrôlé.
+        typee = json.dumps({"question": ["EV-15", "EV-16"], "probabilites": {"oui": 50, "non": 50}, "origine": "cycle 2026-11",
+                            "emise": maintenant.isoformat()})
+        crlf = L("Q10", (maintenant - timedelta(days=2)).isoformat())
+        pousser((typee + "\n" + crlf + "\r\n").encode() + b'{"question": "Q\x00", "emise": "x"}\n', binaire=True)
+        code, out, j = controler()
+        e = {x["empreinte"] for x in j}
+        assert "Traceback" not in out and h(typee) in e and hashlib.sha256((crlf + "\r").encode()).hexdigest() in e, (out, j)
+        assert hashlib.sha256(b'{"question": "Q\x00", "emise": "x"}').hexdigest() in e, (out, j)
+        # Plage recontrôlée : chaque ligne est jugée à l'heure de la poussée qui l'a apportée (défaut 2) ; une relance
+        # ancienne ne fait pas reculer le repère (défaut 3).
+        bA = g("rev-parse", "HEAD")
+        reguliere = L("Q12", (maintenant - timedelta(hours=6)).isoformat())
+        pousser([reguliere]); bB = g("rev-parse", "HEAD")
+        pousser([L("Q13", maintenant.isoformat())]); bC = g("rev-parse", "HEAD")
+        pousses = [{"before": bA, "after": bB, "timestamp": (maintenant - timedelta(hours=6)).isoformat()},
+                   {"before": bB, "after": bC, "timestamp": maintenant.isoformat()}]
+        code, out, j = controler(pousses=pousses)
+        assert h(reguliere) not in {x["empreinte"] for x in j}, (out, j)
+        with journal.open("a") as fj:   # repère ancien écrit après coup (relance de l'exécution de bB)
+            fj.write(json.dumps({"controle_jusqua": bB}) + "\n")
+        tardive2 = L("Q14", (maintenant - timedelta(days=4)).isoformat())
+        pousser([tardive2])
+        code, out, j = controler(pousse_le=maintenant + timedelta(hours=5))
+        assert h(L("Q13", maintenant.isoformat())) not in {x["empreinte"] for x in j}, (out, j)
+        # Sans l'activité du dépôt, une poussée antérieure n'est pas jugée sur la fenêtre, et c'est signalé.
+        bD = g("rev-parse", "HEAD")
+        anterieure = L("Q15", (maintenant - timedelta(hours=6)).isoformat())
+        pousser([anterieure]); bE = g("rev-parse", "HEAD"); pousser([L("Q16", maintenant.isoformat())])
+        journal.write_text(journal.read_text() + json.dumps({"controle_jusqua": bD}) + "\n")
+        code, out, j = controler(avant=bE)
+        assert "heure de poussée inconnue" in out and h(anterieure) not in {x["empreinte"] for x in j}, (out, j)
         # Premières valeurs modifiées par un autre que la collecte ; journal présent sur main : signalés.
         pousser(['{"serie": "x"}'], f="data/premieres_valeurs.jsonl")
         pousser(['{"note": "x"}'], f="registre/controles.jsonl")
         code, out, j = controler()
         assert code == 1 and "et non par le workflow" in out and "branche « controles »" in out, out
+    finally:
+        shutil.rmtree(tmp)
+
+
+def test_branche_du_journal():
+    """Troisième audit v1.27, défaut 4 : branche « controles » absente ou recréée = erreur, jamais un journal vide."""
+    import subprocess, os
+    racine = Path(__file__).resolve().parent.parent
+    tmp = Path(tempfile.mkdtemp())
+    try:
+        nu, depot = tmp / "nu.git", tmp / "depot"
+        g = lambda cwd, *a: subprocess.run(["git", "-c", "user.name=a", "-c", "user.email=a@b", *a], cwd=cwd,
+                                           capture_output=True, text=True)
+        g(tmp, "init", "-q", "--bare", str(nu))
+        shutil.copytree(racine, depot, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+        g(depot, "init", "-q"); g(depot, "remote", "add", "origin", str(nu))
+        code = "import commun; print(len(commun.journal_controles()))"
+        env = {k: v for k, v in os.environ.items() if k != "JOURNAL_CONTROLES"}
+        env["PYTHONPATH"] = str(depot / "scripts")
+        run = lambda: subprocess.run([sys.executable, "-c", code], cwd=depot, env=env, capture_output=True, text=True)
+        r = run()
+        assert r.returncode != 0 and "introuvable" in (r.stdout + r.stderr), r.stdout + r.stderr   # branche absente
+        j = tmp / "j"; g(tmp, "init", "-q", str(j)); (j / "controles.jsonl").write_text('{"controle_jusqua": "x"}\n')
+        g(j, "add", "-A"); g(j, "commit", "-qm", "j"); g(j, "push", "-q", str(nu), "HEAD:refs/heads/controles")
+        r = run()
+        assert r.returncode != 0 and "recréée" in (r.stdout + r.stderr), r.stdout + r.stderr       # autre racine
+        (depot / "modele/controles_racine.txt").write_text(g(j, "rev-parse", "HEAD").stdout)
+        r = run()
+        assert r.returncode == 0 and r.stdout.strip() == "1", r.stdout + r.stderr
     finally:
         shutil.rmtree(tmp)
 
@@ -677,6 +741,21 @@ def test_registre():
         finally:
             commun.RACINE = ancien_c
         assert len(lues) == 3 and lues[2]["source"] == "x\u2028y", lues
+        # Troisième audit v1.27 : types inattendus refusés à l'écriture, écartés à la lecture.
+        try:
+            registre.valider({"proposition": True, "question": ["EV-15"], "issue": "oui", "source": "s", "agent": "a",
+                              "date_fait": "2026-11-03"})
+            raise AssertionError("question non textuelle acceptée")
+        except ValueError:
+            pass
+        with (tmp / "registre/t.jsonl").open("a", encoding="utf-8") as f:
+            f.write(json.dumps({"question": ["EV-15"], "probabilites": {"oui": 50, "non": 50}}) + "\r\n")
+        commun.RACINE = tmp
+        try:
+            lues = commun.lire_jsonl("registre/t.jsonl")
+        finally:
+            commun.RACINE = ancien_c
+        assert len(lues) == 3, lues
         l = json.loads((tmp / "registre/t.jsonl").read_text().split("\n")[0])
         assert l["emise"].endswith("+02:00") or l["emise"].endswith("+01:00")
         for mauvaise in ({"question": "Q", "probabilites": {"oui": 60, "non": 40}, "piste": "protocole", "origine": "o",

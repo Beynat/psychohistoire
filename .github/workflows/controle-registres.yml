@@ -32,22 +32,34 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Journal des contrôles
+      - name: Journal des contrôles et activité du dépôt
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set +e
           git ls-remote --exit-code origin controles > /dev/null
           code=$?
           set -e
+          attendue=$(cat modele/controles_racine.txt 2>/dev/null || true)
           if [ "$code" = "0" ]; then
-            git fetch -q origin controles:refs/remotes/origin/controles
+            git fetch -q origin +controles:refs/remotes/origin/controles
+            racine=$(git rev-list --max-parents=0 origin/controles)
+            if [ -n "$attendue" ] && ! echo "$racine" | grep -qx "$attendue"; then
+              echo "::error::Branche « controles » recréée (racine $racine, attendue $attendue)"; exit 1
+            fi
             git show origin/controles:controles.jsonl > "$RUNNER_TEMP/journal.jsonl"
-          elif [ "$code" = "2" ]; then
+          elif [ "$code" = "2" ] && [ -z "$attendue" ]; then
             : > "$RUNNER_TEMP/journal.jsonl"
           else
-            echo "::error::Branche « controles » inaccessible"; exit 1
+            echo "::error::Branche « controles » absente ou inaccessible"; exit 1
           fi
+          # Heure de chaque poussée sur main (une plage recontrôlée est jugée poussée par poussée).
+          gh api "repos/${GITHUB_REPOSITORY}/activity?ref=refs/heads/main&activity_type=push&per_page=100" \
+            --jq '[.[] | {before, after, timestamp}]' > "$RUNNER_TEMP/pousses.json" || echo "[]" > "$RUNNER_TEMP/pousses.json"
+          echo "Activité : $(jq length "$RUNNER_TEMP/pousses.json") poussées ; journal : $(wc -l < "$RUNNER_TEMP/journal.jsonl") entrées"
           echo "JOURNAL_CONTROLES=$RUNNER_TEMP/journal.jsonl" >> "$GITHUB_ENV"
           echo "JOURNAL_NOUVEAU=$RUNNER_TEMP/nouveau.jsonl" >> "$GITHUB_ENV"
+          echo "POUSSES=$RUNNER_TEMP/pousses.json" >> "$GITHUB_ENV"
       - name: Ajout seul, horodatage, lignes à inscrire
         env:
           AVANT: ${{ github.event.before }}
@@ -63,8 +75,8 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           for i in 1 2 3; do
             rm -rf "$RUNNER_TEMP/j"; git worktree prune
-            if git fetch -q origin controles 2>/dev/null; then
-              git worktree add -q -B controles "$RUNNER_TEMP/j" FETCH_HEAD
+            if git fetch -q origin +controles:refs/remotes/origin/controles 2>/dev/null; then
+              git worktree add -q -B controles "$RUNNER_TEMP/j" origin/controles
             else
               git worktree add -q --detach "$RUNNER_TEMP/j"
               git -C "$RUNNER_TEMP/j" checkout -q --orphan controles
