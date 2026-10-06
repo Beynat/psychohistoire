@@ -29,8 +29,8 @@ La phase 1 ne démarre que si chaque point est coché, avec le commit correspond
 - [x] Procédure du cycle mensuel écrite : `modele/controle/cycle_mensuel.md`.
 - [x] Procédure du tri écrite : `modele/controle/tri.md`, avec `scripts/tri.py` (4 octobre 2026).
 
-- [x] Tâches planifiées créées : tri (lundi, mercredi, vendredi, 17 h 47), cycle mensuel (du 1er au 7 de chaque mois, 7 h 52, à partir du 1er novembre 2026), le 4 octobre 2026. À passer du 1er au 8 (v1.26), avec la date de gel du manifeste à la reprise.
-- [x] Règle de rattrapage testée sur un passage manqué simulé (`test_rattrapage`, 5-6 octobre 2026) : reprise sur la date du gel du manifeste, étapes déjà faites non rejouées. Reste l'alignement de la tâche planifiée (1er au 8, date de gel du manifeste).
+- [x] Tâches planifiées créées : tri (lundi, mercredi, vendredi, 17 h 47), cycle mensuel (du 1er au 7 de chaque mois, 7 h 52, à partir du 1er novembre 2026), le 4 octobre 2026. Passée du 1er au 8 le 6 octobre 2026 (v1.26), avec la date de gel du manifeste à la reprise et l'erratum en cas d'échec d'horodatage.
+- [x] Règle de rattrapage testée sur un passage manqué simulé (`test_rattrapage`, 5-6 octobre 2026) : reprise sur la date du gel du manifeste, étapes déjà faites non rejouées. Tâche planifiée alignée le 6 octobre 2026.
 - [x] Journal des premières valeurs collectées (`scripts/premieres_valeurs.py`, `data/premieres_valeurs.jsonl`), lancé par la collecte nocturne (relecture 13, L1).
 - [x] Clé API Webstat en secret GitHub `WEBSTAT_KEY` ; OAT quotidienne (TEC 10, depuis 2010) collectée chaque nuit par `collecte/webstat.py` ; seuils de l'écart calés sur le niveau quotidien corrigé du décalage avec la série BCE (4 octobre 2026).
 - [x] Workflow de contrôle des registres actif : ajout seul, `--no-renames`, horodatage dans la fenêtre de poussée, décisions de tri en JSONL (section 12). Passé avec succès sur les poussées du cycle à blanc et de l'essai planifié (4 octobre 2026) ; étendu aux ajouts à la banque (`modele/banque/ajouts.jsonl`).

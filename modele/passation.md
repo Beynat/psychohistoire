@@ -36,14 +36,14 @@ Psychohistoire : des prévisions datées et notées sur la France, d'octobre 202
 - Aucune donnée d'essai dans `registre/protocole.jsonl`. Les essais utilisent des registres suffixés, sur une copie, ou des cycles nommés autrement que `AAAA-MM`.
 - Ne pas publier la caractérisation proposée des faits d'actualité ni d'éléments de vie privée (annexe, section 11.2).
 - Ne créer, modifier ou déclencher une tâche planifiée qu'avec l'accord de Nathan. Deux tâches existent :
-  - cycle mensuel : `trig_01SJXN4Fmwjue8foVBeRXddV`, du 1er au 7 du mois à 7 h 52, avec des gardes sur la date et sur `statut.json` ;
+  - cycle mensuel : `trig_01SJXN4Fmwjue8foVBeRXddV`, du 1er au 8 du mois à 7 h 52 (le 8 : déclaration d'un cycle manqué seulement), avec des gardes sur la date et sur `statut.json` ;
   - tri : `trig_01M5gsZGtbMwVYGUbaCRpELn`, lundi, mercredi et vendredi à 17 h 47.
 - Sources : méthode de fiabilité dans `modele/sources.md`. Une source n'est primaire que pour ses propres actes ; se méfier des médias partisans.
 
 ## Travaux en attente
 
 1. Relecture de suivi 22, puis audit interne et validation 23, jusqu'au critère d'arrêt.
-2. Rattrapage : testé (`test_rattrapage`). Reste à aligner la tâche du cycle mensuel (déclenchement du 1er au 8, date de gel du manifeste à la reprise), avec l'accord de Nathan.
+2. Rattrapage : testé (`test_rattrapage`) ; tâche du cycle mensuel alignée le 6 octobre 2026 (du 1er au 8, date de gel du manifeste à la reprise).
 3. Première collecte de données complète, puis v1 de l'outil et de l'interface.
 4. Volet actualité de l'interface (`modele/interface/actualite.md`), qui doit montrer :
    - les ajouts quotidiens ;
