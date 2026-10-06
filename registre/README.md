@@ -9,3 +9,4 @@ Fichiers en ajout seul : une ligne JSON par prévision émise. Une ligne n'est j
 Champs (protocole, section 0) : `question`, `emise` (date et heure), `probabilites` (en %), `piste` (et `phase` pour la piste protocole), `origine` (estimation initiale, cycle mensuel, jalon ou fait imprévu, avec sa référence), `donnees` (commit ou état des données gelées). Une erreur se corrige par une ligne d'erratum (`erratum: true`), jamais par réécriture.
 
 - `fantome.jsonl` : probabilités qu'auraient les nœuds si les jalons étaient actifs (section 10.6). Créé avec les premiers jalons.
+- `controles.jsonl` : journal des contrôles, écrit par le workflow « Contrôle des registres » (relecture de suivi 22, N1). Une ligne par ligne de registre poussée hors de sa fenêtre (`fichier`, `question`, `auteur`, `emise`, `execution`, `detecte_le`). Toute prévision inscrite est annulée pour la notation.

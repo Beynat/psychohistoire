@@ -155,28 +155,25 @@ def etiquette_cycle(l):
     return o[1].rstrip(",") if len(o) >= 2 and o[0] == "cycle" else None
 
 
-def annulations(lignes, exclues=None, delai=7):
-    """Lignes de prévision annulées par erratum (relecture 21, B1) : clés (question, auteur, emise). Un erratum
-    émis plus de `delai` jours après la ligne visée, ou qui ne vise aucune ligne, est ignoré et publié : il ne
-    peut pas servir à retirer après coup une prévision dont l'issue est connue."""
-    from datetime import datetime
+def annulations(lignes, exclues=None, reg="registre/protocole.jsonl"):
+    """Lignes de prévision annulées (relecture 21, B1 ; relecture de suivi 22, N1) : clés (question, auteur, emise).
+    L'annulation est mécanique : le workflow « Contrôle des registres » inscrit chaque ligne poussée hors de sa
+    fenêtre dans registre/controles.jsonl, et toute ligne inscrite est annulée, sans délai ni décision prise après
+    l'issue. Un erratum d'annulation n'a d'effet que s'il vise une ligne inscrite à ce journal ; sinon il est
+    ignoré et publié."""
+    inscrites = {(c.get("question"), c.get("auteur", "modèle"), c.get("emise")) for c in lire_jsonl("registre/controles.jsonl")
+                 if c.get("fichier") == reg}
     emises = {(l["question"], l.get("auteur", "modèle"), l["emise"]) for l in lignes
               if "probabilites" in l and not l.get("erratum")}
-    sortie = set()
+    sortie = inscrites & emises
     for e in lignes:
         o = e.get("objet")
         if not (e.get("erratum") and isinstance(o, dict) and (e.get("correction") or {}).get("annulee")):
             continue
         cle = (o.get("question"), o.get("auteur", "modèle"), o.get("emise"))
-        if cle not in emises:
-            motif = "erratum sans ligne visée"
-        elif (datetime.fromisoformat(e["emise"]) - datetime.fromisoformat(cle[2])).days > delai:
-            motif = f"erratum émis plus de {delai} jours après la ligne"
-        else:
-            sortie.add(cle)
-            continue
-        if exclues is not None:
-            exclues.append({"auteur": cle[1], "question": cle[0], "emise": cle[2], "motif": f"{motif} : ignoré"})
+        if cle not in inscrites and exclues is not None:
+            exclues.append({"auteur": cle[1], "question": cle[0], "emise": cle[2],
+                            "motif": "erratum d'annulation sans inscription au journal des contrôles : ignoré"})
     return sortie
 
 
@@ -191,10 +188,9 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
     echues_ouvertes = sorted(q for q, v in qs.items() if v["echeance"] <= aujourdhui and q not in toutes)
     lignes_reg = lire_jsonl(reg)
     exclues = []
-    # Errata d'annulation (relecture 21, B1) : une ligne poussée hors de la fenêtre du contrôle d'horodatage
-    # (section 12) est annulée par un erratum {erratum, objet: {question, auteur, emise}, correction: {annulee},
-    # motif, controle}, émis au plus tard sept jours après la ligne. Appliqué avant tout calcul, publié.
-    annulees = annulations(lignes_reg, exclues)
+    # Annulations (relecture 21, B1 ; suivi 22, N1) : lignes inscrites par le workflow au journal des contrôles
+    # (registre/controles.jsonl) comme poussées hors fenêtre. Appliquées avant tout calcul, publiées.
+    annulees = annulations(lignes_reg, exclues, reg)
     prev = {}
     for l in lignes_reg:
         if "probabilites" in l and l["question"] in res and not l.get("erratum"):
@@ -216,7 +212,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
             if c is not None:
                 vus.add(c)
             if (qid, auteur, l["emise"]) in annulees:
-                exclues.append({"auteur": auteur, "question": qid, "emise": l["emise"], "motif": "annulée par erratum"})
+                exclues.append({"auteur": auteur, "question": qid, "emise": l["emise"], "motif": "annulée (journal des contrôles)"})
                 continue
             garde.append(l)
         lignes[:] = garde

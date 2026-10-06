@@ -1,6 +1,6 @@
 """Ajout de lignes aux registres de prévisions (protocole, sections 0 et 12).
 
-Seul ce script écrit dans registre/*.jsonl. Le champ « emise » est fixé ici, à partir de
+Seul ce script écrit dans registre/*.jsonl, sauf registre/controles.jsonl, écrit par le workflow « Contrôle des registres ». Le champ « emise » est fixé ici, à partir de
 l'horloge système, et jamais fourni par un agent : toute valeur « emise » en entrée est refusée.
 
 Usage :

@@ -1,6 +1,6 @@
 {
  "description": "Banque d'événements (noyau, section 8.8). Générée par scripts/evenements.py depuis modele/banque/criteres.json. Seuls le nom, la sous-question et le critère sont transmis aux prévisionnistes.",
- "genere_le": "2026-10-06T08:07:12+02:00",
+ "genere_le": "2026-10-06T09:13:12+02:00",
  "premier_tour": "2027-04-18",
  "second_tour": "2027-05-02",
  "evenements": [
@@ -1264,7 +1264,7 @@
    "evenement": "EV-35",
    "nom": "Hausse des actes antimusulmans en 2026",
    "domaine": "société",
-   "critere": "Le premier document publié pendant la fenêtre par le ministère de l'Intérieur qui donne le nombre d'actes antimusulmans recensés en 2026, qu'il s'intitule « tendances » ou « bilan annuel », fait état de plus de 326 actes. Le seuil de 326 est le nombre de 2025 publié dans le communiqué « Actes antireligieux – Tendances 2025 » du 12 février 2026. Si aucun nombre pour 2026 n'est publié au 31 mars 2027, la question est annulée.",
+   "critere": "Le premier document publié pendant la fenêtre par le ministère de l'Intérieur qui donne le nombre d'actes antimusulmans recensés sur l'ensemble de l'année 2026, qu'il s'intitule « tendances » ou « bilan annuel », fait état de plus de 326 actes. Un chiffre portant sur une partie de l'année (« depuis le 1er janvier », premiers mois) ne compte pas. Le seuil de 326 est le nombre de 2025 publié dans le communiqué « Actes antireligieux – Tendances 2025 » du 12 février 2026. Si aucun nombre pour l'ensemble de 2026 n'est publié au 31 mars 2027, la question est annulée.",
    "sous_question": null,
    "source_resolution": "Ministère de l'Intérieur, premier document donnant le nombre d'actes antimusulmans de 2026 (tendances ou bilan annuel)",
    "fenetre": {
@@ -1280,7 +1280,7 @@
    "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
    "motif_inaccessible": null,
    "nature": "constat",
-   "revise": "relecture 21",
+   "revise": "relecture de suivi 22",
    "source_accessible": true
   },
   {

@@ -512,8 +512,9 @@ print(json.dumps([e["auteur"] for e in b["exclues"] if e["question"] == "Q-EV-15
 
 
 def test_errata_et_unicite_du_cycle():
-    """Relecture 21. B1 : une ligne annulée par erratum n'est plus notée ; un erratum tardif (plus de sept jours)
-    est ignoré et publié. I1 : une seconde prévision d'un même cycle est écartée, quelle que soit l'issue."""
+    """Relecture 21 et suivi 22. B1/N1 : une ligne inscrite au journal des contrôles n'est plus notée, même poussée
+    douze jours après son émission et après le fait ; un erratum sans inscription au journal est ignoré et publié.
+    I1 : une seconde prévision d'un même cycle est écartée, quelle que soit l'issue."""
     tmp, run = _copie()
     try:
         run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
@@ -532,9 +533,11 @@ if cas == "seconde":
     L = [P("modèle", 30, "2026-11-01"), P("ensemble direct", 30, "2026-11-03"), P("modèle", 1, "2026-11-28")]
     issue, fait = "non", ech
 else:
-    L = [P("modèle", 95, "2026-11-01"), P("ensemble direct", 30, "2026-11-03"),
-         E("2026-11-03" if cas == "erratum" else "2026-11-20")]
+    L = [P("modèle", 95, "2026-11-01"), P("ensemble direct", 30, "2026-11-03")] + ([E("2026-11-12")] if cas == "erratum_seul" else [])
     issue, fait = "oui", "2026-11-10"
+    if cas == "journal":
+        Path('registre/controles.jsonl').write_text(json.dumps({"fichier": "registre/v.jsonl", "question": "Q-EV-15",
+            "auteur": "modèle", "emise": "2026-11-01T08:00:00+01:00", "execution": "1", "detecte_le": "2026-11-12T08:00:00+00:00"}) + chr(10))
 Path('registre/v.jsonl').write_text(''.join(json.dumps(x) + chr(10) for x in L))
 Path('registre/resolutions_v.jsonl').write_text(json.dumps({"resolution": True, "question": "Q-EV-15", "issue": issue,
     "date_fait": fait, "source": "s", "methode": "m", "emise": "2028-12-01T08:00:00+01:00"}) + chr(10))
@@ -544,9 +547,10 @@ print(json.dumps({"auteurs": sorted(b["auteurs"]), "motifs": [e["motif"] for e i
                   "grappes": c.get("grappes")}))
 """
         r = lambda cas: json.loads(run("-c", code, ech, cas).strip().splitlines()[-1])
-        o = r("erratum")
-        assert "modèle" not in o["auteurs"] and "annulée par erratum" in o["motifs"], o
-        o = r("erratum_tardif")
+        o = r("journal")
+        assert "modèle" not in o["auteurs"] and "annulée (journal des contrôles)" in o["motifs"], o
+        (tmp / "registre/controles.jsonl").unlink()
+        o = r("erratum_seul")
         assert "modèle" in o["auteurs"] and any("ignoré" in m for m in o["motifs"]), o
         o = r("seconde")
         assert "seconde prévision du cycle 2026-11" in o["motifs"] and o["grappes"] == 1 and o["t"] is None, o
@@ -611,6 +615,16 @@ def test_rattrapage():
         q5 = json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())
         assert q5["gel"] == "2026-11-01"
         assert [q["id"] for q in q5["questions"]] == [q["id"] for q in q1["questions"]], "questions écartées à la reprise"
+        # Suivi 22, N3 : un fait postérieur au gel ne retire pas la question à la reprise ; un fait antérieur, si.
+        ids = lambda: {q["id"] for q in json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())["questions"]}
+        assert "Q-EV-07" in ids()
+        for jour, present in (("2026-11-03", True), ("2026-10-30", False)):
+            (tmp / "registre/resolutions.jsonl").write_text(json.dumps({"resolution": True, "question": "Q-EV-07", "issue": "oui",
+                "date_fait": jour, "source": "s", "methode": "m", "emise": "2026-11-04T08:00:00+01:00"}) + "\n")
+            assert run("scripts/questions.py", "2026-11-05", "2026-11").returncode == 0
+            assert ("Q-EV-07" in ids()) == present, (jour, present)
+        (tmp / "registre/resolutions.jsonl").unlink()
+        assert run("scripts/questions.py", "2026-11-05", "2026-11").returncode == 0
         reg = tmp / "registre/rattrapage.jsonl"
         assert run("scripts/comparateurs.py", "2026-11", "registre/rattrapage.jsonl").returncode == 0
         n = len(reg.read_text().splitlines())

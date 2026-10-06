@@ -24,4 +24,4 @@ Exécutée le 1er de chaque mois par la tâche planifiée du cycle mensuel (noya
 
 En cas d'échec d'une étape : ne pas passer à la suivante, consigner l'échec au journal, reprendre au passage suivant sans prévision rétroactive.
 
-**Échec du contrôle d'horodatage.** Si le workflow « Contrôle des registres » signale une ligne hors fenêtre de poussée, chaque ligne en cause est annulée par un erratum `{"erratum": true, "objet": {"question", "auteur", "emise"}, "correction": {"annulee": true}, "motif", "controle": <numéro d'exécution du workflow>, "piste": "protocole"}`, ajouté par `scripts/registre.py` dans les sept jours (noyau, sections 0 et 8.8). La ligne annulée n'est pas réémise.
+**Échec du contrôle d'horodatage.** Si le workflow « Contrôle des registres » signale une ligne hors fenêtre de poussée, il l'inscrit lui-même au journal des contrôles (`registre/controles.jsonl`), ce qui l'annule pour la notation (noyau, sections 0 et 8.8). Aucun erratum n'est nécessaire. La ligne annulée n'est pas réémise ; l'anomalie est signalée dans le compte rendu.

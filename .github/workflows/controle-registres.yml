@@ -7,7 +7,7 @@ name: Contrôle des registres
 # 2. que chaque nouvelle ligne de registre (« emise ») et chaque nouvelle définition de
 #    jalon (« defini_le ») porte un horodatage avec fuseau, compris entre
 #    deux heures avant le début du contrôle et le début du contrôle. Une ligne hors fenêtre est
-#    annulée par un erratum dans les sept jours (sections 8.8 et 12) ;
+#    inscrite au journal des contrôles (registre/controles.jsonl), qui l'annule pour la notation (sections 8.8 et 12) ;
 # 3. qu'aucune nouvelle ligne n'est une seconde prévision d'un même cycle pour un auteur et une question.
 # Le contrôle est détectif : un échec est public et se corrige par une ligne d'erratum.
 
@@ -18,7 +18,7 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  contents: read
+  contents: write   # inscription au journal des contrôles (registre/controles.jsonl)
 
 jobs:
   ajout-seul:
@@ -42,7 +42,7 @@ jobs:
           if not avant or set(avant) == {"0"} or subprocess.run(["git", "cat-file", "-e", avant + "^{commit}"]).returncode:
               avant = git("rev-parse", "HEAD~1").strip()
           debut = datetime.now(timezone.utc)
-          erreurs = []
+          erreurs, hors = [], []
           suivis = ("registre/", "modele/jalons/", "data/tri/", "modele/banque/ajouts.jsonl", "data/premieres_valeurs.jsonl")
           for ligne in git("diff", "--no-renames", "--name-status", avant, "HEAD").splitlines():
               statut, f = ligne.split("\t", 1)
@@ -60,7 +60,7 @@ jobs:
               supp = [l for l in diff if l.startswith("-") and not l.startswith("---")]
               if supp:
                   erreurs.append(f"{f} : {len(supp)} ligne(s) supprimée(s) ou réécrite(s)")
-              champ = "emise" if f.startswith("registre/") and f.endswith(".jsonl") else \
+              champ = "emise" if f.startswith("registre/") and f.endswith(".jsonl") and f != "registre/controles.jsonl" else \
                       "defini_le" if f == "modele/jalons/definitions.jsonl" else \
                       "ajoute_le" if f == "modele/banque/ajouts.jsonl" else None
               if champ:
@@ -77,6 +77,11 @@ jobs:
                           continue
                       if not (debut - timedelta(hours=2) <= e <= debut + timedelta(minutes=5)):
                           erreurs.append(f"{f} : « {champ} » {e.isoformat()} hors de la fenêtre de poussée ({debut.isoformat()})")
+                          if champ == "emise":
+                              x = json.loads(l[1:])
+                              hors.append({"fichier": f, "question": x.get("question"), "auteur": x.get("auteur", "modèle"),
+                                           "emise": x["emise"], "execution": os.environ.get("GITHUB_RUN_ID", ""),
+                                           "detecte_le": debut.isoformat(timespec="seconds")})
               # Une seule prévision de cycle par auteur, question et cycle (relecture 21, I1) : une seconde ligne
               # est signalée ; la notation ne garde que la première.
               if f.startswith("registre/") and f.endswith(".jsonl"):
@@ -94,10 +99,34 @@ jobs:
                       if cle in vus and brut in nouvelles:
                           erreurs.append(f"{f} : seconde prévision du cycle {cle[2]} pour {cle[0]}, {cle[1]}")
                       vus[cle] = True
+          # Journal des contrôles (relecture de suivi 22, N1) : chaque ligne poussée hors fenêtre y est inscrite,
+          # en ajout seul ; la notation annule toute ligne de prévision inscrite, sans délai ni erratum.
+          if hors:
+              chemin = "registre/controles.jsonl"
+              deja = set(open(chemin, encoding="utf-8").read().splitlines()) if os.path.exists(chemin) else set()
+              connues = {(json.loads(d)["fichier"], json.loads(d)["question"], json.loads(d)["auteur"], json.loads(d)["emise"])
+                         for d in deja if d.strip()}
+              with open(chemin, "a", encoding="utf-8") as fj:
+                  for h in hors:
+                      if (h["fichier"], h["question"], h["auteur"], h["emise"]) not in connues:
+                          fj.write(json.dumps(h, ensure_ascii=False) + "\n")
           for x in erreurs:
               print(f"::error::{x}")
           print("Contrôle conforme." if not erreurs else f"{len(erreurs)} anomalie(s).")
           sys.exit(1 if erreurs else 0)
           PY
+      - name: Inscription au journal des contrôles
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain registre/controles.jsonl)" ]; then
+            if git diff --unified=0 HEAD -- registre/controles.jsonl | grep -q '^-[^-]'; then
+              echo "::error::registre/controles.jsonl modifié autrement que par ajout"; exit 1
+            fi
+            git config user.name "controle-psychohistoire"
+            git config user.email "actions@users.noreply.github.com"
+            git add registre/controles.jsonl
+            git commit -m "Journal des contrôles : lignes poussées hors fenêtre (exécution $GITHUB_RUN_ID)"
+            for i in 1 2 3; do git fetch -q origin main && git rebase -q origin/main && git push -q origin HEAD:main && break; sleep 5; done
+          fi
       - name: Banque d'événements figée après le premier gel, ajouts plafonnés (noyau, sections 8.8 et 12)
         run: python3 scripts/controle_banque.py

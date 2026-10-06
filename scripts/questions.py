@@ -37,7 +37,11 @@ def generer(gel, etiquette=None):
     lire = (lambda n: commun.serie(n)) if not gel_dir.exists() else (
         lambda n: [(p, float(v)) for p, v in (l.split(",") for l in (gel_dir / f"{n}.csv").read_text("utf-8").splitlines()[1:] if l)])
     from resolution import resolutions_effectives
-    resolues = set(resolutions_effectives(""))   # errata de réouverture appliqués (relecture 13, S1)
+    # Errata de réouverture appliqués (relecture 13, S1). Seules les résolutions dont le fait est établi au gel
+    # écartent une question (section 8.2 ; relecture 22, N3) : à la reprise d'un cycle, un fait postérieur au
+    # gel ne retire pas la question, ce qui ne retirerait que des « oui ».
+    resolues = {q for q, r in resolutions_effectives("").items()
+                if (r.get("date_fait") or str(r.get("emise", ""))[:10]) <= gel}
     gel_corr = RACINE / "data" / "cycles" / cycle / "gel" / "correspondances_p1.json"
     correspondances = lire_json(str(gel_corr.relative_to(RACINE)) if gel_corr.exists() else "modele/correspondances_p1.json",
                                 {"correspondances": {}})["correspondances"]
