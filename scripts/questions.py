@@ -185,7 +185,15 @@ def generer(gel, etiquette=None):
 if __name__ == "__main__":
     if len(sys.argv) not in (2, 3):
         sys.exit("usage : python scripts/questions.py AAAA-MM-JJ [ETIQUETTE]")
-    banque = generer(sys.argv[1], sys.argv[2] if len(sys.argv) == 3 else None)
+    gel, etiquette = sys.argv[1], (sys.argv[2] if len(sys.argv) == 3 else None)
+    # Rattrapage (noyau, section 12) : un passage repris après le jour du gel garde la date du gel du
+    # manifeste. Sinon le contrôle des séries périmées (plus de trois jours) écarterait les questions
+    # de variables selon le jour de la reprise.
+    manifeste = lire_json(f"data/cycles/{etiquette or gel[:7]}/gel/manifeste.json")
+    if manifeste and manifeste["date_gel"] != gel:
+        print(f"Date de gel du manifeste retenue : {manifeste['date_gel']} (et non {gel}).")
+        gel = manifeste["date_gel"]
+    banque = generer(gel, etiquette)
     ecrire_json(f"data/cycles/{banque['cycle']}/questions.json", banque)
     n = len(banque["questions"])
     g = len({q["grappe"] for q in banque["questions"]})

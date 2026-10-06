@@ -539,6 +539,43 @@ def test_registre():
         shutil.rmtree(tmp)
 
 
+def test_rattrapage():
+    """Passage manqué simulé (controle/phase1.md) : gel le 1er, reprise le 5 à la première étape non
+    faite. La reprise garde la date du gel du manifeste (mêmes questions qu'un passage le 1er) et une
+    étape déjà faite n'est pas rejouée (pas de lignes en double au registre)."""
+    import subprocess
+    racine = Path(__file__).resolve().parent.parent
+    tmp = Path(tempfile.mkdtemp()) / "depot"
+    shutil.copytree(racine, tmp, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+    etat = tmp / "data/historique/_collecte.json"
+    etat.write_text(json.dumps({k: "2026-10-31" for k in json.loads(etat.read_text())}))
+    try:
+        env = {**__import__("os").environ, "PYTHONPATH": str(tmp / "scripts")}
+        def run(*a):
+            return subprocess.run([sys.executable, *a], cwd=tmp, env=env, capture_output=True, text=True)
+        assert run("scripts/geler.py", "2026-11-01", "2026-11", "--essai").returncode == 0
+        assert run("scripts/questions.py", "2026-11-01", "2026-11").returncode == 0
+        q1 = json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())
+        # Reprise le 5 : le gel n'est pas refait, les questions sont régénérées avec la date du jour.
+        assert run("scripts/geler.py", "2026-11-05", "2026-11", "--essai").returncode != 0
+        assert run("scripts/questions.py", "2026-11-05", "2026-11").returncode == 0
+        q5 = json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())
+        assert q5["gel"] == "2026-11-01"
+        assert [q["id"] for q in q5["questions"]] == [q["id"] for q in q1["questions"]], "questions écartées à la reprise"
+        reg = tmp / "registre/rattrapage.jsonl"
+        assert run("scripts/comparateurs.py", "2026-11", "registre/rattrapage.jsonl").returncode == 0
+        n = len(reg.read_text().splitlines())
+        assert run("scripts/comparateurs.py", "2026-11", "registre/rattrapage.jsonl").returncode != 0
+        assert len(reg.read_text().splitlines()) == n, "comparateurs rejoués à la reprise"
+        ens = [{"question": "X", "probabilites": {"oui": 50, "non": 50}, "piste": "protocole", "phase": 1,
+                "auteur": "ensemble direct", "origine": "cycle 2026-11, médiane de 5", "donnees": "d"}]
+        reg.write_text(reg.read_text() + json.dumps({**ens[0], "emise": "2026-11-01T09:00:00+01:00"}) + "\n")
+        r = run("scripts/ensemble.py", "2026-11", "registre/rattrapage.jsonl")
+        assert r.returncode != 0 and "déjà" in (r.stderr + r.stdout), "ensemble rejoué à la reprise"
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
 if __name__ == "__main__":
     for nom, f in list(globals().items()):
         if nom.startswith("test_"):

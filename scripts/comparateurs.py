@@ -110,6 +110,9 @@ if __name__ == "__main__":
     if len(sys.argv) not in (2, 3):
         sys.exit("usage : python scripts/comparateurs.py AAAA-MM [registre/<fichier>.jsonl]")
     cible = sys.argv[2] if len(sys.argv) == 3 else "registre/protocole.jsonl"
+    # Rattrapage : une étape déjà faite n'est jamais rejouée (pas de lignes en double au registre).
+    if any(l.get("auteur", "").startswith("comparateur") and l.get("origine") == f"cycle {sys.argv[1]}" for l in commun.lire_jsonl(cible)):
+        sys.exit(f"Les lignes comparateurs du cycle {sys.argv[1]} sont déjà dans {cible} : étape déjà faite.")
     lignes = previsions(sys.argv[1])
     t = ajouter(cible, lignes)
     print(f"{len(lignes)} prévisions de comparateurs ajoutées à {cible}, émises le {t}")
