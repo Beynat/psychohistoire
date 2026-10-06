@@ -8,10 +8,10 @@ Psychohistoire : des prévisions datées et notées sur la France, d'octobre 202
 
 ## État
 
-- **Versions.** Noyau v1.26, annexe de la phase 3 v1.7, banque v1.9 (55 questions, 42 événements), consigne de l'ensemble v1.5. Les tags `protocole-vX.Y` et `annexe-phase3-vX.Y` sont posés automatiquement.
+- **Versions.** Noyau v1.27, annexe de la phase 3 v1.7, banque v1.10 (55 questions, 42 événements), consigne de l'ensemble v1.5. Les tags `protocole-vX.Y` et `annexe-phase3-vX.Y` sont posés automatiquement.
 - **Statut.** `modele/statut.json` vaut `definitif: false` : aucun cycle réel ne peut tourner. Le premier cycle prévu est celui du 1er novembre 2026.
-- **Relectures.** Le compteur du critère d'arrêt est à zéro. La relecture de validation 21 a relevé un bloquant et deux importants, corrigés en v1.26. Prochaine étape : relecture de suivi 22, dans la session du relecteur 21 (`modele/v1.26/demande_relecture_22_suivi.md`), puis audit interne et relecture de validation 23 en session neuve.
-- **Tests.** `python scripts/tests.py` (17 tests) et `python scripts/controle_banque.py` doivent passer avant chaque commit.
+- **Relectures.** Le compteur du critère d'arrêt est à zéro. La relecture de validation 21 (v1.26) puis la relecture de suivi 22 (v1.27, avec trois audits internes) ont été traitées. Prochaine étape : relecture de validation 23, en session neuve (`modele/v1.27/demande_relecture_23.md`).
+- **Tests.** `python scripts/tests.py` (19 tests) et `python scripts/controle_banque.py` doivent passer avant chaque commit.
 
 ## Processus de relecture (noyau, section 12)
 
@@ -38,11 +38,12 @@ Psychohistoire : des prévisions datées et notées sur la France, d'octobre 202
 - Ne créer, modifier ou déclencher une tâche planifiée qu'avec l'accord de Nathan. Deux tâches existent :
   - cycle mensuel : `trig_01SJXN4Fmwjue8foVBeRXddV`, du 1er au 8 du mois à 7 h 52 (le 8 : déclaration d'un cycle manqué seulement), avec des gardes sur la date et sur `statut.json` ;
   - tri : `trig_01M5gsZGtbMwVYGUbaCRpELn`, lundi, mercredi et vendredi à 17 h 47.
+- Journal des contrôles : branche `controles`, écrite par le seul workflow ; ne jamais y pousser. Modèle de menace : noyau, section 12, « Limites du contrôle ».
 - Sources : méthode de fiabilité dans `modele/sources.md`. Une source n'est primaire que pour ses propres actes ; se méfier des médias partisans.
 
 ## Travaux en attente
 
-1. Relecture de suivi 22, puis audit interne et validation 23, jusqu'au critère d'arrêt.
+1. Relecture de validation 23, puis la suite jusqu'au critère d'arrêt. Protéger la branche `controles` sur GitHub (suppression et réécriture).
 2. Rattrapage : testé (`test_rattrapage`) ; tâche du cycle mensuel alignée le 6 octobre 2026 (du 1er au 8, date de gel du manifeste à la reprise).
 3. Première collecte de données complète, puis v1 de l'outil et de l'interface.
 4. Volet actualité de l'interface (`modele/interface/actualite.md`), qui doit montrer :
