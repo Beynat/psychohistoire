@@ -1,12 +1,12 @@
 {
- "execution": "2026-10-06T11:16:18Z",
+ "execution": "2026-10-07T11:04:17Z",
  "series": {
   "dette_trimestrielle_FR": {
    "nom": "Dette publique, % du PIB (trimestrielle)",
    "lie": "SI-01-01",
    "source": "Eurostat gov_10q_ggdebt",
    "statut": "ok",
-   "maj": "2026-10-06T11:16:18Z",
+   "maj": "2026-10-07T11:04:17Z",
    "donnees": [
     [
      "2024-Q2",
@@ -47,7 +47,7 @@
    "lie": "SI-01-05",
    "source": "BCE IRS.M.FR.L.L40.CI.0000.EUR.N.Z",
    "statut": "ok",
-   "maj": "2026-10-06T11:16:18Z",
+   "maj": "2026-10-07T11:04:17Z",
    "donnees": [
     [
      "2024-09",
@@ -152,7 +152,7 @@
    "lie": "SI-01-04",
    "source": "BCE IRS.M.DE.L.L40.CI.0000.EUR.N.Z",
    "statut": "ok",
-   "maj": "2026-10-06T11:16:18Z",
+   "maj": "2026-10-07T11:04:17Z",
    "donnees": [
     [
      "2024-09",
@@ -257,7 +257,7 @@
    "lie": null,
    "source": "Eurostat HICP (jeu le plus récent disponible)",
    "statut": "ok",
-   "maj": "2026-10-06T11:16:18Z",
+   "maj": "2026-10-07T11:04:17Z",
    "donnees": [
     [
      "2025-10",
@@ -314,12 +314,8 @@
    "lie": null,
    "source": "BCE FM.D.U2.EUR.4F.KR.DFR.LEV",
    "statut": "ok",
-   "maj": "2026-10-06T11:16:18Z",
+   "maj": "2026-10-07T11:04:17Z",
    "donnees": [
-    [
-     "2026-10-02",
-     2.5
-    ],
     [
      "2026-10-03",
      2.5
@@ -335,6 +331,10 @@
     [
      "2026-10-06",
      2.5
+    ],
+    [
+     "2026-10-07",
+     2.5
     ]
    ]
   },
@@ -343,26 +343,26 @@
    "lie": "Q-PV02-A",
    "source": "Polymarket (API publique)",
    "statut": "ok",
-   "maj": "2026-10-06T11:16:18Z",
+   "maj": "2026-10-07T11:04:17Z",
    "donnees": [
     {
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Marine Le Pen be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 91.0,
-      "No": 9.0
+      "Yes": 91.5,
+      "No": 8.5
      },
-     "volume": "34265.412108000004",
+     "volume": "34460.71210800001",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Jordan Bardella be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 6.7,
-      "No": 93.3
+      "Yes": 7.2,
+      "No": 92.8
      },
-     "volume": "32022.444461",
+     "volume": "32074.084460999995",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
@@ -372,27 +372,27 @@
       "Yes": 88.0,
       "No": 12.0
      },
-     "volume": "18042.067048999997",
+     "volume": "18089.957048999997",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Édouard Philippe be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 89.5,
-      "No": 10.5
+      "Yes": 91.0,
+      "No": 9.0
      },
-     "volume": "20309.398912",
+     "volume": "20312.978912000002",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will David Lisnard be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 76.5,
-      "No": 23.5
+      "Yes": 67.5,
+      "No": 32.5
      },
-     "volume": "21668.479864999998",
+     "volume": "21910.198507999994",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
@@ -429,10 +429,10 @@
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Gabriel Attal be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 16.5,
-      "No": 83.5
+      "Yes": 18.5,
+      "No": 81.5
      },
-     "volume": "17136.700993000006",
+     "volume": "17241.820993",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
@@ -449,20 +449,20 @@
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will François Hollande be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 47.0,
-      "No": 53.0
+      "Yes": 43.5,
+      "No": 56.5
      },
-     "volume": "33186.298984",
+     "volume": "34253.966256",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Raphaël Glucksmann be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 61.5,
-      "No": 38.5
+      "Yes": 58.0,
+      "No": 42.0
      },
-     "volume": "14865.890662999998",
+     "volume": "15286.880662999998",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
@@ -472,15 +472,15 @@
       "Yes": 94.2,
       "No": 5.8
      },
-     "volume": "21561.654518000003",
+     "volume": "21561.654518000007",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Marine Tondelier be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 26.0,
-      "No": 74.0
+      "Yes": 26.5,
+      "No": 73.5
      },
      "volume": "12409.931281",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
@@ -502,7 +502,7 @@
    "lie": "SI-01-04",
    "source": "Calcul à partir des séries BCE",
    "statut": "ok",
-   "maj": "2026-10-06T11:16:18Z",
+   "maj": "2026-10-07T11:04:17Z",
    "donnees": [
     [
      "2024-09",
