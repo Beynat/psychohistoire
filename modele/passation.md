@@ -25,7 +25,7 @@ Prévisions datées et notées sur la France, d'octobre 2026 à septembre 2028. 
 - **Indicateurs structurels** : IS-01 à IS-05 dans `data.json` (stabilité institutionnelle 6,95 sur 10, niveau de vie populaire 6,41, cohésion sociale 5,24, compétition des élites 5,24), rattachés au réseau comme contexte.
 - **Tri** : faits sans question suivis sous un identifiant stable, émergence à 50 titres en sept jours (`data/reprise.json`).
 - **Cycle d'essai 2026-10-v0** (`registre/essai_v0.jsonl`) : comparateurs, ensemble (5 prévisionnistes) et réseau. EV-10b se résout le 17 octobre.
-- **Tests** : `python scripts/tests.py` (28 tests) et `python scripts/controle_banque.py`.
+- **Tests** : `python scripts/tests.py` (29 tests) et `python scripts/controle_banque.py`.
 
 ## Tâches planifiées
 
@@ -39,7 +39,7 @@ Chacune ajoute une ligne au tableau « Avancement » de la feuille de route.
 
 ## Suite
 
-- **Bloc 10, ergonomie de l'interface** (demande de Nathan du 10 octobre) : frise des pivots et des jalons, choix de la fenêtre (mois, trimestre, semestre, année), filtre par importance, libellé, probabilité et issues lisibles, fenêtre de détail au clic (hypothèses, conducteurs, jalons, questions, chemin critique). Le chemin critique est à calculer par le moteur à partir des trajectoires. La carte de la piste exploratoire (`index.html`, cartes de pivots et « chemin le plus probable ») est un bon point de départ visuel.
+- **Bloc 10, ergonomie de l'interface** : première version en ligne (journal du 10 octobre) : carte de `reseau.html` alimentée par `scripts/carte.py` (`data/carte_v0.json`, trajectoires du moteur), régénérée chaque nuit avec `scripts/interface.py` par le workflow de collecte. Suite : retours de Nathan sur la lecture, vue mobile dédiée si besoin.
 - Points ouverts de `modele/reseau/procedure.md`, traités par les passes bimensuelles (EV-39 et EV-43, dissolution de début de mandat, revues programmées des agences, usage de la correction historique des sondages).
 - Branchement des indicateurs structurels comme parents (aujourd'hui contexte affiché seulement).
 - Liste de la v0 ajustée (feuille de route).

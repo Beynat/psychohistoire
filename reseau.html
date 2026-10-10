@@ -63,6 +63,37 @@ td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
 .grille2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
 .grille2>div{min-width:0}
 section[hidden]{display:none}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:0 0 12px;font-size:14px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{all:unset;cursor:pointer;padding:6px 12px;font-weight:600;color:var(--muted);border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
+.seg button:focus-visible,.pernav button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.pernav{display:inline-flex;align-items:center;gap:8px}
+.pernav button{all:unset;cursor:pointer;width:28px;height:28px;text-align:center;line-height:26px;border:1px solid var(--line);border-radius:6px;font-size:16px;color:var(--ink)}
+.pernav button:disabled{opacity:.35;cursor:default}
+#per{min-width:190px;font-weight:600;text-align:center}
+.ctl select{font:inherit;padding:4px 6px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);max-width:340px}
+.carte svg{min-width:980px}
+.carte svg .pv,.carte svg .jl{cursor:pointer}
+.carte svg .pv:focus-visible rect.c,.carte svg .jl:focus-visible circle{stroke:var(--accent);stroke-width:2.5}
+.ensuite{font-size:13px;color:var(--muted);margin:10px 0 0}
+#t-chemin tbody tr{cursor:pointer}
+#t-chemin tbody tr:hover{background:var(--soft)}
+tr.diff{background:var(--accent-soft)}
+dialog{border:1px solid var(--line);border-radius:10px;padding:22px 24px;max-width:760px;width:calc(100% - 32px);max-height:86vh;overflow:auto;background:var(--surface);color:var(--ink);box-shadow:0 12px 40px rgba(0,0,0,.18)}
+dialog::backdrop{background:rgba(20,20,18,.35)}
+dialog h3{margin:0 30px 2px 0;font-size:19px}
+dialog h4{margin:18px 0 6px;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+dialog p{margin:4px 0}
+dialog ul{margin:4px 0;padding-left:18px}
+dialog li{margin:3px 0}
+dialog .fermer{all:unset;cursor:pointer;position:sticky;float:right;top:0;font-size:24px;line-height:1;color:var(--muted);padding:2px 6px}
+dialog .lien{all:unset;cursor:pointer;color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+dialog .petit{font-size:13px;color:var(--muted)}
+dialog table{font-size:14px}
+.st{display:inline-block;padding:0 7px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap;background:var(--soft);color:var(--muted)}
+.st-observé{background:var(--ok-soft);color:var(--ok)} .st-manqué{background:var(--crit-soft);color:var(--crit)} .st-en-cours{background:var(--accent-soft);color:var(--accent)}
 </style>
 </head>
 <body>
@@ -81,18 +112,31 @@ section[hidden]{display:none}
 
   <section id="s-carte">
     <h2>Carte des pivots</h2>
-    <p class="lede">Chaque pivot occupe sa période : un trait plein pour un événement qui peut survenir à tout moment de sa fenêtre, un losange à sa date pour un pivot daté, précédé de la période où son issue reste ouverte. Les flèches relient les pivots ; les variables d'état et les indicateurs qui les influencent sont notés en clair sous chaque pivot ; les petits jalons sont posés sur les liens, à l'ouverture de leur fenêtre. Pourcentage : probabilité donnée par le réseau pour la question rattachée. Cliquer un pivot pour le détail.</p>
-    <div class="carte"><svg id="svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Carte des pivots du réseau sur la frise d'octobre 2026 à septembre 2028"></svg></div>
-    <div class="legende">
-      <span><svg width="28" height="10"><line x1="1" y1="5" x2="27" y2="5" stroke="var(--accent)" stroke-width="5" stroke-linecap="round"/></svg>à tout moment, sur sa fenêtre</span>
-      <span><svg width="28" height="14"><line x1="1" y1="7" x2="18" y2="7" stroke="var(--accent-mid)" stroke-width="2"/><path d="M22 2l5 5-5 5-5-5z" fill="var(--accent)"/></svg>daté, issue ouverte jusqu'à sa date</span>
-      <span><svg width="14" height="14"><circle cx="7" cy="7" r="3.5" fill="var(--surface)" stroke="var(--muted)" stroke-width="1.5"/></svg>jalon attendu</span>
-      <span><svg width="14" height="14"><circle cx="7" cy="7" r="3.5" fill="var(--ok)"/></svg>jalon observé</span>
-      <span><svg width="14" height="14"><circle cx="7" cy="7" r="3.5" fill="var(--crit)"/></svg>jalon manqué</span>
-      <span style="color:var(--var)">italique : variables et indicateurs du lien</span>
+    <p class="lede">Les pivots sur la frise, avec l'issue du chemin affiché et sa probabilité. Sous chaque pivot, les jalons qui l'annoncent, avec leur probabilité d'être observés. Choisissez la période, puis cliquez sur un pivot ou un jalon pour le détail. Les probabilités viennent des trajectoires du réseau v0 ; la carte n'émet aucune prévision notée.</p>
+    <div class="ctl">
+      <div class="seg" role="group" aria-label="Période affichée">
+        <button data-vue="tout" aria-pressed="true">Tout</button><button data-vue="annee" aria-pressed="false">Année</button><button data-vue="semestre" aria-pressed="false">Semestre</button><button data-vue="trimestre" aria-pressed="false">Trimestre</button><button data-vue="mois" aria-pressed="false">Mois</button>
+      </div>
+      <div class="pernav"><button id="prec" aria-label="Période précédente">‹</button><span id="per"></span><button id="suiv" aria-label="Période suivante">›</button></div>
+      <label>Jalons <select id="jniv"><option value="auto">selon la période</option><option value="2">principaux</option><option value="3">tous</option></select></label>
+      <label>Chemin <select id="cible"></select></label>
     </div>
-    <div class="detail" id="detail"><span class="vide">Aucun pivot sélectionné.</span></div>
+    <div class="carte"><svg id="svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Frise des pivots et des jalons"></svg></div>
+    <div class="legende">
+      <span><svg width="30" height="10"><rect x="1" y="2" width="28" height="6" rx="3" fill="var(--accent)" opacity=".55"/></svg>peut survenir sur cette période (plus foncé : mois plus probable)</span>
+      <span><svg width="14" height="14"><path d="M7 1l6 6-6 6-6-6z" fill="var(--accent)"/></svg>pivot daté</span>
+      <span><svg width="30" height="10"><line x1="1" y1="5" x2="29" y2="5" stroke="var(--accent)" stroke-width="2.4"/></svg>lien critique (au moins 10 points d'écart)</span>
+      <span><svg width="22" height="14"><rect x="1" y="1" width="20" height="12" rx="3" fill="var(--accent-soft)" stroke="var(--accent)" stroke-dasharray="4 2"/></svg>étape qui diffère du chemin le plus probable</span>
+      <span><svg width="14" height="14"><circle cx="7" cy="7" r="4" fill="var(--surface)" stroke="var(--muted)" stroke-width="1.5"/></svg>jalon attendu</span>
+      <span><svg width="14" height="14"><circle cx="7" cy="7" r="4" fill="var(--ok)"/></svg>observé</span>
+      <span><svg width="14" height="14"><circle cx="7" cy="7" r="4" fill="var(--crit)"/></svg>manqué</span>
+    </div>
+    <p class="ensuite" id="ensuite"></p>
+    <h3 id="ch-titre" style="margin-top:22px">Chemin le plus probable</h3>
+    <p class="lede" id="ch-intro"></p>
+    <div class="tw"><table id="t-chemin"><thead></thead><tbody></tbody></table></div>
   </section>
+  <dialog id="dlg" aria-labelledby="dlg-t"><button class="fermer" id="dlg-x" aria-label="Fermer">×</button><div id="dlg-c"></div></dialog>
 
   <section id="s-comparaison" hidden>
     <h2>Le témoin face au réseau</h2>
@@ -131,111 +175,267 @@ document.querySelectorAll("nav.onglets button").forEach(b=>b.addEventListener("c
   document.querySelectorAll("section[id^=s-]").forEach(s=>s.hidden=s.id!=="s-"+b.dataset.s);
 }));
 
-fetch("data/interface_v1.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(D=>{
+const lire=u=>fetch(u,{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(u+" "+r.status);return r.json()});
+Promise.all([lire("data/interface_v1.json"),lire("data/carte_v0.json")]).then(([D,C])=>{
   $("#meta").textContent=`Données du ${dfr(D.genere_le)} · ${D.registre||"aucun registre"} · ${D.version_tables||""}`;
-  carte(D); comparaison(D); actualite(D); echeances(D);
+  carte(D,C); comparaison(D); actualite(D); echeances(D);
 }).catch(e=>{$("#meta").textContent="Données indisponibles ("+e.message+")."});
 
-// ----- Carte -----
-function carte(D){
-  const W=1180, X0=150, X1=W-20;
-  // Échelle par morceaux : l'automne 2026 et la présidentielle prennent plus de place que 2027-2028.
-  const P=[["2026-10-01",0],["2027-01-01",.30],["2027-05-15",.66],["2027-09-01",.78],["2028-10-01",1]];
-  const t=d=>Date.parse(d+"T00:00:00Z");
-  const X=d=>{for(let i=1;i<P.length;i++){if(t(d)<=t(P[i][0])){const a=P[i-1],b=P[i];return X0+(a[1]+(b[1]-a[1])*(t(d)-t(a[0]))/(t(b[0])-t(a[0])))*(X1-X0)}}return X1};
-  const LANES=[
-    {nom:"Budget et gouvernement",rangs:{"PV-CENSURE1a":0,"PV-BUDGET":1,"PV-CENSURE1b":2,"PV-GOUV":3,"PV-DISSOL1":4}},
-    {nom:"Justice et candidatures",rangs:{"PV-AUDIENCE":0,"PV-POURVOI":1,"PV-LEPEN":2,"PV-ECOLO":3,"PV-GAUCHE":4,"PV-BLOC":5}},
-    {nom:"Présidentielle",rangs:{"PV-DUEL":0,"PV-VAINQ":1}},
-    {nom:"Après 2027",rangs:{"PV-DISSOL2":0,"PV-MAJOR":1,"PV-CENSURE2":2}},
-    {nom:"Dette et marchés",rangs:{"PV-NOTE":0,"PV-PDE":1,"PV-TPI":2}}];
-  const RH=46, LG=22; let y=70; const pos={};
-  const H=70+LANES.reduce((s,l)=>s+(Math.max(...Object.values(l.rangs))+1)*RH+LG,0)+20;
-  svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
-  // Frise
-  for(let a=2026,m=10;a<2028||(a===2028&&m<=9);m===12?(a++,m=1):m++){
-    const d=`${a}-${String(m).padStart(2,"0")}-01`, x=X(d);
-    el("line",{x1:x,x2:x,y1:44,y2:H-10,stroke:"var(--line)","stroke-width":m===1?1.2:.6});
-    if((a<2027||(a===2027&&m<=10))?(m%3===1||(a===2027&&[4,5].includes(m))):(m===1||m===7)) txt(x+3,38,dfr(d).replace(/^1 /,""),{"font-size":11,fill:"var(--muted)"});
+// ----- Carte (bloc 10) -----
+// Tout est calculé ici à partir des trajectoires du réseau (data/carte_v0.json, scripts/carte.py) : probabilités sur la
+// période choisie, chemin le plus probable, chemin vers une issue choisie, influence des liens. Aucune nouvelle estimation.
+const VE_COURT={"VE-POP":"popularité","VE-MOBIL":"mobilisation","VE-ECART":"écart OAT-Bund","VE-SOND":"2e bloc des sondages","VE-RN":"intentions RN","VE-LYCEE":"lycées"};
+const MOISL=["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
+const MOISF=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+const LANES=[
+  {nom:"Budget et gouvernement",ids:["PV-CENSURE1a","PV-BUDGET","PV-CENSURE1b","PV-GOUV","PV-DISSOL1"]},
+  {nom:"Justice et candidatures",ids:["PV-AUDIENCE","PV-POURVOI","PV-LEPEN","PV-ECOLO","PV-GAUCHE","PV-BLOC"]},
+  {nom:"Présidentielle",ids:["PV-DUEL","PV-VAINQ"]},
+  {nom:"Après l'élection",ids:["PV-DISSOL2","PV-MAJOR","PV-CENSURE2"]},
+  {nom:"Dette et marchés",ids:["PV-NOTE","PV-PDE","PV-TPI"]}];
+const pc=x=>x==null?"–":(x<1&&x>0?"< 1":Math.round(x))+" %";
+const fx=x=>"×"+(Math.round(x*100)/100).toString().replace(".",",");
+const MIN_SOUS=60, SEUIL_CRIT=10, K_JALON=.5;
+
+function carte(D,C){
+  const P=C.pivots, N=C.codes.length, NM=C.mois.length, B36="0123456789abcdefghijklmnopqrstuvwxyz";
+  const IX=Object.fromEntries(P.map((p,i)=>[p.id,i]));
+  const A0=+C.mois[0].slice(0,4)*12+(+C.mois[0].slice(5,7)-1);
+  const midx=d=>Math.min(NM-1,Math.max(0,+d.slice(0,4)*12+(+d.slice(5,7)-1)-A0));
+  const debutDe=p=>p.fenetre?p.fenetre[0]:p.date, finDe=p=>p.fenetre?p.fenetre[1]:p.date;
+  // Décodage : état (rang d'issue ; pour un pivot « à tout moment », 0 = survenu, 1 = non) et mois de survenue.
+  const ET=[], MO=[];
+  P.forEach((p,i)=>{const e=new Int8Array(N), m=new Int16Array(N);
+    for(let t=0;t<N;t++){const ch=C.codes[t][i];
+      if(p.nature==="daté"){e[t]=+ch;m[t]=midx(p.date)}else if(ch==="-"){e[t]=1;m[t]=-1}else{e[t]=0;m[t]=B36.indexOf(ch)}}
+    ET.push(e);MO.push(m)});
+  const ORD=P.map((p,i)=>i).sort((a,b)=>finDe(P[a]).localeCompare(finDe(P[b]))||debutDe(P[a]).localeCompare(debutDe(P[b])));
+  const MARG=P.map((p,i)=>{const c=new Array(p.issues.length).fill(0);for(let t=0;t<N;t++)c[ET[i][t]]++;return c.map(x=>100*x/N)});
+  const libelle=(i,j)=>P[i].libelles[j];
+  const parentsPV=i=>P[i].parents.filter(x=>x.id in IX).map(x=>IX[x.id]);
+  // Influence d'un lien : plus grand écart, en points, de la probabilité d'une issue de l'enfant selon l'état du parent.
+  const INF={};
+  P.forEach((p,c)=>parentsPV(c).forEach(a=>{const ka=P[a].issues.length,kc=p.issues.length,tab=[];
+    for(let s=0;s<ka;s++){const cnt=new Array(kc).fill(0);let n=0;for(let t=0;t<N;t++)if(ET[a][t]===s){cnt[ET[c][t]]++;n++}if(n>=80)tab.push(cnt.map(x=>x/n))}
+    let b=0;if(tab.length>1)for(let j=0;j<kc;j++){const v=tab.map(r=>r[j]);b=Math.max(b,Math.max(...v)-Math.min(...v))}
+    INF[a+">"+c]=tab.length>1?Math.round(100*b):null}));
+  // Chemin : dans l'ordre des échéances, l'issue la plus fréquente parmi les trajectoires qui suivent déjà le chemin
+  // (on cesse de restreindre sous MIN_SOUS trajectoires). Probabilités affichées : en général, et sachant la cible.
+  function chemin(ci,co){let S=[];for(let t=0;t<N;t++)if(ci==null||ET[ci][t]===co)S.push(t);
+    const n0=S.length,iss={},sachant={};
+    P.forEach((p,i)=>{const c=new Array(p.issues.length).fill(0);S.forEach(t=>c[ET[i][t]]++);sachant[i]=c.map(x=>n0?100*x/n0:0)});
+    ORD.forEach(i=>{let j;if(i===ci)j=co;else{const c=new Array(P[i].issues.length).fill(0);S.forEach(t=>c[ET[i][t]]++);j=c.indexOf(Math.max(...c))}
+      iss[i]=j;const S2=S.filter(t=>ET[i][t]===j);if(S2.length>=MIN_SOUS)S=S2});
+    return {iss,sachant,n:n0,p:100*n0/N}}
+  const BASE=chemin(null);
+  const amont=i=>{const out=new Set();(function r(x){parentsPV(x).forEach(a=>{if(!out.has(a)){out.add(a);r(a)}})})(i);return out};
+  const aval=i=>{const out=new Set();(function r(x){P.forEach((p,c)=>{if(parentsPV(c).includes(x)&&!out.has(c)){out.add(c);r(c)}})})(i);return out};
+  // Jalons : rattachés au pivot qu'ils informent (cible), ou à l'enfant du lien pour une cible variable.
+  const JAL=D.jalons.map(j=>{const cible=j.cible||{};let n=cible.noeud in IX?cible.noeud:j.lien.split("→").map(s=>s.trim())[1];
+    if(!(n in IX))n=null;return Object.assign({},j,{pivot:n})});
+  function issueCible(j){const i=IX[j.cible&&j.cible.noeud];if(i==null)return null;const p=P[i],v=j.cible.issue;
+    let k=p.issues.indexOf(v);if(k<0&&v==="oui")k=0;if(k<0&&v==="non")k=p.issues.length-1;
+    if(k<0)k=p.libelles.findIndex(l=>v.includes(l));return k<0?null:[i,k]}
+  function effetJalon(j){const ic=issueCible(j);if(!ic)return null;const p=MARG[ic[0]][ic[1]]/100;
+    const o=x=>x/(1-x),inv=x=>x/(1+x),pc0=Math.min(Math.max(p,.001),.999);
+    return {i:ic[0],k:ic[1],p:100*p,obs:100*(j.a*p+j.b*(1-p)),si:100*inv(o(pc0)*Math.pow(j.a/j.b,K_JALON)),sinon:100*inv(o(pc0)*Math.pow((1-j.a)/(1-j.b),K_JALON))}}
+
+  // ----- état de la vue -----
+  const V={vue:"tout",a:null,jniv:"auto",cible:""};
+  const LEN={mois:1,trimestre:3,semestre:6,annee:12};
+  const auj=new Date().toISOString().slice(0,10), Aauj=Math.min(A0+NM-1,Math.max(A0,+auj.slice(0,4)*12+(+auj.slice(5,7)-1)));
+  function bornes(){if(V.vue==="tout")return [0,NM-1];const L=LEN[V.vue];return [Math.max(0,V.a-A0),Math.min(NM-1,V.a+L-1-A0)]}
+  function libPer(){const [w0,w1]=bornes(),y=a=>Math.floor(a/12),m=a=>a%12;
+    if(V.vue==="tout")return "oct. 2026 – sept. 2028";
+    if(V.vue==="mois")return MOISF[m(V.a)]+" "+y(V.a);
+    if(V.vue==="annee")return String(y(V.a))+(w1-w0<11?` (${MOISL[m(w0+A0)]}–${MOISL[m(w1+A0)]})`:"");
+    const n=V.vue==="trimestre"?Math.floor(m(V.a)/3)+1:Math.floor(m(V.a)/6)+1;
+    return `${n}${n===1?"er":"e"} ${V.vue} ${y(V.a)} (${MOISL[m(w0+A0)]}–${MOISL[m(w1+A0)]})`}
+  function niveauMax(){return V.jniv!=="auto"?+V.jniv:(V.vue==="tout"||V.vue==="annee"?2:3)}
+  const cle=(i,j)=>P[i].id+":"+j;
+  function courant(){if(!V.cible)return {ch:BASE,ci:null,co:null};const [id,j]=V.cible.split(":");return {ch:chemin(IX[id],+j),ci:IX[id],co:+j}}
+
+  // ----- contrôles -----
+  document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{V.vue=b.dataset.vue;
+    if(V.vue!=="tout"){const L=LEN[V.vue];V.a=Math.floor(Aauj/L)*L}
+    document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));dessiner()}));
+  $("#prec").addEventListener("click",()=>{V.a-=LEN[V.vue];dessiner()});
+  $("#suiv").addEventListener("click",()=>{V.a+=LEN[V.vue];dessiner()});
+  $("#jniv").addEventListener("change",e=>{V.jniv=e.target.value;dessiner()});
+  const sel=$("#cible");
+  sel.innerHTML=`<option value="">le plus probable</option>`+ORD.map(i=>`<optgroup label="${esc(P[i].court)}">${P[i].issues.map((x,j)=>MARG[i][j]<.5?"":`<option value="${cle(i,j)}">${esc(P[i].court)} : ${esc(libelle(i,j))} (${pc(MARG[i][j])})${BASE.iss[i]===j?" · le plus probable":""}</option>`).join("")}</optgroup>`).join("");
+  sel.addEventListener("change",e=>{V.cible=e.target.value;dessiner()});
+  const dlg=$("#dlg");
+  $("#dlg-x").addEventListener("click",()=>dlg.close());
+  dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close();const b=e.target.closest("[data-cible]");if(b){V.cible=b.dataset.cible;sel.value=V.cible;dlg.close();dessiner();$("#s-carte").scrollIntoView({behavior:"smooth"})}
+    const pv=e.target.closest("[data-pv]");if(pv)ouvrirPivot(IX[pv.dataset.pv]);const jl=e.target.closest("[data-jl]");if(jl)ouvrirJalon(jl.dataset.jl)});
+  $("#t-chemin tbody").addEventListener("click",e=>{const tr=e.target.closest("tr[data-i]");if(tr)ouvrirPivot(+tr.dataset.i)});
+
+  // ----- dessin -----
+  function dessiner(){
+    const [w0,w1]=bornes();
+    $("#per").textContent=libPer();
+    $("#prec").disabled=V.vue==="tout"||w0<=0; $("#suiv").disabled=V.vue==="tout"||w1>=NM-1;
+    const {ch,ci,co}=courant(), diff=i=>ci!=null&&ch.iss[i]!==BASE.iss[i];
+    const W=1200,X0=232,X1=W-18,CW=200,CH=54;
+    const tms=d=>Date.parse(d+"T00:00:00Z");
+    const moisD=k=>{const a=A0+k;return `${Math.floor(a/12)}-${String(a%12+1).padStart(2,"0")}-01`};
+    const T0=tms(moisD(w0)), T1=tms(moisD(w1+1));
+    // Échelle : linéaire sur une période ; par morceaux sur tout l'horizon (l'automne 2026 et la présidentielle plus larges).
+    const PM=V.vue==="tout"?[["2026-10-01",0],["2027-01-01",.30],["2027-05-15",.66],["2027-09-01",.78],["2028-10-01",1]]:[[moisD(w0),0],[moisD(w1+1),1]];
+    const X=d=>{const t=Math.min(Math.max(tms(d),T0),T1);for(let k=1;k<PM.length;k++){if(t<=tms(PM[k][0])){const a=PM[k-1],b=PM[k];return X0+(a[1]+(b[1]-a[1])*(t-tms(a[0]))/(tms(b[0])-tms(a[0])))*(X1-X0)}}return X1};
+    const dansPer=(d0,d1)=>!(d1<moisD(w0)||d0>=moisD(w1+1));
+    const visible=i=>dansPer(debutDe(P[i]),finDe(P[i]));
+    const nmax=niveauMax();
+    const jalonsDe=i=>JAL.filter(j=>j.pivot===P[i].id&&j.niveau<=nmax&&dansPer(j.fenetre.debut,j.fenetre.fin)).sort((a,b)=>a.fenetre.debut.localeCompare(b.fenetre.debut));
+    // Rangées
+    const pos={};let y=58;const bandes=[];
+    LANES.forEach(L=>{const ids=L.ids.filter(id=>id in IX&&visible(IX[id]));if(!ids.length)return;const y0=y;y+=20;
+      ids.forEach(id=>{const i=IX[id],js=jalonsDe(i),ctx=contexte(i,visible);const h=CH+(ctx?16:0)+js.length*19+16;pos[i]={y:y+CH/2,js,ctx,h};y+=h});
+      bandes.push([L.nom,y0,y]);y+=6});
+    const H=Math.max(y+10,160);
+    svg.setAttribute("viewBox",`0 0 ${W} ${H}`);svg.innerHTML="";
+    const defs=el("defs",{});[["fl","var(--muted)"],["fla","var(--accent)"]].forEach(([id,c])=>{const m=el("marker",{id,viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:6,markerHeight:6,orient:"auto-start-reverse"},defs);el("path",{d:"M0 0L10 5L0 10z",fill:c},m)});
+    bandes.forEach(([nom,a,b],k)=>{el("rect",{x:4,y:a,width:W-8,height:b-a,rx:6,fill:k%2?"var(--soft)":"transparent",opacity:.7});txt(14,a+14,nom.toUpperCase(),{"font-size":10.5,"font-weight":700,fill:"var(--muted)","letter-spacing":".05em"})});
+    // Graduations
+    const ticks=[];
+    if(V.vue==="mois"){for(let d=new Date(T0);d.getTime()<T1;d.setUTCDate(d.getUTCDate()+1)){const s=d.toISOString().slice(0,10);if([1,8,15,22].includes(d.getUTCDate()))ticks.push([s,`${d.getUTCDate()} ${MOISL[d.getUTCMonth()]}`,d.getUTCDate()===1])}}
+    else for(let k=w0;k<=w1+1;k++){const s=moisD(k),m=(A0+k)%12;const lab=m===0||k===w0?`${MOISL[m]} ${Math.floor((A0+k)/12)}`:MOISL[m];
+      const montrer=V.vue==="tout"?(k<=12?k%3===0:m===0||m===6):true;ticks.push([s,k<=w1&&montrer?lab:"",m===0])}
+    ticks.forEach(([d,lab,fort])=>{const x=X(d);el("line",{x1:x,x2:x,y1:40,y2:H-6,stroke:"var(--line)","stroke-width":fort?1.3:.7});if(lab)txt(x+3,36,lab,{"font-size":11,fill:"var(--muted)"})});
+    if(auj>=moisD(w0)&&auj<moisD(w1+1)){const x=X(auj);el("line",{x1:x,x2:x,y1:18,y2:H-6,stroke:"var(--accent)","stroke-dasharray":"3 3"});txt(x+4,18,"aujourd'hui",{"font-size":11,fill:"var(--accent)","font-weight":600})}
+    (V.vue==="tout"?[["2026-12-31","budget"],["2027-04-25","présidentielle"]]:[["2026-12-31","budget"],["2027-04-18","1er tour"],["2027-05-02","2nd tour"]]).forEach(([d,s])=>{if(dansPer(d,d))txt(X(d),52,s,{"font-size":10.5,"text-anchor":"middle",fill:"var(--muted)","font-weight":600})});
+    // Ancrages des liens : moment où le parent agit sur l'enfant.
+    const ancre=(a,c)=>{const pa=P[a],pcn=P[c];let ta,tb;
+      if(pa.date&&pcn.date){ta=pa.date;tb=pcn.date}
+      else if(pa.date){ta=pa.date;tb=pa.date<pcn.fenetre[0]?pcn.fenetre[0]:pa.date>pcn.fenetre[1]?pcn.fenetre[1]:pa.date}
+      else if(pcn.date){tb=pcn.date;ta=pcn.date<pa.fenetre[0]?pa.fenetre[0]:pcn.date>pa.fenetre[1]?pa.fenetre[1]:pcn.date}
+      else{const o0=pa.fenetre[0]>pcn.fenetre[0]?pa.fenetre[0]:pcn.fenetre[0],o1=pa.fenetre[1]<pcn.fenetre[1]?pa.fenetre[1]:pcn.fenetre[1];
+        const m=new Date((tms(o0)+tms(o1))/2).toISOString().slice(0,10);const lo=moisD(w0),hi=moisD(w1+1);ta=tb=m<lo?lo:m>=hi?o0>lo?o0:lo:m}
+      return [X(ta),X(tb)]};
+    const gL=el("g",{});
+    Object.keys(pos).forEach(c=>{c=+c;parentsPV(c).forEach(a=>{if(!(a in pos))return;const inf=INF[a+">"+c];
+      const crit=ci!=null?(diff(a)&&diff(c))||(a===ci&&diff(c))||(c===ci&&diff(a)):(inf!=null&&inf>=SEUIL_CRIT);
+      const [xa,xb]=ancre(a,c),ya=pos[a].y,yb=pos[c].y;const dx=Math.max(Math.abs(xb-xa)/2,26);
+      const e=el("path",{d:`M${xa} ${ya} C${xa+dx} ${ya} ${xb-dx} ${yb} ${xb} ${yb}`,fill:"none",stroke:crit?"var(--accent)":"var(--muted)","stroke-width":crit?2.2:1,opacity:crit?.9:.45,"marker-end":`url(#${crit?"fla":"fl"})`},gL);
+      el("title",{},e).textContent=`${P[a].court} → ${P[c].court}${inf!=null?` : jusqu'à ${inf} points d'écart sur l'enfant selon l'issue du parent`:""}`;
+      if(crit&&inf!=null){const mx=(xa+xb)/2+(Math.abs(xb-xa)<4?16:0),my=(ya+yb)/2;txt(mx,my-3,"±"+inf,{"font-size":10.5,"font-weight":700,fill:"var(--accent)","text-anchor":"middle","paint-order":"stroke",stroke:"var(--bg)","stroke-width":4})}})});
+    // Pivots
+    const gP=el("g",{});
+    Object.keys(pos).forEach(i=>{i=+i;const p=P[i],ps=pos[i],y=ps.y,j=ch.iss[i];
+      const g=el("g",{class:"pv",tabindex:0,role:"button","aria-label":`${p.nom} : ${libelle(i,j)}`},gP);let cx;
+      if(p.fenetre){const xa=X(p.fenetre[0]<moisD(w0)?moisD(w0):p.fenetre[0]),xb=X(p.fenetre[1]);
+        // Bande de la fenêtre, plus foncée les mois où la survenue est la plus probable.
+        const k0=Math.max(midx(p.fenetre[0]),w0),k1=Math.min(midx(p.fenetre[1]),w1),cnt=[];let mx=0;
+        for(let k=k0;k<=k1;k++){let n=0;for(let t=0;t<N;t++)if(MO[i][t]===k)n++;cnt.push(n);mx=Math.max(mx,n)}
+        cnt.forEach((n,q)=>{const k=k0+q,u0=X(k===midx(p.fenetre[0])?p.fenetre[0]:moisD(k)),u1=X(k===midx(p.fenetre[1])?p.fenetre[1]:moisD(k+1));
+          const r=el("rect",{x:u0,y:y-4,width:Math.max(u1-u0,1),height:8,fill:"var(--accent)",opacity:.12+.6*(mx?n/mx:0)},g);el("title",{},r).textContent=`${MOISF[(A0+k)%12]} ${Math.floor((A0+k)/12)} : ${pc(100*n/N)} de survenue ce mois-là`});
+        cx=Math.max(8,xa-8-CW)}
+      else{const xd=X(p.date),xs=X(auj>moisD(w0)?auj:moisD(w0));el("line",{x1:xs,x2:xd,y1:y,y2:y,stroke:"var(--accent-mid)","stroke-width":1.5,"stroke-dasharray":"2 3"},g);
+        el("path",{d:`M${xd} ${y-8}l8 8l-8 8l-8-8z`,fill:"var(--accent)"},g);cx=xd-12-CW<8?xd+12:xd-12-CW}
+      const est=ci===i,df=diff(i);
+      el("rect",{class:"c",x:cx,y:y-CH/2,width:CW,height:CH,rx:8,fill:est||df?"var(--accent-soft)":"var(--surface)",stroke:est||df?"var(--accent)":"var(--line)","stroke-width":est?2.4:df?1.6:1,"stroke-dasharray":df&&!est?"5 3":"none"},g);
+      txt(cx+10,y-9,court(p.court,27),{"font-size":12.5,"font-weight":700},g);
+      const pr=ci!=null&&i!==ci?ch.sachant[i][j]:MARG[i][j];
+      txt(cx+10,y+8,court(libelle(i,j),22),{"font-size":12.5,fill:"var(--ink)"},g);
+      txt(cx+CW-10,y+8,est?"cible":pc(pr),{"font-size":13.5,"font-weight":700,"text-anchor":"end",fill:est?"var(--accent)":"var(--ink)"},g);
+      txt(cx+10,y+22,court(ligneAutres(i,j,ci!=null&&i!==ci?ch.sachant[i]:MARG[i],w0,w1),34),{"font-size":10.5,fill:"var(--muted)"},g);
+      el("title",{},g).textContent=`${p.nom} : ${libelle(i,j)}, ${pc(MARG[i][j])} en général${ci!=null&&i!==ci?`, ${pc(ch.sachant[i][j])} sachant la cible`:""}. Cliquer pour le détail.`;
+      if(ps.ctx)txt(cx+4,y+CH/2+12,court(ps.ctx,62),{"font-size":10.5,"font-style":"italic",fill:"var(--var)"},gP);
+      const ouvrir=()=>ouvrirPivot(i);g.addEventListener("click",ouvrir);g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();ouvrir()}});
+      // Jalons du pivot
+      ps.js.forEach((jl,q)=>{const yj=y+CH/2+(ps.ctx?16:0)+12+q*19,xa=X(jl.fenetre.debut<moisD(w0)?moisD(w0):jl.fenetre.debut),xb=X(jl.fenetre.fin);
+        const gj=el("g",{class:"jl",tabindex:0,role:"button","aria-label":jl.libelle},gP);
+        const c=jl.statut==="observé"?"var(--ok)":jl.statut==="manqué"?"var(--crit)":null;
+        el("line",{x1:xa,x2:Math.max(xb,xa+2),y1:yj,y2:yj,stroke:c||"var(--muted)","stroke-width":1.6,opacity:.55},gj);
+        el("circle",{cx:xa,cy:yj,r:jl.niveau===2?4.6:3.4,fill:c||"var(--surface)",stroke:c?"none":jl.statut==="en cours"?"var(--accent)":"var(--muted)","stroke-width":jl.statut==="en cours"?2:1.4},gj);
+        const ef=effetJalon(jl);const lab=`${jl.libelle}${ef?` · ${pc(ef.obs)}`:""}`;
+        const xt=xa+9+lab.length*5.9>X1?Math.max(X0,xa-9-lab.length*5.9):xa+9;
+        txt(xt,yj+4,lab,{"font-size":11,fill:"var(--ink)","paint-order":"stroke",stroke:"var(--bg)","stroke-width":4,"stroke-linejoin":"round"},gj);
+        el("title",{},gj).textContent=`${jl.id} (${jl.statut}) : ${jl.observable} Du ${dfr(jl.fenetre.debut)} au ${dfr(jl.fenetre.fin)}.${ef?` Probabilité d'être observé : ${pc(ef.obs)}.`:""}`;
+        const oj=()=>ouvrirJalon(jl.id);gj.addEventListener("click",oj);gj.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();oj()}})});
+    });
+    if(!Object.keys(pos).length)txt(X0,90,"Aucun pivot sur cette période.",{"font-size":13,fill:"var(--muted)"});
+    // Ensuite
+    const apres=ORD.filter(i=>!visible(i)&&debutDe(P[i])>=moisD(w1+1)).slice(0,6);
+    $("#ensuite").innerHTML=apres.length?"Ensuite : "+apres.map(i=>`<a href="#" data-ouvre="${i}">${esc(P[i].court)}</a> (${P[i].date?dfr(P[i].date):"dès "+dfr(P[i].fenetre[0])})`).join(" · "):"";
+    $("#ensuite").querySelectorAll("[data-ouvre]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();ouvrirPivot(+a.dataset.ouvre)}));
+    tableChemin(ch,ci,co);
   }
-  const auj=new Date().toISOString().slice(0,10);
-  el("line",{x1:X(auj),x2:X(auj),y1:24,y2:H-10,stroke:"var(--accent)","stroke-dasharray":"3 3"});
-  txt(X(auj)+4,24,"aujourd'hui",{"font-size":11,fill:"var(--accent)"});
-  [["2026-12-31","budget",0],["2027-04-18","1er tour",-14],["2027-05-02","2nd tour",14]].forEach(([d,s,dx])=>{
-    txt(X(d)+dx,56,s,{"font-size":10.5,"text-anchor":"middle",fill:"var(--muted)","font-weight":600});});
-  const piv=Object.fromEntries(D.pivots.map(p=>[p.id,p]));
-  // Question affichée sur chaque pivot, et nom de l'issue qu'elle mesure.
-  const REF={"PV-CENSURE1a":["EV-15","censure"],"PV-CENSURE1b":["EV-15b","censure"],"PV-BUDGET":["EV-02","non publiée"],"PV-GOUV":["EV-50","départ"],
-    "PV-DISSOL1":["EV-16a","dissolution"],"PV-POURVOI":["EV-20",null],"PV-LEPEN":["EV-21","candidate"],"PV-ECOLO":["EV-18",null],"PV-GAUCHE":["EV-19",null],
-    "PV-BLOC":["EV-41",null],"PV-DUEL":["EV-40a","Marine Le Pen qualifiée"],"PV-VAINQ":["EV-05",null],"PV-DISSOL2":["EV-16b","dissolution"],
-    "PV-MAJOR":["EV-17","moins de 289 en sept. 2028"],"PV-CENSURE2":["EV-15c","censure"],"PV-NOTE":["EV-01","dégradation"],"PV-PDE":["EV-04","durcissement"],"PV-TPI":["EV-46","achats"]};
-  const prob=id=>{const ref=REF[id]; if(!ref) return null; const r=D.questions.find(x=>x.id==="Q-"+ref[0]); const v=r&&r.auteurs["réseau v0"]; if(!v) return null;
-    const k="oui" in v.p?"oui":Object.entries(v.p).sort((a,b)=>b[1]-a[1])[0][0]; return {q:ref[0],k:ref[1]||k,v:v.p[k]}};
-  const COURT={"VE-POP":"popularité","VE-MOBIL":"mobilisation","VE-ECART":"écart OAT-Bund","VE-SOND":"2e bloc dans les sondages","VE-RN":"intentions de vote RN","VE-LYCEE":"lycées"};
-  LANES.forEach((L,li)=>{
-    const n=Math.max(...Object.values(L.rangs))+1;
-    el("rect",{x:8,y:y-6,width:W-16,height:n*RH+4,rx:6,fill:li%2?"var(--soft)":"transparent",opacity:.6,"pointer-events":"none"});
-    txt(14,y+12,L.nom,{"font-size":12,"font-weight":700,fill:"var(--muted)"});
-    for(const [id,r] of Object.entries(L.rangs)){
-      const p=piv[id]; if(!p) continue;
-      const yy=y+r*RH+14;
-      if(p.fenetre){pos[id]={x0:X(p.fenetre[0]),x1:X(p.fenetre[1]),y:yy}}
-      else{pos[id]={x0:X(auj),x1:X(p.date),y:yy}}
-    }
-    y+=n*RH+LG;
-  });
-  // Liens entre pivots (sous les glyphes)
-  const gL=el("g",{});
-  const variablesDe={};
-  D.liens.forEach(l=>{
-    if(l.de.startsWith("VE-")){(variablesDe[l.vers]=variablesDe[l.vers]||[]).push(COURT[l.de]||l.de);return}
-    const a=pos[l.de], b=pos[l.vers]; if(!a||!b) return;
-    // Le lien part du parent au moment où il agit sur l'enfant : sa date, ou le début de la fenêtre de l'enfant.
-    // Un parent daté agit à sa date ; deux pivots « à tout moment » se lient au milieu de leur période commune.
-    let xa,xb;
-    if(!piv[l.de].fenetre){xa=a.x1; xb=Math.min(Math.max(a.x1,b.x0),b.x1)}
-    else{const xo=Math.max(a.x0,b.x0), xe=Math.min(a.x1,b.x1); if(xo<=xe){xa=xb=xo+(xe-xo)*.35}else{xa=a.x1;xb=b.x0}}
-    const ya=a.y, yb=b.y, dx=Math.max(Math.abs(xb-xa)/2,18);
-    el("path",{d:`M${xa} ${ya} C${xa+dx} ${ya} ${xb-dx} ${yb} ${xb} ${yb}`,fill:"none",stroke:"var(--muted)","stroke-width":1,opacity:.55},gL);
-    l.jalons.forEach(jid=>{const j=D.jalons.find(x=>x.id===jid); if(!j) return;
-      const x0=Math.min(xa,xb), x1=Math.max(xa,xb), x=Math.min(Math.max(X(j.fenetre.debut),x0),x1), f=x1>x0?(x-xa)/(xb-xa):.5, yj=ya+(yb-ya)*(3*f*f-2*f*f*f)+(x1>x0?0:(D.jalons.indexOf(j)%5-2)*5);
-      jalon(x,yj,j,gL)});
-  });
-  // Jalons des liens depuis une variable : posés sur la rangée du pivot enfant
-  D.jalons.filter(j=>j.lien.startsWith("VE-")).forEach(j=>{const vers=j.lien.split("→")[1].trim(), b=pos[vers]; if(b) jalon(X(j.fenetre.debut),b.y-10,j,gL)});
-  function jalon(x,y,j,g){
-    const c=j.statut==="observé"?"var(--ok)":j.statut==="manqué"?"var(--crit)":"var(--surface)";
-    const e=el("circle",{cx:x,cy:y,r:3.2,fill:c,stroke:j.statut==="observé"||j.statut==="manqué"?"none":"var(--muted)","stroke-width":1.3},g);
-    el("title",{},e).textContent=`${j.id} (${j.statut}) : ${j.observable} — du ${dfr(j.fenetre.debut)} au ${dfr(j.fenetre.fin)}, rapport ${j.rapport}`;
-  }
-  // Pivots
-  for(const [id,ps] of Object.entries(pos)){
-    const p=piv[id], g=el("g",{tabindex:0,role:"button","aria-label":p.nom,style:"cursor:pointer"});
-    el("rect",{x:Math.min(ps.x0,ps.x1)-10,y:ps.y-24,width:Math.abs(ps.x1-ps.x0)+20,height:42,fill:"transparent"},g);
-    if(p.fenetre){
-      el("line",{x1:ps.x0,x2:ps.x1,y1:ps.y,y2:ps.y,stroke:"var(--accent)","stroke-width":6,"stroke-linecap":"round",opacity:.85},g);
-    }else{
-      el("line",{x1:ps.x0,x2:ps.x1,y1:ps.y,y2:ps.y,stroke:"var(--accent-mid)","stroke-width":2},g);
-      el("path",{d:`M${ps.x1} ${ps.y-7}l7 7l-7 7l-7 -7z`,fill:"var(--accent)"},g);
-    }
-    const pr=prob(id);
-    const lab=p.nom+(pr?` · ${pr.k==="oui"?"":pr.k+" "}${Math.round(pr.v)} %`:"");
-    const xl=p.fenetre?ps.x0:Math.max(ps.x1-8-lab.length*6.3,X0);
-    txt(Math.min(xl,W-20-lab.length*6.3),ps.y-9,lab,{"font-size":12,"font-weight":600},g);
-    const vs=(variablesDe[id]||[]).concat((p.indicateurs||[]).map(n=>n.toLowerCase()));
-    if(vs.length) txt(p.fenetre?ps.x0:Math.max(ps.x1-vs.join(", ").length*5.4,X0),ps.y+16,vs.join(", "),{"font-size":10.5,"font-style":"italic",fill:"var(--var)"},g);
-    el("title",{},g).textContent=p.nom;
-    const sel=()=>detail(D,p,variablesDe[id]||[]);
-    g.addEventListener("click",sel); g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();sel()}});
-  }
-}
-function detail(D,p,vars){
-  const lignes=p.questions.map(q=>{const r=D.questions.find(x=>x.id==="Q-"+q); if(!r) return `<li>${q} : pas de question dans le cycle affiché</li>`;
-    const f=a=>{const v=r.auteurs[a]; if(!v) return "–"; const k="oui" in v.p?"oui":Object.entries(v.p).sort((a,b)=>b[1]-a[1])[0][0]; return `${k==="oui"?"":esc(k)+" "}${Math.round(v.p[k])} %`};
-    return `<li><b>${esc(q)}</b> ${esc(r.texte)}<br>réseau ${f("réseau v0")} · ensemble ${f("ensemble direct")} · taux de base ${f("comparateur : taux de base")}</li>`}).join("");
-  const parents=D.liens.filter(l=>l.vers===p.id).map(l=>(l.de.startsWith("VE-")?(D.variables.find(v=>v.id===l.de)?.nom||l.de):(D.pivots.find(x=>x.id===l.de)?.nom||l.de))+(l.decalage?" (mois précédent)":"")).join(", ");
-  const quand=p.fenetre?`peut survenir du ${dfr(p.fenetre[0])} au ${dfr(p.fenetre[1])}`:`daté du ${dfr(p.date)}${p.date_note?" ("+esc(p.date_note)+")":""}`;
-  $("#detail").innerHTML=`<h3>${esc(p.nom)}</h3><div>${quand}. Issues : ${p.issues.map(esc).join(", ")}.</div><div>Influencé par : ${esc(parents)||"aucun parent (pivot exogène, conduit par ses jalons)"}.</div>${lignes?`<ul>${lignes}</ul>`:'<div class="vide">Aucune question de la banque rattachée.</div>'}`;
+  function court(s,n){s=String(s);return s.length>n?s.slice(0,n-1)+"…":s}
+  function contexte(i,visible){const p=P[i];const ve=p.parents.filter(x=>x.id.startsWith("VE-")).map(x=>VE_COURT[x.id]+(x.decalage?" (mois préc.)":""));
+    const caches=parentsPV(i).filter(a=>!visible(a)).map(a=>"← "+P[a].court);
+    return ve.concat((p.indicateurs||[]).map(x=>x.nom.toLowerCase())).concat(caches).join(" · ")}
+  function ligneAutres(i,j,dist,w0,w1){const p=P[i];
+    if(p.fenetre&&V.vue!=="tout"){let n=0,av=0;for(let t=0;t<N;t++){const m=MO[i][t];if(m>=w0&&m<=w1)n++;else if(m>=0&&m<w0)av++}
+      return `sur la période : ${pc(100*n/N)}`}
+    const autres=dist.map((v,k)=>[k,v]).filter(([k])=>k!==j).sort((a,b)=>b[1]-a[1]).slice(0,2).filter(x=>x[1]>=.5);
+    return autres.length?"sinon "+autres.map(([k,v])=>`${libelle(i,k)} ${pc(v)}`).join(", "):""}
+  function tableChemin(ch,ci,co){
+    $("#ch-titre").textContent=ci==null?"Chemin le plus probable":`Chemin vers « ${P[ci].court} : ${libelle(ci,co)} »`;
+    $("#ch-intro").innerHTML=ci==null?"Issue la plus probable de chaque pivot, choisie dans l'ordre des échéances parmi les trajectoires qui suivent déjà le chemin. Chaque étape reste incertaine : la colonne « en général » donne sa probabilité propre.":
+      `Cette issue a une probabilité de <b>${pc(ch.p)}</b>. Le chemin est tiré des seules trajectoires où elle se réalise ; les lignes surlignées diffèrent du chemin le plus probable.${ch.p<10?' <span style="color:var(--warn)">Issue peu probable : ce chemin se lit comme une condition, pas comme un scénario attendu.</span>':""}`;
+    $("#t-chemin thead").innerHTML=`<tr><th>Échéance</th><th>Pivot</th><th>Issue sur le chemin</th><th>En général</th>${ci!=null?"<th>Sachant la cible</th>":""}</tr>`;
+    $("#t-chemin tbody").innerHTML=ORD.map(i=>{const j=ch.iss[i],df=ci!=null&&j!==BASE.iss[i];
+      return `<tr data-i="${i}"${df||i===ci?' class="diff"':""}><td class="n">${P[i].date?dfr(P[i].date):"jusqu'au "+dfr(P[i].fenetre[1])}</td><td>${esc(P[i].court)}</td><td>${esc(libelle(i,j))}${i===ci?' <span class="st st-en-cours">cible</span>':df?' <span class="st">diffère</span>':""}</td><td class="n">${pc(MARG[i][j])}</td>${ci!=null?`<td class="n">${i===ci?"–":pc(ch.sachant[i][j])}</td>`:""}</tr>`}).join("")}
+
+  // ----- fenêtres de détail -----
+  const nomNoeud=id=>id in IX?P[IX[id]].court:(VE_COURT[id]||id);
+  const etatLib=(id,s)=>{if(!(id in IX))return s;const i=IX[id],k=P[i].issues.indexOf(s);return k<0?s:libelle(i,k)};
+  function hypotheses(i){const p=P[i],h=p.hypotheses||{},out=[];
+    if(h.p_fenetre!=null)out.push(`Probabilité de survenue sur toute la fenêtre, facteurs à leur état de référence : <b>${pc(100*h.p_fenetre)}</b>, répartie en un risque mensuel constant.`);
+    if(h.base&&!h.conditionnelle)out.push("Loi de base, facteurs à leur état de référence : "+Object.entries(h.base).filter(x=>x[1]>.005).map(([k,v])=>`${esc(etatLib(p.id,k))} ${pc(100*v)}`).join(", ")+".");
+    if(h.conditionnelle)out.push(`Loi selon ${esc(nomNoeud(p.conditionnelle||""))} : <ul>`+Object.entries(h.conditionnelle).map(([s,d])=>`<li>${esc(etatLib(p.conditionnelle,s))} : ${Object.entries(d).filter(x=>x[1]>.005).map(([k,v])=>`${esc(etatLib(p.id,k))} ${pc(100*v)}`).join(", ")}</li>`).join("")+"</ul>");
+    const m=h.multiplicateurs||{},lignes=[];
+    Object.entries(m).forEach(([par,etats])=>Object.entries(etats).forEach(([s,eff])=>{const e=Object.entries(eff).filter(([,v])=>Math.abs(v-1)>.05);
+      if(e.length)lignes.push(`<li>${esc(nomNoeud(par))} = ${esc(etatLib(par,s))} : ${e.map(([k,v])=>(p.fenetre?"risque ":esc(etatLib(p.id,k))+" ")+fx(v)).join(", ")}</li>`)}));
+    if(lignes.length)out.push("Effets des facteurs (multiplicateurs, hors état de référence) :<ul>"+lignes.join("")+"</ul>");
+    if(p.exclusions)out.push("Exclusions : "+Object.entries(p.exclusions).map(([par,d])=>Object.entries(d).map(([s,l])=>`si ${esc(nomNoeud(par))} = ${esc(etatLib(par,s))}, ${l.map(x=>esc(etatLib(p.id,x))).join(", ")} impossible`).join(" ; ")).join(" ; ")+".");
+    if(h.sigma)out.push(`<span class="petit">Incertitude sur les paramètres : écart-type ${String(h.sigma).replace(".",",")} en log-cotes, d'où l'intervalle à 80 % des prévisions.</span>`);
+    return out.map(x=>`<p>${x}</p>`).join("")||'<p class="petit">Aucun paramètre propre.</p>'}
+  function questions(i){const ev=new Set((D.pivots.find(x=>x.id===P[i].id)||{}).questions||[]);
+    const qs=D.questions.filter(q=>{const m=q.id.match(/^Q-(EV-[0-9a-z]+)/);return m&&ev.has(m[1])});
+    const f=(q,a)=>{const v=q.auteurs[a];if(!v)return "–";const k="oui" in v.p?"oui":Object.entries(v.p).sort((x,y)=>y[1]-x[1])[0][0];return `${k==="oui"?"":esc(k)+" "}${pc(v.p[k])}`};
+    return qs.length?"<ul>"+qs.map(q=>`<li>${esc(q.texte)} <span class="petit">(${esc(q.id)}, échéance ${dfr(q.echeance)})</span><br>réseau ${f(q,"réseau v0")} · ensemble ${f(q,"ensemble direct")} · taux de base ${f(q,"comparateur : taux de base")}${q.resolution?` · <b>issue : ${esc(q.resolution.issue)}</b>`:""}</li>`).join("")+"</ul>":'<p class="petit">Aucune question du cycle courant rattachée.</p>'}
+  function ouvrirPivot(i){const p=P[i],[w0,w1]=bornes(),{ch,ci}=courant();
+    const quand=p.fenetre?`Peut survenir à tout moment du ${dfr(p.fenetre[0])} au ${dfr(p.fenetre[1])}.`:`Daté du ${dfr(p.date)}${p.date_note?" ("+esc(p.date_note)+")":""}.`;
+    let nPer=null;if(p.fenetre&&V.vue!=="tout"){nPer=0;for(let t=0;t<N;t++){const m=MO[i][t];if(m>=w0&&m<=w1)nPer++}}
+    const issues=`<table><thead><tr><th>Issue</th><th>En général</th>${nPer!=null?"<th>Sur la période</th>":""}${ci!=null&&ci!==i?"<th>Sachant la cible</th>":""}<th></th></tr></thead><tbody>`+
+      p.issues.map((x,j)=>`<tr${ch.iss[i]===j?' class="diff"':""}><td>${esc(libelle(i,j))}${BASE.iss[i]===j?' <span class="petit">· chemin le plus probable</span>':""}</td><td class="n">${pc(MARG[i][j])}</td>${nPer!=null?`<td class="n">${j===0?pc(100*nPer/N):""}</td>`:""}${ci!=null&&ci!==i?`<td class="n">${pc(ch.sachant[i][j])}</td>`:""}<td>${MARG[i][j]>=.5?`<button class="lien" data-cible="${cle(i,j)}">chemin vers cette issue</button>`:""}</td></tr>`).join("")+"</tbody></table>";
+    // Chemin critique : ce qui change en amont et en aval quand on impose chaque issue.
+    const am=amont(i),av=aval(i);
+    const bouge=(c,ens)=>[...ens].map(a=>{let best=null;P[a].issues.forEach((z,k)=>{const d=c.sachant[a][k]-MARG[a][k];if(d>=8&&(!best||d>best[1]))best=[k,d]});return best&&[a,best[0]]}).filter(Boolean)
+      .sort((x,y)=>finDe(P[x[0]]).localeCompare(finDe(P[y[0]]))).map(([a,k])=>`${esc(P[a].court)} : ${esc(libelle(a,k))} ${pc(MARG[a][k])} → <b>${pc(c.sachant[a][k])}</b>`);
+    const crit=p.issues.map((x,j)=>{if(MARG[i][j]<2)return "";const c=chemin(i,j),u=bouge(c,am),d=bouge(c,av);
+      return `<li><b>${esc(libelle(i,j))}</b> (${pc(MARG[i][j])}) : ${u.length?"en amont, "+u.join(" ; "):"aucun pivot amont ne gagne 8 points : l'issue tient surtout à ses facteurs propres (variables d'état, jalons, aléa)"}.${d.length?` En aval : ${d.join(" ; ")}.`:""}</li>`}).join("");
+    const cond=p.parents.map(x=>{if(x.id in IX){const a=IX[x.id],inf=INF[a+">"+i];return `<li>${esc(P[a].court)} <span class="petit">(${P[a].date?dfr(P[a].date):"jusqu'au "+dfr(P[a].fenetre[1])})</span> : jusqu'à <b>${inf==null?"?":inf} points</b> d'écart selon son issue. Sur le chemin : ${esc(libelle(a,ch.iss[a]))}. <button class="lien" data-pv="${x.id}">voir</button></li>`}
+      const v=C.variables.find(z=>z.id===x.id);if(!v)return "";const k=p.date?midx(p.date):null,obs=Object.entries(v.observe||{}).sort().pop();
+      return `<li>${esc(v.nom)}${x.decalage?" (état du mois précédent)":""} : ${obs?`observé ${esc(obs[1])} en ${MOISL[+obs[0].slice(5,7)-1]} ${obs[0].slice(0,4)}`:"non observé"}${k!=null?` ; projeté en ${MOISL[(A0+k)%12]} ${Math.floor((A0+k)/12)} : ${v.etats.map((e,q)=>`${esc(e)} ${pc(v.par_mois[k][q])}`).join(", ")}`:""}</li>`}).join("");
+    const ind=(p.indicateurs||[]).map(x=>`<li><b>${esc(x.nom)}</b> : ${esc(x.mecanisme||"")}</li>`).join("");
+    const jal=JAL.filter(j=>j.pivot===p.id).sort((a,b)=>a.fenetre.debut.localeCompare(b.fenetre.debut)).map(j=>{const ef=effetJalon(j);
+      return `<tr><td><button class="lien" data-jl="${j.id}">${esc(j.libelle)}</button></td><td class="n">${dfr(j.fenetre.debut)} – ${dfr(j.fenetre.fin)}</td><td><span class="st st-${j.statut.replace(" ","-")}">${esc(j.statut)}</span></td><td class="n">${ef?pc(ef.obs):"–"}</td></tr>`}).join("");
+    $("#dlg-c").innerHTML=`<h3 id="dlg-t">${esc(p.nom)}</h3><p class="petit">${quand} ${esc(p.id)}</p>
+      <h4>Issues</h4>${issues}
+      <h4>Chemin critique</h4><p class="petit">Pour chaque issue, les pivots en amont et en aval dont une issue gagne au moins 8 points quand on la suppose réalisée : probabilité en général → sachant cette issue.</p><ul>${crit}</ul>
+      <h4>Conducteurs</h4>${cond?`<ul>${cond}</ul>`:'<p class="petit">Aucun parent : pivot exogène, conduit par ses jalons.</p>'}
+      <h4>Hypothèses du réseau</h4>${hypotheses(i)}
+      ${ind?`<h4>Indicateurs structurels (contexte, sans effet calculé en v0)</h4><ul>${ind}</ul>`:""}
+      <h4>Jalons</h4>${jal?`<table><thead><tr><th>Jalon</th><th>Fenêtre</th><th>Statut</th><th>Prob. d'être observé</th></tr></thead><tbody>${jal}</tbody></table>`:'<p class="petit">Aucun jalon défini.</p>'}
+      <h4>Questions notées</h4>${questions(i)}`;
+    if(!dlg.open)dlg.showModal();dlg.scrollTop=0}
+  function ouvrirJalon(id){const j=JAL.find(x=>x.id===id);if(!j)return;const ef=effetJalon(j),ind=j.indicateur||{};
+    const cib=ef?`${esc(P[ef.i].court)} : ${esc(libelle(ef.i,ef.k))}`:esc((j.cible||{}).noeud||"");
+    $("#dlg-c").innerHTML=`<h3 id="dlg-t">${esc(j.libelle)}</h3><p class="petit">${esc(j.id)} · lien ${esc(j.lien)} · niveau ${j.niveau} · ${esc(j.type)}</p>
+      <p>${esc(j.observable)}</p>
+      <h4>Constat</h4><p>Du ${dfr(j.fenetre.debut)} au ${dfr(j.fenetre.fin)} · <span class="st st-${j.statut.replace(" ","-")}">${esc(j.statut)}</span></p>
+      <p class="petit">Source : ${esc(ind.source||"–")}. Mesure : ${esc(ind.mesure||"–")}. Seuil : ${esc(ind.seuil||"–")}.</p>
+      <h4>Ce qu'il annonce</h4><p>Informe <b>${cib}</b>${ef?`, aujourd'hui à ${pc(ef.p)}`:""}. Probabilité d'être observé : <b>${ef?pc(ef.obs):"–"}</b>.</p>
+      ${ef?`<ul><li>S'il est observé : ${pc(ef.p)} → <b>${pc(ef.si)}</b> (rapport ${fx(j.a/j.b)}, réduit de moitié en log)</li><li>S'il manque : ${pc(ef.p)} → <b>${pc(ef.sinon)}</b> (rapport ${fx((1-j.a)/(1-j.b))})</li></ul>`:""}
+      <p class="petit">Vraisemblances : ${pc(100*j.a)} si l'issue se réalise, ${pc(100*j.b)} sinon. Les jalons ne changent aucune probabilité tant que le critère de direction n'est pas validé (40 questions résolues) ; l'effet ci-dessus est celui qui s'appliquerait.</p>
+      ${j.motif?`<h4>Motif</h4><p>${esc(j.motif)}</p>`:""}
+      ${ef?`<p><button class="lien" data-pv="${P[ef.i].id}">Voir le pivot</button></p>`:""}`;
+    if(!dlg.open)dlg.showModal();dlg.scrollTop=0}
+  dessiner();
 }
 // ----- Témoin et réseau -----
 function comparaison(D){

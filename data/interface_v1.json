@@ -831,7 +831,19 @@
   {
    "id": "J-001",
    "lien": "PV-CENSURE1a → PV-BUDGET",
+   "libelle": "49.3 sur le budget 2027",
    "observable": "Le Gouvernement engage sa responsabilité (article 49, alinéa 3) sur tout ou partie du projet de loi de finances pour 2027 devant l'Assemblée nationale.",
+   "indicateur": {
+    "source": "Assemblée nationale, comptes rendus de séance et dossier législatif PLF 2027",
+    "mesure": "nombre d'engagements de responsabilité (49.3) sur le PLF 2027",
+    "seuil": "au moins 1"
+   },
+   "cible": {
+    "noeud": "PV-CENSURE1a",
+    "issue": "oui",
+    "question": "Q-EV-15"
+   },
+   "motif": "Un 49.3 ouvre automatiquement une motion de censure : c'est la voie principale par laquelle la censure arrive avant la fin de l'année et menace le budget (calendrier : Assemblée nationale, « Organisation de la discussion budgétaire » PLF/PLFSS 2027).",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2026-12-23"
@@ -839,12 +851,27 @@
    "niveau": 2,
    "type": "amont",
    "statut": "attendu",
-   "rapport": 2.33
+   "a": 0.726,
+   "b": 0.311,
+   "rapport": 2.33,
+   "rapport_manque": 0.4
   },
   {
    "id": "J-002",
    "lien": "PV-CENSURE1a → PV-BUDGET",
+   "libelle": "Motion de censure signée par le PS",
    "observable": "Une motion de censure déposée à l'Assemblée nationale compte parmi ses signataires le président du groupe Socialistes et apparentés.",
+   "indicateur": {
+    "source": "Assemblée nationale, textes des motions de censure et liste des signataires",
+    "mesure": "signature du président du groupe Socialistes sur une motion (49.2 ou 49.3)",
+    "seuil": "au moins 1 motion"
+   },
+   "cible": {
+    "noeud": "PV-CENSURE1a",
+    "issue": "oui",
+    "question": "Q-EV-15"
+   },
+   "motif": "Le PS est le groupe pivot de la censure ; sa signature renseigne l'état amont (censure) du lien vers le budget (positions PS rapportées le 23 septembre 2026).",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2026-12-31"
@@ -852,12 +879,27 @@
    "niveau": 3,
    "type": "amont",
    "statut": "attendu",
-   "rapport": 5.24
+   "a": 0.634,
+   "b": 0.121,
+   "rapport": 5.24,
+   "rapport_manque": 0.42
   },
   {
    "id": "J-003",
    "lien": "PV-CENSURE1a → PV-BUDGET",
+   "libelle": "Budget rejeté en 1re lecture",
    "observable": "L'Assemblée nationale rejette l'ensemble du projet de loi de finances pour 2027 lors du vote solennel de première lecture.",
+   "indicateur": {
+    "source": "Assemblée nationale, scrutins publics",
+    "mesure": "résultat du vote sur l'ensemble du PLF 2027 en première lecture",
+    "seuil": "rejet"
+   },
+   "cible": {
+    "noeud": "PV-BUDGET",
+    "issue": "oui",
+    "question": "Q-EV-02"
+   },
+   "motif": "Le vote sur l'ensemble est prévu le 17 novembre 2026 (calendrier : Assemblée nationale, « Organisation de la discussion budgétaire » PLF/PLFSS 2027) ; un rejet allonge la navette et rapproche l'absence de loi de finances au 31 décembre.",
    "fenetre": {
     "debut": "2026-11-16",
     "fin": "2026-11-20"
@@ -865,12 +907,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 1.03
+   "a": 0.375,
+   "b": 0.364,
+   "rapport": 1.03,
+   "rapport_manque": 0.98
   },
   {
    "id": "J-004",
    "lien": "PV-CENSURE1a → PV-BUDGET",
+   "libelle": "Accord en commission mixte paritaire",
    "observable": "La commission mixte paritaire sur le projet de loi de finances pour 2027 aboutit à un texte commun.",
+   "indicateur": {
+    "source": "Assemblée nationale et Sénat, dossier législatif PLF 2027 (rapport de CMP)",
+    "mesure": "conclusion de la CMP",
+    "seuil": "texte commun adopté par la CMP"
+   },
+   "cible": {
+    "noeud": "PV-BUDGET",
+    "issue": "oui",
+    "question": "Q-EV-02"
+   },
+   "motif": "Une CMP conclusive est l'étape qui précède presque toujours la publication d'une loi de finances dans les délais ; elle renseigne l'aval du lien sans le trancher.",
    "fenetre": {
     "debut": "2026-11-25",
     "fin": "2026-12-20"
@@ -878,12 +935,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 0.93
+   "a": 0.433,
+   "b": 0.468,
+   "rapport": 0.93,
+   "rapport_manque": 1.07
   },
   {
    "id": "J-005",
    "lien": "PV-CENSURE1a → PV-BUDGET",
+   "libelle": "Délai de 70 jours expiré",
    "observable": "Le délai de 70 jours de l'article 47 de la Constitution expire sans adoption définitive du projet de loi de finances pour 2027 par le Parlement.",
+   "indicateur": {
+    "source": "Assemblée nationale et Sénat, dossier législatif PLF 2027 ; Journal officiel",
+    "mesure": "adoption définitive du PLF 2027 avant l'expiration du délai de 70 jours suivant le dépôt",
+    "seuil": "aucune adoption définitive à l'expiration"
+   },
+   "cible": {
+    "noeud": "PV-BUDGET",
+    "issue": "oui",
+    "question": "Q-EV-02"
+   },
+   "motif": "Après 70 jours, seule une ordonnance de l'article 47 ou une loi spéciale reste possible, qui ne sont pas des lois de finances (critère d'EV-02) ; date estimée à partir du dépôt début octobre (LCP, 1er octobre 2026).",
    "fenetre": {
     "debut": "2026-12-08",
     "fin": "2026-12-20"
@@ -891,12 +963,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 1.18
+   "a": 0.371,
+   "b": 0.315,
+   "rapport": 1.18,
+   "rapport_manque": 0.92
   },
   {
    "id": "J-006",
    "lien": "PV-CENSURE1a → PV-BUDGET",
+   "libelle": "Loi spéciale déposée",
    "observable": "Le Gouvernement dépose au Parlement un projet de loi spéciale autorisant la perception des impôts existants (article 45 de la LOLF).",
+   "indicateur": {
+    "source": "Assemblée nationale, documents déposés ; Journal officiel",
+    "mesure": "dépôt d'un projet de loi spéciale pour 2027",
+    "seuil": "1 dépôt"
+   },
+   "cible": {
+    "noeud": "PV-BUDGET",
+    "issue": "oui",
+    "question": "Q-EV-02"
+   },
+   "motif": "La loi spéciale est le recours quand la loi de finances ne peut être promulguée à temps (précédents de décembre 2024 et 2025) ; elle informe sans résoudre EV-02.",
    "fenetre": {
     "debut": "2026-12-01",
     "fin": "2026-12-31"
@@ -904,12 +991,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 1.5
+   "a": 0.442,
+   "b": 0.295,
+   "rapport": 1.5,
+   "rapport_manque": 0.79
   },
   {
    "id": "J-007",
    "lien": "PV-CENSURE1a → PV-GOUV",
+   "libelle": "49.3 sur la Sécurité sociale 2027",
    "observable": "Le Gouvernement engage sa responsabilité (article 49, alinéa 3) sur le projet de loi de financement de la sécurité sociale pour 2027 devant l'Assemblée nationale.",
+   "indicateur": {
+    "source": "Assemblée nationale, comptes rendus de séance et dossier législatif PLFSS 2027",
+    "mesure": "nombre d'engagements de responsabilité (49.3) sur le PLFSS 2027",
+    "seuil": "au moins 1"
+   },
+   "cible": {
+    "noeud": "PV-CENSURE1a",
+    "issue": "oui",
+    "question": "Q-EV-15"
+   },
+   "motif": "Le PLFSS est voté le 27 octobre 2026 selon le calendrier de l'AN ; un 49.3 à la place multiplie les occasions de censure, donc de départ du Premier ministre.",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2026-12-15"
@@ -917,12 +1019,27 @@
    "niveau": 2,
    "type": "amont",
    "statut": "attendu",
-   "rapport": 2.15
+   "a": 0.575,
+   "b": 0.268,
+   "rapport": 2.15,
+   "rapport_manque": 0.58
   },
   {
    "id": "J-008",
    "lien": "PV-CENSURE1a → PV-GOUV",
+   "libelle": "Ministre remplacé, même Premier ministre",
    "observable": "Un décret publié au Journal officiel met fin aux fonctions d'au moins un ministre de plein exercice sans changement de Premier ministre.",
+   "indicateur": {
+    "source": "Journal officiel, décrets relatifs à la composition du Gouvernement",
+    "mesure": "nombre de ministres de plein exercice dont les fonctions prennent fin, hors démission du Gouvernement",
+    "seuil": "au moins 1"
+   },
+   "cible": {
+    "noeud": "PV-GOUV",
+    "issue": "oui",
+    "question": "Q-EV-50"
+   },
+   "motif": "Les départs isolés de ministres précèdent souvent la chute d'un gouvernement fragilisé ; signal faible, peu discriminant.",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2027-03-31"
@@ -930,12 +1047,27 @@
    "niveau": 3,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 1.16
+   "a": 0.425,
+   "b": 0.366,
+   "rapport": 1.16,
+   "rapport_manque": 0.91
   },
   {
    "id": "J-009",
    "lien": "PV-CENSURE1b → PV-GOUV",
+   "libelle": "49.3 entre janvier et mi-avril 2027",
    "observable": "Le Gouvernement engage sa responsabilité (article 49, alinéa 3) sur un texte quelconque devant l'Assemblée nationale entre janvier et la mi-avril 2027.",
+   "indicateur": {
+    "source": "Assemblée nationale, comptes rendus de séance",
+    "mesure": "nombre d'engagements de responsabilité (49.3)",
+    "seuil": "au moins 1"
+   },
+   "cible": {
+    "noeud": "PV-CENSURE1b",
+    "issue": "oui",
+    "question": "Q-EV-15b"
+   },
+   "motif": "Un 49.3 en pleine campagne présidentielle crée une occasion de censure, qui entraînerait la fin des fonctions du Premier ministre.",
    "fenetre": {
     "debut": "2027-01-01",
     "fin": "2027-04-15"
@@ -943,12 +1075,27 @@
    "niveau": 3,
    "type": "amont",
    "statut": "attendu",
-   "rapport": 2.57
+   "a": 0.575,
+   "b": 0.224,
+   "rapport": 2.57,
+   "rapport_manque": 0.55
   },
   {
    "id": "J-010",
    "lien": "VE-MOBIL → PV-CENSURE1a",
+   "libelle": "300 000 manifestants en un jour",
    "observable": "Le ministère de l'Intérieur chiffre à au moins 300 000 le nombre de manifestants en France pour une même journée.",
+   "indicateur": {
+    "source": "Ministère de l'Intérieur, directement ou rapporté par deux agences de presse (AFP, Reuters, AP)",
+    "mesure": "plus haut chiffre de manifestants pour une journée",
+    "seuil": "au moins 300 000"
+   },
+   "cible": {
+    "noeud": "VE-MOBIL",
+    "issue": "oui",
+    "question": "Q-EV-39"
+   },
+   "motif": "Le 6 octobre 2026 l'Intérieur a compté 256 000 manifestants (Euronews) ; franchir 300 000 signale une mobilisation qui s'étend vers le niveau « forte ».",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2026-12-31"
@@ -956,12 +1103,27 @@
    "niveau": 3,
    "type": "amont",
    "statut": "attendu",
-   "rapport": 4.67
+   "a": 0.575,
+   "b": 0.123,
+   "rapport": 4.67,
+   "rapport_manque": 0.48
   },
   {
    "id": "J-012",
    "lien": "VE-MOBIL → PV-CENSURE1a",
+   "libelle": "Censure déposée après 200 000 manifestants",
    "observable": "Une motion de censure est déposée à l'Assemblée nationale dans les 7 jours suivant une journée chiffrée par le ministère de l'Intérieur à au moins 200 000 manifestants.",
+   "indicateur": {
+    "source": "Assemblée nationale, motions de censure ; ministère de l'Intérieur",
+    "mesure": "dépôt d'une motion dans les 7 jours suivant une journée à 200 000 manifestants ou plus",
+    "seuil": "au moins 1"
+   },
+   "cible": {
+    "noeud": "PV-CENSURE1a",
+    "issue": "oui",
+    "question": "Q-EV-15"
+   },
+   "motif": "Renseigne le lien lui-même : la rue se traduit-elle en initiative parlementaire de censure dans la foulée ?",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2026-12-31"
@@ -969,12 +1131,27 @@
    "niveau": 3,
    "type": "transmission",
    "statut": "attendu",
-   "rapport": 3.34
+   "a": 0.311,
+   "b": 0.093,
+   "rapport": 3.34,
+   "rapport_manque": 0.76
   },
   {
    "id": "J-014",
    "lien": "VE-MOBIL → PV-BUDGET",
+   "libelle": "+500 M€ pour l'enseignement scolaire",
    "observable": "Le Gouvernement dépose un amendement au projet de loi de finances pour 2027 qui augmente d'au moins 500 millions d'euros les crédits de la mission « Enseignement scolaire ».",
+   "indicateur": {
+    "source": "Assemblée nationale ou Sénat, amendements publiés sur le PLF 2027",
+    "mesure": "montant cumulé des amendements du Gouvernement en hausse sur la mission Enseignement scolaire",
+    "seuil": "au moins 500 M€ en autorisations d'engagement"
+   },
+   "cible": {
+    "noeud": "PV-BUDGET",
+    "issue": "oui",
+    "question": "Q-EV-02"
+   },
+   "motif": "Une concession budgétaire au mouvement lycéen et enseignant désamorce la pression qui pèse sur le vote du budget ; examen de la seconde partie à partir du 27 octobre (calendrier : Assemblée nationale, « Organisation de la discussion budgétaire » PLF/PLFSS 2027).",
    "fenetre": {
     "debut": "2026-10-27",
     "fin": "2026-12-10"
@@ -982,12 +1159,27 @@
    "niveau": 3,
    "type": "transmission",
    "statut": "attendu",
-   "rapport": 0.93
+   "a": 0.156,
+   "b": 0.168,
+   "rapport": 0.93,
+   "rapport_manque": 1.01
   },
   {
    "id": "J-015",
    "lien": "VE-MOBIL → PV-BUDGET",
+   "libelle": "Sécurité sociale votée en 1re lecture",
    "observable": "L'Assemblée nationale adopte le projet de loi de financement de la sécurité sociale pour 2027 en première lecture par un vote.",
+   "indicateur": {
+    "source": "Assemblée nationale, scrutins publics",
+    "mesure": "résultat du vote solennel sur le PLFSS 2027 en première lecture",
+    "seuil": "adoption"
+   },
+   "cible": {
+    "noeud": "PV-BUDGET",
+    "issue": "oui",
+    "question": "Q-EV-02"
+   },
+   "motif": "Vote solennel prévu le 27 octobre 2026 (calendrier : Assemblée nationale, « Organisation de la discussion budgétaire » PLF/PLFSS 2027) ; l'adoption du PLFSS par un vote, en pleine mobilisation, indique qu'une majorité de compromis existe pour les textes financiers.",
    "fenetre": {
     "debut": "2026-10-27",
     "fin": "2026-10-31"
@@ -995,12 +1187,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 0.86
+   "a": 0.216,
+   "b": 0.252,
+   "rapport": 0.86,
+   "rapport_manque": 1.05
   },
   {
    "id": "J-016",
    "lien": "VE-POP → PV-CENSURE1a",
+   "libelle": "Censure à 260-288 voix",
    "observable": "Une motion de censure recueille entre 260 et 288 voix à l'Assemblée nationale.",
+   "indicateur": {
+    "source": "Assemblée nationale, résultats des scrutins sur les motions de censure",
+    "mesure": "nombre de voix pour une motion de censure non adoptée",
+    "seuil": "de 260 à 288 voix"
+   },
+   "cible": {
+    "noeud": "PV-CENSURE1a",
+    "issue": "oui",
+    "question": "Q-EV-15"
+   },
+   "motif": "Une censure manquée de peu montre que l'impopularité de l'exécutif a déjà déplacé des voix ; elle renseigne l'aval sans trancher.",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2026-12-31"
@@ -1008,12 +1215,27 @@
    "niveau": 3,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 2.22
+   "a": 0.298,
+   "b": 0.134,
+   "rapport": 2.22,
+   "rapport_manque": 0.81
   },
   {
    "id": "J-017",
    "lien": "VE-POP → PV-CENSURE1b",
+   "libelle": "Censure signée par la Droite républicaine",
    "observable": "Le président du groupe Droite républicaine figure parmi les signataires d'une motion de censure déposée à l'Assemblée nationale.",
+   "indicateur": {
+    "source": "Assemblée nationale, textes des motions de censure et liste des signataires",
+    "mesure": "signature du président du groupe Droite républicaine",
+    "seuil": "au moins 1 motion"
+   },
+   "cible": {
+    "noeud": "PV-CENSURE1b",
+    "issue": "oui",
+    "question": "Q-EV-15b"
+   },
+   "motif": "Renseigne le lien : la droite, qui soutient le gouvernement, ne prend ses distances par la censure que si l'impopularité de l'exécutif lui coûte en campagne.",
    "fenetre": {
     "debut": "2027-01-01",
     "fin": "2027-04-30"
@@ -1021,12 +1243,27 @@
    "niveau": 3,
    "type": "transmission",
    "statut": "attendu",
-   "rapport": 8.43
+   "a": 0.236,
+   "b": 0.028,
+   "rapport": 8.43,
+   "rapport_manque": 0.79
   },
   {
    "id": "J-018",
    "lien": "VE-POP → PV-CENSURE1b",
+   "libelle": "Censure spontanée signée par le PS",
    "observable": "Une motion de censure au titre de l'article 49, alinéa 2, signée par le président du groupe Socialistes et apparentés, est déposée à l'Assemblée nationale.",
+   "indicateur": {
+    "source": "Assemblée nationale, textes des motions de censure",
+    "mesure": "dépôt d'une motion 49.2 signée par le président du groupe Socialistes",
+    "seuil": "au moins 1"
+   },
+   "cible": {
+    "noeud": "PV-CENSURE1b",
+    "issue": "oui",
+    "question": "Q-EV-15b"
+   },
+   "motif": "Une motion spontanée (sans 49.3) du PS en campagne présidentielle traduit le coût politique de l'impopularité de l'exécutif.",
    "fenetre": {
     "debut": "2027-01-01",
     "fin": "2027-04-30"
@@ -1034,12 +1271,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 5.06
+   "a": 0.471,
+   "b": 0.093,
+   "rapport": 5.06,
+   "rapport_manque": 0.58
   },
   {
    "id": "J-019",
    "lien": "VE-POP → PV-CENSURE1a",
+   "libelle": "10 députés DR votent une censure",
    "observable": "Au moins 10 députés du groupe Droite républicaine votent pour une même motion de censure.",
+   "indicateur": {
+    "source": "Assemblée nationale, analyse des scrutins (votes nominatifs)",
+    "mesure": "nombre de députés Droite républicaine votant pour une motion de censure",
+    "seuil": "au moins 10 sur un même scrutin"
+   },
+   "cible": {
+    "noeud": "PV-CENSURE1a",
+    "issue": "oui",
+    "question": "Q-EV-15"
+   },
+   "motif": "Les défections dans le socle gouvernemental sont le canal par lequel l'impopularité devient une censure.",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2026-12-31"
@@ -1047,12 +1299,27 @@
    "niveau": 3,
    "type": "transmission",
    "statut": "attendu",
-   "rapport": 10.41
+   "a": 0.333,
+   "b": 0.032,
+   "rapport": 10.41,
+   "rapport_manque": 0.69
   },
   {
    "id": "J-020",
    "lien": "PV-AUDIENCE → PV-POURVOI",
+   "libelle": "Date d'audience fixée avant fin février",
    "observable": "La Cour de cassation annonce une date d'audience de la chambre criminelle sur le pourvoi de Marine Le Pen, cette date étant au plus tard le 28 février 2027.",
+   "indicateur": {
+    "source": "Cour de cassation, communiqué ou rôle d'audience publié",
+    "mesure": "date d'audience annoncée",
+    "seuil": "au plus tard le 2027-02-28"
+   },
+   "cible": {
+    "noeud": "PV-POURVOI",
+    "issue": "rejet ou non-admission",
+    "question": "Q-EV-20"
+   },
+   "motif": "La Cour a indiqué pouvoir statuer « au plus tard début avril 2027 » (Club des juristes, 9 juillet 2026) ; une audience fixée tôt rend un arrêt avant le 31 mars probable, et le rejet est l'issue la plus fréquente.",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2027-01-31"
@@ -1060,12 +1327,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 1.69
+   "a": 0.805,
+   "b": 0.475,
+   "rapport": 1.69,
+   "rapport_manque": 0.37
   },
   {
    "id": "J-021",
    "lien": "PV-AUDIENCE → PV-POURVOI",
+   "libelle": "QPC transmise au Conseil constitutionnel",
    "observable": "La chambre criminelle de la Cour de cassation transmet au Conseil constitutionnel une question prioritaire de constitutionnalité soulevée à l'appui du pourvoi de Marine Le Pen.",
+   "indicateur": {
+    "source": "Cour de cassation (arrêt de renvoi) ; Conseil constitutionnel, affaires en cours",
+    "mesure": "transmission d'une QPC dans cette affaire",
+    "seuil": "1 transmission"
+   },
+   "cible": {
+    "noeud": "PV-POURVOI",
+    "issue": "rejet ou non-admission",
+    "question": "Q-EV-20"
+   },
+   "motif": "Une QPC transmise suspend l'examen pour plusieurs semaines à plusieurs mois (Europe 1, 8 juillet 2026) et repousse l'arrêt au-delà du 31 mars 2027. Exprimé sur l'issue « rejet ou non-admission », défavorisée.",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2027-02-28"
@@ -1073,12 +1355,27 @@
    "niveau": 3,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 0.32
+   "a": 0.039,
+   "b": 0.121,
+   "rapport": 0.32,
+   "rapport_manque": 1.09
   },
   {
    "id": "J-022",
    "lien": "PV-AUDIENCE → PV-POURVOI",
+   "libelle": "L'avocat général conclut au rejet",
    "observable": "L'avocat général conclut au rejet du pourvoi de Marine Le Pen, selon la Cour de cassation ou deux agences de presse concordantes.",
+   "indicateur": {
+    "source": "Cour de cassation ; AFP et Reuters",
+    "mesure": "sens de l'avis de l'avocat général sur le pourvoi de Marine Le Pen",
+    "seuil": "rejet ou non-admission"
+   },
+   "cible": {
+    "noeud": "PV-POURVOI",
+    "issue": "rejet ou non-admission",
+    "question": "Q-EV-20"
+   },
+   "motif": "L'audience suit les mémoires et l'avis de l'avocat général (Club des juristes, 9 juillet 2026) ; l'avis est suivi dans la majorité des cas.",
    "fenetre": {
     "debut": "2026-11-15",
     "fin": "2027-03-15"
@@ -1086,12 +1383,27 @@
    "niveau": 3,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 2.87
+   "a": 0.575,
+   "b": 0.2,
+   "rapport": 2.87,
+   "rapport_manque": 0.53
   },
   {
    "id": "J-023",
    "lien": "PV-AUDIENCE → PV-POURVOI",
+   "libelle": "Renvoi en assemblée plénière",
    "observable": "La chambre criminelle renvoie le pourvoi de Marine Le Pen devant l'assemblée plénière de la Cour de cassation.",
+   "indicateur": {
+    "source": "Cour de cassation, communiqué ou arrêt de renvoi",
+    "mesure": "renvoi en assemblée plénière",
+    "seuil": "1 renvoi"
+   },
+   "cible": {
+    "noeud": "PV-POURVOI",
+    "issue": "rejet ou non-admission",
+    "question": "Q-EV-20"
+   },
+   "motif": "Un renvoi en formation solennelle allonge le calendrier et rend improbable un arrêt avant le 31 mars 2027. Exprimé sur l'issue « rejet ou non-admission », défavorisée.",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2027-03-15"
@@ -1099,12 +1411,27 @@
    "niveau": 3,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 0.32
+   "a": 0.025,
+   "b": 0.078,
+   "rapport": 0.32,
+   "rapport_manque": 1.06
   },
   {
    "id": "J-024",
    "lien": "PV-POURVOI → PV-LEPEN",
+   "libelle": "250 parrainages pour Marine Le Pen",
    "observable": "Le Conseil constitutionnel publie au moins 250 parrainages validés au nom de Marine Le Pen pour l'élection présidentielle de 2027.",
+   "indicateur": {
+    "source": "Conseil constitutionnel, listes des parrainages publiées",
+    "mesure": "nombre cumulé de parrainages validés pour Marine Le Pen",
+    "seuil": "au moins 250"
+   },
+   "cible": {
+    "noeud": "PV-LEPEN",
+    "issue": "oui",
+    "question": "Q-EV-21"
+   },
+   "motif": "Fenêtre estimée en transposant le calendrier de 2022 au 1er tour du 18 avril 2027 (info.gouv.fr) ; le dépôt de parrainages à son nom montre qu'elle maintient sa candidature après l'arrêt.",
    "fenetre": {
     "debut": "2027-02-01",
     "fin": "2027-03-12"
@@ -1112,12 +1439,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 26.78
+   "a": 0.857,
+   "b": 0.032,
+   "rapport": 26.78,
+   "rapport_manque": 0.15
   },
   {
    "id": "J-025",
    "lien": "PV-POURVOI → PV-LEPEN",
+   "libelle": "Bardella désigné candidat du RN",
    "observable": "Le Rassemblement national désigne officiellement Jordan Bardella comme son candidat à l'élection présidentielle de 2027.",
+   "indicateur": {
+    "source": "Communiqué du Rassemblement national, rapporté par deux agences de presse (AFP, Reuters)",
+    "mesure": "décision publiée d'investiture de Jordan Bardella",
+    "seuil": "1 décision"
+   },
+   "cible": {
+    "noeud": "PV-LEPEN",
+    "issue": "oui",
+    "question": "Q-EV-21"
+   },
+   "motif": "Le passage de relais à Jordan Bardella est la conséquence attendue d'un rejet du pourvoi ; il renseigne l'aval avant la liste officielle.",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2027-03-12"
@@ -1125,12 +1467,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 0.03
+   "a": 0.025,
+   "b": 0.85,
+   "rapport": 0.03,
+   "rapport_manque": 6.5
   },
   {
    "id": "J-026",
    "lien": "VE-SOND → PV-BLOC",
+   "libelle": "Attal renonce et soutient Philippe",
    "observable": "Gabriel Attal déclare publiquement qu'il ne sera pas candidat à l'élection présidentielle de 2027 et qu'il soutient Édouard Philippe.",
+   "indicateur": {
+    "source": "Déclaration rapportée par deux agences de presse (AFP, Reuters)",
+    "mesure": "retrait déclaré de Gabriel Attal en faveur d'Édouard Philippe",
+    "seuil": "1 déclaration"
+   },
+   "cible": {
+    "noeud": "PV-BLOC",
+    "issue": "les deux",
+    "question": "Q-EV-41"
+   },
+   "motif": "Le départage entre les deux candidats déclarés devait passer par les sondages ou une primaire (LCP, 4 juin 2026), et Philippe est en tête : un retrait d'Attal est la voie attendue du mécanisme. Exprimé sur l'issue « les deux », défavorisée.",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2027-03-12"
@@ -1138,12 +1495,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 0.05
+   "a": 0.02,
+   "b": 0.372,
+   "rapport": 0.05,
+   "rapport_manque": 1.56
   },
   {
    "id": "J-027",
    "lien": "VE-SOND → PV-BLOC",
+   "libelle": "Renaissance investit Attal",
    "observable": "Renaissance adopte, par une décision de ses instances, l'investiture de Gabriel Attal pour l'élection présidentielle de 2027.",
+   "indicateur": {
+    "source": "Communiqué de Renaissance, rapporté par deux agences de presse (AFP, Reuters)",
+    "mesure": "décision publiée d'investiture",
+    "seuil": "1 décision"
+   },
+   "cible": {
+    "noeud": "PV-BLOC",
+    "issue": "les deux",
+    "question": "Q-EV-41"
+   },
+   "motif": "Une investiture formelle par le parti rend un retrait plus coûteux et favorise la présence des deux candidats.",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2027-02-28"
@@ -1151,12 +1523,27 @@
    "niveau": 3,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 2.09
+   "a": 0.628,
+   "b": 0.3,
+   "rapport": 2.09,
+   "rapport_manque": 0.53
   },
   {
    "id": "J-028",
    "lien": "VE-SOND → PV-BLOC",
+   "libelle": "300 parrainages pour Attal",
    "observable": "Le Conseil constitutionnel publie au moins 300 parrainages validés pour Gabriel Attal.",
+   "indicateur": {
+    "source": "Conseil constitutionnel, listes des parrainages publiées",
+    "mesure": "nombre cumulé de parrainages validés pour Gabriel Attal",
+    "seuil": "au moins 300"
+   },
+   "cible": {
+    "noeud": "PV-BLOC",
+    "issue": "les deux",
+    "question": "Q-EV-41"
+   },
+   "motif": "Fenêtre estimée (calendrier 2022 transposé au 18 avril 2027) ; la collecte effective de parrainages montre que la candidature est maintenue malgré les sondages.",
    "fenetre": {
     "debut": "2027-02-01",
     "fin": "2027-03-12"
@@ -1164,12 +1551,27 @@
    "niveau": 3,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 4.84
+   "a": 0.726,
+   "b": 0.15,
+   "rapport": 4.84,
+   "rapport_manque": 0.32
   },
   {
    "id": "J-029",
    "lien": "VE-SOND → PV-BLOC",
+   "libelle": "Procédure commune de désignation au centre",
    "observable": "Renaissance et Horizons publient une procédure commune et datée de désignation d'un candidat unique du bloc central (primaire ou départage par les sondages).",
+   "indicateur": {
+    "source": "Communiqué commun des deux partis, rapporté par deux agences de presse (AFP, Reuters)",
+    "mesure": "publication d'une procédure de départage avec une date",
+    "seuil": "1 publication"
+   },
+   "cible": {
+    "noeud": "PV-BLOC",
+    "issue": "les deux",
+    "question": "Q-EV-41"
+   },
+   "motif": "Renseigne le lien lui-même : une procédure de départage par les intentions de vote fait des sondages la cause directe du choix des candidatures. Exprimé sur l'issue « les deux », défavorisée.",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2027-01-31"
@@ -1177,12 +1579,27 @@
    "niveau": 3,
    "type": "transmission",
    "statut": "attendu",
-   "rapport": 0.41
+   "a": 0.123,
+   "b": 0.298,
+   "rapport": 0.41,
+   "rapport_manque": 1.25
   },
   {
    "id": "J-030",
    "lien": "PV-ECOLO → PV-GAUCHE",
+   "libelle": "Vote écologiste avec option de soutien",
    "observable": "Le texte soumis au vote des adhérents des Écologistes comporte une option de soutien à une personne nommément désignée, issue d'une autre formation.",
+   "indicateur": {
+    "source": "Les Écologistes, texte officiel des options du vote (publication du parti) ; AFP",
+    "mesure": "présence d'une option de soutien nominatif à un candidat d'une autre formation",
+    "seuil": "1 option"
+   },
+   "cible": {
+    "noeud": "PV-ECOLO",
+    "issue": "candidature autonome",
+    "question": "Q-EV-18"
+   },
+   "motif": "Le texte des options doit être présenté dans la seconde quinzaine de novembre, avant le vote du 10 au 13 décembre (LCP, 21 septembre 2026). Exprimé sur l'issue « candidature autonome », défavorisée.",
    "fenetre": {
     "debut": "2026-11-14",
     "fin": "2026-12-09"
@@ -1190,12 +1607,27 @@
    "niveau": 2,
    "type": "amont",
    "statut": "attendu",
-   "rapport": 0.6
+   "a": 0.45,
+   "b": 0.75,
+   "rapport": 0.6,
+   "rapport_manque": 2.2
   },
   {
    "id": "J-031",
    "lien": "PV-ECOLO → PV-GAUCHE",
+   "libelle": "Direction écologiste pour une candidature autonome",
    "observable": "La direction des Écologistes (bureau exécutif ou conseil fédéral) appelle à voter pour l'option de candidature autonome.",
+   "indicateur": {
+    "source": "Les Écologistes, communiqué officiel ; rapporté par deux agences de presse",
+    "mesure": "consigne de vote de la direction",
+    "seuil": "option candidature autonome"
+   },
+   "cible": {
+    "noeud": "PV-ECOLO",
+    "issue": "candidature autonome",
+    "question": "Q-EV-18"
+   },
+   "motif": "La motion de la direction a été adoptée à 69 % le 21 septembre 2026 (LCP) ; sa consigne pèse sur le résultat du vote.",
    "fenetre": {
     "debut": "2026-11-14",
     "fin": "2026-12-09"
@@ -1203,12 +1635,27 @@
    "niveau": 3,
    "type": "amont",
    "statut": "attendu",
-   "rapport": 2.94
+   "a": 0.634,
+   "b": 0.216,
+   "rapport": 2.94,
+   "rapport_manque": 0.47
   },
   {
    "id": "J-032",
    "lien": "PV-ECOLO → PV-GAUCHE",
+   "libelle": "Six candidats de gauche à 300 parrainages",
    "observable": "Au moins six personnes investies ou soutenues par les partis de gauche listés dans EV-19 ont chacune au moins 300 parrainages validés publiés par le Conseil constitutionnel.",
+   "indicateur": {
+    "source": "Conseil constitutionnel, listes des parrainages publiées",
+    "mesure": "nombre de personnes de gauche (au sens d'EV-19) ayant 300 parrainages validés ou plus",
+    "seuil": "au moins 6"
+   },
+   "cible": {
+    "noeud": "PV-GAUCHE",
+    "issue": "6 ou plus",
+    "question": "Q-EV-19"
+   },
+   "motif": "Fenêtre estimée (calendrier 2022 transposé au 18 avril 2027) ; les parrainages précèdent la liste officielle et montrent combien de candidatures de gauche tiennent.",
    "fenetre": {
     "debut": "2027-02-01",
     "fin": "2027-03-12"
@@ -1216,12 +1663,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 9.99
+   "a": 0.689,
+   "b": 0.069,
+   "rapport": 9.99,
+   "rapport_manque": 0.33
   },
   {
    "id": "J-033",
    "lien": "PV-ECOLO → PV-GAUCHE",
+   "libelle": "Accord écrit écologistes et allié",
    "observable": "Les Écologistes et le parti du candidat qu'ils soutiennent publient un accord écrit de candidature commune pour l'élection présidentielle.",
+   "indicateur": {
+    "source": "Communiqué commun des partis, rapporté par deux agences de presse (AFP, Reuters)",
+    "mesure": "publication d'un accord écrit de candidature commune",
+    "seuil": "1 accord"
+   },
+   "cible": {
+    "noeud": "PV-GAUCHE",
+    "issue": "6 ou plus",
+    "question": "Q-EV-19"
+   },
+   "motif": "Renseigne le lien lui-même : un vote pour le soutien ne réduit le nombre de candidats que s'il se traduit par un accord formel. Exprimé sur l'issue « 6 ou plus », défavorisée.",
    "fenetre": {
     "debut": "2026-12-14",
     "fin": "2027-02-28"
@@ -1229,12 +1691,27 @@
    "niveau": 3,
    "type": "transmission",
    "statut": "attendu",
-   "rapport": 0.5
+   "a": 0.2,
+   "b": 0.399,
+   "rapport": 0.5,
+   "rapport_manque": 1.33
   },
   {
    "id": "J-034",
    "lien": "PV-DUEL → PV-VAINQ",
+   "libelle": "RN à 37 % au premier tour",
    "observable": "Le candidat du Rassemblement national (Marine Le Pen ou Jordan Bardella) obtient au moins 37 % des suffrages exprimés au premier tour de l'élection présidentielle.",
+   "indicateur": {
+    "source": "Conseil constitutionnel, proclamation des résultats du premier tour (à défaut ministère de l'Intérieur, résultats provisoires)",
+    "mesure": "part des suffrages exprimés du candidat du RN",
+    "seuil": "au moins 37 %"
+   },
+   "cible": {
+    "noeud": "PV-VAINQ",
+    "issue": "Édouard Philippe",
+    "question": "Q-EV-05"
+   },
+   "motif": "Premier tour le 18 avril 2027 (info.gouv.fr) ; un premier tour très haut du RN lui laisse peu de réserve à trouver au second tour et rend une victoire de son adversaire (le plus probable : Philippe) moins probable.",
    "fenetre": {
     "debut": "2027-04-18",
     "fin": "2027-04-23"
@@ -1242,12 +1719,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 0.35
+   "a": 0.11,
+   "b": 0.314,
+   "rapport": 0.35,
+   "rapport_manque": 1.3
   },
   {
    "id": "J-035",
    "lien": "PV-DUEL → PV-VAINQ",
+   "libelle": "Philippe à 22 % au premier tour",
    "observable": "Édouard Philippe obtient au moins 22 % des suffrages exprimés au premier tour de l'élection présidentielle.",
+   "indicateur": {
+    "source": "Conseil constitutionnel, proclamation des résultats du premier tour (à défaut ministère de l'Intérieur, résultats provisoires)",
+    "mesure": "part des suffrages exprimés d'Édouard Philippe",
+    "seuil": "au moins 22 %"
+   },
+   "cible": {
+    "noeud": "PV-VAINQ",
+    "issue": "Édouard Philippe",
+    "question": "Q-EV-05"
+   },
+   "motif": "Premier tour le 18 avril 2027 (info.gouv.fr) ; un score élevé au premier tour donne au candidat du centre une base de second tour qui conditionne sa victoire dans un duel avec le RN.",
    "fenetre": {
     "debut": "2027-04-18",
     "fin": "2027-04-23"
@@ -1255,12 +1747,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 4.28
+   "a": 0.745,
+   "b": 0.174,
+   "rapport": 4.28,
+   "rapport_manque": 0.31
   },
   {
    "id": "J-036",
    "lien": "PV-DUEL → PV-VAINQ",
+   "libelle": "Le troisième appelle à battre le RN",
    "observable": "Le candidat arrivé troisième au premier tour appelle publiquement à voter, au second tour, pour l'adversaire du candidat du RN.",
+   "indicateur": {
+    "source": "Déclaration rapportée par deux agences de presse (AFP, Reuters)",
+    "mesure": "consigne de vote explicite du troisième candidat",
+    "seuil": "appel à voter pour l'adversaire du RN"
+   },
+   "cible": {
+    "noeud": "PV-VAINQ",
+    "issue": "Édouard Philippe",
+    "question": "Q-EV-05"
+   },
+   "motif": "Renseigne le front républicain, qui fait passer un duel avec le RN à une victoire de l'adversaire ; Philippe est l'adversaire le plus probable, d'où une discrimination faible.",
    "fenetre": {
     "debut": "2027-04-19",
     "fin": "2027-04-30"
@@ -1268,12 +1775,27 @@
    "niveau": 3,
    "type": "transmission",
    "statut": "attendu",
-   "rapport": 1.26
+   "a": 0.628,
+   "b": 0.5,
+   "rapport": 1.26,
+   "rapport_manque": 0.74
   },
   {
    "id": "J-037",
    "lien": "PV-VAINQ → PV-DISSOL2",
+   "libelle": "Le président élu annonce une dissolution",
    "observable": "Le président élu en 2027 déclare publiquement son intention de dissoudre l'Assemblée nationale.",
+   "indicateur": {
+    "source": "Présidence de la République (déclaration publiée) ou deux agences de presse (AFP, Reuters)",
+    "mesure": "déclaration d'intention de dissoudre",
+    "seuil": "1 déclaration"
+   },
+   "cible": {
+    "noeud": "PV-DISSOL2",
+    "issue": "oui",
+    "question": "Q-EV-16b"
+   },
+   "motif": "Un président élu sans majorité à l'Assemblée annonce d'ordinaire la dissolution entre son élection et son investiture (mandat en cours jusqu'au 13 mai 2027).",
    "fenetre": {
     "debut": "2027-05-03",
     "fin": "2027-05-31"
@@ -1281,12 +1803,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 14.29
+   "a": 0.7,
+   "b": 0.049,
+   "rapport": 14.29,
+   "rapport_manque": 0.32
   },
   {
    "id": "J-038",
    "lien": "PV-VAINQ → PV-DISSOL2",
+   "libelle": "300 investitures du parti présidentiel",
    "observable": "Le parti du président élu publie une liste d'au moins 300 investitures pour des élections législatives.",
+   "indicateur": {
+    "source": "Publication du parti, rapportée par deux agences de presse (AFP, Reuters)",
+    "mesure": "nombre d'investitures publiées pour des législatives",
+    "seuil": "au moins 300"
+   },
+   "cible": {
+    "noeud": "PV-DISSOL2",
+    "issue": "oui",
+    "question": "Q-EV-16b"
+   },
+   "motif": "Des investitures en masse juste après la présidentielle préparent des législatives anticipées ; signal fin, car un parti peut aussi se préparer par précaution.",
    "fenetre": {
     "debut": "2027-05-03",
     "fin": "2027-06-30"
@@ -1294,12 +1831,27 @@
    "niveau": 3,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 9.14
+   "a": 0.85,
+   "b": 0.093,
+   "rapport": 9.14,
+   "rapport_manque": 0.17
   },
   {
    "id": "J-039",
    "lien": "PV-VAINQ → PV-DISSOL2",
+   "libelle": "Premier ministre d'un parti concurrent",
    "observable": "Un décret nomme Premier ministre une personne membre d'un parti qui a soutenu, au premier tour de 2027, un autre candidat que le président élu.",
+   "indicateur": {
+    "source": "Journal officiel, décret de nomination ; décisions publiées des partis",
+    "mesure": "appartenance partisane du Premier ministre nommé après l'investiture",
+    "seuil": "parti ayant soutenu un autre candidat"
+   },
+   "cible": {
+    "noeud": "PV-DISSOL2",
+    "issue": "oui",
+    "question": "Q-EV-16b"
+   },
+   "motif": "Une coalition dirigée par un partenaire est l'alternative à la dissolution pour un président sans majorité.",
    "fenetre": {
     "debut": "2027-05-10",
     "fin": "2027-06-30"
@@ -1307,12 +1859,27 @@
    "niveau": 3,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 0.27
+   "a": 0.063,
+   "b": 0.235,
+   "rapport": 0.27,
+   "rapport_manque": 1.22
   },
   {
    "id": "J-040",
    "lien": "PV-DISSOL2 → PV-MAJOR",
+   "libelle": "Parti du président à 33 % aux législatives",
    "observable": "Au premier tour d'élections législatives tenues après la présidentielle, les candidats du parti du président obtiennent au moins 33 % des suffrages exprimés au niveau national.",
+   "indicateur": {
+    "source": "Ministère de l'Intérieur, résultats officiels par nuance",
+    "mesure": "part nationale des suffrages exprimés des candidats du parti du président",
+    "seuil": "au moins 33 %"
+   },
+   "cible": {
+    "noeud": "PV-MAJOR",
+    "issue": "non",
+    "question": "Q-EV-17"
+   },
+   "motif": "Un tiers des voix au premier tour est le niveau historiquement associé à une majorité absolue (2002, 2007) ; sans dissolution, ce jalon ne peut pas être observé.",
    "fenetre": {
     "debut": "2027-05-25",
     "fin": "2027-09-30"
@@ -1320,12 +1887,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 1.88
+   "a": 0.337,
+   "b": 0.179,
+   "rapport": 1.88,
+   "rapport_manque": 0.81
   },
   {
    "id": "J-041",
    "lien": "PV-DISSOL2 → PV-MAJOR",
+   "libelle": "40 élus dès le premier tour",
    "observable": "Au moins 40 candidats du parti du président sont élus dès le premier tour d'élections législatives tenues après la présidentielle.",
+   "indicateur": {
+    "source": "Ministère de l'Intérieur, résultats officiels",
+    "mesure": "nombre de sièges pourvus au premier tour par le parti du président",
+    "seuil": "au moins 40"
+   },
+   "cible": {
+    "noeud": "PV-MAJOR",
+    "issue": "non",
+    "question": "Q-EV-17"
+   },
+   "motif": "Les élus du premier tour mesurent la vague, qui annonce la taille du groupe présidentiel.",
    "fenetre": {
     "debut": "2027-05-25",
     "fin": "2027-09-30"
@@ -1333,12 +1915,27 @@
    "niveau": 3,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 1.82
+   "a": 0.228,
+   "b": 0.125,
+   "rapport": 1.82,
+   "rapport_manque": 0.88
   },
   {
    "id": "J-042",
    "lien": "PV-DISSOL2 → PV-MAJOR",
+   "libelle": "Législatives anticipées avant le 6 juin 2027",
    "observable": "Le premier tour d'élections législatives anticipées a lieu au plus tard le 6 juin 2027.",
+   "indicateur": {
+    "source": "Journal officiel, décret de convocation des électeurs",
+    "mesure": "date du premier tour des législatives anticipées",
+    "seuil": "au plus tard le 2027-06-06"
+   },
+   "cible": {
+    "noeud": "PV-MAJOR",
+    "issue": "non",
+    "question": "Q-EV-17"
+   },
+   "motif": "Renseigne le lien lui-même : une dissolution immédiate profite de l'élan de la présidentielle, mécanisme supposé de la majorité après dissolution (1981, 1988).",
    "fenetre": {
     "debut": "2027-05-03",
     "fin": "2027-06-06"
@@ -1346,12 +1943,27 @@
    "niveau": 2,
    "type": "transmission",
    "statut": "attendu",
-   "rapport": 1.95
+   "a": 0.232,
+   "b": 0.119,
+   "rapport": 1.95,
+   "rapport_manque": 0.87
   },
   {
    "id": "J-043",
    "lien": "VE-ECART → PV-NOTE",
+   "libelle": "S&P : perspective négative fin 2026",
    "observable": "S&P Global Ratings, lors de sa revue de la France de fin 2026, assortit la note d'une perspective négative ou la place sous surveillance négative, sans l'abaisser.",
+   "indicateur": {
+    "source": "Communiqué de S&P Global Ratings ; Agence France Trésor, page des notations",
+    "mesure": "perspective ou surveillance associée à la note long terme de la France",
+    "seuil": "négative, note inchangée"
+   },
+   "cible": {
+    "noeud": "PV-NOTE",
+    "issue": "oui",
+    "question": "Q-EV-01"
+   },
+   "motif": "Une revue de S&P est attendue en novembre 2026 (dettedelafrance.fr, 29 août 2026 ; date à confirmer sur le calendrier de l'agence) ; une perspective négative précède le plus souvent une dégradation.",
    "fenetre": {
     "debut": "2026-11-20",
     "fin": "2026-12-05"
@@ -1359,12 +1971,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 3.24
+   "a": 0.324,
+   "b": 0.1,
+   "rapport": 3.24,
+   "rapport_manque": 0.75
   },
   {
    "id": "J-044",
    "lien": "VE-ECART → PV-NOTE",
+   "libelle": "DBRS ou Scope abaisse la note",
    "observable": "Morningstar DBRS ou Scope Ratings abaisse la note long terme de la République française.",
+   "indicateur": {
+    "source": "Communiqué de l'agence ; Agence France Trésor, page des notations",
+    "mesure": "changement de note par DBRS ou Scope",
+    "seuil": "abaissement d'au moins un cran"
+   },
+   "cible": {
+    "noeud": "PV-NOTE",
+    "issue": "oui",
+    "question": "Q-EV-01"
+   },
+   "motif": "Les agences secondaires, hors du critère d'EV-01, réagissent aux mêmes signaux (écart de taux, dette) et précèdent souvent les trois grandes.",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2028-06-30"
@@ -1372,12 +1999,27 @@
    "niveau": 3,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 4.83
+   "a": 0.473,
+   "b": 0.098,
+   "rapport": 4.83,
+   "rapport_manque": 0.58
   },
   {
    "id": "J-045",
    "lien": "VE-ECART → PV-NOTE",
+   "libelle": "Moody's : surveillance négative",
    "observable": "Moody's place la note de la France sous surveillance en vue d'une dégradation.",
+   "indicateur": {
+    "source": "Communiqué de Moody's ; Agence France Trésor, page des notations",
+    "mesure": "statut de la note long terme chez Moody's",
+    "seuil": "sous surveillance en vue d'une dégradation"
+   },
+   "cible": {
+    "noeud": "PV-NOTE",
+    "issue": "oui",
+    "question": "Q-EV-01"
+   },
+   "motif": "La mise sous surveillance est l'étape qui précède une dégradation dans les trois mois environ ; Moody's examine la France au printemps et à l'automne (revue du 10 avril 2026, MNI).",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2027-12-31"
@@ -1385,12 +2027,27 @@
    "niveau": 3,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 5.74
+   "a": 0.224,
+   "b": 0.039,
+   "rapport": 5.74,
+   "rapport_manque": 0.81
   },
   {
    "id": "J-046",
    "lien": "PV-NOTE → VE-ECART",
+   "libelle": "Fitch : perspective négative S1 2027",
    "observable": "Fitch Ratings, lors de sa revue de la France du premier semestre 2027, assortit la note d'une perspective négative, sans l'abaisser.",
+   "indicateur": {
+    "source": "Communiqué de Fitch Ratings ; Agence France Trésor, page des notations",
+    "mesure": "perspective associée à la note long terme de la France",
+    "seuil": "négative, note inchangée"
+   },
+   "cible": {
+    "noeud": "PV-NOTE",
+    "issue": "oui",
+    "question": "Q-EV-01"
+   },
+   "motif": "Fitch a maintenu A+ perspective stable le 28 août 2026 (dettedelafrance.fr) ; sa revue suivante est estimée environ six mois plus tard. Renseigne l'état amont (note) du lien vers l'écart.",
    "fenetre": {
     "debut": "2027-02-15",
     "fin": "2027-04-15"
@@ -1398,12 +2055,27 @@
    "niveau": 2,
    "type": "amont",
    "statut": "attendu",
-   "rapport": 2.98
+   "a": 0.298,
+   "b": 0.1,
+   "rapport": 2.98,
+   "rapport_manque": 0.78
   },
   {
    "id": "J-047",
    "lien": "PV-NOTE → VE-ECART",
+   "libelle": "S&P : perspective négative printemps 2027",
    "observable": "S&P Global Ratings, lors de sa revue de la France du printemps 2027, assortit la note d'une perspective négative ou la place sous surveillance négative, sans l'abaisser.",
+   "indicateur": {
+    "source": "Communiqué de S&P Global Ratings ; Agence France Trésor, page des notations",
+    "mesure": "perspective ou surveillance associée à la note long terme de la France",
+    "seuil": "négative, note inchangée"
+   },
+   "cible": {
+    "noeud": "PV-NOTE",
+    "issue": "oui",
+    "question": "Q-EV-01"
+   },
+   "motif": "S&P revoit la France deux fois par an (fin mai et fin novembre, d'après les revues de 2025) ; fenêtre estimée, en pleine transition après la présidentielle.",
    "fenetre": {
     "debut": "2027-05-01",
     "fin": "2027-06-15"
@@ -1411,12 +2083,27 @@
    "niveau": 2,
    "type": "amont",
    "statut": "attendu",
-   "rapport": 3.75
+   "a": 0.3,
+   "b": 0.08,
+   "rapport": 3.75,
+   "rapport_manque": 0.76
   },
   {
    "id": "J-048",
    "lien": "VE-ECART → PV-TPI",
+   "libelle": "Écart OAT-Bund à 120 pb",
    "observable": "L'écart de taux à 10 ans entre la France et l'Allemagne atteint au moins 120 points de base en clôture d'un jour ouvré.",
+   "indicateur": {
+    "source": "BCE, taux de référence quotidiens des emprunts d'État à 10 ans (ou Banque de France)",
+    "mesure": "écart quotidien OAT-Bund 10 ans",
+    "seuil": "au moins 120 pb"
+   },
+   "cible": {
+    "noeud": "PV-TPI",
+    "issue": "oui",
+    "question": "Q-EV-46"
+   },
+   "motif": "L'écart mensuel était de 82 pb en août 2026 (série BCE collectée) ; un recours au TPI suppose une tension bien au-delà, 120 pb est un niveau inédit depuis 2012.",
    "fenetre": {
     "debut": "2026-10-20",
     "fin": "2028-09-30"
@@ -1424,12 +2111,27 @@
    "niveau": 3,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 4.29
+   "a": 0.9,
+   "b": 0.21,
+   "rapport": 4.29,
+   "rapport_manque": 0.13
   },
   {
    "id": "J-049",
    "lien": "PV-BUDGET → PV-PDE",
+   "libelle": "Plan budgétaire 2027 jugé non conforme",
    "observable": "La Commission européenne, dans son avis sur le projet de plan budgétaire 2027 de la France, juge celui-ci « non conforme » ou « présentant un risque de non-conformité » avec la recommandation au titre de la procédure de déficit excessif.",
+   "indicateur": {
+    "source": "Commission européenne, paquet d'automne du Semestre européen (avis sur les projets de plans budgétaires)",
+    "mesure": "appréciation du projet de plan budgétaire de la France",
+    "seuil": "non conforme ou risque de non-conformité"
+   },
+   "cible": {
+    "noeud": "PV-PDE",
+    "issue": "oui",
+    "question": "Q-EV-04"
+   },
+   "motif": "Le paquet d'automne paraît fin novembre (25 novembre en 2025, Commission européenne) ; un budget non voté ou dégradé se lit d'abord dans cet avis.",
    "fenetre": {
     "debut": "2026-11-15",
     "fin": "2026-12-15"
@@ -1437,12 +2139,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 2.12
+   "a": 0.425,
+   "b": 0.2,
+   "rapport": 2.12,
+   "rapport_manque": 0.72
   },
   {
    "id": "J-050",
    "lien": "PV-BUDGET → PV-PDE",
+   "libelle": "Déficit 2026 à 5,2 % du PIB ou plus",
    "observable": "L'Insee publie un déficit public de 2026 d'au moins 5,2 % du PIB dans son premier compte provisoire des administrations publiques.",
+   "indicateur": {
+    "source": "Insee, comptes nationaux des administrations publiques (première estimation, fin mars 2027)",
+    "mesure": "déficit public 2026 en % du PIB",
+    "seuil": "au moins 5,2 %"
+   },
+   "cible": {
+    "noeud": "PV-PDE",
+    "issue": "oui",
+    "question": "Q-EV-04"
+   },
+   "motif": "L'écart à la trajectoire recommandée, mesuré par l'Insee fin mars, fonde l'appréciation de l'« action suivie d'effets » par la Commission au printemps.",
    "fenetre": {
     "debut": "2027-03-20",
     "fin": "2027-04-05"
@@ -1450,12 +2167,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 1.87
+   "a": 0.5,
+   "b": 0.268,
+   "rapport": 1.87,
+   "rapport_manque": 0.68
   },
   {
    "id": "J-051",
    "lien": "PV-BUDGET → PV-PDE",
+   "libelle": "Bruxelles constate l'absence d'action suivie",
    "observable": "La Commission européenne conclut que la France n'a pas pris d'action suivie d'effets, ou recommande au Conseil une décision au titre de l'article 126, paragraphe 8, du TFUE.",
+   "indicateur": {
+    "source": "Commission européenne, paquet de printemps du Semestre européen (communication ou recommandation)",
+    "mesure": "conclusion de la Commission sur l'action suivie d'effets de la France",
+    "seuil": "action non suivie d'effets ou recommandation 126(8)"
+   },
+   "cible": {
+    "noeud": "PV-PDE",
+    "issue": "oui",
+    "question": "Q-EV-04"
+   },
+   "motif": "La décision du Conseil (qui tranche EV-04) ne peut intervenir que sur recommandation de la Commission ; le paquet de printemps paraît fin mai ou début juin (calendrier estimé).",
    "fenetre": {
     "debut": "2027-05-15",
     "fin": "2027-07-15"
@@ -1463,12 +2195,27 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 16.67
+   "a": 0.5,
+   "b": 0.03,
+   "rapport": 16.67,
+   "rapport_manque": 0.52
   },
   {
    "id": "J-052",
    "lien": "PV-BUDGET → PV-PDE",
+   "libelle": "Plan budgétaire 2028 jugé non conforme",
    "observable": "La Commission européenne, dans son avis sur le projet de plan budgétaire 2028 de la France, juge celui-ci « non conforme » ou « présentant un risque de non-conformité ».",
+   "indicateur": {
+    "source": "Commission européenne, paquet d'automne du Semestre européen 2028",
+    "mesure": "appréciation du projet de plan budgétaire de la France",
+    "seuil": "non conforme ou risque de non-conformité"
+   },
+   "cible": {
+    "noeud": "PV-PDE",
+    "issue": "oui",
+    "question": "Q-EV-04"
+   },
+   "motif": "Premier budget de la nouvelle majorité : son avis d'automne montre si la procédure de déficit excessif se durcit après l'élection (calendrier estimé d'après 2025).",
    "fenetre": {
     "debut": "2027-11-01",
     "fin": "2027-12-15"
@@ -1476,7 +2223,10 @@
    "niveau": 2,
    "type": "aval",
    "statut": "attendu",
-   "rapport": 2.31
+   "a": 0.5,
+   "b": 0.216,
+   "rapport": 2.31,
+   "rapport_manque": 0.64
   }
  ],
  "questions": [

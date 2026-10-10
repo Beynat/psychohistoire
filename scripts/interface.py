@@ -60,16 +60,22 @@ def construire():
         statuts[x["jalon"]] = x["statut"]
     auj = date.today().isoformat()
     jalons = []
+    libelles = (lire_json("modele/jalons/libelles.json") or {}).get("libelles", {})
     for j in defs:
         st = statuts.get(j["id"]) or ("attendu" if auj < j["fenetre"]["debut"] else "en cours" if auj <= j["fenetre"]["fin"] else "à constater")
-        lien = j["lien"]
+        lien, cible = j["lien"], dict(j["cible"])
         # Jalons définis avant le découpage de la censure (structure v0.2) : rattachés à la partie de leur fenêtre.
-        for ancien, (avant, apres) in {"PV-CENSURE1": ("PV-CENSURE1a", "PV-CENSURE1b")}.items():
-            if ancien in lien.replace(" ", "").split("→"):
-                lien = lien.replace(ancien, avant if j["fenetre"]["debut"] < "2027-01-01" else apres)
-        jalons.append({"id": j["id"], "lien": lien, "observable": j["observable"], "fenetre": j["fenetre"],
-                       "niveau": j["niveau"], "type": j["type"], "statut": st,
-                       "rapport": round(j["vraisemblances"]["a"] / j["vraisemblances"]["b"], 2)})
+        partie = "PV-CENSURE1a" if j["fenetre"]["debut"] < "2027-01-01" else "PV-CENSURE1b"
+        if "PV-CENSURE1" in lien.replace(" ", "").split("→"):
+            lien = lien.replace("PV-CENSURE1", partie)
+        if cible.get("noeud") == "PV-CENSURE1":
+            cible["noeud"] = partie
+        a, b = j["vraisemblances"]["a"], j["vraisemblances"]["b"]
+        jalons.append({"id": j["id"], "lien": lien, "libelle": libelles.get(j["id"], j["observable"]),
+                       "observable": j["observable"], "indicateur": j.get("indicateur"), "cible": cible,
+                       "motif": j.get("motif"), "fenetre": j["fenetre"], "niveau": j["niveau"], "type": j["type"],
+                       "statut": st, "a": a, "b": b, "rapport": round(a / b, 2),
+                       "rapport_manque": round((1 - a) / (1 - b), 2)})
 
     # Liens : parent → enfant ; une variable d'état ou un indicateur parent est « porté » par le lien
     liens = []

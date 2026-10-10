@@ -42,11 +42,16 @@ jobs:
           if git diff --unified=0 HEAD -- data/premieres_valeurs.jsonl | grep -q '^-[^-]'; then
             echo "::error::data/premieres_valeurs.jsonl modifié autrement que par ajout"; exit 1
           fi
+      - name: Données de l'interface et de la carte (reseau.html)
+        run: |
+          python scripts/interface.py
+          python scripts/carte.py
+        continue-on-error: true
       - name: Enregistrer les données si elles ont changé
         run: |
           git config user.name "collecte-psychohistoire"
           git config user.email "actions@users.noreply.github.com"
-          git add data/collecte.json data/veille.json data/cotes.json data/historique data/premieres_valeurs.jsonl
+          git add data/collecte.json data/veille.json data/cotes.json data/historique data/premieres_valeurs.jsonl data/interface_v1.json data/carte_v0.json
           if git diff --cached --quiet; then
             echo "Aucun changement."
           else

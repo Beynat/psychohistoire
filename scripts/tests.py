@@ -562,6 +562,31 @@ def test_reseau_moteur():
         assert "Cycle" in str(e)
 
 
+def test_carte():
+    """Feuille de route, bloc 10 : les trajectoires de la carte respectent les fenêtres des pivots, gardent un rang
+    d'issue valide, codent la survenue (et non son absence) et conservent la dépendance du réseau (un départ du Premier ministre bien plus fréquent après une
+    censure qu'en son absence)."""
+    import carte
+    import reseau
+    d = carte.construire(tirages=10, trajectoires=40)
+    P, B = d["pivots"], "0123456789abcdefghijklmnopqrstuvwxyz"
+    assert len(d["codes"]) == 400 and all(len(c) == len(P) for c in d["codes"])
+    for i, p in enumerate(P):
+        for c in d["codes"]:
+            if p["nature"] == "daté":
+                assert int(c[i]) < len(p["issues"]), (p["id"], c[i])
+            elif c[i] != "-":
+                assert reseau.idx(p["fenetre"][0]) <= B.index(c[i]) <= reseau.idx(p["fenetre"][1]), (p["id"], c[i])
+    ix = {p["id"]: i for i, p in enumerate(P)}
+    a, g = ix["PV-CENSURE1a"], ix["PV-GOUV"]
+    survenue = sum(c[a] != "-" for c in d["codes"]) / len(d["codes"])
+    assert 0.12 < survenue < 0.5, survenue          # tables : 24 % de base, relevé par la mobilisation observée
+    avec = [c[g] != "-" for c in d["codes"] if c[a] != "-"]
+    sans = [c[g] != "-" for c in d["codes"] if c[a] == "-"]
+    assert avec and sans and sum(avec) / len(avec) > sum(sans) / len(sans) + 0.3, (len(avec), len(sans))
+    assert all(len(v["par_mois"]) == len(d["mois"]) for v in d["variables"])
+
+
 def test_jalons():
     """Feuille de route v0, bloc 2 : une définition dont la fenêtre s'ouvre dans moins de 7 jours est refusée ; un
     jalon observé relève, dans le registre fantôme, l'issue qu'il favorise, avec la réduction k."""
