@@ -1,6 +1,6 @@
 {
  "description": "Banque d'événements (noyau, section 8.8). Générée par scripts/evenements.py depuis modele/banque/criteres.json. Seuls le nom, la sous-question et le critère sont transmis aux prévisionnistes.",
- "genere_le": "2026-10-10T08:59:46+02:00",
+ "genere_le": "2026-10-10T10:03:17+02:00",
  "premier_tour": "2027-04-18",
  "second_tour": "2027-05-02",
  "evenements": [
@@ -321,9 +321,9 @@
    "evenement": "EV-10",
    "nom": "Reprise du mouvement lycéen après la Toussaint",
    "domaine": "société",
-   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, pour une même journée, quelle qu'en soit la cause déclarée (blocage, filtrage, intrusion, fermeture préventive ou administrative). Si le ministère donne pour une même journée plusieurs catégories disjointes (par exemple « perturbés » et « cours suspendus », ou « fermés » et « perturbés »), leur somme est retenue. S'il donne plusieurs chiffres successifs pour la même journée (matin, mi-journée, fin de journée, décompte cumulé), le plus élevé est retenu. Une fourchette vaut sa borne basse ; un chiffre « au moins » ou « plus de » N vaut N ; un pourcentage d'établissements ouverts n'est pas converti en nombre. Le chiffre retenu est celui que le ministère publie (site, communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant à ce ministère ; une seule dépêche suffit. À défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur, sous les mêmes règles. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas.",
    "sous_question": "du 2 novembre au 18 décembre 2026",
-   "source_resolution": "Ministère de l'Éducation nationale, chiffre publié par lui ou rapporté par deux agences de presse (AFP, Reuters, AP) ; à défaut de chiffre de ce ministère pour une journée, celui du ministère de l'Intérieur",
+   "source_resolution": "Ministère de l'Éducation nationale (site, communiqué, compte officiel, déclaration d'un ministre) ou une dépêche AFP, Reuters ou AP qui lui attribue le chiffre ; à défaut, ministère de l'Intérieur, sous les mêmes règles",
    "fenetre": {
     "debut": "2026-11-02",
     "fin": "2026-12-18"
@@ -338,7 +338,7 @@
    "motif_inaccessible": null,
    "nature": "survenue",
    "revise": "10 octobre 2026 : rétabli, le retrait reposait sur une prémisse fausse (le ministère de l'Éducation nationale publie chaque jour le nombre d'établissements perturbés)",
-   "motif_reecriture": "Ancien critère : « Retiré : aucune source officielle ne publie le nombre d'établissements bloqués. »",
+   "motif_reecriture": "Ancien critère : « Retiré : aucune source officielle ne publie le nombre d'établissements bloqués. » 10 octobre 2026, vérificateur A (A-01) : chiffre non publié sur le site du ministère, plusieurs définitions par jour, repris par la seule AFP ; condition « du fait de la mobilisation » non vérifiable (comptage toutes causes). Ancien critère : « Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N. »",
    "source_accessible": true,
    "contexte_v1": {
     "critere": "Plus de 300 établissements bloqués au moins 2 semaines consécutives OU extension aux universités avant le 15/11/2026. Taux de base (calcul de B) : les vagues de 2005 ont duré ~3 semaines.",
@@ -350,9 +350,9 @@
    "evenement": "EV-10",
    "nom": "Mouvement lycéen avant la Toussaint",
    "domaine": "société",
-   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, pour une même journée, quelle qu'en soit la cause déclarée (blocage, filtrage, intrusion, fermeture préventive ou administrative). Si le ministère donne pour une même journée plusieurs catégories disjointes (par exemple « perturbés » et « cours suspendus », ou « fermés » et « perturbés »), leur somme est retenue. S'il donne plusieurs chiffres successifs pour la même journée (matin, mi-journée, fin de journée, décompte cumulé), le plus élevé est retenu. Une fourchette vaut sa borne basse ; un chiffre « au moins » ou « plus de » N vaut N ; un pourcentage d'établissements ouverts n'est pas converti en nombre. Le chiffre retenu est celui que le ministère publie (site, communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant à ce ministère ; une seule dépêche suffit. À défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur, sous les mêmes règles. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas.",
    "sous_question": "du 12 au 16 octobre 2026",
-   "source_resolution": "Ministère de l'Éducation nationale, chiffre publié par lui ou rapporté par deux agences de presse (AFP, Reuters, AP) ; à défaut de chiffre de ce ministère pour une journée, celui du ministère de l'Intérieur",
+   "source_resolution": "Ministère de l'Éducation nationale (site, communiqué, compte officiel, déclaration d'un ministre) ou une dépêche AFP, Reuters ou AP qui lui attribue le chiffre ; à défaut, ministère de l'Intérieur, sous les mêmes règles",
    "fenetre": {
     "debut": "2026-10-12",
     "fin": "2026-10-16"
@@ -366,6 +366,7 @@
    "origine": "ajout du 10 octobre 2026, décision de Nathan (mouvement lycéen, passation du 10 octobre) ; fenêtre courte, pour le cycle d'essai",
    "motif_inaccessible": null,
    "nature": "survenue",
+   "motif_reecriture": "10 octobre 2026, vérificateur A (A-01) : idem EV-10 ; les prévisions de l'essai 2026-10-v0 ont été émises sur le critère v1.11. Ancien critère : « Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N. »",
    "source_accessible": true,
    "contexte_v1": {
     "critere": "Plus de 300 établissements bloqués au moins 2 semaines consécutives OU extension aux universités avant le 15/11/2026. Taux de base (calcul de B) : les vagues de 2005 ont duré ~3 semaines.",
@@ -377,9 +378,9 @@
    "evenement": "EV-47",
    "nom": "Nouvelle journée lycéenne à plus de 1 000 établissements",
    "domaine": "société",
-   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 1000 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 1000 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, pour une même journée, quelle qu'en soit la cause déclarée (blocage, filtrage, intrusion, fermeture préventive ou administrative). Si le ministère donne pour une même journée plusieurs catégories disjointes (par exemple « perturbés » et « cours suspendus », ou « fermés » et « perturbés »), leur somme est retenue. S'il donne plusieurs chiffres successifs pour la même journée (matin, mi-journée, fin de journée, décompte cumulé), le plus élevé est retenu. Une fourchette vaut sa borne basse ; un chiffre « au moins » ou « plus de » N vaut N ; un pourcentage d'établissements ouverts n'est pas converti en nombre. Le chiffre retenu est celui que le ministère publie (site, communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant à ce ministère ; une seule dépêche suffit. À défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur, sous les mêmes règles. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas.",
    "sous_question": null,
-   "source_resolution": "Ministère de l'Éducation nationale, chiffre publié par lui ou rapporté par deux agences de presse (AFP, Reuters, AP) ; à défaut de chiffre de ce ministère pour une journée, celui du ministère de l'Intérieur",
+   "source_resolution": "Ministère de l'Éducation nationale (site, communiqué, compte officiel, déclaration d'un ministre) ou une dépêche AFP, Reuters ou AP qui lui attribue le chiffre ; à défaut, ministère de l'Intérieur, sous les mêmes règles",
    "fenetre": {
     "debut": "2026-11-02",
     "fin": "2027-06-30"
@@ -393,6 +394,7 @@
    "origine": "ajout du 10 octobre 2026, décision de Nathan (mouvement lycéen, passation du 10 octobre)",
    "motif_inaccessible": null,
    "nature": "survenue",
+   "motif_reecriture": "10 octobre 2026, vérificateur A (A-01) : idem EV-10. Ancien critère : « Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 1000 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N. »",
    "source_accessible": true
   },
   {
@@ -424,7 +426,7 @@
    "evenement": "EV-49",
    "nom": "Départ du ministre de l'Éducation nationale",
    "domaine": "politique",
-   "critere": "Pendant la fenêtre, un décret publié au Journal officiel met fin aux fonctions de la personne qui détient le portefeuille de l'Éducation nationale au 10 octobre 2026, ou lui retire ce portefeuille, quelle qu'en soit la cause (démission, remaniement, démission du gouvernement). Une reconduction dans le même portefeuille par le décret de nomination du gouvernement suivant ne compte pas.",
+   "critere": "Pendant la fenêtre, Édouard Geffray, ministre de l'Éducation nationale au 10 octobre 2026, cesse de détenir ce portefeuille : un décret publié au Journal officiel nomme une autre personne à la tête du ministère chargé de l'Éducation nationale, ou le nomme à d'autres fonctions sans ce portefeuille, ou met fin à ses fonctions. Si un décret met fin à ses fonctions (démission du Gouvernement comprise) et qu'un décret publié au plus tard le dernier jour de la fenêtre le reconduit à la tête de ce ministère, la réponse est « non » ; s'il n'est pas reconduit au dernier jour de la fenêtre, y compris s'il expédie les affaires courantes, la réponse est « oui », et la date du fait est celle du décret qui a mis fin à ses fonctions.",
    "sous_question": null,
    "source_resolution": "Journal officiel",
    "fenetre": {
@@ -440,6 +442,7 @@
    "origine": "ajout du 10 octobre 2026, décision de Nathan (mouvement lycéen, passation du 10 octobre)",
    "motif_inaccessible": null,
    "nature": "survenue",
+   "motif_reecriture": "10 octobre 2026, vérificateur A (A-03) : démission du Gouvernement suivie d'une reconduction lisible de deux façons (précédent d'octobre 2025). Ancien critère : « Pendant la fenêtre, un décret publié au Journal officiel met fin aux fonctions de la personne qui détient le portefeuille de l'Éducation nationale au 10 octobre 2026, ou lui retire ce portefeuille, quelle qu'en soit la cause (démission, remaniement, démission du gouvernement). Une reconduction dans le même portefeuille par le décret de nomination du gouvernement suivant ne compte pas. »",
    "source_accessible": true
   },
   {
@@ -501,9 +504,9 @@
    "evenement": "EV-13",
    "nom": "Grève massive dans la fonction publique",
    "domaine": "société",
-   "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État communiqué par le ministère chargé de la fonction publique (chiffres de la DGAFP) dépasse 18 %. La valeur retenue est celle publiée par le ministère ou la DGAFP, lue 30 jours après la journée (à défaut, à la première lecture qui suit) ; faute de page de publication, le chiffre du ministère rapporté par deux agences concordantes.",
+   "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État communiqué par le ministère chargé de la fonction publique dépasse 18 %. Est retenu le plus élevé des taux communiqués pour cette journée (mi-journée ou journée entière ; taux de l'ensemble de la fonction publique de l'État, et non d'un seul ministère), publié par le ministère ou la DGAFP, ou rapporté par l'AFP, Reuters ou AP en l'attribuant au ministère ; une seule dépêche suffit. Une révision publiée plus de 30 jours après la journée ne change pas l'issue.",
    "sous_question": null,
-   "source_resolution": "Ministère chargé de la fonction publique (chiffres de la DGAFP) ; à défaut, deux agences concordantes rapportant ce chiffre",
+   "source_resolution": "Ministère chargé de la fonction publique ou DGAFP, ou une dépêche AFP, Reuters ou AP qui leur attribue le taux",
    "fenetre": {
     "debut": "2026-10-03",
     "fin": "2026-12-31"
@@ -518,6 +521,7 @@
    "motif_inaccessible": null,
    "revise": "relecture 21",
    "nature": "survenue",
+   "motif_reecriture": "10 octobre 2026, vérificateur A (A-02) : pas de page de publication de la DGAFP, taux de mi-journée et de fin de journée, deux agences concordantes improbables. Ancien critère : « Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État communiqué par le ministère chargé de la fonction publique (chiffres de la DGAFP) dépasse 18 %. La valeur retenue est celle publiée par le ministère ou la DGAFP, lue 30 jours après la journée (à défaut, à la première lecture qui suit) ; faute de page de publication, le chiffre du ministère rapporté par deux agences concordantes. »",
    "source_accessible": true,
    "contexte_v1": {
     "critere": "Taux de grévistes de la FPE > 18 % lors d'une journée avant le 31/12/2026.",

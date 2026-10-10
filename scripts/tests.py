@@ -466,6 +466,30 @@ def test_correspondances_figees():
         shutil.rmtree(tmp.parent)
 
 
+def test_verrou_protocole():
+    """Vérificateur B, 10 octobre 2026 : tant que le protocole n'est pas définitif, aucun script n'écrit dans
+    registre/protocole.jsonl, même lancé sans registre d'essai ; une fois définitif, l'écriture passe."""
+    tmp, run = _copie()
+    try:
+        import subprocess, os
+        env = {**os.environ, "PYTHONPATH": str(tmp / "scripts")}
+        run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
+        run("scripts/questions.py", "2026-11-01", "2026-11")
+        reg = tmp / "registre/protocole.jsonl"
+        avant = reg.read_bytes() if reg.exists() else b""
+        st = tmp / "modele/statut.json"
+        st.write_text(json.dumps({**json.loads(st.read_text()), "definitif": False}))
+        r = subprocess.run([sys.executable, "scripts/comparateurs.py", "2026-11"], cwd=tmp, env=env,
+                           capture_output=True, text=True)
+        assert r.returncode != 0 and "écriture refusée" in (r.stderr + r.stdout), (r.stdout + r.stderr)[-500:]
+        assert (reg.read_bytes() if reg.exists() else b"") == avant
+        st.write_text(json.dumps({**json.loads(st.read_text()), "definitif": True}))
+        run("scripts/comparateurs.py", "2026-11")
+        assert len(reg.read_bytes()) > len(avant)
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
 def test_mensuelle_sans_date_de_fin():
     """Essai 2026-10-v0, Q120 : le critère d'une question mensuelle n'écrit pas la fin de sa fenêtre, sinon
     l'énoncé du mois et le critère se contredisent."""

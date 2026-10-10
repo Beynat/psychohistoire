@@ -69,6 +69,14 @@ def valider(l):
 
 
 def ajouter(chemin, lignes):
+    # Verrou (vérificateur B, 10 octobre 2026) : registre/protocole.jsonl n'est écrit qu'une fois le protocole
+    # déclaré définitif. Un script lancé sans registre d'essai y avait écrit 151 lignes d'essai sur copie ; en
+    # ajout seul, une telle ligne ne s'efface plus.
+    if Path(chemin).as_posix().endswith("registre/protocole.jsonl") or Path(chemin).as_posix() == "registre/protocole.jsonl":
+        statut = RACINE / "modele/statut.json"
+        if not (statut.exists() and json.loads(statut.read_text("utf-8")).get("definitif") is True):
+            raise SystemExit("registre/protocole.jsonl : écriture refusée, le protocole n'est pas déclaré définitif "
+                             "(modele/statut.json). Passer un registre d'essai (registre/essai_<x>.jsonl).")
     t = horodatage()
     for l in lignes:
         valider(l)
