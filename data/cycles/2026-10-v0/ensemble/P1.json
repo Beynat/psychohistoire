@@ -1,0 +1,949 @@
+{
+ "previsionniste": "P1",
+ "modele": "claude-opus-5-5",
+ "gel": "2026-10-10",
+ "recherches": 47,
+ "adresses": [
+  "https://lcp.fr/actualites/lycees-bloques-le-projet-de-loi-casseurs-payeurs-examine-fin-octobre-au-senat-442963",
+  "https://fr.euronews.com/2026/10/06/mobilisation-lyceenne-acte-iii-891-lycees-perturbes-annonce-le-ministere-de-linterieur",
+  "https://www.optionfinance.fr/info-financiere-en-continu/d/2026-10-01-france-le-risque-souverain-retrouve-ses-niveaux-de-la-crise-de-la-dette-europeenne.html",
+  "https://lcp.fr/actualites/pourvoi-en-cassation-de-marine-le-pen-les-cles-pour-comprendre-les-consequences-de-cette",
+  "https://www.boursedirect.fr/fr/actualites/categorie/politique/le-pen-la-cour-de-cassation-fera-tout-pour-rendre-sa-decision-avant-la-presidentielle-selon-le-procureur-afp-696f8650aea05787dced845e38fe5ece666650cc",
+  "https://www.sudradio.fr/sud-radio/presidentielle-2027-marine-le-pen-inebranlable-malgre-laffaire-bardella",
+  "https://www.slate.fr/politique/condamnation-appel-marine-le-pen-jugement-sans-consequences-politiques-decision-citoyens-gagnante-sequence-justice-rn-bardella-election-presidentielle-2027",
+  "https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-compte-a-rebours-judiciaire-de-marine-le-pen-vire-au-casse-tete",
+  "https://www.brut.media/fr/articles/marine-le-pen-condamnee-a-15-mois-ferme-d-ineligibilite-peut-a-priori-etre-candidate-a-la-presidentielle-de-2027",
+  "https://lcp.fr/actualites/candidature-a-la-presidentielle-pas-de-choix-definitif-des-ecologistes-avant-la-mi",
+  "https://www.publicsenat.fr/actualites/politique/condamnation-de-marine-le-pen-la-cour-de-cassation-pourrait-se-prononcer-au-plus-tard-debut-avril-2027",
+  "https://www.washingtonexaminer.com/?p=4638430",
+  "https://prix-carburant.eu/article/gazole-lecornu-10-millions-barils-baisse-12-18-centimes",
+  "https://finance.yahoo.com/markets/commodities/articles/china-rare-earth-export-pause-123614106.html",
+  "https://lcp.fr/actualites/budget-2027-voici-pourquoi-le-gouvernement-ne-veut-pas-d-une-loi-speciale-cette-annee",
+  "https://allnews.ch/node/152441",
+  "https://dettedelafrance.fr/actualites/la-france-garde-sa-note-a-que-signifie-reellement-le-statu-quo-de-fitch",
+  "https://www.abcbourse.com/forums/msg1077069_la-note-de-credit-francaise-menacee-par-la-crise-politique",
+  "https://en.ilsole24ore.com/art/france-10-year-oat-yields-edge-towards-5-per-cent-on-the-eve-of-the-2027-budget-lecornu-AJwJS5UB",
+  "https://www.boursedirect.fr/fr/actualites/categorie/divers/direction-les-5-pour-l-oat-a-10-ans-boursier-36309068099c3aaa61ee7b8c6777f9abeafbe52c",
+  "https://www.noovo.info/nouvelles/international/article/le-kremlin-nexclut-pas-une-reprise-des-negociations-trilaterales-avec-lukraine-en-octobre-2026/",
+  "https://santamariatimes.com/ap/business/the-price-of-brent-crude-oil-surges-past-125-a-barrel-as-worries-brew-over/article_94013501-3aed-5bf3-a0d2-bebf6132807e.html",
+  "https://www.24matins.fr/mobilisation-lintersyndicale-appelle-a-une-nouvelle-journee-le-13-octobre-1363194",
+  "https://fr.euronews.com/2026/10/08/nouvelle-journee-de-mobilisation-lyceenne-en-france-un-grand-rassemblement-a-paris",
+  "https://www.brut.media/fr/articles/mobilisation-lyceenne-nouvel-appel-a-manifester-le-13-octobre",
+  "https://www.publicsenat.fr/actualites/societe/blocage-des-lycees-syndicats-gilets-jaunes-se-dirige-t-on-vers-une-convergence-des-luttes",
+  "https://www.brookings.edu/articles/democrats-on-track-to-outperform-2026-house-forecasts/",
+  "https://www.lalibre.be/international/europe/2026/06/18/les-vingt-sept-se-lancent-dans-la-resolution-du-casse-tete-du-budget-europeen-2028-2034-Z5NEBP6VTZAXZHSS4X24ADHT2E/",
+  "https://www.skillings.net/?p=99800",
+  "https://www.arabnews.com/node/2640707/world",
+  "https://lcp.fr/actualites/presidentielle-2027-le-duel-attal-philippe-vers-une-primaire-437315",
+  "https://lcp.fr/actualites/presidentielle-2027-qui-sera-sur-la-ligne-de-depart-de-la-primaire-sociale-democrate-en",
+  "https://lcp.fr/actualites/presidentielle-et-ingerences-russes-gabriel-attal-de-nouveau-cible-par-des",
+  "https://lcp.fr/actualites/presidentielle-2027-les-sondages-vont-ils-choisir-les-candidats-avant-les-electeurs",
+  "https://www.leclubdesjuristes.com/international/mercosur-le-parlement-europeen-saisit-la-cour-de-justice-14073/",
+  "https://www.sudradio.fr/societe/budget-lecornu-tend-la-main-aux-socialistes-tentes-par-la-censure",
+  "https://acteurspublics.fr/articles/la-greve-dans-la-fonction-publique-reste-limitee-avec-une-mobilisation-plus-forte-a-letat-que-dans-les-autres-versants/",
+  "https://www.connaissancedesenergies.org/afp/gaz-lue-capable-de-repondre-a-la-demande-hivernale-en-depit-de-stocks-historiquement-bas-261008",
+  "https://fr.euronews.com/my-europe/2026/05/29/france-les-actes-antijuifs-antichretiens-et-antimusulmans-en-forte-hausse-selon-le-gouvern",
+  "https://www.toutsurmesfinances.com/actualites/?p=1863",
+  "https://abcnews.com/amp/US/wireStory/price-brent-crude-oil-surges-past-125-barrel-132522672",
+  "https://prix-carburant.eu/fr/brent/",
+  "https://www.eia.gov/dnav/pet/hist/RBRTED.htm",
+  "https://www.eia.gov/dnav/pet/hist/rbrteD.htm",
+  "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU&cosd=2026-08-15"
+ ],
+ "previsions": {
+  "Q001": {
+   "probabilites": {
+    "oui": 38,
+    "non": 62
+   },
+   "motif": "Sénat le 27 octobre en procédure accélérée, Assemblée avant fin février 2027, puis CMP et saisine probable du Conseil constitutionnel : calendrier serré avant le 31 mars."
+  },
+  "Q002": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Taux de base faible ; négociations au point mort depuis 2025, reprise trilatérale seulement évoquée ; fenêtre lointaine d'un an."
+  },
+  "Q003": {
+   "probabilites": {
+    "oui": 14,
+    "non": 86
+   },
+   "motif": "86 en août et septembre ; choc pétrolier, inflation à 3,4 % et troubles lycéens rendent un gain de 2 points peu probable."
+  },
+  "Q004": {
+   "probabilites": {
+    "oui": 28,
+    "non": 72
+   },
+   "motif": "Moyenne spot EIA des 4 premiers jours d'octobre vers 125 $ ; il faudrait environ 128,5 $ sur le reste du mois alors que les futures sont vers 103 $ (forte déport)."
+  },
+  "Q005": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Revue de Moody's attendue en octobre (Aa3, perspective négative) ; écart OAT-Bund au plus haut depuis 2012 et cible de déficit manquée : dégradation possible mais non majoritaire."
+  },
+  "Q006": {
+   "probabilites": {
+    "oui": 14,
+    "non": 86
+   },
+   "motif": "Peu de motivation à censurer à quelques semaines de la présidentielle, mais budget 2027 possiblement adopté en janvier par 49.3."
+  },
+  "Q007": {
+   "probabilites": {
+    "oui": 7,
+    "non": 93
+   },
+   "motif": "Le TPI n'a jamais été activé ; écart élevé mais les autres écarts souverains restent stables, la BCE jugera la hausse liée aux fondamentaux budgétaires."
+  },
+  "Q008": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Le déstockage de gazole au 1er novembre (-12 à -18 cts) et le déport du Brent pèsent ; l'Insee prévoyait 2,9 % (IPC) en décembre avant la nouvelle flambée."
+  },
+  "Q009": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "8,2 % en août après 8,4 % en mai ; une remontée à 8,4 % en trois mois est possible avec une croissance nulle mais pas centrale."
+  },
+  "Q010": {
+   "probabilites": {
+    "oui": 4,
+    "non": 96
+   },
+   "motif": "Le gouvernement a choisi un déstockage de 10 millions de barils de gazole (non une remise générale ni une baisse d'accise) ; marges budgétaires inexistantes."
+  },
+  "Q011": {
+   "probabilites": {
+    "4,5 % du PIB ou moins": 30,
+    "plus de 4,5 % du PIB": 37,
+    "pas de loi de finances publiée au 31 janvier 2028": 33
+   },
+   "motif": "Déficit 2027 visé à 5 % et Fitch à 5,2 % en 2028 ; un nouveau gouvernement viserait probablement une baisse, mais un retard de la loi de finances reste fréquent."
+  },
+  "Q012": {
+   "probabilites": {
+    "oui": 72,
+    "non": 28
+   },
+   "motif": "20,9 % en septembre ; le spot du Brent reste plus haut en octobre et la base d'octobre 2025 est basse ; le déstockage n'agit qu'en novembre."
+  },
+  "Q013": {
+   "probabilites": {
+    "candidature autonome": 55,
+    "soutien à un autre candidat": 38,
+    "autre ou vote non tenu": 7
+   },
+   "motif": "Référendum interne du 10 au 13 décembre entre Tondelier et le soutien à une autre force ; rupture avec le PS sur la primaire."
+  },
+  "Q014": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Pression forte avant la présidentielle si le pétrole reste haut, mais finances contraintes et option déstockage déjà retenue."
+  },
+  "Q015": {
+   "probabilites": {
+    "oui": 85,
+    "non": 15
+   },
+   "motif": "Deux ans de fenêtre, déficit au-dessus de 5 %, dette en hausse, écarts au plus haut : au moins une dégradation par l'une des trois agences très probable."
+  },
+  "Q016": {
+   "probabilites": {
+    "oui": 46,
+    "non": 54
+   },
+   "motif": "Moyenne des premiers jours vers 125 $ ; il faut environ 123 $ sur le reste du mois, proche du niveau central mais avec une forte volatilité du spot daté."
+  },
+  "Q017": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "Budget 2027 probablement par 49.3 ; PS tenté par la censure, RN plutôt clément ; Lecornu a survécu aux deux budgets précédents."
+  },
+  "Q018": {
+   "probabilites": {
+    "oui": 78,
+    "non": 22
+   },
+   "motif": "Taux de base : une attaque terroriste meurtrière la plupart des années récentes ; fenêtre de près de deux ans."
+  },
+  "Q019": {
+   "probabilites": {
+    "oui": 72,
+    "non": 28
+   },
+   "motif": "Dissolution très probable par le nouveau président dès mai-juin 2027 pour obtenir une majorité."
+  },
+  "Q020": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Écart quotidien BdF 126,5 pb le 9 octobre, soit environ 135-136 pb en série BCE ; début octobre autour de 132-140 pb : seuil au centre."
+  },
+  "Q021": {
+   "probabilites": {
+    "oui": 46,
+    "non": 54
+   },
+   "motif": "Niveau actuel proche du seuil ; risque de hausse avec le débat budgétaire et une éventuelle censure, mais retour à la moyenne possible."
+  },
+  "Q022": {
+   "probabilites": {
+    "oui": 75,
+    "non": 25
+   },
+   "motif": "3,4 % en septembre, énergie en forte hausse sur un an et base d'octobre 2025 basse ; une baisse de plus de 0,2 point en un mois est peu probable."
+  },
+  "Q023": {
+   "probabilites": {
+    "oui": 4,
+    "non": 96
+   },
+   "motif": "La suspension des contrôles d'octobre 2025 expire le 10 novembre, hors fenêtre ; nouvelle mesure en octobre peu probable."
+  },
+  "Q024": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Aucune activation du TPI n'est en vue en trois semaines."
+  },
+  "Q025": {
+   "probabilites": {
+    "3 ou moins": 5,
+    "4": 20,
+    "5": 35,
+    "6 ou plus": 40
+   },
+   "motif": "Socle probable : Mélenchon, vainqueur de la primaire PS-Place publique, PCF et LO ; Écologistes, Debout ! et NPA chacun incertains."
+  },
+  "Q026": {
+   "probabilites": {
+    "oui": 42,
+    "non": 58
+   },
+   "motif": "86 en août et septembre ; contexte dégradé (inflation, crise politique) : légère tendance à la baisse."
+  },
+  "Q027": {
+   "probabilites": {
+    "oui": 85,
+    "non": 15
+   },
+   "motif": "8,2 % en août ; une baisse sous 8,0 % d'ici novembre est improbable avec une croissance nulle."
+  },
+  "Q028": {
+   "probabilites": {
+    "avis rendu, compatible": 70,
+    "avis rendu, incompatible": 18,
+    "pas d'avis": 12
+   },
+   "motif": "Saisine de janvier 2026 ; les avis prennent en général de 16 à 24 mois (CETA, 19 mois, compatible)."
+  },
+  "Q029": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "8,2 % en août ; conjoncture faible mais remontée de 0,2 point incertaine."
+  },
+  "Q030": {
+   "probabilites": {
+    "oui": 12,
+    "non": 88
+   },
+   "motif": "Journée intersyndicale et lycéenne le 13 octobre, mais 256 000 manifestants selon l'Intérieur le 6 octobre ; 500 000 exigerait une mobilisation interprofessionnelle massive."
+  },
+  "Q031": {
+   "probabilites": {
+    "oui": 65,
+    "non": 35
+   },
+   "motif": "3,4 % en septembre ; le déstockage de gazole et le déport du pétrole devraient réduire l'inflation, mais le maintien au-dessus de 3 % reste probable."
+  },
+  "Q032": {
+   "probabilites": {
+    "oui": 17,
+    "non": 83
+   },
+   "motif": "Il faudrait une nouvelle flambée énergétique ; le déstockage de novembre joue à la baisse."
+  },
+  "Q033": {
+   "probabilites": {
+    "les deux": 25,
+    "Philippe seul": 50,
+    "Attal seul": 13,
+    "aucun des deux": 12
+   },
+   "motif": "Les deux sont déclarés et aucun mécanisme de départage n'est fixé ; Philippe en tête des sondages, une pression au rassemblement est probable."
+  },
+  "Q034": {
+   "probabilites": {
+    "oui": 84,
+    "non": 16
+   },
+   "motif": "Démocrates à +6 au vote générique, il leur suffit d'un gain net d'environ 3 sièges ; le redécoupage républicain limite l'avance."
+  },
+  "Q035": {
+   "probabilites": {
+    "oui": 4,
+    "non": 96
+   },
+   "motif": "Taux de base d'environ 1 à 2 attaques meurtrières par an : environ 4 % sur trois semaines."
+  },
+  "Q036": {
+   "probabilites": {
+    "oui": 9,
+    "non": 91
+   },
+   "motif": "Pas de majorité qualifiée pour suspendre le volet commercial (Allemagne, Italie réticentes) ; fenêtre lointaine."
+  },
+  "Q037": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Avec une Assemblée probablement fragmentée après 2027, la censure redevient possible, mais une nouvelle législature commence souvent par une période de grâce."
+  },
+  "Q038": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "VIGINUM publie régulièrement sur les campagnes russes (Attal déjà visé) ; le critère d'objectif explicite visant l'élection est exigeant mais probable pendant la campagne."
+  },
+  "Q039": {
+   "probabilites": {
+    "oui": 60,
+    "non": 40
+   },
+   "motif": "326 actes en 2025 (+88 %) avec un meilleur signalement qui continue ; tendance haussière probable mais incertaine."
+  },
+  "Q040": {
+   "probabilites": {
+    "oui": 42,
+    "non": 58
+   },
+   "motif": "Seuil légèrement au-dessus du niveau estimé (136 pb) ; la moyenne d'octobre dépend des tensions budgétaires."
+  },
+  "Q041": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Stocks UE à 72 % au 1er octobre (83 % un an plus tôt), GNL contraint par la guerre avec l'Iran ; fin janvier sous 35 % plausible si l'hiver est normal ou froid."
+  },
+  "Q042": {
+   "probabilites": {
+    "oui": 75,
+    "non": 25
+   },
+   "motif": "8,2 % en août ; une baisse à 8,0 % en octobre est peu probable."
+  },
+  "Q043": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Supposerait la victoire d'un candidat proposant l'abaissement, une majorité et une loi en vigueur avant septembre 2028 pour la génération 1970."
+  },
+  "Q044": {
+   "probabilites": {
+    "oui": 42,
+    "non": 58
+   },
+   "motif": "Déport marqué (futures vers 103 $ contre spot vers 125 $) : le spot daté devrait se rapprocher des futures d'ici décembre, sauf nouvelle escalade."
+  },
+  "Q045": {
+   "probabilites": {
+    "oui": 58,
+    "non": 42
+   },
+   "motif": "20,9 % en septembre ; le déstockage de gazole en novembre fait baisser l'énergie, mais le gaz et l'électricité restent hauts."
+  },
+  "Q046": {
+   "probabilites": {
+    "oui": 48,
+    "non": 52
+   },
+   "motif": "Pas de loi de finances au 31 décembre en 2024 et en 2025 ; PS hostile, mais le gouvernement veut éviter une loi spéciale et peut utiliser le 49.3."
+  },
+  "Q047": {
+   "probabilites": {
+    "oui": 4,
+    "non": 96
+   },
+   "motif": "Une publication ciblée et attribuée en trois semaines est peu probable."
+  },
+  "Q048": {
+   "probabilites": {
+    "oui": 5,
+    "non": 95
+   },
+   "motif": "Une dissolution juste avant la présidentielle n'a guère d'intérêt pour l'exécutif."
+  },
+  "Q049": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Aucune crise ultramarine signalée en cours ; taux de base faible sur trois semaines."
+  },
+  "Q050": {
+   "probabilites": {
+    "oui": 37,
+    "non": 63
+   },
+   "motif": "Il faudrait environ 125,5 $ en moyenne sur le reste d'octobre, au-dessus du niveau central estimé."
+  },
+  "Q051": {
+   "probabilites": {
+    "oui": 37,
+    "non": 63
+   },
+   "motif": "Seuil 5 pb au-dessus du niveau actuel ; volatilité forte dans les deux sens."
+  },
+  "Q052": {
+   "probabilites": {
+    "oui": 53,
+    "non": 47
+   },
+   "motif": "Niveau actuel légèrement au-dessus du seuil ; incertitude politique persistante jusqu'aux élections."
+  },
+  "Q053": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Sur deux ans, période post-électorale et réformes possibles ; plus de 500 000 selon l'Intérieur atteint en 2019, 2023 et septembre 2025."
+  },
+  "Q054": {
+   "probabilites": {
+    "oui": 36,
+    "non": 64
+   },
+   "motif": "Philippe à 21-24 % comme seul candidat central, environ 16 % si Attal se présente aussi ; Mélenchon et Glucksmann sont les concurrents pour la 2e place."
+  },
+  "Q055": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "Hausse au-dessus de 3,7 % improbable avec le déstockage de gazole de novembre."
+  },
+  "Q056": {
+   "probabilites": {
+    "oui": 13,
+    "non": 87
+   },
+   "motif": "Mélenchon à 14-17 % ; qualification possible seulement si le bloc central se divise."
+  },
+  "Q057": {
+   "probabilites": {
+    "oui": 34,
+    "non": 66
+   },
+   "motif": "Seuil 7 pb au-dessus du niveau actuel."
+  },
+  "Q058": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Événement rare, jamais observé à cette échelle en France."
+  },
+  "Q059": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Pas de majorité au Conseil en vue en trois semaines."
+  },
+  "Q060": {
+   "probabilites": {
+    "oui": 42,
+    "non": 58
+   },
+   "motif": "86 en septembre ; le mouvement lycéen, l'inflation et la crise des taux pèsent sur le moral."
+  },
+  "Q061": {
+   "probabilites": {
+    "oui": 35,
+    "non": 65
+   },
+   "motif": "Le déstockage de gazole et le déport du pétrole devraient réduire l'inflation énergétique en décembre."
+  },
+  "Q062": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Le Sénat n'examine le texte qu'à partir du 27 octobre."
+  },
+  "Q063": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "86 en septembre ; une chute sous 83 supposerait un choc supplémentaire."
+  },
+  "Q064": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Un rebond à 89 est improbable dans le contexte actuel."
+  },
+  "Q065": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Effet du déstockage et repli possible du spot ; seuil 3 points sous le dernier niveau."
+  },
+  "Q066": {
+   "probabilites": {
+    "rejet ou non-admission": 47,
+    "cassation totale ou partielle": 15,
+    "désistement": 3,
+    "pas d'arrêt au 31 mars 2027": 35
+   },
+   "motif": "La Cour de cassation vise une décision au plus tard début avril 2027 ; le calendrier pourrait déborder la date du 31 mars. Le rejet est l'issue la plus fréquente."
+  },
+  "Q067": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Croissance nulle au T2, choc pétrolier ; deux baisses consécutives en première estimation sur sept fenêtres possibles."
+  },
+  "Q068": {
+   "probabilites": {
+    "oui": 75,
+    "non": 25
+   },
+   "motif": "Une chute de plus de 2 points en un mois est possible mais minoritaire."
+  },
+  "Q069": {
+   "probabilites": {
+    "oui": 14,
+    "non": 86
+   },
+   "motif": "La France est déjà en déficit excessif ; une escalade au titre de l'article 126(8) ou (9) est rare, mais possible si la trajectoire dérape nettement."
+  },
+  "Q070": {
+   "probabilites": {
+    "oui": 38,
+    "non": 62
+   },
+   "motif": "Le déstockage de gazole au 1er novembre tire l'énergie à la baisse."
+  },
+  "Q071": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "La suspension des contrôles et la trêve sino-américaine expirent le 10 novembre ; une prolongation reste possible mais incertaine."
+  },
+  "Q072": {
+   "probabilites": {
+    "oui": 58,
+    "non": 42
+   },
+   "motif": "8,2 % en août ; stabilité ou légère hausse avec une croissance nulle."
+  },
+  "Q073": {
+   "probabilites": {
+    "oui": 58,
+    "non": 42
+   },
+   "motif": "Journée du 13 octobre avant les vacances du 17 ; le ministère a compté 891 établissements le 6 octobre et plus de 400 le 5, mais 157 lycées fermés le 8 : reflux possible."
+  },
+  "Q074": {
+   "probabilites": {
+    "oui": 33,
+    "non": 67
+   },
+   "motif": "Hausse de 0,2 point possible avec le spot pétrolier plus haut en octobre, mais pas centrale."
+  },
+  "Q075": {
+   "probabilites": {
+    "oui": 86,
+    "non": 14
+   },
+   "motif": "Candidate déclarée ; inéligibilité de 15 mois déjà purgée et pourvoi suspensif ; risque résiduel de renoncement."
+  },
+  "Q076": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Précédents : état d'urgence en Nouvelle-Calédonie en 2024, couvre-feu en Martinique en 2024 ; fenêtre de deux ans."
+  },
+  "Q077": {
+   "probabilites": {
+    "oui": 33,
+    "non": 67
+   },
+   "motif": "8,2 % en août ; remontée à 8,3 % possible."
+  },
+  "Q078": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Départ lié surtout à une censure ou à un remaniement ; la crise lycéenne fragilise Geffray."
+  },
+  "Q079": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Vigilance rouge canicule en 2019, 2023 et 2025 sur les dernières années : taux de base proche de 50 %."
+  },
+  "Q080": {
+   "probabilites": {
+    "oui": 6,
+    "non": 94
+   },
+   "motif": "Retailleau loin derrière Le Pen et le bloc central ; concurrence de Lisnard à droite."
+  },
+  "Q081": {
+   "probabilites": {
+    "moins de 70 %": 8,
+    "70 à moins de 75 %": 40,
+    "75 à moins de 80 %": 42,
+    "80 % ou plus": 10
+   },
+   "motif": "73,7 % en 2022, 77,8 % en 2017 ; un contexte très polarisé peut remobiliser."
+  },
+  "Q082": {
+   "probabilites": {
+    "oui": 5,
+    "non": 95
+   },
+   "motif": "Critère très exigeant (plus de 24 h, échelle nationale ou régionale) ; jamais atteint en France."
+  },
+  "Q083": {
+   "probabilites": {
+    "oui": 18,
+    "non": 82
+   },
+   "motif": "Objectif de fin 2026 jugé à 50 % par un diplomate, mais les accords sur le CFP arrivent historiquement tard ; fortes divergences sur le montant."
+  },
+  "Q084": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Glucksmann à 11-13 %, favori de la primaire sociale-démocrate ; qualification seulement si le bloc central s'effondre."
+  },
+  "Q085": {
+   "probabilites": {
+    "oui": 83,
+    "non": 17
+   },
+   "motif": "8,2 % en août ; une baisse sous 8,0 % d'ici décembre est peu probable."
+  },
+  "Q086": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Spot pétrolier plus haut en octobre qu'en septembre et base d'octobre 2025 basse : stabilité ou légère hausse."
+  },
+  "Q087": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Taux de base récent proche de 50 % ; tendance climatique haussière."
+  },
+  "Q088": {
+   "probabilites": {
+    "oui": 58,
+    "non": 42
+   },
+   "motif": "Seuil légèrement sous le niveau estimé de 136 pb."
+  },
+  "Q089": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Lisnard est marginal dans les sondages."
+  },
+  "Q090": {
+   "probabilites": {
+    "oui": 28,
+    "non": 72
+   },
+   "motif": "Les mouvements lycéens retombent souvent après les vacances ; le plan gouvernemental de fin octobre et l'examen du texte « casseurs-payeurs » peuvent relancer."
+  },
+  "Q091": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "L'effet du déstockage de gazole en novembre compense en partie la hausse de l'énergie."
+  },
+  "Q092": {
+   "probabilites": {
+    "Marine Le Pen": 38,
+    "Jordan Bardella": 3,
+    "Édouard Philippe": 22,
+    "Gabriel Attal": 5,
+    "Jean-Luc Mélenchon": 4,
+    "David Lisnard": 1,
+    "Bruno Retailleau": 4,
+    "Raphaël Glucksmann": 9,
+    "François Hollande": 2,
+    "autre": 12
+   },
+   "motif": "Le Pen nettement en tête au premier tour ; Philippe est le meilleur adversaire au second tour ; risque judiciaire résiduel."
+  },
+  "Q093": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Fitch prévoit 5,5 % en 2027, le déficit 2026 est estimé à 5,4 % contre une cible de 5 %, avec une année électorale et une croissance faible."
+  },
+  "Q094": {
+   "probabilites": {
+    "oui": 6,
+    "non": 94
+   },
+   "motif": "9,64 % de grévistes dans la fonction publique d'État le 29 septembre ; plus de 18 % exigerait une mobilisation exceptionnelle."
+  },
+  "Q095": {
+   "probabilites": {
+    "oui": 75,
+    "non": 25
+   },
+   "motif": "Un groupe dépassant à lui seul 289 sièges est rare dans le contexte tripolaire ; seul un raz-de-marée RN l'éviterait."
+  },
+  "Q096": {
+   "probabilites": {
+    "oui": 70,
+    "non": 30
+   },
+   "motif": "86 en septembre ; une chute sous 84 d'ici novembre est possible mais minoritaire."
+  },
+  "Q097": {
+   "probabilites": {
+    "oui": 44,
+    "non": 56
+   },
+   "motif": "Niveau actuel proche du seuil ; l'écart dépendra du budget et des élections."
+  },
+  "Q098": {
+   "probabilites": {
+    "oui": 42,
+    "non": 58
+   },
+   "motif": "Tendance légèrement baissière dans un contexte dégradé."
+  },
+  "Q099": {
+   "probabilites": {
+    "oui": 76,
+    "non": 24
+   },
+   "motif": "Le Pen à 31-36 % au premier tour dans tous les scénarios ; risque judiciaire et de renoncement modeste."
+  },
+  "Q100": {
+   "probabilites": {
+    "oui": 42,
+    "non": 58
+   },
+   "motif": "Le spot daté devrait se rapprocher des futures (vers 103 $) ; risque d'escalade en Iran."
+  },
+  "Q101": {
+   "probabilites": {
+    "oui": 18,
+    "non": 82
+   },
+   "motif": "Il faudrait une nouvelle escalade majeure."
+  },
+  "Q102": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "Seuil au-dessus du niveau actuel du spot."
+  },
+  "Q103": {
+   "probabilites": {
+    "oui": 58,
+    "non": 42
+   },
+   "motif": "8,2 % en août ; stabilité ou légère hausse."
+  },
+  "Q104": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Pas de majorité qualifiée malgré la proposition de la Commission ; Allemagne opposée."
+  },
+  "Q105": {
+   "probabilites": {
+    "oui": 31,
+    "non": 69
+   },
+   "motif": "Le spot devrait se maintenir au-dessus de 125 $ en moyenne, alors que les futures sont à 103 $."
+  },
+  "Q106": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Il faudrait une nouvelle flambée de l'énergie."
+  },
+  "Q107": {
+   "probabilites": {
+    "oui": 32,
+    "non": 68
+   },
+   "motif": "Hausse de 1,7 point en un mois possible avec le spot d'octobre, mais pas centrale."
+  },
+  "Q108": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Aucun accord en vue en trois semaines."
+  },
+  "Q109": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Le spot est plus haut en octobre et la base basse, mais la répercussion sur les prix à la pompe est incertaine."
+  },
+  "Q110": {
+   "probabilites": {
+    "oui": 28,
+    "non": 72
+   },
+   "motif": "Le déport suggère un repli d'ici décembre."
+  },
+  "Q111": {
+   "probabilites": {
+    "oui": 92,
+    "non": 8
+   },
+   "motif": "Le CFP doit être adopté avant 2028 ; un accord du Conseil européen d'ici septembre 2028 est quasi certain, même en retard."
+  },
+  "Q112": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Attal à 8 % face à Philippe et 15-17 % seul ; qualification peu probable."
+  },
+  "Q113": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Pic à 891 établissements le 6 octobre ; dépasser 1 000 suppose un mouvement plus fort encore."
+  },
+  "Q114": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Négociations trilatérales peut-être relancées en octobre mais points de blocage territoriaux intacts."
+  },
+  "Q115": {
+   "probabilites": {
+    "oui": 58,
+    "non": 42
+   },
+   "motif": "8,2 % en août ; stabilité probable."
+  },
+  "Q116": {
+   "probabilites": {
+    "oui": 35,
+    "non": 65
+   },
+   "motif": "Une coalition avec un Premier ministre d'un autre parti est plausible si le président élu (Philippe par exemple) n'a pas de majorité ; peu probable si le RN l'emporte."
+  },
+  "Q117": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Suppose un cessez-le-feu suivi du déploiement d'une force de réassurance."
+  },
+  "Q118": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Niveau actuel légèrement au-dessus du seuil."
+  },
+  "Q119": {
+   "probabilites": {
+    "oui": 65,
+    "non": 35
+   },
+   "motif": "Les PLF récents ont respecté la LPM et la défense est prioritaire ; risque lié au nouveau gouvernement post-électoral et aux finances."
+  },
+  "Q120": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Aucune dissolution n'est envisagée en octobre."
+  },
+  "Q121": {
+   "probabilites": {
+    "oui": 18,
+    "non": 82
+   },
+   "motif": "Le déstockage de gazole joue à la baisse en novembre."
+  },
+  "Q122": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Aucune procédure n'est prévue en octobre."
+  },
+  "Q123": {
+   "probabilites": {
+    "oui": 13,
+    "non": 87
+   },
+   "motif": "Un gain de 2 points en un mois est improbable."
+  },
+  "Q124": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Aucune intervention envisageable en trois semaines."
+  },
+  "Q125": {
+   "probabilites": {
+    "oui": 68,
+    "non": 32
+   },
+   "motif": "3,4 % en septembre ; le déstockage de gazole réduit l'inflation, mais elle reste probablement au-dessus de 3,1 %."
+  }
+ }
+}
