@@ -1,0 +1,232 @@
+{
+ "methode": {
+  "moyenne_sondages": "Moyenne non pondérée des moyennes par institut (chaque institut compte pour 1, ce qui neutralise les rollings Ifop/OpinionWay/Ipsos quotidiens). Fenêtre : fin de terrain dans les 30 jours précédant le scrutin, jusqu'à la veille de l'interdiction de publication. La moyenne simple de tous les sondages est donnée en variante (sondages_moyenne_tous_sondages).",
+  "erreur": "résultat officiel (Conseil constitutionnel, voix / suffrages exprimés) moins moyenne des sondages, en points ; positif = sous-estimé par les sondages.",
+  "index": "Wikipédia (en) 'Opinion polling for the 20xx French presidential election' comme index (la page fr 2012 s'arrête au 17 avril et est incomplète). Vérification de 2 sondages par élection sur source primaire.",
+  "gauche": "candidat le mieux placé du bloc : Hollande 2012, Mélenchon 2017, Mélenchon 2022",
+  "attention_2022_droite": "Pécresse a fait 4,78 % (sous 5 %), conservée car demandée ; Jadot (4,63 %), Roussel, Hidalgo sous 5 % en 'autres_candidats'.",
+  "correction_moyenne": "moyenne arithmétique des erreurs sur les 3 élections ; Zemmour (2022 seul) exclu des moyennes de bloc."
+ },
+ "elections": {
+  "2012": {
+   "fenetre_sondages": "2012-03-23 au 2012-04-20",
+   "nb_sondages": 54,
+   "nb_instituts": 8,
+   "instituts": {
+    "Ifop": 25,
+    "BVA": 4,
+    "CSA": 5,
+    "Harris": 5,
+    "Ipsos": 5,
+    "Kantar": 3,
+    "LH2": 3,
+    "OpinionWay": 4
+   },
+   "blocs": {
+    "RN": {
+     "candidat": "Le Pen",
+     "sondages_moyenne": 15.48,
+     "sondages_moyenne_tous_sondages": 15.71,
+     "resultat": 17.9,
+     "erreur": 2.42
+    },
+    "centre": {
+     "candidat": "Bayrou",
+     "sondages_moyenne": 10.55,
+     "sondages_moyenne_tous_sondages": 10.56,
+     "resultat": 9.13,
+     "erreur": -1.42
+    },
+    "gauche": {
+     "candidat": "Hollande",
+     "sondages_moyenne": 27.73,
+     "sondages_moyenne_tous_sondages": 27.4,
+     "resultat": 28.63,
+     "erreur": 0.9
+    },
+    "droite": {
+     "candidat": "Sarkozy",
+     "sondages_moyenne": 27.5,
+     "sondages_moyenne_tous_sondages": 27.72,
+     "resultat": 27.18,
+     "erreur": -0.32
+    }
+   },
+   "autres_candidats": {
+    "Mélenchon": {
+     "resultat": 11.1,
+     "sondages_moyenne": 13.73,
+     "erreur": -2.63
+    }
+   }
+  },
+  "2017": {
+   "fenetre_sondages": "2017-03-24 au 2017-04-22",
+   "nb_sondages": 67,
+   "nb_instituts": 9,
+   "instituts": {
+    "Odoxa": 5,
+    "BVA": 4,
+    "Elabe": 6,
+    "Ipsos": 6,
+    "Harris": 6,
+    "OpinionWay": 20,
+    "Ifop": 16,
+    "Kantar": 2,
+    "Le Terrain": 2
+   },
+   "blocs": {
+    "RN": {
+     "candidat": "Le Pen",
+     "sondages_moyenne": 23.31,
+     "sondages_moyenne_tous_sondages": 23.61,
+     "resultat": 21.3,
+     "erreur": -2.01
+    },
+    "centre": {
+     "candidat": "Macron",
+     "sondages_moyenne": 24.07,
+     "sondages_moyenne_tous_sondages": 23.9,
+     "resultat": 24.01,
+     "erreur": -0.06
+    },
+    "gauche": {
+     "candidat": "Mélenchon",
+     "sondages_moyenne": 17.98,
+     "sondages_moyenne_tous_sondages": 17.36,
+     "resultat": 19.58,
+     "erreur": 1.6
+    },
+    "droite": {
+     "candidat": "Fillon",
+     "sondages_moyenne": 18.51,
+     "sondages_moyenne_tous_sondages": 18.96,
+     "resultat": 20.01,
+     "erreur": 1.5
+    }
+   },
+   "autres_candidats": {
+    "Hamon": {
+     "resultat": 6.36,
+     "sondages_moyenne": 8.66,
+     "erreur": -2.3
+    }
+   }
+  },
+  "2022": {
+   "fenetre_sondages": "2022-03-11 au 2022-04-09",
+   "nb_sondages": 106,
+   "nb_instituts": 11,
+   "instituts": {
+    "Ipsos": 28,
+    "Harris": 5,
+    "Elabe": 6,
+    "Cluster17": 7,
+    "OpinionWay": 26,
+    "Ifop": 23,
+    "BVA": 4,
+    "YouGov": 2,
+    "Odoxa": 2,
+    "AtlasIntel": 1,
+    "Kantar": 2
+   },
+   "blocs": {
+    "RN": {
+     "candidat": "Le Pen",
+     "sondages_moyenne": 20.77,
+     "sondages_moyenne_tous_sondages": 19.85,
+     "resultat": 23.15,
+     "erreur": 2.38
+    },
+    "centre": {
+     "candidat": "Macron",
+     "sondages_moyenne": 27.85,
+     "sondages_moyenne_tous_sondages": 28.14,
+     "resultat": 27.85,
+     "erreur": 0.0
+    },
+    "gauche": {
+     "candidat": "Mélenchon",
+     "sondages_moyenne": 15.15,
+     "sondages_moyenne_tous_sondages": 14.43,
+     "resultat": 21.95,
+     "erreur": 6.8
+    },
+    "droite": {
+     "candidat": "Pécresse",
+     "sondages_moyenne": 9.06,
+     "sondages_moyenne_tous_sondages": 9.97,
+     "resultat": 4.78,
+     "erreur": -4.28
+    },
+    "zemmour": {
+     "candidat": "Zemmour",
+     "sondages_moyenne": 10.72,
+     "sondages_moyenne_tous_sondages": 10.72,
+     "resultat": 7.07,
+     "erreur": -3.65
+    }
+   },
+   "autres_candidats": {
+    "Jadot": {
+     "resultat": 4.63,
+     "sondages_moyenne": 5.09,
+     "erreur": -0.46
+    },
+    "Roussel": {
+     "resultat": 2.28,
+     "sondages_moyenne": 3.02,
+     "erreur": -0.74
+    },
+    "Hidalgo": {
+     "resultat": 1.75,
+     "sondages_moyenne": 2.0,
+     "erreur": -0.25
+    }
+   }
+  }
+ },
+ "correction_moyenne": {
+  "RN": 0.93,
+  "centre": -0.49,
+  "gauche": 3.1,
+  "droite": -1.03
+ },
+ "correction_moyenne_variante_tous_sondages": {
+  "RN": 1.06,
+  "centre": -0.54,
+  "gauche": 3.66,
+  "droite": -1.56
+ },
+ "verification_sources_primaires": {
+  "2012": [
+   "Ifop-Fiducial 18-20 avril 2012 (PDF Ifop) : Mélenchon 13,5 / Hollande 27,5 / Bayrou 10 / Sarkozy 27 / Le Pen 16,5",
+   "Harris Interactive 18-19 avril 2012 (communiqué Toluna) : Hollande 27,5 / Sarkozy 26,5 / Le Pen 16 / Mélenchon 12 / Bayrou 11"
+  ],
+  "2017": [
+   "Odoxa 21 avril 2017 (PDF) : Macron 24,5 / Le Pen 23 / Fillon 19 / Mélenchon 19 / Hamon 7,5",
+   "Elabe 19-20 avril 2017 (PDF) : Macron 24 / Le Pen 21,5 / Fillon 20 / Mélenchon 19,5"
+  ],
+  "2022": [
+   "Ipsos 8 avril 2022 (Commission des sondages) : Mélenchon 17,5 / Macron 26,5 / Pécresse 8,5 / Le Pen 22,5 / Zemmour 9",
+   "Elabe 7-8 avril 2022 (PDF) : Macron 26 / Le Pen 25 / Mélenchon 17,5 / Zemmour 8,5 / Pécresse 8"
+  ]
+ },
+ "sources": [
+  "https://en.wikipedia.org/wiki/Opinion_polling_for_the_2012_French_presidential_election",
+  "https://en.wikipedia.org/wiki/Opinion_polling_for_the_2017_French_presidential_election",
+  "https://en.wikipedia.org/wiki/Opinion_polling_for_the_2022_French_presidential_election",
+  "https://fr.wikipedia.org/wiki/Liste_de_sondages_sur_l%27%C3%A9lection_pr%C3%A9sidentielle_fran%C3%A7aise_de_2012",
+  "https://fr.wikipedia.org/wiki/Liste_de_sondages_sur_l%27%C3%A9lection_pr%C3%A9sidentielle_fran%C3%A7aise_de_2017",
+  "https://fr.wikipedia.org/wiki/Liste_de_sondages_sur_l%27%C3%A9lection_pr%C3%A9sidentielle_fran%C3%A7aise_de_2022",
+  "https://www.conseil-constitutionnel.fr/decision/2012/2012152PDR.htm",
+  "https://www.conseil-constitutionnel.fr/decision/2017/2017169PDR.htm",
+  "https://www.conseil-constitutionnel.fr/decision/2022/2022195PDR.htm",
+  "https://www.ifop.com/wp-content/uploads/2018/03/1849-1-study_file.pdf",
+  "https://tolunacorporate.com/wp-content/uploads/2025/06/CP_HIFR_VSD_20042012.pdf",
+  "http://www.odoxa.fr/wp-content/uploads/2017/04/Intention-de-vote-presidentielle-Odoxa-LePoint_210417.pdf",
+  "https://elabe.fr/wp-content/uploads/2017/04/20042017_bfmtv_lexpress_intentions-de-vote-presidentielles-vague-10.pdf",
+  "http://www.commission-des-sondages.fr/notices/files/notices/2022/avril/9568-ipsos-le-monde-intention-de-vote-presidentielle-1er-tour-le-8-avril-11h-du-soir.pdf",
+  "https://elabe.fr/wp-content/uploads/2022/04/les-francais-et-lelection-presidentielle-2022-1.pdf"
+ ]
+}

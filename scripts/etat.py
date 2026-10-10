@@ -5,9 +5,11 @@ Affiche, mois par mois, l'état de VE-POP, VE-SOND, VE-RN, VE-MOBIL et VE-LYCEE 
 modele/reseau/structure_v0.json ; avec --ecrire, complète modele/reseau/observations.json (les états déjà
 inscrits ne sont pas modifiés). VE-ECART vient de la collecte nocturne (data/historique/ecart_FR_DE_pb.csv).
 
-Sondages : moyenne des hypothèses du mois qui testent Édouard Philippe (hypothèse principale), corrigée de
-l'erreur historique des sondages de premier tour par bloc (CORRECTION, en points). La correction vaut 0 en v0 :
-elle est à estimer sur 2017 et 2022 (écart entre la moyenne du dernier mois et le résultat) à une passe ultérieure.
+Sondages : moyenne des hypothèses du mois qui testent Édouard Philippe (hypothèse principale). Les états VE-RN et
+VE-SOND suivent leur définition (moyenne publiée, sans correction). La moyenne corrigée de l'erreur historique
+(data/etat/erreur_sondages.json : résultat moins moyenne du dernier mois, 2012, 2017 et 2022, par bloc) est
+affichée à côté : elle vaut pour le dernier mois avant le scrutin, et son usage plus tôt dans la campagne est un
+point ouvert de la procédure du réseau.
 """
 import json
 import statistics
@@ -15,7 +17,8 @@ import sys
 
 from commun import RACINE, lire_json, lire_jsonl
 
-CORRECTION = {"RN": 0.0, "centre": 0.0, "gauche": 0.0, "droite": 0.0}
+CORRECTION = {"RN": 0.0, "centre": 0.0, "gauche": 0.0, "droite": 0.0}   # appliquée aux états : aucune (définition)
+HISTORIQUE = (lire_json("data/etat/erreur_sondages.json") or {}).get("correction_moyenne", {})
 BLOCS = {"Le Pen": "RN", "Bardella": "RN", "Philippe": "centre", "Attal": "centre", "Mélenchon": "gauche",
          "Glucksmann": "gauche", "Ruffin": "gauche", "Tondelier": "gauche", "Roussel": "gauche", "Faure": "gauche",
          "Retailleau": "droite", "Lisnard": "droite", "Wauquiez": "droite", "Bertrand": "droite"}
@@ -48,6 +51,8 @@ def etats():
         moy = {b: statistics.mean(v) for b, v in meilleur.items()}
         if moy:
             out.setdefault("VE-SOND", {})[m] = max(moy, key=moy.get)
+            corr = {b: round(v + HISTORIQUE.get(b, 0), 1) for b, v in moy.items()}
+            out.setdefault("_corrigee", {})[m] = {"RN": round(rn + HISTORIQUE.get("RN", 0), 1), **corr}
     for j in lire_jsonl("data/etat/mobilisation.jsonl"):
         m = j["date"][:7]
         man, eta = j.get("manifestants_interieur"), j.get("etablissements_perturbes_education")
@@ -70,6 +75,8 @@ if __name__ == "__main__":
         f = "modele/reseau/observations.json"
         o = lire_json(f) or {"etats": {}}
         for v, d in e.items():
+            if v.startswith("_"):
+                continue
             for m, s in d.items():
                 if m >= "2026-10":
                     o["etats"].setdefault(v, {}).setdefault(m, s)
