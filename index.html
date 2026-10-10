@@ -315,7 +315,7 @@ const CRIT=8;
 const secOf=h=>{for(const [id,,items] of NAV)if(items.some(([k])=>k===h))return id;return "vue"};
 const about=`Prévisions produites par des agents IA à partir de données publiques. Expérience personnelle, aucun conseil. <a href="https://github.com/Beynat/psychohistoire" target="_blank" rel="noopener">Dépôt public</a>`;
 function navHtml(base){
-  $("#side").innerHTML=`<p class="brand">Psychohistoire</p><p class="releve">Relevé du ${dfr(D.meta.releve)}${D.meta.piste?` · piste ${esc(D.meta.piste)}`:""}</p>`+NAV.map(([,lab,items])=>`<div class="nav-sec"><p class="h">${lab}</p>${items.map(([k,l])=>`<button data-go="${k}"${k===base?' aria-current="page"':""}>${l}</button>`).join("")}</div>`).join("")+`<div class="about">${about}</div>`;
+  $("#side").innerHTML=`<p class="brand">Psychohistoire</p><p class="releve">Relevé du ${dfr(D.meta.releve)}${D.meta.piste?` · piste ${esc(D.meta.piste)}`:""}</p><p class="releve"><a href="reseau.html">Réseau v0 : carte, témoin et réseau, actualité</a></p>`+NAV.map(([,lab,items])=>`<div class="nav-sec"><p class="h">${lab}</p>${items.map(([k,l])=>`<button data-go="${k}"${k===base?' aria-current="page"':""}>${l}</button>`).join("")}</div>`).join("")+`<div class="about">${about}</div>`;
   const s=secOf(base);const items=NAV.find(n=>n[0]===s)[2];
   $("#topnav").innerHTML=`<div class="t1"><span class="brand">Psychohistoire</span><span class="releve">Relevé du ${dfr(D.meta.releve)}</span></div>
   <div class="row r1">${NAV.map(([id,lab,it])=>`<button data-go="${it[0][0]}"${id===s?' aria-current="true"':""}>${lab}</button>`).join("")}</div>
