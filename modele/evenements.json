@@ -1,6 +1,6 @@
 {
  "description": "Banque d'événements (noyau, section 8.8). Générée par scripts/evenements.py depuis modele/banque/criteres.json. Seuls le nom, la sous-question et le critère sont transmis aux prévisionnistes.",
- "genere_le": "2026-10-10T08:37:12+02:00",
+ "genere_le": "2026-10-10T08:59:46+02:00",
  "premier_tour": "2027-04-18",
  "second_tour": "2027-05-02",
  "evenements": [
@@ -583,7 +583,7 @@
    "evenement": "EV-15",
    "nom": "Censure du gouvernement avant le second tour de 2027",
    "domaine": "politique",
-   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) entre le 1er janvier 2027 et le 2 mai 2027.",
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
    "sous_question": "du 1er janvier 2027 au second tour",
    "source_resolution": "Assemblée nationale, scrutins",
    "fenetre": {
@@ -599,6 +599,7 @@
    "origine": "relecture 15, I3 (gouvernabilité après 2026)",
    "motif_inaccessible": null,
    "nature": "survenue",
+   "motif_reecriture": "10 octobre 2026 : date de fin remplacée par « pendant la fenêtre » (question mensuelle Q120 de l'essai 2026-10-v0 : énoncé au 31 octobre, critère au 2 mai 2027). Ancien texte : « entre le 1er janvier 2027 et le 2 mai 2027. »",
    "source_accessible": true,
    "contexte_v1": {
     "critere": "Adoption d'une motion de censure avant le 31/12/2026. Taux de base (calcul de B) : 1 censure (Barnier, déc. 2024) et 1 chute sur question de confiance (Bayrou, sept. 2025) en 4 budgets. Pas de marché.",
@@ -610,7 +611,7 @@
    "evenement": "EV-15",
    "nom": "Censure du gouvernement après le second tour de 2027",
    "domaine": "politique",
-   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) entre le 3 mai 2027 et le 30 septembre 2028.",
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
    "sous_question": "après le second tour",
    "source_resolution": "Assemblée nationale, scrutins",
    "fenetre": {
@@ -626,6 +627,7 @@
    "origine": "relecture 15, I3 (gouvernabilité après 2026)",
    "motif_inaccessible": null,
    "nature": "survenue",
+   "motif_reecriture": "10 octobre 2026 : date de fin remplacée par « pendant la fenêtre » (question mensuelle Q120 de l'essai 2026-10-v0 : énoncé au 31 octobre, critère au 2 mai 2027). Ancien texte : « entre le 3 mai 2027 et le 30 septembre 2028. »",
    "source_accessible": true,
    "contexte_v1": {
     "critere": "Adoption d'une motion de censure avant le 31/12/2026. Taux de base (calcul de B) : 1 censure (Barnier, déc. 2024) et 1 chute sur question de confiance (Bayrou, sept. 2025) en 4 budgets. Pas de marché.",
@@ -637,7 +639,7 @@
    "evenement": "EV-16",
    "nom": "Dissolution avant le second tour",
    "domaine": "politique",
-   "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel entre le début de la fenêtre et le 2 mai 2027.",
+   "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel pendant la fenêtre.",
    "sous_question": "avant le second tour",
    "source_resolution": "Journal officiel",
    "fenetre": {
@@ -653,6 +655,7 @@
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "motif_inaccessible": null,
    "nature": "survenue",
+   "motif_reecriture": "10 octobre 2026 : date de fin remplacée par « pendant la fenêtre » (question mensuelle Q120 de l'essai 2026-10-v0 : énoncé au 31 octobre, critère au 2 mai 2027). Ancien texte : « entre le début de la fenêtre et le 2 mai 2027. »",
    "source_accessible": true,
    "contexte_v1": {
     "critere": "Critère élargi par la fusion à toute la période : décret de dissolution entre le 03/10/2026 et le 30/09/2028, avec deux fenêtres à résoudre séparément (avant / après le second tour 2027). Polymarket : ~5 % d'annonce avant le 31/12/2026 ; aucune cote pour la fenêtre post-présidentielle.",

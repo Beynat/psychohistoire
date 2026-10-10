@@ -341,7 +341,8 @@ print(json.dumps(b["auteurs"]["modèle"]["calibration_8_6"]["p_moyenne"]))
 
 
 def test_verifier_reponse():
-    """Relecture 15, S1 : une réponse sans liste d'adresses, ou qui cite le dépôt ou un marché, est rejetée."""
+    """Relecture 15, S1 : une réponse sans liste d'adresses, ou qui cite le dépôt ou un marché, est rejetée.
+    Consigne v1.6 : moins de 5 pages lues, ou un même motif sur plus d'un tiers des questions, est rejeté."""
     tmp, run = _copie()
     try:
         run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
@@ -350,9 +351,17 @@ def test_verifier_reponse():
 import json, verifier_reponse as v
 qs = json.load(open('data/cycles/2026-11/questions.json'))['questions']
 prev = {q['id']: {'probabilites': {k: round(100 / len(q['issues']), 4) for k in q['issues']}} for q in qs}
+prev = {k: {**v, 'motif': 'motif propre ' + k} for k, v in prev.items()}
 base = {'previsionniste': 'p1', 'modele': 'm', 'recherches': 12, 'previsions': prev}
+pages = ['https://www.lemonde.fr/' + c for c in 'abcde']
 res = {}
-for nom, adr in (('sans', None), ('propre', ['https://www.lemonde.fr/a']),
+generique = {k: {**v, 'motif': 'Taux de base et situation actuelle.'} for k, v in prev.items()}
+json.dump({**base, 'adresses': pages, 'previsions': generique}, open('r_generique.json', 'w'))
+res['generique'] = v.defauts('2026-11', 'r_generique.json')
+sans_motif = {k: {'probabilites': x['probabilites']} for k, x in prev.items()}
+json.dump({**base, 'adresses': pages, 'previsions': sans_motif}, open('r_sans_motif.json', 'w'))
+res['sans_motif'] = v.defauts('2026-11', 'r_sans_motif.json')
+for nom, adr in (('sans', None), ('propre', pages), ('peu_de_pages', pages[:2]),
                  ('depot', ['https://github.com/Beynat/psychohistoire/blob/main/data/x.json']),
                  ('marche', ['https://polymarket.com/event/x'])):
     r = dict(base) if adr is None else {**base, 'adresses': adr}
@@ -363,6 +372,10 @@ print(json.dumps(res, ensure_ascii=False))
         out = json.loads(run("-c", code).strip().splitlines()[-1])
         assert out["propre"] == [], out["propre"][:3]
         assert out["sans"] and out["depot"] and out["marche"], out
+        # Consigne v1.6 (essai 2026-10-v0) : motifs génériques, motifs absents, trop peu de pages lues.
+        assert any("motif identique" in x for x in out["generique"]), out["generique"]
+        assert any("motif identique" in x for x in out["sans_motif"]), out["sans_motif"]
+        assert any("pages lues" in x for x in out["peu_de_pages"]), out["peu_de_pages"]
     finally:
         shutil.rmtree(tmp.parent)
 
@@ -449,6 +462,27 @@ def test_correspondances_figees():
         r = subprocess.run([sys.executable, "scripts/controle_banque.py"], cwd=tmp, capture_output=True, text=True,
                            env={**os.environ, "PYTHONPATH": str(tmp / "scripts")})
         assert r.returncode != 0 and "EV-16a : correspondance" in r.stdout, r.stdout[-500:]
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
+def test_mensuelle_sans_date_de_fin():
+    """Essai 2026-10-v0, Q120 : le critère d'une question mensuelle n'écrit pas la fin de sa fenêtre, sinon
+    l'énoncé du mois et le critère se contredisent."""
+    tmp, run = _copie()
+    try:
+        import subprocess, os
+        assert "Banque conforme" in run("scripts/controle_banque.py")
+        c = tmp / "modele/banque/criteres.json"
+        d = json.loads(c.read_text())
+        for e in d["evenements"]:
+            if e["id"] == "EV-16a":
+                e["critere"] = e["critere"].replace("pendant la fenêtre.", "entre le début de la fenêtre et le 2 mai 2027.")
+        c.write_text(json.dumps(d, ensure_ascii=False))
+        run("scripts/evenements.py")
+        r = subprocess.run([sys.executable, "scripts/controle_banque.py"], cwd=tmp, capture_output=True, text=True,
+                           env={**os.environ, "PYTHONPATH": str(tmp / "scripts")})
+        assert r.returncode != 0 and "EV-16a : question mensuelle" in r.stdout, r.stdout[-500:]
     finally:
         shutil.rmtree(tmp.parent)
 

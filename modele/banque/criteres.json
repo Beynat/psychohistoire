@@ -1,5 +1,5 @@
 {
- "version": "1.11",
+ "version": "1.12",
  "date": "2026-10-10",
  "description": "Critères de résolution de la banque d'événements, seuls transmis aux prévisionnistes. Le texte d'origine du balayage v1 reste dans modele/v1 et figure dans evenements.json sous « contexte_v1 », jamais transmis (relecture 8, G1). Sources de résolution : modele/sources.md, règle 1. Champ « nature » (relecture 9, H1) : « survenue » pour un événement qui peut se produire à tout moment de la fenêtre (taux de base ramené à la fenêtre restante par un risque constant), « constat » pour une issue constatée à date fixe (taux de base non converti). Champ « acte » (relecture 12, K4) : les questions tranchées par le même acte officiel ou liées à la même candidature (pourvoi de Marine Le Pen, liste des candidats et résultats du premier tour de 2027) forment une seule grappe. « taux_base_mode: uniforme » remplace l'ancien drapeau « taux_base » (relecture 12, S4).",
  "second_tour": "2027-05-02",
@@ -526,7 +526,7 @@
    "evenement": "EV-15",
    "nom": "Censure du gouvernement avant le second tour de 2027",
    "domaine": "politique",
-   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) entre le 1er janvier 2027 et le 2 mai 2027.",
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
    "sous_question": "du 1er janvier 2027 au second tour",
    "source_resolution": "Assemblée nationale, scrutins",
    "fenetre": {
@@ -542,14 +542,15 @@
    "origine": "relecture 15, I3 (gouvernabilité après 2026)",
    "accessible": true,
    "motif_inaccessible": null,
-   "nature": "survenue"
+   "nature": "survenue",
+   "motif_reecriture": "10 octobre 2026 : date de fin remplacée par « pendant la fenêtre » (question mensuelle Q120 de l'essai 2026-10-v0 : énoncé au 31 octobre, critère au 2 mai 2027). Ancien texte : « entre le 1er janvier 2027 et le 2 mai 2027. »"
   },
   {
    "id": "EV-15c",
    "evenement": "EV-15",
    "nom": "Censure du gouvernement après le second tour de 2027",
    "domaine": "politique",
-   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) entre le 3 mai 2027 et le 30 septembre 2028.",
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
    "sous_question": "après le second tour",
    "source_resolution": "Assemblée nationale, scrutins",
    "fenetre": {
@@ -565,14 +566,15 @@
    "origine": "relecture 15, I3 (gouvernabilité après 2026)",
    "accessible": true,
    "motif_inaccessible": null,
-   "nature": "survenue"
+   "nature": "survenue",
+   "motif_reecriture": "10 octobre 2026 : date de fin remplacée par « pendant la fenêtre » (question mensuelle Q120 de l'essai 2026-10-v0 : énoncé au 31 octobre, critère au 2 mai 2027). Ancien texte : « entre le 3 mai 2027 et le 30 septembre 2028. »"
   },
   {
    "id": "EV-16a",
    "evenement": "EV-16",
    "nom": "Dissolution avant le second tour",
    "domaine": "politique",
-   "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel entre le début de la fenêtre et le 2 mai 2027.",
+   "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel pendant la fenêtre.",
    "sous_question": "avant le second tour",
    "source_resolution": "Journal officiel",
    "fenetre": {
@@ -588,7 +590,8 @@
    "origine": "balayage v1, critère réécrit (relecture 8)",
    "accessible": true,
    "motif_inaccessible": null,
-   "nature": "survenue"
+   "nature": "survenue",
+   "motif_reecriture": "10 octobre 2026 : date de fin remplacée par « pendant la fenêtre » (question mensuelle Q120 de l'essai 2026-10-v0 : énoncé au 31 octobre, critère au 2 mai 2027). Ancien texte : « entre le début de la fenêtre et le 2 mai 2027. »"
   },
   {
    "id": "EV-16b",

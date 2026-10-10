@@ -6,13 +6,16 @@ déclarées (consigne v1.1) ; une réponse à chaque question de data/cycles/<ET
 issues exactement celles de la question (essai du 4 octobre 2026 : un prévisionniste avait répondu
 oui/non à une question à cinq issues) ; pourcentages entre 0 et 100, de somme 100 à 1 point près ;
 liste des adresses consultées (consigne v1.5), sans adresse du dépôt, de sa page publiée, ni d'un marché ou
-agrégateur de prévisions (relecture 15, S1).
+agrégateur de prévisions (relecture 15, S1) ; au moins 5 adresses distinctes de pages lues, et au plus un tiers
+des motifs identiques, motif absent compris (consigne v1.6, essai 2026-10-v0 : un prévisionniste avait le même
+motif générique sur 97 questions sur 125, un autre n'avait ouvert aucune page).
 Code de sortie 0 si conforme, 1 sinon, avec la liste des défauts : le prévisionniste est alors
 relancé une fois avec cette liste.
 """
 import json
 import re
 import sys
+from collections import Counter
 
 from commun import lire_json
 
@@ -24,6 +27,9 @@ INTERDITES = re.compile(r"(github\.com/beynat/psychohistoire|beynat\.github\.io/
                         # cotes de paris (relecture de suivi 16)
                         r"betfair\.|oddschecker\.|winamax\.|betclic\.|unibet\.|parionssport|zebet\.|bet365\.|"
                         r"paddypower\.|williamhill\.|smarkets\.)", re.I)
+
+
+MIN_PAGES = 5
 
 
 def defauts(etiquette, chemin):
@@ -41,6 +47,8 @@ def defauts(etiquette, chemin):
         d.append("liste des adresses consultées vide ou mal formée")
     else:
         d += [f"adresse interdite consultée : {a}" for a in r["adresses"] if INTERDITES.search(str(a))]
+        if len({str(a).strip() for a in r["adresses"]}) < MIN_PAGES:
+            d.append(f"{len(set(map(str, r['adresses'])))} pages lues déclarées (minimum {MIN_PAGES})")
     anon = (lire_json(f"data/cycles/{etiquette}/anonymisation.json") or {}).get("correspondance", {})
     previsions = {anon.get(k, k): v for k, v in r["previsions"].items()}   # identifiants remis → banque
     for q in lire_json(f"data/cycles/{etiquette}/questions.json")["questions"]:
@@ -56,6 +64,12 @@ def defauts(etiquette, chemin):
             d.append(f"{q['id']} : pourcentage hors de 0-100")
         elif abs(sum(pr.values()) - 100) > 1:
             d.append(f"{q['id']} : somme {sum(pr.values()):g} au lieu de 100")
+    if isinstance(r["previsions"], dict) and r["previsions"]:
+        motifs = Counter(" ".join(str((p or {}).get("motif") or "").lower().split()) if isinstance(p, dict) else ""
+                         for p in r["previsions"].values())
+        texte, n = motifs.most_common(1)[0]
+        if n > len(r["previsions"]) / 3:
+            d.append(f"motif identique sur {n} questions sur {len(r['previsions'])} : « {texte[:80]} » (maximum un tiers)")
     return d
 
 

@@ -33,6 +33,16 @@ def gels_reels():
     return out
 
 
+MOIS = ("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre",
+        "novembre", "décembre")
+
+
+def date_fr(iso):
+    """2027-05-02 → « 2 mai 2027 » ; 2027-01-01 → « 1er janvier 2027 »."""
+    a, m, j = iso.split("-")
+    return f"{int(j)}{'er' if j == '01' else ''} {MOIS[int(m) - 1]} {a}"
+
+
 def controler():
     erreurs = []
     actuels = {e["id"]: e for e in lire_json("modele/evenements.json")["evenements"]}
@@ -44,8 +54,15 @@ def controler():
         a, r = actuels.get(i), regeneres.get(i)
         if a is None or r is None or any(a.get(c) != r.get(c) for c in CHAMPS):
             erreurs.append(f"{i} : modele/evenements.json n'est pas à jour de modele/banque/criteres.json (relancer scripts/evenements.py)")
+    # Question mensuelle (essai 2026-10-v0, Q120) : son énoncé porte la fenêtre du mois ; une date de fin écrite
+    # dans le critère la contredirait. Le critère dit « pendant la fenêtre ».
+    for i, r in regeneres.items():
+        if r.get("mensuelle") and r.get("fenetre"):
+            fin = r["fenetre"]["fin"]
+            if fin in r.get("critere", "") or date_fr(fin) in r.get("critere", ""):
+                erreurs.append(f"{i} : question mensuelle dont le critère écrit la fin de fenêtre ({fin}) ; écrire « pendant la fenêtre »")
     gels = gels_reels()
-    statut = lire_json("modele/statut.json", {"definitif": False})
+    statut =lire_json("modele/statut.json", {"definitif": False})
     if gels and not statut.get("definitif"):
         erreurs.append(f"gel du cycle réel {gels[0][0]} présent alors que le protocole n'est pas déclaré définitif (noyau, section 12)")
     premiers = {}
