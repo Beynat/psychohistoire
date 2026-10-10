@@ -2,8 +2,8 @@
  "genere_le": "2026-10-10",
  "registre": "registre/essai_v0.jsonl",
  "cycle": "2026-10-v0",
- "version_structure": "structure v0.3 (10 octobre 2026, dissolution après l'élection découpée en mai-juin 2027 et ensuite)",
- "version_tables": "tables v0 (E1, E2 Opus ; E3 Sonnet ; 10 octobre 2026) ; v0.2 : censure découpée (dérivée) ; persistance lycéenne calibrée (λ = 0,45) ; v0.3 : dissolution après l'élection découpée, candidature Le Pen revenue à l'agrégation (réélicitation en cours) (passe du 10 octobre)",
+ "version_structure": "structure v0.4 (10 octobre 2026, chaîne présidentielle réélicitée : pourvoi au 12 mars, liste au 26 mars, duel conditionnel aux candidatures du centre, vainqueur selon Le Pen ou Bardella)",
+ "version_tables": "tables v0.4 (E1, E2, E3 ; chaîne présidentielle par E4, E5 Opus et E6 Sonnet sur dossier sourcé, 10 octobre 2026) ; dissolution après l'élection découpée",
  "codes_candidats": {
   "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate, sinon Jordan Bardella)",
   "PHI": "Édouard Philippe",
@@ -177,7 +177,7 @@
   },
   {
    "id": "PV-POURVOI",
-   "nom": "Issue du pourvoi de Marine Le Pen au 1er mars 2027",
+   "nom": "Issue du pourvoi de Marine Le Pen au 12 mars 2027 (fin du dépôt des parrainages)",
    "nature": "daté",
    "issues": [
     "rejet ou non-admission",
@@ -189,7 +189,7 @@
     "EV-20"
    ],
    "indicateurs": [],
-   "date": "2027-03-01",
+   "date": "2027-03-12",
    "date_note": null
   },
   {
@@ -260,8 +260,8 @@
     "EV-40a"
    ],
    "indicateurs": [],
-   "date": "2027-03-15",
-   "date_note": "liste officielle des candidats ; date exacte à confirmer"
+   "date": "2027-03-26",
+   "date_note": "liste officielle des candidats, au plus tard le 26 mars 2027"
   },
   {
    "id": "PV-DUEL",
@@ -732,6 +732,12 @@
    "de": "VE-RN",
    "vers": "PV-VAINQ",
    "decalage": 1,
+   "jalons": []
+  },
+  {
+   "de": "PV-LEPEN",
+   "vers": "PV-VAINQ",
+   "decalage": 0,
    "jalons": []
   },
   {

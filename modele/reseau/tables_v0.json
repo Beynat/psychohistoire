@@ -1,5 +1,5 @@
 {
- "version": "tables v0 (E1, E2 Opus ; E3 Sonnet ; 10 octobre 2026) ; v0.2 : censure découpée (dérivée) ; persistance lycéenne calibrée (λ = 0,45) ; v0.3 : dissolution après l'élection découpée, candidature Le Pen revenue à l'agrégation (réélicitation en cours) (passe du 10 octobre)",
+ "version": "tables v0.4 (E1, E2, E3 ; chaîne présidentielle par E4, E5 Opus et E6 Sonnet sur dossier sourcé, 10 octobre 2026) ; dissolution après l'élection découpée",
  "evaluateurs": [
   "E1",
   "E2",
@@ -429,28 +429,33 @@
    "sigma": 0.3
   },
   "PV-AUDIENCE": {
-   "p_fenetre": 0.5085612597118228,
+   "p_fenetre": 0.5167,
    "multiplicateurs": {},
-   "sigma": 0.525
+   "sigma": 0.3
   },
   "PV-POURVOI": {
-   "base": {
-    "rejet ou non-admission": 0.034456815164515785,
-    "cassation totale ou partielle": 0.012642313784726848,
-    "désistement": 0.014494234841362563,
-    "pas d'arrêt": 0.9384066362093948
-   },
-   "multiplicateurs": {
-    "PV-AUDIENCE": {
-     "oui": {
-      "rejet ou non-admission": 12.055300320299482,
-      "cassation totale ou partielle": 10.25985568006018,
-      "désistement": 0.7937005259840998,
-      "pas d'arrêt": 0.4985290099538287
-     }
+   "conditionnelle": {
+    "oui": {
+     "rejet ou non-admission": 0.3459797103030224,
+     "cassation totale ou partielle": 0.11559590210168517,
+     "désistement": 0.012649988331339108,
+     "pas d'arrêt": 0.5257743992639533
+    },
+    "non": {
+     "rejet ou non-admission": 0.02623368324342366,
+     "cassation totale ou partielle": 0.010005312473721497,
+     "désistement": 0.012615307367484226,
+     "pas d'arrêt": 0.9511456969153705
     }
    },
-   "sigma": 0.312
+   "base": {
+    "rejet ou non-admission": 0.02623368324342366,
+    "cassation totale ou partielle": 0.010005312473721497,
+    "désistement": 0.012615307367484226,
+    "pas d'arrêt": 0.9511456969153705
+   },
+   "multiplicateurs": {},
+   "sigma": 0.3
   },
   "PV-ECOLO": {
    "base": {
@@ -539,138 +544,154 @@
    "sigma": 0.3
   },
   "PV-LEPEN": {
-   "base": {
-    "candidate": 0.8582907330864261,
-    "non candidate": 0.1417092669135739
-   },
-   "multiplicateurs": {
-    "PV-POURVOI": {
-     "cassation totale ou partielle": {
-      "candidate": 1.0476895531716472,
-      "non candidate": 0.8728518735186042
-     },
-     "désistement": {
-      "candidate": 1.0,
-      "non candidate": 0.8879040017426006
-     },
-     "pas d'arrêt": {
-      "candidate": 1.0322801154563672,
-      "non candidate": 0.8617738760127536
-     }
+   "conditionnelle": {
+    "rejet ou non-admission": {
+     "candidate": 0.44999999999999996,
+     "non candidate": 0.55
     },
-    "VE-RN": {
-     "< 30 %": {
-      "candidate": 0.8879040017426006,
-      "non candidate": 1.3103706971044484
-     },
-     "> 35 %": {
-      "candidate": 1.0322801154563672,
-      "non candidate": 0.8242570599617114
-     }
+    "cassation totale ou partielle": {
+     "candidate": 0.9361400527406972,
+     "non candidate": 0.06385994725930275
+    },
+    "désistement": {
+     "candidate": 0.3328938683330666,
+     "non candidate": 0.6671061316669334
+    },
+    "pas d'arrêt": {
+     "candidate": 0.9109382413158233,
+     "non candidate": 0.08906175868417654
     }
    },
-   "sigma": 0.674
-  },
-  "PV-DUEL": {
    "base": {
-    "RN-PHI": 0.5003218938785293,
-    "RN-ATT": 0.082114082871236,
-    "RN-MEL": 0.16339127256759825,
-    "RN-GLU": 0.08426554352380983,
-    "RN-RET": 0.040255006607446776,
-    "RN-LIS": 0.006460710233040249,
-    "RN-AUT": 0.04107514125264876,
-    "PHI-MEL": 0.028360887695667684,
-    "PHI-GLU": 0.013466540302906584,
-    "AUTRE": 0.04028892106711654
+    "candidate": 0.9109382413158233,
+    "non candidate": 0.08906175868417654
    },
    "multiplicateurs": {
-    "PV-BLOC": {
-     "Philippe seul": {
-      "RN-PHI": 1.254793329036006,
-      "RN-ATT": 1.0,
-      "RN-MEL": 0.8937843320634039,
-      "RN-GLU": 0.887354006270348,
-      "RN-RET": 0.9403831243444021,
-      "RN-LIS": 0.9739963373377919,
-      "RN-AUT": 1.049205748562268,
-      "PHI-MEL": 1.0591045005978188,
-      "PHI-GLU": 1.1550502529936317,
-      "AUTRE": 1.0350877814568942
+    "VE-RN": {
+     "< 30 %": {
+      "candidate": 0.833,
+      "non candidate": 1.428
      },
-     "Attal seul": {
-      "RN-PHI": 1.0,
-      "RN-ATT": 3.38103629394072,
-      "RN-MEL": 0.94488478761141,
-      "RN-GLU": 0.8517840268993504,
-      "RN-RET": 1.1561984150348765,
-      "RN-LIS": 0.9177544478619445,
-      "RN-AUT": 0.9177544478619445,
-      "PHI-MEL": 1.0,
-      "PHI-GLU": 1.0,
-      "AUTRE": 1.1165540343316849
-     },
-     "aucun des deux": {
-      "RN-PHI": 1.0,
-      "RN-ATT": 1.0,
-      "RN-MEL": 1.2543189269760324,
-      "RN-GLU": 1.2665386143250479,
-      "RN-RET": 2.074289687681776,
-      "RN-LIS": 1.451801170324752,
-      "RN-AUT": 1.6920039717709172,
-      "PHI-MEL": 1.0,
-      "PHI-GLU": 1.0,
-      "AUTRE": 1.1522953525110873
-     }
-    },
-    "VE-SOND": {
-     "gauche": {
-      "RN-PHI": 0.40258739405996896,
-      "RN-ATT": 0.40052015663282853,
-      "RN-MEL": 2.3772857035003496,
-      "RN-GLU": 2.278100911699776,
-      "RN-RET": 0.8810868114910337,
-      "RN-LIS": 1.008592622039689,
-      "RN-AUT": 1.0866146403050794,
-      "PHI-MEL": 1.5878440777735114,
-      "PHI-GLU": 1.5878440777735114,
-      "AUTRE": 1.2269370990609212
-     },
-     "droite": {
-      "RN-PHI": 0.4905976325897814,
-      "RN-ATT": 0.5027580912242833,
-      "RN-MEL": 0.7732844466388241,
-      "RN-GLU": 0.7222767436376807,
-      "RN-RET": 5.534961859975083,
-      "RN-LIS": 4.855221640898632,
-      "RN-AUT": 1.547933423502206,
-      "PHI-MEL": 0.8462347877645416,
-      "PHI-GLU": 0.8908538705945452,
-      "AUTRE": 1.6184072136328773
-     }
-    },
-    "PV-LEPEN": {
-     "non candidate": {
-      "RN-PHI": 1.0,
-      "RN-ATT": 1.0,
-      "RN-MEL": 1.0,
-      "RN-GLU": 1.0,
-      "RN-RET": 1.0,
-      "RN-LIS": 1.0,
-      "RN-AUT": 1.0,
-      "PHI-MEL": 1.064867844916644,
-      "PHI-GLU": 1.064867844916644,
-      "AUTRE": 1.061476523080014
+     "> 35 %": {
+      "candidate": 1.0831,
+      "non candidate": 0.7319
      }
     }
    },
    "sigma": 0.3
   },
+  "PV-DUEL": {
+   "conditionnelle": {
+    "les deux": {
+     "RN-PHI": 0.39271036065240766,
+     "RN-ATT": 0.05329123574689309,
+     "RN-MEL": 0.3338747607870394,
+     "RN-GLU": 0.09608353750285947,
+     "RN-RET": 0.0399379666438328,
+     "RN-LIS": 0.00806514665591377,
+     "RN-AUT": 0.0184916532122839,
+     "PHI-MEL": 0.016800744678168503,
+     "PHI-GLU": 0.00806514665591377,
+     "AUTRE": 0.032679447464687636
+    },
+    "Philippe seul": {
+     "RN-PHI": 0.6492795937497273,
+     "RN-ATT": 0.0,
+     "RN-MEL": 0.19797978352023285,
+     "RN-GLU": 0.04783527543325535,
+     "RN-RET": 0.027616424111248792,
+     "RN-LIS": 0.008027117879824781,
+     "RN-AUT": 0.01840446137690549,
+     "PHI-MEL": 0.021782980053347258,
+     "PHI-GLU": 0.008027117879824781,
+     "AUTRE": 0.02104724599563336
+    },
+    "Attal seul": {
+     "RN-PHI": 0.0,
+     "RN-ATT": 0.3883317850762182,
+     "RN-MEL": 0.35860571839594724,
+     "RN-GLU": 0.09102378605562897,
+     "RN-RET": 0.060806323425644494,
+     "RN-LIS": 0.010151571287917176,
+     "RN-AUT": 0.031617331832034516,
+     "PHI-MEL": 0.0,
+     "PHI-GLU": 0.0,
+     "AUTRE": 0.0594634839266094
+    },
+    "aucun des deux": {
+     "RN-PHI": 0.0,
+     "RN-ATT": 0.0,
+     "RN-MEL": 0.4543606775812842,
+     "RN-GLU": 0.16842147748592223,
+     "RN-RET": 0.18591384875182174,
+     "RN-LIS": 0.03682182048131226,
+     "RN-AUT": 0.0914587230604298,
+     "PHI-MEL": 0.0,
+     "PHI-GLU": 0.0,
+     "AUTRE": 0.0630234526392298
+    }
+   },
+   "base": {
+    "RN-PHI": 0.6492795937497273,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.19797978352023285,
+    "RN-GLU": 0.04783527543325535,
+    "RN-RET": 0.027616424111248792,
+    "RN-LIS": 0.008027117879824781,
+    "RN-AUT": 0.01840446137690549,
+    "PHI-MEL": 0.021782980053347258,
+    "PHI-GLU": 0.008027117879824781,
+    "AUTRE": 0.02104724599563336
+   },
+   "sigma": 0.3,
+   "multiplicateurs": {
+    "PV-LEPEN": {
+     "non candidate": {
+      "RN-PHI": 0.9928,
+      "RN-ATT": 1.0099,
+      "RN-MEL": 1.0265,
+      "RN-GLU": 1.0099,
+      "RN-RET": 1.0099,
+      "RN-LIS": 1.0099,
+      "RN-AUT": 1.0099,
+      "PHI-MEL": 0.918,
+      "PHI-GLU": 0.918,
+      "AUTRE": 0.918
+     }
+    },
+    "VE-SOND": {
+     "gauche": {
+      "RN-PHI": 0.8163,
+      "RN-ATT": 0.8163,
+      "RN-MEL": 1.4,
+      "RN-GLU": 1.4326,
+      "RN-RET": 0.7319,
+      "RN-LIS": 0.7958,
+      "RN-AUT": 1.0,
+      "PHI-MEL": 1.3976,
+      "PHI-GLU": 1.4659,
+      "AUTRE": 1.1972
+     },
+     "droite": {
+      "RN-PHI": 1.1149,
+      "RN-ATT": 1.097,
+      "RN-MEL": 0.7489,
+      "RN-GLU": 0.6804,
+      "RN-RET": 1.594,
+      "RN-LIS": 1.3976,
+      "RN-AUT": 1.0,
+      "PHI-MEL": 0.7652,
+      "PHI-GLU": 0.7319,
+      "AUTRE": 0.9322
+     }
+    }
+   }
+  },
   "PV-VAINQ": {
    "conditionnelle": {
     "RN-PHI": {
-     "RN": 0.42974673587995066,
-     "PHI": 0.5702532641200494,
+     "RN": 0.5402371956315382,
+     "PHI": 0.4597628043684619,
      "ATT": 0.0,
      "MEL": 0.0,
      "GLU": 0.0,
@@ -679,9 +700,9 @@
      "AUT": 0.0
     },
     "RN-ATT": {
-     "RN": 0.5935655830503663,
+     "RN": 0.6246419700369727,
      "PHI": 0.0,
-     "ATT": 0.4064344169496336,
+     "ATT": 0.3753580299630272,
      "MEL": 0.0,
      "GLU": 0.0,
      "RET": 0.0,
@@ -689,60 +710,60 @@
      "AUT": 0.0
     },
     "RN-MEL": {
-     "RN": 0.825464637707253,
+     "RN": 0.861166680844103,
      "PHI": 0.0,
      "ATT": 0.0,
-     "MEL": 0.17453536229274697,
+     "MEL": 0.13883331915589697,
      "GLU": 0.0,
      "RET": 0.0,
      "LIS": 0.0,
      "AUT": 0.0
     },
     "RN-GLU": {
-     "RN": 0.605028130430101,
+     "RN": 0.662324207586988,
      "PHI": 0.0,
      "ATT": 0.0,
      "MEL": 0.0,
-     "GLU": 0.39497186956989905,
+     "GLU": 0.33767579241301204,
      "RET": 0.0,
      "LIS": 0.0,
      "AUT": 0.0
     },
     "RN-RET": {
-     "RN": 0.5671690256229078,
+     "RN": 0.6924970842195055,
      "PHI": 0.0,
      "ATT": 0.0,
      "MEL": 0.0,
      "GLU": 0.0,
-     "RET": 0.43283097437709217,
+     "RET": 0.3075029157804945,
      "LIS": 0.0,
      "AUT": 0.0
     },
     "RN-LIS": {
-     "RN": 0.5935655830503663,
+     "RN": 0.7053306211336255,
      "PHI": 0.0,
      "ATT": 0.0,
      "MEL": 0.0,
      "GLU": 0.0,
      "RET": 0.0,
-     "LIS": 0.4064344169496336,
+     "LIS": 0.2946693788663744,
      "AUT": 0.0
     },
     "RN-AUT": {
-     "RN": 0.5437290832498753,
+     "RN": 0.6584336878616178,
      "PHI": 0.0,
      "ATT": 0.0,
      "MEL": 0.0,
      "GLU": 0.0,
      "RET": 0.0,
      "LIS": 0.0,
-     "AUT": 0.4562709167501247
+     "AUT": 0.34156631213838223
     },
     "PHI-MEL": {
      "RN": 0.0,
-     "PHI": 0.8827393240758978,
+     "PHI": 0.838267717141618,
      "ATT": 0.0,
-     "MEL": 0.11726067592410214,
+     "MEL": 0.161732282858382,
      "GLU": 0.0,
      "RET": 0.0,
      "LIS": 0.0,
@@ -750,10 +771,10 @@
     },
     "PHI-GLU": {
      "RN": 0.0,
-     "PHI": 0.6347716821524939,
+     "PHI": 0.6336361298297123,
      "ATT": 0.0,
      "MEL": 0.0,
-     "GLU": 0.36522831784750603,
+     "GLU": 0.36636387017028776,
      "RET": 0.0,
      "LIS": 0.0,
      "AUT": 0.0
@@ -770,8 +791,8 @@
     }
    },
    "base": {
-    "RN": 0.42974673587995066,
-    "PHI": 0.5702532641200494,
+    "RN": 0.5402371956315382,
+    "PHI": 0.4597628043684619,
     "ATT": 0.0,
     "MEL": 0.0,
     "GLU": 0.0,
@@ -779,31 +800,22 @@
     "LIS": 0.0,
     "AUT": 0.0
    },
+   "sigma": 0.3,
    "multiplicateurs": {
+    "PV-LEPEN": {
+     "non candidate": {
+      "RN": 1.0399
+     }
+    },
     "VE-RN": {
      "< 30 %": {
-      "RN": 0.7318611420045943,
-      "PHI": 1.0,
-      "ATT": 1.0,
-      "MEL": 1.0,
-      "GLU": 1.0,
-      "RET": 1.0,
-      "LIS": 1.0,
-      "AUT": 1.0
+      "RN": 0.7642
      },
      "> 35 %": {
-      "RN": 1.3493824335826246,
-      "PHI": 1.0,
-      "ATT": 1.0,
-      "MEL": 1.0,
-      "GLU": 1.0,
-      "RET": 1.0,
-      "LIS": 1.0,
-      "AUT": 1.0
+      "RN": 1.229
      }
     }
-   },
-   "sigma": 0.3
+   }
   },
   "PV-MAJOR": {
    "base": {
@@ -1027,10 +1039,10 @@
     "désistement": 100.0
    },
    "pas d'arrêt": {
-    "rejet ou non-admission": 33.35,
-    "cassation totale ou partielle": 8.91,
-    "désistement": 1.59,
-    "pas d'arrêt au 31 mars 2027": 56.15
+    "rejet ou non-admission": 25.89,
+    "cassation totale ou partielle": 7.97,
+    "désistement": 0.79,
+    "pas d'arrêt au 31 mars 2027": 65.34
    }
   },
   "EV-05": {
@@ -1116,14 +1128,14 @@
    "Attal seul": 8,
    "aucun des deux": 8
   },
-  "EV-21": 84,
+  "EV-21": 80.0,
   "EV-20": {
-   "rejet ou non-admission": 47,
-   "cassation totale ou partielle": 13,
-   "désistement": 2,
-   "pas d'arrêt au 31 mars 2027": 40
+   "rejet ou non-admission": 38.0,
+   "cassation totale ou partielle": 12.0,
+   "désistement": 2.0,
+   "pas d'arrêt au 31 mars 2027": 47.0
   },
-  "EV-40a": 78.9,
+  "EV-40a": 77.0,
   "EV-40b": 49.5,
   "EV-40c": 22,
   "EV-40d": 1,

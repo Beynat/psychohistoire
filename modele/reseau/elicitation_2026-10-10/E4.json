@@ -1,0 +1,263 @@
+{
+ "evaluateur": "E4",
+ "lecture": "Remplir chaque null. Une « loi » est un ensemble de probabilités (fractions de 0 à 1) dont la somme vaut 1. Un multiplicateur multiplie le poids d'une issue par rapport à l'état de référence indiqué (1 = sans effet, 0 = impossible). Chaque nœud a un champ « justification » : citer les faits du dossier (ou une source web avec URL) qui fondent les chiffres.",
+ "noeuds": {
+  "PV-AUDIENCE": {
+   "question": "Probabilité que la chambre criminelle tienne l'audience sur le pourvoi de Marine Le Pen entre le 10 octobre 2026 et le 28 février 2027.",
+   "p_fenetre": 0.55,
+   "justification": "Le communiqué du 4 septembre 2026 fixe les mémoires en demande au 1er et au 15 octobre 2026 ; la défense dispose ensuite d'environ deux mois (communiqué du 8 juillet cité par Kohen, Club des juristes), ce qui mène à mi-décembre au plus tôt, puis rapport du conseiller et avis de l'avocat général. Un avocat aux Conseils interrogé par le Club des juristes (24 juillet) pronostique une audience « vers fin février ou début mars 2027 », soit à cheval sur la borne du 28 février. La Cour vise un arrêt « au plus tard début avril 2027 » et Rémy Heitz dit qu'elle est « en ordre de marche » pour statuer avant le scrutin ; avec 6 à 8 semaines entre audience et arrêt (Sarkozy, Fillon), tenir début avril suppose plutôt une audience en février. En sens inverse, treize pourvois et dix avocats aux Conseils, une QPC ou une demande de renvoi préjudiciel toujours possible, et Heitz rappelle que « la procédure est aussi à la main des parties ». Aucune date d'audience n'est annoncée au 10 octobre (recherche web sans résultat nouveau, par ex. https://lcp.fr/actualites/pourvoi-de-marine-le-pen-la-cour-de-cassation-pourrait-etre-en-mesure-de-se-prononcer). Je retiens 0,55, une audience en février étant légèrement plus probable qu'en mars."
+  },
+  "PV-POURVOI": {
+   "question": "Issue du pourvoi au 12 mars 2027 (fin du dépôt des parrainages), selon que l'audience s'est tenue avant fin février ou non. « pas d'arrêt » = aucun arrêt rendu au 12 mars.",
+   "conditionnelle": {
+    "PV-AUDIENCE": {
+     "oui": {
+      "rejet ou non-admission": 0.4,
+      "cassation totale ou partielle": 0.13,
+      "désistement": 0.02,
+      "pas d'arrêt": 0.45
+     },
+     "non": {
+      "rejet ou non-admission": 0.03,
+      "cassation totale ou partielle": 0.01,
+      "désistement": 0.02,
+      "pas d'arrêt": 0.94
+     }
+    }
+   },
+   "justification": "Si l'audience se tient avant fin février, le délibéré habituel de 6 à 8 semaines (Sarkozy : audience 6 novembre, arrêt 18 décembre 2024 ; Fillon : 28 février, arrêt 24 avril 2024) repousse souvent l'arrêt au-delà du 12 mars ; je retiens environ 55 % d'arrêt rendu à cette date, la Cour connaissant l'enjeu des parrainages et pouvant raccourcir le délibéré. Parmi les arrêts rendus, je donne environ trois chances sur quatre au rejet : le taux de cassation en matière pénale est faible, la cour d'appel a allégé les peines et motivé l'éligibilité de façon soignée (communiqué du 7 juillet), et le parquet ne s'est pas pourvu ; mais le moyen sur l'applicabilité du texte réprimant le détournement de fonds publics et le précédent Fillon (peine cassée, culpabilité confirmée) laissent une place réelle à une cassation partielle. Le désistement n'est évoqué par aucune source et irait contre la stratégie affichée (« le pourvoi suspend la peine ») : 2 %. Sans audience avant fin février, un arrêt avant le 12 mars supposerait une audience dans les tout premiers jours de mars et un arrêt rendu quasi sur le siège : je garde 4 % d'arrêt, plus 2 % de désistement. Avec P(audience)=0,55, cela donne au 12 mars : rejet 0,23, cassation 0,08, désistement 0,02, pas d'arrêt 0,67."
+  },
+  "PV-LEPEN": {
+   "question": "Marine Le Pen figure sur la liste officielle des candidats (publiée au plus tard le 26 mars 2027), selon l'issue du pourvoi au 12 mars. Référence pour les intentions de vote RN : 30-35 %.",
+   "conditionnelle": {
+    "PV-POURVOI": {
+     "rejet ou non-admission": {
+      "candidate": 0.45,
+      "non candidate": 0.55
+     },
+     "cassation totale ou partielle": {
+      "candidate": 0.88,
+      "non candidate": 0.12
+     },
+     "désistement": {
+      "candidate": 0.3,
+      "non candidate": 0.7
+     },
+     "pas d'arrêt": {
+      "candidate": 0.92,
+      "non candidate": 0.08
+     }
+    }
+   },
+   "multiplicateurs": {
+    "VE-RN (février 2027)": {
+     "< 30 %": {
+      "candidate": 0.85,
+      "non candidate": 1.3
+     },
+     "> 35 %": {
+      "candidate": 1.1,
+      "non candidate": 0.8
+     }
+    }
+   },
+   "justification": "Rejet avant le 12 mars : l'éligibilité reste intacte (inéligibilité ferme purgée au 30 juin 2026, reste avec sursis), mais le bracelet devient exécutoire ; la procureure générale saisira le JAP, et le précédent Sarkozy donne 41 jours jusqu'à l'ordonnance et 51 jusqu'à la pose, donc une pose vers fin avril, possiblement après le premier tour, et l'article 720-1 CPP ouvre une suspension pour motif professionnel. Mais Le Pen a dit (BFMTV, février 2026 ; LCI, 1er juillet 2026) qu'elle ne ferait pas campagne sous bracelet et ne voulait pas « dépendre d'un magistrat », le ticket avec Bardella est présenté comme « le plan B » (Hochart, 8 juillet), et Bardella teste mieux qu'elle (Toluna mai 2026 : 54 contre 52 face à Philippe) : je retiens 45 % de maintien, en tenant compte de la difficulté pratique de basculer les parrainages dans les derniers jours. Cassation : pas de condamnation définitive, pas de bracelet, éligibilité maintenue ; le seul risque est la « résurrection » doctrinale de l'inéligibilité de première instance (Cass. crim. 1993 cité par Actu-Juridique, rejetée par Heitz et Dervieux) : 88 %. Désistement : il n'aurait de sens que dans une logique de retrait au profit de Bardella, d'où 30 %. Pas d'arrêt : elle fait campagne sans bracelet comme annoncé le 7 juillet (« Ce soir, je suis candidate ») ; 8 % de résidu (rejet anticipé attendu fin mars-début avril qui pousse à céder la place en amont, santé, choix stratégique après l'affaire Mediapart ou au vu des sondages). Contrôle : 0,23×0,45 + 0,08×0,88 + 0,02×0,30 + 0,67×0,92 ≈ 0,79, égal à ma probabilité directe EV-21 (0,79). Les multiplicateurs reflètent qu'un RN faible en février (< 30 %) rend le passage de relais plus tentant, et un RN fort (> 35 %) le rend moins tentant."
+  },
+  "PV-DUEL": {
+   "question": "Duel du second tour (18 avril 2027), selon les candidatures au centre. Référence : Marine Le Pen candidate, deuxième bloc dans les sondages = centre. RN = le candidat du RN (Le Pen ou Bardella). Codes : PHI Philippe, ATT Attal, MEL Mélenchon, GLU Glucksmann, RET Retailleau, LIS Lisnard, AUT autre ; AUTRE = tout duel sans le RN autre que PHI-MEL et PHI-GLU.",
+   "conditionnelle": {
+    "PV-BLOC": {
+     "Philippe seul": {
+      "RN-PHI": 0.6,
+      "RN-ATT": 0,
+      "RN-MEL": 0.22,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.01,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.02,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.03
+     },
+     "les deux": {
+      "RN-PHI": 0.38,
+      "RN-ATT": 0.06,
+      "RN-MEL": 0.33,
+      "RN-GLU": 0.1,
+      "RN-RET": 0.05,
+      "RN-LIS": 0.01,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.01,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.03
+     },
+     "Attal seul": {
+      "RN-PHI": 0,
+      "RN-ATT": 0.4,
+      "RN-MEL": 0.35,
+      "RN-GLU": 0.09,
+      "RN-RET": 0.07,
+      "RN-LIS": 0.01,
+      "RN-AUT": 0.03,
+      "PHI-MEL": 0,
+      "PHI-GLU": 0,
+      "AUTRE": 0.05
+     },
+     "aucun des deux": {
+      "RN-PHI": 0,
+      "RN-ATT": 0,
+      "RN-MEL": 0.45,
+      "RN-GLU": 0.17,
+      "RN-RET": 0.2,
+      "RN-LIS": 0.04,
+      "RN-AUT": 0.08,
+      "PHI-MEL": 0,
+      "PHI-GLU": 0,
+      "AUTRE": 0.06
+     }
+    }
+   },
+   "multiplicateurs": {
+    "PV-LEPEN": {
+     "non candidate (Bardella candidat)": {
+      "RN-PHI": 0.95,
+      "RN-ATT": 1.0,
+      "RN-MEL": 1.05,
+      "RN-GLU": 1.0,
+      "RN-RET": 1.0,
+      "RN-LIS": 1.0,
+      "RN-AUT": 1.0,
+      "PHI-MEL": 0.7,
+      "PHI-GLU": 0.7,
+      "AUTRE": 0.7
+     }
+    },
+    "VE-SOND (avril 2027)": {
+     "gauche": {
+      "RN-PHI": 0.8,
+      "RN-ATT": 0.8,
+      "RN-MEL": 1.4,
+      "RN-GLU": 1.4,
+      "RN-RET": 0.7,
+      "RN-LIS": 0.8,
+      "RN-AUT": 1.0,
+      "PHI-MEL": 1.5,
+      "PHI-GLU": 1.5,
+      "AUTRE": 1.3
+     },
+     "droite": {
+      "RN-PHI": 1.2,
+      "RN-ATT": 1.2,
+      "RN-MEL": 0.7,
+      "RN-GLU": 0.7,
+      "RN-RET": 1.5,
+      "RN-LIS": 1.3,
+      "RN-AUT": 1.0,
+      "PHI-MEL": 0.8,
+      "PHI-GLU": 0.8,
+      "AUTRE": 0.9
+     }
+    }
+   },
+   "justification": "Le RN est qualifié dans presque toutes les configurations : Le Pen à 31-37 % au premier tour en septembre 2026 (Ifop vague 6, Toluna vague 6, YouGov), soit le double du deuxième ; je laisse 4 à 6 % de duels sans RN. Philippe seul : il est à 21-24 % contre 15-18 % pour Mélenchon (Ifop vague 6), d'où RN-PHI 0,60 et RN-MEL 0,22. Les deux : Philippe 16, Mélenchon 15, Glucksmann 11, Attal 8, Retailleau 7 (Ifop vague 6) : la qualification se joue entre Philippe et Mélenchon, d'où RN-PHI 0,38 et RN-MEL 0,33. Attal seul : Attal à 15-17 %, au niveau de Mélenchon, d'où un quasi-équilibre RN-ATT 0,40 et RN-MEL 0,35. Sans aucun des deux, Mélenchon domine un champ éclaté, et Retailleau et Glucksmann se partagent le reste. Les issues impossibles valent 0 (RN-ATT sans Attal, RN-PHI et PHI-* sans Philippe). Bardella candidat : il faisait 34 % contre 31-32 % pour Le Pen au premier tour, et Philippe perdait 2 points face à lui (Toluna, mai 2026), d'où une qualification RN encore plus sûre (duels sans RN ×0,7) et RN-PHI ×0,95. Les multiplicateurs de sondage d'avril déplacent la seconde place vers la gauche (Mélenchon, Glucksmann) ou vers la droite (Retailleau, Philippe)."
+  },
+  "PV-VAINQ": {
+   "question": "Vainqueur du second tour (2 mai 2027) selon le duel. Seuls les deux candidats du duel peuvent gagner (AUTRE : attribuer à AUT). Référence : Marine Le Pen candidate, intentions de vote RN 30-35 %.",
+   "conditionnelle": {
+    "PV-DUEL": {
+     "RN-PHI": {
+      "RN": 0.58,
+      "PHI": 0.42
+     },
+     "RN-ATT": {
+      "RN": 0.65,
+      "ATT": 0.35
+     },
+     "RN-MEL": {
+      "RN": 0.82,
+      "MEL": 0.18
+     },
+     "RN-GLU": {
+      "RN": 0.68,
+      "GLU": 0.32
+     },
+     "RN-RET": {
+      "RN": 0.7,
+      "RET": 0.3
+     },
+     "RN-LIS": {
+      "RN": 0.72,
+      "LIS": 0.28
+     },
+     "RN-AUT": {
+      "RN": 0.65,
+      "AUT": 0.35
+     },
+     "PHI-MEL": {
+      "PHI": 0.85,
+      "MEL": 0.15
+     },
+     "PHI-GLU": {
+      "PHI": 0.65,
+      "GLU": 0.35
+     },
+     "AUTRE": {
+      "AUT": 1.0
+     }
+    }
+   },
+   "multiplicateurs": {
+    "PV-LEPEN": {
+     "non candidate (Bardella candidat)": {
+      "RN": 1.02
+     }
+    },
+    "VE-RN (mars 2027)": {
+     "< 30 %": {
+      "RN": 0.85
+     },
+     "> 35 %": {
+      "RN": 1.1
+     }
+    }
+   },
+   "justification": "Face à Philippe, Le Pen est donnée gagnante dans tous les sondages depuis juillet : 52 à 57 % (Ifop 7-8 juillet et 24-25 août, Toluna 22-24 septembre, YouGov 17-21 septembre), avec une tendance haussière chez Toluna (52 en mai, 57 en septembre). J'atténue pourtant la probabilité vers 0,58 : on est à près de sept mois du second tour, le front républicain se reconstitue en campagne, et Le Pen a fait moins que ses derniers sondages en 2022 ; l'écart avec Philippe reste le plus serré de tous. Attal (54-57 %), Glucksmann (55-59 %), Hollande et Retailleau (58 %) sont plus nettement battus, et Mélenchon très largement (64-70 %), d'où 0,82. PHI-MEL : Philippe 61-39 (YouGov) ; PHI-GLU est estimé plus ouvert faute de sondage. Bardella faisait 2 à 3 points de mieux que Le Pen dans les mêmes duels (Toluna, mai 2026 ; Elabe, mars 2026), mais l'affaire Mediapart d'octobre 2026 n'est pas mesurée, d'où un multiplicateur prudent de 1,02. Les seuils d'intentions de vote RN en mars modulent la probabilité de victoire du RN de -15 % à +10 %."
+  }
+ },
+ "mesures": {
+  "EV-20": {
+   "question": "Si aucun arrêt n'est rendu au 12 mars 2027, loi de l'issue du pourvoi au 31 mars 2027.",
+   "table": {
+    "pas d'arrêt au 12 mars": {
+     "rejet ou non-admission": 0.22,
+     "cassation totale ou partielle": 0.07,
+     "désistement": 0.01,
+     "pas d'arrêt": 0.7
+    }
+   }
+  }
+ },
+ "direct": {
+  "EV-20": {
+   "question": "Issue du pourvoi au 31 mars 2027, jugée directement.",
+   "loi": {
+    "rejet ou non-admission": 0.38,
+    "cassation totale ou partielle": 0.12,
+    "désistement": 0.03,
+    "pas d'arrêt": 0.47
+   }
+  },
+  "EV-21": {
+   "question": "Marine Le Pen sur la liste officielle des candidats, jugée directement.",
+   "p": 0.79
+  },
+  "EV-40a": {
+   "question": "Marine Le Pen qualifiée au second tour, jugée directement.",
+   "p": 0.75
+  },
+  "RN_gagne": {
+   "question": "Le candidat du RN (Le Pen ou Bardella) élu le 2 mai 2027, jugé directement.",
+   "p": 0.61
+  }
+ }
+}

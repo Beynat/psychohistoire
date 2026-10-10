@@ -1,0 +1,263 @@
+{
+ "evaluateur": null,
+ "lecture": "Remplir chaque null. Une « loi » est un ensemble de probabilités (fractions de 0 à 1) dont la somme vaut 1. Un multiplicateur multiplie le poids d'une issue par rapport à l'état de référence indiqué (1 = sans effet, 0 = impossible). Chaque nœud a un champ « justification » : citer les faits du dossier (ou une source web avec URL) qui fondent les chiffres.",
+ "noeuds": {
+  "PV-AUDIENCE": {
+   "question": "Probabilité que la chambre criminelle tienne l'audience sur le pourvoi de Marine Le Pen entre le 10 octobre 2026 et le 28 février 2027.",
+   "p_fenetre": null,
+   "justification": null
+  },
+  "PV-POURVOI": {
+   "question": "Issue du pourvoi au 12 mars 2027 (fin du dépôt des parrainages), selon que l'audience s'est tenue avant fin février ou non. « pas d'arrêt » = aucun arrêt rendu au 12 mars.",
+   "conditionnelle": {
+    "PV-AUDIENCE": {
+     "oui": {
+      "rejet ou non-admission": null,
+      "cassation totale ou partielle": null,
+      "désistement": null,
+      "pas d'arrêt": null
+     },
+     "non": {
+      "rejet ou non-admission": null,
+      "cassation totale ou partielle": null,
+      "désistement": null,
+      "pas d'arrêt": null
+     }
+    }
+   },
+   "justification": null
+  },
+  "PV-LEPEN": {
+   "question": "Marine Le Pen figure sur la liste officielle des candidats (publiée au plus tard le 26 mars 2027), selon l'issue du pourvoi au 12 mars. Référence pour les intentions de vote RN : 30-35 %.",
+   "conditionnelle": {
+    "PV-POURVOI": {
+     "rejet ou non-admission": {
+      "candidate": null,
+      "non candidate": null
+     },
+     "cassation totale ou partielle": {
+      "candidate": null,
+      "non candidate": null
+     },
+     "désistement": {
+      "candidate": null,
+      "non candidate": null
+     },
+     "pas d'arrêt": {
+      "candidate": null,
+      "non candidate": null
+     }
+    }
+   },
+   "multiplicateurs": {
+    "VE-RN (février 2027)": {
+     "< 30 %": {
+      "candidate": null,
+      "non candidate": null
+     },
+     "> 35 %": {
+      "candidate": null,
+      "non candidate": null
+     }
+    }
+   },
+   "justification": null
+  },
+  "PV-DUEL": {
+   "question": "Duel du second tour (18 avril 2027), selon les candidatures au centre. Référence : Marine Le Pen candidate, deuxième bloc dans les sondages = centre. RN = le candidat du RN (Le Pen ou Bardella). Codes : PHI Philippe, ATT Attal, MEL Mélenchon, GLU Glucksmann, RET Retailleau, LIS Lisnard, AUT autre ; AUTRE = tout duel sans le RN autre que PHI-MEL et PHI-GLU.",
+   "conditionnelle": {
+    "PV-BLOC": {
+     "Philippe seul": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "les deux": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "Attal seul": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "aucun des deux": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     }
+    }
+   },
+   "multiplicateurs": {
+    "PV-LEPEN": {
+     "non candidate (Bardella candidat)": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     }
+    },
+    "VE-SOND (avril 2027)": {
+     "gauche": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "droite": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     }
+    }
+   },
+   "justification": null
+  },
+  "PV-VAINQ": {
+   "question": "Vainqueur du second tour (2 mai 2027) selon le duel. Seuls les deux candidats du duel peuvent gagner (AUTRE : attribuer à AUT). Référence : Marine Le Pen candidate, intentions de vote RN 30-35 %.",
+   "conditionnelle": {
+    "PV-DUEL": {
+     "RN-PHI": {
+      "RN": null,
+      "PHI": null
+     },
+     "RN-ATT": {
+      "RN": null,
+      "ATT": null
+     },
+     "RN-MEL": {
+      "RN": null,
+      "MEL": null
+     },
+     "RN-GLU": {
+      "RN": null,
+      "GLU": null
+     },
+     "RN-RET": {
+      "RN": null,
+      "RET": null
+     },
+     "RN-LIS": {
+      "RN": null,
+      "LIS": null
+     },
+     "RN-AUT": {
+      "RN": null,
+      "AUT": null
+     },
+     "PHI-MEL": {
+      "PHI": null,
+      "MEL": null
+     },
+     "PHI-GLU": {
+      "PHI": null,
+      "GLU": null
+     },
+     "AUTRE": {
+      "AUT": 1.0
+     }
+    }
+   },
+   "multiplicateurs": {
+    "PV-LEPEN": {
+     "non candidate (Bardella candidat)": {
+      "RN": null
+     }
+    },
+    "VE-RN (mars 2027)": {
+     "< 30 %": {
+      "RN": null
+     },
+     "> 35 %": {
+      "RN": null
+     }
+    }
+   },
+   "justification": null
+  }
+ },
+ "mesures": {
+  "EV-20": {
+   "question": "Si aucun arrêt n'est rendu au 12 mars 2027, loi de l'issue du pourvoi au 31 mars 2027.",
+   "table": {
+    "pas d'arrêt au 12 mars": {
+     "rejet ou non-admission": null,
+     "cassation totale ou partielle": null,
+     "désistement": null,
+     "pas d'arrêt": null
+    }
+   }
+  }
+ },
+ "direct": {
+  "EV-20": {
+   "question": "Issue du pourvoi au 31 mars 2027, jugée directement.",
+   "loi": {
+    "rejet ou non-admission": null,
+    "cassation totale ou partielle": null,
+    "désistement": null,
+    "pas d'arrêt": null
+   }
+  },
+  "EV-21": {
+   "question": "Marine Le Pen sur la liste officielle des candidats, jugée directement.",
+   "p": null
+  },
+  "EV-40a": {
+   "question": "Marine Le Pen qualifiée au second tour, jugée directement.",
+   "p": null
+  },
+  "RN_gagne": {
+   "question": "Le candidat du RN (Le Pen ou Bardella) élu le 2 mai 2027, jugé directement.",
+   "p": null
+  }
+ }
+}

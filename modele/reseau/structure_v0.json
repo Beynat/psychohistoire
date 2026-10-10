@@ -1,5 +1,5 @@
 {
- "version": "structure v0.3 (10 octobre 2026, dissolution après l'élection découpée en mai-juin 2027 et ensuite)",
+ "version": "structure v0.4 (10 octobre 2026, chaîne présidentielle réélicitée : pourvoi au 12 mars, liste au 26 mars, duel conditionnel aux candidatures du centre, vainqueur selon Le Pen ou Bardella)",
  "description": "Réseau bayésien dynamique v0, pas mensuel d'octobre 2026 à septembre 2028. Révisé après le pré-mortem du 10 octobre (scratchpad, rapport de 32 causes) : aucun cycle au sein d'un mois (liens au mois précédent marqués « decalage »: 1), au plus trois parents, pivots électoraux par personnes, dette découpée en note, procédure de déficit excessif et TPI ouverts dès octobre 2026, dissolution et censure découpées avant et après la présidentielle, changement de gouvernement ajouté. Hors réseau (notés sur l'ensemble et les comparateurs) : EV-03, EV-44, EV-23, EV-14b, EV-36, EV-06, international, climat, sécurité.",
  "codes_candidats": {
   "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate, sinon Jordan Bardella)",
@@ -308,7 +308,7 @@
   },
   {
    "id": "PV-POURVOI",
-   "nom": "Issue du pourvoi de Marine Le Pen au 1er mars 2027",
+   "nom": "Issue du pourvoi de Marine Le Pen au 12 mars 2027 (fin du dépôt des parrainages)",
    "nature": "daté",
    "issues": [
     "rejet ou non-admission",
@@ -319,7 +319,8 @@
    "parents": [
     "PV-AUDIENCE"
    ],
-   "date": "2027-03-01"
+   "date": "2027-03-12",
+   "conditionnelle": "PV-AUDIENCE"
   },
   {
    "id": "PV-ECOLO",
@@ -392,8 +393,9 @@
      "decalage": 1
     }
    ],
-   "date": "2027-03-15",
-   "date_note": "liste officielle des candidats ; date exacte à confirmer"
+   "date": "2027-03-26",
+   "date_note": "liste officielle des candidats, au plus tard le 26 mars 2027",
+   "conditionnelle": "PV-POURVOI"
   },
   {
    "id": "PV-DUEL",
@@ -430,7 +432,8 @@
       "ATT"
      ]
     }
-   }
+   },
+   "conditionnelle": "PV-BLOC"
   },
   {
    "id": "PV-VAINQ",
@@ -451,7 +454,8 @@
     {
      "id": "VE-RN",
      "decalage": 1
-    }
+    },
+    "PV-LEPEN"
    ],
    "date": "2027-05-02",
    "conditionnelle": "PV-DUEL",
@@ -814,7 +818,7 @@
     "pas d'arrêt": null
    },
    "exacte": false,
-   "question": "si aucun arrêt n'est rendu au 1er mars 2027, loi de l'issue au 31 mars 2027 (rejet, cassation, désistement, pas d'arrêt)"
+   "question": "si aucun arrêt n'est rendu au 12 mars 2027, loi de l'issue au 31 mars 2027"
   },
   "EV-40a": {
    "caracteristique": {
