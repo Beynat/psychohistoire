@@ -142,6 +142,9 @@ def perturber(tables, rng):
             u["p_fenetre"] = sig(logit(t["p_fenetre"]) + rng.gauss(0, s))
         if "transition" in t:
             u["transition"] = {e: bruit(d) for e, d in t["transition"].items()}
+        if "cas" in t:
+            u["cas"] = {c: (bruit(v) if isinstance(v, dict) else sig(logit(v) + rng.gauss(0, s)) if 0 < v < 1 else v)
+                        for c, v in t["cas"].items()}
         if "multiplicateurs" in t:
             u["multiplicateurs"] = {par: {etat: {iss: m * math.exp(rng.gauss(0, s / 2)) for iss, m in d.items()}
                                           for etat, d in pd.items()} for par, pd in t["multiplicateurs"].items()}
@@ -218,8 +221,37 @@ def appliquer(base, mults, exclus=()):
 PRIORS = None   # lois a priori des pivots datés {nœud: {issue: p}}, calculées par lois_a_priori
 
 
-def simuler(structure, params, obs, rng, priors=None):
-    """Une trajectoire. obs : {nœud: {mois: état}} observé ; un état observé remplace le tirage ; un état
+def cles_cas(n, etats, noeuds, prec=None):
+    """Clés de la table par cas d'un nœud (« lois par cas », étape 4) : « prec=état » pour une variable d'état, puis
+    « parent=état » dans l'ordre des parents. Un parent daté pas encore tranché est remplacé par sa loi a priori :
+    rend la liste des (poids, clé). Parent absent : état de référence (variable), « non » (pivot à tout moment),
+    première issue (pivot daté sans loi a priori)."""
+    combos = [(1.0, [f"prec={prec}"] if prec is not None else [])]
+    for q in n.get("parents", []):
+        qid, qn = pid(q), noeuds.get(pid(q), {})
+        e = etats.get(qid)
+        if e is None:
+            e = qn.get("reference") if "etats" in qn else ("non" if qn.get("nature") == "à tout moment" else (qn.get("issues") or ["?"])[0])
+        options = [(p, x) for x, p in e.items()] if isinstance(e, APriori) else [(1.0, e)]
+        combos = [(w * pw, c + [f"{qid}={x}"]) for w, c in combos for pw, x in options if pw > 0]
+    return [(w, "|".join(c)) for w, c in combos]
+
+
+def valeur_cas(t, n, etats, noeuds, prec=None):
+    """Valeur de la table par cas (probabilité de fenêtre, ou loi), mélangée sur les parents non tranchés."""
+    acc = None
+    for w, c in cles_cas(n, etats, noeuds, prec):
+        v = t["cas"][c]
+        if isinstance(v, dict):
+            acc = {k: (acc or {}).get(k, 0.0) + w * x for k, x in v.items()}
+        else:
+            acc = (acc or 0.0) + w * v
+    return acc
+
+
+def simuler(structure, params, obs, rng, priors=None, rngs=None):
+    """Une trajectoire. rngs : générateur propre à chaque nœud (nombres aléatoires communs entre deux jeux de
+    paramètres, pour l'analyse de sensibilité) ; à défaut, rng pour tous. obs : {nœud: {mois: état}} observé ; un état observé remplace le tirage ; un état
     {"au_moins": e} restreint le tirage aux états au moins égaux à e. priors : lois a priori des pivots datés,
     utilisées tant qu'un parent daté n'est pas tranché (à défaut, PRIORS ; sans loi, état de référence)."""
     priors = PRIORS if priors is None else priors
@@ -229,6 +261,7 @@ def simuler(structure, params, obs, rng, priors=None):
     for k in range(len(MOIS)):
         for i in rangs:
             n, t = noeuds[i], params[i]
+            r = rngs[i] if rngs else rng
             etats = {}
             for p in n.get("parents", []):
                 kk = k - dec(p)
@@ -244,12 +277,15 @@ def simuler(structure, params, obs, rng, priors=None):
                 if vu:
                     traj[i][k] = vu
                     continue
-                prec = traj[i][k - 1] if k else t["reference"]
-                loi_k = appliquer(t["transition"][prec], multiplicateurs(t, etats))
+                prec = traj[i][k - 1] if k else t.get("reference", n.get("reference"))
+                if "cas" in t:
+                    loi_k = normaliser(valeur_cas(t, n, etats, noeuds, prec))
+                else:
+                    loi_k = appliquer(t["transition"][prec], multiplicateurs(t, etats))
                 if minimum:
                     rang = n["etats"].index(minimum)
                     loi_k = normaliser({e: (v if n["etats"].index(e) >= rang else 0.0) for e, v in loi_k.items()})
-                traj[i][k] = tirer(loi_k, rng)
+                traj[i][k] = tirer(loi_k, r)
             elif n["nature"] == "daté":
                 km = idx(n["date"])
                 if k < km:
@@ -260,13 +296,16 @@ def simuler(structure, params, obs, rng, priors=None):
                 if vu:
                     traj[i][k] = vu
                     continue
+                exclus = [c for par, d in n.get("exclusions", {}).items()
+                          if not isinstance(etats.get(par), APriori) for c in d.get(etats.get(par), [])]
+                if "cas" in t:
+                    traj[i][k] = tirer(appliquer(valeur_cas(t, n, etats, noeuds), {}, exclus), r)
+                    continue
                 base = t["base"]
                 cond = n.get("conditionnelle")
                 if cond and cond in etats and not isinstance(etats[cond], APriori):
                     base = t["conditionnelle"][etats[cond]]
-                exclus = [c for par, d in n.get("exclusions", {}).items()
-                          if not isinstance(etats.get(par), APriori) for c in d.get(etats.get(par), [])]
-                traj[i][k] = tirer(appliquer(base, multiplicateurs(t, etats), exclus), rng)
+                traj[i][k] = tirer(appliquer(base, multiplicateurs(t, etats), exclus), r)
             else:   # à tout moment, absorbant
                 d0, d1 = idx(n["fenetre"][0]), idx(n["fenetre"][1])
                 if k < d0:
@@ -289,20 +328,22 @@ def simuler(structure, params, obs, rng, priors=None):
                 if verrou:
                     traj[i][k] = "non"
                     continue
-                mults = multiplicateurs(t, etats)
-                p = p_modifiee(t["p_fenetre"], mults.get("oui", 1.0))
+                if "cas" in t:
+                    p = valeur_cas(t, n, etats, noeuds)
+                else:
+                    p = p_modifiee(t["p_fenetre"], multiplicateurs(t, etats).get("oui", 1.0))
                 # Parent « à tout moment » survenu en cours de fenêtre (déclencheur : censure → départ du Premier
                 # ministre) : la probabilité qu'il implique porte sur le reste de la fenêtre, à partir de sa survenue.
                 debut = d0
                 for q in n.get("parents", []):
                     qn = noeuds.get(pid(q))
                     if qn and qn.get("nature") == "à tout moment" and etats.get(pid(q)) == "oui" \
-                            and t.get("multiplicateurs", {}).get(pid(q), {}).get("oui"):
+                            and ("cas" in t or t.get("multiplicateurs", {}).get(pid(q), {}).get("oui")):
                         debut = max(debut, premier_oui(traj[pid(q)], k + 1) + dec(q))
                 w = profil(n)
                 reste = sum(w[min(debut, k):d1 + 1])
                 h = 1 - (1 - min(p, 1 - 1e-9)) ** (w[k] / reste) if reste > 0 else 0.0
-                traj[i][k] = "oui" if rng.random() < h else "non"
+                traj[i][k] = "oui" if r.random() < h else "non"
     return traj
 
 

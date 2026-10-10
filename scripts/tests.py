@@ -825,6 +825,50 @@ def test_calendrier():
     assert 42 < r["Q-A"]["oui"] < 58 and r["Q-B"]["oui"] == 0, r
 
 
+def test_lois_par_cas():
+    """Feuille de route, étape 4 : le moteur lit une table par cas (pivot « à tout moment », pivot daté dont un parent
+    n'est pas tranché, variable d'état) ; les jokers d'un évaluateur couvrent les cas, le plus précis l'emporte ; les
+    contrôles d'une ronde relèvent une justification vide et deux évaluateurs de sens opposés."""
+    import reseau, tables
+    tout = lambda e: {m: e for m in reseau.MOIS}
+    survenue = lambda n: {"caracteristique": {"type": "survenue", "noeud": n}, "table": {"oui": 100, "non": 0}}
+    issue = lambda n: {"caracteristique": {"type": "issue", "noeud": n}, "table": "identite"}
+    fen = ["2026-10-10", "2027-09-30"]
+    S = {"variables_etat": [{"id": "VE-X", "etats": ["a", "b"], "reference": "a", "parents": []}],
+         "pivots": [{"id": "PV-H", "nature": "à tout moment", "fenetre": fen, "parents": ["VE-X"]},
+                    {"id": "PV-P", "nature": "daté", "date": "2027-06-30", "issues": ["u", "v"], "parents": []},
+                    {"id": "PV-D", "nature": "daté", "date": "2027-03-31", "issues": ["s", "t"], "parents": ["PV-P"]}],
+         "mesures": {"EV-H": survenue("PV-H"), "EV-D": issue("PV-D")}}
+    T = {"noeuds": {"VE-X": {"cas": {"prec=a": {"a": 1.0, "b": 0.0}, "prec=b": {"a": 0.0, "b": 1.0}}, "reference": "a"},
+                    "PV-H": {"cas": {"VE-X=a": 0.1, "VE-X=b": 0.7}, "sigma": 0.01},
+                    "PV-P": {"base": {"u": 0.25, "v": 0.75}, "sigma": 0.01},
+                    "PV-D": {"cas": {"PV-P=u": {"s": 1.0, "t": 0.0}, "PV-P=v": {"s": 0.0, "t": 1.0}}, "sigma": 0.01}}}
+    q = [{"id": "Q-H", "evenement": "EV-H", "issues": ["oui", "non"], "fenetre": fen},
+         {"id": "Q-D", "evenement": "EV-D", "issues": ["s", "t"], "fenetre": fen}]
+    plancher, reseau.SIGMA_PLANCHER = reseau.SIGMA_PLANCHER, 0.01
+    try:
+        r = reseau.prevoir(S, T, {"VE-X": tout("b")}, q, 5, 1000)
+    finally:
+        reseau.SIGMA_PLANCHER = plancher
+    assert 65 < r["Q-H"]["oui"] < 75, r["Q-H"]             # cas VE-X = b pendant toute la fenêtre : 70 %
+    assert 20 < r["Q-D"]["s"] < 30, r["Q-D"]               # parent pas encore tranché : mélange sous sa loi a priori
+    assert tables.correspond("A=x|B=y", "A=x|B=*") == 1 and tables.correspond("A=x|B=y", "A=z|B=*") is None
+    rep = {"noeuds": {"PV-H": {"cas": {"VE-X=*": {"loi": {"oui": 0.2}, "justification": "jugement : par défaut"},
+                                       "VE-X=b": {"loi": {"oui": 0.6}, "justification": "jugement : cas aggravé"}}}}}
+    cles = ["VE-X=a", "VE-X=b"]
+    assert tables.lois_de(rep, "PV-H", cles) == {"VE-X=a": 0.2, "VE-X=b": 0.6}
+    rep2 = json.loads(json.dumps(rep))
+    rep2["noeuds"]["PV-H"]["cas"]["VE-X=b"]["justification"] = ""
+    assert any("justification vide" in x for x in tables.verifier_cas({**rep2, "direct": {}}))
+    a = {"noeuds": {"PV-H": {"cas": {"VE-X=a": {"poids_reseau": 0.8, "loi": {"oui": 0.2}}, "VE-X=b": {"poids_reseau": 0.2, "loi": {"oui": 0.5}}}}}}
+    b = {"noeuds": {"PV-H": {"cas": {"VE-X=a": {"poids_reseau": 0.8, "loi": {"oui": 0.2}}, "VE-X=b": {"poids_reseau": 0.2, "loi": {"oui": 0.1}}}}}}
+    import unittest.mock as um
+    with um.patch.object(tables, "cas_du_noeud", lambda n, ns: cles), um.patch.object(tables, "_structure", lambda: S):
+        so = tables.sens_opposes([a, b])
+        assert so and so[0]["cas"] == "VE-X=b", so
+        assert not tables.sens_opposes([a, a])
+
+
 def test_agregation_sans_veto():
     """Feuille de route, étape 1 : un zéro isolé chez un évaluateur ne fixe plus l'agrégat à zéro ; un zéro unanime
     reste un zéro."""
