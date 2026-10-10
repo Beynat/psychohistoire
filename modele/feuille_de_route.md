@@ -2,7 +2,7 @@
 
 Établie après deux revues méthodologiques indépendantes (`modele/reseau/revues/2026-10-10_revue_1.md` et `_2.md`), validée par Nathan. Elle remplace, pour la suite, la feuille de route v0 (document Claude Docs « Psychohistoire — feuille de route v0 », terminée).
 
-**Avancement : 1 / 14 étapes (7 %).** Mis à jour à chaque étape terminée ; la progression est aussi donnée dans la conversation.
+**Avancement : 2 / 14 étapes (14 %).** Mis à jour à chaque étape terminée ; la progression est aussi donnée dans la conversation.
 
 Décisions de Nathan :
 - Toutes les étapes sont faites d'un seul tenant, dans l'ordre du tableau, y compris celles que les revues renvoyaient à plus tard. Aucune échéance de travail n'est fixée : les estimations de durée se sont révélées biaisées.
@@ -14,7 +14,7 @@ Décisions de Nathan :
 | # | Étape | Contenu | État |
 |---|---|---|---|
 | 1 | Bogues du moteur | Parent pas encore tranché traité comme son état de référence (règle : moyenne sous la loi a priori) ; multiplicateurs demandés sur la fenêtre mais appliqués au risque mensuel (conversion) ; article 12 en interdiction datée et non en multiplicateur ; extinction des faits imprévus (pas d'application jusqu'en 2028, pas de double compte) ; `--controle` étendu aux questions à plusieurs issues (EV-05 : Philippe 20 % contre 32 %) ; intervalle à 80 % sans bruit de simulation ; observation du mois en cours traitée comme un minimum ; agrégation sans droit de veto d'un zéro isolé. | fait |
-| 2 | Moteur de preuve unique | Repondération des trajectoires par la vraisemblance des faits (jalons, faits imprévus, observations) : effet sur tout le réseau, vers l'aval et vers l'amont ; nombre effectif de trajectoires et alerte « combinaison trop rare ». Trois classes de faits : qui tranche (sans réduction, probabilité de retournement estimée), indice (réduction maintenue), allégation (sans effet). Classement des 50 jalons. Registre fantôme recalculé par ce moteur (vraisemblances v2, une issue par jalon). `faits.py` écrit des vraisemblances. | à faire |
+| 2 | Moteur de preuve unique | Repondération des trajectoires par la vraisemblance des faits (jalons, faits imprévus, observations) : effet sur tout le réseau, vers l'aval et vers l'amont ; nombre effectif de trajectoires et alerte « combinaison trop rare ». Trois classes de faits : qui tranche (sans réduction, probabilité de retournement estimée), indice (réduction maintenue), allégation (sans effet). Classement des 50 jalons. Registre fantôme recalculé par ce moteur (vraisemblances v2, une issue par jalon). `faits.py` écrit des vraisemblances. | fait |
 | 3 | Calendrier sourcé | `modele/reseau/calendrier.json` (budget, revues des agences dont Moody's le 23 octobre et S&P en novembre, parrainages le 12 mars, liste le 26 mars, tours de scrutin) ; dates de PV-BLOC et PV-GAUCHE alignées ; mois de revue des agences sur PV-NOTE ; test de calendrier. | à faire |
 | 4 | Élicitation contrôlée | Contrôles automatiques dans `tables.py` (référence minoritaire, sens opposés entre évaluateurs, justification vide, zéro isolé, marginale implicite) ; analyse de sensibilité (`scripts/sensibilite.py`) ; seconde ronde sur les nœuds en défaut, par ordre de sensibilité ; fin du calage du réseau sur l'avis direct des évaluateurs. | à faire |
 | 5 | Hypothèses porteuses | `modele/reseau/hypotheses.json` : ce que la structure suppose sans le représenter (candidat RN = Le Pen ou Bardella, Philippe disponible, pas de vacance de la présidence…), probabilité de rupture tirée de précédents, signaux d'alerte reliés à la veille (`tri.py`) ; issue « autre candidat RN ». | à faire |
@@ -39,3 +39,4 @@ Décisions de Nathan :
 |---|---|---|
 | 10 oct. 2026 | – | Feuille de route établie et validée. |
 | 10 oct. 2026 | 1 | Bogues du moteur corrigés (huit), structure et tables v0.5 ; effets dans `modele/reseau/rapports/2026-10-10_etape1.md`. |
+| 10 oct. 2026 | 2 | Moteur de preuve unique, trois classes, 9 jalons qui tranchent sur 50, registre fantôme par le moteur ; `modele/reseau/rapports/2026-10-10_etape2.md`. |

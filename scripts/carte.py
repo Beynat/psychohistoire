@@ -8,6 +8,10 @@ estimation : la probabilité de chaque issue sur une fenêtre choisie, le chemin
 issue choisie et l'influence de chaque lien. Rien n'est écrit au registre : la carte est une lecture du réseau, pas
 une prévision notée.
 
+Preuves (scripts/preuves.py) : chaque trajectoire porte son poids (produit des vraisemblances des preuves notées :
+jalons « qui tranche » observés, faits retenus) ; la page pondère ses comptes par ces poids. Les variables d'état
+restent des comptes non pondérés tant que la page ne les lit pas par trajectoire (étape 8).
+
 Codage d'une trajectoire : une chaîne d'un caractère par pivot, dans l'ordre de « pivots ».
 - pivot daté : rang de l'issue (0, 1, …) ;
 - pivot « à tout moment » : rang du mois de survenue en base 36 (0 = octobre 2026), « - » s'il ne survient pas.
@@ -59,7 +63,11 @@ def construire(tirages=100, trajectoires=40, graine=20261010):
     s = lire_json("modele/reseau/structure_v0.json")
     tables = lire_json("modele/reseau/tables_v0.json")
     obs = reseau.observations(s)
-    reseau.FAITS = reseau.faits_retenus()
+    import preuves as pv
+    from datetime import date
+    preuves = pv.preuves_notees(date.today().isoformat())
+    noeuds = reseau.noeuds_de(s)
+    poids = []
     reseau.PRIORS = reseau.lois_a_priori(s, tables, obs)
     rng = random.Random(graine)
     pivots = s["pivots"]
@@ -69,6 +77,7 @@ def construire(tirages=100, trajectoires=40, graine=20261010):
         params = reseau.perturber(tables, rng)
         for _ in range(trajectoires):
             t = reseau.simuler(s, params, obs, rng)
+            poids.append(round(pv.poids(preuves, t, noeuds), 6) if preuves else 1)
             c = []
             for p in pivots:
                 x = t[p["id"]]
@@ -112,6 +121,7 @@ def construire(tirages=100, trajectoires=40, graine=20261010):
     return {"version_structure": s.get("version"), "version_tables": tables.get("version"),
             "mois": reseau.MOIS, "tirages": tirages, "trajectoires_par_tirage": trajectoires, "graine": graine,
             "pivots": sortie, "variables": variables, "codes": codes,
+            "poids": poids, "preuves": preuves,
             "codes_candidats": s.get("codes_candidats")}
 
 

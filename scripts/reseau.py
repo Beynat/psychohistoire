@@ -1,6 +1,9 @@
 """Moteur du réseau bayésien dynamique v0 (feuille de route v0, bloc 4).
 
 Usage :
+    python scripts/reseau.py --effet J-026 [observé|manqué] [JOUR]   ou   --effet '{preuve en JSON}'
+        Effet d'un jalon ou d'une preuve sur tout le réseau (pivots et questions, avant → après, trié), avec le
+        nombre de trajectoires effectives.
     python scripts/reseau.py --controle [--tirages N] [--trajectoires N]
         Prévisions sur les fenêtres de la banque et contrôle de cohérence avec les probabilités données
         directement par les évaluateurs ; aucune écriture.
@@ -183,29 +186,6 @@ def appliquer(base, mults, exclus=()):
     return normaliser(poids)
 
 
-DUREE_FAIT = 3   # mois d'effet d'un fait imprévu, à défaut d'une durée propre (« duree_mois »)
-
-
-def faits_retenus():
-    """Faits imprévus retenus (scripts/faits.py) : {nœud: [(mois, {issue: multiplicateur}, durée en mois)]}."""
-    from commun import lire_jsonl
-    out = {}
-    for f in lire_jsonl("modele/reseau/faits.jsonl"):
-        if f.get("retenu") and f.get("mois"):
-            out.setdefault(f["noeud"], []).append((f["mois"], f["multiplicateurs"], f.get("duree_mois", DUREE_FAIT)))
-    return out
-
-
-def fait_actif(mois_f, duree, k, obs_noeud):
-    """Un fait agit du mois du fait pendant « duree » mois ; sur une variable observée, il s'éteint dès le premier
-    mois postérieur au fait où la variable est observée (le choc est alors absorbé par l'observation)."""
-    k0 = idx(mois_f)
-    if k < k0 or k >= k0 + duree:
-        return False
-    return not any(k0 < j <= k and MOIS[j] in obs_noeud for j in range(len(MOIS)))
-
-
-FAITS = None
 PRIORS = None   # lois a priori des pivots datés {nœud: {issue: p}}, calculées par lois_a_priori
 
 
@@ -227,15 +207,6 @@ def simuler(structure, params, obs, rng, priors=None):
                     etats[pid(p)] = traj[pid(p)][kk]
                 elif kk >= 0 and noeuds.get(pid(p), {}).get("nature") == "daté" and (priors or {}).get(pid(p)):
                     etats[pid(p)] = APriori(priors[pid(p)])
-            fm = {}
-            for mois_f, mf, duree in (FAITS or {}).get(i, []):
-                if fait_actif(mois_f, duree, k, obs.get(i, {}) if i.startswith("VE-") else {}):
-                    for iss, m in mf.items():
-                        fm[iss] = fm.get(iss, 1.0) * m
-            if fm:
-                t = dict(t)
-                t["multiplicateurs"] = {**t.get("multiplicateurs", {}), "__faits__": {"x": fm}}
-                etats["__faits__"] = "x"
             vu = obs.get(i, {}).get(MOIS[k])
             minimum = None
             if isinstance(vu, dict):
@@ -374,12 +345,42 @@ def loi(mesure, tables_mesures, ev_id, v, issues):
     return {"oui": x / 100, "non": 1 - x / 100}
 
 
-def prevoir(structure, tables, obs, questions, tirages=200, trajectoires=100, graine=20261010):
+SEUIL_ESS = 0.05   # part minimale de trajectoires effectives ; en dessous : « combinaison trop rare »
+
+
+def quantile_pondere(xs, ws, q):
+    paires = sorted(zip(xs, ws))
+    tot, c = sum(ws), 0.0
+    for x, w in paires:
+        c += w
+        if c >= q * tot:
+            return x
+    return paires[-1][0]
+
+
+def prevoir(structure, tables, obs, questions, tirages=200, trajectoires=100, graine=20261010, preuves=None):
     """questions : liste de {id, evenement, issues, fenetre: [début, fin]} ou de conjointes {id, composantes}.
-    Rend {id: {issue: %, ..., i80: [bas, haut] sur l'issue « oui » ou la première issue}}."""
-    global FAITS, PRIORS
-    if FAITS is None:
-        FAITS = faits_retenus()
+    preuves : vraisemblances par issue (scripts/preuves.py) ; chaque trajectoire est pondérée par leur produit.
+    Un pivot inscrit comme tranché dans obs devient une preuve « qui tranche » (ses parents sont mis à jour) ; si
+    les trajectoires effectives tombent sous SEUIL_ESS, il est imposé à la place (intervention), ce qui est signalé.
+    Rend {id: {issue: %, ..., i80: [bas, haut] sur l'issue « oui » ou la première issue}}, plus « __pivots__ » (loi
+    de chaque pivot) et « __ess__ » (trajectoires effectives, alerte « combinaison trop rare »)."""
+    import preuves as pv
+    global PRIORS
+    noeuds = noeuds_de(structure)
+    pivots_obs = {n: d for n, d in obs.items() if n in noeuds and not n.startswith("VE-") and d}
+    obs_ve = {n: d for n, d in obs.items() if n not in pivots_obs}
+    toutes = list(preuves or []) + pv.preuves_pivots(pivots_obs, structure)
+    out = _prevoir(structure, tables, obs_ve, questions, tirages, trajectoires, graine, toutes)
+    if pivots_obs and out["__ess__"]["part"] < SEUIL_ESS:
+        out = _prevoir(structure, tables, obs, questions, tirages, trajectoires, graine, list(preuves or []))
+        out["__ess__"]["imposes"] = sorted(pivots_obs)
+    return out
+
+
+def _prevoir(structure, tables, obs, questions, tirages, trajectoires, graine, preuves):
+    import preuves as pv
+    global PRIORS
     PRIORS = lois_a_priori(structure, tables, obs)
     rng = random.Random(graine)
     noeuds = noeuds_de(structure)
@@ -387,47 +388,64 @@ def prevoir(structure, tables, obs, questions, tirages=200, trajectoires=100, gr
     tm = tables.get("mesures", {})
     simples = [q for q in questions if "composantes" not in q]
     conj = [q for q in questions if "composantes" in q]
-    acc = {q["id"]: [] for q in questions}
-    var_int = {q["id"]: [] for q in questions}   # variance d'échantillonnage au sein de chaque tirage
     cles = {q["id"]: ("oui" if "composantes" in q or "oui" in q["issues"] else q["issues"][0]) for q in questions}
+    tot = {q["id"]: {} for q in questions}           # sommes pondérées sur tous les tirages
+    par_tirage = {q["id"]: [] for q in questions}    # (moyenne pondérée, poids du tirage, variance de simulation)
+    piv = {p["id"]: {} for p in structure["pivots"]}
+    sw = sw2 = 0.0
     for _ in range(tirages):
         params = perturber(tables, rng)
-        som = {q["id"]: {} for q in questions}
-        car = {q["id"]: 0.0 for q in questions}
+        lignes = []
         for _ in range(trajectoires):
             traj = simuler(structure, params, obs, rng)
-            p_oui = {}
+            w = pv.poids(preuves, traj, noeuds) if preuves else 1.0
+            sw, sw2 = sw + w, sw2 + w * w
+            if w == 0:
+                continue
+            for p in structure["pivots"]:
+                e = pv.issue_noeud(traj, p["id"], p)
+                piv[p["id"]][e] = piv[p["id"]].get(e, 0.0) + w
+            res, p_oui = {}, {}
             for q in simples:
                 m = mes[q["evenement"]]
                 d = loi(m, tm, q["evenement"], valeur(m["caracteristique"], traj, noeuds, q["fenetre"]), q["issues"])
-                for i, v in d.items():
-                    som[q["id"]][i] = som[q["id"]].get(i, 0.0) + v
-                car[q["id"]] += d.get(cles[q["id"]], 0.0) ** 2
+                res[q["id"]] = d
                 p_oui[q["id"]] = d.get("oui")
             for q in conj:
                 pa, pb = (p_oui.get(c) for c in q["composantes"])
-                p = (pa or 0) * (pb or 0)     # indépendance conditionnelle à la trajectoire
-                som[q["id"]]["oui"] = som[q["id"]].get("oui", 0.0) + p
-                som[q["id"]]["non"] = som[q["id"]].get("non", 0.0) + 1 - p
-                car[q["id"]] += p ** 2
+                x = (pa or 0) * (pb or 0)     # indépendance conditionnelle à la trajectoire
+                res[q["id"]] = {"oui": x, "non": 1 - x}
+            lignes.append((w, res))
+        W = sum(w for w, _ in lignes)
         for q in questions:
-            acc[q["id"]].append({i: v / trajectoires for i, v in som[q["id"]].items()})
-            m1 = som[q["id"]].get(cles[q["id"]], 0.0) / trajectoires
-            var_int[q["id"]].append(max(car[q["id"]] / trajectoires - m1 ** 2, 0.0) / max(trajectoires - 1, 1))
+            for w, res in lignes:
+                for i, v in res[q["id"]].items():
+                    tot[q["id"]][i] = tot[q["id"]].get(i, 0.0) + w * v
+            if W > 0:
+                xs = [(w, res[q["id"]].get(cles[q["id"]], 0.0)) for w, res in lignes]
+                m1 = sum(w * x for w, x in xs) / W
+                var = sum(w * w * (x - m1) ** 2 for w, x in xs) / (W * W)
+                par_tirage[q["id"]].append((m1, W, var))
+    n = tirages * trajectoires
+    ess = sw * sw / sw2 if sw2 > 0 else 0.0
     out = {}
     for q in questions:
-        tir = acc[q["id"]]
-        issues = list(tir[0])
-        moy = normaliser({i: sum(t.get(i, 0) for t in tir) / len(tir) for i in issues})
-        cle = cles[q["id"]]
-        xs = [t.get(cle, 0) for t in tir]
-        mu = sum(xs) / len(xs)
-        v_tot = sum((x - mu) ** 2 for x in xs) / max(len(xs) - 1, 1)
-        w = sum(var_int[q["id"]]) / len(xs)
-        f = math.sqrt(max(v_tot - w, 0.0) / v_tot) if v_tot > 0 else 0.0
-        xs = sorted(mu + f * (x - mu) for x in xs)
-        out[q["id"]] = {**{i: round(100 * v, 1) for i, v in moy.items()},
-                        "i80": [round(100 * xs[int(0.1 * (len(xs) - 1))], 1), round(100 * xs[int(0.9 * (len(xs) - 1))], 1)]}
+        moy = normaliser(tot[q["id"]]) if tot[q["id"]] else {}
+        pt = par_tirage[q["id"]]
+        if pt:
+            xs, ws, vs = zip(*pt)
+            mu = sum(x * w for x, w in zip(xs, ws)) / sum(ws)
+            v_tot = sum(w * (x - mu) ** 2 for x, w in zip(xs, ws)) / sum(ws)
+            v_sim = sum(w * v for w, v in zip(ws, vs)) / sum(ws)
+            f = math.sqrt(max(v_tot - v_sim, 0.0) / v_tot) if v_tot > 0 else 0.0
+            ys = [mu + f * (x - mu) for x in xs]
+            i80 = [round(100 * quantile_pondere(ys, ws, 0.1), 1), round(100 * quantile_pondere(ys, ws, 0.9), 1)]
+        else:
+            i80 = [None, None]
+        out[q["id"]] = {**{i: round(100 * v, 1) for i, v in moy.items()}, "i80": i80}
+    out["__pivots__"] = {k: {i: round(100 * v, 1) for i, v in normaliser(d).items()} if d else {} for k, d in piv.items()}
+    out["__ess__"] = {"effectives": round(ess), "trajectoires": n, "part": round(ess / n, 4) if n else 0,
+                      "alerte": ess / n < SEUIL_ESS if n else True, "preuves": [p["id"] for p in preuves]}
     return out
 
 
@@ -495,27 +513,62 @@ if __name__ == "__main__":
         sys.exit("modele/reseau/tables_v0.json absent : tables non encore élicitées.")
     nt = int(args[args.index("--tirages") + 1]) if "--tirages" in args else 200
     ntr = int(args[args.index("--trajectoires") + 1]) if "--trajectoires" in args else 100
+    import preuves as pv
+    from datetime import date
+    jour = next((x for x in args if len(x) == 10 and x[4] == "-"), date.today().isoformat())
+    if "--effet" in args:
+        # Effet d'un fait sur tout le réseau : avant / après, pivots et questions, trié par écart.
+        cible = args[args.index("--effet") + 1]
+        qs = questions_banque(structure, lire_json("modele/evenements.json")["evenements"])
+        base = pv.preuves_notees(jour)
+        if cible.startswith("J-"):
+            v2 = lire_json(pv.V2)["jalons"]
+            statut = args[args.index("--effet") + 2] if len(args) > args.index("--effet") + 2 and not args[args.index("--effet") + 2].startswith("-") else "observé"
+            ajout = pv.preuve_jalon(cible, v2[cible], statut)
+        else:
+            ajout = json.loads(cible)
+        avant = prevoir(structure, tables, observations(), qs, nt, ntr, preuves=base)
+        apres = prevoir(structure, tables, observations(), qs, nt, ntr, preuves=base + [ajout])
+        print(f"Preuve : {json.dumps(ajout, ensure_ascii=False)}")
+        rang = []
+        for k, d in apres["__pivots__"].items():
+            for i, v in d.items():
+                rang.append((abs(v - avant["__pivots__"][k].get(i, 0)), f"{k} {i}", avant["__pivots__"][k].get(i, 0), v))
+        for q in qs:
+            for i, v in apres[q["id"]].items():
+                if i not in ("i80", "non"):
+                    rang.append((abs(v - avant[q["id"]].get(i, 0)), f"{q['id']} {i}", avant[q["id"]].get(i, 0), v))
+        for e, nom, a, b in sorted(rang, reverse=True):
+            if e >= 1:
+                print(f"{nom[:48]:48} {a:6.1f} → {b:6.1f}  ({b - a:+.1f})")
+        e = apres["__ess__"]
+        print(f"Trajectoires effectives : {e['effectives']} sur {e['trajectoires']}" + ("  COMBINAISON TROP RARE" if e["alerte"] else ""))
+        sys.exit(0)
     if "--controle" in args:
         qs = questions_banque(structure, lire_json("modele/evenements.json")["evenements"])
-        prev = prevoir(structure, tables, observations(), qs, nt, ntr)
+        prev = prevoir(structure, tables, observations(), qs, nt, ntr, preuves=pv.preuves_notees(jour))
         alertes = 0
         for q in qs:
             p = prev[q["id"]]
             ecart, alerte = ecart_direct(p, tables.get("direct", {}).get(q["id"].removeprefix("Q-")))
             alertes += alerte
             print(f"{q['id']:10} {json.dumps({k: v for k, v in p.items() if k != 'i80'}, ensure_ascii=False)}  i80 {p['i80']}{ecart}")
-        print(f"{alertes} écart(s) de plus de 10 points")
+        print(f"{alertes} écart(s) de plus de 10 points ; trajectoires effectives {prev['__ess__']}")
         sys.exit(0)
     etiquette = args[0]
     if "--registre" not in args:
         sys.exit("Indiquer --registre registre/<fichier>.jsonl")
     reg = args[args.index("--registre") + 1]
     qs = questions_cycle(structure, etiquette)
-    prev = prevoir(structure, tables, observations(), qs, nt, ntr)
+    prev = prevoir(structure, tables, observations(), qs, nt, ntr, preuves=pv.preuves_notees(jour))
+    e = prev["__ess__"]
+    if e["alerte"]:
+        sys.exit(f"Combinaison trop rare : {e['effectives']} trajectoires effectives sur {e['trajectoires']} ; relancer avec plus de trajectoires.")
     lignes = [{"question": q["id"], "probabilites": {k: v for k, v in prev[q["id"]].items() if k != "i80"},
                "piste": "v0", "auteur": VERSION, "version": tables.get("version", VERSION),
                "origine": f"cycle {etiquette}", "donnees": f"gel du cycle {etiquette}",
-               "intervalle_80": prev[q["id"]]["i80"]} for q in qs]
+               "intervalle_80": prev[q["id"]]["i80"], "preuves": e["preuves"],
+               "trajectoires_effectives": e["effectives"]} for q in qs]
     from registre import ajouter
     t = ajouter(reg, lignes)
     print(f"{len(lignes)} prévisions du réseau ajoutées à {reg}, émises le {t}")

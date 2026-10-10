@@ -11,12 +11,13 @@ Usage :
 Journaux en ajout seul : modele/jalons/definitions.jsonl et modele/jalons/statuts.jsonl. Une définition porte :
 id, lien (« PARENT → ENFANT »), observable (phrase vérifiable sans interprétation), indicateur {source, mesure,
 seuil}, fenetre {debut, fin}, niveau (2 structurant, 3 fin), type (« amont », « transmission », « aval »), cible
-{noeud, issue, question} (issue favorisée par l'observation, question de la banque dont la probabilité est ajustée
-dans le registre fantôme), vraisemblances {a, b} (P(observé | hypothèse vraie), P(observé | hypothèse fausse)),
-et optionnellement vraisemblances_si_precedent {observe: [a, b], manque: [a, b]} avec « precedent » (id).
+{noeud, issue, question}, vraisemblances {a, b} (version 1, conservée dans le journal) et optionnellement
+vraisemblances_si_precedent. Depuis le 10 octobre 2026, le calcul lit les vraisemblances par issue de la version 2
+(modele/jalons/vraisemblances_v2.json) et passe par le moteur unique (scripts/preuves.py, scripts/reseau.py).
 Règles (annexe, section 10.7) : fenêtre ouverte au moins 7 jours après la définition ; aucun identifiant réutilisé.
-Les jalons sont sans effet sur les probabilités du réseau (section 10.6) : le registre fantôme seul en tient compte,
-avec le facteur de réduction k = 0,5 tant qu'il n'est pas estimé (section 10.4).
+Les jalons indices sont sans effet sur les prévisions notées (section 10.6) : le registre fantôme seul en tient
+compte, avec le facteur de réduction k = 0,5 tant qu'il n'est pas estimé (section 10.4). Un jalon « qui tranche »
+observé est une observation : il entre dans les prévisions notées, sans réduction (feuille de route, étape 2).
 """
 import json
 import math
@@ -106,52 +107,37 @@ def etats(jour):
     return out
 
 
-def rapport(j, st, jour):
-    """Rapport de vraisemblance brut d'un jalon (10.4), selon son statut et l'avancement de sa fenêtre."""
-    a, b = j["vraisemblances"]["a"], j["vraisemblances"]["b"]
-    if st == "observé":
-        return a / b
-    if st == "manqué":
-        return (1 - a) / (1 - b)
-    if st == "en cours":
-        d0, d1, t = (date.fromisoformat(x) for x in (j["fenetre"]["debut"], j["fenetre"]["fin"], jour))
-        F = min(max((t - d0).days / max((d1 - d0).days, 1), 0), 1)
-        return (1 - a * F) / (1 - b * F)
-    return 1.0
-
-
-def fantome(reg, jour):
-    """Probabilités fantômes : pour chaque question cible, la dernière prévision du réseau dans REG, dont la
-    cote de l'issue favorisée est multipliée par le produit des rapports des jalons, réduits par k."""
-    from commun import lire_jsonl as lj
-    derniere = {}
+def fantome(reg, jour, tirages=200, trajectoires=100):
+    """Registre fantôme (feuille de route, étape 2) : prévisions qu'aurait le réseau si tous les jalons étaient
+    actifs, calculées par le moteur unique (scripts/reseau.py) sur toutes les questions du dernier cycle du réseau
+    dans REG. Chaque trajectoire est pondérée par les vraisemblances v2 des jalons observés, manqués ou en cours
+    (scripts/preuves.py ; indices réduits par k). La ligne porte aussi la prévision de référence (jalons « qui
+    tranche » observés et faits retenus seulement), pour lire l'apport des indices."""
+    import preuves as pv
+    import reseau
+    from commun import lire_json, lire_jsonl as lj
+    etiquette = None
     for l in lj(reg):
-        if l.get("auteur") == "réseau v0" and "probabilites" in l:
-            derniere[l["question"]] = l
-    lr = {}
-    for jid, (j, st) in etats(jour).items():
-        q = j["cible"]["question"]
-        lr.setdefault(q, []).append((j, math.log(rapport(j, st, jour)) * K))
-    lignes = []
-    for q, liste in lr.items():
-        base = derniere.get(q)
-        if not base:
-            continue
-        issue = liste[0][0]["cible"]["issue"]
-        p = base["probabilites"].get(issue)
-        if p is None or not 0 < p < 100:
-            continue
-        lo = math.log(p / (100 - p)) + sum(x for _, x in liste)
-        pf = 100 / (1 + math.exp(-lo))
-        autres = {k: v for k, v in base["probabilites"].items() if k != issue}
-        s = sum(autres.values()) or 1
-        probas = {issue: round(pf, 1), **{k: round((100 - pf) * v / s, 1) for k, v in autres.items()}}
-        lignes.append({"question": q, "probabilites": probas, "piste": "fantome", "auteur": "réseau v0 avec jalons (fantôme)",
-                       "origine": f"fantôme {jour}", "donnees": f"jalons au {jour}, k = {K}",
-                       "jalons": [j["id"] for j, _ in liste]})
-    if lignes:
-        from registre import ajouter
-        ajouter("registre/fantome.jsonl", lignes)
+        if l.get("auteur") == reseau.VERSION and str(l.get("origine", "")).startswith("cycle "):
+            etiquette = l["origine"].removeprefix("cycle ")
+    if not etiquette:
+        return []
+    s = lire_json("modele/reseau/structure_v0.json")
+    t = lire_json("modele/reseau/tables_v0.json")
+    qs = reseau.questions_cycle(s, etiquette)
+    obs = reseau.observations(s)
+    pf, pn = pv.preuves_fantome(jour, K), pv.preuves_notees(jour, K)
+    if not [p for p in pf if p["classe"] == "indice"]:
+        return []
+    f = reseau.prevoir(s, t, obs, qs, tirages, trajectoires, preuves=pf)
+    r = reseau.prevoir(s, t, obs, qs, tirages, trajectoires, preuves=pn)
+    lignes = [{"question": q["id"], "probabilites": {k: v for k, v in f[q["id"]].items() if k != "i80"},
+               "reference": {k: v for k, v in r[q["id"]].items() if k != "i80"},
+               "piste": "fantome", "auteur": "réseau v0 avec jalons (fantôme)", "origine": f"fantôme {jour}, cycle {etiquette}",
+               "donnees": f"jalons au {jour}, k = {K}", "jalons": [p["id"] for p in pf if p["source"] == "jalon"],
+               "trajectoires_effectives": f["__ess__"]["effectives"]} for q in qs]
+    from registre import ajouter
+    ajouter("registre/fantome.jsonl", lignes)
     return lignes
 
 
@@ -168,6 +154,8 @@ if __name__ == "__main__":
         for jid, (j, st) in sorted(etats(jour).items(), key=lambda x: x[1][0]["fenetre"]["debut"]):
             print(f"{jid:8} {st:12} {j['fenetre']['debut']} → {j['fenetre']['fin']}  {j['observable'][:90]}")
     elif a[:1] == ["fantome"] and len(a) >= 2:
-        print(f"{len(fantome(a[1], jour))} ligne(s) ajoutée(s) à registre/fantome.jsonl")
+        nt = int(a[a.index("--tirages") + 1]) if "--tirages" in a else 200
+        ntr = int(a[a.index("--trajectoires") + 1]) if "--trajectoires" in a else 100
+        print(f"{len(fantome(a[1], jour, nt, ntr))} ligne(s) ajoutée(s) à registre/fantome.jsonl")
     else:
         sys.exit(__doc__)

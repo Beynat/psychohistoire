@@ -588,8 +588,8 @@ def test_carte():
 
 
 def test_jalons():
-    """Feuille de route v0, bloc 2 : une définition dont la fenêtre s'ouvre dans moins de 7 jours est refusée ; un
-    jalon observé relève, dans le registre fantôme, l'issue qu'il favorise, avec la réduction k."""
+    """Feuille de route v0, bloc 2, et étape 2 : une définition dont la fenêtre s'ouvre dans moins de 7 jours est
+    refusée ; un jalon indice observé relève, dans le registre fantôme calculé par le moteur, l'issue qu'il favorise."""
     tmp, run = _copie()
     try:
         from datetime import date as _d, timedelta as _t
@@ -607,17 +607,23 @@ def test_jalons():
         r = subprocess.run([sys.executable, "scripts/jalons.py", "definir"], cwd=tmp, env=env, capture_output=True, text=True,
                            input=json.dumps({**base, "id": "J-1", "fenetre": {"debut": j0, "fin": j1}}) + chr(10))
         assert r.returncode == 0, r.stderr[-300:]
+        # Registre fantôme par le moteur unique (étape 2) : J-001 (49.3 sur le budget, indice sur la censure d'ici
+        # fin 2026) observé relève EV-15 par rapport à la référence, calculée sans les indices.
         r = subprocess.run([sys.executable, "scripts/jalons.py", "statut"], cwd=tmp, env=env, capture_output=True, text=True,
-                           input=json.dumps({"jalon": "J-1", "statut": "observé", "date": j0, "source": "s", "agent": "a"}) + chr(10))
+                           input=json.dumps({"jalon": "J-001", "statut": "observé", "date": j0, "source": "s", "agent": "a"}) + chr(10))
         assert r.returncode == 0, r.stderr[-300:]
-        ligne = {"question": "Q-EV-50", "probabilites": {"oui": 30.0, "non": 70.0}, "piste": "v0", "auteur": "réseau v0",
+        (tmp / "data/cycles/t").mkdir(parents=True, exist_ok=True)
+        (tmp / "data/cycles/t/questions.json").write_text(json.dumps({"questions": [
+            {"id": "Q-EV-15", "type": "evenement", "details": {"evenement": "EV-15"}, "issues": ["oui", "non"],
+             "fenetre": {"debut": "2026-10-10", "fin": "2026-12-31"}}]}))
+        ligne = {"question": "Q-EV-15", "probabilites": {"oui": 30.0, "non": 70.0}, "piste": "v0", "auteur": "réseau v0",
                  "origine": "cycle t", "donnees": "t"}
         subprocess.run([sys.executable, "scripts/registre.py", "registre/essai_j.jsonl"], cwd=tmp, env=env, check=True,
                        capture_output=True, text=True, input=json.dumps(ligne) + chr(10))
-        run("scripts/jalons.py", "fantome", "registre/essai_j.jsonl")
+        run("scripts/jalons.py", "fantome", "registre/essai_j.jsonl", "--tirages", "20", "--trajectoires", "100")
         f = [json.loads(l) for l in (tmp / "registre/fantome.jsonl").read_text().splitlines() if l.strip()]
-        attendu = 100 / (1 + math.exp(-(math.log(30 / 70) + 0.5 * math.log(3))))
-        assert abs(f[-1]["probabilites"]["oui"] - attendu) < 0.2, (f[-1], attendu)
+        assert f[-1]["question"] == "Q-EV-15" and "J-001" in f[-1]["jalons"], f[-1]
+        assert f[-1]["probabilites"]["oui"] > f[-1]["reference"]["oui"] + 3, f[-1]
     finally:
         shutil.rmtree(tmp.parent)
 
@@ -637,25 +643,20 @@ def test_tables_du_reseau():
 
 
 def test_faits_et_direction():
-    """Feuille de route v0, blocs 2 et 8 : seuil d'application d'un fait imprévu (signes opposés refusés, plafond
-    puis réduction k = 0,5), application d'un fait retenu par le moteur, quantile de Student du critère de direction."""
-    import faits, reseau, direction
+    """Feuille de route v0, blocs 2 et 8, et étape 2 : décision sur un fait imprévu (sens opposés refusés, allégation
+    sans effet, indice plafonné puis réduit par k = 0,5, fait qui tranche appliqué tel quel), quantile de Student du
+    critère de direction."""
+    import faits, direction
     oppose = faits.decider({"fait": "f", "noeud": "N", "issues": ["oui", "non"],
                             "avis": [{"p": {"oui": 0.6, "non": 0.3}}, {"p": {"oui": 0.2, "non": 0.4}}]})
-    assert not oppose["retenu"] and "signes" in oppose["motifs"][0]
-    fort = faits.decider({"fait": "f", "noeud": "N", "issues": ["oui", "non"],
-                          "avis": [{"p": {"oui": 0.9, "non": 0.1}}] * 5})
-    assert fort["retenu"] and abs(fort["multiplicateurs"]["oui"] - 3 ** 0.5) < 0.01, fort
-    S = {"variables_etat": [], "pivots": [{"id": "PV-H", "nature": "à tout moment", "fenetre": ["2026-10-10", "2027-05-02"], "parents": []}],
-         "mesures": {"EV-H": {"caracteristique": {"type": "survenue", "noeud": "PV-H"}, "table": {"oui": 100, "non": 0}}}}
-    T = {"noeuds": {"PV-H": {"p_fenetre": 0.3}}}
-    q = [{"id": "Q", "evenement": "EV-H", "issues": ["oui", "non"], "fenetre": ["2026-10-10", "2027-05-02"]}]
-    reseau.FAITS = {}
-    sans = reseau.prevoir(S, T, {}, q, 30, 200)["Q"]["oui"]
-    reseau.FAITS = {"PV-H": [("2026-10", {"oui": 3.0}, 24)]}
-    avec = reseau.prevoir(S, T, {}, q, 30, 200)["Q"]["oui"]
-    reseau.FAITS = None
-    assert avec > sans + 15, (sans, avec)
+    assert not oppose["retenu"] and "sens" in oppose["motifs"][0]
+    alleg = faits.decider({"fait": "f", "noeud": "N", "issues": ["oui", "non"], "stade": "allégation",
+                           "avis": [{"p": {"oui": 0.9, "non": 0.01}}] * 5})
+    assert not alleg["retenu"] and alleg["classe"] == "allégation"
+    fort = faits.decider({"fait": "f", "noeud": "N", "issues": ["oui", "non"], "avis": [{"p": {"oui": 0.9, "non": 0.1}}] * 5})
+    assert fort["retenu"] and fort["classe"] == "indice" and abs(fort["vraisemblances"]["non"] - (1 / 3) ** 0.5) < 0.01, fort
+    tranche = faits.decider({"fait": "f", "noeud": "N", "issues": ["oui", "non"], "avis": [{"p": {"oui": 0.9, "non": 0.01}}] * 3})
+    assert tranche["classe"] == "tranche" and tranche["vraisemblances"]["non"] < 0.02, tranche
     assert direction.quantile_student_90(4) == 1.533 and direction.quantile_student_90(40) == 1.2816
 
 
@@ -667,7 +668,6 @@ def test_moteur_etape1():
     fen = ["2026-10-10", "2028-09-30"]
     survenue = lambda n: {"caracteristique": {"type": "survenue", "noeud": n}, "table": {"oui": 100, "non": 0}}
     q = lambda e, f: {"id": f"Q-{e}", "evenement": e, "issues": ["oui", "non"], "fenetre": f}
-    reseau.FAITS = {}
     try:
         # 1. Parent daté pas encore tranché : moyenne des multiplicateurs sous sa loi a priori (0,2 × 1 + 0,8 × 0,1
         # = 0,28), et non l'état de référence (× 1). Fenêtre close avant la date du parent.
@@ -709,10 +709,8 @@ def test_moteur_etape1():
         T = {"noeuds": {"PV-A": {"p_fenetre": 0.999999}, "PV-B": {"p_fenetre": 0.9}}}
         r = reseau.prevoir(S, T, {}, [q("EV-B", ["2027-05-03", "2027-10-31"]), {**q("EV-B", ["2028-01-01", "2028-09-30"]), "id": "Q-T"}], 20, 200)
         assert r["Q-EV-B"]["oui"] < 1 and r["Q-T"]["oui"] > 20, r
-        # 5. Extinction d'un fait : appliqué trois mois, sans effet ensuite ; sur une variable d'état, absorbé par
-        # l'observation suivante.
-        assert reseau.fait_actif("2026-10", 3, 2, {}) and not reseau.fait_actif("2026-10", 3, 3, {})
-        assert not reseau.fait_actif("2026-10", 24, 2, {"2026-11": "x"}) and reseau.fait_actif("2026-10", 24, 0, {"2026-11": "x"})
+        # 5. Extinction d'un fait : sans objet depuis l'étape 2 (les faits sont des preuves, sans multiplicateur
+        # appliqué de mois en mois ; voir test_preuves).
         # 6. Contrôle de cohérence sur toutes les issues d'une question à plusieurs issues (EV-05).
         _, a = reseau.ecart_direct({"Le Pen": 51.3, "Philippe": 20.4, "autre": 28.3}, {"Le Pen": 43, "Philippe": 31.9, "autre": 25.1})
         assert a == 1
@@ -731,7 +729,53 @@ def test_moteur_etape1():
         petit, grand = l(20), l(400)
         assert 0.75 < petit / grand < 1.3, (petit, grand)
     finally:
-        reseau.FAITS = None
+        pass
+
+
+def test_preuves():
+    """Feuille de route, étape 2 : moteur de preuve unique. Une preuve sur un enfant remonte vers son parent et
+    descend vers l'aval ; un fait qui tranche s'applique sans réduction ; un pivot tranché met à jour ses parents ;
+    une combinaison rare est signalée et un pivot tranché trop rare est imposé ; classes des jalons."""
+    import reseau, preuves
+    survenue = lambda n: {"caracteristique": {"type": "survenue", "noeud": n}, "table": {"oui": 100, "non": 0}}
+    issue = lambda n: {"caracteristique": {"type": "issue", "noeud": n}, "table": "identite"}
+    S = {"variables_etat": [], "mesures": {"EV-P": issue("PV-P"), "EV-E": issue("PV-E"), "EV-A": issue("PV-A")},
+         "pivots": [{"id": "PV-P", "nature": "daté", "date": "2026-12-31", "issues": ["x", "y"], "parents": []},
+                    {"id": "PV-E", "nature": "daté", "date": "2027-03-31", "issues": ["u", "v"], "parents": [],
+                     "conditionnelle": "PV-P"},
+                    {"id": "PV-A", "nature": "daté", "date": "2027-06-30", "issues": ["s", "t"], "parents": [],
+                     "conditionnelle": "PV-E"}]}
+    S["pivots"][1]["parents"] = ["PV-P"]
+    S["pivots"][2]["parents"] = ["PV-E"]
+    T = {"noeuds": {"PV-P": {"base": {"x": 0.5, "y": 0.5}},
+                    "PV-E": {"base": {"u": 0.9, "v": 0.1}, "conditionnelle": {"x": {"u": 0.9, "v": 0.1}, "y": {"u": 0.1, "v": 0.9}}},
+                    "PV-A": {"base": {"s": 0.8, "t": 0.2}, "conditionnelle": {"u": {"s": 0.8, "t": 0.2}, "v": {"s": 0.2, "t": 0.8}}}}}
+    f = ["2026-10-10", "2027-06-30"]
+    qs = [{"id": f"Q-{e}", "evenement": e, "issues": i, "fenetre": f} for e, i in (("EV-P", ["x", "y"]), ("EV-E", ["u", "v"]), ("EV-A", ["s", "t"]))]
+    sans = reseau.prevoir(S, T, {}, qs, 10, 300)
+    tr = {"id": "J", "noeud": "PV-E", "classe": "tranche", "vraisemblances": {"u": 0.02, "v": 0.9}}
+    avec = reseau.prevoir(S, T, {}, qs, 10, 300, preuves=[tr])
+    # amont : P(y | v observé) = 0,45 / 0,5 = 90 % ; aval : P(t) passe de 32 % à environ 77 %
+    assert sans["Q-EV-P"]["y"] < 60 and avec["Q-EV-P"]["y"] > 80, (sans["Q-EV-P"], avec["Q-EV-P"])
+    assert avec["Q-EV-A"]["t"] > 65, avec["Q-EV-A"]
+    assert avec["__pivots__"]["PV-E"]["v"] > 80 and 0.1 < avec["__ess__"]["part"] < 0.7, (avec["__pivots__"], avec["__ess__"])
+    # Fait qui tranche : vraisemblances appliquées telles quelles (J-026, « Attal renonce », « les deux » à 0,01).
+    v = {"noeud": "PV-BLOC", "etat_reseau": None, "vraisemblances": {"les deux": 0.01, "Philippe seul": 0.601, "Attal seul": 0.014, "aucun des deux": 0.069}}
+    assert preuves.classe_jalon(v) == "tranche" and preuves.preuve_jalon("J-026", v, "observé")["vraisemblances"]["les deux"] == 0.01
+    assert preuves.preuve_jalon("J-026", v, "manqué")["classe"] == "indice"
+    ind = {"noeud": "PV-X", "etat_reseau": None, "vraisemblances": {"oui": 0.6, "non": 0.3}}
+    assert preuves.classe_jalon(ind) == "indice" and abs(preuves.preuve_jalon("J", ind, "observé")["vraisemblances"]["oui"] - 0.6 ** 0.5) < 1e-9
+    # Pivot tranché : preuve sur l'enfant, pas état imposé ; le parent est mis à jour.
+    o = reseau.prevoir(S, T, {"PV-E": {"2027-03": "v"}}, qs, 10, 300)
+    assert o["Q-EV-P"]["y"] > 80 and not o["__ess__"].get("imposes"), (o["Q-EV-P"], o["__ess__"])
+    # Combinaison rare : un pivot tranché presque impossible a priori est imposé (intervention), signalé.
+    T2 = json.loads(json.dumps(T))
+    T2["noeuds"]["PV-P"]["base"] = {"x": 0.999, "y": 0.001}
+    T2["noeuds"]["PV-E"]["conditionnelle"]["x"] = {"u": 0.999, "v": 0.001}
+    o = reseau.prevoir(S, T2, {"PV-E": {"2027-03": "v"}}, qs, 5, 200)
+    assert o["__ess__"].get("imposes") == ["PV-E"] and o["Q-EV-E"]["v"] == 100, o["__ess__"]
+    rare = reseau.prevoir(S, T2, {}, qs, 5, 200, preuves=[{"id": "R", "noeud": "PV-E", "classe": "tranche", "vraisemblances": {"u": 0.0, "v": 1.0}}])
+    assert rare["__ess__"]["alerte"], rare["__ess__"]
 
 
 def test_agregation_sans_veto():
