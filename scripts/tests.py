@@ -535,26 +535,44 @@ def test_emergence_du_tri():
 
 def test_reseau_moteur():
     """Feuille de route v0, bloc 4 : la probabilité sur fenêtre donnée par les évaluateurs est retrouvée après
-    conversion en risque mensuel ; un multiplicateur d'état parent déplace l'issue dans le bon sens ; un cycle
-    au sein d'une tranche est refusé."""
+    conversion en risque mensuel ; un multiplicateur d'état parent déplace l'issue dans le bon sens ; un parent au
+    mois précédent ne crée pas de cycle, un parent au même mois en crée un ; une exclusion annule une issue."""
     import reseau
-    S = {"variables_etat": [{"id": "VE-A", "parents": []}],
+    S = {"variables_etat": [{"id": "VE-A", "etats": ["bas", "haut"], "parents": [{"id": "PV-D", "decalage": 1}]}],
          "pivots": [{"id": "PV-H", "nature": "à tout moment", "fenetre": ["2026-10-10", "2027-05-02"], "parents": []},
-                    {"id": "PV-D", "nature": "daté", "date": "2026-12-31", "parents": ["VE-A"]}]}
+                    {"id": "PV-D", "nature": "daté", "date": "2026-12-31", "parents": ["VE-A"],
+                     "exclusions": {"VE-A": {"haut": ["z"]}}}],
+         "mesures": {"EV-H": {"caracteristique": {"type": "survenue", "noeud": "PV-H"}, "table": {"oui": 100, "non": 0}},
+                     "EV-D": {"caracteristique": {"type": "issue", "noeud": "PV-D"}, "table": "identite"}}}
     T = {"noeuds": {"VE-A": {"reference": "bas", "transition": {"bas": {"bas": 0.5, "haut": 0.5}, "haut": {"bas": 0.5, "haut": 0.5}}},
                     "PV-H": {"p_fenetre": 0.4},
-                    "PV-D": {"base": {"x": 0.7, "y": 0.3}, "multiplicateurs": {"VE-A": {"haut": {"y": 5.0}}}}},
-         "mesures": {"H": {"caracteristique": {"type": "survenue", "noeud": "PV-H", "debut": "2026-10-10", "fin": "2027-05-02"}, "table": {"oui": 100}},
-                     "D": {"caracteristique": {"type": "issue", "noeud": "PV-D"}, "table": {"y": 100}}}}
-    p = reseau.prevoir(S, T, {"VE-A": "bas"}, tirages=40, trajectoires=250)
-    assert 34 <= p["H"]["oui"] <= 46, p["H"]
-    assert p["D"]["oui"] > 40, p["D"]       # 30 % de base, relevé par l'état « haut » une fois sur deux
+                    "PV-D": {"base": {"x": 0.6, "y": 0.2, "z": 0.2}, "multiplicateurs": {"VE-A": {"haut": {"y": 5.0}}}}}}
+    qs = [{"id": "Q-EV-H", "evenement": "EV-H", "issues": ["oui", "non"], "fenetre": ["2026-10-10", "2027-05-02"]},
+          {"id": "Q-EV-D", "evenement": "EV-D", "issues": ["x", "y", "z"], "fenetre": ["2026-10-10", "2026-12-31"]}]
+    p = reseau.prevoir(S, T, {}, qs, tirages=40, trajectoires=250)
+    assert 34 <= p["Q-EV-H"]["oui"] <= 46, p["Q-EV-H"]
+    assert p["Q-EV-D"]["y"] > 30 and p["Q-EV-D"]["z"] < 15, p["Q-EV-D"]   # y relevé, z exclu quand VE-A est haut
+    reseau.ordre(S)   # le lien au mois précédent ne forme pas de cycle
     S2 = {"variables_etat": [{"id": "VE-A", "parents": ["VE-B"]}, {"id": "VE-B", "parents": ["VE-A"]}], "pivots": []}
     try:
         reseau.ordre(S2)
         assert False, "cycle non détecté"
     except SystemExit as e:
         assert "Cycle" in str(e)
+
+
+def test_tables_du_reseau():
+    """Feuille de route v0, bloc 4 : le gabarit couvre chaque nœud de la structure, un gabarit vide est refusé, et
+    une loi qui ne somme pas à 1 est signalée."""
+    import tables
+    g = tables.gabarit()
+    s = json.loads((Path(__file__).resolve().parent.parent / "modele/reseau/structure_v0.json").read_text())
+    assert set(g["noeuds"]) == {n["id"] for n in s["variables_etat"] + s["pivots"]}
+    assert tables.verifier(g), "gabarit vide accepté"
+    i = next(k for k, x in g["noeuds"].items() if "base" in x and "conditionnelle" not in x)
+    r = json.loads(json.dumps(g))
+    r["noeuds"][i]["base"] = {c: 0.9 for c in r["noeuds"][i]["base"]}
+    assert any(f"{i} base" in x and "somme" in x for x in tables.verifier(r))
 
 
 def test_cycles_v0():
