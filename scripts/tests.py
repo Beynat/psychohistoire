@@ -778,6 +778,53 @@ def test_preuves():
     assert rare["__ess__"]["alerte"], rare["__ess__"]
 
 
+def test_calendrier():
+    """Feuille de route, étape 3 : chaque pivot daté renvoie à une entrée sourcée du calendrier, à la même date ; les
+    fenêtres des questions concordent avec les dates et fenêtres des nœuds qui les mesurent ; un profil de risque
+    reproduit la probabilité de fenêtre et la concentre sur les mois de poids fort."""
+    import reseau
+    racine = Path(__file__).resolve().parent.parent
+    cal = json.loads((racine / "modele/reseau/calendrier.json").read_text())
+    S = json.loads((racine / "modele/reseau/structure_v0.json").read_text())
+    ev = {e["id"]: e for e in json.loads((racine / "modele/evenements.json").read_text())["evenements"]}
+    E = {e["id"]: e for e in cal["entrees"]}
+    for e in cal["entrees"]:
+        assert e["source"]["rang"] in ("PO", "I", "MR", "S", "calcul"), e
+        assert e["source"].get("url") or e["source"].get("texte"), e
+    for p in S["pivots"]:
+        if p["nature"] == "daté":
+            assert p.get("calendrier") in E, (p["id"], p.get("calendrier"))
+            assert E[p["calendrier"]]["date"] == p["date"], (p["id"], p["date"], E[p["calendrier"]]["date"])
+        if isinstance(p.get("profil"), str):
+            assert p["profil"] in cal["profils"], p["id"]
+    noeuds = {n["id"]: n for n in S["pivots"]}
+    for q, m in S["mesures"].items():
+        c = m["caracteristique"]
+        els = c.get("elements", [c])
+        for x in els:
+            n = noeuds.get(x.get("noeud"))
+            if not n or q not in ev:
+                continue
+            fin = ev[q]["fenetre"]["fin"]
+            if n["nature"] == "daté":
+                assert n["date"] <= fin, (q, n["id"], n["date"], fin)   # le nœud est tranché avant la fin de la question
+            elif x["type"] == "survenue":
+                a, b = x.get("debut") or ev[q]["fenetre"]["debut"], min(x.get("fin") or fin, fin)
+                assert n["fenetre"][0] <= b and a <= n["fenetre"][1], (q, n["id"])   # fenêtres qui se recouvrent
+                if len(els) == 1:
+                    assert n["fenetre"][1] >= b, (q, n["id"], n["fenetre"], b)        # le nœud couvre la question
+    # Profil : P = 0,5 sur un an, tout le poids en mars 2027 (poids 0 ailleurs) : 50 % sur la fenêtre, 0 % hors mars.
+    survenue = lambda d, f: {"caracteristique": {"type": "survenue", "noeud": "PV-N", "debut": d, "fin": f}, "table": {"oui": 100, "non": 0}}
+    S2 = {"variables_etat": [], "pivots": [{"id": "PV-N", "nature": "à tout moment", "fenetre": ["2026-10-10", "2027-09-30"], "parents": [],
+                                            "profil": {"poids": {"2027-03": 1.0}, "defaut": 0.0}}],
+          "mesures": {"EV-A": survenue(None, None), "EV-B": survenue("2026-10-10", "2027-02-28")}}
+    T2 = {"noeuds": {"PV-N": {"p_fenetre": 0.5}}}
+    q = [{"id": "Q-A", "evenement": "EV-A", "issues": ["oui", "non"], "fenetre": ["2026-10-10", "2027-09-30"]},
+         {"id": "Q-B", "evenement": "EV-B", "issues": ["oui", "non"], "fenetre": ["2026-10-10", "2027-09-30"]}]
+    r = reseau.prevoir(S2, T2, {}, q, 20, 200)
+    assert 42 < r["Q-A"]["oui"] < 58 and r["Q-B"]["oui"] == 0, r
+
+
 def test_agregation_sans_veto():
     """Feuille de route, étape 1 : un zéro isolé chez un évaluateur ne fixe plus l'agrégat à zéro ; un zéro unanime
     reste un zéro."""

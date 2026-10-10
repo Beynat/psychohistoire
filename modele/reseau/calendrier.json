@@ -1,0 +1,277 @@
+{
+ "description": "Calendrier sourcé du réseau (feuille de route, étape 3). Chaque date de pivot daté de structure_v0.json renvoie à une entrée (champ « calendrier ») ; les revues programmées des agences pondèrent le risque mensuel de PV-NOTE (champ « profil » du nœud). Rang de la source selon modele/sources.md (PO primaire officielle, MR média de référence, S spécialisée, W tertiaire) ; « calcul » : date déduite d'un texte cité ; « estimé » : date non publiée, tirée du calendrier de l'année précédente, à remplacer dès la publication (les agences publient leur calendrier de l'année suivante en décembre, règlement (UE) n° 462/2013, article 8 bis).",
+ "etabli_le": "2026-10-10",
+ "entrees": [
+  {
+   "id": "CAL-PLF-DEPOT",
+   "date": "2026-10-01",
+   "objet": "Dépôt du projet de loi de finances pour 2027 (n° 3210) à l'Assemblée nationale",
+   "source": {
+    "rang": "PO",
+    "url": "https://www.assemblee-nationale.fr/dyn/17/dossiers/plf_2027"
+   }
+  },
+  {
+   "id": "CAL-PLF-70J",
+   "date": "2026-12-10",
+   "objet": "Fin du délai de 70 jours (article 47 de la Constitution) : faute de vote, le projet peut être mis en vigueur par ordonnance",
+   "source": {
+    "rang": "calcul",
+    "texte": "article 47 de la Constitution, à partir du dépôt du 1er octobre 2026"
+   }
+  },
+  {
+   "id": "CAL-BUDGET",
+   "date": "2026-12-31",
+   "objet": "Échéance de la question EV-02 et du pivot PV-BUDGET (loi de finances publiée au 31 décembre)",
+   "source": {
+    "rang": "PO",
+    "texte": "critère d'EV-02, modele/banque/criteres.json"
+   }
+  },
+  {
+   "id": "CAL-ECOLO",
+   "date": "2026-12-13",
+   "objet": "Fin du vote des adhérents des Écologistes sur la stratégie présidentielle (vote du 10 au 13 décembre)",
+   "source": {
+    "rang": "MR",
+    "url": "https://www.publicsenat.fr/actualites/politique/presidentielle-2027-les-ecologistes-reportent-lheure-du-choix-a-decembre-marine-tondelier-toujours-en-lice",
+    "date_source": "2026-09-21"
+   }
+  },
+  {
+   "id": "CAL-AUDIENCE",
+   "date": "2027-02-28",
+   "objet": "Fin de la fenêtre de PV-AUDIENCE (audience de la chambre criminelle tenue avant fin février)",
+   "source": {
+    "rang": "calcul",
+    "texte": "dossier présidentiel du 10 octobre 2026, section 2 : arrêt annoncé « au plus tard début avril 2027 »"
+   }
+  },
+  {
+   "id": "CAL-PARRAINAGES",
+   "date": "2027-03-12",
+   "objet": "Fin du dépôt des parrainages (sixième vendredi avant le premier tour, 18 h)",
+   "source": {
+    "rang": "calcul",
+    "texte": "loi n° 62-1292, article 3-I ; dossier présidentiel, section 7"
+   }
+  },
+  {
+   "id": "CAL-LISTE",
+   "date": "2027-03-26",
+   "objet": "Publication de la liste officielle des candidats, au plus tard (quatrième vendredi avant le premier tour)",
+   "source": {
+    "rang": "calcul",
+    "texte": "loi n° 62-1292, article 3-I ; dossier présidentiel, section 7 ; en 2022, liste arrêtée trois jours après la clôture des parrainages"
+   }
+  },
+  {
+   "id": "CAL-T1",
+   "date": "2027-04-18",
+   "objet": "Premier tour de l'élection présidentielle",
+   "source": {
+    "rang": "PO",
+    "url": "https://www.info.gouv.fr/actualite/presidentielle-2027-date-a-retenir-et-informations-cles"
+   }
+  },
+  {
+   "id": "CAL-T2",
+   "date": "2027-05-02",
+   "objet": "Second tour de l'élection présidentielle",
+   "source": {
+    "rang": "PO",
+    "url": "https://www.info.gouv.fr/actualite/presidentielle-2027-date-a-retenir-et-informations-cles"
+   }
+  },
+  {
+   "id": "CAL-FIN-MANDAT",
+   "date": "2027-05-13",
+   "objet": "Fin du mandat présidentiel en cours (cinq ans après la prise de fonctions du 14 mai 2022)",
+   "source": {
+    "rang": "calcul",
+    "texte": "article 6 de la Constitution"
+   }
+  },
+  {
+   "id": "CAL-DISSOL2a",
+   "date": "2027-06-30",
+   "objet": "Fin de la fenêtre de PV-DISSOL2a (dissolution en début de mandat, mai-juin 2027)",
+   "source": {
+    "rang": "calcul",
+    "texte": "découpage du 10 octobre 2026 (journal) ; élections 20 à 40 jours après la dissolution, article 12"
+   }
+  },
+  {
+   "id": "CAL-MAJOR",
+   "date": "2027-07-01",
+   "objet": "Composition de l'Assemblée lue après d'éventuelles législatives de mai-juin 2027 (PV-MAJOR)",
+   "source": {
+    "rang": "calcul",
+    "texte": "PV-DISSOL2a : élections au plus tard 40 jours après une dissolution du 30 juin au plus tard"
+   }
+  },
+  {
+   "id": "CAL-MOODYS-2026-10",
+   "date": "2026-10-23",
+   "objet": "Revue programmée de la France par Moody's",
+   "agence": "Moody's",
+   "revue": true,
+   "source": {
+    "rang": "S",
+    "url": "https://www.orafinanza.it/it/calendario-revisioni-rating-sovrani-moodys",
+    "date_source": "2025-12-30"
+   }
+  },
+  {
+   "id": "CAL-SP-2026-11",
+   "date": "2026-11-27",
+   "objet": "Revue programmée de la France par S&P Global Ratings",
+   "agence": "S&P",
+   "revue": true,
+   "source": {
+    "rang": "S",
+    "url": "https://www.orafinanza.it/it/calendario-revisioni-rating-sovrani-s&p",
+    "date_source": "2025-12-30"
+   }
+  },
+  {
+   "id": "CAL-FITCH-2027-03",
+   "date": "2027-03-05",
+   "objet": "Revue de Fitch, estimée d'après 2026 (6 mars 2026)",
+   "agence": "Fitch",
+   "revue": true,
+   "estime": true,
+   "source": {
+    "rang": "S",
+    "url": "https://www.orafinanza.it/it/calendario-revisioni-rating-sovrani-fitch",
+    "date_source": "2025-12-29"
+   }
+  },
+  {
+   "id": "CAL-MOODYS-2027-04",
+   "date": "2027-04-09",
+   "objet": "Revue de Moody's, estimée d'après 2026 (10 avril 2026)",
+   "agence": "Moody's",
+   "revue": true,
+   "estime": true,
+   "source": {
+    "rang": "S",
+    "url": "https://www.orafinanza.it/it/calendario-revisioni-rating-sovrani-moodys",
+    "date_source": "2025-12-30"
+   }
+  },
+  {
+   "id": "CAL-SP-2027-05",
+   "date": "2027-05-28",
+   "objet": "Revue de S&P, estimée d'après 2026 (29 mai 2026)",
+   "agence": "S&P",
+   "revue": true,
+   "estime": true,
+   "source": {
+    "rang": "S",
+    "url": "https://www.orafinanza.it/it/calendario-revisioni-rating-sovrani-s&p",
+    "date_source": "2025-12-30"
+   }
+  },
+  {
+   "id": "CAL-FITCH-2027-08",
+   "date": "2027-08-27",
+   "objet": "Revue de Fitch, estimée d'après 2026 (28 août 2026)",
+   "agence": "Fitch",
+   "revue": true,
+   "estime": true,
+   "source": {
+    "rang": "S",
+    "url": "https://www.orafinanza.it/it/calendario-revisioni-rating-sovrani-fitch",
+    "date_source": "2025-12-29"
+   }
+  },
+  {
+   "id": "CAL-MOODYS-2027-10",
+   "date": "2027-10-22",
+   "objet": "Revue de Moody's, estimée d'après 2026",
+   "agence": "Moody's",
+   "revue": true,
+   "estime": true,
+   "source": {
+    "rang": "S",
+    "url": "https://www.orafinanza.it/it/calendario-revisioni-rating-sovrani-moodys",
+    "date_source": "2025-12-30"
+   }
+  },
+  {
+   "id": "CAL-SP-2027-11",
+   "date": "2027-11-26",
+   "objet": "Revue de S&P, estimée d'après 2026",
+   "agence": "S&P",
+   "revue": true,
+   "estime": true,
+   "source": {
+    "rang": "S",
+    "url": "https://www.orafinanza.it/it/calendario-revisioni-rating-sovrani-s&p",
+    "date_source": "2025-12-30"
+   }
+  },
+  {
+   "id": "CAL-FITCH-2028-03",
+   "date": "2028-03-03",
+   "objet": "Revue de Fitch, estimée d'après 2026",
+   "agence": "Fitch",
+   "revue": true,
+   "estime": true,
+   "source": {
+    "rang": "S",
+    "url": "https://www.orafinanza.it/it/calendario-revisioni-rating-sovrani-fitch",
+    "date_source": "2025-12-29"
+   }
+  },
+  {
+   "id": "CAL-MOODYS-2028-04",
+   "date": "2028-04-07",
+   "objet": "Revue de Moody's, estimée d'après 2026",
+   "agence": "Moody's",
+   "revue": true,
+   "estime": true,
+   "source": {
+    "rang": "S",
+    "url": "https://www.orafinanza.it/it/calendario-revisioni-rating-sovrani-moodys",
+    "date_source": "2025-12-30"
+   }
+  },
+  {
+   "id": "CAL-SP-2028-05",
+   "date": "2028-05-26",
+   "objet": "Revue de S&P, estimée d'après 2026",
+   "agence": "S&P",
+   "revue": true,
+   "estime": true,
+   "source": {
+    "rang": "S",
+    "url": "https://www.orafinanza.it/it/calendario-revisioni-rating-sovrani-s&p",
+    "date_source": "2025-12-30"
+   }
+  },
+  {
+   "id": "CAL-FITCH-2028-08",
+   "date": "2028-08-25",
+   "objet": "Revue de Fitch, estimée d'après 2026",
+   "agence": "Fitch",
+   "revue": true,
+   "estime": true,
+   "source": {
+    "rang": "S",
+    "url": "https://www.orafinanza.it/it/calendario-revisioni-rating-sovrani-fitch",
+    "date_source": "2025-12-29"
+   }
+  }
+ ],
+ "profils": {
+  "PV-NOTE": {
+   "revues": "toutes les entrées « revue » de Moody's, S&P et Fitch (critère d'EV-01)",
+   "poids_revue": 1.0,
+   "poids_hors_revue": 0.25,
+   "motif": "une dégradation tombe le plus souvent à une revue programmée ; une décision hors calendrier reste possible (S&P a dégradé la France le 17 octobre 2025, avant sa revue programmée du 28 novembre) : poids 0,25 par mois sans revue, jugement à éliciter à l'étape 10 (source : La finance pour tous, 20 octobre 2025, https://www.lafinancepourtous.com/2025/10/20/agences-de-notation-sp-degrade-la-note-de-la-france-et-rejoint-fitch/)"
+  }
+ }
+}

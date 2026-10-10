@@ -24,7 +24,9 @@ Paramétrage (aucune probabilité mensuelle n'est demandée aux évaluateurs) :
   sous 1), puis convertit en risque mensuel constant h = 1 - (1 - P')^(1/n), n mois de la fenêtre. Le multiplicateur
   n'est donc jamais composé de mois en mois (correction du 10 octobre 2026, feuille de route, étape 1). Quand un
   parent « à tout moment » survient en cours de fenêtre (déclencheur), n compte les mois restants depuis sa
-  survenue : la probabilité qu'il implique porte sur le reste de la fenêtre ;
+  survenue : la probabilité qu'il implique porte sur le reste de la fenêtre. Un profil (« profil », étape 3) répartit
+  la probabilité de fenêtre selon le poids de chaque mois (revues programmées des agences pour PV-NOTE) :
+  h_k = 1 - (1 - P')^(w_k / Σw) ;
 - verrou daté (« verrous » de la structure) : une issue juridiquement impossible pendant une durée après un fait
   (article 12 : pas de nouvelle dissolution dans l'année qui suit les élections) met le risque à zéro ;
 - parent daté pas encore tranché : son multiplicateur est la moyenne de ses multiplicateurs sous sa loi a priori
@@ -176,6 +178,33 @@ def p_modifiee(p, m):
     return p * m / (1 - p + p * m)
 
 
+_PROFILS = {}
+
+
+def profil(n):
+    """Poids de chaque mois de la fenêtre d'un pivot « à tout moment » (liste alignée sur MOIS). Sans profil : 1 par
+    mois (risque constant). Profil « PV-NOTE » (calendrier.json, étape 3) : poids de revue pour chaque revue
+    programmée du mois, poids hors revue sinon ; un profil peut aussi être donné en ligne {"poids": {mois: w},
+    "defaut": w}."""
+    cle = (n["id"], json.dumps(n.get("profil"), sort_keys=True))
+    if cle in _PROFILS:
+        return _PROFILS[cle]
+    pr = n.get("profil")
+    w = [1.0] * len(MOIS)
+    if isinstance(pr, str):
+        cal = lire_json("modele/reseau/calendrier.json")
+        d = cal["profils"][pr]
+        revues = {}
+        for e in cal["entrees"]:
+            if e.get("revue"):
+                revues[e["date"][:7]] = revues.get(e["date"][:7], 0) + d["poids_revue"]
+        w = [revues.get(m, d["poids_hors_revue"]) for m in MOIS]
+    elif isinstance(pr, dict):
+        w = [pr["poids"].get(m, pr.get("defaut", 1.0)) for m in MOIS]
+    _PROFILS[cle] = w
+    return w
+
+
 def premier_oui(x, k):
     """Mois de survenue d'un pivot « à tout moment » avant le mois k, ou None."""
     return next((j for j in range(k) if x[j] == "oui"), None)
@@ -270,7 +299,9 @@ def simuler(structure, params, obs, rng, priors=None):
                     if qn and qn.get("nature") == "à tout moment" and etats.get(pid(q)) == "oui" \
                             and t.get("multiplicateurs", {}).get(pid(q), {}).get("oui"):
                         debut = max(debut, premier_oui(traj[pid(q)], k + 1) + dec(q))
-                h = 1 - (1 - min(p, 1 - 1e-9)) ** (1 / (d1 - min(debut, k) + 1))
+                w = profil(n)
+                reste = sum(w[min(debut, k):d1 + 1])
+                h = 1 - (1 - min(p, 1 - 1e-9)) ** (w[k] / reste) if reste > 0 else 0.0
                 traj[i][k] = "oui" if rng.random() < h else "non"
     return traj
 

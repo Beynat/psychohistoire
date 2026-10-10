@@ -1,5 +1,5 @@
 {
- "version": "structure v0.5 (10 octobre 2026, étape 1 de la feuille de route : verrous datés de l'article 12, variables « maximum du mois ») ; chaîne présidentielle de la v0.4",
+ "version": "structure v0.6 (10 octobre 2026, étape 3 : dates des pivots datés renvoyées au calendrier sourcé, profil des revues d'agences sur PV-NOTE) ; étape 1 : verrous de l'article 12 ; chaîne présidentielle de la v0.4",
  "description": "Réseau bayésien dynamique v0, pas mensuel d'octobre 2026 à septembre 2028. Révisé après le pré-mortem du 10 octobre (scratchpad, rapport de 32 causes) : aucun cycle au sein d'un mois (liens au mois précédent marqués « decalage »: 1), au plus trois parents, pivots électoraux par personnes, dette découpée en note, procédure de déficit excessif et TPI ouverts dès octobre 2026, dissolution et censure découpées avant et après la présidentielle, changement de gouvernement ajouté. Hors réseau (notés sur l'ensemble et les comparateurs) : EV-03, EV-44, EV-23, EV-14b, EV-36, EV-06, international, climat, sécurité.",
  "codes_candidats": {
   "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate, sinon Jordan Bardella)",
@@ -147,7 +147,8 @@
    "fenetre": [
     "2026-10-10",
     "2028-09-30"
-   ]
+   ],
+   "profil": "PV-NOTE"
   },
   {
    "id": "PV-PDE",
@@ -248,7 +249,8 @@
      "decalage": 1
     }
    ],
-   "date": "2026-12-31"
+   "date": "2026-12-31",
+   "calendrier": "CAL-BUDGET"
   },
   {
    "id": "PV-GOUV",
@@ -322,7 +324,8 @@
     "PV-AUDIENCE"
    ],
    "date": "2027-03-12",
-   "conditionnelle": "PV-AUDIENCE"
+   "conditionnelle": "PV-AUDIENCE",
+   "calendrier": "CAL-PARRAINAGES"
   },
   {
    "id": "PV-ECOLO",
@@ -339,7 +342,8 @@
      "decalage": 1
     }
    ],
-   "date": "2026-12-13"
+   "date": "2026-12-13",
+   "calendrier": "CAL-ECOLO"
   },
   {
    "id": "PV-BLOC",
@@ -357,8 +361,9 @@
      "decalage": 1
     }
    ],
-   "date": "2027-03-15",
-   "date_note": "liste officielle des candidats ; date exacte à confirmer"
+   "date": "2027-03-26",
+   "calendrier": "CAL-LISTE",
+   "date_note": "liste officielle des candidats, au plus tard le 26 mars 2027 (calendrier, CAL-LISTE)"
   },
   {
    "id": "PV-GAUCHE",
@@ -377,8 +382,9 @@
      "decalage": 1
     }
    ],
-   "date": "2027-03-15",
-   "date_note": "liste officielle des candidats ; date exacte à confirmer"
+   "date": "2027-03-26",
+   "calendrier": "CAL-LISTE",
+   "date_note": "liste officielle des candidats, au plus tard le 26 mars 2027 (calendrier, CAL-LISTE)"
   },
   {
    "id": "PV-LEPEN",
@@ -397,7 +403,8 @@
    ],
    "date": "2027-03-26",
    "date_note": "liste officielle des candidats, au plus tard le 26 mars 2027",
-   "conditionnelle": "PV-POURVOI"
+   "conditionnelle": "PV-POURVOI",
+   "calendrier": "CAL-LISTE"
   },
   {
    "id": "PV-DUEL",
@@ -435,7 +442,8 @@
      ]
     }
    },
-   "conditionnelle": "PV-BLOC"
+   "conditionnelle": "PV-BLOC",
+   "calendrier": "CAL-T1"
   },
   {
    "id": "PV-VAINQ",
@@ -461,7 +469,8 @@
    ],
    "date": "2027-05-02",
    "conditionnelle": "PV-DUEL",
-   "note": "la loi de base est donnée pour chaque duel (seuls ses deux candidats peuvent gagner) ; AUTRE est attribué à AUT"
+   "note": "la loi de base est donnée pour chaque duel (seuls ses deux candidats peuvent gagner) ; AUTRE est attribué à AUT",
+   "calendrier": "CAL-T2"
   },
   {
    "id": "PV-DISSOL2a",
@@ -514,7 +523,8 @@
     "PV-VAINQ",
     "PV-DISSOL2a"
    ],
-   "date": "2027-07-01"
+   "date": "2027-07-01",
+   "calendrier": "CAL-MAJOR"
   },
   {
    "id": "PV-CENSURE2",
