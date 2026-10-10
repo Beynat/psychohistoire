@@ -26,18 +26,18 @@ COURT = {
     "PV-GOUV": "Départ du Premier ministre", "PV-DISSOL1": "Dissolution avant l'élection", "PV-AUDIENCE": "Audience en cassation",
     "PV-POURVOI": "Arrêt de cassation", "PV-ECOLO": "Choix des écologistes", "PV-BLOC": "Candidatures du centre",
     "PV-GAUCHE": "Candidats de gauche", "PV-LEPEN": "Candidature Le Pen", "PV-DUEL": "Second tour",
-    "PV-VAINQ": "Président élu", "PV-DISSOL2": "Dissolution après l'élection", "PV-MAJOR": "Majorité absolue",
+    "PV-VAINQ": "Président élu", "PV-DISSOL2a": "Dissolution en mai-juin 2027", "PV-DISSOL2b": "Dissolution après juin 2027", "PV-MAJOR": "Majorité absolue",
     "PV-CENSURE2": "Censure après l'élection",
 }
 LIBELLE_OUI = {
     "PV-NOTE": "dégradation", "PV-PDE": "durcissement", "PV-TPI": "achats", "PV-CENSURE1a": "censure",
     "PV-CENSURE1b": "censure", "PV-GOUV": "départ", "PV-DISSOL1": "dissolution", "PV-AUDIENCE": "audience tenue",
-    "PV-DISSOL2": "dissolution", "PV-CENSURE2": "censure",
+    "PV-DISSOL2a": "dissolution", "PV-DISSOL2b": "dissolution", "PV-CENSURE2": "censure",
 }
 LIBELLE_NON = {
     "PV-NOTE": "note maintenue", "PV-PDE": "pas de durcissement", "PV-TPI": "pas d'achats", "PV-CENSURE1a": "pas de censure",
     "PV-CENSURE1b": "pas de censure", "PV-GOUV": "reste en fonctions", "PV-DISSOL1": "pas de dissolution",
-    "PV-AUDIENCE": "pas d'audience", "PV-DISSOL2": "pas de dissolution", "PV-CENSURE2": "pas de censure",
+    "PV-AUDIENCE": "pas d'audience", "PV-DISSOL2a": "pas de dissolution", "PV-DISSOL2b": "pas de dissolution", "PV-CENSURE2": "pas de censure",
 }
 NOMS = {"RN": "RN", "PHI": "Philippe", "ATT": "Attal", "MEL": "Mélenchon", "GLU": "Glucksmann", "RET": "Retailleau",
         "LIS": "Lisnard", "AUT": "autre", "AUTRE": "autre duel"}

@@ -70,6 +70,11 @@ def construire():
             lien = lien.replace("PV-CENSURE1", partie)
         if cible.get("noeud") == "PV-CENSURE1":
             cible["noeud"] = partie
+        # Jalons définis avant le découpage de la dissolution après l'élection (structure v0.3) : mai-juin 2027.
+        if "PV-DISSOL2" in lien.replace(" ", "").split("→"):
+            lien = lien.replace("PV-DISSOL2", "PV-DISSOL2a")
+        if cible.get("noeud") == "PV-DISSOL2":
+            cible["noeud"] = "PV-DISSOL2a"
         a, b = j["vraisemblances"]["a"], j["vraisemblances"]["b"]
         jalons.append({"id": j["id"], "lien": lien, "libelle": libelles.get(j["id"], j["observable"]),
                        "observable": j["observable"], "indicateur": j.get("indicateur"), "cible": cible,

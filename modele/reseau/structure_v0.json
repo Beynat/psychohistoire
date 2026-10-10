@@ -1,5 +1,5 @@
 {
- "version": "structure v0.2 (10 octobre 2026, censure découpée en saison budgétaire et printemps)",
+ "version": "structure v0.3 (10 octobre 2026, dissolution après l'élection découpée en mai-juin 2027 et ensuite)",
  "description": "Réseau bayésien dynamique v0, pas mensuel d'octobre 2026 à septembre 2028. Révisé après le pré-mortem du 10 octobre (scratchpad, rapport de 32 causes) : aucun cycle au sein d'un mois (liens au mois précédent marqués « decalage »: 1), au plus trois parents, pivots électoraux par personnes, dette découpée en note, procédure de déficit excessif et TPI ouverts dès octobre 2026, dissolution et censure découpées avant et après la présidentielle, changement de gouvernement ajouté. Hors réseau (notés sur l'ensemble et les comparateurs) : EV-03, EV-44, EV-23, EV-14b, EV-36, EV-06, international, climat, sécurité.",
  "codes_candidats": {
   "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate, sinon Jordan Bardella)",
@@ -458,8 +458,8 @@
    "note": "la loi de base est donnée pour chaque duel (seuls ses deux candidats peuvent gagner) ; AUTRE est attribué à AUT"
   },
   {
-   "id": "PV-DISSOL2",
-   "nom": "Dissolution après le second tour",
+   "id": "PV-DISSOL2a",
+   "nom": "Dissolution dans les deux mois suivant le second tour",
    "nature": "à tout moment",
    "issues": [
     "oui",
@@ -470,10 +470,29 @@
     {
      "id": "VE-POP",
      "decalage": 1
-    }
+    },
+    "PV-DISSOL1"
    ],
    "fenetre": [
     "2027-05-03",
+    "2027-06-30"
+   ]
+  },
+  {
+   "id": "PV-DISSOL2b",
+   "nom": "Dissolution de juillet 2027 à septembre 2028",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    "PV-VAINQ",
+    "PV-DISSOL2a",
+    "PV-DISSOL1"
+   ],
+   "fenetre": [
+    "2027-07-01",
     "2028-09-30"
    ]
   },
@@ -487,7 +506,7 @@
    ],
    "parents": [
     "PV-VAINQ",
-    "PV-DISSOL2"
+    "PV-DISSOL2a"
    ],
    "date": "2027-07-01"
   },
@@ -592,12 +611,22 @@
   },
   "EV-16b": {
    "caracteristique": {
-    "type": "survenue",
-    "noeud": "PV-DISSOL2"
+    "type": "conjonction",
+    "elements": [
+     {
+      "type": "survenue",
+      "noeud": "PV-DISSOL2a"
+     },
+     {
+      "type": "survenue",
+      "noeud": "PV-DISSOL2b"
+     }
+    ]
    },
    "table": {
-    "oui": 100,
-    "non": 0
+    "oui|*": 100,
+    "*|oui": 100,
+    "non|non": 0
    },
    "exacte": true
   },
@@ -934,7 +963,7 @@
      },
      {
       "type": "survenue",
-      "noeud": "PV-DISSOL2",
+      "noeud": "PV-DISSOL2b",
       "debut": "2027-08-01"
      }
     ]

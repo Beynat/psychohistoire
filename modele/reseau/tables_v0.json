@@ -1,5 +1,5 @@
 {
- "version": "tables v0 (E1, E2 Opus ; E3 Sonnet ; 10 octobre 2026) ; v0.2 : censure découpée (dérivée) ; persistance lycéenne calibrée (λ = 0,45)",
+ "version": "tables v0 (E1, E2 Opus ; E3 Sonnet ; 10 octobre 2026) ; v0.2 : censure découpée (dérivée) ; persistance lycéenne calibrée (λ = 0,45) ; v0.3 : dissolution après l'élection découpée, candidature Le Pen selon le pourvoi (passe du 10 octobre)",
  "evaluateurs": [
   "E1",
   "E2",
@@ -546,16 +546,20 @@
    "multiplicateurs": {
     "PV-POURVOI": {
      "cassation totale ou partielle": {
-      "candidate": 1.0476895531716472,
-      "non candidate": 0.8728518735186042
+      "candidate": 1.1,
+      "non candidate": 0.5
      },
      "désistement": {
-      "candidate": 1.0,
-      "non candidate": 0.8879040017426006
+      "candidate": 0.4,
+      "non candidate": 4.0
      },
      "pas d'arrêt": {
       "candidate": 1.0322801154563672,
       "non candidate": 0.8617738760127536
+     },
+     "rejet ou non-admission": {
+      "candidate": 0.4,
+      "non candidate": 4.0
      }
     },
     "VE-RN": {
@@ -569,7 +573,8 @@
      }
     }
    },
-   "sigma": 0.674
+   "sigma": 0.674,
+   "derive": "passe du 10 octobre 2026 (relecture de cohérence) : rejet ou désistement rendent définitif l'arrêt d'appel (un an sous bracelet, qu'elle refuse pour faire campagne) ; cassation : candidature quasi certaine"
   },
   "PV-DUEL": {
    "base": {
@@ -805,43 +810,6 @@
    },
    "sigma": 0.3
   },
-  "PV-DISSOL2": {
-   "p_fenetre": 0.870623980376375,
-   "multiplicateurs": {
-    "PV-VAINQ": {
-     "PHI": {
-      "oui": 0.7107853506470305
-     },
-     "ATT": {
-      "oui": 0.6685205344273679
-     },
-     "MEL": {
-      "oui": 1.0
-     },
-     "GLU": {
-      "oui": 0.8136461142839199
-     },
-     "RET": {
-      "oui": 0.749332739861262
-     },
-     "LIS": {
-      "oui": 0.749332739861262
-     },
-     "AUT": {
-      "oui": 0.6453714584098175
-     }
-    },
-    "VE-POP": {
-     "25-35 %": {
-      "oui": 1.0626585691826111
-     },
-     "> 35 %": {
-      "oui": 1.1548003502915456
-     }
-    }
-   },
-   "sigma": 0.3
-  },
   "PV-MAJOR": {
    "base": {
     "289 ou plus": 0.014430951730025694,
@@ -878,7 +846,7 @@
       "moins de 289": 1.0
      }
     },
-    "PV-DISSOL2": {
+    "PV-DISSOL2a": {
      "oui": {
       "289 ou plus": 48.994862712835314,
       "moins de 289": 1.0
@@ -951,6 +919,89 @@
    },
    "sigma": 0.3,
    "derive": "p_fenetre = médiane des probabilités directes des évaluateurs pour EV-15b ; multiplicateurs de PV-CENSURE1"
+  },
+  "PV-DISSOL2a": {
+   "p_fenetre": 0.7,
+   "multiplicateurs": {
+    "PV-VAINQ": {
+     "PHI": {
+      "oui": 0.7107853506470305
+     },
+     "ATT": {
+      "oui": 0.6685205344273679
+     },
+     "MEL": {
+      "oui": 1.0
+     },
+     "GLU": {
+      "oui": 0.8136461142839199
+     },
+     "RET": {
+      "oui": 0.749332739861262
+     },
+     "LIS": {
+      "oui": 0.749332739861262
+     },
+     "AUT": {
+      "oui": 0.6453714584098175
+     }
+    },
+    "VE-POP": {
+     "25-35 %": {
+      "oui": 1.0626585691826111
+     },
+     "> 35 %": {
+      "oui": 1.1548003502915456
+     }
+    },
+    "PV-DISSOL1": {
+     "oui": {
+      "oui": 0.05
+     }
+    }
+   },
+   "sigma": 0.4,
+   "derive": "passe du 10 octobre 2026 (relecture de cohérence) : 70 % pour un président RN dans les deux mois (suggestion de l'évaluateur E3) ; quasi impossible après une dissolution avant l'élection (article 12, un an)"
+  },
+  "PV-DISSOL2b": {
+   "p_fenetre": 0.569,
+   "multiplicateurs": {
+    "PV-VAINQ": {
+     "PHI": {
+      "oui": 0.7107853506470305
+     },
+     "ATT": {
+      "oui": 0.6685205344273679
+     },
+     "MEL": {
+      "oui": 1.0
+     },
+     "GLU": {
+      "oui": 0.8136461142839199
+     },
+     "RET": {
+      "oui": 0.749332739861262
+     },
+     "LIS": {
+      "oui": 0.749332739861262
+     },
+     "AUT": {
+      "oui": 0.6453714584098175
+     }
+    },
+    "PV-DISSOL2a": {
+     "oui": {
+      "oui": 0.2
+     }
+    },
+    "PV-DISSOL1": {
+     "oui": {
+      "oui": 0.4
+     }
+    }
+   },
+   "sigma": 0.4,
+   "derive": "passe du 10 octobre 2026 : reste de la probabilité agrégée sur 17 mois (87 %) ; une dissolution de mai-juin interdit la suivante pendant un an (× 0,2), une dissolution avant l'élection aussi (× 0,4)"
   }
  },
  "mesures": {

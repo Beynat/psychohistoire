@@ -2,8 +2,8 @@
  "genere_le": "2026-10-10",
  "registre": "registre/essai_v0.jsonl",
  "cycle": "2026-10-v0",
- "version_structure": "structure v0.2 (10 octobre 2026, censure découpée en saison budgétaire et printemps)",
- "version_tables": "tables v0 (E1, E2 Opus ; E3 Sonnet ; 10 octobre 2026) ; v0.2 : censure découpée (dérivée) ; persistance lycéenne calibrée (λ = 0,45)",
+ "version_structure": "structure v0.3 (10 octobre 2026, dissolution après l'élection découpée en mai-juin 2027 et ensuite)",
+ "version_tables": "tables v0 (E1, E2 Opus ; E3 Sonnet ; 10 octobre 2026) ; v0.2 : censure découpée (dérivée) ; persistance lycéenne calibrée (λ = 0,45) ; v0.3 : dissolution après l'élection découpée, candidature Le Pen selon le pourvoi (passe du 10 octobre)",
  "codes_candidats": {
   "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate, sinon Jordan Bardella)",
   "PHI": "Édouard Philippe",
@@ -315,8 +315,25 @@
    "date_note": null
   },
   {
-   "id": "PV-DISSOL2",
-   "nom": "Dissolution après le second tour",
+   "id": "PV-DISSOL2a",
+   "nom": "Dissolution dans les deux mois suivant le second tour",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "questions": [
+    "EV-16b"
+   ],
+   "indicateurs": [],
+   "fenetre": [
+    "2027-05-03",
+    "2027-06-30"
+   ]
+  },
+  {
+   "id": "PV-DISSOL2b",
+   "nom": "Dissolution de juillet 2027 à septembre 2028",
    "nature": "à tout moment",
    "issues": [
     "oui",
@@ -326,11 +343,9 @@
     "EV-16b",
     "EV-17"
    ],
-   "indicateurs": [
-    "Stabilité institutionnelle"
-   ],
+   "indicateurs": [],
    "fenetre": [
-    "2027-05-03",
+    "2027-07-01",
     "2028-09-30"
    ]
   },
@@ -721,7 +736,7 @@
   },
   {
    "de": "PV-VAINQ",
-   "vers": "PV-DISSOL2",
+   "vers": "PV-DISSOL2a",
    "decalage": 0,
    "jalons": [
     "J-037",
@@ -731,8 +746,32 @@
   },
   {
    "de": "VE-POP",
-   "vers": "PV-DISSOL2",
+   "vers": "PV-DISSOL2a",
    "decalage": 1,
+   "jalons": []
+  },
+  {
+   "de": "PV-DISSOL1",
+   "vers": "PV-DISSOL2a",
+   "decalage": 0,
+   "jalons": []
+  },
+  {
+   "de": "PV-VAINQ",
+   "vers": "PV-DISSOL2b",
+   "decalage": 0,
+   "jalons": []
+  },
+  {
+   "de": "PV-DISSOL2a",
+   "vers": "PV-DISSOL2b",
+   "decalage": 0,
+   "jalons": []
+  },
+  {
+   "de": "PV-DISSOL1",
+   "vers": "PV-DISSOL2b",
+   "decalage": 0,
    "jalons": []
   },
   {
@@ -742,7 +781,7 @@
    "jalons": []
   },
   {
-   "de": "PV-DISSOL2",
+   "de": "PV-DISSOL2a",
    "vers": "PV-MAJOR",
    "decalage": 0,
    "jalons": [
@@ -1782,7 +1821,7 @@
   },
   {
    "id": "J-037",
-   "lien": "PV-VAINQ → PV-DISSOL2",
+   "lien": "PV-VAINQ → PV-DISSOL2a",
    "libelle": "Le président élu annonce une dissolution",
    "observable": "Le président élu en 2027 déclare publiquement son intention de dissoudre l'Assemblée nationale.",
    "indicateur": {
@@ -1791,7 +1830,7 @@
     "seuil": "1 déclaration"
    },
    "cible": {
-    "noeud": "PV-DISSOL2",
+    "noeud": "PV-DISSOL2a",
     "issue": "oui",
     "question": "Q-EV-16b"
    },
@@ -1810,7 +1849,7 @@
   },
   {
    "id": "J-038",
-   "lien": "PV-VAINQ → PV-DISSOL2",
+   "lien": "PV-VAINQ → PV-DISSOL2a",
    "libelle": "300 investitures du parti présidentiel",
    "observable": "Le parti du président élu publie une liste d'au moins 300 investitures pour des élections législatives.",
    "indicateur": {
@@ -1819,7 +1858,7 @@
     "seuil": "au moins 300"
    },
    "cible": {
-    "noeud": "PV-DISSOL2",
+    "noeud": "PV-DISSOL2a",
     "issue": "oui",
     "question": "Q-EV-16b"
    },
@@ -1838,7 +1877,7 @@
   },
   {
    "id": "J-039",
-   "lien": "PV-VAINQ → PV-DISSOL2",
+   "lien": "PV-VAINQ → PV-DISSOL2a",
    "libelle": "Premier ministre d'un parti concurrent",
    "observable": "Un décret nomme Premier ministre une personne membre d'un parti qui a soutenu, au premier tour de 2027, un autre candidat que le président élu.",
    "indicateur": {
@@ -1847,7 +1886,7 @@
     "seuil": "parti ayant soutenu un autre candidat"
    },
    "cible": {
-    "noeud": "PV-DISSOL2",
+    "noeud": "PV-DISSOL2a",
     "issue": "oui",
     "question": "Q-EV-16b"
    },
@@ -1866,7 +1905,7 @@
   },
   {
    "id": "J-040",
-   "lien": "PV-DISSOL2 → PV-MAJOR",
+   "lien": "PV-DISSOL2a → PV-MAJOR",
    "libelle": "Parti du président à 33 % aux législatives",
    "observable": "Au premier tour d'élections législatives tenues après la présidentielle, les candidats du parti du président obtiennent au moins 33 % des suffrages exprimés au niveau national.",
    "indicateur": {
@@ -1894,7 +1933,7 @@
   },
   {
    "id": "J-041",
-   "lien": "PV-DISSOL2 → PV-MAJOR",
+   "lien": "PV-DISSOL2a → PV-MAJOR",
    "libelle": "40 élus dès le premier tour",
    "observable": "Au moins 40 candidats du parti du président sont élus dès le premier tour d'élections législatives tenues après la présidentielle.",
    "indicateur": {
@@ -1922,7 +1961,7 @@
   },
   {
    "id": "J-042",
-   "lien": "PV-DISSOL2 → PV-MAJOR",
+   "lien": "PV-DISSOL2a → PV-MAJOR",
    "libelle": "Législatives anticipées avant le 6 juin 2027",
    "observable": "Le premier tour d'élections législatives anticipées a lieu au plus tard le 6 juin 2027.",
    "indicateur": {
