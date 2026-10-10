@@ -1,0 +1,515 @@
+{
+ "evaluateur": "J1",
+ "jalons": {
+  "J-001": {
+   "noeud": "PV-CENSURE1a",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.62,
+    "non": 0.25
+   },
+   "motif": "La censure d'ici fin 2026 passe le plus souvent par la motion qui suit un 49.3 sur le PLF, mais un 49.3 peut aussi être tenté et survivre (ou être évité au profit des ordonnances), d'où une discrimination moyenne."
+  },
+  "J-002": {
+   "noeud": "PV-CENSURE1a",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.8,
+    "non": 0.3
+   },
+   "motif": "Sans le PS aucune motion n'atteint 289 voix, donc la censure s'accompagne presque toujours d'une motion signée par son président, alors qu'une signature de protestation sans vote décisif reste possible."
+  },
+  "J-003": {
+   "noeud": "PV-BUDGET",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "publiée": 0.2,
+    "non publiée": 0.4
+   },
+   "motif": "Un rejet en première lecture allonge la navette sans fermer la voie d'une publication au 31 décembre (le Sénat repart du texte initial) ; un 49.3 ou une censure peuvent aussi empêcher le vote, d'où un effet modéré."
+  },
+  "J-004": {
+   "noeud": "PV-BUDGET",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "publiée": 0.85,
+    "non publiée": 0.15
+   },
+   "motif": "Une CMP conclusive précède presque toute loi de finances publiée à temps, mais le texte de CMP peut encore être rejeté ou tomber sur une censure."
+  },
+  "J-005": {
+   "noeud": "PV-BUDGET",
+   "etat_reseau": {
+    "noeud": "PV-BUDGET",
+    "etat": "non publiée"
+   },
+   "vraisemblances": {
+    "publiée": 0.04,
+    "non publiée": 0.8
+   },
+   "motif": "L'expiration du délai de 70 jours sans adoption laisse moins de deux semaines, contrôle du Conseil constitutionnel compris, et ouvre la voie de l'ordonnance ou de la loi spéciale : elle implique presque sûrement l'absence de loi de finances publiée au 31 décembre (incertitude seulement sur la date exacte du délai)."
+  },
+  "J-006": {
+   "noeud": "PV-BUDGET",
+   "etat_reseau": {
+    "noeud": "PV-BUDGET",
+    "etat": "non publiée"
+   },
+   "vraisemblances": {
+    "publiée": 0.03,
+    "non publiée": 0.9
+   },
+   "motif": "Le dépôt d'une loi spéciale (précédents de décembre 2024 et 2025) n'intervient que lorsque la loi de finances ne peut être promulguée avant le 1er janvier : c'est quasiment l'issue « non publiée » elle-même."
+  },
+  "J-007": {
+   "noeud": "PV-CENSURE1a",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.5,
+    "non": 0.25
+   },
+   "motif": "Un 49.3 sur le PLFSS crée une occasion de censure supplémentaire ; il reste fréquent sans censure et la censure peut venir du PLF seul."
+  },
+  "J-008": {
+   "noeud": "PV-GOUV",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.35,
+    "non": 0.4
+   },
+   "motif": "Les départs isolés de ministres sont courants en période de campagne et la chute du Premier ministre raccourcit la période où ils peuvent survenir hors démission collective : jalon quasi neutre."
+  },
+  "J-009": {
+   "noeud": "PV-CENSURE1b",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.6,
+    "non": 0.2
+   },
+   "motif": "En campagne, un gouvernement sans majorité évite le 49.3 sauf nécessité ; s'il l'utilise, la motion qui suit est la voie principale d'une censure entre janvier et le second tour."
+  },
+  "J-010": {
+   "noeud": "PV-CENSURE1a",
+   "etat_reseau": {
+    "noeud": "VE-MOBIL",
+    "etat": [
+     "modérée",
+     "forte"
+    ],
+    "mois": "mois de la journée observée"
+   },
+   "vraisemblances": {
+    "oui": 0.55,
+    "non": 0.35
+   },
+   "motif": "Le chiffre de l'Intérieur est la définition même de VE-MOBIL : au moins 300 000 place le mois concerné en « modérée » ou « forte » (pas un état unique) ; la cible « VE-MOBIL = oui » n'existe pas, le pivot renseigné via la variable est PV-CENSURE1a."
+  },
+  "J-012": {
+   "noeud": "PV-CENSURE1a",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.55,
+    "non": 0.35
+   },
+   "motif": "Les motions sont fréquentes (49.3 ou 49.2 de LFI) et une journée à 200 000 a déjà eu lieu le 6 octobre ; la coïncidence à 7 jours renseigne peu sur l'adoption d'une censure."
+  },
+  "J-014": {
+   "noeud": "PV-BUDGET",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "publiée": 0.3,
+    "non publiée": 0.2
+   },
+   "motif": "Une concession chiffrée sur l'enseignement scolaire signale une recherche de compromis mais n'est pas nécessaire à l'adoption et disparaît si le gouvernement tombe tôt."
+  },
+  "J-015": {
+   "noeud": "PV-BUDGET",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "publiée": 0.5,
+    "non publiée": 0.25
+   },
+   "motif": "Un vote positif sur le PLFSS en première lecture montre une majorité de compromis sur les textes financiers, ce qui favorise une loi de finances publiée dans les délais."
+  },
+  "J-016": {
+   "noeud": "PV-CENSURE1a",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.5,
+    "non": 0.45
+   },
+   "motif": "Une motion soutenue par le RN et la gauche hors PS totalise mécaniquement environ 265-275 voix (271 en octobre 2025) : ce résultat est presque aussi probable sans censure qu'avant une censure."
+  },
+  "J-017": {
+   "noeud": "PV-CENSURE1b",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.15,
+    "non": 0.02
+   },
+   "motif": "Le président de la Droite républicaine ne signe une motion que si son groupe rompt avec le gouvernement ; c'est rare même quand une censure survient (elle peut passer par le PS)."
+  },
+  "J-018": {
+   "noeud": "PV-CENSURE1b",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.5,
+    "non": 0.15
+   },
+   "motif": "Une motion 49.2 du PS en campagne est le signe d'une rupture qui précède le plus souvent une censure, la gauche hors PS ne suffisant pas à atteindre 289 voix."
+  },
+  "J-019": {
+   "noeud": "PV-CENSURE1a",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.35,
+    "non": 0.03
+   },
+   "motif": "Dix défections de la Droite républicaine sont rares sans censure ; une censure peut toutefois passer avec le PS sans elles."
+  },
+  "J-020": {
+   "noeud": "PV-AUDIENCE",
+   "etat_reseau": {
+    "noeud": "PV-AUDIENCE",
+    "etat": "oui"
+   },
+   "vraisemblances": {
+    "oui": 0.85,
+    "non": 0.03
+   },
+   "motif": "Une date d'audience fixée au plus tard le 28 février implique presque sûrement l'issue « oui » de PV-AUDIENCE (seul un renvoi tardif l'empêcherait) ; la cible PV-POURVOI = rejet était indirecte, l'effet sur le pourvoi passe par l'arête PV-AUDIENCE → PV-POURVOI."
+  },
+  "J-021": {
+   "noeud": "PV-POURVOI",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "rejet ou non-admission": 0.03,
+    "cassation totale ou partielle": 0.06,
+    "désistement": 0.05,
+    "pas d'arrêt": 0.2
+   },
+   "motif": "Une QPC transmise suspend l'examen de plusieurs semaines à trois mois et rend un arrêt avant le 1er mars peu probable, favorisant « pas d'arrêt » ; la transmission reste rare dans toutes les issues."
+  },
+  "J-022": {
+   "noeud": "PV-POURVOI",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "rejet ou non-admission": 0.75,
+    "cassation totale ou partielle": 0.2,
+    "désistement": 0.1,
+    "pas d'arrêt": 0.3
+   },
+   "motif": "L'avis de rejet de l'avocat général est généralement suivi ; il est aussi observable sous « pas d'arrêt » si l'audience a lieu fin février ou début mars avec délibéré après le 1er mars."
+  },
+  "J-023": {
+   "noeud": "PV-POURVOI",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "rejet ou non-admission": 0.02,
+    "cassation totale ou partielle": 0.04,
+    "désistement": 0.02,
+    "pas d'arrêt": 0.1
+   },
+   "motif": "Un renvoi en assemblée plénière allonge fortement le calendrier et pointe vers « pas d'arrêt » au 1er mars ; c'est un événement rare quelle que soit l'issue."
+  },
+  "J-024": {
+   "noeud": "PV-LEPEN",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "candidate": 0.95,
+    "non candidate": 0.08
+   },
+   "motif": "Si elle est candidate, ses 250 premiers parrainages sont publiés avant le 12 mars presque sûrement ; sinon le RN ne collecte pas à son nom, sauf retrait ou inéligibilité survenant après la collecte (issue « candidate » : la cible « oui » n'existe pas)."
+  },
+  "J-025": {
+   "noeud": "PV-LEPEN",
+   "etat_reseau": {
+    "noeud": "PV-LEPEN",
+    "etat": "non candidate"
+   },
+   "vraisemblances": {
+    "candidate": 0.01,
+    "non candidate": 0.85
+   },
+   "motif": "L'investiture officielle de Jordan Bardella par le RN implique presque sûrement que Marine Le Pen ne figure pas sur la liste ; la cible « oui » était inversée (la désignation est un signal de non-candidature)."
+  },
+  "J-026": {
+   "noeud": "PV-BLOC",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "les deux": 0.01,
+    "Philippe seul": 0.55,
+    "Attal seul": 0.02,
+    "aucun des deux": 0.15
+   },
+   "motif": "Le retrait d'Attal pour Philippe exclut presque « les deux » et « Attal seul » ; il reste compatible avec « aucun des deux » si Philippe renonce ensuite (instruction du Havre), donc pas d'état certain."
+  },
+  "J-027": {
+   "noeud": "PV-BLOC",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "les deux": 0.6,
+    "Philippe seul": 0.12,
+    "Attal seul": 0.6,
+    "aucun des deux": 0.15
+   },
+   "motif": "Une investiture formelle d'Attal par Renaissance accompagne sa candidature maintenue (les deux, ou Attal seul) et reste possible avant un retrait tardif."
+  },
+  "J-028": {
+   "noeud": "PV-BLOC",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "les deux": 0.9,
+    "Philippe seul": 0.04,
+    "Attal seul": 0.9,
+    "aucun des deux": 0.03
+   },
+   "motif": "300 parrainages validés avant le 12 mars indiquent presque sûrement qu'Attal figure sur la liste, ce qui sépare {les deux, Attal seul} des deux autres issues sans désigner un état unique."
+  },
+  "J-029": {
+   "noeud": "PV-BLOC",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "les deux": 0.08,
+    "Philippe seul": 0.3,
+    "Attal seul": 0.3,
+    "aucun des deux": 0.15
+   },
+   "motif": "Une procédure de départage commune aboutit le plus souvent à un candidat unique, d'où une forte baisse de « les deux » ; Philippe ayant toujours refusé une primaire, l'événement reste peu probable."
+  },
+  "J-030": {
+   "noeud": "PV-ECOLO",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "candidature autonome": 0.4,
+    "soutien à un autre candidat": 0.8,
+    "autre ou vote non tenu": 0.3
+   },
+   "motif": "Une option de ralliement nominatif est presque nécessaire pour que le vote retienne un soutien, mais elle peut figurer au bulletin et être battue par la candidature autonome."
+  },
+  "J-031": {
+   "noeud": "PV-ECOLO",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "candidature autonome": 0.6,
+    "soutien à un autre candidat": 0.25,
+    "autre ou vote non tenu": 0.3
+   },
+   "motif": "La consigne de la direction (motion à 69 %) pèse sur le vote des adhérents ; elle est moins probable si le ralliement l'emporte ou si le vote est reporté."
+  },
+  "J-032": {
+   "noeud": "PV-GAUCHE",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "3 ou moins": 0.0,
+    "4": 0.01,
+    "5": 0.1,
+    "6 ou plus": 0.8
+   },
+   "motif": "Six candidats de gauche à 300 parrainages validés le 12 mars aboutissent presque tous à 500, ce qui pointe vers « 6 ou plus » ; un ou deux peuvent encore échouer ou se retirer."
+  },
+  "J-033": {
+   "noeud": "PV-GAUCHE",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "3 ou moins": 0.4,
+    "4": 0.35,
+    "5": 0.2,
+    "6 ou plus": 0.08
+   },
+   "motif": "Un accord écrit de candidature commune retire une candidature écologiste, ce qui favorise les issues basses ; il est rare dans un scénario à six candidats ou plus."
+  },
+  "J-034": {
+   "noeud": "PV-VAINQ",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "RN": 0.45,
+    "PHI": 0.12,
+    "ATT": 0.12,
+    "MEL": 0.08,
+    "GLU": 0.12,
+    "RET": 0.12,
+    "LIS": 0.1,
+    "AUT": 0.12
+   },
+   "motif": "Un RN à 37 % au premier tour (sondages à 31-36 %) est surtout compatible avec sa victoire ; la cible « Édouard Philippe » est réécrite en issues codées (PHI, etc.), l'issue RN étant la plus touchée."
+  },
+  "J-035": {
+   "noeud": "PV-VAINQ",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "RN": 0.16,
+    "PHI": 0.55,
+    "ATT": 0.01,
+    "MEL": 0.08,
+    "GLU": 0.08,
+    "RET": 0.08,
+    "LIS": 0.08,
+    "AUT": 0.1
+   },
+   "motif": "Philippe à 22 % rend sa victoire plus probable ; l'observation est quasi impossible s'il n'est pas candidat, donc très faible pour ATT."
+  },
+  "J-036": {
+   "noeud": "PV-VAINQ",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "RN": 0.4,
+    "PHI": 0.5,
+    "ATT": 0.55,
+    "MEL": 0.4,
+    "GLU": 0.6,
+    "RET": 0.5,
+    "LIS": 0.5,
+    "AUT": 0.3
+   },
+   "motif": "Le duel est déjà connu dans la fenêtre ; un appel explicite du troisième dépend surtout de son identité (Mélenchon n'appelle pas explicitement à voter pour le centre) et n'est pas défini en cas de duel sans RN : discrimination faible."
+  },
+  "J-037": {
+   "noeud": "PV-DISSOL2a",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.85,
+    "non": 0.05
+   },
+   "motif": "Une dissolution dans les deux mois suit presque toujours une annonce publique dans le mois qui suit l'élection ; une annonce sans passage à l'acte avant le 30 juin est rare."
+  },
+  "J-038": {
+   "noeud": "PV-DISSOL2a",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.85,
+    "non": 0.15
+   },
+   "motif": "Des législatives anticipées imposent des investitures massives en quelques semaines ; une préparation par précaution reste possible sans dissolution."
+  },
+  "J-039": {
+   "noeud": "PV-DISSOL2a",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.2,
+    "non": 0.35
+   },
+   "motif": "Un Premier ministre issu d'un partenaire est l'alternative à la dissolution, mais un président peut aussi nommer un allié d'une autre formation avant de dissoudre."
+  },
+  "J-040": {
+   "noeud": "PV-MAJOR",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "289 ou plus": 0.75,
+    "moins de 289": 0.2
+   },
+   "motif": "Un tiers des voix nationales au premier tour accompagne historiquement une majorité absolue, alors que sans dissolution l'observation est impossible (issues « 289 ou plus » / « moins de 289 » : la cible « non » n'existe pas)."
+  },
+  "J-041": {
+   "noeud": "PV-MAJOR",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "289 ou plus": 0.75,
+    "moins de 289": 0.15
+   },
+   "motif": "Quarante élus dès le premier tour signalent une vague (39 pour le RN et alliés en 2024 sans majorité), donc proche du seuil ; sans dissolution l'observation est impossible."
+  },
+  "J-042": {
+   "noeud": "PV-DISSOL2a",
+   "etat_reseau": {
+    "noeud": "PV-DISSOL2a",
+    "etat": "oui"
+   },
+   "vraisemblances": {
+    "oui": 0.4,
+    "non": 0.01
+   },
+   "motif": "Un premier tour au plus tard le 6 juin suppose une dissolution entre l'investiture (vers le 13 mai) et mi-mai, ce qui implique presque sûrement PV-DISSOL2a = oui ; le jalon renseigne la dissolution, pas directement la majorité (cible PV-MAJOR corrigée)."
+  },
+  "J-043": {
+   "noeud": "PV-NOTE",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.35,
+    "non": 0.12
+   },
+   "motif": "Une perspective négative de S&P précède souvent une dégradation dans l'horizon de deux ans, mais une dégradation peut aussi venir directement ou d'une autre agence."
+  },
+  "J-044": {
+   "noeud": "PV-NOTE",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.55,
+    "non": 0.15
+   },
+   "motif": "Les agences secondaires réagissent aux mêmes signaux sur une fenêtre presque égale à celle du pivot, d'où une corrélation forte mais pas d'implication."
+  },
+  "J-045": {
+   "noeud": "PV-NOTE",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.15,
+    "non": 0.03
+   },
+   "motif": "Moody's passe rarement par une mise sous surveillance pour un souverain (calendrier européen des revues), mais celle-ci annonce presque toujours une dégradation."
+  },
+  "J-046": {
+   "noeud": "PV-NOTE",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.3,
+    "non": 0.1
+   },
+   "motif": "Une perspective négative de Fitch au premier semestre 2027 précède souvent une dégradation dans l'horizon ; elle est peu probable juste après une dégradation déjà survenue."
+  },
+  "J-047": {
+   "noeud": "PV-NOTE",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.3,
+    "non": 0.1
+   },
+   "motif": "Même raisonnement que pour Fitch, revue S&P de printemps 2027 en pleine transition post-présidentielle."
+  },
+  "J-048": {
+   "noeud": "PV-TPI",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.85,
+    "non": 0.15
+   },
+   "motif": "Une clôture quotidienne à 120 pb ne fixe pas la moyenne mensuelle de VE-ECART (pas d'état du réseau), mais une activation du TPI ou de l'OMT est très improbable sans tension de cet ordre."
+  },
+  "J-049": {
+   "noeud": "PV-PDE",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.7,
+    "non": 0.4
+   },
+   "motif": "L'avis d'automne sur le projet de plan budgétaire signale l'écart à la trajectoire ; un jugement de risque de non-conformité est fréquent même sans durcissement."
+  },
+  "J-050": {
+   "noeud": "PV-PDE",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.65,
+    "non": 0.35
+   },
+   "motif": "Un déficit 2026 d'au moins 5,2 % (choc énergétique) éloigne la France de la trajectoire et fonde un constat d'action non suivie d'effets."
+  },
+  "J-051": {
+   "noeud": "PV-PDE",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.5,
+    "non": 0.04
+   },
+   "motif": "La décision du Conseil au titre de 126(8) ne peut venir que sur recommandation de la Commission ; si le durcissement a lieu, cette étape tombe dans la fenêtre de printemps 2027 environ une fois sur deux, et le Conseil la suit presque toujours."
+  },
+  "J-052": {
+   "noeud": "PV-PDE",
+   "etat_reseau": null,
+   "vraisemblances": {
+    "oui": 0.65,
+    "non": 0.35
+   },
+   "motif": "L'avis sur le premier budget de la nouvelle majorité renseigne le durcissement, mais la non-conformité est fréquente dans les deux issues."
+  }
+ }
+}
