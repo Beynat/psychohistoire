@@ -10,13 +10,14 @@ Prévisions datées et notées sur la France, d'octobre 2026 à septembre 2028. 
 
 - Français, clair, direct, synthétique, sans emoji, peu de mise en forme. Le challenger quand une faille est réelle.
 - **Progression suivie dans la conversation** : tenir la liste des tâches (une par étape de la feuille de route) et indiquer en tête de chaque message d'avancement « Avancement : n / 14 ». Mettre à jour `modele/feuille_de_route.md` (tableau et journal d'avancement) à chaque étape terminée, commit et push.
+- Pas d'échéances ni d'estimations de durée dans les plans (Nathan les juge biaisées) : un ordre d'exécution et un avancement suffisent.
 - Autonomie : Nathan a délégué les décisions de la feuille de route ; ne revenir vers lui que pour une action irréversible sur les données, un arbitrage de structure ou une question qui change le résultat. Il valide les maquettes avant mise en ligne.
 - Il repère vite les incohérences en lisant les sorties : lui montrer des sorties lisibles (décomposition « d'où vient ce chiffre ») plutôt que des agrégats.
 
 ## Règles en vigueur
 
 - Protocole en retrait jusqu'à la v0 ajustée ; restent impératifs : registres en ajout seul, horodatage par script, contrôle à la poussée, tests avant chaque commit, contrôle par mutation pour chaque correction de code.
-- **Corrections au fil de l'eau jusqu'au 1er novembre** (décision de Nathan du 10 octobre : pas de file de tickets ni de quarantaine, trop d'erreurs à corriger) ; chaque correction est journalisée avec sa cause. Après le premier cycle noté, règle des trois cas (erreur irréversible sur les données, cycle bloqué, effet de plus de 5 points ou issue indéterminable).
+- **Corrections au fil de l'eau tant que la feuille de route n'est pas terminée** (décision de Nathan : pas de file de tickets ni de quarantaine, trop d'erreurs à corriger) ; chaque correction est journalisée avec sa cause. Ensuite, règle des trois cas (erreur irréversible sur les données, cycle bloqué, effet de plus de 5 points ou issue indéterminable).
 - Évaluateurs : toujours indépendants, sans accès aux registres (`registre/*`), aux cycles (`data/cycles/*`) ni, pour une élicitation, aux tables existantes. Ensemble : trois Opus et deux Sonnet ; évaluateurs de tables : Opus et Sonnet.
 - Une correction se déclenche sur un défaut identifié, pas sur un chiffre qui surprend ; ne jamais remplacer un avis élicité par une appréciation personnelle (leçon du 10 octobre : la correction × 0,4 de la candidature Le Pen a dû être annulée).
 
