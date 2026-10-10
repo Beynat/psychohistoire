@@ -1,0 +1,397 @@
+{
+ "version": "structure v0 (projet, 10 octobre 2026)",
+ "description": "Réseau bayésien dynamique v0, à pas mensuel d'octobre 2026 à septembre 2028 (feuille de route v0, bloc 1). Pivots datés ou « à tout moment », variables d'état mensuelles, conducteurs explicites ; chaque pivot est rattaché aux questions de la banque qu'il prévoit. Aucun pivot sans cause : chacun a au moins un parent, un indicateur ou une chaîne de jalons.",
+ "variables_etat": [
+  {
+   "id": "VE-ECART",
+   "nom": "Écart OAT-Bund 10 ans",
+   "unite": "pb",
+   "etats": [
+    "< 120",
+    "120-160",
+    "> 160"
+   ],
+   "source": "collecte nocturne (BCE, Banque de France, Bundesbank)",
+   "parents_mois_precedent": [
+    "VE-ECART"
+   ],
+   "parents": [
+    "PV-MOODY",
+    "PV-BUDGET",
+    "PV-VAINQ"
+   ],
+   "questions": [
+    "séries ecart_FR_DE_pb (P2a)"
+   ]
+  },
+  {
+   "id": "VE-MOBIL",
+   "nom": "Mobilisation sociale",
+   "unite": "niveau",
+   "etats": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "source": "chiffres des ministères de l'Éducation nationale et de l'Intérieur repris par l'AFP (série à construire)",
+   "parents_mois_precedent": [
+    "VE-MOBIL"
+   ],
+   "parents": [
+    "VE-POP"
+   ],
+   "indicateurs": [
+    "IS-COHESION",
+    "IS-NIVEAU-VIE"
+   ],
+   "questions": [
+    "EV-10",
+    "EV-10b",
+    "EV-47",
+    "EV-13",
+    "EV-39"
+   ]
+  },
+  {
+   "id": "VE-POP",
+   "nom": "Popularité de l'exécutif",
+   "unite": "% de satisfaits",
+   "etats": [
+    "< 25",
+    "25-35",
+    "> 35"
+   ],
+   "source": "baromètres mensuels des instituts (série à construire)",
+   "parents_mois_precedent": [
+    "VE-POP"
+   ],
+   "parents": [
+    "VE-MOBIL",
+    "PV-BUDGET"
+   ],
+   "indicateurs": [
+    "IS-STABILITE"
+   ],
+   "questions": []
+  },
+  {
+   "id": "VE-SOND",
+   "nom": "Intentions de vote présidentielles",
+   "unite": "points par bloc (RN, centre, gauche, droite)",
+   "etats": [
+    "RN en tête de plus de 8 points",
+    "RN en tête de 0 à 8 points",
+    "RN pas en tête"
+   ],
+   "source": "moyenne des sondages corrigée de l'erreur historique (série à construire)",
+   "parents_mois_precedent": [
+    "VE-SOND"
+   ],
+   "parents": [
+    "VE-POP",
+    "PV-LEPEN",
+    "PV-BLOC",
+    "PV-GAUCHE"
+   ],
+   "indicateurs": [
+    "IS-ELITES"
+   ],
+   "questions": []
+  }
+ ],
+ "pivots": [
+  {
+   "id": "PV-MOODY",
+   "nom": "Note de Moody's",
+   "nature": "daté",
+   "date": "2026-10-23",
+   "issues": [
+    "abaissée",
+    "maintenue"
+   ],
+   "parents": [
+    "VE-ECART"
+   ],
+   "indicateurs": [
+    "IS-01"
+   ],
+   "questions": [],
+   "jalons_amont": [
+    "publication des comptes et de la trajectoire de dette",
+    "position de Fitch et S&P"
+   ]
+  },
+  {
+   "id": "PV-BUDGET",
+   "nom": "Budget 2027",
+   "nature": "daté",
+   "date": "2026-12-31",
+   "issues": [
+    "loi de finances adoptée",
+    "loi spéciale",
+    "gouvernement censuré"
+   ],
+   "parents": [
+    "PV-MOODY",
+    "VE-MOBIL",
+    "VE-POP"
+   ],
+   "indicateurs": [
+    "IS-01",
+    "IS-STABILITE"
+   ],
+   "questions": [
+    "EV-02",
+    "EV-15"
+   ],
+   "jalons_amont": [
+    "usage du 49.3",
+    "accord de non-censure avec le PS",
+    "vote de la première partie"
+   ]
+  },
+  {
+   "id": "PV-POURVOI",
+   "nom": "Pourvoi de Marine Le Pen",
+   "nature": "daté",
+   "date": "2027-03-31",
+   "issues": [
+    "rejet ou non-admission",
+    "cassation",
+    "pas d'arrêt"
+   ],
+   "parents": [],
+   "indicateurs": [],
+   "questions": [
+    "EV-20"
+   ],
+   "jalons_amont": [
+    "audience fixée",
+    "avis de l'avocat général",
+    "audience tenue"
+   ],
+   "note": "exogène au reste du réseau : conduit par sa chaîne de jalons judiciaires"
+  },
+  {
+   "id": "PV-DISSOL",
+   "nom": "Dissolution avant le second tour",
+   "nature": "à tout moment",
+   "fenetre": [
+    "2026-10-10",
+    "2027-05-02"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    "PV-BUDGET",
+    "VE-POP"
+   ],
+   "indicateurs": [
+    "IS-STABILITE"
+   ],
+   "questions": [
+    "EV-16a"
+   ]
+  },
+  {
+   "id": "PV-CENSURE2",
+   "nom": "Censure avant le second tour",
+   "nature": "à tout moment",
+   "fenetre": [
+    "2027-01-01",
+    "2027-05-02"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    "PV-BUDGET",
+    "VE-POP"
+   ],
+   "indicateurs": [
+    "IS-STABILITE"
+   ],
+   "questions": [
+    "EV-15b"
+   ]
+  },
+  {
+   "id": "PV-LEPEN",
+   "nom": "Candidature de Marine Le Pen",
+   "nature": "daté",
+   "date": "2027-03",
+   "issues": [
+    "candidate",
+    "autre candidat RN"
+   ],
+   "parents": [
+    "PV-POURVOI"
+   ],
+   "indicateurs": [],
+   "questions": [
+    "EV-21"
+   ],
+   "jalons_amont": [
+    "parrainages déposés"
+   ],
+   "date_note": "publication de la liste officielle des candidats par le Conseil constitutionnel ; date exacte à confirmer"
+  },
+  {
+   "id": "PV-BLOC",
+   "nom": "Candidatures du bloc central",
+   "nature": "daté",
+   "date": "2027-03",
+   "issues": [
+    "Philippe seul",
+    "Attal seul",
+    "les deux",
+    "aucun des deux"
+   ],
+   "parents": [
+    "VE-SOND"
+   ],
+   "indicateurs": [
+    "IS-ELITES"
+   ],
+   "questions": [
+    "EV-41"
+   ],
+   "jalons_amont": [
+    "déclarations de candidature",
+    "accord de désistement"
+   ],
+   "date_note": "publication de la liste officielle des candidats par le Conseil constitutionnel ; date exacte à confirmer"
+  },
+  {
+   "id": "PV-GAUCHE",
+   "nom": "Fragmentation de la gauche",
+   "nature": "daté",
+   "date": "2027-03",
+   "issues": [
+    "un ou deux candidats",
+    "trois ou plus"
+   ],
+   "parents": [],
+   "indicateurs": [
+    "IS-ELITES"
+   ],
+   "questions": [
+    "EV-19",
+    "EV-18"
+   ],
+   "jalons_amont": [
+    "vote des Écologistes (10 au 13 décembre)",
+    "primaire PS et Place publique",
+    "position de LFI"
+   ],
+   "date_note": "publication de la liste officielle des candidats par le Conseil constitutionnel ; date exacte à confirmer"
+  },
+  {
+   "id": "PV-DUEL",
+   "nom": "Duel de second tour",
+   "nature": "daté",
+   "date": "2027-04-18",
+   "issues": [
+    "RN contre centre",
+    "RN contre gauche",
+    "RN contre droite",
+    "sans RN"
+   ],
+   "parents": [
+    "PV-LEPEN",
+    "PV-BLOC",
+    "PV-GAUCHE",
+    "VE-SOND"
+   ],
+   "indicateurs": [],
+   "questions": [
+    "EV-40a",
+    "EV-40b",
+    "EV-40c",
+    "EV-40d",
+    "EV-40e",
+    "EV-40f",
+    "EV-40g",
+    "EV-23"
+   ]
+  },
+  {
+   "id": "PV-VAINQ",
+   "nom": "Vainqueur de la présidentielle",
+   "nature": "daté",
+   "date": "2027-05-02",
+   "issues": [
+    "RN",
+    "bloc central",
+    "gauche",
+    "droite ou autre"
+   ],
+   "parents": [
+    "PV-DUEL",
+    "VE-SOND"
+   ],
+   "indicateurs": [],
+   "questions": [
+    "EV-05"
+   ]
+  },
+  {
+   "id": "PV-MAJOR",
+   "nom": "Majorité du président élu",
+   "nature": "daté",
+   "date": "2027-07-01",
+   "issues": [
+    "majorité absolue",
+    "sans majorité absolue"
+   ],
+   "parents": [
+    "PV-VAINQ"
+   ],
+   "indicateurs": [
+    "IS-STABILITE"
+   ],
+   "questions": [
+    "EV-17",
+    "EV-43",
+    "EV-16b",
+    "EV-15c"
+   ],
+   "jalons_amont": [
+    "dissolution de début de mandat",
+    "accords de second tour des législatives"
+   ]
+  },
+  {
+   "id": "PV-DETTE",
+   "nom": "Tension sur la dette",
+   "nature": "à tout moment",
+   "fenetre": [
+    "2027-05-02",
+    "2028-09-30"
+   ],
+   "issues": [
+    "choc",
+    "pas de choc"
+   ],
+   "parents": [
+    "PV-VAINQ",
+    "PV-MAJOR",
+    "VE-ECART"
+   ],
+   "indicateurs": [
+    "IS-01"
+   ],
+   "questions": [
+    "EV-01",
+    "EV-04",
+    "EV-46",
+    "EV-44",
+    "EV-03"
+   ]
+  }
+ ],
+ "hors_reseau": "Les questions de la banque non rattachées (international, climat, sécurité, défense, Europe) sont notées sur l'ensemble et les comparateurs seuls ; une question du périmètre sans prévision du réseau est notée sur le taux de base (noyau, section 8.6, « Périmètre »)."
+}
