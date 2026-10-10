@@ -1,0 +1,1261 @@
+{
+ "version": "tables v0.7 (E1, E2, E3 ; chaîne présidentielle E4, E5, E6 ; étape 4 : PV-NOTE, PV-PDE, PV-CENSURE1a, PV-CENSURE1b, PV-DISSOL2a, PV-DISSOL2b et VE-LYCEE en lois par cas, E7 et E8 Opus, E9 Sonnet, deux rondes) ; article 12 en verrou daté ; étape 5 : PV-RNAUTRE (classe de référence)",
+ "evaluateurs": [
+  "E1",
+  "E2",
+  "E3"
+ ],
+ "noeuds": {
+  "VE-ECART": {
+   "reference": "120-160 pb",
+   "transition": {
+    "< 120 pb": {
+     "< 120 pb": 0.826338444610986,
+     "120-160 pb": 0.16571760891799017,
+     "> 160 pb": 0.007943946471023821
+    },
+    "120-160 pb": {
+     "< 120 pb": 0.09242170084134932,
+     "120-160 pb": 0.8286015869298872,
+     "> 160 pb": 0.07897671222876354
+    },
+    "> 160 pb": {
+     "< 120 pb": 0.01589844731337106,
+     "120-160 pb": 0.2810860981272368,
+     "> 160 pb": 0.7030154545593922
+    }
+   },
+   "multiplicateurs": {
+    "PV-NOTE": {
+     "oui": {
+      "< 120 pb": 0.7651724731089556,
+      "120-160 pb": 1.0,
+      "> 160 pb": 1.430129252991615
+     }
+    },
+    "PV-TPI": {
+     "oui": {
+      "< 120 pb": 2.0,
+      "120-160 pb": 1.0,
+      "> 160 pb": 0.4308869380063768
+     }
+    }
+   },
+   "sigma": 0.402
+  },
+  "VE-POP": {
+   "reference": "< 25 %",
+   "transition": {
+    "< 25 %": {
+     "< 25 %": 0.9459098364762979,
+     "25-35 %": 0.05040299766627331,
+     "> 35 %": 0.003687165857428734
+    },
+    "25-35 %": {
+     "< 25 %": 0.1761583135272611,
+     "25-35 %": 0.7787354887479383,
+     "> 35 %": 0.0451061977248006
+    },
+    "> 35 %": {
+     "< 25 %": 0.031209355034637322,
+     "25-35 %": 0.217607638356574,
+     "> 35 %": 0.7511830066087887
+    }
+   },
+   "multiplicateurs": {
+    "VE-MOBIL": {
+     "modérée": {
+      "< 25 %": 1.0815090929104578,
+      "25-35 %": 0.9321697517861577,
+      "> 35 %": 0.814325284978472
+     },
+     "forte": {
+      "< 25 %": 1.205071132087615,
+      "25-35 %": 0.7230426792525689,
+      "> 35 %": 0.5517848352762241
+     }
+    },
+    "PV-GOUV": {
+     "oui": {
+      "< 25 %": 0.9472682371859096,
+      "25-35 %": 1.1629906973810744,
+      "> 35 %": 1.1447142425533319
+     }
+    }
+   },
+   "sigma": 0.316
+  },
+  "VE-MOBIL": {
+   "reference": "calme",
+   "transition": {
+    "calme": {
+     "calme": 0.89814098063422,
+     "modérée": 0.08622511765304122,
+     "forte": 0.0156339017127388
+    },
+    "modérée": {
+     "calme": 0.5593874350103775,
+     "modérée": 0.36797374010706363,
+     "forte": 0.07263882488255885
+    },
+    "forte": {
+     "calme": 0.333883072294177,
+     "modérée": 0.40917654778381535,
+     "forte": 0.2569403799220076
+    }
+   },
+   "multiplicateurs": {
+    "VE-POP": {
+     "25-35 %": {
+      "calme": 1.0656022367666107,
+      "modérée": 0.9321697517861577,
+      "forte": 0.7807925321779708
+     },
+     "> 35 %": {
+      "calme": 1.1447142425533319,
+      "modérée": 0.8434326653017492,
+      "forte": 0.5943921952763129
+     }
+    }
+   },
+   "sigma": 0.376
+  },
+  "VE-LYCEE": {
+   "cas": {
+    "prec=calme|VE-MOBIL=calme": {
+     "calme": 0.9557,
+     "modérée": 0.03636,
+     "forte": 0.00794
+    },
+    "prec=calme|VE-MOBIL=modérée": {
+     "calme": 0.75861,
+     "modérée": 0.18822,
+     "forte": 0.05317
+    },
+    "prec=calme|VE-MOBIL=forte": {
+     "calme": 0.48508,
+     "modérée": 0.3174,
+     "forte": 0.19752
+    },
+    "prec=modérée|VE-MOBIL=calme": {
+     "calme": 0.71786,
+     "modérée": 0.23601,
+     "forte": 0.04613
+    },
+    "prec=modérée|VE-MOBIL=modérée": {
+     "calme": 0.4007,
+     "modérée": 0.44487,
+     "forte": 0.15443
+    },
+    "prec=modérée|VE-MOBIL=forte": {
+     "calme": 0.19787,
+     "modérée": 0.43556,
+     "forte": 0.36656
+    },
+    "prec=forte|VE-MOBIL=calme": {
+     "calme": 0.66873,
+     "modérée": 0.23894,
+     "forte": 0.09234
+    },
+    "prec=forte|VE-MOBIL=modérée": {
+     "calme": 0.39652,
+     "modérée": 0.39032,
+     "forte": 0.21316
+    },
+    "prec=forte|VE-MOBIL=forte": {
+     "calme": 0.13949,
+     "modérée": 0.3165,
+     "forte": 0.544
+    }
+   },
+   "sigma": 0.3,
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1",
+   "alertes": []
+  },
+  "VE-SOND": {
+   "reference": "centre",
+   "transition": {
+    "centre": {
+     "centre": 0.8782770657586596,
+     "gauche": 0.09881425084865626,
+     "droite": 0.02290868339268411
+    },
+    "gauche": {
+     "centre": 0.23254172396718237,
+     "gauche": 0.7445450254861397,
+     "droite": 0.022913250546677904
+    },
+    "droite": {
+     "centre": 0.28280231540162354,
+     "gauche": 0.10003342522191214,
+     "droite": 0.6171642593764644
+    }
+   },
+   "multiplicateurs": {
+    "VE-POP": {
+     "25-35 %": {
+      "centre": 1.1133362815209518,
+      "gauche": 0.9654893846056297,
+      "droite": 0.9654893846056297
+     },
+     "> 35 %": {
+      "centre": 1.2493329774613908,
+      "gauche": 0.9283177667225558,
+      "droite": 0.9283177667225558
+     }
+    },
+    "PV-BLOC": {
+     "Philippe seul": {
+      "centre": 1.1656953366502911,
+      "gauche": 0.9654893846056297,
+      "droite": 1.0
+     },
+     "Attal seul": {
+      "centre": 0.7416859538532379,
+      "gauche": 1.1597779995297994,
+      "droite": 1.1816657504675014
+     },
+     "aucun des deux": {
+      "centre": 0.20800838230519042,
+      "gauche": 1.704256920858735,
+      "droite": 2.4662120743304703
+     }
+    }
+   },
+   "sigma": 0.3
+  },
+  "VE-RN": {
+   "reference": "30-35 %",
+   "transition": {
+    "< 30 %": {
+     "< 30 %": 0.7684128890439222,
+     "30-35 %": 0.2156823865205492,
+     "> 35 %": 0.01590472443552858
+    },
+    "30-35 %": {
+     "< 30 %": 0.06957204510255267,
+     "30-35 %": 0.8316090515747168,
+     "> 35 %": 0.09881890332273058
+    },
+    "> 35 %": {
+     "< 30 %": 0.01591245071214234,
+     "30-35 %": 0.240130926513693,
+     "> 35 %": 0.7439566227741647
+    }
+   },
+   "multiplicateurs": {
+    "VE-POP": {
+     "25-35 %": {
+      "< 30 %": 1.0969613104865237,
+      "30-35 %": 1.0,
+      "> 35 %": 0.896280949311433
+     },
+     "> 35 %": {
+      "< 30 %": 1.2493329774613908,
+      "30-35 %": 1.0,
+      "> 35 %": 0.7829735282337728
+     }
+    },
+    "PV-LEPEN": {
+     "non candidate": {
+      "< 30 %": 0.9157713940426655,
+      "30-35 %": 1.0,
+      "> 35 %": 1.1634833857252809
+     }
+    }
+   },
+   "sigma": 0.3
+  },
+  "PV-NOTE": {
+   "cas": {
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=RN": 0.56377,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": 0.43317,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": 0.43317,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": 0.70839,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": 0.51338,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=RET": 0.46316,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": 0.45665,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": 0.48995,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": 0.64449,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": 0.51335,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": 0.51335,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": 0.78038,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": 0.59374,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": 0.54351,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": 0.53668,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": 0.57023,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=RN": 0.7213,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": 0.59007,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": 0.59007,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": 0.82715,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": 0.67046,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=RET": 0.62031,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": 0.61337,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": 0.64693,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": 0.79853,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": 0.66678,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": 0.66678,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": 0.90896,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": 0.74721,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": 0.69706,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": 0.69017,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": 0.72381,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=RN": 0.84491,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": 0.76701,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": 0.76701,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": 0.9332,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": 0.8184,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=RET": 0.78793,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": 0.78198,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": 0.7966,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": 0.90408,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": 0.80575,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": 0.80575,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": 0.95607,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": 0.8602,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": 0.82735,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": 0.82255,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": 0.83704
+   },
+   "sigma": 0.3,
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1"
+  },
+  "PV-PDE": {
+   "cas": {
+    "PV-BUDGET=publiée|PV-VAINQ=RN": 0.12528,
+    "PV-BUDGET=publiée|PV-VAINQ=PHI": 0.05728,
+    "PV-BUDGET=publiée|PV-VAINQ=ATT": 0.05728,
+    "PV-BUDGET=publiée|PV-VAINQ=MEL": 0.21842,
+    "PV-BUDGET=publiée|PV-VAINQ=GLU": 0.09834,
+    "PV-BUDGET=publiée|PV-VAINQ=RET": 0.08344,
+    "PV-BUDGET=publiée|PV-VAINQ=LIS": 0.07006,
+    "PV-BUDGET=publiée|PV-VAINQ=AUT": 0.08309,
+    "PV-BUDGET=non publiée|PV-VAINQ=RN": 0.17108,
+    "PV-BUDGET=non publiée|PV-VAINQ=PHI": 0.09763,
+    "PV-BUDGET=non publiée|PV-VAINQ=ATT": 0.09763,
+    "PV-BUDGET=non publiée|PV-VAINQ=MEL": 0.26841,
+    "PV-BUDGET=non publiée|PV-VAINQ=GLU": 0.13826,
+    "PV-BUDGET=non publiée|PV-VAINQ=RET": 0.12817,
+    "PV-BUDGET=non publiée|PV-VAINQ=LIS": 0.10865,
+    "PV-BUDGET=non publiée|PV-VAINQ=AUT": 0.12374
+   },
+   "sigma": 0.716,
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1"
+  },
+  "PV-TPI": {
+   "p_fenetre": 0.03648091153261158,
+   "multiplicateurs": {
+    "VE-ECART": {
+     "< 120 pb": {
+      "oui": 0.20800838230519042
+     },
+     "> 160 pb": {
+      "oui": 4.641588833612778
+     }
+    },
+    "PV-PDE": {
+     "oui": {
+      "oui": 0.4641588833612779
+     }
+    }
+   },
+   "sigma": 0.47
+  },
+  "PV-BUDGET": {
+   "base": {
+    "publiée": 0.4308663312202286,
+    "non publiée": 0.5691336687797713
+   },
+   "multiplicateurs": {
+    "VE-POP": {
+     "25-35 %": {
+      "publiée": 1.0322801154563672,
+      "non publiée": 0.9472682371859096
+     },
+     "> 35 %": {
+      "publiée": 1.0626585691826111,
+      "non publiée": 0.8879040017426006
+     }
+    },
+    "VE-MOBIL": {
+     "modérée": {
+      "publiée": 0.9830475724915585,
+      "non publiée": 1.077217345015942
+     },
+     "forte": {
+      "publiée": 0.8793659344316359,
+      "non publiée": 1.21644039911468
+     }
+    },
+    "PV-CENSURE1a": {
+     "oui": {
+      "publiée": 0.16868653306034984,
+      "non publiée": 2.0567101162059633
+     }
+    }
+   },
+   "sigma": 0.39
+  },
+  "PV-GOUV": {
+   "p_fenetre": 0.13779381767689824,
+   "multiplicateurs": {
+    "VE-POP": {
+     "25-35 %": {
+      "oui": 0.8320335292207617
+     },
+     "> 35 %": {
+      "oui": 0.6952053289772899
+     }
+    },
+    "PV-CENSURE1a": {
+     "oui": {
+      "oui": 41.60167646103808
+     }
+    },
+    "PV-CENSURE1b": {
+     "oui": {
+      "oui": 41.60167646103808
+     }
+    }
+   },
+   "sigma": 0.3
+  },
+  "PV-DISSOL1": {
+   "p_fenetre": 0.03826159255809464,
+   "multiplicateurs": {
+    "VE-POP": {
+     "25-35 %": {
+      "oui": 1.2324480295498077
+     },
+     "> 35 %": {
+      "oui": 1.4637222840091886
+     }
+    },
+    "PV-CENSURE1a": {
+     "oui": {
+      "oui": 8.962809493114328
+     }
+    },
+    "PV-CENSURE1b": {
+     "oui": {
+      "oui": 8.962809493114328
+     }
+    }
+   },
+   "sigma": 0.3
+  },
+  "PV-AUDIENCE": {
+   "p_fenetre": 0.5167,
+   "multiplicateurs": {},
+   "sigma": 0.3
+  },
+  "PV-POURVOI": {
+   "conditionnelle": {
+    "oui": {
+     "rejet ou non-admission": 0.3459797103030224,
+     "cassation totale ou partielle": 0.11559590210168517,
+     "désistement": 0.012649988331339108,
+     "pas d'arrêt": 0.5257743992639533
+    },
+    "non": {
+     "rejet ou non-admission": 0.02623368324342366,
+     "cassation totale ou partielle": 0.010005312473721497,
+     "désistement": 0.012615307367484226,
+     "pas d'arrêt": 0.9511456969153705
+    }
+   },
+   "base": {
+    "rejet ou non-admission": 0.02623368324342366,
+    "cassation totale ou partielle": 0.010005312473721497,
+    "désistement": 0.012615307367484226,
+    "pas d'arrêt": 0.9511456969153705
+   },
+   "multiplicateurs": {},
+   "sigma": 0.3
+  },
+  "PV-ECOLO": {
+   "base": {
+    "candidature autonome": 0.5272105055839643,
+    "soutien à un autre candidat": 0.3727252207324327,
+    "autre ou vote non tenu": 0.10006427368360298
+   },
+   "multiplicateurs": {
+    "VE-SOND": {
+     "gauche": {
+      "candidature autonome": 0.9283177667225558,
+      "soutien à un autre candidat": 1.2632719195312758,
+      "autre ou vote non tenu": 1.0
+     },
+     "droite": {
+      "candidature autonome": 1.0322801154563672,
+      "soutien à un autre candidat": 1.0626585691826111,
+      "autre ou vote non tenu": 1.0
+     }
+    }
+   },
+   "sigma": 0.3
+  },
+  "PV-BLOC": {
+   "base": {
+    "les deux": 0.3834469079313874,
+    "Philippe seul": 0.4809365487625739,
+    "Attal seul": 0.08386930732903218,
+    "aucun des deux": 0.05174723597700648
+   },
+   "multiplicateurs": {
+    "VE-SOND": {
+     "gauche": {
+      "les deux": 0.8793659344316359,
+      "Philippe seul": 1.0115331419494409,
+      "Attal seul": 1.129243234657234,
+      "aucun des deux": 1.430129252991615
+     },
+     "droite": {
+      "les deux": 0.9654893846056297,
+      "Philippe seul": 0.9966554934125964,
+      "Attal seul": 1.0322801154563672,
+      "aucun des deux": 1.430129252991615
+     }
+    }
+   },
+   "sigma": 0.416
+  },
+  "PV-GAUCHE": {
+   "base": {
+    "3 ou moins": 0.045067177547240864,
+    "4": 0.17669598512187643,
+    "5": 0.37381073569219286,
+    "6 ou plus": 0.40442610163868986
+   },
+   "multiplicateurs": {
+    "PV-ECOLO": {
+     "soutien à un autre candidat": {
+      "3 ou moins": 2.784953300167667,
+      "4": 1.9309787692112594,
+      "5": 0.9582839714125568,
+      "6 ou plus": 0.3914867641168864
+     },
+     "autre ou vote non tenu": {
+      "3 ou moins": 1.5182944859378313,
+      "4": 1.2599210498948732,
+      "5": 0.9654893846056297,
+      "6 ou plus": 0.7937005259840998
+     }
+    },
+    "VE-SOND": {
+     "gauche": {
+      "3 ou moins": 1.0969613104865237,
+      "4": 1.0322801154563672,
+      "5": 1.0,
+      "6 ou plus": 0.9321697517861577
+     },
+     "droite": {
+      "3 ou moins": 1.0,
+      "4": 1.0,
+      "5": 1.0,
+      "6 ou plus": 1.0
+     }
+    }
+   },
+   "sigma": 0.3
+  },
+  "PV-LEPEN": {
+   "conditionnelle": {
+    "rejet ou non-admission": {
+     "candidate": 0.44999999999999996,
+     "non candidate": 0.55
+    },
+    "cassation totale ou partielle": {
+     "candidate": 0.9361400527406972,
+     "non candidate": 0.06385994725930275
+    },
+    "désistement": {
+     "candidate": 0.3328938683330666,
+     "non candidate": 0.6671061316669334
+    },
+    "pas d'arrêt": {
+     "candidate": 0.9109382413158233,
+     "non candidate": 0.08906175868417654
+    }
+   },
+   "base": {
+    "candidate": 0.9109382413158233,
+    "non candidate": 0.08906175868417654
+   },
+   "multiplicateurs": {
+    "VE-RN": {
+     "< 30 %": {
+      "candidate": 0.833,
+      "non candidate": 1.428
+     },
+     "> 35 %": {
+      "candidate": 1.0831,
+      "non candidate": 0.7319
+     }
+    }
+   },
+   "sigma": 0.3
+  },
+  "PV-DUEL": {
+   "conditionnelle": {
+    "les deux": {
+     "RN-PHI": 0.39271036065240766,
+     "RN-ATT": 0.05329123574689309,
+     "RN-MEL": 0.3338747607870394,
+     "RN-GLU": 0.09608353750285947,
+     "RN-RET": 0.0399379666438328,
+     "RN-LIS": 0.00806514665591377,
+     "RN-AUT": 0.0184916532122839,
+     "PHI-MEL": 0.016800744678168503,
+     "PHI-GLU": 0.00806514665591377,
+     "AUTRE": 0.032679447464687636
+    },
+    "Philippe seul": {
+     "RN-PHI": 0.6492795937497273,
+     "RN-ATT": 0.0,
+     "RN-MEL": 0.19797978352023285,
+     "RN-GLU": 0.04783527543325535,
+     "RN-RET": 0.027616424111248792,
+     "RN-LIS": 0.008027117879824781,
+     "RN-AUT": 0.01840446137690549,
+     "PHI-MEL": 0.021782980053347258,
+     "PHI-GLU": 0.008027117879824781,
+     "AUTRE": 0.02104724599563336
+    },
+    "Attal seul": {
+     "RN-PHI": 0.0,
+     "RN-ATT": 0.3883317850762182,
+     "RN-MEL": 0.35860571839594724,
+     "RN-GLU": 0.09102378605562897,
+     "RN-RET": 0.060806323425644494,
+     "RN-LIS": 0.010151571287917176,
+     "RN-AUT": 0.031617331832034516,
+     "PHI-MEL": 0.0,
+     "PHI-GLU": 0.0,
+     "AUTRE": 0.0594634839266094
+    },
+    "aucun des deux": {
+     "RN-PHI": 0.0,
+     "RN-ATT": 0.0,
+     "RN-MEL": 0.4543606775812842,
+     "RN-GLU": 0.16842147748592223,
+     "RN-RET": 0.18591384875182174,
+     "RN-LIS": 0.03682182048131226,
+     "RN-AUT": 0.0914587230604298,
+     "PHI-MEL": 0.0,
+     "PHI-GLU": 0.0,
+     "AUTRE": 0.0630234526392298
+    }
+   },
+   "base": {
+    "RN-PHI": 0.6492795937497273,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.19797978352023285,
+    "RN-GLU": 0.04783527543325535,
+    "RN-RET": 0.027616424111248792,
+    "RN-LIS": 0.008027117879824781,
+    "RN-AUT": 0.01840446137690549,
+    "PHI-MEL": 0.021782980053347258,
+    "PHI-GLU": 0.008027117879824781,
+    "AUTRE": 0.02104724599563336
+   },
+   "sigma": 0.3,
+   "multiplicateurs": {
+    "PV-LEPEN": {
+     "non candidate": {
+      "RN-PHI": 0.9928,
+      "RN-ATT": 1.0099,
+      "RN-MEL": 1.0265,
+      "RN-GLU": 1.0099,
+      "RN-RET": 1.0099,
+      "RN-LIS": 1.0099,
+      "RN-AUT": 1.0099,
+      "PHI-MEL": 1.0,
+      "PHI-GLU": 1.0,
+      "AUTRE": 1.0
+     }
+    },
+    "VE-SOND": {
+     "gauche": {
+      "RN-PHI": 0.8163,
+      "RN-ATT": 0.8163,
+      "RN-MEL": 1.4,
+      "RN-GLU": 1.4326,
+      "RN-RET": 0.7319,
+      "RN-LIS": 0.7958,
+      "RN-AUT": 1.0,
+      "PHI-MEL": 1.3976,
+      "PHI-GLU": 1.4659,
+      "AUTRE": 1.1972
+     },
+     "droite": {
+      "RN-PHI": 1.1149,
+      "RN-ATT": 1.097,
+      "RN-MEL": 0.7489,
+      "RN-GLU": 0.6804,
+      "RN-RET": 1.594,
+      "RN-LIS": 1.3976,
+      "RN-AUT": 1.0,
+      "PHI-MEL": 0.7652,
+      "PHI-GLU": 0.7319,
+      "AUTRE": 0.9322
+     }
+    }
+   },
+   "note_etape4": "Multiplicateurs « Bardella candidat » des duels sans le RN (PHI-MEL, PHI-GLU, AUTRE) : sens opposés entre évaluateurs (E4 0,7 ; E5 1,3 ; E6 0,85), non agrégés (contrôle de l'étape 4) ; neutres (1) jusqu'à la réélicitation complète (étape 11)."
+  },
+  "PV-VAINQ": {
+   "conditionnelle": {
+    "RN-PHI": {
+     "RN": 0.5402371956315382,
+     "PHI": 0.4597628043684619,
+     "ATT": 0.0,
+     "MEL": 0.0,
+     "GLU": 0.0,
+     "RET": 0.0,
+     "LIS": 0.0,
+     "AUT": 0.0
+    },
+    "RN-ATT": {
+     "RN": 0.6246419700369727,
+     "PHI": 0.0,
+     "ATT": 0.3753580299630272,
+     "MEL": 0.0,
+     "GLU": 0.0,
+     "RET": 0.0,
+     "LIS": 0.0,
+     "AUT": 0.0
+    },
+    "RN-MEL": {
+     "RN": 0.861166680844103,
+     "PHI": 0.0,
+     "ATT": 0.0,
+     "MEL": 0.13883331915589697,
+     "GLU": 0.0,
+     "RET": 0.0,
+     "LIS": 0.0,
+     "AUT": 0.0
+    },
+    "RN-GLU": {
+     "RN": 0.662324207586988,
+     "PHI": 0.0,
+     "ATT": 0.0,
+     "MEL": 0.0,
+     "GLU": 0.33767579241301204,
+     "RET": 0.0,
+     "LIS": 0.0,
+     "AUT": 0.0
+    },
+    "RN-RET": {
+     "RN": 0.6924970842195055,
+     "PHI": 0.0,
+     "ATT": 0.0,
+     "MEL": 0.0,
+     "GLU": 0.0,
+     "RET": 0.3075029157804945,
+     "LIS": 0.0,
+     "AUT": 0.0
+    },
+    "RN-LIS": {
+     "RN": 0.7053306211336255,
+     "PHI": 0.0,
+     "ATT": 0.0,
+     "MEL": 0.0,
+     "GLU": 0.0,
+     "RET": 0.0,
+     "LIS": 0.2946693788663744,
+     "AUT": 0.0
+    },
+    "RN-AUT": {
+     "RN": 0.6584336878616178,
+     "PHI": 0.0,
+     "ATT": 0.0,
+     "MEL": 0.0,
+     "GLU": 0.0,
+     "RET": 0.0,
+     "LIS": 0.0,
+     "AUT": 0.34156631213838223
+    },
+    "PHI-MEL": {
+     "RN": 0.0,
+     "PHI": 0.838267717141618,
+     "ATT": 0.0,
+     "MEL": 0.161732282858382,
+     "GLU": 0.0,
+     "RET": 0.0,
+     "LIS": 0.0,
+     "AUT": 0.0
+    },
+    "PHI-GLU": {
+     "RN": 0.0,
+     "PHI": 0.6336361298297123,
+     "ATT": 0.0,
+     "MEL": 0.0,
+     "GLU": 0.36636387017028776,
+     "RET": 0.0,
+     "LIS": 0.0,
+     "AUT": 0.0
+    },
+    "AUTRE": {
+     "RN": 0.0,
+     "PHI": 0.0,
+     "ATT": 0.0,
+     "MEL": 0.0,
+     "GLU": 0.0,
+     "RET": 0.0,
+     "LIS": 0.0,
+     "AUT": 1.0
+    }
+   },
+   "base": {
+    "RN": 0.5402371956315382,
+    "PHI": 0.4597628043684619,
+    "ATT": 0.0,
+    "MEL": 0.0,
+    "GLU": 0.0,
+    "RET": 0.0,
+    "LIS": 0.0,
+    "AUT": 0.0
+   },
+   "sigma": 0.3,
+   "multiplicateurs": {
+    "PV-LEPEN": {
+     "non candidate": {
+      "RN": 1.0399
+     }
+    },
+    "VE-RN": {
+     "< 30 %": {
+      "RN": 0.7642
+     },
+     "> 35 %": {
+      "RN": 1.229
+     }
+    }
+   }
+  },
+  "PV-MAJOR": {
+   "base": {
+    "289 ou plus": 0.014430951730025694,
+    "moins de 289": 0.9855690482699744
+   },
+   "multiplicateurs": {
+    "PV-VAINQ": {
+     "PHI": {
+      "289 ou plus": 0.13325133847554982,
+      "moins de 289": 1.0
+     },
+     "ATT": {
+      "289 ou plus": 0.2087361734420891,
+      "moins de 289": 1.0
+     },
+     "MEL": {
+      "289 ou plus": 0.1400272055972647,
+      "moins de 289": 1.0
+     },
+     "GLU": {
+      "289 ou plus": 0.049650901612248076,
+      "moins de 289": 1.0
+     },
+     "RET": {
+      "289 ou plus": 0.18795592749905948,
+      "moins de 289": 1.0
+     },
+     "LIS": {
+      "289 ou plus": 0.06044119231509475,
+      "moins de 289": 1.0
+     },
+     "AUT": {
+      "289 ou plus": 0.10198692642897754,
+      "moins de 289": 1.0
+     }
+    },
+    "PV-DISSOL2a": {
+     "oui": {
+      "289 ou plus": 48.994862712835314,
+      "moins de 289": 1.0
+     }
+    }
+   },
+   "sigma": 0.3
+  },
+  "PV-CENSURE2": {
+   "p_fenetre": 0.039939560823959386,
+   "multiplicateurs": {
+    "PV-MAJOR": {
+     "moins de 289": {
+      "oui": 10.350255542244815
+     }
+    },
+    "VE-POP": {
+     "25-35 %": {
+      "oui": 0.7651724731089556
+     },
+     "> 35 %": {
+      "oui": 0.5646216173286172
+     }
+    }
+   },
+   "sigma": 0.419
+  },
+  "PV-CENSURE1a": {
+   "cas": {
+    "VE-POP=< 25 %|VE-MOBIL=calme": 0.17022,
+    "VE-POP=< 25 %|VE-MOBIL=modérée": 0.22872,
+    "VE-POP=< 25 %|VE-MOBIL=forte": 0.323,
+    "VE-POP=25-35 %|VE-MOBIL=calme": 0.12678,
+    "VE-POP=25-35 %|VE-MOBIL=modérée": 0.17604,
+    "VE-POP=25-35 %|VE-MOBIL=forte": 0.25514,
+    "VE-POP=> 35 %|VE-MOBIL=calme": 0.08679,
+    "VE-POP=> 35 %|VE-MOBIL=modérée": 0.12226,
+    "VE-POP=> 35 %|VE-MOBIL=forte": 0.18589
+   },
+   "sigma": 0.3,
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1"
+  },
+  "PV-CENSURE1b": {
+   "cas": {
+    "VE-POP=< 25 %|VE-MOBIL=calme": 0.07392,
+    "VE-POP=< 25 %|VE-MOBIL=modérée": 0.10825,
+    "VE-POP=< 25 %|VE-MOBIL=forte": 0.16173,
+    "VE-POP=25-35 %|VE-MOBIL=calme": 0.05527,
+    "VE-POP=25-35 %|VE-MOBIL=modérée": 0.08328,
+    "VE-POP=25-35 %|VE-MOBIL=forte": 0.12573,
+    "VE-POP=> 35 %|VE-MOBIL=calme": 0.03977,
+    "VE-POP=> 35 %|VE-MOBIL=modérée": 0.06011,
+    "VE-POP=> 35 %|VE-MOBIL=forte": 0.0934
+   },
+   "sigma": 0.3,
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1"
+  },
+  "PV-DISSOL2a": {
+   "cas": {
+    "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=oui": 0.16244,
+    "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non": 0.75758,
+    "PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=oui": 0.16799,
+    "PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=non": 0.7669,
+    "PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=oui": 0.1718,
+    "PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=non": 0.77417,
+    "PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=oui": 0.1215,
+    "PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=non": 0.69054,
+    "PV-VAINQ=PHI|VE-POP=25-35 %|PV-DISSOL1=oui": 0.12587,
+    "PV-VAINQ=PHI|VE-POP=25-35 %|PV-DISSOL1=non": 0.69694,
+    "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=oui": 0.12884,
+    "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=non": 0.70103,
+    "PV-VAINQ=ATT|VE-POP=< 25 %|PV-DISSOL1=oui": 0.11577,
+    "PV-VAINQ=ATT|VE-POP=< 25 %|PV-DISSOL1=non": 0.66345,
+    "PV-VAINQ=ATT|VE-POP=25-35 %|PV-DISSOL1=oui": 0.12006,
+    "PV-VAINQ=ATT|VE-POP=25-35 %|PV-DISSOL1=non": 0.67015,
+    "PV-VAINQ=ATT|VE-POP=> 35 %|PV-DISSOL1=oui": 0.12295,
+    "PV-VAINQ=ATT|VE-POP=> 35 %|PV-DISSOL1=non": 0.67438,
+    "PV-VAINQ=MEL|VE-POP=< 25 %|PV-DISSOL1=oui": 0.16612,
+    "PV-VAINQ=MEL|VE-POP=< 25 %|PV-DISSOL1=non": 0.80726,
+    "PV-VAINQ=MEL|VE-POP=25-35 %|PV-DISSOL1=oui": 0.1718,
+    "PV-VAINQ=MEL|VE-POP=25-35 %|PV-DISSOL1=non": 0.81554,
+    "PV-VAINQ=MEL|VE-POP=> 35 %|PV-DISSOL1=oui": 0.17573,
+    "PV-VAINQ=MEL|VE-POP=> 35 %|PV-DISSOL1=non": 0.82274,
+    "PV-VAINQ=GLU|VE-POP=< 25 %|PV-DISSOL1=oui": 0.11577,
+    "PV-VAINQ=GLU|VE-POP=< 25 %|PV-DISSOL1=non": 0.66787,
+    "PV-VAINQ=GLU|VE-POP=25-35 %|PV-DISSOL1=oui": 0.12006,
+    "PV-VAINQ=GLU|VE-POP=25-35 %|PV-DISSOL1=non": 0.67356,
+    "PV-VAINQ=GLU|VE-POP=> 35 %|PV-DISSOL1=oui": 0.12295,
+    "PV-VAINQ=GLU|VE-POP=> 35 %|PV-DISSOL1=non": 0.67691,
+    "PV-VAINQ=RET|VE-POP=< 25 %|PV-DISSOL1=oui": 0.1334,
+    "PV-VAINQ=RET|VE-POP=< 25 %|PV-DISSOL1=non": 0.71684,
+    "PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=oui": 0.13812,
+    "PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=non": 0.7245,
+    "PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=oui": 0.14137,
+    "PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=non": 0.72963,
+    "PV-VAINQ=LIS|VE-POP=< 25 %|PV-DISSOL1=oui": 0.10441,
+    "PV-VAINQ=LIS|VE-POP=< 25 %|PV-DISSOL1=non": 0.62776,
+    "PV-VAINQ=LIS|VE-POP=25-35 %|PV-DISSOL1=oui": 0.10868,
+    "PV-VAINQ=LIS|VE-POP=25-35 %|PV-DISSOL1=non": 0.63364,
+    "PV-VAINQ=LIS|VE-POP=> 35 %|PV-DISSOL1=oui": 0.11152,
+    "PV-VAINQ=LIS|VE-POP=> 35 %|PV-DISSOL1=non": 0.63701,
+    "PV-VAINQ=AUT|VE-POP=< 25 %|PV-DISSOL1=oui": 0.10441,
+    "PV-VAINQ=AUT|VE-POP=< 25 %|PV-DISSOL1=non": 0.63501,
+    "PV-VAINQ=AUT|VE-POP=25-35 %|PV-DISSOL1=oui": 0.10868,
+    "PV-VAINQ=AUT|VE-POP=25-35 %|PV-DISSOL1=non": 0.64051,
+    "PV-VAINQ=AUT|VE-POP=> 35 %|PV-DISSOL1=oui": 0.11152,
+    "PV-VAINQ=AUT|VE-POP=> 35 %|PV-DISSOL1=non": 0.6436
+   },
+   "sigma": 0.3,
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1",
+   "alertes": [
+    "PV-DISSOL2a [PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.52, 0.4, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.55, 0.4, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.57, 0.4, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.44, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=PHI|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.47, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.49, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=ATT|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.4, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=ATT|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.43, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=ATT|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.45, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=MEL|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.54, 0.4, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=MEL|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.57, 0.4, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=MEL|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.59, 0.4, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=GLU|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.4, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=GLU|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.43, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=GLU|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.45, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=RET|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.52, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.55, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.57, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=LIS|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.32, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=LIS|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.35, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=LIS|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.37, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=AUT|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.32, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=AUT|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.35, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=AUT|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.37, 0.25, 0.0])"
+   ]
+  },
+  "PV-DISSOL2b": {
+   "cas": {
+    "PV-VAINQ=RN|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=RN|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.28434,
+    "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non": 0.31456,
+    "PV-VAINQ=PHI|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=PHI|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.23037,
+    "PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=non": 0.24773,
+    "PV-VAINQ=ATT|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=ATT|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=ATT|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.23037,
+    "PV-VAINQ=ATT|PV-DISSOL2a=non|PV-DISSOL1=non": 0.24773,
+    "PV-VAINQ=MEL|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=MEL|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.3146,
+    "PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=non": 0.36523,
+    "PV-VAINQ=GLU|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=GLU|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.23037,
+    "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=non": 0.26603,
+    "PV-VAINQ=RET|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=RET|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=RET|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.23037,
+    "PV-VAINQ=RET|PV-DISSOL2a=non|PV-DISSOL1=non": 0.26367,
+    "PV-VAINQ=LIS|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=LIS|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=LIS|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.23037,
+    "PV-VAINQ=LIS|PV-DISSOL2a=non|PV-DISSOL1=non": 0.24773,
+    "PV-VAINQ=AUT|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=AUT|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=AUT|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.23037,
+    "PV-VAINQ=AUT|PV-DISSOL2a=non|PV-DISSOL1=non": 0.24773
+   },
+   "sigma": 0.45,
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1",
+   "alertes": [
+    "PV-DISSOL2b [PV-VAINQ=RN|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=PHI|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=ATT|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=MEL|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=GLU|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=RET|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=LIS|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=AUT|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])"
+   ]
+  },
+  "PV-RNAUTRE": {
+   "cas": {
+    "PV-LEPEN=candidate": {
+     "non": 1.0,
+     "oui": 0.0
+    },
+    "PV-LEPEN=non candidate": {
+     "non": 0.88,
+     "oui": 0.12
+    }
+   },
+   "sigma": 0.5,
+   "derive": "classe de référence (dossier hypotheses_2026-10-10, H-01) : défaillance d'un candidat désigné dans les six mois avant le scrutin, 8,8 % (3 cas sur 34), relevée à 12 % pour l'affaire Mediapart ; impossible si Le Pen est candidate"
+  }
+ },
+ "mesures": {
+  "EV-13": {
+   "calme": 1.65,
+   "modérée": 12.36,
+   "forte": 48.52
+  },
+  "EV-51": {
+   "calme|calme": 2.55,
+   "modérée|*": 13.04,
+   "*|modérée": 20.67,
+   "forte|*": 33.98,
+   "*|forte": 60.69
+  },
+  "EV-49": {
+   "oui": 63.84,
+   "non": 7.75
+  },
+  "EV-20": {
+   "rejet ou non-admission": {
+    "rejet ou non-admission": 100.0
+   },
+   "cassation totale ou partielle": {
+    "cassation totale ou partielle": 100.0
+   },
+   "désistement": {
+    "désistement": 100.0
+   },
+   "pas d'arrêt": {
+    "rejet ou non-admission": 25.89,
+    "cassation totale ou partielle": 7.97,
+    "désistement": 0.79,
+    "pas d'arrêt au 31 mars 2027": 65.34
+   }
+  },
+  "EV-05": {
+   "RN|*|non": {
+    "Jordan Bardella": 100.0
+   },
+   "PHI|*|*": {
+    "Édouard Philippe": 100.0
+   },
+   "ATT|*|*": {
+    "Gabriel Attal": 100.0
+   },
+   "MEL|*|*": {
+    "Jean-Luc Mélenchon": 100.0
+   },
+   "GLU|*|*": {
+    "Raphaël Glucksmann": 100.0
+   },
+   "RET|*|*": {
+    "Bruno Retailleau": 100.0
+   },
+   "LIS|*|*": {
+    "David Lisnard": 100.0
+   },
+   "AUT|*|*": {
+    "François Hollande": 24.05,
+    "autre": 75.95
+   },
+   "RN|*|oui": {
+    "François Hollande": 0.0,
+    "autre": 100.0
+   },
+   "RN|candidate|non": {
+    "Marine Le Pen": 100.0
+   }
+  },
+  "EV-17": {
+   "moins de 289|non": 99.99,
+   "289 ou plus|non": 0.01,
+   "*|oui": 72.84
+  },
+  "EV-43": {
+   "289 ou plus": 5.86,
+   "moins de 289": 52.01
+  },
+  "EV-45": {
+   "RN|289 ou plus": 41.44,
+   "RN|moins de 289": 12.0,
+   "MEL|*": 34.33,
+   "GLU|*": 13.42,
+   "*|289 ou plus": 3.66,
+   "*|moins de 289": 3.11
+  }
+ },
+ "direct": {
+  "EV-01": 75.0,
+  "EV-04": 18.0,
+  "EV-46": 4,
+  "EV-15": 20.0,
+  "EV-15b": 8.0,
+  "EV-15c": 27,
+  "EV-16a": 8,
+  "EV-16b": 78.0,
+  "EV-50": 35,
+  "EV-02": 62,
+  "EV-39": 55,
+  "EV-10": 52.0,
+  "EV-47": 30.0,
+  "EV-52": 95.0,
+  "EV-13": 15,
+  "EV-51": 30.0,
+  "EV-49": 20,
+  "EV-18": {
+   "candidature autonome": 50,
+   "soutien à un autre candidat": 40,
+   "autre ou vote non tenu": 10
+  },
+  "EV-19": {
+   "3 ou moins": 7,
+   "4": 22,
+   "5": 35,
+   "6 ou plus": 36
+  },
+  "EV-41": {
+   "les deux": 40,
+   "Philippe seul": 42,
+   "Attal seul": 8,
+   "aucun des deux": 8
+  },
+  "EV-21": 80.0,
+  "EV-20": {
+   "rejet ou non-admission": 38.0,
+   "cassation totale ou partielle": 12.0,
+   "désistement": 2.0,
+   "pas d'arrêt au 31 mars 2027": 47.0
+  },
+  "EV-40a": 77.0,
+  "EV-40b": 49.5,
+  "EV-40c": 22,
+  "EV-40d": 1,
+  "EV-40e": 8,
+  "EV-40f": 13,
+  "EV-40g": 6,
+  "EV-05": {
+   "Marine Le Pen": 43,
+   "Jordan Bardella": 7,
+   "Édouard Philippe": 31.9,
+   "Gabriel Attal": 3.5,
+   "Jean-Luc Mélenchon": 3,
+   "David Lisnard": 0.4,
+   "Bruno Retailleau": 2.3,
+   "Raphaël Glucksmann": 4.2,
+   "François Hollande": 1.7,
+   "autre": 4.5
+  },
+  "EV-17": 78.0,
+  "EV-43": 37,
+  "EV-45": 13
+ },
+ "direct_note": "Avis directs d'EV-01, EV-04, EV-15, EV-15b, EV-16b, EV-17, EV-10, EV-47, EV-52 et EV-51 : médiane de E7 à E9 après la seconde ronde (étape 4) ; les autres, médiane de E1 à E3 ou de E4 à E6. Diagnostic seulement, jamais une cible."
+}

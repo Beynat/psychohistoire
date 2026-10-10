@@ -1,0 +1,1270 @@
+{
+ "version": "structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
+ "description": "Réseau bayésien dynamique v0, pas mensuel d'octobre 2026 à septembre 2028. Révisé après le pré-mortem du 10 octobre (scratchpad, rapport de 32 causes) : aucun cycle au sein d'un mois (liens au mois précédent marqués « decalage »: 1), au plus trois parents, pivots électoraux par personnes, dette découpée en note, procédure de déficit excessif et TPI ouverts dès octobre 2026, dissolution et censure découpées avant et après la présidentielle, changement de gouvernement ajouté. Hors réseau (notés sur l'ensemble et les comparateurs) : EV-03, EV-44, EV-23, EV-14b, EV-36, EV-06, international, climat, sécurité.",
+ "codes_candidats": {
+  "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate ; sinon Jordan Bardella, ou un autre candidat si PV-RNAUTRE = oui)",
+  "PHI": "Édouard Philippe",
+  "ATT": "Gabriel Attal",
+  "MEL": "Jean-Luc Mélenchon",
+  "GLU": "Raphaël Glucksmann",
+  "RET": "Bruno Retailleau",
+  "LIS": "David Lisnard",
+  "AUT": "toute autre personne"
+ },
+ "variables_etat": [
+  {
+   "id": "VE-ECART",
+   "nom": "Écart OAT-Bund 10 ans (moyenne du mois)",
+   "etats": [
+    "< 120 pb",
+    "120-160 pb",
+    "> 160 pb"
+   ],
+   "reference": "120-160 pb",
+   "parents": [
+    "PV-NOTE",
+    {
+     "id": "PV-TPI",
+     "decalage": 1
+    }
+   ],
+   "definition": "moyenne mensuelle de l'écart (série BCE collectée)",
+   "source": "collecte nocturne"
+  },
+  {
+   "id": "VE-POP",
+   "nom": "Popularité du président de la République",
+   "etats": [
+    "< 25 %",
+    "25-35 %",
+    "> 35 %"
+   ],
+   "reference": "< 25 %",
+   "parents": [
+    {
+     "id": "VE-MOBIL",
+     "decalage": 1
+    },
+    {
+     "id": "PV-GOUV",
+     "decalage": 1
+    }
+   ],
+   "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)",
+   "source": "baromètre mensuel"
+  },
+  {
+   "id": "VE-MOBIL",
+   "nom": "Mobilisation sociale (manifestants)",
+   "etats": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "reference": "calme",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "decalage": 1
+    }
+   ],
+   "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000",
+   "source": "data/etat/mobilisation.jsonl",
+   "agregat": "maximum"
+  },
+  {
+   "id": "VE-LYCEE",
+   "nom": "Mobilisation lycéenne",
+   "etats": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "reference": "calme",
+   "parents": [
+    "VE-MOBIL"
+   ],
+   "definition": "plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000",
+   "source": "data/etat/mobilisation.jsonl",
+   "agregat": "maximum",
+   "sens": [
+    {
+     "parent": "VE-MOBIL",
+     "etat": "forte",
+     "issue": "forte",
+     "signe": "+"
+    }
+   ]
+  },
+  {
+   "id": "VE-SOND",
+   "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+   "etats": [
+    "centre",
+    "gauche",
+    "droite"
+   ],
+   "reference": "centre",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "decalage": 1
+    },
+    "PV-BLOC"
+   ],
+   "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)",
+   "source": "data/etat/sondages.jsonl"
+  },
+  {
+   "id": "VE-RN",
+   "nom": "Intentions de vote du candidat RN au premier tour",
+   "etats": [
+    "< 30 %",
+    "30-35 %",
+    "> 35 %"
+   ],
+   "reference": "30-35 %",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "decalage": 1
+    },
+    "PV-LEPEN"
+   ],
+   "definition": "moyenne des sondages du mois pour le candidat du RN (hypothèse principale)",
+   "source": "data/etat/sondages.jsonl"
+  }
+ ],
+ "pivots": [
+  {
+   "id": "PV-NOTE",
+   "nom": "Dégradation de la note par une agence",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    {
+     "id": "VE-ECART",
+     "decalage": 1
+    },
+    "PV-BUDGET",
+    "PV-VAINQ"
+   ],
+   "fenetre": [
+    "2026-10-10",
+    "2028-09-30"
+   ],
+   "profil": "PV-NOTE",
+   "sens": [
+    {
+     "parent": "VE-ECART",
+     "etat": "> 160 pb",
+     "issue": "oui",
+     "signe": "+"
+    }
+   ]
+  },
+  {
+   "id": "PV-PDE",
+   "nom": "Durcissement de la procédure de déficit excessif",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    "PV-BUDGET",
+    "PV-VAINQ"
+   ],
+   "fenetre": [
+    "2026-10-10",
+    "2028-09-30"
+   ],
+   "sens": [
+    {
+     "parent": "PV-BUDGET",
+     "etat": "non publiée",
+     "issue": "oui",
+     "signe": "+"
+    }
+   ]
+  },
+  {
+   "id": "PV-TPI",
+   "nom": "Achats ciblés de la BCE (TPI ou OMT)",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    "VE-ECART",
+    "PV-PDE"
+   ],
+   "fenetre": [
+    "2026-10-10",
+    "2028-09-30"
+   ]
+  },
+  {
+   "id": "PV-CENSURE1a",
+   "nom": "Censure d'ici fin 2026 (session budgétaire)",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    {
+     "id": "VE-POP",
+     "decalage": 1
+    },
+    {
+     "id": "VE-MOBIL",
+     "decalage": 1
+    }
+   ],
+   "fenetre": [
+    "2026-10-10",
+    "2026-12-31"
+   ],
+   "sens": [
+    {
+     "parent": "VE-MOBIL",
+     "etat": "forte",
+     "issue": "oui",
+     "signe": "+"
+    }
+   ]
+  },
+  {
+   "id": "PV-CENSURE1b",
+   "nom": "Censure de janvier au second tour",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    {
+     "id": "VE-POP",
+     "decalage": 1
+    },
+    {
+     "id": "VE-MOBIL",
+     "decalage": 1
+    }
+   ],
+   "fenetre": [
+    "2027-01-01",
+    "2027-05-02"
+   ]
+  },
+  {
+   "id": "PV-BUDGET",
+   "nom": "Loi de finances pour 2027 au 31 décembre 2026",
+   "nature": "daté",
+   "issues": [
+    "publiée",
+    "non publiée"
+   ],
+   "parents": [
+    "PV-CENSURE1a",
+    {
+     "id": "VE-POP",
+     "decalage": 1
+    },
+    {
+     "id": "VE-MOBIL",
+     "decalage": 1
+    }
+   ],
+   "date": "2026-12-31",
+   "calendrier": "CAL-BUDGET",
+   "sens": [
+    {
+     "parent": "PV-CENSURE1a",
+     "etat": "oui",
+     "issue": "non publiée",
+     "signe": "+"
+    }
+   ]
+  },
+  {
+   "id": "PV-GOUV",
+   "nom": "Fin des fonctions du Premier ministre",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    "PV-CENSURE1a",
+    "PV-CENSURE1b",
+    {
+     "id": "VE-POP",
+     "decalage": 1
+    }
+   ],
+   "fenetre": [
+    "2026-10-10",
+    "2027-05-02"
+   ],
+   "definition": "critère d'EV-50",
+   "sens": [
+    {
+     "parent": "PV-CENSURE1a",
+     "etat": "oui",
+     "issue": "oui",
+     "signe": "+"
+    }
+   ]
+  },
+  {
+   "id": "PV-DISSOL1",
+   "nom": "Dissolution avant le second tour",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    "PV-CENSURE1a",
+    "PV-CENSURE1b",
+    {
+     "id": "VE-POP",
+     "decalage": 1
+    }
+   ],
+   "fenetre": [
+    "2026-10-10",
+    "2027-05-02"
+   ]
+  },
+  {
+   "id": "PV-AUDIENCE",
+   "nom": "Audience de la Cour de cassation sur le pourvoi de Marine Le Pen",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [],
+   "fenetre": [
+    "2026-10-10",
+    "2027-02-28"
+   ],
+   "note": "exogène : conduit par le calendrier judiciaire et ses jalons"
+  },
+  {
+   "id": "PV-POURVOI",
+   "nom": "Issue du pourvoi de Marine Le Pen au 12 mars 2027 (fin du dépôt des parrainages)",
+   "nature": "daté",
+   "issues": [
+    "rejet ou non-admission",
+    "cassation totale ou partielle",
+    "désistement",
+    "pas d'arrêt"
+   ],
+   "parents": [
+    "PV-AUDIENCE"
+   ],
+   "date": "2027-03-12",
+   "conditionnelle": "PV-AUDIENCE",
+   "calendrier": "CAL-PARRAINAGES"
+  },
+  {
+   "id": "PV-ECOLO",
+   "nom": "Vote des adhérents des Écologistes",
+   "nature": "daté",
+   "issues": [
+    "candidature autonome",
+    "soutien à un autre candidat",
+    "autre ou vote non tenu"
+   ],
+   "parents": [
+    {
+     "id": "VE-SOND",
+     "decalage": 1
+    }
+   ],
+   "date": "2026-12-13",
+   "calendrier": "CAL-ECOLO"
+  },
+  {
+   "id": "PV-BLOC",
+   "nom": "Candidatures du bloc central",
+   "nature": "daté",
+   "issues": [
+    "les deux",
+    "Philippe seul",
+    "Attal seul",
+    "aucun des deux"
+   ],
+   "parents": [
+    {
+     "id": "VE-SOND",
+     "decalage": 1
+    }
+   ],
+   "date": "2027-03-26",
+   "calendrier": "CAL-LISTE",
+   "date_note": "liste officielle des candidats, au plus tard le 26 mars 2027 (calendrier, CAL-LISTE)"
+  },
+  {
+   "id": "PV-GAUCHE",
+   "nom": "Nombre de candidats de gauche",
+   "nature": "daté",
+   "issues": [
+    "3 ou moins",
+    "4",
+    "5",
+    "6 ou plus"
+   ],
+   "parents": [
+    "PV-ECOLO",
+    {
+     "id": "VE-SOND",
+     "decalage": 1
+    }
+   ],
+   "date": "2027-03-26",
+   "calendrier": "CAL-LISTE",
+   "date_note": "liste officielle des candidats, au plus tard le 26 mars 2027 (calendrier, CAL-LISTE)"
+  },
+  {
+   "id": "PV-LEPEN",
+   "nom": "Candidature de Marine Le Pen",
+   "nature": "daté",
+   "issues": [
+    "candidate",
+    "non candidate"
+   ],
+   "parents": [
+    "PV-POURVOI",
+    {
+     "id": "VE-RN",
+     "decalage": 1
+    }
+   ],
+   "date": "2027-03-26",
+   "date_note": "liste officielle des candidats, au plus tard le 26 mars 2027",
+   "conditionnelle": "PV-POURVOI",
+   "calendrier": "CAL-LISTE",
+   "sens": [
+    {
+     "parent": "PV-POURVOI",
+     "etat": "pas d'arrêt",
+     "issue": "candidate",
+     "signe": "+"
+    }
+   ]
+  },
+  {
+   "id": "PV-RNAUTRE",
+   "nom": "Candidat du RN autre que Marine Le Pen ou Jordan Bardella, sur la liste officielle",
+   "nature": "daté",
+   "date": "2027-03-26",
+   "calendrier": "CAL-LISTE",
+   "issues": [
+    "non",
+    "oui"
+   ],
+   "parents": [
+    "PV-LEPEN"
+   ],
+   "exclusions": {
+    "PV-LEPEN": {
+     "candidate": [
+      "oui"
+     ]
+    }
+   },
+   "note": "Hypothèse porteuse H-01 (modele/reseau/hypotheses.json) : issue résiduelle. Si oui, le code RN des duels et du vainqueur désigne cet autre candidat, traité comme Bardella en aval (effets non élicités, étape 9)."
+  },
+  {
+   "id": "PV-DUEL",
+   "nom": "Duel de second tour",
+   "nature": "daté",
+   "issues": [
+    "RN-PHI",
+    "RN-ATT",
+    "RN-MEL",
+    "RN-GLU",
+    "RN-RET",
+    "RN-LIS",
+    "RN-AUT",
+    "PHI-MEL",
+    "PHI-GLU",
+    "AUTRE"
+   ],
+   "parents": [
+    "PV-BLOC",
+    "VE-SOND",
+    "PV-LEPEN"
+   ],
+   "date": "2027-04-18",
+   "exclusions": {
+    "PV-BLOC": {
+     "Philippe seul": [
+      "ATT"
+     ],
+     "Attal seul": [
+      "PHI"
+     ],
+     "aucun des deux": [
+      "PHI",
+      "ATT"
+     ]
+    }
+   },
+   "conditionnelle": "PV-BLOC",
+   "calendrier": "CAL-T1"
+  },
+  {
+   "id": "PV-VAINQ",
+   "nom": "Vainqueur de la présidentielle",
+   "nature": "daté",
+   "issues": [
+    "RN",
+    "PHI",
+    "ATT",
+    "MEL",
+    "GLU",
+    "RET",
+    "LIS",
+    "AUT"
+   ],
+   "parents": [
+    "PV-DUEL",
+    {
+     "id": "VE-RN",
+     "decalage": 1
+    },
+    "PV-LEPEN"
+   ],
+   "date": "2027-05-02",
+   "conditionnelle": "PV-DUEL",
+   "note": "la loi de base est donnée pour chaque duel (seuls ses deux candidats peuvent gagner) ; AUTRE est attribué à AUT",
+   "calendrier": "CAL-T2"
+  },
+  {
+   "id": "PV-DISSOL2a",
+   "nom": "Dissolution dans les deux mois suivant le second tour",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    "PV-VAINQ",
+    {
+     "id": "VE-POP",
+     "decalage": 1
+    },
+    "PV-DISSOL1"
+   ],
+   "fenetre": [
+    "2027-05-03",
+    "2027-06-30"
+   ],
+   "sens": [
+    {
+     "parent": "PV-DISSOL1",
+     "etat": "oui",
+     "issue": "oui",
+     "signe": "-"
+    }
+   ]
+  },
+  {
+   "id": "PV-DISSOL2b",
+   "nom": "Dissolution de juillet 2027 à septembre 2028",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    "PV-VAINQ",
+    "PV-DISSOL2a",
+    "PV-DISSOL1"
+   ],
+   "fenetre": [
+    "2027-07-01",
+    "2028-09-30"
+   ]
+  },
+  {
+   "id": "PV-MAJOR",
+   "nom": "Groupe du parti du président à 289 députés ou plus après les législatives",
+   "nature": "daté",
+   "issues": [
+    "289 ou plus",
+    "moins de 289"
+   ],
+   "parents": [
+    "PV-VAINQ",
+    "PV-DISSOL2a"
+   ],
+   "date": "2027-07-01",
+   "calendrier": "CAL-MAJOR"
+  },
+  {
+   "id": "PV-CENSURE2",
+   "nom": "Censure après le second tour",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    "PV-MAJOR",
+    {
+     "id": "VE-POP",
+     "decalage": 1
+    }
+   ],
+   "fenetre": [
+    "2027-05-03",
+    "2028-09-30"
+   ]
+  }
+ ],
+ "mesures": {
+  "EV-01": {
+   "caracteristique": {
+    "type": "survenue",
+    "noeud": "PV-NOTE"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-04": {
+   "caracteristique": {
+    "type": "survenue",
+    "noeud": "PV-PDE"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-46": {
+   "caracteristique": {
+    "type": "survenue",
+    "noeud": "PV-TPI"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-15": {
+   "caracteristique": {
+    "type": "survenue",
+    "noeud": "PV-CENSURE1a"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-15b": {
+   "caracteristique": {
+    "type": "survenue",
+    "noeud": "PV-CENSURE1b"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-15c": {
+   "caracteristique": {
+    "type": "survenue",
+    "noeud": "PV-CENSURE2"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-16a": {
+   "caracteristique": {
+    "type": "survenue",
+    "noeud": "PV-DISSOL1"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-16b": {
+   "caracteristique": {
+    "type": "conjonction",
+    "elements": [
+     {
+      "type": "survenue",
+      "noeud": "PV-DISSOL2a"
+     },
+     {
+      "type": "survenue",
+      "noeud": "PV-DISSOL2b"
+     }
+    ]
+   },
+   "table": {
+    "oui|*": 100,
+    "*|oui": 100,
+    "non|non": 0
+   },
+   "exacte": true
+  },
+  "EV-50": {
+   "caracteristique": {
+    "type": "survenue",
+    "noeud": "PV-GOUV"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-02": {
+   "caracteristique": {
+    "type": "issue",
+    "noeud": "PV-BUDGET"
+   },
+   "table": {
+    "non publiée": 100,
+    "publiée": 0
+   },
+   "exacte": true
+  },
+  "EV-39": {
+   "caracteristique": {
+    "type": "etat_max",
+    "noeud": "VE-MOBIL"
+   },
+   "table": {
+    "forte": 100,
+    "modérée": 0,
+    "calme": 0
+   },
+   "exacte": true
+  },
+  "EV-10": {
+   "caracteristique": {
+    "type": "etat_max",
+    "noeud": "VE-LYCEE"
+   },
+   "table": {
+    "forte": 100,
+    "modérée": 100,
+    "calme": 0
+   },
+   "exacte": true
+  },
+  "EV-47": {
+   "caracteristique": {
+    "type": "etat_max",
+    "noeud": "VE-LYCEE"
+   },
+   "table": {
+    "forte": 100,
+    "modérée": 0,
+    "calme": 0
+   },
+   "exacte": true
+  },
+  "EV-52": {
+   "caracteristique": {
+    "type": "conjonction",
+    "elements": [
+     {
+      "type": "etat_max",
+      "noeud": "VE-MOBIL"
+     },
+     {
+      "type": "etat_max",
+      "noeud": "VE-LYCEE"
+     }
+    ]
+   },
+   "table": {
+    "modérée|*": 100,
+    "forte|*": 100,
+    "*|modérée": 100,
+    "*|forte": 100,
+    "calme|calme": 0
+   },
+   "exacte": true
+  },
+  "EV-13": {
+   "caracteristique": {
+    "type": "etat_max",
+    "noeud": "VE-MOBIL"
+   },
+   "table": {
+    "calme": null,
+    "modérée": null,
+    "forte": null
+   },
+   "exacte": false,
+   "question": "probabilité qu'une journée dépasse 18 % de grévistes dans la fonction publique de l'État, selon le plus haut niveau de mobilisation du mois"
+  },
+  "EV-51": {
+   "caracteristique": {
+    "type": "conjonction",
+    "elements": [
+     {
+      "type": "etat_max",
+      "noeud": "VE-MOBIL"
+     },
+     {
+      "type": "etat_max",
+      "noeud": "VE-LYCEE"
+     }
+    ]
+   },
+   "table": {
+    "calme|calme": null,
+    "modérée|*": null,
+    "*|modérée": null,
+    "forte|*": null,
+    "*|forte": null
+   },
+   "exacte": false,
+   "question": "probabilité d'une journée ou nuit à 1 000 interpellations, selon le plus haut niveau de mobilisation générale et lycéenne de la période (l'entrée la plus forte s'applique)"
+  },
+  "EV-49": {
+   "caracteristique": {
+    "type": "survenue",
+    "noeud": "PV-GOUV",
+    "fin": "2026-12-31"
+   },
+   "table": {
+    "oui": null,
+    "non": null
+   },
+   "exacte": false,
+   "question": "probabilité que le ministre de l'Éducation nationale quitte ce portefeuille d'ici au 31 décembre 2026, selon qu'il y a eu ou non changement de Premier ministre"
+  },
+  "EV-18": {
+   "caracteristique": {
+    "type": "issue",
+    "noeud": "PV-ECOLO"
+   },
+   "table": "identite",
+   "exacte": true
+  },
+  "EV-19": {
+   "caracteristique": {
+    "type": "issue",
+    "noeud": "PV-GAUCHE"
+   },
+   "table": "identite",
+   "exacte": true
+  },
+  "EV-41": {
+   "caracteristique": {
+    "type": "issue",
+    "noeud": "PV-BLOC"
+   },
+   "table": "identite",
+   "exacte": true
+  },
+  "EV-21": {
+   "caracteristique": {
+    "type": "issue",
+    "noeud": "PV-LEPEN"
+   },
+   "table": {
+    "candidate": 100,
+    "non candidate": 0
+   },
+   "exacte": true
+  },
+  "EV-20": {
+   "caracteristique": {
+    "type": "issue",
+    "noeud": "PV-POURVOI"
+   },
+   "table": {
+    "rejet ou non-admission": {
+     "rejet ou non-admission": 100
+    },
+    "cassation totale ou partielle": {
+     "cassation totale ou partielle": 100
+    },
+    "désistement": {
+     "désistement": 100
+    },
+    "pas d'arrêt": null
+   },
+   "exacte": false,
+   "question": "si aucun arrêt n'est rendu au 12 mars 2027, loi de l'issue au 31 mars 2027"
+  },
+  "EV-40a": {
+   "caracteristique": {
+    "type": "conjonction",
+    "elements": [
+     {
+      "type": "issue",
+      "noeud": "PV-LEPEN"
+     },
+     {
+      "type": "contient",
+      "noeud": "PV-DUEL",
+      "code": "RN"
+     }
+    ]
+   },
+   "table": {
+    "candidate|oui": 100,
+    "*|*": 0
+   },
+   "exacte": true
+  },
+  "EV-40b": {
+   "caracteristique": {
+    "type": "contient",
+    "noeud": "PV-DUEL",
+    "code": "PHI"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-40c": {
+   "caracteristique": {
+    "type": "contient",
+    "noeud": "PV-DUEL",
+    "code": "MEL"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-40d": {
+   "caracteristique": {
+    "type": "contient",
+    "noeud": "PV-DUEL",
+    "code": "LIS"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-40e": {
+   "caracteristique": {
+    "type": "contient",
+    "noeud": "PV-DUEL",
+    "code": "ATT"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-40f": {
+   "caracteristique": {
+    "type": "contient",
+    "noeud": "PV-DUEL",
+    "code": "GLU"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-40g": {
+   "caracteristique": {
+    "type": "contient",
+    "noeud": "PV-DUEL",
+    "code": "RET"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-05": {
+   "caracteristique": {
+    "type": "conjonction",
+    "elements": [
+     {
+      "type": "issue",
+      "noeud": "PV-VAINQ"
+     },
+     {
+      "type": "issue",
+      "noeud": "PV-LEPEN"
+     },
+     {
+      "type": "issue",
+      "noeud": "PV-RNAUTRE"
+     }
+    ]
+   },
+   "table": {
+    "RN|*|non": {
+     "Jordan Bardella": 100
+    },
+    "PHI|*|*": {
+     "Édouard Philippe": 100
+    },
+    "ATT|*|*": {
+     "Gabriel Attal": 100
+    },
+    "MEL|*|*": {
+     "Jean-Luc Mélenchon": 100
+    },
+    "GLU|*|*": {
+     "Raphaël Glucksmann": 100
+    },
+    "RET|*|*": {
+     "Bruno Retailleau": 100
+    },
+    "LIS|*|*": {
+     "David Lisnard": 100
+    },
+    "AUT|*|*": null,
+    "RN|*|oui": {
+     "autre": 100
+    },
+    "RN|candidate|non": {
+     "Marine Le Pen": 100
+    }
+   },
+   "exacte": false,
+   "question": "si le vainqueur n'est aucun des sept candidats codés, part de François Hollande et de toute autre personne"
+  },
+  "EV-17": {
+   "caracteristique": {
+    "type": "conjonction",
+    "elements": [
+     {
+      "type": "issue",
+      "noeud": "PV-MAJOR"
+     },
+     {
+      "type": "survenue",
+      "noeud": "PV-DISSOL2b",
+      "debut": "2027-08-01"
+     }
+    ]
+   },
+   "table": {
+    "moins de 289|non": 100,
+    "289 ou plus|non": 0,
+    "*|oui": null
+   },
+   "exacte": false,
+   "question": "si une nouvelle dissolution intervient après les législatives de 2027, probabilité que le groupe du parti du président compte moins de 289 membres le 30 septembre 2028"
+  },
+  "EV-43": {
+   "caracteristique": {
+    "type": "issue",
+    "noeud": "PV-MAJOR"
+   },
+   "table": {
+    "289 ou plus": null,
+    "moins de 289": null
+   },
+   "exacte": false,
+   "question": "probabilité que le Premier ministre au 30 septembre 2028 soit membre d'un parti qui a soutenu un autre candidat que le président élu, selon la taille du groupe présidentiel"
+  },
+  "EV-45": {
+   "caracteristique": {
+    "type": "conjonction",
+    "elements": [
+     {
+      "type": "issue",
+      "noeud": "PV-VAINQ"
+     },
+     {
+      "type": "issue",
+      "noeud": "PV-MAJOR"
+     }
+    ]
+   },
+   "table": {
+    "RN|289 ou plus": null,
+    "RN|moins de 289": null,
+    "MEL|*": null,
+    "GLU|*": null,
+    "*|289 ou plus": null,
+    "*|moins de 289": null
+   },
+   "exacte": false,
+   "question": "probabilité que l'âge légal pour la génération 1970 soit inférieur à 64 ans au 30 septembre 2028, selon le vainqueur et sa majorité"
+  }
+ },
+ "conjointes": {
+  "CJ-01": [
+   "EV-15",
+   "EV-50"
+  ],
+  "CJ-02": [
+   "EV-02",
+   "EV-16a"
+  ],
+  "CJ-03": [
+   "EV-15",
+   "EV-49"
+  ],
+  "CJ-04": [
+   "EV-10",
+   "EV-50"
+  ]
+ },
+ "indicateurs": {
+  "description": "Indicateurs structurels (data.json) agissant comme contexte des pivots : affichés sur les liens, sans effet calculé dans le réseau v0 ; leur branchement comme parents est un point ouvert.",
+  "liens": {
+   "IS-02": {
+    "nom": "Stabilité institutionnelle",
+    "liens": [
+     {
+      "noeud": "PV-BUDGET",
+      "mecanisme": "Sans majorité et avec une censure à moins de 20 voix, l'adoption du budget dépend d'un 49.3 et de l'abstention d'au moins un groupe d'opposition, ce qui renforce les issues loi spéciale et censure."
+     },
+     {
+      "noeud": "PV-CENSURE2",
+      "mecanisme": "La faible marge de la censure et la défiance record abaissent le coût pour les oppositions de renverser un gouvernement avant la présidentielle."
+     },
+     {
+      "noeud": "PV-DISSOL1",
+      "mecanisme": "La succession rapide des Premiers ministres épuise les solutions parlementaires et fait de la dissolution l'une des rares options restantes du Président."
+     },
+     {
+      "noeud": "PV-DISSOL2a",
+      "mecanisme": "La succession rapide des Premiers ministres épuise les solutions parlementaires et fait de la dissolution l'une des rares options restantes du Président."
+     },
+     {
+      "noeud": "PV-DISSOL2b",
+      "mecanisme": "La succession rapide des Premiers ministres épuise les solutions parlementaires et fait de la dissolution l'une des rares options restantes du Président."
+     },
+     {
+      "noeud": "PV-MAJOR",
+      "mecanisme": "Une Assemblée durablement fragmentée rend improbable qu'une nouvelle élection législative donne une majorité absolue au président élu."
+     },
+     {
+      "noeud": "VE-POP",
+      "mecanisme": "La défiance envers le gouvernement et l'instabilité gouvernementale pèsent sur la popularité de l'exécutif."
+     }
+    ]
+   },
+   "IS-03": {
+    "nom": "Cohésion sociale",
+    "liens": [
+     {
+      "noeud": "VE-MOBIL",
+      "mecanisme": "Défiance mutuelle, rejet du fonctionnement démocratique et conflictualité forment le terreau d'une mobilisation sociale qui prend plus vite et dure plus longtemps."
+     }
+    ]
+   },
+   "IS-04": {
+    "nom": "Niveau de vie populaire",
+    "liens": [
+     {
+      "noeud": "VE-MOBIL",
+      "mecanisme": "Pauvreté record, flambée de l'énergie et chômage des jeunes accroissent la probabilité qu'un mécontentement catégoriel devienne une mobilisation nationale, comme en 2018 et en septembre 2026."
+     }
+    ]
+   },
+   "IS-05": {
+    "nom": "Compétition des élites",
+    "liens": [
+     {
+      "noeud": "VE-SOND",
+      "mecanisme": "L'excédent d'aspirants et la fragmentation nourrissent les candidatures et le vote de rupture, ce qui renforce l'avance du RN dans les intentions de vote."
+     },
+     {
+      "noeud": "PV-BLOC",
+      "mecanisme": "La compétition entre prétendants du bloc central rend moins probable un désistement et plus probable deux candidatures concurrentes."
+     },
+     {
+      "noeud": "PV-GAUCHE",
+      "mecanisme": "La fragmentation des groupes de gauche à l'Assemblée et la multiplication des candidatures de 2002 et 2022 rendent probable une gauche à trois candidats ou plus."
+     }
+    ]
+   },
+   "IS-01": {
+    "nom": "Finances publiques",
+    "liens": [
+     {
+      "noeud": "PV-NOTE",
+      "mecanisme": null
+     },
+     {
+      "noeud": "PV-PDE",
+      "mecanisme": null
+     },
+     {
+      "noeud": "PV-TPI",
+      "mecanisme": null
+     },
+     {
+      "noeud": "VE-ECART",
+      "mecanisme": null
+     }
+    ]
+   }
+  }
+ },
+ "verrous": [
+  {
+   "si": "PV-DISSOL1",
+   "interdit": [
+    "PV-DISSOL2a",
+    "PV-DISSOL2b"
+   ],
+   "duree_mois": 12,
+   "motif": "article 12 de la Constitution : pas de nouvelle dissolution dans l'année qui suit les élections ; pas mensuel, élections comptées dans le mois qui suit la dissolution, nouvelle dissolution possible à partir du 13e mois après celui de la dissolution"
+  },
+  {
+   "si": "PV-DISSOL2a",
+   "interdit": [
+    "PV-DISSOL2b"
+   ],
+   "duree_mois": 12,
+   "motif": "article 12 de la Constitution, comme ci-dessus"
+  }
+ ],
+ "anciens_identifiants": {
+  "PV-CENSURE1": "PV-CENSURE1a",
+  "PV-DISSOL2": "PV-DISSOL2a",
+  "_note": "Identifiants retirés, encore cités dans des journaux en ajout seul (modele/jalons/definitions.jsonl) : nœud qui les remplace."
+ },
+ "feuilles_assumees": {
+  "PV-CENSURE2": "lue par EV-15c ; aucun effet élicité sur un autre pivot de l'horizon (fin du mandat de l'Assemblée hors fenêtre)",
+  "PV-DISSOL2b": "lue par EV-16b et EV-17 ; la composition de l'Assemblée qui suivrait n'est pas modélisée (hors horizon des questions rattachées)",
+  "PV-GAUCHE": "lue par EV-19 ; l'effet du nombre de candidats de gauche sur le duel passe par les sondages (VE-SOND), pas par un lien direct",
+  "PV-RNAUTRE": "lue par EV-05 ; effets en aval non élicités, l'autre candidat RN est traité comme Bardella (hypothèse H-01, étape 9)",
+  "VE-LYCEE": "lue par EV-10, EV-47, EV-51 et une conjointe ; aucune élicitation n'a donné d'effet lycéen sur un pivot : lien vers la mobilisation et les pivots à l'étape 13",
+  "PV-AUDIENCE": "sans mesure propre : parent de PV-POURVOI (date de l'arrêt), observable par le jalon J-020"
+ }
+}

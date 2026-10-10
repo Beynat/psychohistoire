@@ -1019,6 +1019,28 @@ def test_semantique_reseau():
     assert not tables.controle_tables(), tables.controle_tables()
 
 
+def test_organigramme():
+    """Feuille de route, étape 8 : données de l'organigramme cohérentes avec la structure (codes d'issues valides,
+    une phrase par issue, vraisemblances des jalons alignées sur les issues de leur nœud), page assemblée avec son
+    script et sans données en ligne pour la version publiée."""
+    import organigramme
+    d = organigramme.construire(tirages=2, trajectoires=20)
+    assert len(d["codes"]) == 40 == len(d["poids"]) == len(d["variables_codes"])
+    for i, p in enumerate(d["pivots"]):
+        assert all(int(c[i]) < len(p["issues"]) for c in d["codes"]), p["id"]
+        assert len(p["phrases"]) == len(p["issues"]) == len(p["libelles"]) and (p["k"] is None or p["k"] < len(p["issues"]))
+    nv = len(d["variables"]) * len(d["mois"])
+    assert all(len(c) == nv for c in d["variables_codes"])
+    piv = {p["id"]: p for p in d["pivots"]}
+    for j in d["jalons"]:
+        assert len(j["L"]) == len(piv[j["noeud"]]["issues"]) and j["classe"] in ("tranche", "indice"), j["id"]
+    j26 = next(j for j in d["jalons"] if j["id"] == "J-026")
+    attendu = json.loads((Path(__file__).resolve().parent.parent / "modele/jalons/vraisemblances_v2.json").read_text())["jalons"]["J-026"]["vraisemblances"]
+    assert j26["classe"] == "tranche" and dict(zip(piv["PV-BLOC"]["issues"], j26["L"])) == attendu, j26
+    html = organigramme.page()
+    assert "/*__DONNEES__*/null" in html and "ORGJS" not in html and "function poids(" in html
+
+
 def test_agregation_sans_veto():
     """Feuille de route, étape 1 : un zéro isolé chez un évaluateur ne fixe plus l'agrégat à zéro ; un zéro unanime
     reste un zéro."""

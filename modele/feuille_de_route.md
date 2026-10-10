@@ -20,7 +20,7 @@ Décisions de Nathan :
 | 5 | Hypothèses porteuses | `modele/reseau/hypotheses.json` : ce que la structure suppose sans le représenter (candidat RN = Le Pen ou Bardella, Philippe disponible, pas de vacance de la présidence…), probabilité de rupture tirée de précédents, signaux d'alerte reliés à la veille (`tri.py`) ; issue « autre candidat RN ». | fait |
 | 6 | Processus et notation | Version du réseau gelée à la fin du bloc 1, notée à part (« réseau v0 gelé ») ; gel 48 heures avant chaque cycle ; comparaison avec le témoin fixée d'avance ; pool de questions rapides (jalons, état des variables le mois suivant) pour valider plus tôt que 40 questions ; dates des passes alignées. | fait (gel du témoin exécuté à la fin de l'étape 8) |
 | 7 | Tests automatiques | Batterie de tests avec contrôle par mutation, dont ceux qui auraient attrapé les erreurs du 10 octobre (base donnée pour la marginale, sens opposés, calendrier, parent non tranché, fait qui tranche). | fait |
-| 8 | Organigramme en ligne | Organigramme (maquette `modele/interface/organigramme/`) à la place de la frise de `reseau.html`, branché sur le moteur unique, avec le mode « et si » : cocher des faits et voir tout l'organigramme se recalculer. | à faire |
+| 8 | Organigramme en ligne | Organigramme (maquette `modele/interface/organigramme/`) à la place de la frise de `reseau.html`, branché sur le moteur unique, avec le mode « et si » : cocher des faits et voir tout l'organigramme se recalculer. | prêt, en attente de validation de la maquette |
 
 ## Bloc 2 : étendre et consolider
 
@@ -45,3 +45,4 @@ Décisions de Nathan :
 | 10 oct. 2026 | 5 | Sept hypothèses porteuses sur classes de référence, issue « autre candidat RN », tri relié aux hypothèses ; `modele/reseau/rapports/2026-10-10_etape5.md`. |
 | 10 oct. 2026 | 6 | Réseau témoin gelable et noté à part, gel de 48 heures, comparaison pré-enregistrée (`modele/reseau/comparaison.md`), questions rapides (pool PR), passes le 2 et le 16, tâches planifiées redirigées vers ce journal. |
 | 10 oct. 2026 | 7 | Tests sémantiques du réseau (références, feuilles, sens des liens, invariants, calage), erreur type publiée, rapport d'écarts (`scripts/ecarts.py`). |
+| 10 oct. 2026 | 8 | Organigramme recalculé dans la page à partir des trajectoires du moteur, mode « et si » ; aperçu soumis à Nathan avant mise en ligne. Réseau témoin gelé (fin du bloc 1). |
