@@ -40,8 +40,7 @@ Ce qui manque, dans l'ordre :
 1. **Décision de Nathan sur le statut.** Pour que le cycle du 1er novembre tourne, `statut.json` doit passer à `definitif: true` (ou la garde de la tâche doit viser un drapeau « v0 »). C'est la porte qui sépare les essais des données réelles, à décider explicitement et à journaliser.
 2. **Cycle complet de bout en bout** avec les scripts actuels, sur un cycle d'essai (étiquette autre que `AAAA-MM`, registre suffixé) : gel, questions, comparateurs, cinq prévisionnistes, agrégation, résolution, notation, contrôle à la poussée. Le dernier essai complet date du 4 octobre, avant les versions 1.26 à 1.28.
 3. **Interface v1** : afficher la piste protocole (questions du cycle, prévisions de l'ensemble et des comparateurs, scores une fois résolues) à côté de la piste exploratoire, et ajouter le volet actualité (`modele/interface/actualite.md` : ajouts quotidiens, questions concernées, niveau de vigilance).
-4. **Protection de la branche `controles`** sur GitHub, contre la suppression et la réécriture. C'est à Nathan de la poser : le jeton de session n'a pas ce droit.
-5. **Ajouts à la banque** jugés utiles pour la v0, par la procédure d'ajout. Liste dans « Travaux en attente ».
+4. **Ajouts à la banque** jugés utiles pour la v0, par la procédure d'ajout. Liste dans « Travaux en attente ».
 
 ## Boucle de vérification automatisée (à construire)
 
@@ -109,13 +108,13 @@ C'est un mouvement d'ampleur nationale, du niveau des épisodes de référence (
 - Ne créer, modifier ou déclencher une tâche planifiée qu'avec l'accord de Nathan. Deux tâches existent :
   - cycle mensuel : `trig_01SJXN4Fmwjue8foVBeRXddV`, du 1er au 8 du mois à 7 h 52 (le 8 sert seulement à déclarer un cycle manqué), avec des gardes sur la date et sur `statut.json` ; la date de gel du manifeste est reprise en cas de reprise ;
   - tri : `trig_01M5gsZGtbMwVYGUbaCRpELn`, lundi, mercredi et vendredi à 17 h 47.
-- Journal des contrôles : branche `controles`, écrite par le seul workflow ; ne jamais y pousser. Racine dans `modele/controles_racine.txt`. Pour travailler hors ligne, `JOURNAL_CONTROLES` désigne une copie du journal.
+- Journal des contrôles : branche `controles`, écrite par le seul workflow ; ne jamais y pousser. Racine dans `modele/controles_racine.txt`. Protégée contre la suppression et la réécriture (règle « Protection de main », étendue le 10 octobre). Pour travailler hors ligne, `JOURNAL_CONTROLES` désigne une copie du journal.
 - Sources : méthode de fiabilité dans `modele/sources.md`. Une source n'est primaire que pour ses propres actes ; se méfier des médias partisans.
 - Chaque correction de code est accompagnée d'un test discriminant et d'un contrôle par mutation.
 
 ## Travaux en attente
 
-1. v0 : les cinq points de « Pour une v0 déployée ».
+1. v0 : les quatre points de « Pour une v0 déployée ».
 2. Boucle de vérification automatisée.
 3. Volet actualité et questions sur le mouvement lycéen.
 4. Ajouts différés à la banque, par la procédure d'ajout : législatives anticipées, Nouvelle-Calédonie, régionales et départementales 2028, croissance du PIB, taux de la BCE, droits de douane entre les États-Unis et l'UE, grève dans la fonction publique en 2027, fin des fonctions du Premier ministre quelle qu'en soit la cause, référendum, écart OAT-BTP de signe positif, clause pour une présidentielle anticipée. Autres souhaitables reportés : `modele/controle/phase1.md`.
