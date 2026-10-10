@@ -1,5 +1,6 @@
 """Tests des scripts de la phase 1 sur données fictives. Usage : python scripts/tests.py"""
 import json
+import math
 import random
 import sys
 import shutil
@@ -559,6 +560,41 @@ def test_reseau_moteur():
         assert False, "cycle non détecté"
     except SystemExit as e:
         assert "Cycle" in str(e)
+
+
+def test_jalons():
+    """Feuille de route v0, bloc 2 : une définition dont la fenêtre s'ouvre dans moins de 7 jours est refusée ; un
+    jalon observé relève, dans le registre fantôme, l'issue qu'il favorise, avec la réduction k."""
+    tmp, run = _copie()
+    try:
+        from datetime import date as _d, timedelta as _t
+        j0 = (_d.today() + _t(days=10)).isoformat()
+        j1 = (_d.today() + _t(days=40)).isoformat()
+        base = {"lien": "PV-CENSURE1 → PV-GOUV", "observable": "o", "indicateur": {"source": "s", "mesure": "m", "seuil": "x"},
+                "niveau": 3, "type": "amont", "cible": {"noeud": "PV-GOUV", "issue": "oui", "question": "Q-EV-50"},
+                "vraisemblances": {"a": 0.6, "b": 0.2}}
+        import subprocess, os
+        env = {**os.environ, "PYTHONPATH": str(tmp / "scripts")}
+        trop_tot = {**base, "id": "J-T", "fenetre": {"debut": (_d.today() + _t(days=3)).isoformat(), "fin": j1}}
+        r = subprocess.run([sys.executable, "scripts/jalons.py", "definir"], cwd=tmp, env=env, capture_output=True, text=True,
+                           input=json.dumps(trop_tot) + chr(10))
+        assert r.returncode != 0 and "7 jours" in r.stderr, r.stderr[-300:]
+        r = subprocess.run([sys.executable, "scripts/jalons.py", "definir"], cwd=tmp, env=env, capture_output=True, text=True,
+                           input=json.dumps({**base, "id": "J-1", "fenetre": {"debut": j0, "fin": j1}}) + chr(10))
+        assert r.returncode == 0, r.stderr[-300:]
+        r = subprocess.run([sys.executable, "scripts/jalons.py", "statut"], cwd=tmp, env=env, capture_output=True, text=True,
+                           input=json.dumps({"jalon": "J-1", "statut": "observé", "date": j0, "source": "s", "agent": "a"}) + chr(10))
+        assert r.returncode == 0, r.stderr[-300:]
+        ligne = {"question": "Q-EV-50", "probabilites": {"oui": 30.0, "non": 70.0}, "piste": "v0", "auteur": "réseau v0",
+                 "origine": "cycle t", "donnees": "t"}
+        subprocess.run([sys.executable, "scripts/registre.py", "registre/essai_j.jsonl"], cwd=tmp, env=env, check=True,
+                       capture_output=True, text=True, input=json.dumps(ligne) + chr(10))
+        run("scripts/jalons.py", "fantome", "registre/essai_j.jsonl")
+        f = [json.loads(l) for l in (tmp / "registre/fantome.jsonl").read_text().splitlines() if l.strip()]
+        attendu = 100 / (1 + math.exp(-(math.log(30 / 70) + 0.5 * math.log(3))))
+        assert abs(f[-1]["probabilites"]["oui"] - attendu) < 0.2, (f[-1], attendu)
+    finally:
+        shutil.rmtree(tmp.parent)
 
 
 def test_tables_du_reseau():
