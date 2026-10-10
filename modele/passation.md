@@ -15,6 +15,16 @@ Psychohistoire : des prévisions datées et notées sur la France, d'octobre 202
 5. **L'actualité comme test.** Le mouvement lycéen en cours montre comment les faits d'actualité sont intégrés (voir plus bas).
 6. **Deux modèles de plus, après la France** : le monde, et le long terme. Le long terme est la psychohistoire proprement dite : un mouvement social n'est pas prévisible à court terme, mais sa probabilité sur une période peut l'être à partir d'indicateurs globaux.
 
+## Méthode : points arrêtés le 10 octobre
+
+- **Antériorité maintenue.** Le protocole est en retrait, mais l'antériorité ne se relâche pas : registres en ajout seul, horodatage, contrôle à la poussée. Sans elle, aucun score de la v0 ne vaut.
+- **« v0 ajustée ».** Les ajustements faits après les premiers résultats sont orientés par ces résultats. Tout ce qui précède la v0 ajustée est donc exploratoire et noté à part ; le décompte formel ne commence qu'à partir d'elle. On écrit la date et le contenu de la v0 ajustée au journal avant d'en publier les scores.
+- **Limites de la vérification automatisée.**
+  - Vérificateurs et correcteur sont de la même famille de modèles et partagent les mêmes angles morts. Varier les modèles (Opus, Sonnet) aide sans régler ce point : l'arbitrage de Nathan reste nécessaire.
+  - Les corrections ouvrent elles-mêmes des défauts (trois tours de suite sur le contrôle des registres, les 5 et 6 octobre) : plafond de tours et retour à Nathan.
+- **Priorité à la pertinence.** Le risque principal est la pertinence de la banque, pas l'intégrité du code. Le mouvement lycéen est passé entre les mailles pendant que les registres étaient renforcés contre des manœuvres improbables. Le contrôle des registres est considéré comme suffisant pour la v0 ; l'effort de vérification va à la banque et à l'actualité.
+- **Horizon intermédiaire** entre le court terme et le long terme : une fois un mouvement lancé, probabilité qu'il s'étende ou s'éteigne dans les 30 jours, sur la base des épisodes passés. C'est testable vite, et le cas lycéen s'y prête.
+
 ## État
 
 - **Versions.** Noyau v1.28 (la v1.27 est un tag intermédiaire, posé pendant un audit), annexe de la phase 3 v1.7, banque v1.10 (55 questions, 42 événements), consigne de l'ensemble v1.5. Les tags `protocole-vX.Y` et `annexe-phase3-vX.Y` sont posés automatiquement.
@@ -42,8 +52,10 @@ Ce que les vérifications des 5 et 6 octobre ont appris :
 
 Proposition :
 - **Orchestrateur.** Une session lance deux vérificateurs neufs en parallèle (outil Agent), sur des angles distincts :
-  - A, intégrité et antériorité : symétrie, indépendance vis-à-vis de l'issue, horodatage, registres, rattrapage, par essais sur copie ;
-  - B, fond et conformité : critères de la banque, sources, actualité, texte contre code, interface.
+  - A, pertinence de la banque au vu de l'actualité : ce qui manque, les critères ambigus ou irrésolubles, les sources (y compris les prémisses d'un retrait, comme celle d'EV-10). Il compare les faits non rattachés du tri aux questions ouvertes ;
+  - B, intégrité et chaîne d'exécution : antériorité, symétrie, indépendance vis-à-vis de l'issue, cycle de bout en bout, conformité du code au texte. Il travaille par essais sur copie, et le périmètre du contrôle des registres est figé pour la v0.
+
+  Les deux vérificateurs tournent sur des modèles différents quand c'est possible.
 - **Fusion.** L'orchestrateur dédoublonne, classe selon la grille (bloquant, important, souhaitable) et écarte ce qui n'a ni essai ni raisonnement précis.
 - **Correction.** Chaque défaut bloquant ou important est corrigé, avec un test discriminant et un contrôle par mutation (remettre l'ancien code, vérifier que le test échoue) ; les souhaitables vont à une liste.
 - **Arrêt.** On recommence jusqu'à un tour sans bloquant ni important, avec trois tours au plus ; au-delà, Nathan arbitre.
@@ -80,12 +92,14 @@ C'est un mouvement d'ampleur nationale, du niveau des épisodes de référence (
 ## Deux modèles à venir
 
 - **Monde.** Mêmes outils (banque, ensemble, comparateurs, notation), sur des événements internationaux : conflits, élections majeures, commerce, énergie, banques centrales. Sources primaires des institutions concernées et agences.
+- **Horizon intermédiaire (30 jours).** Une fois un mouvement lancé, probabilité qu'il s'étende, dure ou s'éteigne, sur la base d'épisodes comparables (France et pays voisins). C'est le premier chantier après la v0 : il est testable en quelques semaines.
 - **Long terme (psychohistoire).** On ne prévoit pas l'événement, mais sa probabilité sur une période (un à cinq ans) à partir d'indicateurs structurels lents. Pistes à examiner :
   - théorie structurelle-démographique de Turchin et son indicateur de tension politique ;
   - chômage des jeunes, inégalités, confiance dans les institutions, pouvoir d'achat, prix de l'énergie, démographie des diplômés.
 
   Les indicateurs seraient calibrés sur l'histoire, en France et dans des pays comparables. Les questions porteraient sur des fréquences (« au moins un mouvement de telle ampleur d'ici telle date »), notées comme les autres. C'est le cadre qui répond au cas lycéen.
-- **Ordre.** Après la v0 France.
+- **Calibration du long terme.** En France, il y a peu de mouvements de grande ampleur par décennie : il faudra des panels de plusieurs pays (bases de données de mobilisations), et accepter que la notation prenne des années.
+- **Ordre.** v0 France, puis l'horizon intermédiaire, puis le long terme ; le modèle Monde ensuite.
 
 ## Contraintes à respecter
 
@@ -106,7 +120,7 @@ C'est un mouvement d'ampleur nationale, du niveau des épisodes de référence (
 3. Volet actualité et questions sur le mouvement lycéen.
 4. Ajouts différés à la banque, par la procédure d'ajout : législatives anticipées, Nouvelle-Calédonie, régionales et départementales 2028, croissance du PIB, taux de la BCE, droits de douane entre les États-Unis et l'UE, grève dans la fonction publique en 2027, fin des fonctions du Premier ministre quelle qu'en soit la cause, référendum, écart OAT-BTP de signe positif, clause pour une présidentielle anticipée. Autres souhaitables reportés : `modele/controle/phase1.md`.
 5. Avant la phase 3 : la liste `modele/controle/phase3.md`.
-6. Modèles Monde et Long terme, après la v0.
+6. Après la v0 : horizon intermédiaire, puis long terme, puis Monde.
 
 ## Préférences de Nathan
 
