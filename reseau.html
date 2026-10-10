@@ -222,7 +222,7 @@ function carte(D){
     const lab=p.nom+(pr?` · ${pr.k==="oui"?"":pr.k+" "}${Math.round(pr.v)} %`:"");
     const xl=p.fenetre?ps.x0:Math.max(ps.x1-8-lab.length*6.3,X0);
     txt(Math.min(xl,W-20-lab.length*6.3),ps.y-9,lab,{"font-size":12,"font-weight":600},g);
-    const vs=(variablesDe[id]||[]);
+    const vs=(variablesDe[id]||[]).concat((p.indicateurs||[]).map(n=>n.toLowerCase()));
     if(vs.length) txt(p.fenetre?ps.x0:Math.max(ps.x1-vs.join(", ").length*5.4,X0),ps.y+16,vs.join(", "),{"font-size":10.5,"font-style":"italic",fill:"var(--var)"},g);
     el("title",{},g).textContent=p.nom;
     const sel=()=>detail(D,p,variablesDe[id]||[]);

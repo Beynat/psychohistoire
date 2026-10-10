@@ -1002,5 +1002,95 @@
    "EV-10",
    "EV-50"
   ]
+ },
+ "indicateurs": {
+  "description": "Indicateurs structurels (data.json) agissant comme contexte des pivots : affichés sur les liens, sans effet calculé dans le réseau v0 ; leur branchement comme parents est un point ouvert.",
+  "liens": {
+   "IS-02": {
+    "nom": "Stabilité institutionnelle",
+    "liens": [
+     {
+      "noeud": "PV-BUDGET",
+      "mecanisme": "Sans majorité et avec une censure à moins de 20 voix, l'adoption du budget dépend d'un 49.3 et de l'abstention d'au moins un groupe d'opposition, ce qui renforce les issues loi spéciale et censure."
+     },
+     {
+      "noeud": "PV-CENSURE2",
+      "mecanisme": "La faible marge de la censure et la défiance record abaissent le coût pour les oppositions de renverser un gouvernement avant la présidentielle."
+     },
+     {
+      "noeud": "PV-DISSOL1",
+      "mecanisme": "La succession rapide des Premiers ministres épuise les solutions parlementaires et fait de la dissolution l'une des rares options restantes du Président."
+     },
+     {
+      "noeud": "PV-DISSOL2",
+      "mecanisme": "La succession rapide des Premiers ministres épuise les solutions parlementaires et fait de la dissolution l'une des rares options restantes du Président."
+     },
+     {
+      "noeud": "PV-MAJOR",
+      "mecanisme": "Une Assemblée durablement fragmentée rend improbable qu'une nouvelle élection législative donne une majorité absolue au président élu."
+     },
+     {
+      "noeud": "VE-POP",
+      "mecanisme": "La défiance envers le gouvernement et l'instabilité gouvernementale pèsent sur la popularité de l'exécutif."
+     }
+    ]
+   },
+   "IS-03": {
+    "nom": "Cohésion sociale",
+    "liens": [
+     {
+      "noeud": "VE-MOBIL",
+      "mecanisme": "Défiance mutuelle, rejet du fonctionnement démocratique et conflictualité forment le terreau d'une mobilisation sociale qui prend plus vite et dure plus longtemps."
+     }
+    ]
+   },
+   "IS-04": {
+    "nom": "Niveau de vie populaire",
+    "liens": [
+     {
+      "noeud": "VE-MOBIL",
+      "mecanisme": "Pauvreté record, flambée de l'énergie et chômage des jeunes accroissent la probabilité qu'un mécontentement catégoriel devienne une mobilisation nationale, comme en 2018 et en septembre 2026."
+     }
+    ]
+   },
+   "IS-05": {
+    "nom": "Compétition des élites",
+    "liens": [
+     {
+      "noeud": "VE-SOND",
+      "mecanisme": "L'excédent d'aspirants et la fragmentation nourrissent les candidatures et le vote de rupture, ce qui renforce l'avance du RN dans les intentions de vote."
+     },
+     {
+      "noeud": "PV-BLOC",
+      "mecanisme": "La compétition entre prétendants du bloc central rend moins probable un désistement et plus probable deux candidatures concurrentes."
+     },
+     {
+      "noeud": "PV-GAUCHE",
+      "mecanisme": "La fragmentation des groupes de gauche à l'Assemblée et la multiplication des candidatures de 2002 et 2022 rendent probable une gauche à trois candidats ou plus."
+     }
+    ]
+   },
+   "IS-01": {
+    "nom": "Finances publiques",
+    "liens": [
+     {
+      "noeud": "PV-NOTE",
+      "mecanisme": null
+     },
+     {
+      "noeud": "PV-PDE",
+      "mecanisme": null
+     },
+     {
+      "noeud": "PV-TPI",
+      "mecanisme": null
+     },
+     {
+      "noeud": "VE-ECART",
+      "mecanisme": null
+     }
+    ]
+   }
+  }
  }
 }

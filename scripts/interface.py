@@ -90,7 +90,9 @@ def construire():
     pivots = []
     for n in s["pivots"]:
         d = {"id": n["id"], "nom": n["nom"], "nature": n["nature"], "issues": n["issues"],
-             "questions": sorted(set(rattache.get(n["id"], [])))}
+             "questions": sorted(set(rattache.get(n["id"], []))),
+             "indicateurs": [v["nom"] for k, v in sorted(s.get("indicateurs", {}).get("liens", {}).items())
+                             if any(l["noeud"] == n["id"] for l in v["liens"])]}
         if n["nature"] == "daté":
             d["date"] = n["date"]
             d["date_note"] = n.get("date_note")
