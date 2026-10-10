@@ -358,6 +358,32 @@ def simuler(structure, params, obs, rng, priors=None, rngs=None):
     return traj
 
 
+def reference_de(n):
+    if "etats" in n:
+        return n["reference"]
+    return "non" if n.get("nature") == "à tout moment" else n["issues"][0]
+
+
+def effet_local(n, t, noeuds, parent, etat, issue):
+    """Probabilité de l'issue d'un nœud quand le parent passe de son état de référence à « etat », les autres parents
+    restant à leur référence (variable d'état : depuis son état de référence ; pivot « à tout moment » : probabilité
+    de fenêtre). Sert aux tests de monotonie (étape 7). Rend (p_référence, p_état)."""
+    def p(et):
+        if "etats" in n:
+            loi_ = normaliser(valeur_cas(t, n, et, noeuds, n["reference"])) if "cas" in t else \
+                appliquer(t["transition"][n["reference"]], multiplicateurs(t, et))
+            return loi_.get(issue, 0.0)
+        if n.get("nature") == "à tout moment":
+            v = valeur_cas(t, n, et, noeuds) if "cas" in t else p_modifiee(t["p_fenetre"], multiplicateurs(t, et).get("oui", 1.0))
+            return v if issue == "oui" else 1 - v
+        if "cas" in t:
+            return normaliser(valeur_cas(t, n, et, noeuds)).get(issue, 0.0)
+        base = t["conditionnelle"][et[n["conditionnelle"]]] if n.get("conditionnelle") in et and "conditionnelle" in t else t["base"]
+        return appliquer(base, multiplicateurs(t, et)).get(issue, 0.0)
+    ref = {pid(q): reference_de(noeuds[pid(q)]) for q in n.get("parents", [])}
+    return p(ref), p({**ref, parent: etat})
+
+
 def lois_a_priori(structure, tables, obs, n=1000, graine=7, passes=2):
     """Loi a priori de chaque pivot daté, estimée sur n trajectoires aux paramètres agrégés. Première passe avec les
     parents non tranchés à leur état de référence, passes suivantes avec les lois de la passe précédente (un pivot
@@ -526,6 +552,9 @@ def _prevoir(structure, tables, obs, questions, tirages, trajectoires, graine, p
     out = {}
     for q in questions:
         moy = normaliser(tot[q["id"]]) if tot[q["id"]] else {}
+        # Erreur type de Monte-Carlo de la probabilité publiée (revue 2, test 12) : écart entre tirages / √tirages.
+        pt0 = par_tirage[q["id"]]
+        es = round(100 * math.sqrt(sum((x - sum(y for y, _, _ in pt0) / len(pt0)) ** 2 for x, _, _ in pt0) / max(len(pt0) - 1, 1) / len(pt0)), 2) if len(pt0) > 1 else None
         pt = par_tirage[q["id"]]
         if pt:
             xs, ws, vs = zip(*pt)
@@ -537,7 +566,7 @@ def _prevoir(structure, tables, obs, questions, tirages, trajectoires, graine, p
             i80 = [round(100 * quantile_pondere(ys, ws, 0.1), 1), round(100 * quantile_pondere(ys, ws, 0.9), 1)]
         else:
             i80 = [None, None]
-        out[q["id"]] = {**{i: round(100 * v, 1) for i, v in moy.items()}, "i80": i80}
+        out[q["id"]] = {**{i: round(100 * v, 1) for i, v in moy.items()}, "i80": i80, "es": es}
     out["__pivots__"] = {k: {i: round(100 * v, 1) for i, v in normaliser(d).items()} if d else {} for k, d in piv.items()}
     out["__ess__"] = {"effectives": round(ess), "trajectoires": n, "part": round(ess / n, 4) if n else 0,
                       "alerte": ess / n < SEUIL_ESS if n else True, "preuves": [p["id"] for p in preuves]}
@@ -698,7 +727,7 @@ if __name__ == "__main__":
                 rang.append((abs(v - avant["__pivots__"][k].get(i, 0)), f"{k} {i}", avant["__pivots__"][k].get(i, 0), v))
         for q in qs:
             for i, v in apres[q["id"]].items():
-                if i not in ("i80", "non"):
+                if i not in ("i80", "es", "non"):
                     rang.append((abs(v - avant[q["id"]].get(i, 0)), f"{q['id']} {i}", avant[q["id"]].get(i, 0), v))
         for e, nom, a, b in sorted(rang, reverse=True):
             if e >= 1:
@@ -714,7 +743,7 @@ if __name__ == "__main__":
             p = prev[q["id"]]
             ecart, alerte = ecart_direct(p, tables.get("direct", {}).get(q["id"].removeprefix("Q-")))
             alertes += alerte
-            print(f"{q['id']:10} {json.dumps({k: v for k, v in p.items() if k != 'i80'}, ensure_ascii=False)}  i80 {p['i80']}{ecart}")
+            print(f"{q['id']:10} {json.dumps({k: v for k, v in p.items() if k not in ('i80', 'es')}, ensure_ascii=False)}  i80 {p['i80']}  e.t. {p['es']}{ecart}")
         print(f"{alertes} écart(s) de plus de 10 points ; trajectoires effectives {prev['__ess__']}")
         sys.exit(0)
     etiquette = args[0]
@@ -729,10 +758,10 @@ if __name__ == "__main__":
     e = prev["__ess__"]
     if e["alerte"]:
         sys.exit(f"Combinaison trop rare : {e['effectives']} trajectoires effectives sur {e['trajectoires']} ; relancer avec plus de trajectoires.")
-    lignes = [{"question": q["id"], "probabilites": {k: v for k, v in prev[q["id"]].items() if k != "i80"},
+    lignes = [{"question": q["id"], "probabilites": {k: v for k, v in prev[q["id"]].items() if k not in ("i80", "es")},
                "piste": "v0", "auteur": VERSION_GELEE if gele else VERSION, "version": tables.get("version", VERSION),
                "origine": f"cycle {etiquette}", "donnees": f"gel du cycle {etiquette}",
-               "intervalle_80": prev[q["id"]]["i80"], "preuves": e["preuves"],
+               "intervalle_80": prev[q["id"]]["i80"], "erreur_type_mc": prev[q["id"]]["es"], "preuves": e["preuves"],
                "trajectoires_effectives": e["effectives"]} for q in qs]
     from registre import ajouter
     t = ajouter(reg, lignes)

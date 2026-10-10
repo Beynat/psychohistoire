@@ -418,7 +418,7 @@ def marginales(rep, trajectoires=1500):
     ev = {e["id"]: e for e in lire_json("modele/evenements.json")["evenements"]}
     qs = [q for q in reseau.questions_banque(s, list(ev.values())) if q.get("evenement") in rep.get("direct", {})]
     p = reseau.prevoir(s, t, reseau.observations(s), qs, tirages=15, trajectoires=trajectoires // 15)
-    return {q["evenement"]: {k: v for k, v in p[q["id"]].items() if k != "i80"} for q in qs}
+    return {q["evenement"]: {k: v for k, v in p[q["id"]].items() if k not in ("i80", "es")} for q in qs}
 
 
 def verifier_cas(rep):

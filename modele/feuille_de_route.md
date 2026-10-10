@@ -2,7 +2,7 @@
 
 Établie après deux revues méthodologiques indépendantes (`modele/reseau/revues/2026-10-10_revue_1.md` et `_2.md`), validée par Nathan. Elle remplace, pour la suite, la feuille de route v0 (document Claude Docs « Psychohistoire — feuille de route v0 », terminée).
 
-**Avancement : 6 / 14 étapes (43 %).** Mis à jour à chaque étape terminée ; la progression est aussi donnée dans la conversation.
+**Avancement : 7 / 14 étapes (50 %).** Mis à jour à chaque étape terminée ; la progression est aussi donnée dans la conversation.
 
 Décisions de Nathan :
 - Toutes les étapes sont faites d'un seul tenant, dans l'ordre du tableau, y compris celles que les revues renvoyaient à plus tard. Aucune échéance de travail n'est fixée : les estimations de durée se sont révélées biaisées.
@@ -19,7 +19,7 @@ Décisions de Nathan :
 | 4 | Élicitation contrôlée | Contrôles automatiques dans `tables.py` (référence minoritaire, sens opposés entre évaluateurs, justification vide, zéro isolé, marginale implicite) ; analyse de sensibilité (`scripts/sensibilite.py`) ; seconde ronde sur les nœuds en défaut, par ordre de sensibilité ; fin du calage du réseau sur l'avis direct des évaluateurs. | fait |
 | 5 | Hypothèses porteuses | `modele/reseau/hypotheses.json` : ce que la structure suppose sans le représenter (candidat RN = Le Pen ou Bardella, Philippe disponible, pas de vacance de la présidence…), probabilité de rupture tirée de précédents, signaux d'alerte reliés à la veille (`tri.py`) ; issue « autre candidat RN ». | fait |
 | 6 | Processus et notation | Version du réseau gelée à la fin du bloc 1, notée à part (« réseau v0 gelé ») ; gel 48 heures avant chaque cycle ; comparaison avec le témoin fixée d'avance ; pool de questions rapides (jalons, état des variables le mois suivant) pour valider plus tôt que 40 questions ; dates des passes alignées. | fait (gel du témoin exécuté à la fin de l'étape 8) |
-| 7 | Tests automatiques | Batterie de tests avec contrôle par mutation, dont ceux qui auraient attrapé les erreurs du 10 octobre (base donnée pour la marginale, sens opposés, calendrier, parent non tranché, fait qui tranche). | à faire |
+| 7 | Tests automatiques | Batterie de tests avec contrôle par mutation, dont ceux qui auraient attrapé les erreurs du 10 octobre (base donnée pour la marginale, sens opposés, calendrier, parent non tranché, fait qui tranche). | fait |
 | 8 | Organigramme en ligne | Organigramme (maquette `modele/interface/organigramme/`) à la place de la frise de `reseau.html`, branché sur le moteur unique, avec le mode « et si » : cocher des faits et voir tout l'organigramme se recalculer. | à faire |
 
 ## Bloc 2 : étendre et consolider
@@ -44,3 +44,4 @@ Décisions de Nathan :
 | 10 oct. 2026 | 4 | Lois par cas et contrôles automatiques, sensibilité, sept nœuds en défaut réélicités en deux rondes (tables v0.6), fin du calage ; `modele/reseau/rapports/2026-10-10_etape4.md`. |
 | 10 oct. 2026 | 5 | Sept hypothèses porteuses sur classes de référence, issue « autre candidat RN », tri relié aux hypothèses ; `modele/reseau/rapports/2026-10-10_etape5.md`. |
 | 10 oct. 2026 | 6 | Réseau témoin gelable et noté à part, gel de 48 heures, comparaison pré-enregistrée (`modele/reseau/comparaison.md`), questions rapides (pool PR), passes le 2 et le 16, tâches planifiées redirigées vers ce journal. |
+| 10 oct. 2026 | 7 | Tests sémantiques du réseau (références, feuilles, sens des liens, invariants, calage), erreur type publiée, rapport d'écarts (`scripts/ecarts.py`). |

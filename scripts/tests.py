@@ -932,7 +932,7 @@ def test_processus_etape6():
     jal = next(q for q in qs if q["details"].get("jalon") == "J-001")
     var = next(q for q in qs if q["details"].get("noeud") == "VE-POP")
     p = reseau.prevoir(S, T, reseau.observations(S), [{"id": q["id"], "rapide": q["details"], "issues": q["issues"]} for q in (jal, var)], 3, 60)
-    assert 0 < p[jal["id"]]["oui"] < 100 and abs(sum(v for k, v in p[var["id"]].items() if k != "i80") - 100) < 0.5, p
+    assert 0 < p[jal["id"]]["oui"] < 100 and abs(sum(v for k, v in p[var["id"]].items() if k not in ("i80", "es")) - 100) < 0.5, p
     st = [{"jalon": "J-001", "statut": "observé", "date": "2026-11-20", "source": "s"}]
     with um.patch.object(rapides, "lire_jsonl", lambda f: st if "statuts" in f else []):
         assert rapides.resolution(jal)["issue"] == "oui"
@@ -967,6 +967,56 @@ def test_processus_etape6():
             assert (r.stdout.strip() != "0") == attendu, (heures, r.stdout, r.stderr[-200:])
     finally:
         shutil.rmtree(tmp.parent)
+
+
+def test_semantique_reseau():
+    """Feuille de route, étape 7 (revue 2, section 5) : références valides (structure, indicateurs, jalons,
+    hypothèses), feuilles et pivots sans mesure justifiés, sens attendus des liens respectés, invariants logiques
+    du réseau réel (scénarios dorés) et erreur type de Monte-Carlo publiée."""
+    import reseau, preuves
+    racine = Path(__file__).resolve().parent.parent
+    L = lambda f: json.loads((racine / f).read_text())
+    S, T = L("modele/reseau/structure_v0.json"), L("modele/reseau/tables_v0.json")
+    N = reseau.noeuds_de(S)
+    anciens = S.get("anciens_identifiants", {})
+    ref = lambda i: anciens.get(i, i)
+    cites = {l["noeud"] for v in S["indicateurs"]["liens"].values() for l in v["liens"]}
+    cites |= {ref(json.loads(l)["cible"]["noeud"]) for l in (racine / "modele/jalons/definitions.jsonl").read_text().splitlines() if l.strip()}
+    cites |= {v["noeud"] for v in L("modele/jalons/vraisemblances_v2.json")["jalons"].values()}
+    cites |= {n for h in L("modele/reseau/hypotheses.json")["hypotheses"] for n in h["noeuds"]}
+    cites |= set(T["noeuds"])
+    for m in S["mesures"].values():
+        c = m["caracteristique"]
+        cites |= {e["noeud"] for e in c.get("elements", [c])}
+    assert cites <= set(N), sorted(cites - set(N))
+    enfants = {reseau.pid(q) for n in N.values() for q in n.get("parents", [])}
+    lus = {e["noeud"] for m in S["mesures"].values() for e in m["caracteristique"].get("elements", [m["caracteristique"]])}
+    a_justifier = {i for i in N if i not in enfants} | {i for i in N if i.startswith("PV-") and i not in lus}
+    assert a_justifier <= set(S.get("feuilles_assumees", {})), sorted(a_justifier - set(S.get("feuilles_assumees", {})))
+    for n in N.values():
+        for x in n.get("sens", []):
+            a, b = reseau.effet_local(n, T["noeuds"][n["id"]], N, x["parent"], x["etat"], x["issue"])
+            assert (b > a) if x["signe"] == "+" else (b < a), (n["id"], x, a, b)
+    ev = {e["id"]: e for e in L("modele/evenements.json")["evenements"]}
+    qs = [q for q in reseau.questions_banque(S, list(ev.values())) if q.get("evenement") in ("EV-02", "EV-05")]
+    obs = reseau.observations(S)
+    tr = lambda n, issue: {"id": f"T-{n}", "noeud": n, "classe": "tranche",
+                           "vraisemblances": {i: (1.0 if i == issue else 0.0) for i in (N[n].get("issues") or ["oui", "non"])}}
+    r = reseau.prevoir(S, T, obs, qs, 3, 150, preuves=[tr("PV-BLOC", "Philippe seul")])
+    assert all(v == 0 for k, v in r["__pivots__"]["PV-DUEL"].items() if "ATT" in k.split("-")), r["__pivots__"]["PV-DUEL"]
+    assert r["Q-EV-02"]["es"] is not None
+    r = reseau.prevoir(S, T, obs, qs, 3, 150, preuves=[tr("PV-LEPEN", "non candidate")])
+    assert r["Q-EV-05"]["Marine Le Pen"] == 0, r["Q-EV-05"]
+    r = reseau.prevoir(S, T, obs, qs, 3, 150, preuves=[tr("PV-DISSOL1", "oui")])
+    assert r["__pivots__"]["PV-DISSOL2a"].get("oui", 0) == 0, r["__pivots__"]["PV-DISSOL2a"]
+    r = reseau.prevoir(S, T, obs, qs, 3, 150, preuves=[tr("PV-BUDGET", "publiée")])
+    assert r["Q-EV-02"]["oui"] == 0, r["Q-EV-02"]
+    v2 = L("modele/jalons/vraisemblances_v2.json")["jalons"]
+    r = reseau.prevoir(S, T, obs, qs, 3, 150, preuves=[preuves.preuve_jalon("J-026", v2["J-026"], "observé")])
+    assert r["__pivots__"]["PV-BLOC"]["les deux"] <= 3, r["__pivots__"]["PV-BLOC"]
+    # Erreurs du 10 octobre : loi de base donnée pour la marginale (référence minoritaire), calage sur l'avis direct.
+    import tables
+    assert not tables.controle_tables(), tables.controle_tables()
 
 
 def test_agregation_sans_veto():

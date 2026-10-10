@@ -1,5 +1,5 @@
 {
- "version": "structure v0.7 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12",
+ "version": "structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
  "description": "Réseau bayésien dynamique v0, pas mensuel d'octobre 2026 à septembre 2028. Révisé après le pré-mortem du 10 octobre (scratchpad, rapport de 32 causes) : aucun cycle au sein d'un mois (liens au mois précédent marqués « decalage »: 1), au plus trois parents, pivots électoraux par personnes, dette découpée en note, procédure de déficit excessif et TPI ouverts dès octobre 2026, dissolution et censure découpées avant et après la présidentielle, changement de gouvernement ajouté. Hors réseau (notés sur l'ensemble et les comparateurs) : EV-03, EV-44, EV-23, EV-14b, EV-36, EV-06, international, climat, sécurité.",
  "codes_candidats": {
   "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate ; sinon Jordan Bardella, ou un autre candidat si PV-RNAUTRE = oui)",
@@ -86,7 +86,15 @@
    ],
    "definition": "plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000",
    "source": "data/etat/mobilisation.jsonl",
-   "agregat": "maximum"
+   "agregat": "maximum",
+   "sens": [
+    {
+     "parent": "VE-MOBIL",
+     "etat": "forte",
+     "issue": "forte",
+     "signe": "+"
+    }
+   ]
   },
   {
    "id": "VE-SOND",
@@ -148,7 +156,15 @@
     "2026-10-10",
     "2028-09-30"
    ],
-   "profil": "PV-NOTE"
+   "profil": "PV-NOTE",
+   "sens": [
+    {
+     "parent": "VE-ECART",
+     "etat": "> 160 pb",
+     "issue": "oui",
+     "signe": "+"
+    }
+   ]
   },
   {
    "id": "PV-PDE",
@@ -165,6 +181,14 @@
    "fenetre": [
     "2026-10-10",
     "2028-09-30"
+   ],
+   "sens": [
+    {
+     "parent": "PV-BUDGET",
+     "etat": "non publiée",
+     "issue": "oui",
+     "signe": "+"
+    }
    ]
   },
   {
@@ -205,6 +229,14 @@
    "fenetre": [
     "2026-10-10",
     "2026-12-31"
+   ],
+   "sens": [
+    {
+     "parent": "VE-MOBIL",
+     "etat": "forte",
+     "issue": "oui",
+     "signe": "+"
+    }
    ]
   },
   {
@@ -250,7 +282,15 @@
     }
    ],
    "date": "2026-12-31",
-   "calendrier": "CAL-BUDGET"
+   "calendrier": "CAL-BUDGET",
+   "sens": [
+    {
+     "parent": "PV-CENSURE1a",
+     "etat": "oui",
+     "issue": "non publiée",
+     "signe": "+"
+    }
+   ]
   },
   {
    "id": "PV-GOUV",
@@ -272,7 +312,15 @@
     "2026-10-10",
     "2027-05-02"
    ],
-   "definition": "critère d'EV-50"
+   "definition": "critère d'EV-50",
+   "sens": [
+    {
+     "parent": "PV-CENSURE1a",
+     "etat": "oui",
+     "issue": "oui",
+     "signe": "+"
+    }
+   ]
   },
   {
    "id": "PV-DISSOL1",
@@ -404,7 +452,15 @@
    "date": "2027-03-26",
    "date_note": "liste officielle des candidats, au plus tard le 26 mars 2027",
    "conditionnelle": "PV-POURVOI",
-   "calendrier": "CAL-LISTE"
+   "calendrier": "CAL-LISTE",
+   "sens": [
+    {
+     "parent": "PV-POURVOI",
+     "etat": "pas d'arrêt",
+     "issue": "candidate",
+     "signe": "+"
+    }
+   ]
   },
   {
    "id": "PV-RNAUTRE",
@@ -513,6 +569,14 @@
    "fenetre": [
     "2027-05-03",
     "2027-06-30"
+   ],
+   "sens": [
+    {
+     "parent": "PV-DISSOL1",
+     "etat": "oui",
+     "issue": "oui",
+     "signe": "-"
+    }
    ]
   },
   {
@@ -1096,7 +1160,11 @@
       "mecanisme": "La succession rapide des Premiers ministres épuise les solutions parlementaires et fait de la dissolution l'une des rares options restantes du Président."
      },
      {
-      "noeud": "PV-DISSOL2",
+      "noeud": "PV-DISSOL2a",
+      "mecanisme": "La succession rapide des Premiers ministres épuise les solutions parlementaires et fait de la dissolution l'une des rares options restantes du Président."
+     },
+     {
+      "noeud": "PV-DISSOL2b",
       "mecanisme": "La succession rapide des Premiers ministres épuise les solutions parlementaires et fait de la dissolution l'une des rares options restantes du Président."
      },
      {
@@ -1185,5 +1253,18 @@
    "duree_mois": 12,
    "motif": "article 12 de la Constitution, comme ci-dessus"
   }
- ]
+ ],
+ "anciens_identifiants": {
+  "PV-CENSURE1": "PV-CENSURE1a",
+  "PV-DISSOL2": "PV-DISSOL2a",
+  "_note": "Identifiants retirés, encore cités dans des journaux en ajout seul (modele/jalons/definitions.jsonl) : nœud qui les remplace."
+ },
+ "feuilles_assumees": {
+  "PV-CENSURE2": "lue par EV-15c ; aucun effet élicité sur un autre pivot de l'horizon (fin du mandat de l'Assemblée hors fenêtre)",
+  "PV-DISSOL2b": "lue par EV-16b et EV-17 ; la composition de l'Assemblée qui suivrait n'est pas modélisée (hors horizon des questions rattachées)",
+  "PV-GAUCHE": "lue par EV-19 ; l'effet du nombre de candidats de gauche sur le duel passe par les sondages (VE-SOND), pas par un lien direct",
+  "PV-RNAUTRE": "lue par EV-05 ; effets en aval non élicités, l'autre candidat RN est traité comme Bardella (hypothèse H-01, étape 9)",
+  "VE-LYCEE": "lue par EV-10, EV-47, EV-51 et une conjointe ; aucune élicitation n'a donné d'effet lycéen sur un pivot : lien vers la mobilisation et les pivots à l'étape 13",
+  "PV-AUDIENCE": "sans mesure propre : parent de PV-POURVOI (date de l'arrêt), observable par le jalon J-020"
+ }
 }

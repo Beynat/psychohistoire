@@ -131,8 +131,8 @@ def fantome(reg, jour, tirages=200, trajectoires=100):
         return []
     f = reseau.prevoir(s, t, obs, qs, tirages, trajectoires, preuves=pf)
     r = reseau.prevoir(s, t, obs, qs, tirages, trajectoires, preuves=pn)
-    lignes = [{"question": q["id"], "probabilites": {k: v for k, v in f[q["id"]].items() if k != "i80"},
-               "reference": {k: v for k, v in r[q["id"]].items() if k != "i80"},
+    lignes = [{"question": q["id"], "probabilites": {k: v for k, v in f[q["id"]].items() if k not in ("i80", "es")},
+               "reference": {k: v for k, v in r[q["id"]].items() if k not in ("i80", "es")},
                "piste": "fantome", "auteur": "réseau v0 avec jalons (fantôme)", "origine": f"fantôme {jour}, cycle {etiquette}",
                "donnees": f"jalons au {jour}, k = {K}", "jalons": [p["id"] for p in pf if p["source"] == "jalon"],
                "trajectoires_effectives": f["__ess__"]["effectives"]} for q in qs]
