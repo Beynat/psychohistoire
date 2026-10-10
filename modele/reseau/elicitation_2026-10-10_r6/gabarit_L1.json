@@ -1,0 +1,497 @@
+{
+ "evaluateur": null,
+ "date": null,
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "VE-LYCEE": {
+   "nom": "Mobilisation lycéenne",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 0,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": "plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "cas": {
+    "prec=calme|VE-MOBIL=calme": {
+     "poids_reseau": 0.6743,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=calme|VE-MOBIL=modérée": {
+     "poids_reseau": 0.1284,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=calme|VE-MOBIL=forte": {
+     "poids_reseau": 0.0254,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-MOBIL=calme": {
+     "poids_reseau": 0.0681,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0206,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-MOBIL=forte": {
+     "poids_reseau": 0.0058,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-MOBIL=calme": {
+     "poids_reseau": 0.0428,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0258,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-MOBIL=forte": {
+     "poids_reseau": 0.0089,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "VE-MOBIL": {
+   "nom": "Mobilisation sociale (manifestants)",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    }
+   ],
+   "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "cas": {
+    "prec=calme|VE-POP=< 25 %": {
+     "poids_reseau": 0.6198,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=calme|VE-POP=25-35 %": {
+     "poids_reseau": 0.1449,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=calme|VE-POP=> 35 %": {
+     "poids_reseau": 0.0275,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-POP=< 25 %": {
+     "poids_reseau": 0.1465,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-POP=25-35 %": {
+     "poids_reseau": 0.0194,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-POP=> 35 %": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-POP=< 25 %": {
+     "poids_reseau": 0.0345,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-POP=25-35 %": {
+     "poids_reseau": 0.0036,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-POP=> 35 %": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "VE-POP": {
+   "nom": "Popularité du président de la République",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    },
+    {
+     "id": "PV-GOUV",
+     "nom": "Fin des fonctions du Premier ministre",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 1,
+     "definition": "critère d'EV-50"
+    }
+   ],
+   "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "< 25 %",
+    "25-35 %",
+    "> 35 %"
+   ],
+   "cas": {
+    "prec=< 25 %|VE-MOBIL=calme|PV-GOUV=oui": {
+     "poids_reseau": 0.1729,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=< 25 %|VE-MOBIL=calme|PV-GOUV=non": {
+     "poids_reseau": 0.4469,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=< 25 %|VE-MOBIL=modérée|PV-GOUV=oui": {
+     "poids_reseau": 0.0323,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=< 25 %|VE-MOBIL=modérée|PV-GOUV=non": {
+     "poids_reseau": 0.1141,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=< 25 %|VE-MOBIL=forte|PV-GOUV=oui": {
+     "poids_reseau": 0.0082,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=< 25 %|VE-MOBIL=forte|PV-GOUV=non": {
+     "poids_reseau": 0.0263,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=25-35 %|VE-MOBIL=calme|PV-GOUV=oui": {
+     "poids_reseau": 0.0546,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=25-35 %|VE-MOBIL=calme|PV-GOUV=non": {
+     "poids_reseau": 0.0903,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=25-35 %|VE-MOBIL=modérée|PV-GOUV=oui": {
+     "poids_reseau": 0.0072,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=25-35 %|VE-MOBIL=modérée|PV-GOUV=non": {
+     "poids_reseau": 0.0122,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=25-35 %|VE-MOBIL=forte|PV-GOUV=oui": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=25-35 %|VE-MOBIL=forte|PV-GOUV=non": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=> 35 %|VE-MOBIL=calme|PV-GOUV=oui": {
+     "poids_reseau": 0.0094,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=> 35 %|VE-MOBIL=calme|PV-GOUV=non": {
+     "poids_reseau": 0.0181,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=> 35 %|VE-MOBIL=modérée|PV-GOUV=oui": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=> 35 %|VE-MOBIL=modérée|PV-GOUV=non": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=> 35 %|VE-MOBIL=forte|PV-GOUV=oui": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    },
+    "prec=> 35 %|VE-MOBIL=forte|PV-GOUV=non": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "< 25 %": null,
+      "25-35 %": null,
+      "> 35 %": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-10": {
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, pour une même journée, quelle qu'en soit la cause déclarée (blocage, filtrage, intrusion, fermeture préventive ou administrative). Si le ministère donne pour une même journée plusieurs catégories disjointes (par exemple « perturbés » et « cours suspendus », ou « fermés » et « perturbés »), leur somme est retenue. S'il donne plusieurs chiffres successifs pour la même journée (matin, mi-journée, fin de journée, décompte cumulé), le plus élevé est retenu. Une fourchette vaut sa borne basse ; un chiffre « au moins » ou « plus de » N vaut N ; un pourcentage d'établissements ouverts n'est pas converti en nombre. Le chiffre retenu est celui que le ministère publie (site, communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant à ce ministère ; une seule dépêche suffit. À défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur, sous les mêmes règles. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2026-12-18"
+   },
+   "probabilite": null
+  },
+  "EV-47": {
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 1000 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, pour une même journée, quelle qu'en soit la cause déclarée (blocage, filtrage, intrusion, fermeture préventive ou administrative). Si le ministère donne pour une même journée plusieurs catégories disjointes (par exemple « perturbés » et « cours suspendus », ou « fermés » et « perturbés »), leur somme est retenue. S'il donne plusieurs chiffres successifs pour la même journée (matin, mi-journée, fin de journée, décompte cumulé), le plus élevé est retenu. Une fourchette vaut sa borne basse ; un chiffre « au moins » ou « plus de » N vaut N ; un pourcentage d'établissements ouverts n'est pas converti en nombre. Le chiffre retenu est celui que le ministère publie (site, communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant à ce ministère ; une seule dépêche suffit. À défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur, sous les mêmes règles. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "probabilite": null
+  },
+  "EV-52": {
+   "critere": "Pendant la fenêtre, pour au moins une journée, le ministère de l'Intérieur chiffre à au moins 200 000 le nombre de manifestants en France, ou le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés (règles de comptage d'EV-10). Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Les comptages des organisateurs et des syndicats ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2028-09-30"
+   },
+   "probabilite": null
+  },
+  "EV-51": {
+   "critere": "Pour au moins une journée ou une nuit de la fenêtre, le ministère de l'Intérieur chiffre à au moins 1 000 le nombre de personnes interpellées en France en lien avec des manifestations, des blocages ou des violences urbaines, pour cette même journée ou cette même nuit. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Un cumul sur plusieurs jours ne compte pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "probabilite": null
+  },
+  "EV-39": {
+   "critere": "Pendant la fenêtre, le ministère de l'Intérieur chiffre à plus de 500 000 le nombre de manifestants en France pour une même journée. Le chiffre retenu est celui du ministère, publié par lui ou rapporté par au moins deux agences de presse (AFP, Reuters, AP) ; les comptages des organisateurs ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": null
+  },
+  "EV-13": {
+   "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État communiqué par le ministère chargé de la fonction publique dépasse 18 %. Est retenu le plus élevé des taux communiqués pour cette journée (mi-journée ou journée entière ; taux de l'ensemble de la fonction publique de l'État, et non d'un seul ministère), publié par le ministère ou la DGAFP, ou rapporté par l'AFP, Reuters ou AP en l'attribuant au ministère ; une seule dépêche suffit. Une révision publiée plus de 30 jours après la journée ne change pas l'issue.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": null
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-10"
+}

@@ -1,0 +1,265 @@
+{
+ "evaluateur": "E28",
+ "date": "2026-10-10",
+ "lecture": "Chaque table relie l'état des nœuds du réseau à la question de la banque. Pour chaque entrée, donner la valeur demandée (« unite ») et une justification d'au moins une phrase (référence au dossier, URL, ou « jugement : … »). Une clé « a|b » suit l'ordre des nœuds de la mesure ; « * » vaut pour tout état. Remplir aussi « direct » : probabilité de la question jugée directement.",
+ "mesures": {
+  "EV-13": {
+   "question": "probabilité qu'une journée dépasse 18 % de grévistes dans la fonction publique de l'État, selon le plus haut niveau de mobilisation du mois",
+   "table": {
+    "calme": 4,
+    "modérée": 12,
+    "forte": 40
+   },
+   "unite": "probabilité de « oui » en %",
+   "entrees_fixes": {},
+   "noeuds": [
+    "VE-MOBIL"
+   ],
+   "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État communiqué par le ministère chargé de la fonction publique dépasse 18 %. Est retenu le plus élevé des taux communiqués pour cette journée (mi-journée ou journée entière ; taux de l'ensemble de la fonction publique de l'État, et non d'un seul ministère), publié par le ministère ou la DGAFP, ou rapporté par l'AFP, Reuters ou AP en l'attribuant au ministère ; une seule dépêche suffit. Une révision publiée plus de 30 jours après la journée ne change pas l'issue.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "justifications": {
+    "calme": "ronde 2 : valeur maintenue ; le précédent du 5 décembre 2024 est désormais chiffré (18,62 % dans la FPE à la mi-journée, journée fonction publique sans grande manifestation, https://acteurspublics.fr/articles/greve-dans-la-fonction-publique-la-mobilisation-portee-par-leducation-et-les-finances-publiques/) : un dépassement sans mobilisation de rue forte existe mais reste rare, d'où 4 %.",
+    "modérée": "Le 29 septembre 2026 (206 000 manifestants, état modéré, dossier_L1 1.2), la FPE n'a atteint que « près de 10 % » selon le ministère (Acteurs publics, 30 septembre 2026, URL ci-dessus) ; il faudrait presque doubler ce taux. Jugement : possible sur une journée éducation contre les suppressions de postes du PLF 2027, d'où 12 %.",
+    "forte": "ronde 2 : maintenu au-dessus de 18 % pour les journées retraites (32,82 % le 5 décembre 2019, 29,5 % le 19 janvier 2023, 19,4 % le 31 janvier 2023, https://acteurspublics.fr/articles/retraites-les-fonctionnaires-sont-ils-plus-ou-moins-mobilises-quen-2019), mais la journée forte du 18 septembre 2025, d'origine budgétaire comme le contexte actuel, n'a donné qu'environ 12 % dans la FPE (fait relevé par un autre évaluateur) ; une mobilisation forte d'ici décembre serait plutôt budgétaire et lycéenne que de type retraites, d'où une baisse de 50 à 40 %."
+   }
+  },
+  "EV-51": {
+   "question": "probabilité d'une journée ou nuit à 1 000 interpellations, selon le plus haut niveau de mobilisation générale et lycéenne de la période (l'entrée la plus forte s'applique)",
+   "table": {
+    "calme|calme": 7,
+    "modérée|*": 20,
+    "*|modérée": 25,
+    "forte|*": 35,
+    "*|forte": 70
+   },
+   "unite": "probabilité de « oui » en %",
+   "entrees_fixes": {},
+   "noeuds": [
+    "VE-MOBIL",
+    "VE-LYCEE"
+   ],
+   "critere": "Pour au moins une journée ou une nuit de la fenêtre, le ministère de l'Intérieur chiffre à au moins 1 000 le nombre de personnes interpellées en France en lien avec des manifestations, des blocages ou des violences urbaines, pour cette même journée ou cette même nuit. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Un cumul sur plusieurs jours ne compte pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "justifications": {
+    "calme|calme": "ronde 2 : hausse de 5 à 7 % ; des journées à plus de 1 000 interpellations sont survenues avec une mobilisation de rue faible (8 décembre 2018, environ 1 700 avec environ 136 000 manifestants ; nuit du 30 juin 2023 après la mort de Nahel), soit environ trois épisodes en vingt ans, et la fenêtre de huit mois inclut le soir du second tour.",
+    "modérée|*": "jugement : une mobilisation générale modérée (200 000-500 000) produit en général quelques centaines d'interpellations (440 le 29 septembre 2026, dossier_L1 1.2) ; 1 000 en une journée suppose des débordements de type gilets jaunes.",
+    "*|modérée": "ronde 2 : baisse de 35 à 25 %. La journée à près de 2 000 interpellations (1er octobre 2026, AFP via dhnet.be) correspond à environ 1 050 établissements selon le recul de 30 % annoncé le lendemain (dossier_L1 1.1), donc plutôt à l'état fort ; au niveau modéré, le seul point mesuré est 488 interpellations pour 891 établissements le 6 octobre. Le seuil reste atteignable lors d'une journée modérée haute ou d'une nuit de violences.",
+    "forte|*": "jugement : une mobilisation intersyndicale forte est d'ordinaire encadrée (2019, 2023 sans journée à 1 000 trouvée) ; le risque vient des cortèges de tête et des nuits de blocage, d'où 35 %.",
+    "*|forte": "ronde 2 : maintenu à 70 %. Les autres évaluateurs (25-30 %) retiennent 488 comme plus haut chiffre journalier, mais l'Intérieur a annoncé près de 2 000 interpellations le 1er octobre 2026, journée à 1 027 établissements concernés (dépêche AFP reprise par dhnet.be, 2 octobre 2026, https://www.dhnet.be/dernieres-depeches/2026/10/02/le-mouvement-de-blocage-des-lycees-devrait-se-poursuivre-vendredi-BXWYF663HZGKDA3FBDJOQSRCQ4/) : le seul précédent observé à l'état fort dépasse largement le seuil."
+   }
+  },
+  "EV-49": {
+   "question": "probabilité que le ministre de l'Éducation nationale quitte ce portefeuille d'ici au 31 décembre 2026, selon qu'il y a eu ou non changement de Premier ministre",
+   "table": {
+    "oui": 50,
+    "non": 9
+   },
+   "unite": "probabilité de « oui » en %",
+   "entrees_fixes": {},
+   "noeuds": [
+    "PV-GOUV"
+   ],
+   "critere": "Pendant la fenêtre, Édouard Geffray, ministre de l'Éducation nationale au 10 octobre 2026, cesse de détenir ce portefeuille : un décret publié au Journal officiel nomme une autre personne à la tête du ministère chargé de l'Éducation nationale, ou le nomme à d'autres fonctions sans ce portefeuille, ou met fin à ses fonctions. Si un décret met fin à ses fonctions (démission du Gouvernement comprise) et qu'un décret publié au plus tard le dernier jour de la fenêtre le reconduit à la tête de ce ministère, la réponse est « non » ; s'il n'est pas reconduit au dernier jour de la fenêtre, y compris s'il expédie les affaires courantes, la réponse est « oui », et la date du fait est celle du décret qui a mis fin à ses fonctions.",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   },
+   "justifications": {
+    "oui": "jugement : PV-GOUV court jusqu'au 2 mai 2027 ; environ 60 % des changements de Premier ministre surviendraient avant le 31 décembre (session budgétaire, censure promise par la gauche, dossier_L2 2.2) et entraîneraient alors très probablement la sortie de Geffray (remplacement ou affaires courantes au 31 décembre, compté « oui »), d'où 50 %.",
+    "non": "jugement : sans changement de Premier ministre, un remaniement ou un départ du ministre de l'Éducation en pleine crise lycéenne (dossier_L1 1.1 et 1.4) reste possible mais peu fréquent sur moins de trois mois."
+   }
+  },
+  "EV-20": {
+   "question": "si aucun arrêt n'est rendu au 12 mars 2027, loi de l'issue au 31 mars 2027",
+   "table": {
+    "pas d'arrêt": {
+     "rejet ou non-admission": 30,
+     "cassation totale ou partielle": 9,
+     "désistement": 1,
+     "pas d'arrêt au 31 mars 2027": 60
+    }
+   },
+   "unite": "loi en % sur les issues",
+   "entrees_fixes": {
+    "rejet ou non-admission": {
+     "rejet ou non-admission": 100
+    },
+    "cassation totale ou partielle": {
+     "cassation totale ou partielle": 100
+    },
+    "désistement": {
+     "désistement": 100
+    }
+   },
+   "noeuds": [
+    "PV-POURVOI"
+   ],
+   "critere": "Issue, au 31 mars 2027, du pourvoi formé par Marine Le Pen contre l'arrêt de la cour d'appel de Paris du 7 juillet 2026. Une décision de non-admission est rangée avec le rejet. L'issue « cassation totale ou partielle » suppose la cassation d'au moins une disposition de l'arrêt d'appel qui concerne Marine Le Pen (culpabilité, peine ou intérêts civils), sur son pourvoi ou sur un autre ; une cassation qui ne concerne que d'autres prévenus est rangée avec le rejet.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-03-31"
+   },
+   "justifications": {
+    "pas d'arrêt": "La Cour vise un arrêt « au plus tard début avril 2027 » avec un calendrier « susceptible d'évoluer » (dossier_L3 2.1) et les précédents politiques montrent 17,5 à 21,5 mois entre appel et audience (2.2) : sans arrêt au 12 mars, un délibéré fixé fin mars est possible mais un arrêt début avril ou plus tard est plus probable (60 %). Le reste suit le taux de cassation d'environ 18-22 % des pourvois examinés (2.4) ; désistement improbable car il rendrait la peine exécutable (2.5)."
+   }
+  },
+  "EV-05": {
+   "question": "si le vainqueur n'est aucun des sept candidats codés, part de François Hollande et de toute autre personne",
+   "table": {
+    "AUT|*|*": {
+     "François Hollande": 25,
+     "autre": 75
+    }
+   },
+   "unite": "loi en % sur les issues",
+   "entrees_fixes": {
+    "RN|*|non": {
+     "Jordan Bardella": 100
+    },
+    "PHI|*|*": {
+     "Édouard Philippe": 100
+    },
+    "ATT|*|*": {
+     "Gabriel Attal": 100
+    },
+    "MEL|*|*": {
+     "Jean-Luc Mélenchon": 100
+    },
+    "GLU|*|*": {
+     "Raphaël Glucksmann": 100
+    },
+    "RET|*|*": {
+     "Bruno Retailleau": 100
+    },
+    "LIS|*|*": {
+     "David Lisnard": 100
+    },
+    "RN|*|oui": {
+     "autre": 100
+    },
+    "RN|candidate|non": {
+     "Marine Le Pen": 100
+    }
+   },
+   "noeuds": [
+    "PV-VAINQ",
+    "PV-LEPEN",
+    "PV-RNAUTRE"
+   ],
+   "critere": "Personne proclamée élue président de la République par le Conseil constitutionnel à l'issue de l'élection de 2027. Une issue nommée désigne la personne, quel que soit le parti qui la soutient ; « autre » couvre toute autre personne.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-05-02"
+   },
+   "justifications": {
+    "AUT|*|*": "Hollande est la personnalité hors codes la mieux placée (6,9 % au premier tour, 44-46 % face à Le Pen, dossier_L3 6.1 et dossier_L4 5.3), mais « autre » rassemble de nombreuses voies (vainqueur de la primaire autre que Glucksmann, Cazeneuve, Ruffin, Bertrand, Darmanin, Villepin, candidat RN tiers, etc.) ; jugement : un quart pour Hollande."
+   }
+  },
+  "EV-17": {
+   "question": "si une nouvelle dissolution intervient après les législatives de 2027, probabilité que le groupe du parti du président compte moins de 289 membres le 30 septembre 2028",
+   "table": {
+    "*|oui": 72
+   },
+   "unite": "probabilité de « oui » en %",
+   "entrees_fixes": {
+    "moins de 289|non": 100,
+    "289 ou plus|non": 0
+   },
+   "noeuds": [
+    "PV-MAJOR",
+    "PV-DISSOL2b"
+   ],
+   "critere": "Le 30 septembre 2028, selon la composition des groupes publiée par l'Assemblée nationale, le groupe qui compte le plus de députés membres du parti dont le président élu en 2027 est membre au jour du second tour compte moins de 289 membres, apparentés compris ; si aucun groupe ne compte de député de ce parti, la réponse est « oui ». Si le président élu n'est membre d'aucun parti, le groupe retenu est celui qui a déclaré le soutenir au premier tour et compte le plus de membres.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "justifications": {
+    "*|oui": "ronde 2 : hausse de 65 à 72 %. Parmi les quatre dissolutions hors prise de fonctions (dossier_L5 3), seule celle de 1968 a donné au groupe présidentiel seul la majorité absolue ; en 1962, il fallait des alliés, et 1997 et 2024 ont été perdues. Pour un groupe unique, le taux de base est donc plus bas que je ne l'avais compté. Une dissolution tardive peut en outre laisser l'ancienne composition au 30 septembre 2028."
+   }
+  },
+  "EV-43": {
+   "question": "probabilité que le Premier ministre au 30 septembre 2028 soit membre d'un parti qui a soutenu un autre candidat que le président élu, selon la taille du groupe présidentiel",
+   "table": {
+    "289 ou plus": 8,
+    "moins de 289": 37
+   },
+   "unite": "probabilité de « oui » en %",
+   "entrees_fixes": {},
+   "noeuds": [
+    "PV-MAJOR"
+   ],
+   "critere": "Le Premier ministre en fonction le 30 septembre 2028 est membre d'un parti qui a investi ou soutenu, par une décision publiée, au premier tour de 2027, un candidat autre que le président élu. Une coalition dont le Premier ministre vient d'un tel parti compte.",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   },
+   "justifications": {
+    "289 ou plus": "jugement : avec un groupe présidentiel majoritaire, le Premier ministre vient presque toujours du parti du président (2002-2017) ; seule une ouverture à un partenaire du même bloc ayant soutenu un autre candidat (Renaissance si Philippe, par exemple) le contredirait.",
+    "moins de 289": "jugement : sans majorité, coalition ou cohabitation probables ; un président RN nommerait plutôt un RN (Bardella pressenti, dossier_L3 3.1), mais un président du centre ou de gauche devrait souvent confier Matignon à un partenaire ayant eu son propre candidat (LR, Renaissance, PS) ; environ 37 % en moyenne."
+   }
+  },
+  "EV-45": {
+   "question": "probabilité que l'âge légal pour la génération 1970 soit inférieur à 64 ans au 30 septembre 2028, selon le vainqueur et sa majorité",
+   "table": {
+    "RN|289 ou plus": 40,
+    "RN|moins de 289": 18,
+    "MEL|*": 35,
+    "GLU|*": 15,
+    "*|289 ou plus": 3,
+    "*|moins de 289": 5
+   },
+   "unite": "probabilité de « oui » en %",
+   "entrees_fixes": {},
+   "noeuds": [
+    "PV-VAINQ",
+    "PV-MAJOR"
+   ],
+   "critere": "Le 30 septembre 2028, l'âge d'ouverture du droit à pension fixé par le code de la sécurité sociale (article L161-17-2 ou disposition qui le remplace) pour les assurés nés en 1970 est inférieur à 64 ans, dans la version de l'article en vigueur à cette date ; une disposition promulguée dont l'entrée en vigueur est postérieure ne compte pas. Cette génération n'est pas concernée par la suspension de la réforme de 2023 : la réponse « oui » suppose un abaissement voté.",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   },
+   "justifications": {
+    "RN|289 ou plus": "Le Pen maintient le retour à 62 ans (60 pour les carrières longues) mais Bardella juge que « l'âge légal ne veut rien dire » (LCP, 19 juin 2026, https://lcp.fr/actualites/presidentielle-2027-qui-propose-quoi-sur-les-retraites-437864 ; Public Sénat, juin 2026) ; avec une majorité, un abaissement voté et en vigueur dès 2028 est plausible mais freiné par le déficit et la notation, d'où 40 %.",
+    "RN|moins de 289": "jugement : un gouvernement RN minoritaire pourrait trouver une majorité avec la gauche sur un abaissement, mais le Sénat, la censure et la priorité budgétaire rendent l'entrée en vigueur avant le 30 septembre 2028 peu probable.",
+    "MEL|*": "Mélenchon défend 60 ans et 40 annuités (LCP, 19 juin 2026, URL ci-dessus) ; une majorité absolue LFI est improbable, mais RN et gauche pourraient voter un abaissement ; jugement : 35 %.",
+    "GLU|*": "Le PS veut ramener l'âge à 62 ans sans en faire le critère central et Glucksmann refuse d'en faire un « totem » (LCP, 19 juin 2026) ; jugement : 15 %.",
+    "*|289 ou plus": "Philippe (âge plus tardif), Attal (suppression de l'âge légal au profit de la durée), Retailleau (65 ans) ne proposent pas d'abaisser l'âge (LCP, 19 juin 2026) ; reste le cas marginal d'un autre vainqueur de gauche.",
+    "*|moins de 289": "jugement : sans majorité du président, une coalition RN-gauche à l'Assemblée pourrait imposer un abaissement contre le gouvernement, mais l'entrée en vigueur avant septembre 2028 est peu probable."
+   }
+  }
+ },
+ "direct": {
+  "EV-13": 0.16,
+  "EV-51": 0.24,
+  "EV-49": 0.22,
+  "EV-20": {
+   "rejet ou non-admission": 36,
+   "cassation totale ou partielle": 10,
+   "désistement": 1,
+   "pas d'arrêt au 31 mars 2027": 53
+  },
+  "EV-05": {
+   "Marine Le Pen": 34,
+   "Jordan Bardella": 13,
+   "Édouard Philippe": 22,
+   "Gabriel Attal": 5,
+   "Jean-Luc Mélenchon": 6,
+   "David Lisnard": 0.5,
+   "Bruno Retailleau": 4,
+   "Raphaël Glucksmann": 5,
+   "François Hollande": 2.5,
+   "autre": 8
+  },
+  "EV-17": 0.79,
+  "EV-43": 0.31,
+  "EV-45": 0.17
+ }
+}

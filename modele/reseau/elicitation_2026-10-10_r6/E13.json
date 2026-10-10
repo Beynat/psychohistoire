@@ -1,0 +1,497 @@
+{
+ "evaluateur": "E13",
+ "date": "2026-10-10",
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "VE-LYCEE": {
+   "nom": "Mobilisation lycéenne",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 0,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": "plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "cas": {
+    "prec=calme|VE-MOBIL=calme": {
+     "poids_reseau": 0.6743,
+     "loi": {
+      "calme": 0.985,
+      "modérée": 0.013,
+      "forte": 0.002
+     },
+     "justification": "Dossier 4.1 : épisodes lycéens à 300 établissements ou plus selon l'Éducation : 2010, 2018 (environ 450), 2026 ; environ trois en seize ans, hors juillet-août. Si le mois précédent et la mobilisation générale sont calmes, environ 1,5 % de démarrage par mois."
+    },
+    "prec=calme|VE-MOBIL=modérée": {
+     "poids_reseau": 0.1284,
+     "loi": {
+      "calme": 0.82,
+      "modérée": 0.16,
+      "forte": 0.02
+     },
+     "justification": "ronde 2 : relevé de 11 % à 16 % de franchir 300 sur l'argument d'un autre évaluateur. Parmi les rares mois modérés documentés venant d'un mois lycéen calme, septembre 2026 a franchi 300 (338 établissements le 29, dossier 1.1 et 4.2), pas novembre 2018 (démarrage en décembre). En septembre 2025, 197 000 manifestants n'ont donné qu'environ 100 lycées. D'où environ une chance sur six, et 2 % de forte."
+    },
+    "prec=calme|VE-MOBIL=forte": {
+     "poids_reseau": 0.0254,
+     "loi": {
+      "calme": 0.72,
+      "modérée": 0.24,
+      "forte": 0.04
+     },
+     "justification": "Dossier 4.2 : 2010, les lycéens rejoignent un mouvement intersyndical fort (306-350 lycées) ; 2019 et 2023 forts sans chiffre lycéen notable trouvé. Environ une chance sur quatre de franchir 300."
+    },
+    "prec=modérée|VE-MOBIL=calme": {
+     "poids_reseau": 0.0681,
+     "loi": {
+      "calme": 0.65,
+      "modérée": 0.33,
+      "forte": 0.02
+     },
+     "justification": "Dossier 4.1 (durée) : les mouvements lycéens déclinent vite, notamment aux vacances (2010 Toussaint, 2018 Noël). Si la mobilisation générale retombe, un tiers de chances de rester au-dessus de 300."
+    },
+    "prec=modérée|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0206,
+     "loi": {
+      "calme": 0.4,
+      "modérée": 0.52,
+      "forte": 0.08
+     },
+     "justification": "Jugement : mouvement lycéen entretenu par une mobilisation générale modérée (cas de septembre-octobre 2026, dossier 1.1-1.2) ; persistance un peu au-dessus d'une chance sur deux."
+    },
+    "prec=modérée|VE-MOBIL=forte": {
+     "poids_reseau": 0.0058,
+     "loi": {
+      "calme": 0.25,
+      "modérée": 0.6,
+      "forte": 0.15
+     },
+     "justification": "Jugement : une mobilisation générale forte entretient et peut amplifier le mouvement lycéen (2010, dossier 4.2)."
+    },
+    "prec=forte|VE-MOBIL=calme": {
+     "poids_reseau": 0.0428,
+     "loi": {
+      "calme": 0.72,
+      "modérée": 0.255,
+      "forte": 0.025
+     },
+     "justification": "Dossier 1.1 et 4.1 : après le pic de début octobre 2026, recul d'environ 30 % le 8 octobre et vacances de la Toussaint (17 oct.-2 nov.) ; 2010 s'est éteint aux vacances. Si le mois précédent est fort mais la mobilisation générale calme, environ un quart de chances de rester entre 300 et 999, 2,5 % au-dessus de 1 000."
+    },
+    "prec=forte|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0258,
+     "loi": {
+      "calme": 0.5,
+      "modérée": 0.42,
+      "forte": 0.08
+     },
+     "justification": "Jugement : même décrue que le cas forte/calme, mais une mobilisation générale modérée (PLF, suppressions de postes votées en novembre-décembre, dossier 2) maintient le mouvement dans un cas sur deux."
+    },
+    "prec=forte|VE-MOBIL=forte": {
+     "poids_reseau": 0.0089,
+     "loi": {
+      "calme": 0.25,
+      "modérée": 0.5,
+      "forte": 0.25
+     },
+     "justification": "Jugement : convergence avec un mouvement intersyndical fort ; persistance élevée, 1 000 établissements jamais atteints selon l'Éducation (dossier 4.1), d'où 25 % seulement."
+    }
+   },
+   "verrous": []
+  },
+  "VE-MOBIL": {
+   "nom": "Mobilisation sociale (manifestants)",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    }
+   ],
+   "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "cas": {
+    "prec=calme|VE-POP=< 25 %": {
+     "poids_reseau": 0.6198,
+     "loi": {
+      "calme": 0.895,
+      "modérée": 0.093,
+      "forte": 0.012
+     },
+     "justification": "Dossier 3.2 : sur 22 mois (2025-2026), seuls septembre 2025, septembre et octobre 2026 dépassent 200 000 ; presque chaque année depuis 2019 compte au moins un mois au-dessus (jugement). Si le mois précédent est calme et la popularité basse, environ 9 % de chances d'un mois modéré, un peu plus de 1 % d'un mois fort (épisodes forts : 2010, 2019, 2023, 2025, tous liés à retraites ou budget avec intersyndicale)."
+    },
+    "prec=calme|VE-POP=25-35 %": {
+     "poids_reseau": 0.1449,
+     "loi": {
+      "calme": 0.905,
+      "modérée": 0.083,
+      "forte": 0.012
+     },
+     "justification": "Jugement : même taux de base que le cas calme/< 25 % ; une popularité moyenne (souvent un président nouvellement élu) réduit à peine le risque, une grande réforme de début de mandat pouvant au contraire mobiliser."
+    },
+    "prec=calme|VE-POP=> 35 %": {
+     "poids_reseau": 0.0275,
+     "loi": {
+      "calme": 0.915,
+      "modérée": 0.075,
+      "forte": 0.01
+     },
+     "justification": "Jugement : président populaire (en pratique état de grâce après mai 2027), légère baisse de la propension à manifester massivement par rapport au cas < 25 %."
+    },
+    "prec=modérée|VE-POP=< 25 %": {
+     "poids_reseau": 0.1465,
+     "loi": {
+      "calme": 0.52,
+      "modérée": 0.4,
+      "forte": 0.08
+     },
+     "justification": "Dossier 3.2 (décrues) : après un pic, le mois suivant retombe souvent (2016 : 390 000 puis 120 000 ; 2018 : 282 000 puis 136 000 ; 2025 : 506 000 puis 195 000) ; contre-exemple 2023. Si le mois précédent est modéré, environ une chance sur deux de rester au-dessus de 200 000, 8 % de passer en forte (escalade budgétaire, intersyndicale)."
+    },
+    "prec=modérée|VE-POP=25-35 %": {
+     "poids_reseau": 0.0194,
+     "loi": {
+      "calme": 0.55,
+      "modérée": 0.38,
+      "forte": 0.07
+     },
+     "justification": "Jugement : comme modérée/< 25 %, avec une escalade un peu moins probable quand le président est moins impopulaire."
+    },
+    "prec=modérée|VE-POP=> 35 %": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "calme": 0.58,
+      "modérée": 0.36,
+      "forte": 0.06
+     },
+     "justification": "Jugement : comme modérée/< 25 %, escalade légèrement moins probable."
+    },
+    "prec=forte|VE-POP=< 25 %": {
+     "poids_reseau": 0.0345,
+     "loi": {
+      "calme": 0.25,
+      "modérée": 0.35,
+      "forte": 0.4
+     },
+     "justification": "Dossier 3.2 : 2019 (806 000 puis 615 000 douze jours plus tard), 2023 (forte de janvier à mars), mais 2025 (506 000 puis 195 000). Si le mois précédent est fort, environ 40 % de rester fort, 25 % de retomber sous 200 000."
+    },
+    "prec=forte|VE-POP=25-35 %": {
+     "poids_reseau": 0.0036,
+     "loi": {
+      "calme": 0.27,
+      "modérée": 0.35,
+      "forte": 0.38
+     },
+     "justification": "Jugement : proche du cas forte/< 25 %."
+    },
+    "prec=forte|VE-POP=> 35 %": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "calme": 0.3,
+      "modérée": 0.35,
+      "forte": 0.35
+     },
+     "justification": "Jugement : proche du cas forte/< 25 %, persistance un peu moindre."
+    }
+   },
+   "verrous": []
+  },
+  "VE-POP": {
+   "nom": "Popularité du président de la République",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    },
+    {
+     "id": "PV-GOUV",
+     "nom": "Fin des fonctions du Premier ministre",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 1,
+     "definition": "critère d'EV-50"
+    }
+   ],
+   "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "< 25 %",
+    "25-35 %",
+    "> 35 %"
+   ],
+   "cas": {
+    "prec=< 25 %|VE-MOBIL=calme|PV-GOUV=oui": {
+     "poids_reseau": 0.1729,
+     "loi": {
+      "< 25 %": 0.88,
+      "25-35 %": 0.09,
+      "> 35 %": 0.03
+     },
+     "justification": "Dossier 5.1 : 17 mois sur 19 sous 25 % ; variation moyenne 2,9 points par vague ; dernière valeur 17 %. Le passage à 25-35 % depuis < 25 % n'est arrivé qu'une fois (mars 24 à avril 28 % en 2025). Environ 3 % sont réservés au saut vers > 35 % lors de l'arrivée d'un nouveau président (mai-juin 2027, dossier 2 et 5.4 : Hollande 61 % en mai 2012), réparti sur les mois de la fenêtre. Un changement de Premier ministre n'a pas donné de rebond en 2025 (24 à 17 %, dossier 5.3) ; légère incertitude ajoutée."
+    },
+    "prec=< 25 %|VE-MOBIL=calme|PV-GOUV=non": {
+     "poids_reseau": 0.4469,
+     "loi": {
+      "< 25 %": 0.89,
+      "25-35 %": 0.08,
+      "> 35 %": 0.03
+     },
+     "justification": "Dossier 5.1 : 17 mois sur 19 sous 25 % ; variation moyenne 2,9 points par vague ; dernière valeur 17 %. Le passage à 25-35 % depuis < 25 % n'est arrivé qu'une fois (mars 24 à avril 28 % en 2025). Environ 3 % sont réservés au saut vers > 35 % lors de l'arrivée d'un nouveau président (mai-juin 2027, dossier 2 et 5.4 : Hollande 61 % en mai 2012), réparti sur les mois de la fenêtre."
+    },
+    "prec=< 25 %|VE-MOBIL=modérée|PV-GOUV=oui": {
+     "poids_reseau": 0.0323,
+     "loi": {
+      "< 25 %": 0.9,
+      "25-35 %": 0.07,
+      "> 35 %": 0.03
+     },
+     "justification": "Dossier 5.1 : 17 mois sur 19 sous 25 % ; variation moyenne 2,9 points par vague ; dernière valeur 17 %. Le passage à 25-35 % depuis < 25 % n'est arrivé qu'une fois (mars 24 à avril 28 % en 2025). Environ 3 % sont réservés au saut vers > 35 % lors de l'arrivée d'un nouveau président (mai-juin 2027, dossier 2 et 5.4 : Hollande 61 % en mai 2012), réparti sur les mois de la fenêtre. Mobilisation modérée : léger frein à une remontée (2023, dossier 5.2)."
+    },
+    "prec=< 25 %|VE-MOBIL=modérée|PV-GOUV=non": {
+     "poids_reseau": 0.1141,
+     "loi": {
+      "< 25 %": 0.91,
+      "25-35 %": 0.06,
+      "> 35 %": 0.03
+     },
+     "justification": "Dossier 5.1 : 17 mois sur 19 sous 25 % ; variation moyenne 2,9 points par vague ; dernière valeur 17 %. Le passage à 25-35 % depuis < 25 % n'est arrivé qu'une fois (mars 24 à avril 28 % en 2025). Environ 3 % sont réservés au saut vers > 35 % lors de l'arrivée d'un nouveau président (mai-juin 2027, dossier 2 et 5.4 : Hollande 61 % en mai 2012), réparti sur les mois de la fenêtre. Mobilisation modérée : léger frein à une remontée (2023, dossier 5.2)."
+    },
+    "prec=< 25 %|VE-MOBIL=forte|PV-GOUV=oui": {
+     "poids_reseau": 0.0082,
+     "loi": {
+      "< 25 %": 0.92,
+      "25-35 %": 0.055,
+      "> 35 %": 0.025
+     },
+     "justification": "Dossier 5.1 : 17 mois sur 19 sous 25 % ; variation moyenne 2,9 points par vague ; dernière valeur 17 %. Le passage à 25-35 % depuis < 25 % n'est arrivé qu'une fois (mars 24 à avril 28 % en 2025). Environ 3 % sont réservés au saut vers > 35 % lors de l'arrivée d'un nouveau président (mai-juin 2027, dossier 2 et 5.4 : Hollande 61 % en mai 2012), réparti sur les mois de la fenêtre. Mobilisation forte : 2023, -8 points en trois mois (dossier 5.2)."
+    },
+    "prec=< 25 %|VE-MOBIL=forte|PV-GOUV=non": {
+     "poids_reseau": 0.0263,
+     "loi": {
+      "< 25 %": 0.93,
+      "25-35 %": 0.045,
+      "> 35 %": 0.025
+     },
+     "justification": "Dossier 5.1 : 17 mois sur 19 sous 25 % ; variation moyenne 2,9 points par vague ; dernière valeur 17 %. Le passage à 25-35 % depuis < 25 % n'est arrivé qu'une fois (mars 24 à avril 28 % en 2025). Environ 3 % sont réservés au saut vers > 35 % lors de l'arrivée d'un nouveau président (mai-juin 2027, dossier 2 et 5.4 : Hollande 61 % en mai 2012), réparti sur les mois de la fenêtre. Mobilisation forte : 2023, -8 points en trois mois (dossier 5.2)."
+    },
+    "prec=25-35 %|VE-MOBIL=calme|PV-GOUV=oui": {
+     "poids_reseau": 0.0546,
+     "loi": {
+      "< 25 %": 0.28,
+      "25-35 %": 0.67,
+      "> 35 %": 0.05
+     },
+     "justification": "Dossier 5.1 : avril 2025 (28) puis mai (25) puis juin (23) ; un président en 25-35 % retombe souvent sous 25 %. Cas surtout pertinent pour un nouveau président en érosion (Hollande, dossier 5.4). Départ du Premier ministre : léger risque supplémentaire de baisse (2025, dossier 5.3)."
+    },
+    "prec=25-35 %|VE-MOBIL=calme|PV-GOUV=non": {
+     "poids_reseau": 0.0903,
+     "loi": {
+      "< 25 %": 0.25,
+      "25-35 %": 0.7,
+      "> 35 %": 0.05
+     },
+     "justification": "Dossier 5.1 : avril 2025 (28) puis mai (25) puis juin (23) ; un président en 25-35 % retombe souvent sous 25 %. Cas surtout pertinent pour un nouveau président en érosion (Hollande, dossier 5.4)."
+    },
+    "prec=25-35 %|VE-MOBIL=modérée|PV-GOUV=oui": {
+     "poids_reseau": 0.0072,
+     "loi": {
+      "< 25 %": 0.35,
+      "25-35 %": 0.61,
+      "> 35 %": 0.04
+     },
+     "justification": "Dossier 5.1 : avril 2025 (28) puis mai (25) puis juin (23) ; un président en 25-35 % retombe souvent sous 25 %. Cas surtout pertinent pour un nouveau président en érosion (Hollande, dossier 5.4). Mobilisation modérée et départ du Premier ministre."
+    },
+    "prec=25-35 %|VE-MOBIL=modérée|PV-GOUV=non": {
+     "poids_reseau": 0.0122,
+     "loi": {
+      "< 25 %": 0.32,
+      "25-35 %": 0.64,
+      "> 35 %": 0.04
+     },
+     "justification": "Dossier 5.1 : avril 2025 (28) puis mai (25) puis juin (23) ; un président en 25-35 % retombe souvent sous 25 %. Cas surtout pertinent pour un nouveau président en érosion (Hollande, dossier 5.4). Mobilisation modérée : risque de baisse un peu plus élevé."
+    },
+    "prec=25-35 %|VE-MOBIL=forte|PV-GOUV=oui": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "< 25 %": 0.45,
+      "25-35 %": 0.52,
+      "> 35 %": 0.03
+     },
+     "justification": "Dossier 5.1 : avril 2025 (28) puis mai (25) puis juin (23) ; un président en 25-35 % retombe souvent sous 25 %. Cas surtout pertinent pour un nouveau président en érosion (Hollande, dossier 5.4). Mobilisation forte et départ du Premier ministre."
+    },
+    "prec=25-35 %|VE-MOBIL=forte|PV-GOUV=non": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "< 25 %": 0.42,
+      "25-35 %": 0.55,
+      "> 35 %": 0.03
+     },
+     "justification": "Dossier 5.1 : avril 2025 (28) puis mai (25) puis juin (23) ; un président en 25-35 % retombe souvent sous 25 %. Cas surtout pertinent pour un nouveau président en érosion (Hollande, dossier 5.4). Mobilisation forte : 2023, -8 points en trois mois (dossier 5.2)."
+    },
+    "prec=> 35 %|VE-MOBIL=calme|PV-GOUV=oui": {
+     "poids_reseau": 0.0094,
+     "loi": {
+      "< 25 %": 0.02,
+      "25-35 %": 0.22,
+      "> 35 %": 0.76
+     },
+     "justification": "Jugement : état atteint en pratique par un nouveau président après mai 2027 ; érosion lente de l'état de grâce (Hollande 61 % en mai 2012, bien plus bas un an après ; Macron 41 % en mai 2022, dossier 5.4) ; la plupart des mois restent au-dessus de 35 %. Changement de Premier ministre : érosion un peu plus rapide."
+    },
+    "prec=> 35 %|VE-MOBIL=calme|PV-GOUV=non": {
+     "poids_reseau": 0.0181,
+     "loi": {
+      "< 25 %": 0.02,
+      "25-35 %": 0.18,
+      "> 35 %": 0.8
+     },
+     "justification": "Jugement : état atteint en pratique par un nouveau président après mai 2027 ; érosion lente de l'état de grâce (Hollande 61 % en mai 2012, bien plus bas un an après ; Macron 41 % en mai 2022, dossier 5.4) ; la plupart des mois restent au-dessus de 35 %."
+    },
+    "prec=> 35 %|VE-MOBIL=modérée|PV-GOUV=oui": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "< 25 %": 0.03,
+      "25-35 %": 0.28,
+      "> 35 %": 0.69
+     },
+     "justification": "Jugement : état atteint en pratique par un nouveau président après mai 2027 ; érosion lente de l'état de grâce (Hollande 61 % en mai 2012, bien plus bas un an après ; Macron 41 % en mai 2022, dossier 5.4) ; la plupart des mois restent au-dessus de 35 %. Mobilisation modérée et changement de Premier ministre."
+    },
+    "prec=> 35 %|VE-MOBIL=modérée|PV-GOUV=non": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "< 25 %": 0.03,
+      "25-35 %": 0.25,
+      "> 35 %": 0.72
+     },
+     "justification": "Jugement : état atteint en pratique par un nouveau président après mai 2027 ; érosion lente de l'état de grâce (Hollande 61 % en mai 2012, bien plus bas un an après ; Macron 41 % en mai 2022, dossier 5.4) ; la plupart des mois restent au-dessus de 35 %. Mobilisation modérée : érosion plus rapide."
+    },
+    "prec=> 35 %|VE-MOBIL=forte|PV-GOUV=oui": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "< 25 %": 0.05,
+      "25-35 %": 0.36,
+      "> 35 %": 0.59
+     },
+     "justification": "Jugement : état atteint en pratique par un nouveau président après mai 2027 ; érosion lente de l'état de grâce (Hollande 61 % en mai 2012, bien plus bas un an après ; Macron 41 % en mai 2022, dossier 5.4) ; la plupart des mois restent au-dessus de 35 %. Mobilisation forte et changement de Premier ministre."
+    },
+    "prec=> 35 %|VE-MOBIL=forte|PV-GOUV=non": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "< 25 %": 0.05,
+      "25-35 %": 0.33,
+      "> 35 %": 0.62
+     },
+     "justification": "Jugement : état atteint en pratique par un nouveau président après mai 2027 ; érosion lente de l'état de grâce (Hollande 61 % en mai 2012, bien plus bas un an après ; Macron 41 % en mai 2022, dossier 5.4) ; la plupart des mois restent au-dessus de 35 %. Mobilisation forte (2023, dossier 5.2) : décrochage plus marqué."
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-10": {
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, pour une même journée, quelle qu'en soit la cause déclarée (blocage, filtrage, intrusion, fermeture préventive ou administrative). Si le ministère donne pour une même journée plusieurs catégories disjointes (par exemple « perturbés » et « cours suspendus », ou « fermés » et « perturbés »), leur somme est retenue. S'il donne plusieurs chiffres successifs pour la même journée (matin, mi-journée, fin de journée, décompte cumulé), le plus élevé est retenu. Une fourchette vaut sa borne basse ; un chiffre « au moins » ou « plus de » N vaut N ; un pourcentage d'établissements ouverts n'est pas converti en nombre. Le chiffre retenu est celui que le ministère publie (site, communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant à ce ministère ; une seule dépêche suffit. À défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur, sous les mêmes règles. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2026-12-18"
+   },
+   "probabilite": 0.42
+  },
+  "EV-47": {
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 1000 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, pour une même journée, quelle qu'en soit la cause déclarée (blocage, filtrage, intrusion, fermeture préventive ou administrative). Si le ministère donne pour une même journée plusieurs catégories disjointes (par exemple « perturbés » et « cours suspendus », ou « fermés » et « perturbés »), leur somme est retenue. S'il donne plusieurs chiffres successifs pour la même journée (matin, mi-journée, fin de journée, décompte cumulé), le plus élevé est retenu. Une fourchette vaut sa borne basse ; un chiffre « au moins » ou « plus de » N vaut N ; un pourcentage d'établissements ouverts n'est pas converti en nombre. Le chiffre retenu est celui que le ministère publie (site, communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant à ce ministère ; une seule dépêche suffit. À défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur, sous les mêmes règles. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "probabilite": 0.11
+  },
+  "EV-52": {
+   "critere": "Pendant la fenêtre, pour au moins une journée, le ministère de l'Intérieur chiffre à au moins 200 000 le nombre de manifestants en France, ou le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés (règles de comptage d'EV-10). Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Les comptages des organisateurs et des syndicats ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.95
+  },
+  "EV-51": {
+   "critere": "Pour au moins une journée ou une nuit de la fenêtre, le ministère de l'Intérieur chiffre à au moins 1 000 le nombre de personnes interpellées en France en lien avec des manifestations, des blocages ou des violences urbaines, pour cette même journée ou cette même nuit. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Un cumul sur plusieurs jours ne compte pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "probabilite": 0.14
+  },
+  "EV-39": {
+   "critere": "Pendant la fenêtre, le ministère de l'Intérieur chiffre à plus de 500 000 le nombre de manifestants en France pour une même journée. Le chiffre retenu est celui du ministère, publié par lui ou rapporté par au moins deux agences de presse (AFP, Reuters, AP) ; les comptages des organisateurs ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.5
+  },
+  "EV-13": {
+   "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État communiqué par le ministère chargé de la fonction publique dépasse 18 %. Est retenu le plus élevé des taux communiqués pour cette journée (mi-journée ou journée entière ; taux de l'ensemble de la fonction publique de l'État, et non d'un seul ministère), publié par le ministère ou la DGAFP, ou rapporté par l'AFP, Reuters ou AP en l'attribuant au ministère ; une seule dépêche suffit. Une révision publiée plus de 30 jours après la journée ne change pas l'issue.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": 0.05
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-10"
+}

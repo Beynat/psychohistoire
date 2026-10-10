@@ -1,0 +1,1738 @@
+{
+ "evaluateur": "E23",
+ "date": "2026-10-10",
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "PV-ECOLO": {
+   "nom": "Vote des adhérents des Écologistes",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+     "etats": [
+      "centre",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1,
+     "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)"
+    }
+   ],
+   "definition": null,
+   "date": "2026-12-13",
+   "fenetre": null,
+   "issues": [
+    "candidature autonome",
+    "soutien à un autre candidat",
+    "autre ou vote non tenu"
+   ],
+   "cas": {
+    "VE-SOND=centre": {
+     "poids_reseau": 0.8767,
+     "loi": {
+      "candidature autonome": 0.48,
+      "soutien à un autre candidat": 0.43,
+      "autre ou vote non tenu": 0.09
+     },
+     "justification": "Dossier 2.1-2.4 : vote binaire fixé du 10 au 13 décembre, motion « pour l'Union » adoptée à 69 %, Tondelier à 3-7 % (risque de passer sous 5 % comme Jadot 2022), mais 8 présidentielles sur 9 avec un écologiste et hostilité à Glucksmann (refus de primaire ; Jadot l'a rejoint, linfodurable/AFP 25 août 2026). Jugement : si le centre reste deuxième, quasi équilibre avec léger avantage à l'autonomie (le soutien divise entre Glucksmann et Mélenchon) ; 9 % pour report, option ambiguë ou vote non tenu."
+    },
+    "VE-SOND=gauche": {
+     "poids_reseau": 0.1013,
+     "loi": {
+      "candidature autonome": 0.42,
+      "soutien à un autre candidat": 0.5,
+      "autre ou vote non tenu": 0.08
+     },
+     "justification": "Jugement : si Mélenchon est deuxième, une qualification de la gauche devient plausible et la priorité « permettre une victoire de la gauche, à défaut empêcher le RN » (dossier 2.1, Pegeon) pousse vers le soutien ; légère bascule vers l'option soutien."
+    },
+    "VE-SOND=droite": {
+     "poids_reseau": 0.022,
+     "loi": {
+      "candidature autonome": 0.5,
+      "soutien à un autre candidat": 0.4,
+      "autre ou vote non tenu": 0.1
+     },
+     "justification": "Jugement : si la droite est deuxième, la gauche paraît hors jeu ; moins d'enjeu d'union utile, l'affirmation identitaire l'emporte un peu plus souvent (dossier 2.4, taux de base 8/9)."
+    }
+   },
+   "verrous": []
+  },
+  "PV-BLOC": {
+   "nom": "Candidatures du bloc central",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+     "etats": [
+      "centre",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1,
+     "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)"
+    }
+   ],
+   "definition": null,
+   "date": "2027-03-26",
+   "fenetre": null,
+   "issues": [
+    "les deux",
+    "Philippe seul",
+    "Attal seul",
+    "aucun des deux"
+   ],
+   "cas": {
+    "VE-SOND=centre": {
+     "poids_reseau": 0.7493,
+     "loi": {
+      "les deux": 0.28,
+      "Philippe seul": 0.61,
+      "Attal seul": 0.07,
+      "aucun des deux": 0.04
+     },
+     "justification": "Dossier 3.1-3.2 : Philippe 18,8 % seul contre Attal 14,2 % seul, et 14 contre 7,4 quand les deux sont testés ; les deux camps acceptent un départage par les sondages début 2027 et Attal admet un rassemblement « s'il y a un risque RN-LFI ». Jugement : si le centre est deuxième, l'écart favorise un retrait d'Attal (jeune, peut viser 2032) ; 28 % de maintien des deux (taux de base 6/11 de candidatures multiples, sans mécanisme arrêté), 7 % Attal seul (accident judiciaire ou effondrement de Philippe, PNF Le Havre), 4 % aucun."
+    },
+    "VE-SOND=gauche": {
+     "poids_reseau": 0.206,
+     "loi": {
+      "les deux": 0.26,
+      "Philippe seul": 0.48,
+      "Attal seul": 0.17,
+      "aucun des deux": 0.09
+     },
+     "justification": "ronde 2 : jugement : si Mélenchon est deuxième, le « risque RN-LFI » que cite Attal pour justifier un rassemblement (LCP, 3 septembre 2026, dossier 3.1) devient réel ; la pression au candidat unique augmente, donc le maintien des deux baisse (0,33 auparavant, 0,26 maintenant). La position de Philippe est aussi plus contestable (Mélenchon deuxième dans 14 hypothèses sur 19 avec les deux, dossier 3.2), d'où plus de cas Attal seul ou d'un tiers."
+    },
+    "VE-SOND=droite": {
+     "poids_reseau": 0.0447,
+     "loi": {
+      "les deux": 0.3,
+      "Philippe seul": 0.35,
+      "Attal seul": 0.15,
+      "aucun des deux": 0.2
+     },
+     "justification": "Jugement : si Retailleau ou la droite dépasse le centre, c'est le signe d'un effondrement de Philippe ; hausse de « aucun des deux » (ralliement à un candidat LR) et d'« Attal seul »."
+    }
+   },
+   "verrous": []
+  },
+  "PV-GAUCHE": {
+   "nom": "Nombre de candidats de gauche",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-ECOLO",
+     "nom": "Vote des adhérents des Écologistes",
+     "etats": [
+      "candidature autonome",
+      "soutien à un autre candidat",
+      "autre ou vote non tenu"
+     ],
+     "decalage": 0,
+     "definition": "2026-12-13"
+    },
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+     "etats": [
+      "centre",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1,
+     "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)"
+    }
+   ],
+   "definition": null,
+   "date": "2027-03-26",
+   "fenetre": null,
+   "issues": [
+    "3 ou moins",
+    "4",
+    "5",
+    "6 ou plus"
+   ],
+   "cas": {
+    "PV-ECOLO=candidature autonome|VE-SOND=centre": {
+     "poids_reseau": 0.38,
+     "loi": {
+      "3 ou moins": 0.05,
+      "4": 0.17,
+      "5": 0.38,
+      "6 ou plus": 0.4
+     },
+     "justification": "ronde 2 : application de la définition d'EV-19 (candidats investis ou soutenus par LFI, PS, PP, Écologistes, PCF, Debout !, LO ou NPA) : Hollande, Cazeneuve et Bouamrane sans soutien de ces partis ne comptent pas, donc la part « divers PS » (0,25) est retirée. Dossier 4.1-4.4, jugement : si Tondelier est candidate en autonome, la probabilité d'être sur la liste vaut environ 0,98 pour Mélenchon, 0,92 pour Arthaud et pour le vainqueur de la primaire PS-PP, 0,85 pour Roussel et pour Tondelier, 0,35 pour le NPA et pour Ruffin. Espérance ≈ 5,2 ; queues élargies car les retraits pour l'union sont corrélés."
+    },
+    "PV-ECOLO=candidature autonome|VE-SOND=gauche": {
+     "poids_reseau": 0.1053,
+     "loi": {
+      "3 ou moins": 0.07,
+      "4": 0.2,
+      "5": 0.37,
+      "6 ou plus": 0.36
+     },
+     "justification": "ronde 2 : application de la définition d'EV-19 (candidats investis ou soutenus par LFI, PS, PP, Écologistes, PCF, Debout !, LO ou NPA) : Hollande, Cazeneuve et Bouamrane sans soutien de ces partis ne comptent pas, donc la part « divers PS » (0,25) est retirée. Dossier 4.1-4.4, jugement : si Tondelier est candidate en autonome, la probabilité d'être sur la liste vaut environ 0,98 pour Mélenchon, 0,92 pour Arthaud et pour le vainqueur de la primaire PS-PP, 0,85 pour Roussel et pour Tondelier, 0,35 pour le NPA et pour Ruffin. Espérance ≈ 5,2 ; queues élargies car les retraits pour l'union sont corrélés. Si Mélenchon est deuxième : pression accrue au vote utile (Roussel et Ruffin peuvent se rallier), environ 4 points déplacés vers le bas."
+    },
+    "PV-ECOLO=candidature autonome|VE-SOND=droite": {
+     "poids_reseau": 0.0213,
+     "loi": {
+      "3 ou moins": 0.05,
+      "4": 0.17,
+      "5": 0.38,
+      "6 ou plus": 0.4
+     },
+     "justification": "ronde 2 : application de la définition d'EV-19 (candidats investis ou soutenus par LFI, PS, PP, Écologistes, PCF, Debout !, LO ou NPA) : Hollande, Cazeneuve et Bouamrane sans soutien de ces partis ne comptent pas, donc la part « divers PS » (0,25) est retirée. Dossier 4.1-4.4, jugement : si Tondelier est candidate en autonome, la probabilité d'être sur la liste vaut environ 0,98 pour Mélenchon, 0,92 pour Arthaud et pour le vainqueur de la primaire PS-PP, 0,85 pour Roussel et pour Tondelier, 0,35 pour le NPA et pour Ruffin. Espérance ≈ 5,2 ; queues élargies car les retraits pour l'union sont corrélés. Si la droite est deuxième : pas d'effet propre retenu."
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=centre": {
+     "poids_reseau": 0.304,
+     "loi": {
+      "3 ou moins": 0.12,
+      "4": 0.38,
+      "5": 0.35,
+      "6 ou plus": 0.15
+     },
+     "justification": "ronde 2 : application de la définition d'EV-19 (candidats investis ou soutenus par LFI, PS, PP, Écologistes, PCF, Debout !, LO ou NPA) : Hollande, Cazeneuve et Bouamrane sans soutien de ces partis ne comptent pas, donc la part « divers PS » (0,25) est retirée. Jugement : si les Écologistes soutiennent un autre candidat, Tondelier sort de la liste ; il reste le noyau de quatre plus le NPA et Ruffin, incertains. Espérance ≈ 4,4 ; configuration proche de 2017 (4 candidats, dossier 4.3)."
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=gauche": {
+     "poids_reseau": 0.0827,
+     "loi": {
+      "3 ou moins": 0.14,
+      "4": 0.4,
+      "5": 0.33,
+      "6 ou plus": 0.13
+     },
+     "justification": "ronde 2 : application de la définition d'EV-19 (candidats investis ou soutenus par LFI, PS, PP, Écologistes, PCF, Debout !, LO ou NPA) : Hollande, Cazeneuve et Bouamrane sans soutien de ces partis ne comptent pas, donc la part « divers PS » (0,25) est retirée. Jugement : si les Écologistes soutiennent un autre candidat, Tondelier sort de la liste ; il reste le noyau de quatre plus le NPA et Ruffin, incertains. Espérance ≈ 4,4 ; configuration proche de 2017 (4 candidats, dossier 4.3). Si Mélenchon est deuxième : pression accrue au vote utile (Roussel et Ruffin peuvent se rallier), environ 4 points déplacés vers le bas."
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=droite": {
+     "poids_reseau": 0.0153,
+     "loi": {
+      "3 ou moins": 0.12,
+      "4": 0.38,
+      "5": 0.35,
+      "6 ou plus": 0.15
+     },
+     "justification": "ronde 2 : application de la définition d'EV-19 (candidats investis ou soutenus par LFI, PS, PP, Écologistes, PCF, Debout !, LO ou NPA) : Hollande, Cazeneuve et Bouamrane sans soutien de ces partis ne comptent pas, donc la part « divers PS » (0,25) est retirée. Jugement : si les Écologistes soutiennent un autre candidat, Tondelier sort de la liste ; il reste le noyau de quatre plus le NPA et Ruffin, incertains. Espérance ≈ 4,4 ; configuration proche de 2017 (4 candidats, dossier 4.3). Si la droite est deuxième : pas d'effet propre retenu."
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=centre": {
+     "poids_reseau": 0.0653,
+     "loi": {
+      "3 ou moins": 0.08,
+      "4": 0.26,
+      "5": 0.37,
+      "6 ou plus": 0.29
+     },
+     "justification": "ronde 2 : application de la définition d'EV-19 (candidats investis ou soutenus par LFI, PS, PP, Écologistes, PCF, Debout !, LO ou NPA) : Hollande, Cazeneuve et Bouamrane sans soutien de ces partis ne comptent pas, donc la part « divers PS » (0,25) est retirée. Jugement : maintien de Tondelier avec une probabilité intermédiaire (environ 0,5) ; loi entre les deux autres cas."
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=gauche": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "3 ou moins": 0.1,
+      "4": 0.28,
+      "5": 0.36,
+      "6 ou plus": 0.26
+     },
+     "justification": "ronde 2 : application de la définition d'EV-19 (candidats investis ou soutenus par LFI, PS, PP, Écologistes, PCF, Debout !, LO ou NPA) : Hollande, Cazeneuve et Bouamrane sans soutien de ces partis ne comptent pas, donc la part « divers PS » (0,25) est retirée. Jugement : maintien de Tondelier avec une probabilité intermédiaire (environ 0,5) ; loi entre les deux autres cas. Si Mélenchon est deuxième : pression accrue au vote utile (Roussel et Ruffin peuvent se rallier), environ 4 points déplacés vers le bas."
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=droite": {
+     "poids_reseau": 0.008,
+     "loi": {
+      "3 ou moins": 0.08,
+      "4": 0.26,
+      "5": 0.37,
+      "6 ou plus": 0.29
+     },
+     "justification": "ronde 2 : application de la définition d'EV-19 (candidats investis ou soutenus par LFI, PS, PP, Écologistes, PCF, Debout !, LO ou NPA) : Hollande, Cazeneuve et Bouamrane sans soutien de ces partis ne comptent pas, donc la part « divers PS » (0,25) est retirée. Jugement : maintien de Tondelier avec une probabilité intermédiaire (environ 0,5) ; loi entre les deux autres cas. Si la droite est deuxième : pas d'effet propre retenu."
+    }
+   },
+   "verrous": []
+  },
+  "PV-DUEL": {
+   "nom": "Duel de second tour",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-BLOC",
+     "nom": "Candidatures du bloc central",
+     "etats": [
+      "les deux",
+      "Philippe seul",
+      "Attal seul",
+      "aucun des deux"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    },
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+     "etats": [
+      "centre",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 0,
+     "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)"
+    },
+    {
+     "id": "PV-LEPEN",
+     "nom": "Candidature de Marine Le Pen",
+     "etats": [
+      "candidate",
+      "non candidate"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    }
+   ],
+   "definition": null,
+   "date": "2027-04-18",
+   "fenetre": null,
+   "issues": [
+    "RN-PHI",
+    "RN-ATT",
+    "RN-MEL",
+    "RN-GLU",
+    "RN-RET",
+    "RN-LIS",
+    "RN-AUT",
+    "PHI-MEL",
+    "PHI-GLU",
+    "AUTRE"
+   ],
+   "cas": {
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=candidate": {
+     "poids_reseau": 0.1987,
+     "loi": {
+      "RN-PHI": 0.45,
+      "RN-ATT": 0.04,
+      "RN-MEL": 0.3,
+      "RN-GLU": 0.07,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.03
+     },
+     "justification": "Jugement : si Philippe et Attal sont tous deux candidats, le centre se divise (septembre : Philippe 14, Mélenchon 16, Attal 7,4 ; Mélenchon deuxième dans 14 hypothèses sur 19, dossier 3.2) ; précédents 1974-1995 : un des deux candidats du bloc atteint toujours le second tour (dossier 3.3, non vérifié). Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    },
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.046,
+     "loi": {
+      "RN-PHI": 0.43,
+      "RN-ATT": 0.04,
+      "RN-MEL": 0.28,
+      "RN-GLU": 0.07,
+      "RN-RET": 0.05,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.045,
+      "PHI-GLU": 0.015,
+      "AUTRE": 0.04
+     },
+     "justification": "Jugement : si Philippe et Attal sont tous deux candidats, le centre se divise (septembre : Philippe 14, Mélenchon 16, Attal 7,4 ; Mélenchon deuxième dans 14 hypothèses sur 19, dossier 3.2) ; précédents 1974-1995 : un des deux candidats du bloc atteint toujours le second tour (dossier 3.3, non vérifié). Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0753,
+     "loi": {
+      "RN-PHI": 0.25,
+      "RN-ATT": 0.03,
+      "RN-MEL": 0.47,
+      "RN-GLU": 0.1,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.04
+     },
+     "justification": "Jugement : si Philippe et Attal sont tous deux candidats, le centre se divise (septembre : Philippe 14, Mélenchon 16, Attal 7,4 ; Mélenchon deuxième dans 14 hypothèses sur 19, dossier 3.2) ; précédents 1974-1995 : un des deux candidats du bloc atteint toujours le second tour (dossier 3.3, non vérifié). Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0133,
+     "loi": {
+      "RN-PHI": 0.24,
+      "RN-ATT": 0.03,
+      "RN-MEL": 0.44,
+      "RN-GLU": 0.1,
+      "RN-RET": 0.05,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.045,
+      "PHI-GLU": 0.015,
+      "AUTRE": 0.05
+     },
+     "justification": "Jugement : si Philippe et Attal sont tous deux candidats, le centre se divise (septembre : Philippe 14, Mélenchon 16, Attal 7,4 ; Mélenchon deuxième dans 14 hypothèses sur 19, dossier 3.2) ; précédents 1974-1995 : un des deux candidats du bloc atteint toujours le second tour (dossier 3.3, non vérifié). Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=candidate": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "RN-PHI": 0.18,
+      "RN-ATT": 0.02,
+      "RN-MEL": 0.18,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.45,
+      "RN-LIS": 0.02,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.01,
+      "PHI-GLU": 0.005,
+      "AUTRE": 0.065
+     },
+     "justification": "Jugement : si Philippe et Attal sont tous deux candidats, le centre se divise (septembre : Philippe 14, Mélenchon 16, Attal 7,4 ; Mélenchon deuxième dans 14 hypothèses sur 19, dossier 3.2) ; précédents 1974-1995 : un des deux candidats du bloc atteint toujours le second tour (dossier 3.3, non vérifié). Droite deuxième en mars : Retailleau (ou un candidat LR) devient le qualifié le plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": 0.17,
+      "RN-ATT": 0.02,
+      "RN-MEL": 0.17,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.42,
+      "RN-LIS": 0.02,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.015,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.105
+     },
+     "justification": "Jugement : si Philippe et Attal sont tous deux candidats, le centre se divise (septembre : Philippe 14, Mélenchon 16, Attal 7,4 ; Mélenchon deuxième dans 14 hypothèses sur 19, dossier 3.2) ; précédents 1974-1995 : un des deux candidats du bloc atteint toujours le second tour (dossier 3.3, non vérifié). Droite deuxième en mars : Retailleau (ou un candidat LR) devient le qualifié le plus probable. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": {
+     "poids_reseau": 0.3013,
+     "loi": {
+      "RN-PHI": 0.6,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.22,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.025
+     },
+     "justification": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.072,
+     "loi": {
+      "RN-PHI": 0.58,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.2,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.05,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.05,
+      "PHI-GLU": 0.015,
+      "AUTRE": 0.03
+     },
+     "justification": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0867,
+     "loi": {
+      "RN-PHI": 0.38,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.4,
+      "RN-GLU": 0.08,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.02
+     },
+     "justification": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0193,
+     "loi": {
+      "RN-PHI": 0.36,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.37,
+      "RN-GLU": 0.08,
+      "RN-RET": 0.05,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.06,
+      "PHI-GLU": 0.015,
+      "AUTRE": 0.035
+     },
+     "justification": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0187,
+     "loi": {
+      "RN-PHI": 0.25,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.15,
+      "RN-GLU": 0.04,
+      "RN-RET": 0.45,
+      "RN-LIS": 0.02,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.01,
+      "PHI-GLU": 0.005,
+      "AUTRE": 0.055
+     },
+     "justification": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Droite deuxième en mars : Retailleau (ou un candidat LR) devient le qualifié le plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": 0.24,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.04,
+      "RN-RET": 0.42,
+      "RN-LIS": 0.02,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.02,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.09
+     },
+     "justification": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Droite deuxième en mars : Retailleau (ou un candidat LR) devient le qualifié le plus probable. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0467,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.5,
+      "RN-MEL": 0.28,
+      "RN-GLU": 0.08,
+      "RN-RET": 0.05,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.06
+     },
+     "justification": "Jugement : si Attal est seul, Mélenchon est deuxième dans les 15 hypothèses de septembre (14,2 contre 16,9, dossier 3.2). Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.012,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.47,
+      "RN-MEL": 0.27,
+      "RN-GLU": 0.08,
+      "RN-RET": 0.06,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.09
+     },
+     "justification": "Jugement : si Attal est seul, Mélenchon est deuxième dans les 15 hypothèses de septembre (14,2 contre 16,9, dossier 3.2). Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=candidate": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.28,
+      "RN-MEL": 0.47,
+      "RN-GLU": 0.11,
+      "RN-RET": 0.06,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.05
+     },
+     "justification": "Jugement : si Attal est seul, Mélenchon est deuxième dans les 15 hypothèses de septembre (14,2 contre 16,9, dossier 3.2). Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0073,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.27,
+      "RN-MEL": 0.44,
+      "RN-GLU": 0.11,
+      "RN-RET": 0.07,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.08
+     },
+     "justification": "Jugement : si Attal est seul, Mélenchon est deuxième dans les 15 hypothèses de septembre (14,2 contre 16,9, dossier 3.2). Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=candidate": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.18,
+      "RN-MEL": 0.18,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.45,
+      "RN-LIS": 0.02,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.1
+     },
+     "justification": "Jugement : si Attal est seul, Mélenchon est deuxième dans les 15 hypothèses de septembre (14,2 contre 16,9, dossier 3.2). Droite deuxième en mars : Retailleau (ou un candidat LR) devient le qualifié le plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.17,
+      "RN-MEL": 0.17,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.42,
+      "RN-LIS": 0.02,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.15
+     },
+     "justification": "Jugement : si Attal est seul, Mélenchon est deuxième dans les 15 hypothèses de septembre (14,2 contre 16,9, dossier 3.2). Droite deuxième en mars : Retailleau (ou un candidat LR) devient le qualifié le plus probable. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0073,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.3,
+      "RN-GLU": 0.1,
+      "RN-RET": 0.1,
+      "RN-LIS": 0.02,
+      "RN-AUT": 0.4,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.08
+     },
+     "justification": "Jugement : si ni Philippe ni Attal ne sont candidats, le bloc central se replie sur un remplaçant (Bayrou ou autre, classé RN-AUT) ou sur la droite. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.28,
+      "RN-GLU": 0.1,
+      "RN-RET": 0.11,
+      "RN-LIS": 0.02,
+      "RN-AUT": 0.37,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.12
+     },
+     "justification": "Jugement : si ni Philippe ni Attal ne sont candidats, le bloc central se replie sur un remplaçant (Bayrou ou autre, classé RN-AUT) ou sur la droite. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0253,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.5,
+      "RN-GLU": 0.13,
+      "RN-RET": 0.14,
+      "RN-LIS": 0.03,
+      "RN-AUT": 0.12,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.08
+     },
+     "justification": "Jugement : si ni Philippe ni Attal ne sont candidats, le bloc central se replie sur un remplaçant (Bayrou ou autre, classé RN-AUT) ou sur la droite. Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.012,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.46,
+      "RN-GLU": 0.13,
+      "RN-RET": 0.14,
+      "RN-LIS": 0.03,
+      "RN-AUT": 0.12,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.12
+     },
+     "justification": "Jugement : si ni Philippe ni Attal ne sont candidats, le bloc central se replie sur un remplaçant (Bayrou ou autre, classé RN-AUT) ou sur la droite. Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.15,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.55,
+      "RN-LIS": 0.05,
+      "RN-AUT": 0.08,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.12
+     },
+     "justification": "Jugement : si ni Philippe ni Attal ne sont candidats, le bloc central se replie sur un remplaçant (Bayrou ou autre, classé RN-AUT) ou sur la droite. Droite deuxième en mars : Retailleau (ou un candidat LR) devient le qualifié le plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.5,
+      "RN-LIS": 0.05,
+      "RN-AUT": 0.08,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.18
+     },
+     "justification": "Jugement : si ni Philippe ni Attal ne sont candidats, le bloc central se replie sur un remplaçant (Bayrou ou autre, classé RN-AUT) ou sur la droite. Droite deuxième en mars : Retailleau (ou un candidat LR) devient le qualifié le plus probable. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+    }
+   },
+   "verrous": []
+  },
+  "PV-VAINQ": {
+   "nom": "Vainqueur de la présidentielle",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-DUEL",
+     "nom": "Duel de second tour",
+     "etats": [
+      "RN-PHI",
+      "RN-ATT",
+      "RN-MEL",
+      "RN-GLU",
+      "RN-RET",
+      "RN-LIS",
+      "RN-AUT",
+      "PHI-MEL",
+      "PHI-GLU",
+      "AUTRE"
+     ],
+     "decalage": 0,
+     "definition": "2027-04-18"
+    },
+    {
+     "id": "VE-RN",
+     "nom": "Intentions de vote du candidat RN au premier tour",
+     "etats": [
+      "< 30 %",
+      "30-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "moyenne des sondages du mois pour le candidat du RN (hypothèse principale)"
+    },
+    {
+     "id": "PV-LEPEN",
+     "nom": "Candidature de Marine Le Pen",
+     "etats": [
+      "candidate",
+      "non candidate"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    }
+   ],
+   "definition": null,
+   "date": "2027-05-02",
+   "fenetre": null,
+   "issues": [
+    "RN",
+    "PHI",
+    "ATT",
+    "MEL",
+    "GLU",
+    "RET",
+    "LIS",
+    "AUT"
+   ],
+   "cas": {
+    "PV-DUEL=RN-PHI|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.058,
+     "loi": {
+      "RN": 0.4,
+      "PHI": 0.6,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Philippe : Le Pen en tête dans les neuf mesures depuis juillet 2026, 51 à 57 % (dossier 5.1), mais Philippe gagnait en mars et le FN/RN a perdu ses trois seconds tours (dossier 5.5) ; à six mois, l'écart de 5 à 10 points reste dans la marge de campagne. RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points."
+    },
+    "PV-DUEL=RN-PHI|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0133,
+     "loi": {
+      "RN": 0.38,
+      "PHI": 0.62,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Philippe : Le Pen en tête dans les neuf mesures depuis juillet 2026, 51 à 57 % (dossier 5.1), mais Philippe gagnait en mars et le FN/RN a perdu ses trois seconds tours (dossier 5.5) ; à six mois, l'écart de 5 à 10 points reste dans la marge de campagne. RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-PHI|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.2287,
+     "loi": {
+      "RN": 0.52,
+      "PHI": 0.48,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Philippe : Le Pen en tête dans les neuf mesures depuis juillet 2026, 51 à 57 % (dossier 5.1), mais Philippe gagnait en mars et le FN/RN a perdu ses trois seconds tours (dossier 5.5) ; à six mois, l'écart de 5 à 10 points reste dans la marge de campagne. RN à 30-35 % en mars : niveau actuel (observation d'octobre)."
+    },
+    "PV-DUEL=RN-PHI|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.056,
+     "loi": {
+      "RN": 0.5,
+      "PHI": 0.5,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Philippe : Le Pen en tête dans les neuf mesures depuis juillet 2026, 51 à 57 % (dossier 5.1), mais Philippe gagnait en mars et le FN/RN a perdu ses trois seconds tours (dossier 5.5) ; à six mois, l'écart de 5 à 10 points reste dans la marge de campagne. RN à 30-35 % en mars : niveau actuel (observation d'octobre). Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-PHI|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.082,
+     "loi": {
+      "RN": 0.62,
+      "PHI": 0.38,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Philippe : Le Pen en tête dans les neuf mesures depuis juillet 2026, 51 à 57 % (dossier 5.1), mais Philippe gagnait en mars et le FN/RN a perdu ses trois seconds tours (dossier 5.5) ; à six mois, l'écart de 5 à 10 points reste dans la marge de campagne. RN au-dessus de 35 % : dynamique favorable, environ +10 points."
+    },
+    "PV-DUEL=RN-PHI|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0153,
+     "loi": {
+      "RN": 0.6,
+      "PHI": 0.4,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Philippe : Le Pen en tête dans les neuf mesures depuis juillet 2026, 51 à 57 % (dossier 5.1), mais Philippe gagnait en mars et le FN/RN a perdu ses trois seconds tours (dossier 5.5) ; à six mois, l'écart de 5 à 10 points reste dans la marge de campagne. RN au-dessus de 35 % : dynamique favorable, environ +10 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-ATT|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.01,
+     "loi": {
+      "RN": 0.52,
+      "PHI": 0.0,
+      "ATT": 0.48,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Attal : Attal à 43-46 % contre Le Pen depuis juillet (dossier 5.3). RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points."
+    },
+    "PV-DUEL=RN-ATT|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": 0.5,
+      "PHI": 0.0,
+      "ATT": 0.5,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Attal : Attal à 43-46 % contre Le Pen depuis juillet (dossier 5.3). RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-ATT|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0247,
+     "loi": {
+      "RN": 0.65,
+      "PHI": 0.0,
+      "ATT": 0.35,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Attal : Attal à 43-46 % contre Le Pen depuis juillet (dossier 5.3). RN à 30-35 % en mars : niveau actuel (observation d'octobre)."
+    },
+    "PV-DUEL=RN-ATT|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.008,
+     "loi": {
+      "RN": 0.63,
+      "PHI": 0.0,
+      "ATT": 0.37,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Attal : Attal à 43-46 % contre Le Pen depuis juillet (dossier 5.3). RN à 30-35 % en mars : niveau actuel (observation d'octobre). Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-ATT|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN": 0.75,
+      "PHI": 0.0,
+      "ATT": 0.25,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Attal : Attal à 43-46 % contre Le Pen depuis juillet (dossier 5.3). RN au-dessus de 35 % : dynamique favorable, environ +10 points."
+    },
+    "PV-DUEL=RN-ATT|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "RN": 0.73,
+      "PHI": 0.0,
+      "ATT": 0.27,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Attal : Attal à 43-46 % contre Le Pen depuis juillet (dossier 5.3). RN au-dessus de 35 % : dynamique favorable, environ +10 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-MEL|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0387,
+     "loi": {
+      "RN": 0.78,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.22,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Mélenchon : Mélenchon à 30-36 % (dossier 5.3), front républicain très incomplet. RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points."
+    },
+    "PV-DUEL=RN-MEL|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0127,
+     "loi": {
+      "RN": 0.76,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.24,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Mélenchon : Mélenchon à 30-36 % (dossier 5.3), front républicain très incomplet. RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-MEL|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.1393,
+     "loi": {
+      "RN": 0.86,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.14,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Mélenchon : Mélenchon à 30-36 % (dossier 5.3), front républicain très incomplet. RN à 30-35 % en mars : niveau actuel (observation d'octobre)."
+    },
+    "PV-DUEL=RN-MEL|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0293,
+     "loi": {
+      "RN": 0.84,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.16,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Mélenchon : Mélenchon à 30-36 % (dossier 5.3), front républicain très incomplet. RN à 30-35 % en mars : niveau actuel (observation d'octobre). Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-MEL|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0607,
+     "loi": {
+      "RN": 0.92,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.08,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Mélenchon : Mélenchon à 30-36 % (dossier 5.3), front républicain très incomplet. RN au-dessus de 35 % : dynamique favorable, environ +10 points."
+    },
+    "PV-DUEL=RN-MEL|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.012,
+     "loi": {
+      "RN": 0.9,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.1,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Mélenchon : Mélenchon à 30-36 % (dossier 5.3), front républicain très incomplet. RN au-dessus de 35 % : dynamique favorable, environ +10 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-GLU|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN": 0.55,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.45,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Glucksmann : Glucksmann à 41-45 % (dossier 5.3). RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points."
+    },
+    "PV-DUEL=RN-GLU|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "RN": 0.53,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.47,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Glucksmann : Glucksmann à 41-45 % (dossier 5.3). RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-GLU|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0387,
+     "loi": {
+      "RN": 0.68,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.32,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Glucksmann : Glucksmann à 41-45 % (dossier 5.3). RN à 30-35 % en mars : niveau actuel (observation d'octobre)."
+    },
+    "PV-DUEL=RN-GLU|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN": 0.66,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.34,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Glucksmann : Glucksmann à 41-45 % (dossier 5.3). RN à 30-35 % en mars : niveau actuel (observation d'octobre). Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-GLU|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.016,
+     "loi": {
+      "RN": 0.78,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.22,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Glucksmann : Glucksmann à 41-45 % (dossier 5.3). RN au-dessus de 35 % : dynamique favorable, environ +10 points."
+    },
+    "PV-DUEL=RN-GLU|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.76,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.24,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Glucksmann : Glucksmann à 41-45 % (dossier 5.3). RN au-dessus de 35 % : dynamique favorable, environ +10 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-RET|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "RN": 0.53,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.47,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Retailleau : Retailleau à 42 % dans l'Ifop d'août (dossier 5.3). RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points."
+    },
+    "PV-DUEL=RN-RET|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.51,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.49,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Retailleau : Retailleau à 42 % dans l'Ifop d'août (dossier 5.3). RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-RET|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.024,
+     "loi": {
+      "RN": 0.66,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.34,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Retailleau : Retailleau à 42 % dans l'Ifop d'août (dossier 5.3). RN à 30-35 % en mars : niveau actuel (observation d'octobre)."
+    },
+    "PV-DUEL=RN-RET|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.008,
+     "loi": {
+      "RN": 0.64,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.36,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Retailleau : Retailleau à 42 % dans l'Ifop d'août (dossier 5.3). RN à 30-35 % en mars : niveau actuel (observation d'octobre). Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-RET|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "RN": 0.76,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.24,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Retailleau : Retailleau à 42 % dans l'Ifop d'août (dossier 5.3). RN au-dessus de 35 % : dynamique favorable, environ +10 points."
+    },
+    "PV-DUEL=RN-RET|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN": 0.74,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.26,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Retailleau : Retailleau à 42 % dans l'Ifop d'août (dossier 5.3). RN au-dessus de 35 % : dynamique favorable, environ +10 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-LIS|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.55,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.45,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Lisnard : jamais testé ; assimilé à Retailleau, notoriété plus faible. RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points."
+    },
+    "PV-DUEL=RN-LIS|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.53,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.47,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Lisnard : jamais testé ; assimilé à Retailleau, notoriété plus faible. RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-LIS|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "RN": 0.68,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.32,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Lisnard : jamais testé ; assimilé à Retailleau, notoriété plus faible. RN à 30-35 % en mars : niveau actuel (observation d'octobre)."
+    },
+    "PV-DUEL=RN-LIS|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN": 0.66,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.34,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Lisnard : jamais testé ; assimilé à Retailleau, notoriété plus faible. RN à 30-35 % en mars : niveau actuel (observation d'octobre). Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-LIS|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.78,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.22,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Lisnard : jamais testé ; assimilé à Retailleau, notoriété plus faible. RN au-dessus de 35 % : dynamique favorable, environ +10 points."
+    },
+    "PV-DUEL=RN-LIS|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.76,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.24,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Lisnard : jamais testé ; assimilé à Retailleau, notoriété plus faible. RN au-dessus de 35 % : dynamique favorable, environ +10 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-AUT|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN": 0.5,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.5
+     },
+     "justification": "Jugement : si le duel oppose le RN à un autre candidat (Hollande 44-46 %, dossier 5.3, ou un centriste de remplacement). RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points."
+    },
+    "PV-DUEL=RN-AUT|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": 0.48,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.52
+     },
+     "justification": "Jugement : si le duel oppose le RN à un autre candidat (Hollande 44-46 %, dossier 5.3, ou un centriste de remplacement). RN sous 30 % en mars : dynamique défavorable, probabilité RN abaissée d'environ 12 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-AUT|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0113,
+     "loi": {
+      "RN": 0.63,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.37
+     },
+     "justification": "Jugement : si le duel oppose le RN à un autre candidat (Hollande 44-46 %, dossier 5.3, ou un centriste de remplacement). RN à 30-35 % en mars : niveau actuel (observation d'octobre)."
+    },
+    "PV-DUEL=RN-AUT|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN": 0.61,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.39
+     },
+     "justification": "Jugement : si le duel oppose le RN à un autre candidat (Hollande 44-46 %, dossier 5.3, ou un centriste de remplacement). RN à 30-35 % en mars : niveau actuel (observation d'octobre). Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=RN-AUT|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "RN": 0.73,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.27
+     },
+     "justification": "Jugement : si le duel oppose le RN à un autre candidat (Hollande 44-46 %, dossier 5.3, ou un centriste de remplacement). RN au-dessus de 35 % : dynamique favorable, environ +10 points."
+    },
+    "PV-DUEL=RN-AUT|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.71,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.29
+     },
+     "justification": "Jugement : si le duel oppose le RN à un autre candidat (Hollande 44-46 %, dossier 5.3, ou un centriste de remplacement). RN au-dessus de 35 % : dynamique favorable, environ +10 points. Le Pen non candidate : remplaçant (Bardella mesuré 1 à 3 points au-dessus de Le Pen en mai, dossier 5.2, mais affaibli depuis l'affaire Mediapart) : -2 points."
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.85,
+      "ATT": 0.0,
+      "MEL": 0.15,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Dossier 5.3 : YouGov 17-21 septembre 2026, Philippe 61 contre Mélenchon 39 ; jugement : sans RN au second tour, Philippe largement favori, la bande RN ne change rien."
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.85,
+      "ATT": 0.0,
+      "MEL": 0.15,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Dossier 5.3 : YouGov 17-21 septembre 2026, Philippe 61 contre Mélenchon 39 ; jugement : sans RN au second tour, Philippe largement favori, la bande RN ne change rien."
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.85,
+      "ATT": 0.0,
+      "MEL": 0.15,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Dossier 5.3 : YouGov 17-21 septembre 2026, Philippe 61 contre Mélenchon 39 ; jugement : sans RN au second tour, Philippe largement favori, la bande RN ne change rien."
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.85,
+      "ATT": 0.0,
+      "MEL": 0.15,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Dossier 5.3 : YouGov 17-21 septembre 2026, Philippe 61 contre Mélenchon 39 ; jugement : sans RN au second tour, Philippe largement favori, la bande RN ne change rien."
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.85,
+      "ATT": 0.0,
+      "MEL": 0.15,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Dossier 5.3 : YouGov 17-21 septembre 2026, Philippe 61 contre Mélenchon 39 ; jugement : sans RN au second tour, Philippe largement favori, la bande RN ne change rien."
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.85,
+      "ATT": 0.0,
+      "MEL": 0.15,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Dossier 5.3 : YouGov 17-21 septembre 2026, Philippe 61 contre Mélenchon 39 ; jugement : sans RN au second tour, Philippe largement favori, la bande RN ne change rien."
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.65,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.35,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : duel jamais testé (dossier 5.3) ; Philippe favori grâce aux reports de droite et d'une partie du RN."
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.65,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.35,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : duel jamais testé (dossier 5.3) ; Philippe favori grâce aux reports de droite et d'une partie du RN."
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.65,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.35,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : duel jamais testé (dossier 5.3) ; Philippe favori grâce aux reports de droite et d'une partie du RN."
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.65,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.35,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : duel jamais testé (dossier 5.3) ; Philippe favori grâce aux reports de droite et d'une partie du RN."
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.65,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.35,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : duel jamais testé (dossier 5.3) ; Philippe favori grâce aux reports de droite et d'une partie du RN."
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.65,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.35,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : duel jamais testé (dossier 5.3) ; Philippe favori grâce aux reports de droite et d'une partie du RN."
+    },
+    "PV-DUEL=AUTRE|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.05,
+      "ATT": 0.15,
+      "MEL": 0.15,
+      "GLU": 0.1,
+      "RET": 0.15,
+      "LIS": 0.05,
+      "AUT": 0.35
+     },
+     "justification": "Jugement : duel non listé sans RN (par exemple Attal-Mélenchon, Retailleau-Mélenchon, un centriste de remplacement) ; loi diffuse, le non-mélenchoniste favori."
+    },
+    "PV-DUEL=AUTRE|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.05,
+      "ATT": 0.15,
+      "MEL": 0.15,
+      "GLU": 0.1,
+      "RET": 0.15,
+      "LIS": 0.05,
+      "AUT": 0.35
+     },
+     "justification": "Jugement : duel non listé sans RN (par exemple Attal-Mélenchon, Retailleau-Mélenchon, un centriste de remplacement) ; loi diffuse, le non-mélenchoniste favori."
+    },
+    "PV-DUEL=AUTRE|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0133,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.05,
+      "ATT": 0.15,
+      "MEL": 0.15,
+      "GLU": 0.1,
+      "RET": 0.15,
+      "LIS": 0.05,
+      "AUT": 0.35
+     },
+     "justification": "Jugement : duel non listé sans RN (par exemple Attal-Mélenchon, Retailleau-Mélenchon, un centriste de remplacement) ; loi diffuse, le non-mélenchoniste favori."
+    },
+    "PV-DUEL=AUTRE|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.05,
+      "ATT": 0.15,
+      "MEL": 0.15,
+      "GLU": 0.1,
+      "RET": 0.15,
+      "LIS": 0.05,
+      "AUT": 0.35
+     },
+     "justification": "Jugement : duel non listé sans RN (par exemple Attal-Mélenchon, Retailleau-Mélenchon, un centriste de remplacement) ; loi diffuse, le non-mélenchoniste favori."
+    },
+    "PV-DUEL=AUTRE|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.05,
+      "ATT": 0.15,
+      "MEL": 0.15,
+      "GLU": 0.1,
+      "RET": 0.15,
+      "LIS": 0.05,
+      "AUT": 0.35
+     },
+     "justification": "Jugement : duel non listé sans RN (par exemple Attal-Mélenchon, Retailleau-Mélenchon, un centriste de remplacement) ; loi diffuse, le non-mélenchoniste favori."
+    },
+    "PV-DUEL=AUTRE|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.05,
+      "ATT": 0.15,
+      "MEL": 0.15,
+      "GLU": 0.1,
+      "RET": 0.15,
+      "LIS": 0.05,
+      "AUT": 0.35
+     },
+     "justification": "Jugement : duel non listé sans RN (par exemple Attal-Mélenchon, Retailleau-Mélenchon, un centriste de remplacement) ; loi diffuse, le non-mélenchoniste favori."
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-18": {
+   "critere": "Résultat du vote des adhérents des Écologistes sur la stratégie présidentielle, publié avant le 31 décembre 2026. Issues : candidature autonome d'un membre du parti ; soutien à un candidat d'une autre formation ; autre résultat, ou vote non tenu.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": {
+    "candidature autonome": 0.47,
+    "soutien à un autre candidat": 0.44,
+    "autre ou vote non tenu": 0.09
+   }
+  },
+  "EV-41": {
+   "critere": "Présence d'Édouard Philippe et de Gabriel Attal sur la liste des candidats au premier tour de 2027 arrêtée par le Conseil constitutionnel.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": {
+    "les deux": 0.28,
+    "Philippe seul": 0.57,
+    "Attal seul": 0.09,
+    "aucun des deux": 0.06
+   }
+  },
+  "EV-19": {
+   "critere": "Nombre de candidats figurant sur la liste arrêtée par le Conseil constitutionnel pour le premier tour de 2027 qui sont investis ou soutenus, par une décision publiée, par La France insoumise, le Parti socialiste, Place publique, Les Écologistes, le Parti communiste français, Debout !, Lutte ouvrière ou le Nouveau Parti anticapitaliste (l'une ou l'autre des deux organisations issues de la scission de 2022, NPA-l'Anticapitaliste et NPA-Révolutionnaires).",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": {
+    "3 ou moins": 0.08,
+    "4": 0.27,
+    "5": 0.37,
+    "6 ou plus": 0.28
+   }
+  },
+  "EV-40a": {
+   "critere": "Marine Le Pen figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.7
+  },
+  "EV-40b": {
+   "critere": "Édouard Philippe figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.47
+  },
+  "EV-40c": {
+   "critere": "Jean-Luc Mélenchon figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.31
+  },
+  "EV-40d": {
+   "critere": "David Lisnard figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.01
+  },
+  "EV-40e": {
+   "critere": "Gabriel Attal figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.05
+  },
+  "EV-40f": {
+   "critere": "Raphaël Glucksmann figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.08
+  },
+  "EV-40g": {
+   "critere": "Bruno Retailleau figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.07
+  },
+  "EV-05": {
+   "critere": "Personne proclamée élue président de la République par le Conseil constitutionnel à l'issue de l'élection de 2027. Une issue nommée désigne la personne, quel que soit le parti qui la soutient ; « autre » couvre toute autre personne.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-05-02"
+   },
+   "probabilite": {
+    "Marine Le Pen": 0.5,
+    "Jordan Bardella": 0.1,
+    "Édouard Philippe": 0.22,
+    "Gabriel Attal": 0.02,
+    "Jean-Luc Mélenchon": 0.04,
+    "David Lisnard": 0.005,
+    "Bruno Retailleau": 0.03,
+    "Raphaël Glucksmann": 0.035,
+    "François Hollande": 0.02,
+    "autre": 0.03
+   }
+  },
+  "EV-45": {
+   "critere": "Le 30 septembre 2028, l'âge d'ouverture du droit à pension fixé par le code de la sécurité sociale (article L161-17-2 ou disposition qui le remplace) pour les assurés nés en 1970 est inférieur à 64 ans, dans la version de l'article en vigueur à cette date ; une disposition promulguée dont l'entrée en vigueur est postérieure ne compte pas. Cette génération n'est pas concernée par la suspension de la réforme de 2023 : la réponse « oui » suppose un abaissement voté.",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.17
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-10"
+}

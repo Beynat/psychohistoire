@@ -917,8 +917,34 @@ def test_lois_par_cas():
         so = tables.sens_opposes([a, b])
         assert so and so[0]["cas"] == "VE-X=b", so
         assert not tables.sens_opposes([a, a])
+        # Réponse à jokers (étape 11) : cas comparés sur les clés complètes, fréquences lues dans le gabarit.
+        bj = {"noeuds": {"PV-H": {"cas": {"VE-X=*": {"loi": {"oui": 0.2}}, "VE-X=b": {"loi": {"oui": 0.1}}}}}}
+        gab = {"noeuds": {"PV-H": {"cas": {"VE-X=a": {"poids_reseau": 0.2}, "VE-X=b": {"poids_reseau": 0.8}}}}}
+        so = tables.sens_opposes([bj, a], gab)   # référence : le cas le plus fréquent selon le gabarit, VE-X=b
+        assert so and so[0]["cas"] == "VE-X=a" and so[0]["reference"] == "VE-X=b", so
     # σ pondéré par la fréquence des cas : un cas sous verrou (poids nul) très dispersé ne gonfle pas l'incertitude.
     assert tables.sigma_pondere([(1.0, 0.1), (0.0, 5.0)]) == 0.3 and tables.sigma_pondere([(1.0, 0.8), (1.0, 0.4)]) == 0.6
+
+
+def test_tables_de_mesure():
+    """Feuille de route, étape 11 : élicitation des tables de mesure non exactes. Le gabarit ne demande que les
+    entrées non déterminées par le critère ; les contrôles relèvent une loi qui ne fait pas 100 et une justification
+    vide ; l'agrégation fait la moyenne des log-cotes, sans veto d'un zéro isolé, et garde un zéro unanime."""
+    import tables
+    g = tables.gabarit_mesures(["EV-05", "EV-13"])
+    assert list(g["mesures"]["EV-05"]["table"]) == ["AUT|*|*"], g["mesures"]["EV-05"]["table"]
+    assert "PHI|*|*" in g["mesures"]["EV-05"]["entrees_fixes"]
+    assert set(g["mesures"]["EV-13"]["table"]) == {"calme", "modérée", "forte"}
+    rep = {"mesures": {"EV-05": {"table": {"AUT|*|*": {"François Hollande": 30, "autre": 60}},
+                                 "justifications": {"AUT|*|*": "jugement : test de la somme"}},
+                       "EV-13": {"table": {"calme": 2, "modérée": 10, "forte": 40},
+                                 "justifications": {"calme": "court", "modérée": "", "forte": "jugement : test long"}}}}
+    d = tables.verifier_mesures(rep, g)
+    assert any("EV-05 [AUT|*|*]" in x and "somme 100" in x for x in d), d
+    assert any("EV-13 [modérée] : justification vide" in x for x in d) and any("EV-13 [calme] : justification vide" in x for x in d), d
+    r = lambda a, b: {"mesures": {"EV-X": {"table": {"k1": a, "k2": b}}}}
+    ag = tables.agregat_mesures([r(0, 0), r(20, 0), r(20, 0)])["EV-X"]
+    assert 5 < ag["k1"] < 8 and ag["k2"] == 0, ag   # zéro isolé ramené à 0,5 % ; zéro unanime gardé
 
 
 def test_hypotheses():
@@ -1152,6 +1178,17 @@ def test_agregation_sans_veto():
     l = tables.moy_loi([{"a": 0.0, "b": 1.0}, {"a": 0.3, "b": 0.7}, {"a": 0.3, "b": 0.7}])
     assert l["a"] > 0.05, l
     assert tables.moy_loi([{"a": 0.0, "b": 1.0}] * 3)["a"] == 0
+    # Étape 11 : le plancher ne dépasse pas la plus petite valeur non nulle donnée.
+    assert tables.plancher([0, 0.003, 0], tables.PLANCHER_P) == [0.003, 0.003, 0.003]
+    # Étape 11 : fréquences des cas pour une réponse à jokers (gabarit, sinon poids égaux) ; avis directs médians.
+    rep = {"noeuds": {"N": {"cas": {"A=*": {"loi": {"oui": 0.1}}}}}, "direct": {"EV-X": 0.2, "EV-Y": {"u": 0.3, "v": 0.7}}}
+    gab = {"noeuds": {"N": {"cas": {"A=a": {"poids_reseau": 0.9}, "A=b": {"poids_reseau": 0.1}}}}}
+    assert tables.poids_des_cas([rep], "N", ["A=a", "A=b"], gab) == {"A=a": 0.9, "A=b": 0.1}
+    assert tables.poids_des_cas([rep], "N", ["A=a", "A=b"]) == {"A=a": 1.0, "A=b": 1.0}
+    r2 = {"direct": {"EV-X": 0.7, "EV-Y": {"u": 0.5, "v": 0.5}}}
+    r3 = {"direct": {"EV-X": {"probabilite": 0.3}, "EV-Y": {"u": 0.1, "v": 0.9}}}
+    assert tables.directs_medians([rep, r2, r3]) == {"EV-X": 30.0, "EV-Y": {"u": 30.0, "v": 70.0}}
+    assert tables.directs_communs([{"direct": {"EV-X": 0.2}}, {"direct": {"EV-Z": 0.5}}, {"direct": {"EV-X": 0.4}}]) == {"EV-X": 30.0, "EV-Z": 50.0}
 
 
 def test_cycles_v0():

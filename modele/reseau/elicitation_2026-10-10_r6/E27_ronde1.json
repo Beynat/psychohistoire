@@ -1,0 +1,508 @@
+{
+ "evaluateur": "E27",
+ "date": "2026-10-10",
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "PV-DISSOL2a": {
+   "nom": "Dissolution dans les deux mois suivant le second tour",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    },
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "PV-DISSOL1",
+     "nom": "Dissolution avant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2027-05-02"
+     ]
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-05-03",
+    "2027-06-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-VAINQ=*|VE-POP=*|PV-DISSOL1=oui": {
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "Dossier section 2 (art. 12) : après une dissolution avant le 2 mai 2027, l'interdiction d'un an vise aussi un successeur selon l'avis dominant, mais le point est discuté (Quinart, Public Sénat 22 juin 2026) ; le verrou couvre le cas, reste un risque juridique/contentieux minime."
+    },
+    "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.63
+     },
+     "justification": "Jugement : un président RN face à une Assemblée où le RN a 121 sièges (section 4) ne peut pas gouverner sans majorité (le RN a dit refuser de gouverner sans majorité absolue) ; précédents 1981 et 1988 (section 2) de dissolution immédiate face à une Assemblée hostile ; l'élan de l'élection favorise la dissolution, d'autant plus que la popularité est haute ; le risque est de perdre le pari, d'où pas plus de 0.7."
+    },
+    "PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.66
+     },
+     "justification": "Jugement : un président RN face à une Assemblée où le RN a 121 sièges (section 4) ne peut pas gouverner sans majorité (le RN a dit refuser de gouverner sans majorité absolue) ; précédents 1981 et 1988 (section 2) de dissolution immédiate face à une Assemblée hostile ; l'élan de l'élection favorise la dissolution, d'autant plus que la popularité est haute ; le risque est de perdre le pari, d'où pas plus de 0.7."
+    },
+    "PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.7
+     },
+     "justification": "Jugement : un président RN face à une Assemblée où le RN a 121 sièges (section 4) ne peut pas gouverner sans majorité (le RN a dit refuser de gouverner sans majorité absolue) ; précédents 1981 et 1988 (section 2) de dissolution immédiate face à une Assemblée hostile ; l'élan de l'élection favorise la dissolution, d'autant plus que la popularité est haute ; le risque est de perdre le pari, d'où pas plus de 0.7."
+    },
+    "PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.58
+     },
+     "justification": "Dossier section 2 : Philippe a déclaré (16 mars 2025, Europe 1/AFP) envisager de dissoudre avec législatives en juin pour tenir un référendum ; Horizons n'a que 35 députés (section 4) ; non vérifié comme maintenu en 2026 et une déclaration de campagne n'engage pas, d'où 0.58-0.67."
+    },
+    "PV-VAINQ=PHI|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.62
+     },
+     "justification": "Dossier section 2 : Philippe a déclaré (16 mars 2025, Europe 1/AFP) envisager de dissoudre avec législatives en juin pour tenir un référendum ; Horizons n'a que 35 députés (section 4) ; non vérifié comme maintenu en 2026 et une déclaration de campagne n'engage pas, d'où 0.58-0.67."
+    },
+    "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.67
+     },
+     "justification": "Dossier section 2 : Philippe a déclaré (16 mars 2025, Europe 1/AFP) envisager de dissoudre avec législatives en juin pour tenir un référendum ; Horizons n'a que 35 députés (section 4) ; non vérifié comme maintenu en 2026 et une déclaration de campagne n'engage pas, d'où 0.58-0.67."
+    },
+    "PV-VAINQ=ATT|VE-POP=*|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.45
+     },
+     "justification": "Jugement : Renaissance/EPR 90 députés (section 4), aucune déclaration trouvée (section 6) ; taux de base 2/5 dissolutions à la prise de fonctions, mais la situation sans majorité d'aucun bloc rend la dissolution plus probable que dans les cas 1969/1974/1995 (section 2) ; tempéré par le risque de perdre."
+    },
+    "PV-VAINQ=MEL|VE-POP=*|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.45
+     },
+     "justification": "Jugement : LFI-NFP 70 députés, volonté de rupture, mais risque de défaite (section 4), aucune déclaration trouvée (section 6) ; taux de base 2/5 dissolutions à la prise de fonctions, mais la situation sans majorité d'aucun bloc rend la dissolution plus probable que dans les cas 1969/1974/1995 (section 2) ; tempéré par le risque de perdre."
+    },
+    "PV-VAINQ=GLU|VE-POP=*|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "Jugement : PS 68 députés, tempérament plus prudent (section 4), aucune déclaration trouvée (section 6) ; taux de base 2/5 dissolutions à la prise de fonctions, mais la situation sans majorité d'aucun bloc rend la dissolution plus probable que dans les cas 1969/1974/1995 (section 2) ; tempéré par le risque de perdre."
+    },
+    "PV-VAINQ=RET|VE-POP=*|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.45
+     },
+     "justification": "Jugement : LR 47 députés (section 4), aucune déclaration trouvée (section 6) ; taux de base 2/5 dissolutions à la prise de fonctions, mais la situation sans majorité d'aucun bloc rend la dissolution plus probable que dans les cas 1969/1974/1995 (section 2) ; tempéré par le risque de perdre."
+    },
+    "PV-VAINQ=LIS|VE-POP=*|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.45
+     },
+     "justification": "Jugement : quasi aucun député (section 4), aucune déclaration trouvée (section 6) ; taux de base 2/5 dissolutions à la prise de fonctions, mais la situation sans majorité d'aucun bloc rend la dissolution plus probable que dans les cas 1969/1974/1995 (section 2) ; tempéré par le risque de perdre."
+    },
+    "PV-VAINQ=AUT|VE-POP=*|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "Jugement : candidat hors liste, appui parlementaire inconnu (section 4), aucune déclaration trouvée (section 6) ; taux de base 2/5 dissolutions à la prise de fonctions, mais la situation sans majorité d'aucun bloc rend la dissolution plus probable que dans les cas 1969/1974/1995 (section 2) ; tempéré par le risque de perdre."
+    }
+   },
+   "verrous": [
+    {
+     "si": "PV-DISSOL1",
+     "interdit": [
+      "PV-DISSOL2a",
+      "PV-DISSOL2b"
+     ],
+     "duree_mois": 12,
+     "motif": "article 12 de la Constitution : pas de nouvelle dissolution dans l'année qui suit les élections ; pas mensuel, élections comptées dans le mois qui suit la dissolution, nouvelle dissolution possible à partir du 13e mois après celui de la dissolution"
+    }
+   ],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-DISSOL2b": {
+   "nom": "Dissolution de juillet 2027 à septembre 2028",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    },
+    {
+     "id": "PV-DISSOL2a",
+     "nom": "Dissolution dans les deux mois suivant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2027-05-03",
+      "2027-06-30"
+     ]
+    },
+    {
+     "id": "PV-DISSOL1",
+     "nom": "Dissolution avant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2027-05-02"
+     ]
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-07-01",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-VAINQ=*|PV-DISSOL2a=oui|PV-DISSOL1=*": {
+     "loi": {
+      "oui": 0.03
+     },
+     "justification": "Dossier section 3 : après une dissolution en mai-juin 2027, nouvelle dissolution impossible jusqu'en juin-août 2028 ; reste une fenêtre d'un à trois mois, probabilité faible ; jugement : le verrou n'est pas recompté."
+    },
+    "PV-VAINQ=*|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "Dossier section 3 : élections entre novembre 2026 et juin 2027, dissolution à nouveau possible à partir de novembre 2027 ; Assemblée récente, fenêtre réduite ; taux de base 0,07 par fenêtre de 15 mois (section 3), relevé par l'absence de majorité probable."
+    },
+    "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.22
+     },
+     "justification": "Jugement : un président RN n'a pas dissous en mai-juin (par prudence sur les sondages ou autre voie) devant une Assemblée sans majorité : gouvernement minoritaire exposé à la censure (section 5), session budgétaire d'octobre-décembre 2027 ; 1962 : dissolution quatre jours après censure ; taux de base 0,07 relevé fortement par le blocage mais abaissé par le choix déjà fait de ne pas dissoudre."
+    },
+    "PV-VAINQ=*|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "loi": {
+      "oui": 0.2
+     },
+     "justification": "Jugement : même logique que pour le RN : Assemblée sans majorité (section 4), budget 2028 à l'automne 2027, censure possible puis dissolution (précédent 1962, section 3) ; taux de base 0,07 sur 15 mois relevé, mais le président a déjà renoncé à dissoudre dans les deux premiers mois."
+    }
+   },
+   "verrous": [
+    {
+     "si": "PV-DISSOL1",
+     "interdit": [
+      "PV-DISSOL2a",
+      "PV-DISSOL2b"
+     ],
+     "duree_mois": 12,
+     "motif": "article 12 de la Constitution : pas de nouvelle dissolution dans l'année qui suit les élections ; pas mensuel, élections comptées dans le mois qui suit la dissolution, nouvelle dissolution possible à partir du 13e mois après celui de la dissolution"
+    },
+    {
+     "si": "PV-DISSOL2a",
+     "interdit": [
+      "PV-DISSOL2b"
+     ],
+     "duree_mois": 12,
+     "motif": "article 12 de la Constitution, comme ci-dessus"
+    }
+   ],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-MAJOR": {
+   "nom": "Groupe du parti du président à 289 députés ou plus après les législatives",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    },
+    {
+     "id": "PV-DISSOL2a",
+     "nom": "Dissolution dans les deux mois suivant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2027-05-03",
+      "2027-06-30"
+     ]
+    }
+   ],
+   "definition": null,
+   "date": "2027-07-01",
+   "fenetre": null,
+   "issues": [
+    "289 ou plus",
+    "moins de 289"
+   ],
+   "cas": {
+    "PV-VAINQ=RN|PV-DISSOL2a=oui": {
+     "loi": {
+      "289 ou plus": 0.22,
+      "moins de 289": 0.78
+     },
+     "justification": "Dossier section 4 : groupe du président à 289 dans 5 cas sur 7 mais surtout pour de nouveaux présidents dans un système bipolaire ; RN seul à 121 sièges (138 avec UDR) ; projections surévaluant le camp en tête (2002, 2007, 2017, 2022) ; 2024 montre le plafond (front républicain) ; jugement : élan présidentiel mais majorité absolue du seul groupe RN difficile ; la date de lecture du 1er juillet exclut aussi des élections tardives."
+    },
+    "PV-VAINQ=*|PV-DISSOL2a=non": {
+     "loi": {
+      "289 ou plus": 0.003,
+      "moins de 289": 0.997
+     },
+     "justification": "Dossier section 4 : sans législatives, composition de 2024 (RN 121, EPR 90, etc.), aucun précédent de groupe passant à 289 sans élections ; reste un risque infime de ralliements/lecture."
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=oui": {
+     "loi": {
+      "289 ou plus": 0.1,
+      "moins de 289": 0.9
+     },
+     "justification": "Jugement : Horizons (35 députés) devrait passer à 289 seul ; 2017 (313 pour LaREM) est un précédent de vague mais avec un mouvement neuf, 2022 un contre-exemple (section 4) ; paysage tripolaire/quadripolaire."
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=oui": {
+     "loi": {
+      "289 ou plus": 0.1,
+      "moins de 289": 0.9
+     },
+     "justification": "Jugement : EPR 90 députés, impopularité du camp macroniste (17 % de satisfaits, section 2) mais effet d'élection ; 2022 : 172 pour RE (section 4)."
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=oui": {
+     "loi": {
+      "289 ou plus": 0.04,
+      "moins de 289": 0.96
+     },
+     "justification": "Jugement : LFI 70 députés, rejet fort des autres blocs au second tour."
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=oui": {
+     "loi": {
+      "289 ou plus": 0.05,
+      "moins de 289": 0.95
+     },
+     "justification": "Jugement : PS 68 députés, besoin d'un groupe seul à 289, gauche divisée ; Glucksmann/Place publique rattachement non vérifié (section 4)."
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=oui": {
+     "loi": {
+      "289 ou plus": 0.06,
+      "moins de 289": 0.94
+     },
+     "justification": "Jugement : LR 47 députés, concurrence du RN et du centre."
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=oui": {
+     "loi": {
+      "289 ou plus": 0.05,
+      "moins de 289": 0.95
+     },
+     "justification": "Jugement : parti peu implanté à l'Assemblée, mais effet d'élection possible ; cas rare."
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=oui": {
+     "loi": {
+      "289 ou plus": 0.08,
+      "moins de 289": 0.92
+     },
+     "justification": "Jugement : vainqueur hors des sept cas, soutien parlementaire inconnu ; effet de vague possible d'un nouveau mouvement (2017, section 4)."
+    }
+   },
+   "verrous": []
+  },
+  "PV-CENSURE2": {
+   "nom": "Censure après le second tour",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-MAJOR",
+     "nom": "Groupe du parti du président à 289 députés ou plus après les législatives",
+     "etats": [
+      "289 ou plus",
+      "moins de 289"
+     ],
+     "decalage": 0,
+     "definition": "2027-07-01"
+    },
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-05-03",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-MAJOR=289 ou plus|VE-POP=< 25 %": {
+     "loi": {
+      "oui": 0.03
+     },
+     "justification": "Dossier section 5 : aucune censure adoptée sous majorité absolue depuis 1962 (XIVe et XVe législatures : 4 et 5 motions rejetées) ; reste le risque d'érosion de la majorité en 17 mois."
+    },
+    "PV-MAJOR=289 ou plus|VE-POP=25-35 %": {
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "Dossier section 5 : aucune censure adoptée sous majorité absolue depuis 1962 (XIVe et XVe législatures : 4 et 5 motions rejetées) ; reste le risque d'érosion de la majorité en 17 mois."
+    },
+    "PV-MAJOR=289 ou plus|VE-POP=> 35 %": {
+     "loi": {
+      "oui": 0.01
+     },
+     "justification": "Dossier section 5 : aucune censure adoptée sous majorité absolue depuis 1962 (XIVe et XVe législatures : 4 et 5 motions rejetées) ; reste le risque d'érosion de la majorité en 17 mois."
+    },
+    "PV-MAJOR=moins de 289|VE-POP=< 25 %": {
+     "loi": {
+      "oui": 0.3
+     },
+     "justification": "Dossier section 5 : taux de base sous majorité relative environ 0,009 par mois soit 0,15 sur 17 mois, mais 2 gouvernements tombés sur 4 depuis 2024 (Barnier censuré, Bayrou confiance perdue), motions à 269/267 voix en janvier 2026 ; session budgétaire d'automne 2027 ; popularité basse relève, un nouveau président et un gouvernement neuf abaissent."
+    },
+    "PV-MAJOR=moins de 289|VE-POP=25-35 %": {
+     "loi": {
+      "oui": 0.22
+     },
+     "justification": "Dossier section 5 : taux de base sous majorité relative environ 0,009 par mois soit 0,15 sur 17 mois, mais 2 gouvernements tombés sur 4 depuis 2024 (Barnier censuré, Bayrou confiance perdue), motions à 269/267 voix en janvier 2026 ; session budgétaire d'automne 2027 ; popularité basse relève, un nouveau président et un gouvernement neuf abaissent."
+    },
+    "PV-MAJOR=moins de 289|VE-POP=> 35 %": {
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "Dossier section 5 : taux de base sous majorité relative environ 0,009 par mois soit 0,15 sur 17 mois, mais 2 gouvernements tombés sur 4 depuis 2024 (Barnier censuré, Bayrou confiance perdue), motions à 269/267 voix en janvier 2026 ; session budgétaire d'automne 2027 ; popularité basse relève, un nouveau président et un gouvernement neuf abaissent."
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  }
+ },
+ "direct": {
+  "EV-16b": {
+   "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel entre le 3 mai 2027 et le 30 septembre 2028.",
+   "fenetre": {
+    "debut": "2027-05-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.67
+  },
+  "EV-17": {
+   "critere": "Le 30 septembre 2028, selon la composition des groupes publiée par l'Assemblée nationale, le groupe qui compte le plus de députés membres du parti dont le président élu en 2027 est membre au jour du second tour compte moins de 289 membres, apparentés compris ; si aucun groupe ne compte de député de ce parti, la réponse est « oui ». Si le président élu n'est membre d'aucun parti, le groupe retenu est celui qui a déclaré le soutenir au premier tour et compte le plus de membres.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.87
+  },
+  "EV-43": {
+   "critere": "Le Premier ministre en fonction le 30 septembre 2028 est membre d'un parti qui a investi ou soutenu, par une décision publiée, au premier tour de 2027, un candidat autre que le président élu. Une coalition dont le Premier ministre vient d'un tel parti compte.",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.25
+  },
+  "EV-45": {
+   "critere": "Le 30 septembre 2028, l'âge d'ouverture du droit à pension fixé par le code de la sécurité sociale (article L161-17-2 ou disposition qui le remplace) pour les assurés nés en 1970 est inférieur à 64 ans, dans la version de l'article en vigueur à cette date ; une disposition promulguée dont l'entrée en vigueur est postérieure ne compte pas. Cette génération n'est pas concernée par la suspension de la réforme de 2023 : la réponse « oui » suppose un abaissement voté.",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.12
+  },
+  "EV-15c": {
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2027-05-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.23
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-10"
+}

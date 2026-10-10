@@ -1,0 +1,250 @@
+{
+ "evaluateur": "E29",
+ "ronde": 2,
+ "lecture": "Seconde ronde (IDEA) : défauts de ta réponse, puis, pour chaque table, les valeurs et justifications anonymes des deux autres évaluateurs. Révise une entrée seulement si un argument ou un fait t'y conduit.",
+ "defauts": [],
+ "mesures": {
+  "EV-13": {
+   "calme": {
+    "autre 1": {
+     "valeur": 4,
+     "justification": "jugement : sans mobilisation de rue, un taux FPE au-dessus de 18 % suppose une grève enseignante massive isolée ; elle reste possible (journée fonction publique du 5 décembre 2024, 19 % sur l'ensemble des agents publics selon Acteurs publics, https://acteurspublics.fr/articles/salaires-dans-la-fonction-publique-malgre-une-journee-de-greve-suivie-par-moins-de-10-des-agents-les-syndicats-esperent-peser/) mais rare."
+    },
+    "autre 2": {
+     "valeur": 1,
+     "justification": "Dossier L1 section 3.1 : mois calme (moins de 200 000 manifestants), aucune journée à 18 % de grévistes dans la fonction publique de l'État ; jugement : 1 % par prudence."
+    }
+   },
+   "modérée": {
+    "autre 1": {
+     "valeur": 12,
+     "justification": "Le 29 septembre 2026 (206 000 manifestants, état modéré, dossier_L1 1.2), la FPE n'a atteint que « près de 10 % » selon le ministère (Acteurs publics, 30 septembre 2026, URL ci-dessus) ; il faudrait presque doubler ce taux. Jugement : possible sur une journée éducation contre les suppressions de postes du PLF 2027, d'où 12 %."
+    },
+    "autre 2": {
+     "valeur": 3,
+     "justification": "Dossier L1 1.2 : le 29 septembre 2026 (206 000 manifestants) l'Éducation nationale n'a compté que 11,47 % de grévistes, donc la fonction publique de l'État entière est plus bas ; en 2025 le 18 septembre (506 000) a donné environ 12 % et le 2 octobre 4,68 % (presse, weka.fr/acteurspublics.fr) ; jugement : 3 %."
+    }
+   },
+   "forte": {
+    "autre 1": {
+     "valeur": 50,
+     "justification": "Journées « fortes » passées : FPE 32,82 % le 5 décembre 2019, 29,5 % le 19 janvier 2023, 19,4 % à mi-journée le 31 janvier 2023 (Acteurs publics, https://acteurspublics.fr/articles/retraites-les-fonctionnaires-sont-ils-plus-ou-moins-mobilises-quen-2019) ; mais le 18 septembre 2025 (506 000, forte, dossier_L1 3.1) relevait d'un mouvement budgétaire où l'éducation était moins en grève. Jugement : environ une chance sur deux."
+    },
+    "autre 2": {
+     "valeur": 15,
+     "justification": "Jugement : seul un mouvement de type retraites 2019 ou 2023 (plus de 500 000 manifestants) pousse le taux de grévistes de la fonction publique de l'État vers ou au-dessus de 18 % ; même la journée du 18 septembre 2025 (506 000) est restée nettement sous ce seuil, d'où 15 %."
+    }
+   }
+  },
+  "EV-51": {
+   "calme|calme": {
+    "autre 1": {
+     "valeur": 5,
+     "justification": "jugement : reste le risque d'émeutes urbaines hors mouvement social (type juin 2023) ou d'une nuit électorale du 2 mai 2027 ; rare, d'où 5 %."
+    },
+    "autre 2": {
+     "valeur": 3,
+     "justification": "Dossier L1 1.1 : le plus haut nombre d'interpellations d'une journée du mouvement lycéen est 488 (6 octobre 2026) alors que 6 000 cumulées ; si tout reste calme, 1 000 en un jour ou une nuit exige un événement de type émeutes ; jugement : 3 %."
+    }
+   },
+   "modérée|*": {
+    "autre 1": {
+     "valeur": 20,
+     "justification": "jugement : une mobilisation générale modérée (200 000-500 000) produit en général quelques centaines d'interpellations (440 le 29 septembre 2026, dossier_L1 1.2) ; 1 000 en une journée suppose des débordements de type gilets jaunes."
+    },
+    "autre 2": {
+     "valeur": 9,
+     "justification": "Jugement : une mobilisation modérée (200 000 à 500 000) a déjà donné 440 à 488 interpellations par jour en 2026 (L1 1.1, 1.2), sans atteindre 1 000 ; le seuil reste possible lors d'un pic ou d'une nuit de violences ; 9 % sur la fenêtre jusqu'à juin 2027."
+    }
+   },
+   "*|modérée": {
+    "autre 1": {
+     "valeur": 35,
+     "justification": "Le 6 octobre 2026, avec 891 lycées perturbés (état modéré), l'Intérieur comptait 488 interpellations (dossier_L1 1.1) ; une journée modérée haute peut approcher 1 000, d'où 35 %."
+    },
+    "autre 2": {
+     "valeur": 11,
+     "justification": "Dossier L1 1.1 : lycées perturbés entre 300 et 999, cas de l'état actuel avec 488 interpellations au maximum quotidien ; un cran de plus (violences urbaines, mort d'un manifestant) pourrait franchir 1 000 ; jugement : 11 %."
+    }
+   },
+   "forte|*": {
+    "autre 1": {
+     "valeur": 35,
+     "justification": "jugement : une mobilisation intersyndicale forte est d'ordinaire encadrée (2019, 2023 sans journée à 1 000 trouvée) ; le risque vient des cortèges de tête et des nuits de blocage, d'où 35 %."
+    },
+    "autre 2": {
+     "valeur": 28,
+     "justification": "Précédents : 8 décembre 2018 environ 1 080 interpellations pour les gilets jaunes, nuit du 30 juin au 1er juillet 2023 environ 1 300 après Nahel ; une mobilisation forte (plus de 500 000) augmente nettement le risque ; jugement : 28 %."
+    }
+   },
+   "*|forte": {
+    "autre 1": {
+     "valeur": 70,
+     "justification": "Le 1er octobre 2026, avec 1 027 établissements concernés, l'Intérieur annonçait près de 2 000 interpellations en une journée (dépêche AFP reprise par dhnet.be, 2 octobre 2026, https://www.dhnet.be/dernieres-depeches/2026/10/02/le-mouvement-de-blocage-des-lycees-devrait-se-poursuivre-vendredi-BXWYF663HZGKDA3FBDJOQSRCQ4/) ; une reprise à ce niveau rend 1 000 probable, d'où 70 %."
+    },
+    "autre 2": {
+     "valeur": 25,
+     "justification": "Dossier L1 : un mouvement lycéen à 1 000 établissements ou plus a déjà produit des centaines d'interpellations par jour (488 le 6 octobre) ; jugement : 25 %, l'entrée la plus forte s'applique."
+    }
+   }
+  },
+  "EV-49": {
+   "oui": {
+    "autre 1": {
+     "valeur": 50,
+     "justification": "jugement : PV-GOUV court jusqu'au 2 mai 2027 ; environ 60 % des changements de Premier ministre surviendraient avant le 31 décembre (session budgétaire, censure promise par la gauche, dossier_L2 2.2) et entraîneraient alors très probablement la sortie de Geffray (remplacement ou affaires courantes au 31 décembre, compté « oui »), d'où 50 %."
+    },
+    "autre 2": {
+     "valeur": 50,
+     "justification": "Jugement : un changement de Premier ministre avant le 31 décembre 2026 (par exemple après censure du budget, L2 section 4) entraîne un gouvernement nouveau ; le ministre de l'Éducation, en première ligne face au mouvement lycéen (L1 1.4, 6), serait alors changé ou non à peu près à égalité ; 50 %."
+    }
+   },
+   "non": {
+    "autre 1": {
+     "valeur": 9,
+     "justification": "jugement : sans changement de Premier ministre, un remaniement ou un départ du ministre de l'Éducation en pleine crise lycéenne (dossier_L1 1.1 et 1.4) reste possible mais peu fréquent sur moins de trois mois."
+    },
+    "autre 2": {
+     "valeur": 7,
+     "justification": "Dossier L1 1.4 et 6 : Geffray est exposé par le mouvement lycéen, mais un ministre est rarement remplacé isolément en trois mois ; jugement : 7 %."
+    }
+   }
+  },
+  "EV-20": {
+   "pas d'arrêt": {
+    "autre 1": {
+     "valeur": {
+      "rejet ou non-admission": 30,
+      "cassation totale ou partielle": 9,
+      "désistement": 1,
+      "pas d'arrêt au 31 mars 2027": 60
+     },
+     "justification": "La Cour vise un arrêt « au plus tard début avril 2027 » avec un calendrier « susceptible d'évoluer » (dossier_L3 2.1) et les précédents politiques montrent 17,5 à 21,5 mois entre appel et audience (2.2) : sans arrêt au 12 mars, un délibéré fixé fin mars est possible mais un arrêt début avril ou plus tard est plus probable (60 %). Le reste suit le taux de cassation d'environ 18-22 % des pourvois examinés (2.4) ; désistement improbable car il rendrait la peine exécutable (2.5)."
+    },
+    "autre 2": {
+     "valeur": {
+      "rejet ou non-admission": 43,
+      "cassation totale ou partielle": 16,
+      "désistement": 1,
+      "pas d'arrêt au 31 mars 2027": 40
+     },
+     "justification": "Dossier L3 2.1 et 2.2 : la Cour vise un arrêt au plus tard début avril 2027, délibéré de 6 à 8 semaines après l'audience ; sachant qu'aucun arrêt n'est rendu au 12 mars, environ 40 % de chances que rien ne soit rendu le 31 mars ; arrêt : rejet environ 72 %, cassation environ 27 % (taux de base 18 %, relevé pour un dossier à fort enjeu juridique), désistement très faible ; jugement."
+    }
+   }
+  },
+  "EV-05": {
+   "AUT|*|*": {
+    "autre 1": {
+     "valeur": {
+      "François Hollande": 25,
+      "autre": 75
+     },
+     "justification": "Hollande est la personnalité hors codes la mieux placée (6,9 % au premier tour, 44-46 % face à Le Pen, dossier_L3 6.1 et dossier_L4 5.3), mais « autre » rassemble de nombreuses voies (vainqueur de la primaire autre que Glucksmann, Cazeneuve, Ruffin, Bertrand, Darmanin, Villepin, candidat RN tiers, etc.) ; jugement : un quart pour Hollande."
+    },
+    "autre 2": {
+     "valeur": {
+      "François Hollande": 35,
+      "autre": 65
+     },
+     "justification": "Dossier L4 4.1 : Hollande décidera en décembre 2026 et fait 44 à 46 % face à Le Pen dans deux sondages de second tour ; mais « autre » regroupe Faure (non codé, en primaire PS), Cazeneuve, Tondelier, Roussel, Ruffin, Zemmour, etc. ; jugement : Hollande 35 %, autre 65 %."
+    }
+   }
+  },
+  "EV-17": {
+   "*|oui": {
+    "autre 1": {
+     "valeur": 65,
+     "justification": "Dissolutions hors prise de fonctions : 1962 et 1968 gagnées, 1997 et 2024 perdues (dossier_L5 3) ; une dissolution en 2027-2028 interviendrait surtout faute de majorité, et une majorité absolue d'un seul groupe est rare dans l'Assemblée actuelle (aucun groupe au-dessus de 121, section 4). Une dissolution tardive peut aussi laisser l'ancienne composition au 30 septembre 2028. Jugement : 65 %."
+    },
+    "autre 2": {
+     "valeur": 70,
+     "justification": "Dossier L5 sections 3 et 4 : une seconde dissolution suppose une Assemblée ingouvernable ; le groupe du parti du président ne dépasse 289 que s'il gagne nettement de nouvelles élections (1981, 2002, 2007, 2012, 2017 oui ; 1988, 2022 non) alors qu'aucun groupe actuel n'atteint 289 (RN 121, EPR 90) ; jugement : 70 %."
+    }
+   }
+  },
+  "EV-43": {
+   "289 ou plus": {
+    "autre 1": {
+     "valeur": 8,
+     "justification": "jugement : avec un groupe présidentiel majoritaire, le Premier ministre vient presque toujours du parti du président (2002-2017) ; seule une ouverture à un partenaire du même bloc ayant soutenu un autre candidat (Renaissance si Philippe, par exemple) le contredirait."
+    },
+    "autre 2": {
+     "valeur": 12,
+     "justification": "Jugement : avec un groupe présidentiel majoritaire, le Premier ministre vient en général du parti du président (L5 section 4, succès de 2002 à 2017) ; reste le cas d'une coalition avec un parti qui avait soutenu un autre candidat au premier tour (Horizons, LR, EPR) ; 12 %."
+    }
+   },
+   "moins de 289": {
+    "autre 1": {
+     "valeur": 37,
+     "justification": "jugement : sans majorité, coalition ou cohabitation probables ; un président RN nommerait plutôt un RN (Bardella pressenti, dossier_L3 3.1), mais un président du centre ou de gauche devrait souvent confier Matignon à un partenaire ayant eu son propre candidat (LR, Renaissance, PS) ; environ 37 % en moyenne."
+    },
+    "autre 2": {
+     "valeur": 42,
+     "justification": "Dossier L5 sections 4 et 5 : sans majorité absolue, le président doit s'appuyer sur d'autres partis (LR, Renaissance, PS, Horizons), souvent investis derrière un autre candidat au premier tour (Attal, Retailleau, Philippe) ; un Premier ministre issu de ces partis compte ; jugement : 42 %."
+    }
+   }
+  },
+  "EV-45": {
+   "RN|289 ou plus": {
+    "autre 1": {
+     "valeur": 40,
+     "justification": "Le Pen maintient le retour à 62 ans (60 pour les carrières longues) mais Bardella juge que « l'âge légal ne veut rien dire » (LCP, 19 juin 2026, https://lcp.fr/actualites/presidentielle-2027-qui-propose-quoi-sur-les-retraites-437864 ; Public Sénat, juin 2026) ; avec une majorité, un abaissement voté et en vigueur dès 2028 est plausible mais freiné par le déficit et la notation, d'où 40 %."
+    },
+    "autre 2": {
+     "valeur": 55,
+     "justification": "Jugement : le RN promet d'abroger la réforme de 2023 (retour à 62 ans, 60 ans pour carrières longues) ; avec un groupe présidentiel majoritaire une loi peut être votée et en vigueur avant septembre 2028, avec un risque de délai d'entrée en vigueur ; 55 %."
+    }
+   },
+   "RN|moins de 289": {
+    "autre 1": {
+     "valeur": 18,
+     "justification": "jugement : un gouvernement RN minoritaire pourrait trouver une majorité avec la gauche sur un abaissement, mais le Sénat, la censure et la priorité budgétaire rendent l'entrée en vigueur avant le 30 septembre 2028 peu probable."
+    },
+    "autre 2": {
+     "valeur": 30,
+     "justification": "Dossier L5 section 4 : RN 121 et UDR 17 sans majorité ; une abrogation passerait si la gauche vote avec le RN, mais le calendrier d'entrée en vigueur avant septembre 2028 est incertain ; jugement : 30 %."
+    }
+   },
+   "MEL|*": {
+    "autre 1": {
+     "valeur": 35,
+     "justification": "Mélenchon défend 60 ans et 40 annuités (LCP, 19 juin 2026, URL ci-dessus) ; une majorité absolue LFI est improbable, mais RN et gauche pourraient voter un abaissement ; jugement : 35 %."
+    },
+    "autre 2": {
+     "valeur": 40,
+     "justification": "Jugement : abrogation promise de la réforme (60 ans) ; une loi doit être votée par une Assemblée fragmentée où RN et gauche votent plutôt dans le même sens sur ce point ; 40 %."
+    }
+   },
+   "GLU|*": {
+    "autre 1": {
+     "valeur": 15,
+     "justification": "Le PS veut ramener l'âge à 62 ans sans en faire le critère central et Glucksmann refuse d'en faire un « totem » (LCP, 19 juin 2026) ; jugement : 15 %."
+    },
+    "autre 2": {
+     "valeur": 30,
+     "justification": "Jugement : Glucksmann prévoit plutôt une renégociation et une suspension qu'un retour immédiat sous 64 ans pour la génération 1970 ; la suspension de 2026 ne concerne pas cette génération (critère) ; 30 %."
+    }
+   },
+   "*|289 ou plus": {
+    "autre 1": {
+     "valeur": 3,
+     "justification": "Philippe (âge plus tardif), Attal (suppression de l'âge légal au profit de la durée), Retailleau (65 ans) ne proposent pas d'abaisser l'âge (LCP, 19 juin 2026) ; reste le cas marginal d'un autre vainqueur de gauche."
+    },
+    "autre 2": {
+     "valeur": 4,
+     "justification": "Jugement : Philippe, Attal, Retailleau, Lisnard ou autres de centre et droite ne reviendraient pas sur 64 ans, et la suspension de 2026 ne vise pas la génération 1970 ; 4 %."
+    }
+   },
+   "*|moins de 289": {
+    "autre 1": {
+     "valeur": 5,
+     "justification": "jugement : sans majorité du président, une coalition RN-gauche à l'Assemblée pourrait imposer un abaissement contre le gouvernement, mais l'entrée en vigueur avant septembre 2028 est peu probable."
+    },
+    "autre 2": {
+     "valeur": 6,
+     "justification": "Jugement : sans majorité, un abaissement voté suppose une coalition de circonstance contre le gouvernement, rare pour un président centriste ou de droite ; 6 %."
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,1738 @@
+{
+ "evaluateur": "E24",
+ "date": "2026-10-10",
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "PV-ECOLO": {
+   "nom": "Vote des adhérents des Écologistes",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+     "etats": [
+      "centre",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1,
+     "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)"
+    }
+   ],
+   "definition": null,
+   "date": "2026-12-13",
+   "fenetre": null,
+   "issues": [
+    "candidature autonome",
+    "soutien à un autre candidat",
+    "autre ou vote non tenu"
+   ],
+   "cas": {
+    "VE-SOND=centre": {
+     "poids_reseau": 0.8767,
+     "loi": {
+      "candidature autonome": 0.5,
+      "soutien à un autre candidat": 0.4,
+      "autre ou vote non tenu": 0.1
+     },
+     "justification": "jugement : Tondelier à 3-6 % (dossier 2.3) contre une motion de direction à 69 % « pour l'Union » (2.1) ; la direction ménage les deux options, les adhérents tiennent à leur candidat mais le risque de passer sous 5 % (4,63 % en 2022, 2.3) pèse. Précédent de 2017 : 89,7 % pour discuter (2.4). Légère avance à la candidature autonome, 10 % pour vote reporté ou résultat non tranché."
+    },
+    "VE-SOND=gauche": {
+     "poids_reseau": 0.1013,
+     "loi": {
+      "candidature autonome": 0.52,
+      "soutien à un autre candidat": 0.38,
+      "autre ou vote non tenu": 0.1
+     },
+     "justification": "jugement : même raisonnement que le cas centre ; si Mélenchon est deuxième, la gauche non LFI a moins de raison de s'effacer derrière un autre candidat qu'en cas d'urgence à l'union (dossier 2.1, 2.3). Léger report vers la candidature autonome."
+    },
+    "VE-SOND=droite": {
+     "poids_reseau": 0.022,
+     "loi": {
+      "candidature autonome": 0.45,
+      "soutien à un autre candidat": 0.45,
+      "autre ou vote non tenu": 0.1
+     },
+     "justification": "jugement : si la droite est deuxième, la gauche est reléguée et l'argument « empêcher le RN » (dossier 2.1, Pegeon) pousse davantage à l'union ; autonome et soutien à égalité, 10 % pour vote non tenu ou résultat non tranché."
+    }
+   },
+   "verrous": []
+  },
+  "PV-BLOC": {
+   "nom": "Candidatures du bloc central",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+     "etats": [
+      "centre",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1,
+     "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)"
+    }
+   ],
+   "definition": null,
+   "date": "2027-03-26",
+   "fenetre": null,
+   "issues": [
+    "les deux",
+    "Philippe seul",
+    "Attal seul",
+    "aucun des deux"
+   ],
+   "cas": {
+    "VE-SOND=centre": {
+     "poids_reseau": 0.7493,
+     "loi": {
+      "les deux": 0.34,
+      "Philippe seul": 0.5,
+      "Attal seul": 0.12,
+      "aucun des deux": 0.04
+     },
+     "justification": "dossier 3.1-3.2 : les deux sont déclarés, aucun départage arrêté au 10 octobre, Attal compte sur « début 2027 » et Philippe veut trancher entre novembre et février ; en septembre Philippe seul est deuxième (18/22 hypothèses) et Philippe devance Attal (14 contre 7,4 si les deux). jugement : la pression de rassemblement (« risque RN-LFI ») fait converger vers un seul candidat, Philippe plus probable ; 34 % que les deux restent au 26 mars (1965-2002 : plusieurs candidats du bloc dans 6 cas sur 11, 3.3), 4 % que ni l'un ni l'autre (ennuis judiciaires de Philippe, 3.1)."
+    },
+    "VE-SOND=gauche": {
+     "poids_reseau": 0.206,
+     "loi": {
+      "les deux": 0.25,
+      "Philippe seul": 0.45,
+      "Attal seul": 0.22,
+      "aucun des deux": 0.08
+     },
+     "justification": "jugement : si Mélenchon est deuxième, le centre est dispersé, ce qui renforce la pression pour un candidat unique mais affaiblit la position de Philippe, donc Attal seul plus probable (dossier 3.2 : Mélenchon deuxième dans 14/19 hypothèses avec les deux) ; un tel contexte rend aussi un retrait des deux au profit d'un tiers un peu plus plausible."
+    },
+    "VE-SOND=droite": {
+     "poids_reseau": 0.0447,
+     "loi": {
+      "les deux": 0.25,
+      "Philippe seul": 0.4,
+      "Attal seul": 0.23,
+      "aucun des deux": 0.12
+     },
+     "justification": "jugement : si la droite (Retailleau, Lisnard) est deuxième, le centre est faible et Philippe comme Attal pourraient s'effacer ou se retirer au profit d'un tiers ; 12 % pour aucun des deux, le reste réparti comme dans le cas centre (dossier 3.1-3.2)."
+    }
+   },
+   "verrous": []
+  },
+  "PV-GAUCHE": {
+   "nom": "Nombre de candidats de gauche",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-ECOLO",
+     "nom": "Vote des adhérents des Écologistes",
+     "etats": [
+      "candidature autonome",
+      "soutien à un autre candidat",
+      "autre ou vote non tenu"
+     ],
+     "decalage": 0,
+     "definition": "2026-12-13"
+    },
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+     "etats": [
+      "centre",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1,
+     "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)"
+    }
+   ],
+   "definition": null,
+   "date": "2027-03-26",
+   "fenetre": null,
+   "issues": [
+    "3 ou moins",
+    "4",
+    "5",
+    "6 ou plus"
+   ],
+   "cas": {
+    "PV-ECOLO=candidature autonome|VE-SOND=centre": {
+     "poids_reseau": 0.38,
+     "loi": {
+      "3 ou moins": 0.013,
+      "4": 0.1223,
+      "5": 0.4918,
+      "6 ou plus": 0.3729
+     },
+     "justification": "jugement : socle quasi certain de quatre noms (Mélenchon déclaré, Roussel investi à 72 %, Arthaud candidate, vainqueur de la primaire PS-PP, dossier 4.1), moins le risque de parrainage (500 présentations, 4.4) ; Tondelier en plus si le vote écologiste maintient sa candidature (candidature autonome) ; extras possibles : NPA (Poutou présent en 2012, 2017, 2022 mais rien trouvé, 4.1), Ruffin (annonce du 12 mai, 4.1, parrainages difficiles), Hollande, Cazeneuve ou Bouamrane. Taux de base 2012-2022 : 5, 4, 6 (4.3). Contexte : gauche pas deuxième, pression à l'union plutôt qu'à la dispersion."
+    },
+    "PV-ECOLO=candidature autonome|VE-SOND=gauche": {
+     "poids_reseau": 0.1053,
+     "loi": {
+      "3 ou moins": 0.0128,
+      "4": 0.1199,
+      "5": 0.4839,
+      "6 ou plus": 0.3834
+     },
+     "justification": "jugement : socle quasi certain de quatre noms (Mélenchon déclaré, Roussel investi à 72 %, Arthaud candidate, vainqueur de la primaire PS-PP, dossier 4.1), moins le risque de parrainage (500 présentations, 4.4) ; Tondelier en plus si le vote écologiste maintient sa candidature (candidature autonome) ; extras possibles : NPA (Poutou présent en 2012, 2017, 2022 mais rien trouvé, 4.1), Ruffin (annonce du 12 mai, 4.1, parrainages difficiles), Hollande, Cazeneuve ou Bouamrane. Taux de base 2012-2022 : 5, 4, 6 (4.3). Contexte : Mélenchon deuxième, peu d'incitation à se rallier."
+    },
+    "PV-ECOLO=candidature autonome|VE-SOND=droite": {
+     "poids_reseau": 0.0213,
+     "loi": {
+      "3 ou moins": 0.0113,
+      "4": 0.1074,
+      "5": 0.4433,
+      "6 ou plus": 0.438
+     },
+     "justification": "jugement : socle quasi certain de quatre noms (Mélenchon déclaré, Roussel investi à 72 %, Arthaud candidate, vainqueur de la primaire PS-PP, dossier 4.1), moins le risque de parrainage (500 présentations, 4.4) ; Tondelier en plus si le vote écologiste maintient sa candidature (candidature autonome) ; extras possibles : NPA (Poutou présent en 2012, 2017, 2022 mais rien trouvé, 4.1), Ruffin (annonce du 12 mai, 4.1, parrainages difficiles), Hollande, Cazeneuve ou Bouamrane. Taux de base 2012-2022 : 5, 4, 6 (4.3). Contexte : gauche reléguée, davantage d'initiatives dispersées ou de défection."
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=centre": {
+     "poids_reseau": 0.304,
+     "loi": {
+      "3 ou moins": 0.0972,
+      "4": 0.4924,
+      "5": 0.3254,
+      "6 ou plus": 0.085
+     },
+     "justification": "jugement : socle quasi certain de quatre noms (Mélenchon déclaré, Roussel investi à 72 %, Arthaud candidate, vainqueur de la primaire PS-PP, dossier 4.1), moins le risque de parrainage (500 présentations, 4.4) ; Tondelier en plus si le vote écologiste maintient sa candidature (soutien à un autre candidat) ; extras possibles : NPA (Poutou présent en 2012, 2017, 2022 mais rien trouvé, 4.1), Ruffin (annonce du 12 mai, 4.1, parrainages difficiles), Hollande, Cazeneuve ou Bouamrane. Taux de base 2012-2022 : 5, 4, 6 (4.3). Contexte : gauche pas deuxième, pression à l'union plutôt qu'à la dispersion."
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=gauche": {
+     "poids_reseau": 0.0827,
+     "loi": {
+      "3 ou moins": 0.0952,
+      "4": 0.4838,
+      "5": 0.3298,
+      "6 ou plus": 0.0912
+     },
+     "justification": "jugement : socle quasi certain de quatre noms (Mélenchon déclaré, Roussel investi à 72 %, Arthaud candidate, vainqueur de la primaire PS-PP, dossier 4.1), moins le risque de parrainage (500 présentations, 4.4) ; Tondelier en plus si le vote écologiste maintient sa candidature (soutien à un autre candidat) ; extras possibles : NPA (Poutou présent en 2012, 2017, 2022 mais rien trouvé, 4.1), Ruffin (annonce du 12 mai, 4.1, parrainages difficiles), Hollande, Cazeneuve ou Bouamrane. Taux de base 2012-2022 : 5, 4, 6 (4.3). Contexte : Mélenchon deuxième, peu d'incitation à se rallier."
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=droite": {
+     "poids_reseau": 0.0153,
+     "loi": {
+      "3 ou moins": 0.0848,
+      "4": 0.4389,
+      "5": 0.3567,
+      "6 ou plus": 0.1196
+     },
+     "justification": "jugement : socle quasi certain de quatre noms (Mélenchon déclaré, Roussel investi à 72 %, Arthaud candidate, vainqueur de la primaire PS-PP, dossier 4.1), moins le risque de parrainage (500 présentations, 4.4) ; Tondelier en plus si le vote écologiste maintient sa candidature (soutien à un autre candidat) ; extras possibles : NPA (Poutou présent en 2012, 2017, 2022 mais rien trouvé, 4.1), Ruffin (annonce du 12 mai, 4.1, parrainages difficiles), Hollande, Cazeneuve ou Bouamrane. Taux de base 2012-2022 : 5, 4, 6 (4.3). Contexte : gauche reléguée, davantage d'initiatives dispersées ou de défection."
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=centre": {
+     "poids_reseau": 0.0653,
+     "loi": {
+      "3 ou moins": 0.0439,
+      "4": 0.258,
+      "5": 0.4307,
+      "6 ou plus": 0.2674
+     },
+     "justification": "jugement : socle quasi certain de quatre noms (Mélenchon déclaré, Roussel investi à 72 %, Arthaud candidate, vainqueur de la primaire PS-PP, dossier 4.1), moins le risque de parrainage (500 présentations, 4.4) ; Tondelier en plus si le vote écologiste maintient sa candidature (autre ou vote non tenu) ; extras possibles : NPA (Poutou présent en 2012, 2017, 2022 mais rien trouvé, 4.1), Ruffin (annonce du 12 mai, 4.1, parrainages difficiles), Hollande, Cazeneuve ou Bouamrane. Taux de base 2012-2022 : 5, 4, 6 (4.3). Contexte : gauche pas deuxième, pression à l'union plutôt qu'à la dispersion."
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=gauche": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "3 ou moins": 0.043,
+      "4": 0.2533,
+      "5": 0.4275,
+      "6 ou plus": 0.2762
+     },
+     "justification": "jugement : socle quasi certain de quatre noms (Mélenchon déclaré, Roussel investi à 72 %, Arthaud candidate, vainqueur de la primaire PS-PP, dossier 4.1), moins le risque de parrainage (500 présentations, 4.4) ; Tondelier en plus si le vote écologiste maintient sa candidature (autre ou vote non tenu) ; extras possibles : NPA (Poutou présent en 2012, 2017, 2022 mais rien trouvé, 4.1), Ruffin (annonce du 12 mai, 4.1, parrainages difficiles), Hollande, Cazeneuve ou Bouamrane. Taux de base 2012-2022 : 5, 4, 6 (4.3). Contexte : Mélenchon deuxième, peu d'incitation à se rallier."
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=droite": {
+     "poids_reseau": 0.008,
+     "loi": {
+      "3 ou moins": 0.0383,
+      "4": 0.229,
+      "5": 0.4114,
+      "6 ou plus": 0.3213
+     },
+     "justification": "jugement : socle quasi certain de quatre noms (Mélenchon déclaré, Roussel investi à 72 %, Arthaud candidate, vainqueur de la primaire PS-PP, dossier 4.1), moins le risque de parrainage (500 présentations, 4.4) ; Tondelier en plus si le vote écologiste maintient sa candidature (autre ou vote non tenu) ; extras possibles : NPA (Poutou présent en 2012, 2017, 2022 mais rien trouvé, 4.1), Ruffin (annonce du 12 mai, 4.1, parrainages difficiles), Hollande, Cazeneuve ou Bouamrane. Taux de base 2012-2022 : 5, 4, 6 (4.3). Contexte : gauche reléguée, davantage d'initiatives dispersées ou de défection."
+    }
+   },
+   "verrous": []
+  },
+  "PV-DUEL": {
+   "nom": "Duel de second tour",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-BLOC",
+     "nom": "Candidatures du bloc central",
+     "etats": [
+      "les deux",
+      "Philippe seul",
+      "Attal seul",
+      "aucun des deux"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    },
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+     "etats": [
+      "centre",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 0,
+     "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)"
+    },
+    {
+     "id": "PV-LEPEN",
+     "nom": "Candidature de Marine Le Pen",
+     "etats": [
+      "candidate",
+      "non candidate"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    }
+   ],
+   "definition": null,
+   "date": "2027-04-18",
+   "fenetre": null,
+   "issues": [
+    "RN-PHI",
+    "RN-ATT",
+    "RN-MEL",
+    "RN-GLU",
+    "RN-RET",
+    "RN-LIS",
+    "RN-AUT",
+    "PHI-MEL",
+    "PHI-GLU",
+    "AUTRE"
+   ],
+   "cas": {
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=candidate": {
+     "poids_reseau": 0.1987,
+     "loi": {
+      "RN-PHI": 0.4005,
+      "RN-ATT": 0.0534,
+      "RN-MEL": 0.2492,
+      "RN-GLU": 0.089,
+      "RN-RET": 0.0445,
+      "RN-LIS": 0.0089,
+      "RN-AUT": 0.0445,
+      "PHI-MEL": 0.0275,
+      "PHI-GLU": 0.0132,
+      "AUTRE": 0.0693
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 89 % (Le Pen candidate), l'adversaire réparti selon le bloc deuxième (centre) et la configuration du centre (les deux) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.046,
+     "loi": {
+      "RN-PHI": 0.369,
+      "RN-ATT": 0.0492,
+      "RN-MEL": 0.2296,
+      "RN-GLU": 0.082,
+      "RN-RET": 0.041,
+      "RN-LIS": 0.0082,
+      "RN-AUT": 0.041,
+      "PHI-MEL": 0.045,
+      "PHI-GLU": 0.0216,
+      "AUTRE": 0.1134
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 82 % (candidat de remplacement, affaire Bardella non mesurée, 5.2), l'adversaire réparti selon le bloc deuxième (centre) et la configuration du centre (les deux) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0753,
+     "loi": {
+      "RN-PHI": 0.1958,
+      "RN-ATT": 0.0267,
+      "RN-MEL": 0.4895,
+      "RN-GLU": 0.1068,
+      "RN-RET": 0.0267,
+      "RN-LIS": 0.0089,
+      "RN-AUT": 0.0356,
+      "PHI-MEL": 0.0275,
+      "PHI-GLU": 0.0132,
+      "AUTRE": 0.0693
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 89 % (Le Pen candidate), l'adversaire réparti selon le bloc deuxième (gauche) et la configuration du centre (les deux) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0133,
+     "loi": {
+      "RN-PHI": 0.1804,
+      "RN-ATT": 0.0246,
+      "RN-MEL": 0.451,
+      "RN-GLU": 0.0984,
+      "RN-RET": 0.0246,
+      "RN-LIS": 0.0082,
+      "RN-AUT": 0.0328,
+      "PHI-MEL": 0.045,
+      "PHI-GLU": 0.0216,
+      "AUTRE": 0.1134
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 82 % (candidat de remplacement, affaire Bardella non mesurée, 5.2), l'adversaire réparti selon le bloc deuxième (gauche) et la configuration du centre (les deux) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=candidate": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "RN-PHI": 0.2225,
+      "RN-ATT": 0.0178,
+      "RN-MEL": 0.1335,
+      "RN-GLU": 0.0712,
+      "RN-RET": 0.3115,
+      "RN-LIS": 0.0712,
+      "RN-AUT": 0.0623,
+      "PHI-MEL": 0.0275,
+      "PHI-GLU": 0.0132,
+      "AUTRE": 0.0693
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 89 % (Le Pen candidate), l'adversaire réparti selon le bloc deuxième (droite) et la configuration du centre (les deux) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": 0.205,
+      "RN-ATT": 0.0164,
+      "RN-MEL": 0.123,
+      "RN-GLU": 0.0656,
+      "RN-RET": 0.287,
+      "RN-LIS": 0.0656,
+      "RN-AUT": 0.0574,
+      "PHI-MEL": 0.045,
+      "PHI-GLU": 0.0216,
+      "AUTRE": 0.1134
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 82 % (candidat de remplacement, affaire Bardella non mesurée, 5.2), l'adversaire réparti selon le bloc deuxième (droite) et la configuration du centre (les deux) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": {
+     "poids_reseau": 0.3013,
+     "loi": {
+      "RN-PHI": 0.534,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.2047,
+      "RN-GLU": 0.0801,
+      "RN-RET": 0.0445,
+      "RN-LIS": 0.0089,
+      "RN-AUT": 0.0178,
+      "PHI-MEL": 0.0275,
+      "PHI-GLU": 0.0132,
+      "AUTRE": 0.0693
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 89 % (Le Pen candidate), l'adversaire réparti selon le bloc deuxième (centre) et la configuration du centre (Philippe seul) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.072,
+     "loi": {
+      "RN-PHI": 0.492,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.1886,
+      "RN-GLU": 0.0738,
+      "RN-RET": 0.041,
+      "RN-LIS": 0.0082,
+      "RN-AUT": 0.0164,
+      "PHI-MEL": 0.045,
+      "PHI-GLU": 0.0216,
+      "AUTRE": 0.1134
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 82 % (candidat de remplacement, affaire Bardella non mesurée, 5.2), l'adversaire réparti selon le bloc deuxième (centre) et la configuration du centre (Philippe seul) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0867,
+     "loi": {
+      "RN-PHI": 0.2937,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.445,
+      "RN-GLU": 0.0801,
+      "RN-RET": 0.0267,
+      "RN-LIS": 0.0089,
+      "RN-AUT": 0.0356,
+      "PHI-MEL": 0.0275,
+      "PHI-GLU": 0.0132,
+      "AUTRE": 0.0693
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 89 % (Le Pen candidate), l'adversaire réparti selon le bloc deuxième (gauche) et la configuration du centre (Philippe seul) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0193,
+     "loi": {
+      "RN-PHI": 0.2706,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.41,
+      "RN-GLU": 0.0738,
+      "RN-RET": 0.0246,
+      "RN-LIS": 0.0082,
+      "RN-AUT": 0.0328,
+      "PHI-MEL": 0.045,
+      "PHI-GLU": 0.0216,
+      "AUTRE": 0.1134
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 82 % (candidat de remplacement, affaire Bardella non mesurée, 5.2), l'adversaire réparti selon le bloc deuxième (gauche) et la configuration du centre (Philippe seul) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0187,
+     "loi": {
+      "RN-PHI": 0.2403,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.1335,
+      "RN-GLU": 0.0623,
+      "RN-RET": 0.3204,
+      "RN-LIS": 0.0712,
+      "RN-AUT": 0.0623,
+      "PHI-MEL": 0.0275,
+      "PHI-GLU": 0.0132,
+      "AUTRE": 0.0693
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 89 % (Le Pen candidate), l'adversaire réparti selon le bloc deuxième (droite) et la configuration du centre (Philippe seul) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": 0.2214,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.123,
+      "RN-GLU": 0.0574,
+      "RN-RET": 0.2952,
+      "RN-LIS": 0.0656,
+      "RN-AUT": 0.0574,
+      "PHI-MEL": 0.045,
+      "PHI-GLU": 0.0216,
+      "AUTRE": 0.1134
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 82 % (candidat de remplacement, affaire Bardella non mesurée, 5.2), l'adversaire réparti selon le bloc deuxième (droite) et la configuration du centre (Philippe seul) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0467,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.3738,
+      "RN-MEL": 0.3115,
+      "RN-GLU": 0.0979,
+      "RN-RET": 0.0623,
+      "RN-LIS": 0.0089,
+      "RN-AUT": 0.0356,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.11
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 89 % (Le Pen candidate), l'adversaire réparti selon le bloc deuxième (centre) et la configuration du centre (Attal seul) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.012,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.3444,
+      "RN-MEL": 0.287,
+      "RN-GLU": 0.0902,
+      "RN-RET": 0.0574,
+      "RN-LIS": 0.0082,
+      "RN-AUT": 0.0328,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.18
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 82 % (candidat de remplacement, affaire Bardella non mesurée, 5.2), l'adversaire réparti selon le bloc deuxième (centre) et la configuration du centre (Attal seul) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=candidate": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.178,
+      "RN-MEL": 0.5162,
+      "RN-GLU": 0.1068,
+      "RN-RET": 0.0356,
+      "RN-LIS": 0.0089,
+      "RN-AUT": 0.0445,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.11
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 89 % (Le Pen candidate), l'adversaire réparti selon le bloc deuxième (gauche) et la configuration du centre (Attal seul) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0073,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.164,
+      "RN-MEL": 0.4756,
+      "RN-GLU": 0.0984,
+      "RN-RET": 0.0328,
+      "RN-LIS": 0.0082,
+      "RN-AUT": 0.041,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.18
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 82 % (candidat de remplacement, affaire Bardella non mesurée, 5.2), l'adversaire réparti selon le bloc deuxième (gauche) et la configuration du centre (Attal seul) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=candidate": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.1335,
+      "RN-MEL": 0.178,
+      "RN-GLU": 0.089,
+      "RN-RET": 0.3382,
+      "RN-LIS": 0.0712,
+      "RN-AUT": 0.0801,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.11
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 89 % (Le Pen candidate), l'adversaire réparti selon le bloc deuxième (droite) et la configuration du centre (Attal seul) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.123,
+      "RN-MEL": 0.164,
+      "RN-GLU": 0.082,
+      "RN-RET": 0.3116,
+      "RN-LIS": 0.0656,
+      "RN-AUT": 0.0738,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.18
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 82 % (candidat de remplacement, affaire Bardella non mesurée, 5.2), l'adversaire réparti selon le bloc deuxième (droite) et la configuration du centre (Attal seul) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0073,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.3115,
+      "RN-GLU": 0.1335,
+      "RN-RET": 0.178,
+      "RN-LIS": 0.1335,
+      "RN-AUT": 0.1335,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.11
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 89 % (Le Pen candidate), l'adversaire réparti selon le bloc deuxième (centre) et la configuration du centre (aucun des deux) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.287,
+      "RN-GLU": 0.123,
+      "RN-RET": 0.164,
+      "RN-LIS": 0.123,
+      "RN-AUT": 0.123,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.18
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 82 % (candidat de remplacement, affaire Bardella non mesurée, 5.2), l'adversaire réparti selon le bloc deuxième (centre) et la configuration du centre (aucun des deux) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0253,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.5785,
+      "RN-GLU": 0.1335,
+      "RN-RET": 0.0712,
+      "RN-LIS": 0.0356,
+      "RN-AUT": 0.0712,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.11
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 89 % (Le Pen candidate), l'adversaire réparti selon le bloc deuxième (gauche) et la configuration du centre (aucun des deux) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.012,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.533,
+      "RN-GLU": 0.123,
+      "RN-RET": 0.0656,
+      "RN-LIS": 0.0328,
+      "RN-AUT": 0.0656,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.18
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 82 % (candidat de remplacement, affaire Bardella non mesurée, 5.2), l'adversaire réparti selon le bloc deuxième (gauche) et la configuration du centre (aucun des deux) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.1335,
+      "RN-GLU": 0.0712,
+      "RN-RET": 0.445,
+      "RN-LIS": 0.1602,
+      "RN-AUT": 0.0801,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.11
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 89 % (Le Pen candidate), l'adversaire réparti selon le bloc deuxième (droite) et la configuration du centre (aucun des deux) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.123,
+      "RN-GLU": 0.0656,
+      "RN-RET": 0.41,
+      "RN-LIS": 0.1476,
+      "RN-AUT": 0.0738,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.18
+     },
+     "justification": "dossier 3.2 et 5.1 : Le Pen ou le candidat RN autour de 34 % au premier tour, deuxième place disputée (septembre : Philippe deuxième dans 18/22 hypothèses s'il est seul, Mélenchon dans toutes celles d'Attal seul). jugement : RN qualifié à 82 % (candidat de remplacement, affaire Bardella non mesurée, 5.2), l'adversaire réparti selon le bloc deuxième (droite) et la configuration du centre (aucun des deux) ; les sondages à six mois se trompent beaucoup (Fillon 2017, Jospin 2002, dossier 5.5), d'où des parts sensibles pour Mélenchon et Glucksmann même quand le centre est devant."
+    }
+   },
+   "verrous": []
+  },
+  "PV-VAINQ": {
+   "nom": "Vainqueur de la présidentielle",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-DUEL",
+     "nom": "Duel de second tour",
+     "etats": [
+      "RN-PHI",
+      "RN-ATT",
+      "RN-MEL",
+      "RN-GLU",
+      "RN-RET",
+      "RN-LIS",
+      "RN-AUT",
+      "PHI-MEL",
+      "PHI-GLU",
+      "AUTRE"
+     ],
+     "decalage": 0,
+     "definition": "2027-04-18"
+    },
+    {
+     "id": "VE-RN",
+     "nom": "Intentions de vote du candidat RN au premier tour",
+     "etats": [
+      "< 30 %",
+      "30-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "moyenne des sondages du mois pour le candidat du RN (hypothèse principale)"
+    },
+    {
+     "id": "PV-LEPEN",
+     "nom": "Candidature de Marine Le Pen",
+     "etats": [
+      "candidate",
+      "non candidate"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    }
+   ],
+   "definition": null,
+   "date": "2027-05-02",
+   "fenetre": null,
+   "issues": [
+    "RN",
+    "PHI",
+    "ATT",
+    "MEL",
+    "GLU",
+    "RET",
+    "LIS",
+    "AUT"
+   ],
+   "cas": {
+    "PV-DUEL=RN-PHI|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.058,
+     "loi": {
+      "RN": 0.24,
+      "PHI": 0.75,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-PHI avec le RN à < 30 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 24 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-PHI|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0133,
+     "loi": {
+      "RN": 0.22,
+      "PHI": 0.77,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-PHI avec le RN à < 30 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 22 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-PHI|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.2287,
+     "loi": {
+      "RN": 0.41,
+      "PHI": 0.58,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-PHI avec le RN à 30-35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 41 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-PHI|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.056,
+     "loi": {
+      "RN": 0.39,
+      "PHI": 0.6,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-PHI avec le RN à 30-35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 39 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-PHI|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.082,
+     "loi": {
+      "RN": 0.58,
+      "PHI": 0.41,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-PHI avec le RN à > 35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 58 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-PHI|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0153,
+     "loi": {
+      "RN": 0.56,
+      "PHI": 0.43,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-PHI avec le RN à > 35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 56 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-ATT|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.01,
+     "loi": {
+      "RN": 0.32,
+      "PHI": 0.0,
+      "ATT": 0.67,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-ATT avec le RN à < 30 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 32 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-ATT|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": 0.3,
+      "PHI": 0.0,
+      "ATT": 0.69,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-ATT avec le RN à < 30 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 30 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-ATT|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0247,
+     "loi": {
+      "RN": 0.49,
+      "PHI": 0.0,
+      "ATT": 0.5,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-ATT avec le RN à 30-35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 49 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-ATT|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.008,
+     "loi": {
+      "RN": 0.47,
+      "PHI": 0.0,
+      "ATT": 0.52,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-ATT avec le RN à 30-35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 47 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-ATT|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN": 0.66,
+      "PHI": 0.0,
+      "ATT": 0.33,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-ATT avec le RN à > 35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 66 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-ATT|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "RN": 0.64,
+      "PHI": 0.0,
+      "ATT": 0.35,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-ATT avec le RN à > 35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 64 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-MEL|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0387,
+     "loi": {
+      "RN": 0.63,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.36,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-MEL avec le RN à < 30 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 63 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-MEL|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0127,
+     "loi": {
+      "RN": 0.61,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.38,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-MEL avec le RN à < 30 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 61 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-MEL|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.1393,
+     "loi": {
+      "RN": 0.79,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.2,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-MEL avec le RN à 30-35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 79 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-MEL|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0293,
+     "loi": {
+      "RN": 0.77,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.22,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-MEL avec le RN à 30-35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 77 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-MEL|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0607,
+     "loi": {
+      "RN": 0.88,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.11,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-MEL avec le RN à > 35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 88 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-MEL|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.012,
+     "loi": {
+      "RN": 0.86,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.13,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-MEL avec le RN à > 35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 86 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-GLU|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN": 0.34,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.65,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-GLU avec le RN à < 30 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 34 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-GLU|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "RN": 0.32,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.67,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-GLU avec le RN à < 30 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 32 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-GLU|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0387,
+     "loi": {
+      "RN": 0.51,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.48,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-GLU avec le RN à 30-35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 51 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-GLU|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN": 0.49,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.5,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-GLU avec le RN à 30-35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 49 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-GLU|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.016,
+     "loi": {
+      "RN": 0.68,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.31,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-GLU avec le RN à > 35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 68 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-GLU|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.66,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.33,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-GLU avec le RN à > 35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 66 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-RET|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "RN": 0.32,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.67,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-RET avec le RN à < 30 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 32 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-RET|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.3,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.69,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-RET avec le RN à < 30 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 30 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-RET|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.024,
+     "loi": {
+      "RN": 0.49,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.5,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-RET avec le RN à 30-35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 49 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-RET|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.008,
+     "loi": {
+      "RN": 0.47,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.52,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-RET avec le RN à 30-35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 47 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-RET|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "RN": 0.66,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.33,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-RET avec le RN à > 35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 66 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-RET|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN": 0.64,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.35,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-RET avec le RN à > 35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 64 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-LIS|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.32,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.67,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-LIS avec le RN à < 30 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 32 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-LIS|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.3,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.69,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-LIS avec le RN à < 30 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 30 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-LIS|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "RN": 0.48,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.51,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-LIS avec le RN à 30-35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 48 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-LIS|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN": 0.46,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.53,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-LIS avec le RN à 30-35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 46 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-LIS|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.66,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.33,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-LIS avec le RN à > 35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 66 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-LIS|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.64,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.35,
+      "AUT": 0.01
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-LIS avec le RN à > 35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 64 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-AUT|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN": 0.3,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.7
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-AUT avec le RN à < 30 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 30 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-AUT|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": 0.28,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.72
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-AUT avec le RN à < 30 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 28 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-AUT|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0113,
+     "loi": {
+      "RN": 0.46,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.54
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-AUT avec le RN à 30-35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 46 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-AUT|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN": 0.44,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.56
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-AUT avec le RN à 30-35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 44 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-AUT|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "RN": 0.64,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.36
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-AUT avec le RN à > 35 % au premier tour (Le Pen candidate), probabilité de victoire du RN fixée à 64 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=RN-AUT|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.62,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.38
+     },
+     "justification": "dossier 5.1 et 5.3 : depuis juillet 2026 le RN mène les duels trouvés (Philippe 43-49 % contre Le Pen, Attal 43-46, Glucksmann 41-45, Mélenchon 30-36) ; mais Le Pen a perdu en 2017 (33,90 %) et 2022 (41,45 %) et les sondages à six mois sous-estiment le front républicain (5.5). jugement : si le duel est RN-AUT avec le RN à > 35 % au premier tour (autre candidat RN, effet Bardella de 1 à 3 points non mesuré depuis mai, 5.2, compensé par l'affaire Mediapart), probabilité de victoire du RN fixée à 62 %, le reste à l'adversaire."
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.92,
+      "ATT": 0.0,
+      "MEL": 0.07,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.92,
+      "ATT": 0.0,
+      "MEL": 0.07,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.92,
+      "ATT": 0.0,
+      "MEL": 0.07,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.92,
+      "ATT": 0.0,
+      "MEL": 0.07,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.92,
+      "ATT": 0.0,
+      "MEL": 0.07,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.92,
+      "ATT": 0.0,
+      "MEL": 0.07,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.7,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.29,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.7,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.29,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.7,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.29,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.7,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.29,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.7,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.29,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.7,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.29,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.01
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=AUTRE|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.1,
+      "ATT": 0.05,
+      "MEL": 0.15,
+      "GLU": 0.15,
+      "RET": 0.15,
+      "LIS": 0.05,
+      "AUT": 0.35
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=AUTRE|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.1,
+      "ATT": 0.05,
+      "MEL": 0.15,
+      "GLU": 0.15,
+      "RET": 0.15,
+      "LIS": 0.05,
+      "AUT": 0.35
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=AUTRE|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0133,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.1,
+      "ATT": 0.05,
+      "MEL": 0.15,
+      "GLU": 0.15,
+      "RET": 0.15,
+      "LIS": 0.05,
+      "AUT": 0.35
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=AUTRE|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.1,
+      "ATT": 0.05,
+      "MEL": 0.15,
+      "GLU": 0.15,
+      "RET": 0.15,
+      "LIS": 0.05,
+      "AUT": 0.35
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=AUTRE|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.1,
+      "ATT": 0.05,
+      "MEL": 0.15,
+      "GLU": 0.15,
+      "RET": 0.15,
+      "LIS": 0.05,
+      "AUT": 0.35
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    },
+    "PV-DUEL=AUTRE|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": 0.0,
+      "PHI": 0.1,
+      "ATT": 0.05,
+      "MEL": 0.15,
+      "GLU": 0.15,
+      "RET": 0.15,
+      "LIS": 0.05,
+      "AUT": 0.35
+     },
+     "justification": "jugement : duel sans le RN, aucun duel trouvé sauf YouGov Philippe 61 contre Mélenchon 39 (dossier 5.3) ; le candidat du centre l'emporte nettement face à Mélenchon, plus modérément face à Glucksmann ; cas AUTRE réparti entre candidats de gauche, droite et divers. Le niveau du RN au premier tour est sans effet direct."
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-18": {
+   "critere": "Résultat du vote des adhérents des Écologistes sur la stratégie présidentielle, publié avant le 31 décembre 2026. Issues : candidature autonome d'un membre du parti ; soutien à un candidat d'une autre formation ; autre résultat, ou vote non tenu.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": {
+    "candidature autonome": 0.5,
+    "soutien à un autre candidat": 0.4,
+    "autre ou vote non tenu": 0.1
+   }
+  },
+  "EV-41": {
+   "critere": "Présence d'Édouard Philippe et de Gabriel Attal sur la liste des candidats au premier tour de 2027 arrêtée par le Conseil constitutionnel.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": {
+    "les deux": 0.32,
+    "Philippe seul": 0.485,
+    "Attal seul": 0.145,
+    "aucun des deux": 0.05
+   }
+  },
+  "EV-19": {
+   "critere": "Nombre de candidats figurant sur la liste arrêtée par le Conseil constitutionnel pour le premier tour de 2027 qui sont investis ou soutenus, par une décision publiée, par La France insoumise, le Parti socialiste, Place publique, Les Écologistes, le Parti communiste français, Debout !, Lutte ouvrière ou le Nouveau Parti anticapitaliste (l'une ou l'autre des deux organisations issues de la scission de 2022, NPA-l'Anticapitaliste et NPA-Révolutionnaires).",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": {
+    "3 ou moins": 0.05,
+    "4": 0.29,
+    "5": 0.42,
+    "6 ou plus": 0.24
+   }
+  },
+  "EV-40a": {
+   "critere": "Marine Le Pen figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.69
+  },
+  "EV-40b": {
+   "critere": "Édouard Philippe figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.38
+  },
+  "EV-40c": {
+   "critere": "Jean-Luc Mélenchon figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.3
+  },
+  "EV-40d": {
+   "critere": "David Lisnard figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.015
+  },
+  "EV-40e": {
+   "critere": "Gabriel Attal figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.04
+  },
+  "EV-40f": {
+   "critere": "Raphaël Glucksmann figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.1
+  },
+  "EV-40g": {
+   "critere": "Bruno Retailleau figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.06
+  },
+  "EV-05": {
+   "critere": "Personne proclamée élue président de la République par le Conseil constitutionnel à l'issue de l'élection de 2027. Une issue nommée désigne la personne, quel que soit le parti qui la soutient ; « autre » couvre toute autre personne.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-05-02"
+   },
+   "probabilite": {
+    "Marine Le Pen": 0.415,
+    "Jordan Bardella": 0.09,
+    "Édouard Philippe": 0.285,
+    "Gabriel Attal": 0.03,
+    "Jean-Luc Mélenchon": 0.065,
+    "David Lisnard": 0.005,
+    "Bruno Retailleau": 0.025,
+    "Raphaël Glucksmann": 0.04,
+    "François Hollande": 0.006,
+    "autre": 0.039
+   }
+  },
+  "EV-45": {
+   "critere": "Le 30 septembre 2028, l'âge d'ouverture du droit à pension fixé par le code de la sécurité sociale (article L161-17-2 ou disposition qui le remplace) pour les assurés nés en 1970 est inférieur à 64 ans, dans la version de l'article en vigueur à cette date ; une disposition promulguée dont l'entrée en vigueur est postérieure ne compte pas. Cette génération n'est pas concernée par la suspension de la réforme de 2023 : la réponse « oui » suppose un abaissement voté.",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.2
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-10"
+}

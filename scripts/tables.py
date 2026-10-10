@@ -6,14 +6,20 @@ Usage :
     python scripts/tables.py gabarit_cas N1,N2 SORTIE.json
                                                         gabarit « lois par cas » (étape 4) : une loi complète par
                                                         cas de parents, justification par cas, avis direct
-    python scripts/tables.py controle_cas R1.json R2.json ...
+    python scripts/tables.py controle_cas R1.json R2.json ... [--gabarit G.json]
                                                         contrôles automatiques d'une ronde (justification vide,
                                                         loi invalide, marginale implicite à plus de 5 points de
                                                         l'avis direct, sens opposés entre évaluateurs) ; code 1
                                                         si un défaut bloque l'agrégation
-    python scripts/tables.py agreger_cas R1.json R2.json ... --version TEXTE
+    python scripts/tables.py agreger_cas R1.json R2.json ... --version TEXTE [--gabarit G.json]
                                                         agrège les lois par cas (moyenne des log-cotes, zéro isolé
                                                         au plancher) et remplace les nœuds dans tables_v0.json
+    python scripts/tables.py gabarit_mesures EV-a,EV-b SORTIE.json
+                                                        gabarit des tables de mesure non exactes (étape 11)
+    python scripts/tables.py agreger_mesures R1.json R2.json ... [--version TEXTE]
+                                                        moyenne des log-cotes par entrée, écrite dans tables_v0.json
+    python scripts/tables.py directs R1.json R2.json ...  avis directs : médiane par question sur tous les évaluateurs
+                                                        de tous les lots (étape 11)
     python scripts/tables.py controle_tables            diagnostic des tables agrégées (référence minoritaire,
                                                         calage sur un avis direct)
     python scripts/tables.py verifier REPONSE.json      contrôle d'une réponse (code 1 si non conforme)
@@ -163,9 +169,12 @@ def lo(p):
 
 
 def plancher(vals, p, ou=""):
-    """Zéros isolés remplacés par le plancher p (signalés) ; zéro unanime conservé."""
+    """Zéros isolés remplacés par le plancher p (signalés) ; zéro unanime conservé. Le plancher ne dépasse jamais la
+    plus petite valeur non nulle donnée : sinon l'agrégat dépasserait l'avis de tous les évaluateurs (correction du
+    10 octobre 2026, étape 11 : [0 ; 0,003 ; 0] donnait 0,01)."""
     if all(v == 0 for v in vals) or not any(v == 0 for v in vals):
         return vals
+    p = min(p, min(v for v in vals if v > 0))
     ALERTES.append(f"{ou} : zéro isolé ramené à {p} ({vals})")
     return [p if v == 0 else v for v in vals]
 
@@ -451,19 +460,26 @@ def principale(l):
     return l if isinstance(l, (int, float)) else next(iter(l.values()))
 
 
-def sens_opposes(reps):
+def sens_opposes(reps, gabarit=None):
     """Défauts de sens : pour chaque nœud, cas le plus fréquent comme référence ; pour chaque autre cas et chaque
     issue, l'écart de log-cote au cas de référence chez chaque évaluateur ; deux évaluateurs dont les écarts
-    dépassent SEUIL_SENS en sens opposés forment un défaut (seconde ronde, protocole IDEA)."""
+    dépassent SEUIL_SENS en sens opposés forment un défaut (seconde ronde, protocole IDEA). Les cas sont les clés
+    complètes (une réponse peut regrouper des cas par jokers : correction du 10 octobre 2026, étape 11) ; la
+    fréquence d'un cas vient du gabarit, ou à défaut des clés complètes des réponses."""
     d = []
     nids = set.intersection(*(set(r["noeuds"]) for r in reps))
     for nid in sorted(nids):
-        cas = reps[0]["noeuds"][nid]["cas"]
-        ref = max(cas, key=lambda c: cas[c].get("poids_reseau", 0))
+        ls = [lois_de(r, nid) for r in reps]
+        poids = {}
+        for x in ([gabarit] if gabarit else []) + list(reps):
+            for c, y in x["noeuds"].get(nid, {}).get("cas", {}).items():
+                if c in ls[0] and isinstance(y.get("poids_reseau"), (int, float)):
+                    poids.setdefault(c, y["poids_reseau"])
+        cas = list(ls[0])
+        ref = max(cas, key=lambda c: poids.get(c, 0))
         for c in cas:
             if c == ref:
                 continue
-            ls = [lois_de(r, nid) for r in reps]
             issues = ["oui"] if not isinstance(ls[0][c], dict) else list(ls[0][c])
             for i in issues:
                 ecarts = []
@@ -497,14 +513,57 @@ def sigma_pondere(disp):
     return round(max(sum(w * d for w, d in disp) / tw if tw > 0 else 0.3, 0.3), 3)
 
 
-def agreger_cas(reps, version):
+def poids_des_cas(reps, nid, cles, gabarit=None):
+    """Fréquence de chaque cas complet : gabarit, ou clés complètes des réponses (une réponse à jokers n'a pas de
+    poids pour les cas qu'elle regroupe) ; à défaut, poids égaux (correction du 10 octobre 2026, étape 11)."""
+    poids = {}
+    for x in ([gabarit] if gabarit else []) + list(reps):
+        for c, y in x["noeuds"].get(nid, {}).get("cas", {}).items():
+            if c in cles and isinstance(y.get("poids_reseau"), (int, float)):
+                poids.setdefault(c, y["poids_reseau"])
+    return poids if sum(poids.values()) > 0 else {c: 1.0 for c in cles}
+
+
+def directs_medians(reps):
+    """Avis directs agrégés (médiane par issue, en %), pour le contrôle des écarts du réseau (reseau.py --controle)."""
+    out = {}
+    for q in reps[0].get("direct", {}):
+        vals = []
+        for r in reps:
+            v = r.get("direct", {}).get(q)
+            v = v.get("probabilite") if isinstance(v, dict) and "probabilite" in v else v
+            if v is not None:
+                vals.append(v)
+        if not vals:
+            continue
+        if all(isinstance(v, (int, float)) for v in vals):
+            out[q] = round(statistics.median(100 * v if v <= 1 else v for v in vals), 1)
+        elif all(isinstance(v, dict) for v in vals):
+            iss = list(vals[0])
+            m = {i: statistics.median(100 * v.get(i, 0) if sum(v.values()) <= 1.5 else v.get(i, 0) for v in vals) for i in iss}
+            tot = sum(m.values()) or 1
+            out[q] = {i: round(100 * x / tot, 1) for i, x in m.items()}
+    return out
+
+
+def directs_communs(reps):
+    """Avis directs d'une élicitation en plusieurs lots : médiane, question par question, sur tous les évaluateurs
+    qui l'ont jugée, quel que soit leur lot (étape 11)."""
+    out = {}
+    for q in sorted({q for r in reps for q in r.get("direct", {})}):
+        out.update(directs_medians([{"direct": {q: r["direct"][q]}} for r in reps if q in r.get("direct", {})]))
+    return out
+
+
+def agreger_cas(reps, version, gabarit=None):
     """Agrégation des lois par cas : moyenne des log-cotes cas par cas (zéro isolé au plancher) ; σ du nœud =
-    dispersion moyenne entre évaluateurs. Remplace les nœuds dans tables_v0.json (anciens paramètres retirés)."""
+    dispersion moyenne entre évaluateurs, pondérée par la fréquence des cas. Remplace les nœuds dans tables_v0.json
+    (anciens paramètres retirés) et les avis directs des questions de la ronde (médianes)."""
     ALERTES.clear()
     t = lire_json("modele/reseau/tables_v0.json")
     for nid in reps[0]["noeuds"]:
         ls = [lois_de(r, nid) for r in reps]
-        poids = {c: x.get("poids_reseau", 1.0) for c, x in reps[0]["noeuds"][nid]["cas"].items()}
+        poids = poids_des_cas(reps, nid, list(ls[0]), gabarit)
         cas, disp = {}, []
         for c in ls[0]:
             vals = [l[c] for l in ls]
@@ -521,9 +580,85 @@ def agreger_cas(reps, version):
                             "evaluateurs": [r.get("evaluateur") for r in reps], "format": "lois par cas v1"}
         if ALERTES:
             t["noeuds"][nid]["alertes"] = [a for a in ALERTES if a.startswith(nid)]
+    t.setdefault("direct", {}).update(directs_medians(reps))
     t["version"] = version
     (RACINE / "modele/reseau/tables_v0.json").write_text(json.dumps(t, ensure_ascii=False, indent=1) + "\n", "utf-8")
     return t
+
+
+def gabarit_mesures(ids=None):
+    """Gabarit des tables de mesure non exactes (étape 11) : pour chaque entrée (état des nœuds lus), la probabilité de
+    « oui » en %, ou une loi en % sur les issues, avec une justification par entrée ; avis direct par question."""
+    g = gabarit()
+    out = {"evaluateur": None, "date": None,
+           "lecture": "Chaque table relie l'état des nœuds du réseau à la question de la banque. Pour chaque entrée, "
+                      "donner la valeur demandée (« unite ») et une justification d'au moins une phrase (référence au "
+                      "dossier, URL, ou « jugement : … »). Une clé « a|b » suit l'ordre des nœuds de la mesure ; « * » "
+                      "vaut pour tout état. Remplir aussi « direct » : probabilité de la question jugée directement.",
+           "mesures": {}, "direct": {}}
+    s = _structure()
+    ev = {e["id"]: e for e in lire_json("modele/evenements.json")["evenements"]}
+    for q, m in g["mesures"].items():
+        if ids and q not in ids:
+            continue
+        c = s["mesures"][q]["caracteristique"]
+        vide = lambda v: v is None or (isinstance(v, dict) and None in v.values())
+        a_remplir = {k: (dict.fromkeys(v) if isinstance(v, dict) else None) for k, v in m["table"].items() if vide(v)}
+        fixes = {k: v for k, v in m["table"].items() if not vide(v)}   # entrées déterminées par le critère (EV-05)
+        out["mesures"][q] = {**m, "table": a_remplir, "entrees_fixes": fixes,
+                             "noeuds": [x.get("noeud") for x in c.get("elements", [c])],
+                             "critere": ev[q].get("critere"), "fenetre": ev[q].get("fenetre"),
+                             "justifications": {k: None for k in a_remplir}}
+        out["direct"][q] = g["direct"].get(q)
+    return out
+
+
+def verifier_mesures(r, g):
+    d = []
+    for q, m in g["mesures"].items():
+        t = r.get("mesures", {}).get(q, {})
+        for k, v in m["table"].items():
+            x = t.get("table", {}).get(k)
+            if isinstance(v, dict):
+                if not isinstance(x, dict) or any(not isinstance(y, (int, float)) for y in x.values()) \
+                        or abs(sum(x.values()) - 100) > 1:
+                    d.append(f"mesure {q} [{k}] : loi en % de somme 100 attendue")
+            elif not isinstance(x, (int, float)) or not 0 <= x <= 100:
+                d.append(f"mesure {q} [{k}] : pourcentage attendu")
+            if len((t.get("justifications", {}).get(k) or "").strip()) < 15:
+                d.append(f"mesure {q} [{k}] : justification vide")
+    return d
+
+
+def agreger_mesures(reps, version=None):
+    """Moyenne des log-cotes par entrée (moyenne des lois pour une entrée à plusieurs issues) ; un 0 ou un 100 isolé
+    est ramené à 0,5 ou 99,5 (pas de veto), unanime il est gardé. Écrit les tables dans tables_v0.json."""
+    t = lire_json("modele/reseau/tables_v0.json")
+    for q, agg in agregat_mesures(reps).items():
+        t.setdefault("mesures", {}).setdefault(q, {}).update(agg)   # les entrées fixes restent
+    t.setdefault("direct", {}).update(directs_medians(reps))
+    if version:
+        t["version"] = version
+    (RACINE / "modele/reseau/tables_v0.json").write_text(json.dumps(t, ensure_ascii=False, indent=1) + "\n", "utf-8")
+    return {q: t["mesures"][q] for q in reps[0]["mesures"]}
+
+
+def agregat_mesures(reps):
+    out = {}
+    for q in reps[0]["mesures"]:
+        tabs = [r["mesures"][q]["table"] for r in reps]
+        agg = {}
+        for k in tabs[0]:
+            vals = [tb[k] for tb in tabs]
+            if all(isinstance(v, dict) for v in vals):
+                agg[k] = {c: round(100 * v, 2) for c, v in moy_loi([{c: x / 100 for c, x in v.items()} for v in vals], f"{q} {k}").items()}
+            elif all(v == vals[0] for v in vals) and vals[0] in (0, 100):
+                agg[k] = vals[0]
+            else:
+                cl = [min(max(v, 0.5), 99.5) for v in vals]
+                agg[k] = round(100 / (1 + math.exp(-statistics.mean(lo(v / 100) for v in cl))), 2)
+        out[q] = agg
+    return out
 
 
 def controle_tables():
@@ -569,6 +704,8 @@ if __name__ == "__main__":
         json.dump(gabarit_cas(a[1].split(",")), open(a[2], "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print(f"Gabarit écrit dans {a[2]}")
     elif a[:1] == ["controle_cas"] and len(a) >= 2:
+        gab = a[a.index("--gabarit") + 1] if "--gabarit" in a else None
+        a = [x for x in a if x not in ("--gabarit", gab)]
         reps = [json.load(open(f, encoding="utf-8")) for f in a[1:]]
         bloque = False
         for f, r in zip(a[1:], reps):
@@ -580,15 +717,26 @@ if __name__ == "__main__":
             for e in ecarts_marginaux(r):
                 print(f"  marginale implicite {e['question']} {e['issue']} : {e['implique']} contre avis direct {e['direct']}")
                 bloque = True
-        so = sens_opposes(reps) if len(reps) > 1 else []
+        so = sens_opposes(reps, lire_json(gab) if gab else None) if len(reps) > 1 else []
         for x in so:
             print(f"SENS OPPOSÉS {x['noeud']} [{x['cas']}] {x['issue']} (référence {x['reference']}) : {x['ecarts']}")
         sys.exit(1 if bloque or so else 0)
     elif a[:1] == ["agreger_cas"] and len(a) >= 3:
         version = a[a.index("--version") + 1] if "--version" in a else "tables v0"
-        fichiers = [x for x in a[1:] if not x.startswith("--") and x != version]
-        agreger_cas([json.load(open(f, encoding="utf-8")) for f in fichiers], version)
+        gab = a[a.index("--gabarit") + 1] if "--gabarit" in a else None
+        fichiers = [x for x in a[1:] if not x.startswith("--") and x not in (version, gab)]
+        agreger_cas([json.load(open(f, encoding="utf-8")) for f in fichiers], version, lire_json(gab) if gab else None)
         print(f"modele/reseau/tables_v0.json mis à jour ({len(fichiers)} évaluateurs)")
+    elif a[:1] == ["gabarit_mesures"] and len(a) == 3:
+        json.dump(gabarit_mesures(a[1].split(",")), open(a[2], "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    elif a[:1] == ["agreger_mesures"] and len(a) >= 3:
+        version = a[a.index("--version") + 1] if "--version" in a else None
+        fichiers = [x for x in a[1:] if not x.startswith("--") and x != version]
+        print(json.dumps(agreger_mesures([json.load(open(f, encoding="utf-8")) for f in fichiers], version), ensure_ascii=False))
+    elif a[:1] == ["directs"] and len(a) >= 2:
+        t = lire_json("modele/reseau/tables_v0.json")
+        t.setdefault("direct", {}).update(directs_communs([json.load(open(f, encoding="utf-8")) for f in a[1:]]))
+        (RACINE / "modele/reseau/tables_v0.json").write_text(json.dumps(t, ensure_ascii=False, indent=1) + "\n", "utf-8")
     elif a[:1] == ["controle_tables"]:
         for x in controle_tables():
             print(json.dumps(x, ensure_ascii=False))

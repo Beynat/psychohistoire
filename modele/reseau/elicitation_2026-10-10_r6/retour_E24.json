@@ -1,0 +1,1386 @@
+{
+ "evaluateur": "E24",
+ "ronde": 2,
+ "lecture": "Seconde ronde (protocole IDEA). (1) défauts de ta réponse ; (2) questions où la marginale impliquée par TES lois s'écarte de plus de 5 points de ton avis direct ; (3) cas où les évaluateurs donnent des sens opposés par rapport au cas le plus fréquent, avec les lois et justifications anonymes des autres ; (4) pour chaque nœud, les lois et justifications des autres sur les trois cas les plus fréquents. Corrige ou maintiens en écrivant pourquoi.",
+ "defauts": [],
+ "marginales": [
+  {
+   "question": "EV-05",
+   "issue": "Édouard Philippe",
+   "implique": 23.4,
+   "direct": 28.5
+  },
+  {
+   "question": "EV-45",
+   "issue": "oui",
+   "implique": 11.0,
+   "direct": 20.0
+  }
+ ],
+ "sens_opposes": [
+  {
+   "noeud": "PV-BLOC",
+   "cas": "VE-SOND=gauche",
+   "cas_reference": "VE-SOND=centre",
+   "issue": "les deux",
+   "ta_loi_cas": {
+    "les deux": 0.25,
+    "Philippe seul": 0.45,
+    "Attal seul": 0.22,
+    "aucun des deux": 0.08
+   },
+   "ta_loi_reference": {
+    "les deux": 0.34,
+    "Philippe seul": 0.5,
+    "Attal seul": 0.12,
+    "aucun des deux": 0.04
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "les deux": 0.28,
+      "Philippe seul": 0.5,
+      "Attal seul": 0.14,
+      "aucun des deux": 0.08
+     },
+     "loi_reference": {
+      "les deux": 0.22,
+      "Philippe seul": 0.64,
+      "Attal seul": 0.1,
+      "aucun des deux": 0.04
+     },
+     "justifications": {
+      "VE-SOND=centre": "Dossier 3.1-3.2 : les deux sont déclarés, sans mécanisme de départage, mais les deux camps acceptent une mesure par les sondages début 2027 ; Philippe devance nettement Attal (18,8 contre 14,2 seuls, 14,0 contre 7,4 ensemble en septembre). Si le centre est deuxième, c'est Philippe qui porte le bloc : retrait d'Attal le plus probable. Taux de base : 4 doubles candidatures « de poids » sur 11 (3.3), mais la menace RN-LFI (Attal, 3 septembre) pousse au rassemblement. Attal seul surtout via l'information judiciaire du Havre (3.1).",
+      "VE-SOND=gauche": "Jugement : si Mélenchon est deuxième, le centre paraît éliminable, ce qui pousse au rassemblement mais aussi à la contestation du leadership de Philippe ; maintien des deux un peu plus probable (aucun ne cède), et un peu plus de place pour un retrait de Philippe ou un troisième nom."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "les deux": 0.33,
+      "Philippe seul": 0.48,
+      "Attal seul": 0.11,
+      "aucun des deux": 0.08
+     },
+     "loi_reference": {
+      "les deux": 0.28,
+      "Philippe seul": 0.61,
+      "Attal seul": 0.07,
+      "aucun des deux": 0.04
+     },
+     "justifications": {
+      "VE-SOND=centre": "Dossier 3.1-3.2 : Philippe 18,8 % seul contre Attal 14,2 % seul, et 14 contre 7,4 quand les deux sont testés ; les deux camps acceptent un départage par les sondages début 2027 et Attal admet un rassemblement « s'il y a un risque RN-LFI ». Jugement : si le centre est deuxième, l'écart favorise un retrait d'Attal (jeune, peut viser 2032) ; 28 % de maintien des deux (taux de base 6/11 de candidatures multiples, sans mécanisme arrêté), 7 % Attal seul (accident judiciaire ou effondrement de Philippe, PNF Le Havre), 4 % aucun.",
+      "VE-SOND=gauche": "Jugement : si Mélenchon passe deuxième, le centre est affaibli ; Philippe reste favori mais la pression de départage joue moins nettement (aucun ne domine) et les scénarios de remplacement augmentent un peu (dossier 3.2 : Mélenchon deuxième avec Attal seul ou les deux)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DUEL",
+   "cas": "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=non candidate",
+   "cas_reference": "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate",
+   "issue": "PHI-MEL",
+   "ta_loi_cas": {
+    "RN-PHI": 0.369,
+    "RN-ATT": 0.0492,
+    "RN-MEL": 0.2296,
+    "RN-GLU": 0.082,
+    "RN-RET": 0.041,
+    "RN-LIS": 0.0082,
+    "RN-AUT": 0.041,
+    "PHI-MEL": 0.045,
+    "PHI-GLU": 0.0216,
+    "AUTRE": 0.1134
+   },
+   "ta_loi_reference": {
+    "RN-PHI": 0.534,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.2047,
+    "RN-GLU": 0.0801,
+    "RN-RET": 0.0445,
+    "RN-LIS": 0.0089,
+    "RN-AUT": 0.0178,
+    "PHI-MEL": 0.0275,
+    "PHI-GLU": 0.0132,
+    "AUTRE": 0.0693
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "RN-PHI": 0.5379,
+      "RN-ATT": 0.0685,
+      "RN-MEL": 0.1956,
+      "RN-GLU": 0.0391,
+      "RN-RET": 0.0293,
+      "RN-LIS": 0.0049,
+      "RN-AUT": 0.0147,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.07
+     },
+     "loi_reference": {
+      "RN-PHI": 0.68,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.03,
+      "RN-RET": 0.03,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.05
+     },
+     "justifications": {
+      "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=non candidate": "Jugement : si Le Pen n'est pas candidate, Bardella la remplace (dossier 5.2 : 1 à 3 points de plus qu'elle au second tour, mais non testé depuis mai et visé par l'affaire Mediapart des 1er-6 octobre 2026, Public Sénat : https://www.publicsenat.fr/actualites/politique/accusation-dantisemitisme-jordan-bardella-conteste-a-nouveau-formellement-les-elements-dauthentification-de-mediapart) ; même loi que le cas « candidate », 2 points de qualification RN reportés sur AUTRE pour le risque d'une campagne de substitution.",
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Dossier 5.4 et 3.2 : le RN est en tête de toutes les hypothèses (Le Pen 33-34 % en septembre, minimum 29 %) et n'a manqué le second tour qu'avant 2017 ; qualification RN autour de 0,92-0,93. Si le centre est deuxième dans les sondages d'avril, son candidat le plus fort se qualifie le plus souvent (septembre : Philippe deuxième dans 18 hypothèses sur 22 quand il est seul), avec une marge pour une surprise du type 2002 et pour la sous-estimation de la gauche (+3,1 points, 5.5). Configuration du bloc : Philippe seul."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "RN-PHI": 0.43,
+      "RN-ATT": 0.04,
+      "RN-MEL": 0.28,
+      "RN-GLU": 0.07,
+      "RN-RET": 0.05,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.045,
+      "PHI-GLU": 0.015,
+      "AUTRE": 0.04
+     },
+     "loi_reference": {
+      "RN-PHI": 0.6,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.22,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.025
+     },
+     "justifications": {
+      "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=non candidate": "Jugement : si Philippe et Attal sont tous deux candidats, le centre se divise (septembre : Philippe 14, Mélenchon 16, Attal 7,4 ; Mélenchon deuxième dans 14 hypothèses sur 19, dossier 3.2) ; précédents 1974-1995 : un des deux candidats du bloc atteint toujours le second tour (dossier 3.3, non vérifié). Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables.",
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DUEL",
+   "cas": "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=non candidate",
+   "cas_reference": "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate",
+   "issue": "RN-RET",
+   "ta_loi_cas": {
+    "RN-PHI": 0.1804,
+    "RN-ATT": 0.0246,
+    "RN-MEL": 0.451,
+    "RN-GLU": 0.0984,
+    "RN-RET": 0.0246,
+    "RN-LIS": 0.0082,
+    "RN-AUT": 0.0328,
+    "PHI-MEL": 0.045,
+    "PHI-GLU": 0.0216,
+    "AUTRE": 0.1134
+   },
+   "ta_loi_reference": {
+    "RN-PHI": 0.534,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.2047,
+    "RN-GLU": 0.0801,
+    "RN-RET": 0.0445,
+    "RN-LIS": 0.0089,
+    "RN-AUT": 0.0178,
+    "PHI-MEL": 0.0275,
+    "PHI-GLU": 0.0132,
+    "AUTRE": 0.0693
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "RN-PHI": 0.1565,
+      "RN-ATT": 0.0293,
+      "RN-MEL": 0.587,
+      "RN-GLU": 0.0783,
+      "RN-RET": 0.0293,
+      "RN-LIS": 0.0049,
+      "RN-AUT": 0.0147,
+      "PHI-MEL": 0.02,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.07
+     },
+     "loi_reference": {
+      "RN-PHI": 0.68,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.03,
+      "RN-RET": 0.03,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.05
+     },
+     "justifications": {
+      "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=non candidate": "Jugement : si Le Pen n'est pas candidate, Bardella la remplace (dossier 5.2 : 1 à 3 points de plus qu'elle au second tour, mais non testé depuis mai et visé par l'affaire Mediapart des 1er-6 octobre 2026, Public Sénat : https://www.publicsenat.fr/actualites/politique/accusation-dantisemitisme-jordan-bardella-conteste-a-nouveau-formellement-les-elements-dauthentification-de-mediapart) ; même loi que le cas « candidate », 2 points de qualification RN reportés sur AUTRE pour le risque d'une campagne de substitution.",
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Dossier 5.4 et 3.2 : le RN est en tête de toutes les hypothèses (Le Pen 33-34 % en septembre, minimum 29 %) et n'a manqué le second tour qu'avant 2017 ; qualification RN autour de 0,92-0,93. Si le centre est deuxième dans les sondages d'avril, son candidat le plus fort se qualifie le plus souvent (septembre : Philippe deuxième dans 18 hypothèses sur 22 quand il est seul), avec une marge pour une surprise du type 2002 et pour la sous-estimation de la gauche (+3,1 points, 5.5). Configuration du bloc : Philippe seul."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "RN-PHI": 0.24,
+      "RN-ATT": 0.03,
+      "RN-MEL": 0.44,
+      "RN-GLU": 0.1,
+      "RN-RET": 0.05,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.045,
+      "PHI-GLU": 0.015,
+      "AUTRE": 0.05
+     },
+     "loi_reference": {
+      "RN-PHI": 0.6,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.22,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.025
+     },
+     "justifications": {
+      "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=non candidate": "Jugement : si Philippe et Attal sont tous deux candidats, le centre se divise (septembre : Philippe 14, Mélenchon 16, Attal 7,4 ; Mélenchon deuxième dans 14 hypothèses sur 19, dossier 3.2) ; précédents 1974-1995 : un des deux candidats du bloc atteint toujours le second tour (dossier 3.3, non vérifié). Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables.",
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DUEL",
+   "cas": "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=non candidate",
+   "cas_reference": "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate",
+   "issue": "PHI-MEL",
+   "ta_loi_cas": {
+    "RN-PHI": 0.1804,
+    "RN-ATT": 0.0246,
+    "RN-MEL": 0.451,
+    "RN-GLU": 0.0984,
+    "RN-RET": 0.0246,
+    "RN-LIS": 0.0082,
+    "RN-AUT": 0.0328,
+    "PHI-MEL": 0.045,
+    "PHI-GLU": 0.0216,
+    "AUTRE": 0.1134
+   },
+   "ta_loi_reference": {
+    "RN-PHI": 0.534,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.2047,
+    "RN-GLU": 0.0801,
+    "RN-RET": 0.0445,
+    "RN-LIS": 0.0089,
+    "RN-AUT": 0.0178,
+    "PHI-MEL": 0.0275,
+    "PHI-GLU": 0.0132,
+    "AUTRE": 0.0693
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "RN-PHI": 0.1565,
+      "RN-ATT": 0.0293,
+      "RN-MEL": 0.587,
+      "RN-GLU": 0.0783,
+      "RN-RET": 0.0293,
+      "RN-LIS": 0.0049,
+      "RN-AUT": 0.0147,
+      "PHI-MEL": 0.02,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.07
+     },
+     "loi_reference": {
+      "RN-PHI": 0.68,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.03,
+      "RN-RET": 0.03,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.05
+     },
+     "justifications": {
+      "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=non candidate": "Jugement : si Le Pen n'est pas candidate, Bardella la remplace (dossier 5.2 : 1 à 3 points de plus qu'elle au second tour, mais non testé depuis mai et visé par l'affaire Mediapart des 1er-6 octobre 2026, Public Sénat : https://www.publicsenat.fr/actualites/politique/accusation-dantisemitisme-jordan-bardella-conteste-a-nouveau-formellement-les-elements-dauthentification-de-mediapart) ; même loi que le cas « candidate », 2 points de qualification RN reportés sur AUTRE pour le risque d'une campagne de substitution.",
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Dossier 5.4 et 3.2 : le RN est en tête de toutes les hypothèses (Le Pen 33-34 % en septembre, minimum 29 %) et n'a manqué le second tour qu'avant 2017 ; qualification RN autour de 0,92-0,93. Si le centre est deuxième dans les sondages d'avril, son candidat le plus fort se qualifie le plus souvent (septembre : Philippe deuxième dans 18 hypothèses sur 22 quand il est seul), avec une marge pour une surprise du type 2002 et pour la sous-estimation de la gauche (+3,1 points, 5.5). Configuration du bloc : Philippe seul."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "RN-PHI": 0.24,
+      "RN-ATT": 0.03,
+      "RN-MEL": 0.44,
+      "RN-GLU": 0.1,
+      "RN-RET": 0.05,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.045,
+      "PHI-GLU": 0.015,
+      "AUTRE": 0.05
+     },
+     "loi_reference": {
+      "RN-PHI": 0.6,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.22,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.025
+     },
+     "justifications": {
+      "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=non candidate": "Jugement : si Philippe et Attal sont tous deux candidats, le centre se divise (septembre : Philippe 14, Mélenchon 16, Attal 7,4 ; Mélenchon deuxième dans 14 hypothèses sur 19, dossier 3.2) ; précédents 1974-1995 : un des deux candidats du bloc atteint toujours le second tour (dossier 3.3, non vérifié). Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables.",
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DUEL",
+   "cas": "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=non candidate",
+   "cas_reference": "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate",
+   "issue": "PHI-MEL",
+   "ta_loi_cas": {
+    "RN-PHI": 0.205,
+    "RN-ATT": 0.0164,
+    "RN-MEL": 0.123,
+    "RN-GLU": 0.0656,
+    "RN-RET": 0.287,
+    "RN-LIS": 0.0656,
+    "RN-AUT": 0.0574,
+    "PHI-MEL": 0.045,
+    "PHI-GLU": 0.0216,
+    "AUTRE": 0.1134
+   },
+   "ta_loi_reference": {
+    "RN-PHI": 0.534,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.2047,
+    "RN-GLU": 0.0801,
+    "RN-RET": 0.0445,
+    "RN-LIS": 0.0089,
+    "RN-AUT": 0.0178,
+    "PHI-MEL": 0.0275,
+    "PHI-GLU": 0.0132,
+    "AUTRE": 0.0693
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "RN-PHI": 0.1174,
+      "RN-ATT": 0.0293,
+      "RN-MEL": 0.1369,
+      "RN-GLU": 0.0293,
+      "RN-RET": 0.4695,
+      "RN-LIS": 0.0782,
+      "RN-AUT": 0.0293,
+      "PHI-MEL": 0.01,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.09
+     },
+     "loi_reference": {
+      "RN-PHI": 0.68,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.03,
+      "RN-RET": 0.03,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.05
+     },
+     "justifications": {
+      "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=non candidate": "Jugement : si Le Pen n'est pas candidate, Bardella la remplace (dossier 5.2 : 1 à 3 points de plus qu'elle au second tour, mais non testé depuis mai et visé par l'affaire Mediapart des 1er-6 octobre 2026, Public Sénat : https://www.publicsenat.fr/actualites/politique/accusation-dantisemitisme-jordan-bardella-conteste-a-nouveau-formellement-les-elements-dauthentification-de-mediapart) ; même loi que le cas « candidate », 2 points de qualification RN reportés sur AUTRE pour le risque d'une campagne de substitution.",
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Dossier 5.4 et 3.2 : le RN est en tête de toutes les hypothèses (Le Pen 33-34 % en septembre, minimum 29 %) et n'a manqué le second tour qu'avant 2017 ; qualification RN autour de 0,92-0,93. Si le centre est deuxième dans les sondages d'avril, son candidat le plus fort se qualifie le plus souvent (septembre : Philippe deuxième dans 18 hypothèses sur 22 quand il est seul), avec une marge pour une surprise du type 2002 et pour la sous-estimation de la gauche (+3,1 points, 5.5). Configuration du bloc : Philippe seul."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "RN-PHI": 0.17,
+      "RN-ATT": 0.02,
+      "RN-MEL": 0.17,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.42,
+      "RN-LIS": 0.02,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.015,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.105
+     },
+     "loi_reference": {
+      "RN-PHI": 0.6,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.22,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.025
+     },
+     "justifications": {
+      "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=non candidate": "Jugement : si Philippe et Attal sont tous deux candidats, le centre se divise (septembre : Philippe 14, Mélenchon 16, Attal 7,4 ; Mélenchon deuxième dans 14 hypothèses sur 19, dossier 3.2) ; précédents 1974-1995 : un des deux candidats du bloc atteint toujours le second tour (dossier 3.3, non vérifié). Droite deuxième en mars : Retailleau (ou un candidat LR) devient le qualifié le plus probable. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables.",
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DUEL",
+   "cas": "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=candidate",
+   "cas_reference": "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate",
+   "issue": "PHI-MEL",
+   "ta_loi_cas": {
+    "RN-PHI": 0.2937,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.445,
+    "RN-GLU": 0.0801,
+    "RN-RET": 0.0267,
+    "RN-LIS": 0.0089,
+    "RN-AUT": 0.0356,
+    "PHI-MEL": 0.0275,
+    "PHI-GLU": 0.0132,
+    "AUTRE": 0.0693
+   },
+   "ta_loi_reference": {
+    "RN-PHI": 0.534,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.2047,
+    "RN-GLU": 0.0801,
+    "RN-RET": 0.0445,
+    "RN-LIS": 0.0089,
+    "RN-AUT": 0.0178,
+    "PHI-MEL": 0.0275,
+    "PHI-GLU": 0.0132,
+    "AUTRE": 0.0693
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "RN-PHI": 0.25,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.55,
+      "RN-GLU": 0.08,
+      "RN-RET": 0.02,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.04
+     },
+     "loi_reference": {
+      "RN-PHI": 0.68,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.03,
+      "RN-RET": 0.03,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.05
+     },
+     "justifications": {
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Dossier 5.4 et 3.2 : le RN est en tête de toutes les hypothèses (Le Pen 33-34 % en septembre, minimum 29 %) et n'a manqué le second tour qu'avant 2017 ; qualification RN autour de 0,92-0,93. Si le centre est deuxième dans les sondages d'avril, son candidat le plus fort se qualifie le plus souvent (septembre : Philippe deuxième dans 18 hypothèses sur 22 quand il est seul), avec une marge pour une surprise du type 2002 et pour la sous-estimation de la gauche (+3,1 points, 5.5). Configuration du bloc : Philippe seul.",
+      "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=candidate": "Jugement : si la gauche est deuxième en avril, Mélenchon est le plus souvent le candidat concerné (2.e en septembre dans toutes les hypothèses « Attal seul », 5.4), Glucksmann restant possible ; le centre garde une chance de dépassement (écart souvent faible, 3.2). Configuration du bloc : Philippe seul."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "RN-PHI": 0.38,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.4,
+      "RN-GLU": 0.08,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.02
+     },
+     "loi_reference": {
+      "RN-PHI": 0.6,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.22,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.025
+     },
+     "justifications": {
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4).",
+      "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DUEL",
+   "cas": "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=non candidate",
+   "cas_reference": "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate",
+   "issue": "RN-RET",
+   "ta_loi_cas": {
+    "RN-PHI": 0.2706,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.41,
+    "RN-GLU": 0.0738,
+    "RN-RET": 0.0246,
+    "RN-LIS": 0.0082,
+    "RN-AUT": 0.0328,
+    "PHI-MEL": 0.045,
+    "PHI-GLU": 0.0216,
+    "AUTRE": 0.1134
+   },
+   "ta_loi_reference": {
+    "RN-PHI": 0.534,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.2047,
+    "RN-GLU": 0.0801,
+    "RN-RET": 0.0445,
+    "RN-LIS": 0.0089,
+    "RN-AUT": 0.0178,
+    "PHI-MEL": 0.0275,
+    "PHI-GLU": 0.0132,
+    "AUTRE": 0.0693
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "RN-PHI": 0.2446,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.538,
+      "RN-GLU": 0.0783,
+      "RN-RET": 0.0196,
+      "RN-LIS": 0.0049,
+      "RN-AUT": 0.0147,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.06
+     },
+     "loi_reference": {
+      "RN-PHI": 0.68,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.03,
+      "RN-RET": 0.03,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.05
+     },
+     "justifications": {
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Dossier 5.4 et 3.2 : le RN est en tête de toutes les hypothèses (Le Pen 33-34 % en septembre, minimum 29 %) et n'a manqué le second tour qu'avant 2017 ; qualification RN autour de 0,92-0,93. Si le centre est deuxième dans les sondages d'avril, son candidat le plus fort se qualifie le plus souvent (septembre : Philippe deuxième dans 18 hypothèses sur 22 quand il est seul), avec une marge pour une surprise du type 2002 et pour la sous-estimation de la gauche (+3,1 points, 5.5). Configuration du bloc : Philippe seul.",
+      "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=non candidate": "Jugement : si Le Pen n'est pas candidate, Bardella la remplace (dossier 5.2 : 1 à 3 points de plus qu'elle au second tour, mais non testé depuis mai et visé par l'affaire Mediapart des 1er-6 octobre 2026, Public Sénat : https://www.publicsenat.fr/actualites/politique/accusation-dantisemitisme-jordan-bardella-conteste-a-nouveau-formellement-les-elements-dauthentification-de-mediapart) ; même loi que le cas « candidate », 2 points de qualification RN reportés sur AUTRE pour le risque d'une campagne de substitution."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "RN-PHI": 0.36,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.37,
+      "RN-GLU": 0.08,
+      "RN-RET": 0.05,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.06,
+      "PHI-GLU": 0.015,
+      "AUTRE": 0.035
+     },
+     "loi_reference": {
+      "RN-PHI": 0.6,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.22,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.025
+     },
+     "justifications": {
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4).",
+      "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=non candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DUEL",
+   "cas": "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=non candidate",
+   "cas_reference": "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate",
+   "issue": "PHI-MEL",
+   "ta_loi_cas": {
+    "RN-PHI": 0.2706,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.41,
+    "RN-GLU": 0.0738,
+    "RN-RET": 0.0246,
+    "RN-LIS": 0.0082,
+    "RN-AUT": 0.0328,
+    "PHI-MEL": 0.045,
+    "PHI-GLU": 0.0216,
+    "AUTRE": 0.1134
+   },
+   "ta_loi_reference": {
+    "RN-PHI": 0.534,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.2047,
+    "RN-GLU": 0.0801,
+    "RN-RET": 0.0445,
+    "RN-LIS": 0.0089,
+    "RN-AUT": 0.0178,
+    "PHI-MEL": 0.0275,
+    "PHI-GLU": 0.0132,
+    "AUTRE": 0.0693
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "RN-PHI": 0.2446,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.538,
+      "RN-GLU": 0.0783,
+      "RN-RET": 0.0196,
+      "RN-LIS": 0.0049,
+      "RN-AUT": 0.0147,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.06
+     },
+     "loi_reference": {
+      "RN-PHI": 0.68,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.03,
+      "RN-RET": 0.03,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.05
+     },
+     "justifications": {
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Dossier 5.4 et 3.2 : le RN est en tête de toutes les hypothèses (Le Pen 33-34 % en septembre, minimum 29 %) et n'a manqué le second tour qu'avant 2017 ; qualification RN autour de 0,92-0,93. Si le centre est deuxième dans les sondages d'avril, son candidat le plus fort se qualifie le plus souvent (septembre : Philippe deuxième dans 18 hypothèses sur 22 quand il est seul), avec une marge pour une surprise du type 2002 et pour la sous-estimation de la gauche (+3,1 points, 5.5). Configuration du bloc : Philippe seul.",
+      "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=non candidate": "Jugement : si Le Pen n'est pas candidate, Bardella la remplace (dossier 5.2 : 1 à 3 points de plus qu'elle au second tour, mais non testé depuis mai et visé par l'affaire Mediapart des 1er-6 octobre 2026, Public Sénat : https://www.publicsenat.fr/actualites/politique/accusation-dantisemitisme-jordan-bardella-conteste-a-nouveau-formellement-les-elements-dauthentification-de-mediapart) ; même loi que le cas « candidate », 2 points de qualification RN reportés sur AUTRE pour le risque d'une campagne de substitution."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "RN-PHI": 0.36,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.37,
+      "RN-GLU": 0.08,
+      "RN-RET": 0.05,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.06,
+      "PHI-GLU": 0.015,
+      "AUTRE": 0.035
+     },
+     "loi_reference": {
+      "RN-PHI": 0.6,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.22,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.025
+     },
+     "justifications": {
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4).",
+      "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=non candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DUEL",
+   "cas": "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=non candidate",
+   "cas_reference": "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate",
+   "issue": "PHI-MEL",
+   "ta_loi_cas": {
+    "RN-PHI": 0.2214,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.123,
+    "RN-GLU": 0.0574,
+    "RN-RET": 0.2952,
+    "RN-LIS": 0.0656,
+    "RN-AUT": 0.0574,
+    "PHI-MEL": 0.045,
+    "PHI-GLU": 0.0216,
+    "AUTRE": 0.1134
+   },
+   "ta_loi_reference": {
+    "RN-PHI": 0.534,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.2047,
+    "RN-GLU": 0.0801,
+    "RN-RET": 0.0445,
+    "RN-LIS": 0.0089,
+    "RN-AUT": 0.0178,
+    "PHI-MEL": 0.0275,
+    "PHI-GLU": 0.0132,
+    "AUTRE": 0.0693
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "RN-PHI": 0.1956,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.1174,
+      "RN-GLU": 0.0293,
+      "RN-RET": 0.4401,
+      "RN-LIS": 0.0782,
+      "RN-AUT": 0.0293,
+      "PHI-MEL": 0.02,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.08
+     },
+     "loi_reference": {
+      "RN-PHI": 0.68,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.03,
+      "RN-RET": 0.03,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.05
+     },
+     "justifications": {
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Dossier 5.4 et 3.2 : le RN est en tête de toutes les hypothèses (Le Pen 33-34 % en septembre, minimum 29 %) et n'a manqué le second tour qu'avant 2017 ; qualification RN autour de 0,92-0,93. Si le centre est deuxième dans les sondages d'avril, son candidat le plus fort se qualifie le plus souvent (septembre : Philippe deuxième dans 18 hypothèses sur 22 quand il est seul), avec une marge pour une surprise du type 2002 et pour la sous-estimation de la gauche (+3,1 points, 5.5). Configuration du bloc : Philippe seul.",
+      "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=non candidate": "Jugement : si Le Pen n'est pas candidate, Bardella la remplace (dossier 5.2 : 1 à 3 points de plus qu'elle au second tour, mais non testé depuis mai et visé par l'affaire Mediapart des 1er-6 octobre 2026, Public Sénat : https://www.publicsenat.fr/actualites/politique/accusation-dantisemitisme-jordan-bardella-conteste-a-nouveau-formellement-les-elements-dauthentification-de-mediapart) ; même loi que le cas « candidate », 2 points de qualification RN reportés sur AUTRE pour le risque d'une campagne de substitution."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "RN-PHI": 0.24,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.04,
+      "RN-RET": 0.42,
+      "RN-LIS": 0.02,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.02,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.09
+     },
+     "loi_reference": {
+      "RN-PHI": 0.6,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.22,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.025
+     },
+     "justifications": {
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4).",
+      "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=non candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Droite deuxième en mars : Retailleau (ou un candidat LR) devient le qualifié le plus probable. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DUEL",
+   "cas": "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=candidate",
+   "cas_reference": "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate",
+   "issue": "RN-RET",
+   "ta_loi_cas": {
+    "RN-PHI": 0.0,
+    "RN-ATT": 0.178,
+    "RN-MEL": 0.5162,
+    "RN-GLU": 0.1068,
+    "RN-RET": 0.0356,
+    "RN-LIS": 0.0089,
+    "RN-AUT": 0.0445,
+    "PHI-MEL": 0.0,
+    "PHI-GLU": 0.0,
+    "AUTRE": 0.11
+   },
+   "ta_loi_reference": {
+    "RN-PHI": 0.534,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.2047,
+    "RN-GLU": 0.0801,
+    "RN-RET": 0.0445,
+    "RN-LIS": 0.0089,
+    "RN-AUT": 0.0178,
+    "PHI-MEL": 0.0275,
+    "PHI-GLU": 0.0132,
+    "AUTRE": 0.0693
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.2,
+      "RN-MEL": 0.58,
+      "RN-GLU": 0.08,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.08
+     },
+     "loi_reference": {
+      "RN-PHI": 0.68,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.03,
+      "RN-RET": 0.03,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.05
+     },
+     "justifications": {
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Dossier 5.4 et 3.2 : le RN est en tête de toutes les hypothèses (Le Pen 33-34 % en septembre, minimum 29 %) et n'a manqué le second tour qu'avant 2017 ; qualification RN autour de 0,92-0,93. Si le centre est deuxième dans les sondages d'avril, son candidat le plus fort se qualifie le plus souvent (septembre : Philippe deuxième dans 18 hypothèses sur 22 quand il est seul), avec une marge pour une surprise du type 2002 et pour la sous-estimation de la gauche (+3,1 points, 5.5). Configuration du bloc : Philippe seul.",
+      "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=candidate": "Jugement : si la gauche est deuxième en avril, Mélenchon est le plus souvent le candidat concerné (2.e en septembre dans toutes les hypothèses « Attal seul », 5.4), Glucksmann restant possible ; le centre garde une chance de dépassement (écart souvent faible, 3.2). Configuration du bloc : Attal seul."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.28,
+      "RN-MEL": 0.47,
+      "RN-GLU": 0.11,
+      "RN-RET": 0.06,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.05
+     },
+     "loi_reference": {
+      "RN-PHI": 0.6,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.22,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.025
+     },
+     "justifications": {
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4).",
+      "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=candidate": "Jugement : si Attal est seul, Mélenchon est deuxième dans les 15 hypothèses de septembre (14,2 contre 16,9, dossier 3.2). Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DUEL",
+   "cas": "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=non candidate",
+   "cas_reference": "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate",
+   "issue": "RN-RET",
+   "ta_loi_cas": {
+    "RN-PHI": 0.0,
+    "RN-ATT": 0.164,
+    "RN-MEL": 0.4756,
+    "RN-GLU": 0.0984,
+    "RN-RET": 0.0328,
+    "RN-LIS": 0.0082,
+    "RN-AUT": 0.041,
+    "PHI-MEL": 0.0,
+    "PHI-GLU": 0.0,
+    "AUTRE": 0.18
+   },
+   "ta_loi_reference": {
+    "RN-PHI": 0.534,
+    "RN-ATT": 0.0,
+    "RN-MEL": 0.2047,
+    "RN-GLU": 0.0801,
+    "RN-RET": 0.0445,
+    "RN-LIS": 0.0089,
+    "RN-AUT": 0.0178,
+    "PHI-MEL": 0.0275,
+    "PHI-GLU": 0.0132,
+    "AUTRE": 0.0693
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.1957,
+      "RN-MEL": 0.5674,
+      "RN-GLU": 0.0783,
+      "RN-RET": 0.0391,
+      "RN-LIS": 0.0049,
+      "RN-AUT": 0.0147,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.1
+     },
+     "loi_reference": {
+      "RN-PHI": 0.68,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.03,
+      "RN-RET": 0.03,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.05
+     },
+     "justifications": {
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Dossier 5.4 et 3.2 : le RN est en tête de toutes les hypothèses (Le Pen 33-34 % en septembre, minimum 29 %) et n'a manqué le second tour qu'avant 2017 ; qualification RN autour de 0,92-0,93. Si le centre est deuxième dans les sondages d'avril, son candidat le plus fort se qualifie le plus souvent (septembre : Philippe deuxième dans 18 hypothèses sur 22 quand il est seul), avec une marge pour une surprise du type 2002 et pour la sous-estimation de la gauche (+3,1 points, 5.5). Configuration du bloc : Philippe seul.",
+      "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=non candidate": "Jugement : si Le Pen n'est pas candidate, Bardella la remplace (dossier 5.2 : 1 à 3 points de plus qu'elle au second tour, mais non testé depuis mai et visé par l'affaire Mediapart des 1er-6 octobre 2026, Public Sénat : https://www.publicsenat.fr/actualites/politique/accusation-dantisemitisme-jordan-bardella-conteste-a-nouveau-formellement-les-elements-dauthentification-de-mediapart) ; même loi que le cas « candidate », 2 points de qualification RN reportés sur AUTRE pour le risque d'une campagne de substitution."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "RN-PHI": 0.0,
+      "RN-ATT": 0.27,
+      "RN-MEL": 0.44,
+      "RN-GLU": 0.11,
+      "RN-RET": 0.07,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.0,
+      "PHI-GLU": 0.0,
+      "AUTRE": 0.08
+     },
+     "loi_reference": {
+      "RN-PHI": 0.6,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.22,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.025
+     },
+     "justifications": {
+      "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4).",
+      "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=non candidate": "Jugement : si Attal est seul, Mélenchon est deuxième dans les 15 hypothèses de septembre (14,2 contre 16,9, dossier 3.2). Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen non candidate : remplaçant (Bardella, affaibli par l'affaire des écrits Mediapart, Euronews 29 septembre 2026 https://fr.euronews.com/2026/09/29/accusations-dantisemitisme-jordan-bardella-porte-plainte-contre-mediapart-pour-diffamation) un peu moins sûr d'être qualifié ; duels sans RN un peu plus probables."
+     }
+    }
+   ]
+  }
+ ],
+ "noeuds": {
+  "PV-ECOLO": {
+   "VE-SOND=centre": {
+    "autre 1": {
+     "loi": {
+      "candidature autonome": 0.5,
+      "soutien à un autre candidat": 0.4,
+      "autre ou vote non tenu": 0.1
+     },
+     "justification": "Dossier 2.1-2.4 : motion de la direction « pour l'Union » adoptée à 69 %, mais Tondelier reste candidate et le vote est binaire ; taux de base 8 présidentielles sur 9 avec un écologiste. Jugement : si le centre est deuxième, l'argument « permettre une victoire de la gauche » s'affaiblit et l'attachement des adhérents à l'autonomie pèse ; mais le camp du soutien est réel (Jadot soutient Glucksmann, Sud Radio 24/08/2026 : https://www.sudradio.fr/societe/a-gauche-la-bataille-saccelere-glucksmann-et-melenchon-lorgnent-les-ecologistes) et divisé entre Glucksmann et Mélenchon, ce qui gêne une option « soutien » non nommée. 10 % pour report, troisième option ou vote annulé, les règles du référendum n'étant pas connues (dossier 6.2)."
+    },
+    "autre 2": {
+     "loi": {
+      "candidature autonome": 0.48,
+      "soutien à un autre candidat": 0.43,
+      "autre ou vote non tenu": 0.09
+     },
+     "justification": "Dossier 2.1-2.4 : vote binaire fixé du 10 au 13 décembre, motion « pour l'Union » adoptée à 69 %, Tondelier à 3-7 % (risque de passer sous 5 % comme Jadot 2022), mais 8 présidentielles sur 9 avec un écologiste et hostilité à Glucksmann (refus de primaire ; Jadot l'a rejoint, linfodurable/AFP 25 août 2026). Jugement : si le centre reste deuxième, quasi équilibre avec léger avantage à l'autonomie (le soutien divise entre Glucksmann et Mélenchon) ; 9 % pour report, option ambiguë ou vote non tenu."
+    }
+   },
+   "VE-SOND=gauche": {
+    "autre 1": {
+     "loi": {
+      "candidature autonome": 0.42,
+      "soutien à un autre candidat": 0.48,
+      "autre ou vote non tenu": 0.1
+     },
+     "justification": "Jugement : si la gauche (Mélenchon) est deuxième derrière le RN, la perspective d'une qualification rend le ralliement plus attractif (priorité « victoire de la gauche », dossier 2.1) et l'aile Rousseau pousse vers LFI ; le soutien devient légèrement majoritaire, sans que l'autonomie disparaisse (Tondelier candidate officielle)."
+    },
+    "autre 2": {
+     "loi": {
+      "candidature autonome": 0.42,
+      "soutien à un autre candidat": 0.5,
+      "autre ou vote non tenu": 0.08
+     },
+     "justification": "Jugement : si Mélenchon est deuxième, une qualification de la gauche devient plausible et la priorité « permettre une victoire de la gauche, à défaut empêcher le RN » (dossier 2.1, Pegeon) pousse vers le soutien ; légère bascule vers l'option soutien."
+    }
+   },
+   "VE-SOND=droite": {
+    "autre 1": {
+     "loi": {
+      "candidature autonome": 0.5,
+      "soutien à un autre candidat": 0.4,
+      "autre ou vote non tenu": 0.1
+     },
+     "justification": "Jugement : cas rare ; même logique que le cas « centre » (la gauche reste loin du second tour, l'autonomie garde l'avantage)."
+    },
+    "autre 2": {
+     "loi": {
+      "candidature autonome": 0.5,
+      "soutien à un autre candidat": 0.4,
+      "autre ou vote non tenu": 0.1
+     },
+     "justification": "Jugement : si la droite est deuxième, la gauche paraît hors jeu ; moins d'enjeu d'union utile, l'affirmation identitaire l'emporte un peu plus souvent (dossier 2.4, taux de base 8/9)."
+    }
+   }
+  },
+  "PV-BLOC": {
+   "VE-SOND=centre": {
+    "autre 1": {
+     "loi": {
+      "les deux": 0.22,
+      "Philippe seul": 0.64,
+      "Attal seul": 0.1,
+      "aucun des deux": 0.04
+     },
+     "justification": "Dossier 3.1-3.2 : les deux sont déclarés, sans mécanisme de départage, mais les deux camps acceptent une mesure par les sondages début 2027 ; Philippe devance nettement Attal (18,8 contre 14,2 seuls, 14,0 contre 7,4 ensemble en septembre). Si le centre est deuxième, c'est Philippe qui porte le bloc : retrait d'Attal le plus probable. Taux de base : 4 doubles candidatures « de poids » sur 11 (3.3), mais la menace RN-LFI (Attal, 3 septembre) pousse au rassemblement. Attal seul surtout via l'information judiciaire du Havre (3.1)."
+    },
+    "autre 2": {
+     "loi": {
+      "les deux": 0.28,
+      "Philippe seul": 0.61,
+      "Attal seul": 0.07,
+      "aucun des deux": 0.04
+     },
+     "justification": "Dossier 3.1-3.2 : Philippe 18,8 % seul contre Attal 14,2 % seul, et 14 contre 7,4 quand les deux sont testés ; les deux camps acceptent un départage par les sondages début 2027 et Attal admet un rassemblement « s'il y a un risque RN-LFI ». Jugement : si le centre est deuxième, l'écart favorise un retrait d'Attal (jeune, peut viser 2032) ; 28 % de maintien des deux (taux de base 6/11 de candidatures multiples, sans mécanisme arrêté), 7 % Attal seul (accident judiciaire ou effondrement de Philippe, PNF Le Havre), 4 % aucun."
+    }
+   },
+   "VE-SOND=gauche": {
+    "autre 1": {
+     "loi": {
+      "les deux": 0.28,
+      "Philippe seul": 0.5,
+      "Attal seul": 0.14,
+      "aucun des deux": 0.08
+     },
+     "justification": "Jugement : si Mélenchon est deuxième, le centre paraît éliminable, ce qui pousse au rassemblement mais aussi à la contestation du leadership de Philippe ; maintien des deux un peu plus probable (aucun ne cède), et un peu plus de place pour un retrait de Philippe ou un troisième nom."
+    },
+    "autre 2": {
+     "loi": {
+      "les deux": 0.33,
+      "Philippe seul": 0.48,
+      "Attal seul": 0.11,
+      "aucun des deux": 0.08
+     },
+     "justification": "Jugement : si Mélenchon passe deuxième, le centre est affaibli ; Philippe reste favori mais la pression de départage joue moins nettement (aucun ne domine) et les scénarios de remplacement augmentent un peu (dossier 3.2 : Mélenchon deuxième avec Attal seul ou les deux)."
+    }
+   },
+   "VE-SOND=droite": {
+    "autre 1": {
+     "loi": {
+      "les deux": 0.25,
+      "Philippe seul": 0.4,
+      "Attal seul": 0.2,
+      "aucun des deux": 0.15
+     },
+     "justification": "Jugement : si la droite (Retailleau ou Lisnard) est deuxième, Philippe est affaibli : retrait au profit d'Attal ou d'un candidat commun de droite plus plausible ; « aucun des deux » monte à 15 %."
+    },
+    "autre 2": {
+     "loi": {
+      "les deux": 0.3,
+      "Philippe seul": 0.35,
+      "Attal seul": 0.15,
+      "aucun des deux": 0.2
+     },
+     "justification": "Jugement : si Retailleau ou la droite dépasse le centre, c'est le signe d'un effondrement de Philippe ; hausse de « aucun des deux » (ralliement à un candidat LR) et d'« Attal seul »."
+    }
+   }
+  },
+  "PV-GAUCHE": {
+   "PV-ECOLO=candidature autonome|VE-SOND=centre": {
+    "autre 1": {
+     "loi": {
+      "3 ou moins": 0.0361,
+      "4": 0.1789,
+      "5": 0.4302,
+      "6 ou plus": 0.3548
+     },
+     "justification": "Dossier 4.1-4.4 (définition EV-19 : seuls comptent les candidats investis ou soutenus par LFI, PS, PP, Écologistes, PCF, Debout !, LO ou NPA ; Cazeneuve, Bouamrane ou Hollande sans soutien de ces partis ne comptent pas). Calcul par somme de candidatures indépendantes : Mélenchon 0,96, Roussel 0,88, Arthaud 0,92, vainqueur de la primaire 0,92, Tondelier 0,85 (retrait tardif possible), Ruffin 0,28 (pas d'annonce depuis septembre, parrainages difficiles), NPA 0,35 (scission de 2022, Poutou présent 2012-2022). Taux de base vérifié 2012-2022 : 4, 5, 6."
+    },
+    "autre 2": {
+     "loi": {
+      "3 ou moins": 0.05,
+      "4": 0.15,
+      "5": 0.35,
+      "6 ou plus": 0.45
+     },
+     "justification": "Dossier 4.1-4.4 : Mélenchon, Roussel (investi à 72 %), Arthaud, le vainqueur de la primaire PS-PP et Tondelier déclarés ; Ruffin conditionnel, NPA non trouvé, Hollande/Cazeneuve/Bouamrane hors primaire ; listes 2012-2022 à 5, 4 et 6. Jugement : si Tondelier part en autonome, probabilités individuelles d'être sur la liste ≈ Mélenchon 0,98, Arthaud 0,92, PS-PP 0,92, Roussel 0,85, Tondelier 0,85, NPA 0,35, Ruffin 0,35, divers PS 0,25 ; espérance ≈ 5,5, queues élargies car les retraits pour l'union sont corrélés."
+    }
+   },
+   "PV-ECOLO=soutien à un autre candidat|VE-SOND=centre": {
+    "autre 1": {
+     "loi": {
+      "3 ou moins": 0.144,
+      "4": 0.4375,
+      "5": 0.3383,
+      "6 ou plus": 0.0801
+     },
+     "justification": "Jugement : si les Écologistes soutiennent un autre candidat, Tondelier sort de la liste (0,03 de maintien dissident) ; le reste du calcul est identique (Mélenchon 0,96, Roussel 0,88, Arthaud 0,92, primaire 0,92, Ruffin 0,28, NPA 0,35) : configuration proche de 2017 (4)."
+    },
+    "autre 2": {
+     "loi": {
+      "3 ou moins": 0.1,
+      "4": 0.32,
+      "5": 0.36,
+      "6 ou plus": 0.22
+     },
+     "justification": "Jugement : si les Écologistes soutiennent un autre candidat, Tondelier sort ; il reste le noyau de quatre (Mélenchon, Arthaud, PS-PP, Roussel) plus NPA, Ruffin ou un dissident PS de façon incertaine ; espérance ≈ 4,6 (dossier 4.3 : 2017 à 4 avec ralliement de Jadot)."
+    }
+   },
+   "PV-ECOLO=candidature autonome|VE-SOND=gauche": {
+    "autre 1": {
+     "loi": {
+      "3 ou moins": 0.0474,
+      "4": 0.2042,
+      "5": 0.4323,
+      "6 ou plus": 0.3161
+     },
+     "justification": "Dossier 4.1-4.4 (définition EV-19 : seuls comptent les candidats investis ou soutenus par LFI, PS, PP, Écologistes, PCF, Debout !, LO ou NPA ; Cazeneuve, Bouamrane ou Hollande sans soutien de ces partis ne comptent pas). Calcul par somme de candidatures indépendantes : Mélenchon 0,96, Roussel 0,88, Arthaud 0,92, vainqueur de la primaire 0,92, Tondelier 0,85 (retrait tardif possible), Ruffin 0,28 (pas d'annonce depuis septembre, parrainages difficiles), NPA 0,35 (scission de 2022, Poutou présent 2012-2022). Taux de base vérifié 2012-2022 : 4, 5, 6. Si Mélenchon est deuxième, la pression au rassemblement réduit un peu les candidatures Roussel (0,84), Ruffin (0,24) et PS (0,90)."
+    },
+    "autre 2": {
+     "loi": {
+      "3 ou moins": 0.06,
+      "4": 0.18,
+      "5": 0.35,
+      "6 ou plus": 0.41
+     },
+     "justification": "Dossier 4.1-4.4 : Mélenchon, Roussel (investi à 72 %), Arthaud, le vainqueur de la primaire PS-PP et Tondelier déclarés ; Ruffin conditionnel, NPA non trouvé, Hollande/Cazeneuve/Bouamrane hors primaire ; listes 2012-2022 à 5, 4 et 6. Jugement : si Tondelier part en autonome, probabilités individuelles d'être sur la liste ≈ Mélenchon 0,98, Arthaud 0,92, PS-PP 0,92, Roussel 0,85, Tondelier 0,85, NPA 0,35, Ruffin 0,35, divers PS 0,25 ; espérance ≈ 5,5, queues élargies car les retraits pour l'union sont corrélés. Si Mélenchon est deuxième : pression accrue au vote utile (Roussel, Ruffin peuvent se rallier), environ 4 points déplacés de « 6 ou plus » vers « 3 ou moins »/« 4 »."
+    }
+   }
+  },
+  "PV-DUEL": {
+   "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": {
+    "autre 1": {
+     "loi": {
+      "RN-PHI": 0.68,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.14,
+      "RN-GLU": 0.03,
+      "RN-RET": 0.03,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.05
+     },
+     "justification": "Dossier 5.4 et 3.2 : le RN est en tête de toutes les hypothèses (Le Pen 33-34 % en septembre, minimum 29 %) et n'a manqué le second tour qu'avant 2017 ; qualification RN autour de 0,92-0,93. Si le centre est deuxième dans les sondages d'avril, son candidat le plus fort se qualifie le plus souvent (septembre : Philippe deuxième dans 18 hypothèses sur 22 quand il est seul), avec une marge pour une surprise du type 2002 et pour la sous-estimation de la gauche (+3,1 points, 5.5). Configuration du bloc : Philippe seul."
+    },
+    "autre 2": {
+     "loi": {
+      "RN-PHI": 0.6,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.22,
+      "RN-GLU": 0.05,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.02,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.025
+     },
+     "justification": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    }
+   },
+   "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=candidate": {
+    "autre 1": {
+     "loi": {
+      "RN-PHI": 0.55,
+      "RN-ATT": 0.07,
+      "RN-MEL": 0.2,
+      "RN-GLU": 0.04,
+      "RN-RET": 0.03,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.05
+     },
+     "justification": "Dossier 5.4 et 3.2 : le RN est en tête de toutes les hypothèses (Le Pen 33-34 % en septembre, minimum 29 %) et n'a manqué le second tour qu'avant 2017 ; qualification RN autour de 0,92-0,93. Si le centre est deuxième dans les sondages d'avril, son candidat le plus fort se qualifie le plus souvent (septembre : Philippe deuxième dans 18 hypothèses sur 22 quand il est seul), avec une marge pour une surprise du type 2002 et pour la sous-estimation de la gauche (+3,1 points, 5.5). Configuration du bloc : les deux. Avec deux candidats, Philippe reste le mieux placé des deux (14,0 contre 7,4, dossier 3.2)."
+    },
+    "autre 2": {
+     "loi": {
+      "RN-PHI": 0.45,
+      "RN-ATT": 0.04,
+      "RN-MEL": 0.3,
+      "RN-GLU": 0.07,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.03
+     },
+     "justification": "Jugement : si Philippe et Attal sont tous deux candidats, le centre se divise (septembre : Philippe 14, Mélenchon 16, Attal 7,4 ; Mélenchon deuxième dans 14 hypothèses sur 19, dossier 3.2) ; précédents 1974-1995 : un des deux candidats du bloc atteint toujours le second tour (dossier 3.3, non vérifié). Le deuxième bloc observé en mars est le centre : la qualification du candidat centriste est la plus probable. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    }
+   },
+   "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=candidate": {
+    "autre 1": {
+     "loi": {
+      "RN-PHI": 0.25,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.55,
+      "RN-GLU": 0.08,
+      "RN-RET": 0.02,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.015,
+      "PHI-MEL": 0.03,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.04
+     },
+     "justification": "Jugement : si la gauche est deuxième en avril, Mélenchon est le plus souvent le candidat concerné (2.e en septembre dans toutes les hypothèses « Attal seul », 5.4), Glucksmann restant possible ; le centre garde une chance de dépassement (écart souvent faible, 3.2). Configuration du bloc : Philippe seul."
+    },
+    "autre 2": {
+     "loi": {
+      "RN-PHI": 0.38,
+      "RN-ATT": 0.0,
+      "RN-MEL": 0.4,
+      "RN-GLU": 0.08,
+      "RN-RET": 0.04,
+      "RN-LIS": 0.005,
+      "RN-AUT": 0.025,
+      "PHI-MEL": 0.04,
+      "PHI-GLU": 0.01,
+      "AUTRE": 0.02
+     },
+     "justification": "Jugement : si Philippe est seul, il est deuxième dans 18 hypothèses sur 22 en septembre avec 18,8 % contre 16,8 % à Mélenchon (dossier 3.2), mais la gauche a été sous-estimée de 3,1 points en moyenne 2012-2022 (dossier 5.5) et Mélenchon a fini à 21,95 % en 2022. Mélenchon deuxième en mars : sa qualification devient majoritaire ou proche. Le Pen candidate : RN qualifié dans environ 95 % des cas (33,7-34,4 % en septembre, dossier 5.4)."
+    }
+   }
+  },
+  "PV-VAINQ": {
+   "PV-DUEL=RN-PHI|VE-RN=30-35 %|PV-LEPEN=candidate": {
+    "autre 1": {
+     "loi": {
+      "RN": 0.53,
+      "PHI": 0.47,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Dossier 5.1 : depuis juillet 2026, neuf mesures sur neuf donnent Le Pen devant Philippe (51 à 57 %, environ 54 en moyenne), après trois mesures favorables à Philippe en mars-avril ; le RN a perdu ses trois seconds tours (5.5) et le front républicain s'est historiquement reconstitué entre l'automne et le vote (2022 : 41,45 % pour Le Pen). À six mois, l'incertitude reste large : RN 0,53 si 30-35 %. Le premier tour du RN module le plafond : moins de 30 % rend le report plus difficile, plus de 35 % le rend plus facile (jugement)."
+    },
+    "autre 2": {
+     "loi": {
+      "RN": 0.52,
+      "PHI": 0.48,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Philippe : Le Pen en tête dans les neuf mesures depuis juillet 2026, 51 à 57 % (dossier 5.1), mais Philippe gagnait en mars et le FN/RN a perdu ses trois seconds tours (dossier 5.5) ; à six mois, l'écart de 5 à 10 points reste dans la marge de campagne. RN à 30-35 % en mars : niveau actuel (observation d'octobre)."
+    }
+   },
+   "PV-DUEL=RN-MEL|VE-RN=30-35 %|PV-LEPEN=candidate": {
+    "autre 1": {
+     "loi": {
+      "RN": 0.86,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.14,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Dossier 5.3 : Mélenchon 30 à 36 % face à Le Pen depuis juillet ; RN largement favori (0,86 si 30-35 %), avec une part de mobilisation anti-RN. Le premier tour du RN module le plafond : moins de 30 % rend le report plus difficile, plus de 35 % le rend plus facile (jugement)."
+    },
+    "autre 2": {
+     "loi": {
+      "RN": 0.86,
+      "PHI": 0.0,
+      "ATT": 0.0,
+      "MEL": 0.14,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Mélenchon : Mélenchon à 30-36 % (dossier 5.3), front républicain très incomplet. RN à 30-35 % en mars : niveau actuel (observation d'octobre)."
+    }
+   },
+   "PV-DUEL=RN-PHI|VE-RN=> 35 %|PV-LEPEN=candidate": {
+    "autre 1": {
+     "loi": {
+      "RN": 0.66,
+      "PHI": 0.34,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Dossier 5.1 : depuis juillet 2026, neuf mesures sur neuf donnent Le Pen devant Philippe (51 à 57 %, environ 54 en moyenne), après trois mesures favorables à Philippe en mars-avril ; le RN a perdu ses trois seconds tours (5.5) et le front républicain s'est historiquement reconstitué entre l'automne et le vote (2022 : 41,45 % pour Le Pen). À six mois, l'incertitude reste large : RN 0,53 si 30-35 %. Le premier tour du RN module le plafond : moins de 30 % rend le report plus difficile, plus de 35 % le rend plus facile (jugement)."
+    },
+    "autre 2": {
+     "loi": {
+      "RN": 0.62,
+      "PHI": 0.38,
+      "ATT": 0.0,
+      "MEL": 0.0,
+      "GLU": 0.0,
+      "RET": 0.0,
+      "LIS": 0.0,
+      "AUT": 0.0
+     },
+     "justification": "Jugement : si le duel est RN-Philippe : Le Pen en tête dans les neuf mesures depuis juillet 2026, 51 à 57 % (dossier 5.1), mais Philippe gagnait en mars et le FN/RN a perdu ses trois seconds tours (dossier 5.5) ; à six mois, l'écart de 5 à 10 points reste dans la marge de campagne. RN au-dessus de 35 % : dynamique favorable, environ +10 points."
+    }
+   }
+  }
+ }
+}

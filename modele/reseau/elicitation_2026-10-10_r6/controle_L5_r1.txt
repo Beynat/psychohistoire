@@ -1,0 +1,15 @@
+/tmp/claude-0/elic11/E25.json : conforme
+  marginale implicite EV-43 oui : 39.3 contre avis direct 22.0
+/tmp/claude-0/elic11/E26.json : conforme
+  marginale implicite EV-43 oui : 41.0 contre avis direct 32.0
+/tmp/claude-0/elic11/E27.json : conforme
+  marginale implicite EV-16b oui : 59.9 contre avis direct 67.0
+  marginale implicite EV-43 oui : 48.0 contre avis direct 25.0
+Traceback (most recent call last):
+  File "/home/claude/psychohistoire/scripts/tables.py", line 583, in <module>
+    so = sens_opposes(reps) if len(reps) > 1 else []
+         ~~~~~~~~~~~~^^^^^^
+  File "/home/claude/psychohistoire/scripts/tables.py", line 467, in sens_opposes
+    issues = ["oui"] if not isinstance(ls[0][c], dict) else list(ls[0][c])
+                                       ~~~~~^^^
+KeyError: 'PV-VAINQ=PHI|VE-POP=*|PV-DISSOL1=non'

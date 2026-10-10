@@ -1,0 +1,192 @@
+{
+ "evaluateur": "E26",
+ "ronde": 2,
+ "lecture": "Seconde ronde (protocole IDEA). (1) défauts de ta réponse ; (2) questions où la marginale impliquée par TES lois s'écarte de plus de 5 points de ton avis direct ; (3) cas où les évaluateurs donnent des sens opposés par rapport au cas le plus fréquent, avec les lois et justifications anonymes des autres ; (4) pour chaque nœud, les lois et justifications des autres sur les trois cas les plus fréquents. Corrige ou maintiens en écrivant pourquoi.",
+ "defauts": [],
+ "marginales": [
+  {
+   "question": "EV-43",
+   "issue": "oui",
+   "implique": 41.0,
+   "direct": 32.0
+  }
+ ],
+ "sens_opposes": [
+  {
+   "noeud": "PV-DISSOL2a",
+   "cas": "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=non",
+   "cas_reference": "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non",
+   "issue": "oui",
+   "ta_loi_cas": 0.89,
+   "ta_loi_reference": 0.85,
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": 0.82,
+     "loi_reference": 0.85,
+     "justifications": {
+      "PV-VAINQ=RN|VE-POP=*|PV-DISSOL1=non": "Dossier §2 (précédents 1981 et 1988 : 2 dissolutions sur 2 quand l'Assemblée était opposée au nouveau président) et §4 (RN 121 + UDR 17, loin de 289). jugement : si un président RN arrive face à l'Assemblée de 2024 sans dissolution préalable, la probabilité qu'il dissolve avant le 30 juin est très élevée, aucun gouvernement RN ne survivant sinon à une censure ; aucune déclaration RN sourcée (§6), d'où 0,85 et non plus. VE-POP (décalage d'un mois) mesure surtout la popularité du président sortant en avril 2027 : jugement : peu informatif, joker sur VE-POP.",
+      "PV-VAINQ=PHI|VE-POP=*|PV-DISSOL1=non": "Dossier §2 : Édouard Philippe a annoncé le 16 mars 2025 (Europe 1/AFP) vouloir dissoudre et tenir des législatives en juin couplées à un référendum. jugement : intention déclarée + groupe Horizons à 35 sièges ; si PHI gagne sans dissolution préalable, 0,82 (intention non reconfirmée en 2026, possibilité de coalition avec EPR/LR/MoDem). VE-POP (décalage d'un mois) mesure surtout la popularité du président sortant en avril 2027 : jugement : peu informatif, joker sur VE-POP."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": 0.67,
+     "loi_reference": 0.63,
+     "justifications": {
+      "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non": "Jugement : un président RN face à une Assemblée où le RN a 121 sièges (section 4) ne peut pas gouverner sans majorité (le RN a dit refuser de gouverner sans majorité absolue) ; précédents 1981 et 1988 (section 2) de dissolution immédiate face à une Assemblée hostile ; l'élan de l'élection favorise la dissolution, d'autant plus que la popularité est haute ; le risque est de perdre le pari, d'où pas plus de 0.7.",
+      "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=non": "Dossier section 2 : Philippe a déclaré (16 mars 2025, Europe 1/AFP) envisager de dissoudre avec législatives en juin pour tenir un référendum ; Horizons n'a que 35 députés (section 4) ; non vérifié comme maintenu en 2026 et une déclaration de campagne n'engage pas, d'où 0.58-0.67."
+     }
+    }
+   ]
+  }
+ ],
+ "noeuds": {
+  "PV-DISSOL2a": {
+   "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non": {
+    "autre 1": {
+     "loi": 0.85,
+     "justification": "Dossier §2 (précédents 1981 et 1988 : 2 dissolutions sur 2 quand l'Assemblée était opposée au nouveau président) et §4 (RN 121 + UDR 17, loin de 289). jugement : si un président RN arrive face à l'Assemblée de 2024 sans dissolution préalable, la probabilité qu'il dissolve avant le 30 juin est très élevée, aucun gouvernement RN ne survivant sinon à une censure ; aucune déclaration RN sourcée (§6), d'où 0,85 et non plus. VE-POP (décalage d'un mois) mesure surtout la popularité du président sortant en avril 2027 : jugement : peu informatif, joker sur VE-POP."
+    },
+    "autre 2": {
+     "loi": 0.63,
+     "justification": "Jugement : un président RN face à une Assemblée où le RN a 121 sièges (section 4) ne peut pas gouverner sans majorité (le RN a dit refuser de gouverner sans majorité absolue) ; précédents 1981 et 1988 (section 2) de dissolution immédiate face à une Assemblée hostile ; l'élan de l'élection favorise la dissolution, d'autant plus que la popularité est haute ; le risque est de perdre le pari, d'où pas plus de 0.7."
+    }
+   },
+   "PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=non": {
+    "autre 1": {
+     "loi": 0.82,
+     "justification": "Dossier §2 : Édouard Philippe a annoncé le 16 mars 2025 (Europe 1/AFP) vouloir dissoudre et tenir des législatives en juin couplées à un référendum. jugement : intention déclarée + groupe Horizons à 35 sièges ; si PHI gagne sans dissolution préalable, 0,82 (intention non reconfirmée en 2026, possibilité de coalition avec EPR/LR/MoDem). VE-POP (décalage d'un mois) mesure surtout la popularité du président sortant en avril 2027 : jugement : peu informatif, joker sur VE-POP."
+    },
+    "autre 2": {
+     "loi": 0.58,
+     "justification": "Dossier section 2 : Philippe a déclaré (16 mars 2025, Europe 1/AFP) envisager de dissoudre avec législatives en juin pour tenir un référendum ; Horizons n'a que 35 députés (section 4) ; non vérifié comme maintenu en 2026 et une déclaration de campagne n'engage pas, d'où 0.58-0.67."
+    }
+   },
+   "PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=non": {
+    "autre 1": {
+     "loi": 0.85,
+     "justification": "Dossier §2 (précédents 1981 et 1988 : 2 dissolutions sur 2 quand l'Assemblée était opposée au nouveau président) et §4 (RN 121 + UDR 17, loin de 289). jugement : si un président RN arrive face à l'Assemblée de 2024 sans dissolution préalable, la probabilité qu'il dissolve avant le 30 juin est très élevée, aucun gouvernement RN ne survivant sinon à une censure ; aucune déclaration RN sourcée (§6), d'où 0,85 et non plus. VE-POP (décalage d'un mois) mesure surtout la popularité du président sortant en avril 2027 : jugement : peu informatif, joker sur VE-POP."
+    },
+    "autre 2": {
+     "loi": 0.66,
+     "justification": "Jugement : un président RN face à une Assemblée où le RN a 121 sièges (section 4) ne peut pas gouverner sans majorité (le RN a dit refuser de gouverner sans majorité absolue) ; précédents 1981 et 1988 (section 2) de dissolution immédiate face à une Assemblée hostile ; l'élan de l'élection favorise la dissolution, d'autant plus que la popularité est haute ; le risque est de perdre le pari, d'où pas plus de 0.7."
+    }
+   }
+  },
+  "PV-DISSOL2b": {
+   "PV-VAINQ=RN|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+    "autre 1": {
+     "loi": 0.04,
+     "justification": "Dossier §3 (après une dissolution en mai-juin 2027, fenêtre réduite à un à trois mois à l'été 2028 ; précédents 1981 et 1988 : aucune nouvelle dissolution dans la législature). jugement : 0,04."
+    },
+    "autre 2": {
+     "loi": 0.03,
+     "justification": "Dossier section 3 : après une dissolution en mai-juin 2027, nouvelle dissolution impossible jusqu'en juin-août 2028 ; reste une fenêtre d'un à trois mois, probabilité faible ; jugement : le verrou n'est pas recompté."
+    }
+   },
+   "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non": {
+    "autre 1": {
+     "loi": 0.4,
+     "justification": "Dossier §3 (taux de base hors prise de fonctions ≈ 0,07 par fenêtre de 15 mois ; 2022-2024 dissoute après 23 mois sans majorité). jugement : si le président élu n'a pas dissous en mai-juin, il gouverne face à l'Assemblée de 2024 sans majorité ; une dissolution décalée (juillet, après une censure ou un échec budgétaire à l'automne 2027) est bien plus probable que le taux de base, d'où 0.4."
+    },
+    "autre 2": {
+     "loi": 0.22,
+     "justification": "Jugement : un président RN n'a pas dissous en mai-juin (par prudence sur les sondages ou autre voie) devant une Assemblée sans majorité : gouvernement minoritaire exposé à la censure (section 5), session budgétaire d'octobre-décembre 2027 ; 1962 : dissolution quatre jours après censure ; taux de base 0,07 relevé fortement par le blocage mais abaissé par le choix déjà fait de ne pas dissoudre."
+    }
+   },
+   "PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=non": {
+    "autre 1": {
+     "loi": 0.35,
+     "justification": "Dossier §3 (taux de base hors prise de fonctions ≈ 0,07 par fenêtre de 15 mois ; 2022-2024 dissoute après 23 mois sans majorité). jugement : si le président élu n'a pas dissous en mai-juin, il gouverne face à l'Assemblée de 2024 sans majorité ; une dissolution décalée (juillet, après une censure ou un échec budgétaire à l'automne 2027) est bien plus probable que le taux de base, d'où 0.35."
+    },
+    "autre 2": {
+     "loi": 0.2,
+     "justification": "Jugement : même logique que pour le RN : Assemblée sans majorité (section 4), budget 2028 à l'automne 2027, censure possible puis dissolution (précédent 1962, section 3) ; taux de base 0,07 sur 15 mois relevé, mais le président a déjà renoncé à dissoudre dans les deux premiers mois."
+    }
+   }
+  },
+  "PV-MAJOR": {
+   "PV-VAINQ=RN|PV-DISSOL2a=oui": {
+    "autre 1": {
+     "loi": {
+      "289 ou plus": 0.45,
+      "moins de 289": 0.55
+     },
+     "justification": "Dossier §4 : le groupe du président atteint 289 dans 4 cas sur 4 après l'élection d'un nouveau président (2002-2017), mais les projections surestiment le camp en tête dans 4 cas sur 6 et le RN a été contenu en 2024 (RN 121 + UDR 17 contre 190-220 projetés). jugement : si un président RN dissout, la vague présidentielle joue mais le barrage persiste en partie et le seuil s'applique au seul groupe RN (UDR distinct) ; 0,45. Léger abattement pour une dissolution tardive dont les élections tomberaient après le 1er juillet (§6)."
+    },
+    "autre 2": {
+     "loi": {
+      "289 ou plus": 0.22,
+      "moins de 289": 0.78
+     },
+     "justification": "Dossier section 4 : groupe du président à 289 dans 5 cas sur 7 mais surtout pour de nouveaux présidents dans un système bipolaire ; RN seul à 121 sièges (138 avec UDR) ; projections surévaluant le camp en tête (2002, 2007, 2017, 2022) ; 2024 montre le plafond (front républicain) ; jugement : élan présidentiel mais majorité absolue du seul groupe RN difficile ; la date de lecture du 1er juillet exclut aussi des élections tardives."
+    }
+   },
+   "PV-VAINQ=RN|PV-DISSOL2a=non": {
+    "autre 1": {
+     "loi": {
+      "289 ou plus": 0.06,
+      "moins de 289": 0.94
+     },
+     "justification": "Dossier §4 : sans élections générales en mai-juin 2027, la composition lue est celle de 2024 (aucun groupe à 289 ; aucun précédent de passage de moins de 150 à 289 sans élections). jugement : seule voie, une dissolution avant la présidentielle (PV-DISSOL1, absente de la structure, §6) ayant déjà donné une majorité au parti du futur président ; 0.06."
+    },
+    "autre 2": {
+     "loi": {
+      "289 ou plus": 0.003,
+      "moins de 289": 0.997
+     },
+     "justification": "Dossier section 4 : sans législatives, composition de 2024 (RN 121, EPR 90, etc.), aucun précédent de groupe passant à 289 sans élections ; reste un risque infime de ralliements/lecture."
+    }
+   },
+   "PV-VAINQ=PHI|PV-DISSOL2a=oui": {
+    "autre 1": {
+     "loi": {
+      "289 ou plus": 0.25,
+      "moins de 289": 0.75
+     },
+     "justification": "Dossier §4 (Horizons 35 ; le groupe du président doit à lui seul atteindre 289). jugement : si Philippe dissout, majorité présidentielle probable en coalition mais un groupe Horizons seul à 289 suppose une fusion avec EPR/MoDem sous son étiquette ; 0,25. Léger abattement pour une dissolution tardive dont les élections tomberaient après le 1er juillet (§6)."
+    },
+    "autre 2": {
+     "loi": {
+      "289 ou plus": 0.1,
+      "moins de 289": 0.9
+     },
+     "justification": "Jugement : Horizons (35 députés) devrait passer à 289 seul ; 2017 (313 pour LaREM) est un précédent de vague mais avec un mouvement neuf, 2022 un contre-exemple (section 4) ; paysage tripolaire/quadripolaire."
+    }
+   }
+  },
+  "PV-CENSURE2": {
+   "PV-MAJOR=moins de 289|VE-POP=< 25 %": {
+    "autre 1": {
+     "loi": 0.32,
+     "justification": "Dossier §5 : sous majorité relative, une censure en environ 108 mois (≈0,009/mois, soit ≈0,14 sur 17 mois), mais la fréquence récente est bien plus élevée (2024-2026 : une censure et un vote de confiance perdu en 27 mois ; motions à 267-278 voix). jugement : si le parti du président n'a pas 289, le gouvernement est soit minoritaire face à l'Assemblée de 2024 (cas RN sans dissolution : censure très probable), soit fragile après des législatives sans majorité, avec la session budgétaire 2028 dans la fenêtre ; président impopulaire : 0,32."
+    },
+    "autre 2": {
+     "loi": 0.3,
+     "justification": "Dossier section 5 : taux de base sous majorité relative environ 0,009 par mois soit 0,15 sur 17 mois, mais 2 gouvernements tombés sur 4 depuis 2024 (Barnier censuré, Bayrou confiance perdue), motions à 269/267 voix en janvier 2026 ; session budgétaire d'automne 2027 ; popularité basse relève, un nouveau président et un gouvernement neuf abaissent."
+    }
+   },
+   "PV-MAJOR=289 ou plus|VE-POP=< 25 %": {
+    "autre 1": {
+     "loi": 0.05,
+     "justification": "Dossier §5 : aucune censure adoptée sous majorité absolue depuis 1962. jugement : reste le risque de mai-juin 2027 avant la législature (gouvernement sortant ou nouveau gouvernement face à l'Assemblée de 2024 avant dissolution) et une fronde interne si le président est très impopulaire ; 0,05."
+    },
+    "autre 2": {
+     "loi": 0.03,
+     "justification": "Dossier section 5 : aucune censure adoptée sous majorité absolue depuis 1962 (XIVe et XVe législatures : 4 et 5 motions rejetées) ; reste le risque d'érosion de la majorité en 17 mois."
+    }
+   },
+   "PV-MAJOR=moins de 289|VE-POP=25-35 %": {
+    "autre 1": {
+     "loi": 0.25,
+     "justification": "Dossier §5 (mêmes taux). jugement : popularité moyenne, oppositions moins incitées à censurer ; 0,25."
+    },
+    "autre 2": {
+     "loi": 0.22,
+     "justification": "Dossier section 5 : taux de base sous majorité relative environ 0,009 par mois soit 0,15 sur 17 mois, mais 2 gouvernements tombés sur 4 depuis 2024 (Barnier censuré, Bayrou confiance perdue), motions à 269/267 voix en janvier 2026 ; session budgétaire d'automne 2027 ; popularité basse relève, un nouveau président et un gouvernement neuf abaissent."
+    }
+   }
+  }
+ }
+}

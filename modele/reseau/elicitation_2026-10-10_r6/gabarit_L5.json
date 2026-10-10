@@ -1,0 +1,1037 @@
+{
+ "evaluateur": null,
+ "date": null,
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "PV-DISSOL2a": {
+   "nom": "Dissolution dans les deux mois suivant le second tour",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    },
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "PV-DISSOL1",
+     "nom": "Dissolution avant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2027-05-02"
+     ]
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-05-03",
+    "2027-06-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0063,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.5103,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0979,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0142,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.179,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=PHI|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=PHI|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0374,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0063,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=ATT|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=ATT|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0174,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=ATT|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=ATT|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=ATT|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=ATT|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=MEL|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=MEL|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0342,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=MEL|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=MEL|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0058,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=MEL|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=MEL|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=GLU|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=GLU|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0211,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=GLU|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=GLU|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0026,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=GLU|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=GLU|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RET|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RET|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0084,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=LIS|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=LIS|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0016,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=LIS|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=LIS|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=LIS|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=LIS|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=AUT|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=AUT|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0316,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=AUT|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=AUT|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0063,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=AUT|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=AUT|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": [
+    {
+     "si": "PV-DISSOL1",
+     "interdit": [
+      "PV-DISSOL2a",
+      "PV-DISSOL2b"
+     ],
+     "duree_mois": 12,
+     "motif": "article 12 de la Constitution : pas de nouvelle dissolution dans l'année qui suit les élections ; pas mensuel, élections comptées dans le mois qui suit la dissolution, nouvelle dissolution possible à partir du 13e mois après celui de la dissolution"
+    }
+   ],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-DISSOL2b": {
+   "nom": "Dissolution de juillet 2027 à septembre 2028",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    },
+    {
+     "id": "PV-DISSOL2a",
+     "nom": "Dissolution dans les deux mois suivant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2027-05-03",
+      "2027-06-30"
+     ]
+    },
+    {
+     "id": "PV-DISSOL1",
+     "nom": "Dissolution avant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2027-05-02"
+     ]
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-07-01",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-VAINQ=RN|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RN|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.2697,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0696,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.2645,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0828,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0286,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.1303,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0084,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0029,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0168,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0205,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0049,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0102,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0094,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.005,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0171,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0048,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0016,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0083,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0017,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0113,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0029,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0287,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": [
+    {
+     "si": "PV-DISSOL1",
+     "interdit": [
+      "PV-DISSOL2a",
+      "PV-DISSOL2b"
+     ],
+     "duree_mois": 12,
+     "motif": "article 12 de la Constitution : pas de nouvelle dissolution dans l'année qui suit les élections ; pas mensuel, élections comptées dans le mois qui suit la dissolution, nouvelle dissolution possible à partir du 13e mois après celui de la dissolution"
+    },
+    {
+     "si": "PV-DISSOL2a",
+     "interdit": [
+      "PV-DISSOL2b"
+     ],
+     "duree_mois": 12,
+     "motif": "article 12 de la Constitution, comme ci-dessus"
+    }
+   ],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-MAJOR": {
+   "nom": "Groupe du parti du président à 289 députés ou plus après les législatives",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    },
+    {
+     "id": "PV-DISSOL2a",
+     "nom": "Dissolution dans les deux mois suivant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2027-05-03",
+      "2027-06-30"
+     ]
+    }
+   ],
+   "definition": null,
+   "date": "2027-07-01",
+   "fenetre": null,
+   "issues": [
+    "289 ou plus",
+    "moins de 289"
+   ],
+   "cas": {
+    "PV-VAINQ=RN|PV-DISSOL2a=oui": {
+     "poids_reseau": 0.4393,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RN|PV-DISSOL2a=non": {
+     "poids_reseau": 0.1973,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=oui": {
+     "poids_reseau": 0.134,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=non": {
+     "poids_reseau": 0.0847,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=oui": {
+     "poids_reseau": 0.0133,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=non": {
+     "poids_reseau": 0.01,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=oui": {
+     "poids_reseau": 0.0333,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=non": {
+     "poids_reseau": 0.01,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=oui": {
+     "poids_reseau": 0.0153,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=non": {
+     "poids_reseau": 0.012,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=oui": {
+     "poids_reseau": 0.008,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=non": {
+     "poids_reseau": 0.006,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=oui": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=non": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=oui": {
+     "poids_reseau": 0.0187,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=non": {
+     "poids_reseau": 0.0153,
+     "loi": {
+      "289 ou plus": null,
+      "moins de 289": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "PV-CENSURE2": {
+   "nom": "Censure après le second tour",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-MAJOR",
+     "nom": "Groupe du parti du président à 289 députés ou plus après les législatives",
+     "etats": [
+      "289 ou plus",
+      "moins de 289"
+     ],
+     "decalage": 0,
+     "definition": "2027-07-01"
+    },
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-05-03",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-MAJOR=289 ou plus|VE-POP=< 25 %": {
+     "poids_reseau": 0.1831,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-MAJOR=289 ou plus|VE-POP=25-35 %": {
+     "poids_reseau": 0.0463,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-MAJOR=289 ou plus|VE-POP=> 35 %": {
+     "poids_reseau": 0.0095,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-MAJOR=moins de 289|VE-POP=< 25 %": {
+     "poids_reseau": 0.5674,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-MAJOR=moins de 289|VE-POP=25-35 %": {
+     "poids_reseau": 0.1637,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-MAJOR=moins de 289|VE-POP=> 35 %": {
+     "poids_reseau": 0.0299,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  }
+ },
+ "direct": {
+  "EV-16b": {
+   "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel entre le 3 mai 2027 et le 30 septembre 2028.",
+   "fenetre": {
+    "debut": "2027-05-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": null
+  },
+  "EV-17": {
+   "critere": "Le 30 septembre 2028, selon la composition des groupes publiée par l'Assemblée nationale, le groupe qui compte le plus de députés membres du parti dont le président élu en 2027 est membre au jour du second tour compte moins de 289 membres, apparentés compris ; si aucun groupe ne compte de député de ce parti, la réponse est « oui ». Si le président élu n'est membre d'aucun parti, le groupe retenu est celui qui a déclaré le soutenir au premier tour et compte le plus de membres.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": null
+  },
+  "EV-43": {
+   "critere": "Le Premier ministre en fonction le 30 septembre 2028 est membre d'un parti qui a investi ou soutenu, par une décision publiée, au premier tour de 2027, un candidat autre que le président élu. Une coalition dont le Premier ministre vient d'un tel parti compte.",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   },
+   "probabilite": null
+  },
+  "EV-45": {
+   "critere": "Le 30 septembre 2028, l'âge d'ouverture du droit à pension fixé par le code de la sécurité sociale (article L161-17-2 ou disposition qui le remplace) pour les assurés nés en 1970 est inférieur à 64 ans, dans la version de l'article en vigueur à cette date ; une disposition promulguée dont l'entrée en vigueur est postérieure ne compte pas. Cette génération n'est pas concernée par la suspension de la réforme de 2023 : la réponse « oui » suppose un abaissement voté.",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   },
+   "probabilite": null
+  },
+  "EV-15c": {
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2027-05-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": null
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-10"
+}

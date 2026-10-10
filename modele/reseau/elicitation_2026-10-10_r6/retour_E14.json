@@ -1,0 +1,215 @@
+{
+ "evaluateur": "E14",
+ "ronde": 2,
+ "lecture": "Seconde ronde (protocole IDEA). (1) défauts de ta réponse ; (2) questions où la marginale impliquée par TES lois s'écarte de plus de 5 points de ton avis direct ; (3) cas où les évaluateurs donnent des sens opposés par rapport au cas le plus fréquent, avec les lois et justifications anonymes des autres ; (4) pour chaque nœud, les lois et justifications des autres sur les trois cas les plus fréquents. Corrige ou maintiens en écrivant pourquoi.",
+ "defauts": [],
+ "marginales": [
+  {
+   "question": "EV-10",
+   "issue": "oui",
+   "implique": 48.1,
+   "direct": 42.0
+  },
+  {
+   "question": "EV-47",
+   "issue": "oui",
+   "implique": 22.8,
+   "direct": 12.0
+  },
+  {
+   "question": "EV-52",
+   "issue": "oui",
+   "implique": 97.5,
+   "direct": 92.0
+  },
+  {
+   "question": "EV-51",
+   "issue": "oui",
+   "implique": 26.5,
+   "direct": 15.0
+  },
+  {
+   "question": "EV-39",
+   "issue": "oui",
+   "implique": 55.5,
+   "direct": 50.0
+  },
+  {
+   "question": "EV-13",
+   "issue": "oui",
+   "implique": 22.3,
+   "direct": 7.0
+  }
+ ],
+ "sens_opposes": [],
+ "noeuds": {
+  "VE-LYCEE": {
+   "prec=calme|VE-MOBIL=calme": {
+    "autre 1": {
+     "loi": {
+      "calme": 0.985,
+      "modérée": 0.013,
+      "forte": 0.002
+     },
+     "justification": "Dossier 4.1 : épisodes lycéens à 300 établissements ou plus selon l'Éducation : 2010, 2018 (environ 450), 2026 ; environ trois en seize ans, hors juillet-août. Si le mois précédent et la mobilisation générale sont calmes, environ 1,5 % de démarrage par mois."
+    },
+    "autre 2": {
+     "loi": {
+      "calme": 0.97,
+      "modérée": 0.025,
+      "forte": 0.005
+     },
+     "justification": "jugement : sans mobilisation sociale et sans mouvement en cours, un mois lycéen reste calme ; les épisodes lycéens (2010, 2018, 2026) sont adossés à un mouvement plus large (dossier 4.2)."
+    }
+   },
+   "prec=calme|VE-MOBIL=modérée": {
+    "autre 1": {
+     "loi": {
+      "calme": 0.88,
+      "modérée": 0.11,
+      "forte": 0.01
+     },
+     "justification": "Dossier 4.2 : en 2018, les lycées se mobilisent dans la foulée d'un mouvement général modéré ; en 2025 (197 000 le 10 septembre), environ 100 lycées seulement. Si la mobilisation générale est modérée, environ 11 % de franchir 300."
+    },
+    "autre 2": {
+     "loi": {
+      "calme": 0.85,
+      "modérée": 0.12,
+      "forte": 0.03
+     },
+     "justification": "jugement : une journée de 200 000 à 500 000 manifestants entraîne parfois des lycées perturbés ; en sept. 2025, 197 000 manifestants pour environ 100 lycées (dossier 4.2)."
+    }
+   },
+   "prec=modérée|VE-MOBIL=calme": {
+    "autre 1": {
+     "loi": {
+      "calme": 0.65,
+      "modérée": 0.33,
+      "forte": 0.02
+     },
+     "justification": "Dossier 4.1 (durée) : les mouvements lycéens déclinent vite, notamment aux vacances (2010 Toussaint, 2018 Noël). Si la mobilisation générale retombe, un tiers de chances de rester au-dessus de 300."
+    },
+    "autre 2": {
+     "loi": {
+      "calme": 0.75,
+      "modérée": 0.2,
+      "forte": 0.05
+     },
+     "justification": "jugement : retombée habituelle après un mois modéré ; le déclin est net (2018 : 450 le 10 déc. puis fin avec les vacances ; dossier 4.1)."
+    }
+   }
+  },
+  "VE-MOBIL": {
+   "prec=calme|VE-POP=< 25 %": {
+    "autre 1": {
+     "loi": {
+      "calme": 0.895,
+      "modérée": 0.093,
+      "forte": 0.012
+     },
+     "justification": "Dossier 3.2 : sur 22 mois (2025-2026), seuls septembre 2025, septembre et octobre 2026 dépassent 200 000 ; presque chaque année depuis 2019 compte au moins un mois au-dessus (jugement). Si le mois précédent est calme et la popularité basse, environ 9 % de chances d'un mois modéré, un peu plus de 1 % d'un mois fort (épisodes forts : 2010, 2019, 2023, 2025, tous liés à retraites ou budget avec intersyndicale)."
+    },
+    "autre 2": {
+     "loi": {
+      "calme": 0.84,
+      "modérée": 0.12,
+      "forte": 0.04
+     },
+     "justification": "dossier 3.2 : 1 mois forte et 2 modérés sur 7 mois mesurés (janv. 2025 - oct. 2026), les autres sans chiffre ; la popularité basse et les budgets 2027 et 2028 relèvent un peu le risque."
+    }
+   },
+   "prec=modérée|VE-POP=< 25 %": {
+    "autre 1": {
+     "loi": {
+      "calme": 0.52,
+      "modérée": 0.4,
+      "forte": 0.08
+     },
+     "justification": "Dossier 3.2 (décrues) : après un pic, le mois suivant retombe souvent (2016 : 390 000 puis 120 000 ; 2018 : 282 000 puis 136 000 ; 2025 : 506 000 puis 195 000) ; contre-exemple 2023. Si le mois précédent est modéré, environ une chance sur deux de rester au-dessus de 200 000, 8 % de passer en forte (escalade budgétaire, intersyndicale)."
+    },
+    "autre 2": {
+     "loi": {
+      "calme": 0.54,
+      "modérée": 0.34,
+      "forte": 0.12
+     },
+     "justification": "dossier 3.2 : décrue habituelle après un pic (2016, 2018, 2019, 2025) ; mouvement actuel avec revendications budgétaires toujours ouvertes (dossier 1.3)."
+    }
+   },
+   "prec=calme|VE-POP=25-35 %": {
+    "autre 1": {
+     "loi": {
+      "calme": 0.905,
+      "modérée": 0.083,
+      "forte": 0.012
+     },
+     "justification": "Jugement : même taux de base que le cas calme/< 25 % ; une popularité moyenne (souvent un président nouvellement élu) réduit à peine le risque, une grande réforme de début de mandat pouvant au contraire mobiliser."
+    },
+    "autre 2": {
+     "loi": {
+      "calme": 0.88,
+      "modérée": 0.1,
+      "forte": 0.02
+     },
+     "justification": "jugement : popularité moins basse, moins de colère diffuse ; taux de base du dossier 3.2 abaissé."
+    }
+   }
+  },
+  "VE-POP": {
+   "prec=< 25 %|VE-MOBIL=calme|PV-GOUV=non": {
+    "autre 1": {
+     "loi": {
+      "< 25 %": 0.89,
+      "25-35 %": 0.08,
+      "> 35 %": 0.03
+     },
+     "justification": "Dossier 5.1 : 17 mois sur 19 sous 25 % ; variation moyenne 2,9 points par vague ; dernière valeur 17 %. Le passage à 25-35 % depuis < 25 % n'est arrivé qu'une fois (mars 24 à avril 28 % en 2025). Environ 3 % sont réservés au saut vers > 35 % lors de l'arrivée d'un nouveau président (mai-juin 2027, dossier 2 et 5.4 : Hollande 61 % en mai 2012), réparti sur les mois de la fenêtre."
+    },
+    "autre 2": {
+     "loi": {
+      "< 25 %": 0.91,
+      "25-35 %": 0.085,
+      "> 35 %": 0.005
+     },
+     "justification": "dossier 5.1 : 17 mois sur 19 sous 25 %, 2 passages au-dessus en 16 transitions depuis un état bas ; variation moyenne de 2,9 points, dernière valeur 17 % ; franchir 25 exige environ +8. Mobilisation calme : pas d'effet."
+    }
+   },
+   "prec=< 25 %|VE-MOBIL=calme|PV-GOUV=oui": {
+    "autre 1": {
+     "loi": {
+      "< 25 %": 0.88,
+      "25-35 %": 0.09,
+      "> 35 %": 0.03
+     },
+     "justification": "Dossier 5.1 : 17 mois sur 19 sous 25 % ; variation moyenne 2,9 points par vague ; dernière valeur 17 %. Le passage à 25-35 % depuis < 25 % n'est arrivé qu'une fois (mars 24 à avril 28 % en 2025). Environ 3 % sont réservés au saut vers > 35 % lors de l'arrivée d'un nouveau président (mai-juin 2027, dossier 2 et 5.4 : Hollande 61 % en mai 2012), réparti sur les mois de la fenêtre. Un changement de Premier ministre n'a pas donné de rebond en 2025 (24 à 17 %, dossier 5.3) ; légère incertitude ajoutée."
+    },
+    "autre 2": {
+     "loi": {
+      "< 25 %": 0.9,
+      "25-35 %": 0.095,
+      "> 35 %": 0.005
+     },
+     "justification": "dossier 5.1 : 17 mois sur 19 sous 25 %, 2 passages au-dessus en 16 transitions depuis un état bas ; variation moyenne de 2,9 points, dernière valeur 17 % ; franchir 25 exige environ +8. Mobilisation calme : pas d'effet. Changement de Premier ministre : pas de bonus durable observé (sept. 2025 : 24 puis 17 puis 16)."
+    }
+   },
+   "prec=< 25 %|VE-MOBIL=modérée|PV-GOUV=non": {
+    "autre 1": {
+     "loi": {
+      "< 25 %": 0.91,
+      "25-35 %": 0.06,
+      "> 35 %": 0.03
+     },
+     "justification": "Dossier 5.1 : 17 mois sur 19 sous 25 % ; variation moyenne 2,9 points par vague ; dernière valeur 17 %. Le passage à 25-35 % depuis < 25 % n'est arrivé qu'une fois (mars 24 à avril 28 % en 2025). Environ 3 % sont réservés au saut vers > 35 % lors de l'arrivée d'un nouveau président (mai-juin 2027, dossier 2 et 5.4 : Hollande 61 % en mai 2012), réparti sur les mois de la fenêtre. Mobilisation modérée : léger frein à une remontée (2023, dossier 5.2)."
+    },
+    "autre 2": {
+     "loi": {
+      "< 25 %": 0.93,
+      "25-35 %": 0.067,
+      "> 35 %": 0.003
+     },
+     "justification": "dossier 5.1 : 17 mois sur 19 sous 25 %, 2 passages au-dessus en 16 transitions depuis un état bas ; variation moyenne de 2,9 points, dernière valeur 17 % ; franchir 25 exige environ +8. Mobilisation modérée : léger effet négatif ou nul."
+    }
+   }
+  }
+ }
+}

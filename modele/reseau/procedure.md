@@ -23,8 +23,7 @@ Règles (journal du 10 octobre 2026) : aucune passe ne consulte les prévisions 
 
 ## Points ouverts pour la première passe
 
-- EV-39 (journée à plus de 500 000 manifestants) : réseau 44 %, évaluateurs 55 % ; EV-52 proche de la borne haute : la loi de VE-MOBIL est à revoir (forte trop rare, modérée trop fréquente).
-- EV-43 : réseau 48 %, évaluateurs 37 % ; table de mesure à revoir.
+- EV-39, EV-52 (loi de VE-MOBIL) et EV-43 (table de mesure) : réélicités à l'étape 11 (fait).
 - Dissolution après le second tour : découpée (PV-DISSOL2a, PV-DISSOL2b) le 10 octobre ; profils de risque élicités sur des tranches de dates réelles à l'étape 10 (fait).
 - Popularité : aucune série mensuelle sourcée à l'élicitation (évaluateur E2) ; à brancher sur `data/etat/popularite.jsonl`.
 - Revues programmées des agences de notation : profil calé sur les revues (étape 3), poids d'un mois sans revue élicité à l'étape 10 (fait).

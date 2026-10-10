@@ -1,0 +1,1577 @@
+{
+ "evaluateur": "E16",
+ "date": "2026-10-10",
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "PV-CENSURE1a": {
+   "nom": "Censure d'ici fin 2026 (session budgétaire)",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2026-12-31"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-POP=< 25 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.4967,
+     "loi": {
+      "oui": 0.2
+     },
+     "justification": "Dossier 2.3-2.4 : aucune motion n'a dépassé 271 voix sous Lecornu (seuil 288-289) ; la censure exige RN + quasi-totalité du PS. Le PS menace (LCP 28/08/2026, 'il y aura une censure', https://lcp.fr/actualites/budget-2027-le-socialiste-olivier-faure-juge-le-suspense-inexistant-il-y-aura-une) mais Lecornu lui propose un compromis comme en 2025 et le gouvernement compte sur une trentaine de députés PS ; Marine Le Pen juge un budget 'imparfait' préférable à rien (AFP via La Gazette France, 24/09/2026, https://www.lagazettefrance.fr/article/budget-lecornu-tend-la-main-aux-socialistes-tentes-par-la-censure). Jugement : taux de base de la 17e législature (1 censure sur 3 sessions budgétaires) tempéré par la prudence du RN face à la tension sur les taux ; si ce cas vaut, environ 1 chance sur 5 ; une popularité plus haute la réduit, une mobilisation forte l'accroît (pression sur le PS)."
+    },
+    "VE-POP=< 25 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.4052,
+     "loi": {
+      "oui": 0.23
+     },
+     "justification": "Dossier 2.3-2.4 : aucune motion n'a dépassé 271 voix sous Lecornu (seuil 288-289) ; la censure exige RN + quasi-totalité du PS. Le PS menace (LCP 28/08/2026, 'il y aura une censure', https://lcp.fr/actualites/budget-2027-le-socialiste-olivier-faure-juge-le-suspense-inexistant-il-y-aura-une) mais Lecornu lui propose un compromis comme en 2025 et le gouvernement compte sur une trentaine de députés PS ; Marine Le Pen juge un budget 'imparfait' préférable à rien (AFP via La Gazette France, 24/09/2026, https://www.lagazettefrance.fr/article/budget-lecornu-tend-la-main-aux-socialistes-tentes-par-la-censure). Jugement : taux de base de la 17e législature (1 censure sur 3 sessions budgétaires) tempéré par la prudence du RN face à la tension sur les taux ; si ce cas vaut, environ 1 chance sur 5 ; une popularité plus haute la réduit, une mobilisation forte l'accroît (pression sur le PS)."
+    },
+    "VE-POP=< 25 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0867,
+     "loi": {
+      "oui": 0.32
+     },
+     "justification": "Dossier 2.3-2.4 : aucune motion n'a dépassé 271 voix sous Lecornu (seuil 288-289) ; la censure exige RN + quasi-totalité du PS. Le PS menace (LCP 28/08/2026, 'il y aura une censure', https://lcp.fr/actualites/budget-2027-le-socialiste-olivier-faure-juge-le-suspense-inexistant-il-y-aura-une) mais Lecornu lui propose un compromis comme en 2025 et le gouvernement compte sur une trentaine de députés PS ; Marine Le Pen juge un budget 'imparfait' préférable à rien (AFP via La Gazette France, 24/09/2026, https://www.lagazettefrance.fr/article/budget-lecornu-tend-la-main-aux-socialistes-tentes-par-la-censure). Jugement : taux de base de la 17e législature (1 censure sur 3 sessions budgétaires) tempéré par la prudence du RN face à la tension sur les taux ; si ce cas vaut, environ 1 chance sur 5 ; une popularité plus haute la réduit, une mobilisation forte l'accroît (pression sur le PS)."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0079,
+     "loi": {
+      "oui": 0.14
+     },
+     "justification": "Dossier 2.3-2.4 : aucune motion n'a dépassé 271 voix sous Lecornu (seuil 288-289) ; la censure exige RN + quasi-totalité du PS. Le PS menace (LCP 28/08/2026, 'il y aura une censure', https://lcp.fr/actualites/budget-2027-le-socialiste-olivier-faure-juge-le-suspense-inexistant-il-y-aura-une) mais Lecornu lui propose un compromis comme en 2025 et le gouvernement compte sur une trentaine de députés PS ; Marine Le Pen juge un budget 'imparfait' préférable à rien (AFP via La Gazette France, 24/09/2026, https://www.lagazettefrance.fr/article/budget-lecornu-tend-la-main-aux-socialistes-tentes-par-la-censure). Jugement : taux de base de la 17e législature (1 censure sur 3 sessions budgétaires) tempéré par la prudence du RN face à la tension sur les taux ; si ce cas vaut, environ 1 chance sur 5 ; une popularité plus haute la réduit, une mobilisation forte l'accroît (pression sur le PS)."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "oui": 0.17
+     },
+     "justification": "Dossier 2.3-2.4 : aucune motion n'a dépassé 271 voix sous Lecornu (seuil 288-289) ; la censure exige RN + quasi-totalité du PS. Le PS menace (LCP 28/08/2026, 'il y aura une censure', https://lcp.fr/actualites/budget-2027-le-socialiste-olivier-faure-juge-le-suspense-inexistant-il-y-aura-une) mais Lecornu lui propose un compromis comme en 2025 et le gouvernement compte sur une trentaine de députés PS ; Marine Le Pen juge un budget 'imparfait' préférable à rien (AFP via La Gazette France, 24/09/2026, https://www.lagazettefrance.fr/article/budget-lecornu-tend-la-main-aux-socialistes-tentes-par-la-censure). Jugement : taux de base de la 17e législature (1 censure sur 3 sessions budgétaires) tempéré par la prudence du RN face à la tension sur les taux ; si ce cas vaut, environ 1 chance sur 5 ; une popularité plus haute la réduit, une mobilisation forte l'accroît (pression sur le PS)."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": 0.24
+     },
+     "justification": "Dossier 2.3-2.4 : aucune motion n'a dépassé 271 voix sous Lecornu (seuil 288-289) ; la censure exige RN + quasi-totalité du PS. Le PS menace (LCP 28/08/2026, 'il y aura une censure', https://lcp.fr/actualites/budget-2027-le-socialiste-olivier-faure-juge-le-suspense-inexistant-il-y-aura-une) mais Lecornu lui propose un compromis comme en 2025 et le gouvernement compte sur une trentaine de députés PS ; Marine Le Pen juge un budget 'imparfait' préférable à rien (AFP via La Gazette France, 24/09/2026, https://www.lagazettefrance.fr/article/budget-lecornu-tend-la-main-aux-socialistes-tentes-par-la-censure). Jugement : taux de base de la 17e législature (1 censure sur 3 sessions budgétaires) tempéré par la prudence du RN face à la tension sur les taux ; si ce cas vaut, environ 1 chance sur 5 ; une popularité plus haute la réduit, une mobilisation forte l'accroît (pression sur le PS)."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Dossier 2.3-2.4 : aucune motion n'a dépassé 271 voix sous Lecornu (seuil 288-289) ; la censure exige RN + quasi-totalité du PS. Le PS menace (LCP 28/08/2026, 'il y aura une censure', https://lcp.fr/actualites/budget-2027-le-socialiste-olivier-faure-juge-le-suspense-inexistant-il-y-aura-une) mais Lecornu lui propose un compromis comme en 2025 et le gouvernement compte sur une trentaine de députés PS ; Marine Le Pen juge un budget 'imparfait' préférable à rien (AFP via La Gazette France, 24/09/2026, https://www.lagazettefrance.fr/article/budget-lecornu-tend-la-main-aux-socialistes-tentes-par-la-censure). Jugement : taux de base de la 17e législature (1 censure sur 3 sessions budgétaires) tempéré par la prudence du RN face à la tension sur les taux ; si ce cas vaut, environ 1 chance sur 5 ; une popularité plus haute la réduit, une mobilisation forte l'accroît (pression sur le PS)."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "Dossier 2.3-2.4 : aucune motion n'a dépassé 271 voix sous Lecornu (seuil 288-289) ; la censure exige RN + quasi-totalité du PS. Le PS menace (LCP 28/08/2026, 'il y aura une censure', https://lcp.fr/actualites/budget-2027-le-socialiste-olivier-faure-juge-le-suspense-inexistant-il-y-aura-une) mais Lecornu lui propose un compromis comme en 2025 et le gouvernement compte sur une trentaine de députés PS ; Marine Le Pen juge un budget 'imparfait' préférable à rien (AFP via La Gazette France, 24/09/2026, https://www.lagazettefrance.fr/article/budget-lecornu-tend-la-main-aux-socialistes-tentes-par-la-censure). Jugement : taux de base de la 17e législature (1 censure sur 3 sessions budgétaires) tempéré par la prudence du RN face à la tension sur les taux ; si ce cas vaut, environ 1 chance sur 5 ; une popularité plus haute la réduit, une mobilisation forte l'accroît (pression sur le PS)."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "Dossier 2.3-2.4 : aucune motion n'a dépassé 271 voix sous Lecornu (seuil 288-289) ; la censure exige RN + quasi-totalité du PS. Le PS menace (LCP 28/08/2026, 'il y aura une censure', https://lcp.fr/actualites/budget-2027-le-socialiste-olivier-faure-juge-le-suspense-inexistant-il-y-aura-une) mais Lecornu lui propose un compromis comme en 2025 et le gouvernement compte sur une trentaine de députés PS ; Marine Le Pen juge un budget 'imparfait' préférable à rien (AFP via La Gazette France, 24/09/2026, https://www.lagazettefrance.fr/article/budget-lecornu-tend-la-main-aux-socialistes-tentes-par-la-censure). Jugement : taux de base de la 17e législature (1 censure sur 3 sessions budgétaires) tempéré par la prudence du RN face à la tension sur les taux ; si ce cas vaut, environ 1 chance sur 5 ; une popularité plus haute la réduit, une mobilisation forte l'accroît (pression sur le PS)."
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-CENSURE1b": {
+   "nom": "Censure de janvier au second tour",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-01-01",
+    "2027-05-02"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-POP=< 25 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.6764,
+     "loi": {
+      "oui": 0.09
+     },
+     "justification": "Dossier 2.4 : aucune censure dans les 11 périodes janvier-second tour d'une année présidentielle. Jugement : risque résiduel surtout en janvier-février si le budget n'est pas publié et qu'un 49.3 est engagé (précédent de janvier 2026, dossier 3.3) ; à l'approche du scrutin, les groupes ont peu d'intérêt à renverser un gouvernement sortant ; si ce cas vaut, environ 9 à 12 % ; modulation par la popularité et la mobilisation."
+    },
+    "VE-POP=< 25 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.1499,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "Dossier 2.4 : aucune censure dans les 11 périodes janvier-second tour d'une année présidentielle. Jugement : risque résiduel surtout en janvier-février si le budget n'est pas publié et qu'un 49.3 est engagé (précédent de janvier 2026, dossier 3.3) ; à l'approche du scrutin, les groupes ont peu d'intérêt à renverser un gouvernement sortant ; si ce cas vaut, environ 9 à 12 % ; modulation par la popularité et la mobilisation."
+    },
+    "VE-POP=< 25 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0365,
+     "loi": {
+      "oui": 0.17
+     },
+     "justification": "Dossier 2.4 : aucune censure dans les 11 périodes janvier-second tour d'une année présidentielle. Jugement : risque résiduel surtout en janvier-février si le budget n'est pas publié et qu'un 49.3 est engagé (précédent de janvier 2026, dossier 3.3) ; à l'approche du scrutin, les groupes ont peu d'intérêt à renverser un gouvernement sortant ; si ce cas vaut, environ 9 à 12 % ; modulation par la popularité et la mobilisation."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.1015,
+     "loi": {
+      "oui": 0.07
+     },
+     "justification": "Dossier 2.4 : aucune censure dans les 11 périodes janvier-second tour d'une année présidentielle. Jugement : risque résiduel surtout en janvier-février si le budget n'est pas publié et qu'un 49.3 est engagé (précédent de janvier 2026, dossier 3.3) ; à l'approche du scrutin, les groupes ont peu d'intérêt à renverser un gouvernement sortant ; si ce cas vaut, environ 9 à 12 % ; modulation par la popularité et la mobilisation."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0158,
+     "loi": {
+      "oui": 0.09
+     },
+     "justification": "Dossier 2.4 : aucune censure dans les 11 périodes janvier-second tour d'une année présidentielle. Jugement : risque résiduel surtout en janvier-février si le budget n'est pas publié et qu'un 49.3 est engagé (précédent de janvier 2026, dossier 3.3) ; à l'approche du scrutin, les groupes ont peu d'intérêt à renverser un gouvernement sortant ; si ce cas vaut, environ 9 à 12 % ; modulation par la popularité et la mobilisation."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "oui": 0.13
+     },
+     "justification": "Dossier 2.4 : aucune censure dans les 11 périodes janvier-second tour d'une année présidentielle. Jugement : risque résiduel surtout en janvier-février si le budget n'est pas publié et qu'un 49.3 est engagé (précédent de janvier 2026, dossier 3.3) ; à l'approche du scrutin, les groupes ont peu d'intérêt à renverser un gouvernement sortant ; si ce cas vaut, environ 9 à 12 % ; modulation par la popularité et la mobilisation."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0141,
+     "loi": {
+      "oui": 0.05
+     },
+     "justification": "Dossier 2.4 : aucune censure dans les 11 périodes janvier-second tour d'une année présidentielle. Jugement : risque résiduel surtout en janvier-février si le budget n'est pas publié et qu'un 49.3 est engagé (précédent de janvier 2026, dossier 3.3) ; à l'approche du scrutin, les groupes ont peu d'intérêt à renverser un gouvernement sortant ; si ce cas vaut, environ 9 à 12 % ; modulation par la popularité et la mobilisation."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0025,
+     "loi": {
+      "oui": 0.06
+     },
+     "justification": "Dossier 2.4 : aucune censure dans les 11 périodes janvier-second tour d'une année présidentielle. Jugement : risque résiduel surtout en janvier-février si le budget n'est pas publié et qu'un 49.3 est engagé (précédent de janvier 2026, dossier 3.3) ; à l'approche du scrutin, les groupes ont peu d'intérêt à renverser un gouvernement sortant ; si ce cas vaut, environ 9 à 12 % ; modulation par la popularité et la mobilisation."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "oui": 0.09
+     },
+     "justification": "Dossier 2.4 : aucune censure dans les 11 périodes janvier-second tour d'une année présidentielle. Jugement : risque résiduel surtout en janvier-février si le budget n'est pas publié et qu'un 49.3 est engagé (précédent de janvier 2026, dossier 3.3) ; à l'approche du scrutin, les groupes ont peu d'intérêt à renverser un gouvernement sortant ; si ce cas vaut, environ 9 à 12 % ; modulation par la popularité et la mobilisation."
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-BUDGET": {
+   "nom": "Loi de finances pour 2027 au 31 décembre 2026",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-CENSURE1a",
+     "nom": "Censure d'ici fin 2026 (session budgétaire)",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2026-12-31"
+     ]
+    },
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": null,
+   "date": "2026-12-31",
+   "fenetre": null,
+   "issues": [
+    "publiée",
+    "non publiée"
+   ],
+   "cas": {
+    "PV-CENSURE1a=oui|VE-POP=< 25 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.084,
+     "loi": {
+      "publiée": 0.03,
+      "non publiée": 0.97
+     },
+     "justification": "Dossier 3.1 et 3.3 : après la censure du 4 décembre 2024, loi spéciale et loi de finances en février 2025. Jugement : si une censure intervient d'ici fin décembre, un nouveau gouvernement ne peut faire adopter et publier une loi de finances avant le 31 ; une ordonnance (article 47) ne compte pas ; publication quasi exclue (3 %)."
+    },
+    "PV-CENSURE1a=oui|VE-POP=< 25 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.082,
+     "loi": {
+      "publiée": 0.03,
+      "non publiée": 0.97
+     },
+     "justification": "Dossier 3.1 et 3.3 : après la censure du 4 décembre 2024, loi spéciale et loi de finances en février 2025. Jugement : si une censure intervient d'ici fin décembre, un nouveau gouvernement ne peut faire adopter et publier une loi de finances avant le 31 ; une ordonnance (article 47) ne compte pas ; publication quasi exclue (3 %)."
+    },
+    "PV-CENSURE1a=oui|VE-POP=< 25 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.036,
+     "loi": {
+      "publiée": 0.03,
+      "non publiée": 0.97
+     },
+     "justification": "Dossier 3.1 et 3.3 : après la censure du 4 décembre 2024, loi spéciale et loi de finances en février 2025. Jugement : si une censure intervient d'ici fin décembre, un nouveau gouvernement ne peut faire adopter et publier une loi de finances avant le 31 ; une ordonnance (article 47) ne compte pas ; publication quasi exclue (3 %)."
+    },
+    "PV-CENSURE1a=oui|VE-POP=25-35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "publiée": 0.03,
+      "non publiée": 0.97
+     },
+     "justification": "Dossier 3.1 et 3.3 : après la censure du 4 décembre 2024, loi spéciale et loi de finances en février 2025. Jugement : si une censure intervient d'ici fin décembre, un nouveau gouvernement ne peut faire adopter et publier une loi de finances avant le 31 ; une ordonnance (article 47) ne compte pas ; publication quasi exclue (3 %)."
+    },
+    "PV-CENSURE1a=oui|VE-POP=25-35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "publiée": 0.03,
+      "non publiée": 0.97
+     },
+     "justification": "Dossier 3.1 et 3.3 : après la censure du 4 décembre 2024, loi spéciale et loi de finances en février 2025. Jugement : si une censure intervient d'ici fin décembre, un nouveau gouvernement ne peut faire adopter et publier une loi de finances avant le 31 ; une ordonnance (article 47) ne compte pas ; publication quasi exclue (3 %)."
+    },
+    "PV-CENSURE1a=oui|VE-POP=25-35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "publiée": 0.03,
+      "non publiée": 0.97
+     },
+     "justification": "Dossier 3.1 et 3.3 : après la censure du 4 décembre 2024, loi spéciale et loi de finances en février 2025. Jugement : si une censure intervient d'ici fin décembre, un nouveau gouvernement ne peut faire adopter et publier une loi de finances avant le 31 ; une ordonnance (article 47) ne compte pas ; publication quasi exclue (3 %)."
+    },
+    "PV-CENSURE1a=oui|VE-POP=> 35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "publiée": 0.05,
+      "non publiée": 0.95
+     },
+     "justification": "Dossier 3.1 et 3.3 : après la censure du 4 décembre 2024, loi spéciale et loi de finances en février 2025. Jugement : si une censure intervient d'ici fin décembre, un nouveau gouvernement ne peut faire adopter et publier une loi de finances avant le 31 ; une ordonnance (article 47) ne compte pas ; publication quasi exclue (3 %)."
+    },
+    "PV-CENSURE1a=oui|VE-POP=> 35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "publiée": 0.05,
+      "non publiée": 0.95
+     },
+     "justification": "Dossier 3.1 et 3.3 : après la censure du 4 décembre 2024, loi spéciale et loi de finances en février 2025. Jugement : si une censure intervient d'ici fin décembre, un nouveau gouvernement ne peut faire adopter et publier une loi de finances avant le 31 ; une ordonnance (article 47) ne compte pas ; publication quasi exclue (3 %)."
+    },
+    "PV-CENSURE1a=oui|VE-POP=> 35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "publiée": 0.05,
+      "non publiée": 0.95
+     },
+     "justification": "Dossier 3.1 et 3.3 : après la censure du 4 décembre 2024, loi spéciale et loi de finances en février 2025. Jugement : si une censure intervient d'ici fin décembre, un nouveau gouvernement ne peut faire adopter et publier une loi de finances avant le 31 ; une ordonnance (article 47) ne compte pas ; publication quasi exclue (3 %)."
+    },
+    "PV-CENSURE1a=non|VE-POP=< 25 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.3927,
+     "loi": {
+      "publiée": 0.46,
+      "non publiée": 0.54
+     },
+     "justification": "Dossier 3.1-3.3 : partie recettes rejetée en commission le 9 octobre, délai de 70 jours au 10 décembre, deux lois non publiées au 31 décembre en 2025 et 2026. Jugement : sans censure, la publication suppose un compromis avec le PS puis des 49.3 successifs et une décision du Conseil constitutionnel avant le 31 décembre (faisable : lois de finances 2023 et 2024 publiées les 30 et 29 décembre avec 49.3, de mémoire) ; le gouvernement veut éviter une loi spéciale (Europe 1, 21/04/2026, https://www.europe1.fr/politique/budget-2027-apres-le-fiasco-de-2026-sebastien-lecornu-se-prepare-deja-926548) mais l'échec de 2025 sans censure montre qu'un glissement en janvier reste probable ; si ce cas vaut, publication environ 45 %, un peu plus si le président est moins impopulaire, un peu moins si la rue pèse."
+    },
+    "PV-CENSURE1a=non|VE-POP=< 25 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.2907,
+     "loi": {
+      "publiée": 0.44,
+      "non publiée": 0.56
+     },
+     "justification": "Dossier 3.1-3.3 : partie recettes rejetée en commission le 9 octobre, délai de 70 jours au 10 décembre, deux lois non publiées au 31 décembre en 2025 et 2026. Jugement : sans censure, la publication suppose un compromis avec le PS puis des 49.3 successifs et une décision du Conseil constitutionnel avant le 31 décembre (faisable : lois de finances 2023 et 2024 publiées les 30 et 29 décembre avec 49.3, de mémoire) ; le gouvernement veut éviter une loi spéciale (Europe 1, 21/04/2026, https://www.europe1.fr/politique/budget-2027-apres-le-fiasco-de-2026-sebastien-lecornu-se-prepare-deja-926548) mais l'échec de 2025 sans censure montre qu'un glissement en janvier reste probable ; si ce cas vaut, publication environ 45 %, un peu plus si le président est moins impopulaire, un peu moins si la rue pèse."
+    },
+    "PV-CENSURE1a=non|VE-POP=< 25 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.076,
+     "loi": {
+      "publiée": 0.4,
+      "non publiée": 0.6
+     },
+     "justification": "Dossier 3.1-3.3 : partie recettes rejetée en commission le 9 octobre, délai de 70 jours au 10 décembre, deux lois non publiées au 31 décembre en 2025 et 2026. Jugement : sans censure, la publication suppose un compromis avec le PS puis des 49.3 successifs et une décision du Conseil constitutionnel avant le 31 décembre (faisable : lois de finances 2023 et 2024 publiées les 30 et 29 décembre avec 49.3, de mémoire) ; le gouvernement veut éviter une loi spéciale (Europe 1, 21/04/2026, https://www.europe1.fr/politique/budget-2027-apres-le-fiasco-de-2026-sebastien-lecornu-se-prepare-deja-926548) mais l'échec de 2025 sans censure montre qu'un glissement en janvier reste probable ; si ce cas vaut, publication environ 45 %, un peu plus si le président est moins impopulaire, un peu moins si la rue pèse."
+    },
+    "PV-CENSURE1a=non|VE-POP=25-35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.022,
+     "loi": {
+      "publiée": 0.5,
+      "non publiée": 0.5
+     },
+     "justification": "Dossier 3.1-3.3 : partie recettes rejetée en commission le 9 octobre, délai de 70 jours au 10 décembre, deux lois non publiées au 31 décembre en 2025 et 2026. Jugement : sans censure, la publication suppose un compromis avec le PS puis des 49.3 successifs et une décision du Conseil constitutionnel avant le 31 décembre (faisable : lois de finances 2023 et 2024 publiées les 30 et 29 décembre avec 49.3, de mémoire) ; le gouvernement veut éviter une loi spéciale (Europe 1, 21/04/2026, https://www.europe1.fr/politique/budget-2027-apres-le-fiasco-de-2026-sebastien-lecornu-se-prepare-deja-926548) mais l'échec de 2025 sans censure montre qu'un glissement en janvier reste probable ; si ce cas vaut, publication environ 45 %, un peu plus si le président est moins impopulaire, un peu moins si la rue pèse."
+    },
+    "PV-CENSURE1a=non|VE-POP=25-35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0087,
+     "loi": {
+      "publiée": 0.48,
+      "non publiée": 0.52
+     },
+     "justification": "Dossier 3.1-3.3 : partie recettes rejetée en commission le 9 octobre, délai de 70 jours au 10 décembre, deux lois non publiées au 31 décembre en 2025 et 2026. Jugement : sans censure, la publication suppose un compromis avec le PS puis des 49.3 successifs et une décision du Conseil constitutionnel avant le 31 décembre (faisable : lois de finances 2023 et 2024 publiées les 30 et 29 décembre avec 49.3, de mémoire) ; le gouvernement veut éviter une loi spéciale (Europe 1, 21/04/2026, https://www.europe1.fr/politique/budget-2027-apres-le-fiasco-de-2026-sebastien-lecornu-se-prepare-deja-926548) mais l'échec de 2025 sans censure montre qu'un glissement en janvier reste probable ; si ce cas vaut, publication environ 45 %, un peu plus si le président est moins impopulaire, un peu moins si la rue pèse."
+    },
+    "PV-CENSURE1a=non|VE-POP=25-35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "publiée": 0.44,
+      "non publiée": 0.56
+     },
+     "justification": "Dossier 3.1-3.3 : partie recettes rejetée en commission le 9 octobre, délai de 70 jours au 10 décembre, deux lois non publiées au 31 décembre en 2025 et 2026. Jugement : sans censure, la publication suppose un compromis avec le PS puis des 49.3 successifs et une décision du Conseil constitutionnel avant le 31 décembre (faisable : lois de finances 2023 et 2024 publiées les 30 et 29 décembre avec 49.3, de mémoire) ; le gouvernement veut éviter une loi spéciale (Europe 1, 21/04/2026, https://www.europe1.fr/politique/budget-2027-apres-le-fiasco-de-2026-sebastien-lecornu-se-prepare-deja-926548) mais l'échec de 2025 sans censure montre qu'un glissement en janvier reste probable ; si ce cas vaut, publication environ 45 %, un peu plus si le président est moins impopulaire, un peu moins si la rue pèse."
+    },
+    "PV-CENSURE1a=non|VE-POP=> 35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "publiée": 0.55,
+      "non publiée": 0.45
+     },
+     "justification": "Dossier 3.1-3.3 : partie recettes rejetée en commission le 9 octobre, délai de 70 jours au 10 décembre, deux lois non publiées au 31 décembre en 2025 et 2026. Jugement : sans censure, la publication suppose un compromis avec le PS puis des 49.3 successifs et une décision du Conseil constitutionnel avant le 31 décembre (faisable : lois de finances 2023 et 2024 publiées les 30 et 29 décembre avec 49.3, de mémoire) ; le gouvernement veut éviter une loi spéciale (Europe 1, 21/04/2026, https://www.europe1.fr/politique/budget-2027-apres-le-fiasco-de-2026-sebastien-lecornu-se-prepare-deja-926548) mais l'échec de 2025 sans censure montre qu'un glissement en janvier reste probable ; si ce cas vaut, publication environ 45 %, un peu plus si le président est moins impopulaire, un peu moins si la rue pèse."
+    },
+    "PV-CENSURE1a=non|VE-POP=> 35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "publiée": 0.52,
+      "non publiée": 0.48
+     },
+     "justification": "Dossier 3.1-3.3 : partie recettes rejetée en commission le 9 octobre, délai de 70 jours au 10 décembre, deux lois non publiées au 31 décembre en 2025 et 2026. Jugement : sans censure, la publication suppose un compromis avec le PS puis des 49.3 successifs et une décision du Conseil constitutionnel avant le 31 décembre (faisable : lois de finances 2023 et 2024 publiées les 30 et 29 décembre avec 49.3, de mémoire) ; le gouvernement veut éviter une loi spéciale (Europe 1, 21/04/2026, https://www.europe1.fr/politique/budget-2027-apres-le-fiasco-de-2026-sebastien-lecornu-se-prepare-deja-926548) mais l'échec de 2025 sans censure montre qu'un glissement en janvier reste probable ; si ce cas vaut, publication environ 45 %, un peu plus si le président est moins impopulaire, un peu moins si la rue pèse."
+    },
+    "PV-CENSURE1a=non|VE-POP=> 35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "publiée": 0.48,
+      "non publiée": 0.52
+     },
+     "justification": "Dossier 3.1-3.3 : partie recettes rejetée en commission le 9 octobre, délai de 70 jours au 10 décembre, deux lois non publiées au 31 décembre en 2025 et 2026. Jugement : sans censure, la publication suppose un compromis avec le PS puis des 49.3 successifs et une décision du Conseil constitutionnel avant le 31 décembre (faisable : lois de finances 2023 et 2024 publiées les 30 et 29 décembre avec 49.3, de mémoire) ; le gouvernement veut éviter une loi spéciale (Europe 1, 21/04/2026, https://www.europe1.fr/politique/budget-2027-apres-le-fiasco-de-2026-sebastien-lecornu-se-prepare-deja-926548) mais l'échec de 2025 sans censure montre qu'un glissement en janvier reste probable ; si ce cas vaut, publication environ 45 %, un peu plus si le président est moins impopulaire, un peu moins si la rue pèse."
+    }
+   },
+   "verrous": []
+  },
+  "PV-GOUV": {
+   "nom": "Fin des fonctions du Premier ministre",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-CENSURE1a",
+     "nom": "Censure d'ici fin 2026 (session budgétaire)",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2026-12-31"
+     ]
+    },
+    {
+     "id": "PV-CENSURE1b",
+     "nom": "Censure de janvier au second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2027-01-01",
+      "2027-05-02"
+     ]
+    },
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    }
+   ],
+   "definition": "critère d'EV-50",
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2027-05-02"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-CENSURE1a=oui|PV-CENSURE1b=oui|VE-POP=< 25 %": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": 0.93
+     },
+     "justification": "Article 50 (dossier 4) : deux censures ; jugement : une renomination de Lecornu après la première est déjà peu probable, après la seconde quasi exclue."
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=oui|VE-POP=25-35 %": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.93
+     },
+     "justification": "Article 50 (dossier 4) : deux censures ; jugement : une renomination de Lecornu après la première est déjà peu probable, après la seconde quasi exclue."
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=oui|VE-POP=> 35 %": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.93
+     },
+     "justification": "Article 50 (dossier 4) : deux censures ; jugement : une renomination de Lecornu après la première est déjà peu probable, après la seconde quasi exclue."
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=non|VE-POP=< 25 %": {
+     "poids_reseau": 0.0465,
+     "loi": {
+      "oui": 0.88
+     },
+     "justification": "Article 50 (dossier 4) : la censure impose la démission du gouvernement ; jugement : renommer un Premier ministre censuré est rare (Barnier remplacé en 9 jours en décembre 2024) ; la renomination de Lecornu en octobre 2025 suivait une démission, non une censure ; environ 12 % de reconduction."
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=non|VE-POP=25-35 %": {
+     "poids_reseau": 0.0031,
+     "loi": {
+      "oui": 0.88
+     },
+     "justification": "Article 50 (dossier 4) : la censure impose la démission du gouvernement ; jugement : renommer un Premier ministre censuré est rare (Barnier remplacé en 9 jours en décembre 2024) ; la renomination de Lecornu en octobre 2025 suivait une démission, non une censure ; environ 12 % de reconduction."
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=non|VE-POP=> 35 %": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "oui": 0.88
+     },
+     "justification": "Article 50 (dossier 4) : la censure impose la démission du gouvernement ; jugement : renommer un Premier ministre censuré est rare (Barnier remplacé en 9 jours en décembre 2024) ; la renomination de Lecornu en octobre 2025 suivait une démission, non une censure ; environ 12 % de reconduction."
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=oui|VE-POP=< 25 %": {
+     "poids_reseau": 0.0108,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Article 50 (dossier 4) ; jugement : censure en janvier-mai 2027 ; à l'approche de l'élection, le président peut conserver Lecornu pour expédier les affaires courantes, ce qui compte 'oui' selon EV-50 sauf renomination ; environ 15 % de reconduction."
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=oui|VE-POP=25-35 %": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Article 50 (dossier 4) ; jugement : censure en janvier-mai 2027 ; à l'approche de l'élection, le président peut conserver Lecornu pour expédier les affaires courantes, ce qui compte 'oui' selon EV-50 sauf renomination ; environ 15 % de reconduction."
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=oui|VE-POP=> 35 %": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Article 50 (dossier 4) ; jugement : censure en janvier-mai 2027 ; à l'approche de l'élection, le président peut conserver Lecornu pour expédier les affaires courantes, ce qui compte 'oui' selon EV-50 sauf renomination ; environ 15 % de reconduction."
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=non|VE-POP=< 25 %": {
+     "poids_reseau": 0.8607,
+     "loi": {
+      "oui": 0.13
+     },
+     "justification": "Dossier 4 : hors censure, fins de fonctions récentes par vote de confiance refusé (Bayrou) ou démission (Lecornu I), et un précédent de remplacement avant présidentielle (Valls 2016). Jugement : sans censure, environ 13 % sur 7 mois avec un président sous 25 % (remaniement après échec budgétaire, démission, 49.1), moins si la popularité remonte. Cohérence : pondéré par poids_reseau, le nœud donne environ 17 %, contre 35 % en direct ; l'écart vient de la loi des parents (le réseau ne place qu'environ 6 % de poids sur une censure en 2026, alors que mes lois donnent 22 % pour PV-CENSURE1a et 10 % pour PV-CENSURE1b) ; avec mes propres marges (aucune censure environ 70 %), les lois conditionnelles donnent 35 %, donc je ne les modifie pas."
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=non|VE-POP=25-35 %": {
+     "poids_reseau": 0.0666,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "Dossier 4 : hors censure, fins de fonctions récentes par vote de confiance refusé (Bayrou) ou démission (Lecornu I), et un précédent de remplacement avant présidentielle (Valls 2016). Jugement : sans censure, environ 13 % sur 7 mois avec un président sous 25 % (remaniement après échec budgétaire, démission, 49.1), moins si la popularité remonte. Cohérence : pondéré par poids_reseau, le nœud donne environ 17 %, contre 35 % en direct ; l'écart vient de la loi des parents (le réseau ne place qu'environ 6 % de poids sur une censure en 2026, alors que mes lois donnent 22 % pour PV-CENSURE1a et 10 % pour PV-CENSURE1b) ; avec mes propres marges (aucune censure environ 70 %), les lois conditionnelles donnent 35 %, donc je ne les modifie pas."
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=non|VE-POP=> 35 %": {
+     "poids_reseau": 0.0102,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Dossier 4 : hors censure, fins de fonctions récentes par vote de confiance refusé (Bayrou) ou démission (Lecornu I), et un précédent de remplacement avant présidentielle (Valls 2016). Jugement : sans censure, environ 13 % sur 7 mois avec un président sous 25 % (remaniement après échec budgétaire, démission, 49.1), moins si la popularité remonte. Cohérence : pondéré par poids_reseau, le nœud donne environ 17 %, contre 35 % en direct ; l'écart vient de la loi des parents (le réseau ne place qu'environ 6 % de poids sur une censure en 2026, alors que mes lois donnent 22 % pour PV-CENSURE1a et 10 % pour PV-CENSURE1b) ; avec mes propres marges (aucune censure environ 70 %), les lois conditionnelles donnent 35 %, donc je ne les modifie pas."
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-DISSOL1": {
+   "nom": "Dissolution avant le second tour",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-CENSURE1a",
+     "nom": "Censure d'ici fin 2026 (session budgétaire)",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2026-12-31"
+     ]
+    },
+    {
+     "id": "PV-CENSURE1b",
+     "nom": "Censure de janvier au second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2027-01-01",
+      "2027-05-02"
+     ]
+    },
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2027-05-02"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-CENSURE1a=oui|PV-CENSURE1b=oui|VE-POP=< 25 %": {
+     "poids_reseau": 0.005,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "Dossier 5 : seul précédent de dissolution consécutive à une censure en 1962. Jugement : deux censures rendraient l'Assemblée ingouvernable et pourraient pousser le président à dissoudre malgré sa déclaration du 24 septembre 2026 ; environ 1 sur 4."
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=oui|VE-POP=25-35 %": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": 0.27
+     },
+     "justification": "Dossier 5 : seul précédent de dissolution consécutive à une censure en 1962. Jugement : deux censures rendraient l'Assemblée ingouvernable et pourraient pousser le président à dissoudre malgré sa déclaration du 24 septembre 2026 ; environ 1 sur 4."
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=oui|VE-POP=> 35 %": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": 0.29
+     },
+     "justification": "Dossier 5 : seul précédent de dissolution consécutive à une censure en 1962. Jugement : deux censures rendraient l'Assemblée ingouvernable et pourraient pousser le président à dissoudre malgré sa déclaration du 24 septembre 2026 ; environ 1 sur 4."
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=non|VE-POP=< 25 %": {
+     "poids_reseau": 0.1378,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "Dossier 5 : Macron a écarté une dissolution le 24/09/2026 (LCP) ; précédent de 1962 (dissolution 4 jours après la censure). Jugement : après une censure à l'automne, une dissolution reste possible avant mars 2027 mais bloquerait le prochain président ; environ 15 %, un peu plus si la popularité permet d'espérer un gain."
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=non|VE-POP=25-35 %": {
+     "poids_reseau": 0.0145,
+     "loi": {
+      "oui": 0.17
+     },
+     "justification": "Dossier 5 : Macron a écarté une dissolution le 24/09/2026 (LCP) ; précédent de 1962 (dissolution 4 jours après la censure). Jugement : après une censure à l'automne, une dissolution reste possible avant mars 2027 mais bloquerait le prochain président ; environ 15 %, un peu plus si la popularité permet d'espérer un gain."
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=non|VE-POP=> 35 %": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "oui": 0.19
+     },
+     "justification": "Dossier 5 : Macron a écarté une dissolution le 24/09/2026 (LCP) ; précédent de 1962 (dissolution 4 jours après la censure). Jugement : après une censure à l'automne, une dissolution reste possible avant mars 2027 mais bloquerait le prochain président ; environ 15 %, un peu plus si la popularité permet d'espérer un gain."
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=oui|VE-POP=< 25 %": {
+     "poids_reseau": 0.0262,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "Dossier 5 : une dissolution après début mars ferait coïncider législatives et présidentielle. Jugement : après une censure en 2027, nommer un gouvernement de transition est plus probable que dissoudre ; environ 10 %."
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=oui|VE-POP=25-35 %": {
+     "poids_reseau": 0.0031,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "Dossier 5 : une dissolution après début mars ferait coïncider législatives et présidentielle. Jugement : après une censure en 2027, nommer un gouvernement de transition est plus probable que dissoudre ; environ 10 %."
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=oui|VE-POP=> 35 %": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "oui": 0.14
+     },
+     "justification": "Dossier 5 : une dissolution après début mars ferait coïncider législatives et présidentielle. Jugement : après une censure en 2027, nommer un gouvernement de transition est plus probable que dissoudre ; environ 10 %."
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=non|VE-POP=< 25 %": {
+     "poids_reseau": 0.7434,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "Dossier 5 : aucune dissolution dans les douze mois précédant une présidentielle depuis 1958 ; Macron l'a écartée le 24/09/2026 (LCP). Jugement : sans censure, risque résiduel d'environ 2 %."
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=non|VE-POP=25-35 %": {
+     "poids_reseau": 0.0589,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "Dossier 5 : aucune dissolution dans les douze mois précédant une présidentielle depuis 1958 ; Macron l'a écartée le 24/09/2026 (LCP). Jugement : sans censure, risque résiduel d'environ 2 %."
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=non|VE-POP=> 35 %": {
+     "poids_reseau": 0.0089,
+     "loi": {
+      "oui": 0.025
+     },
+     "justification": "Dossier 5 : aucune dissolution dans les douze mois précédant une présidentielle depuis 1958 ; Macron l'a écartée le 24/09/2026 (LCP). Jugement : sans censure, risque résiduel d'environ 2 %."
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-NOTE": {
+   "nom": "Dégradation de la note par une agence",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-ECART",
+     "nom": "Écart OAT-Bund 10 ans (moyenne du mois)",
+     "etats": [
+      "< 120 pb",
+      "120-160 pb",
+      "> 160 pb"
+     ],
+     "decalage": 1,
+     "definition": "moyenne mensuelle de l'écart (série BCE collectée)"
+    },
+    {
+     "id": "PV-BUDGET",
+     "nom": "Loi de finances pour 2027 au 31 décembre 2026",
+     "etats": [
+      "publiée",
+      "non publiée"
+     ],
+     "decalage": 0,
+     "definition": "2026-12-31"
+    },
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0462,
+     "loi": {
+      "oui": 0.78
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0178,
+     "loi": {
+      "oui": 0.62
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "oui": 0.65
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0045,
+     "loi": {
+      "oui": 0.92
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0018,
+     "loi": {
+      "oui": 0.8
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "oui": 0.68
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.72
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0031,
+     "loi": {
+      "oui": 0.75
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0893,
+     "loi": {
+      "oui": 0.84
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0351,
+     "loi": {
+      "oui": 0.68
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0048,
+     "loi": {
+      "oui": 0.71
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.006,
+     "loi": {
+      "oui": 0.97
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0036,
+     "loi": {
+      "oui": 0.86
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "oui": 0.74
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": 0.78
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0046,
+     "loi": {
+      "oui": 0.81
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.141,
+     "loi": {
+      "oui": 0.88
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0546,
+     "loi": {
+      "oui": 0.72
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0049,
+     "loi": {
+      "oui": 0.75
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0091,
+     "loi": {
+      "oui": 0.97
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0066,
+     "loi": {
+      "oui": 0.9
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0036,
+     "loi": {
+      "oui": 0.78
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": 0.82
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0091,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.2597,
+     "loi": {
+      "oui": 0.94
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0996,
+     "loi": {
+      "oui": 0.78
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0092,
+     "loi": {
+      "oui": 0.81
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0225,
+     "loi": {
+      "oui": 0.97
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0132,
+     "loi": {
+      "oui": 0.96
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0051,
+     "loi": {
+      "oui": 0.84
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": 0.88
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0173,
+     "loi": {
+      "oui": 0.91
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0268,
+     "loi": {
+      "oui": 0.95
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0098,
+     "loi": {
+      "oui": 0.79
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.82
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "oui": 0.97
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": 0.97
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "oui": 0.89
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0017,
+     "loi": {
+      "oui": 0.92
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.05,
+     "loi": {
+      "oui": 0.97
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0186,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "oui": 0.88
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0028,
+     "loi": {
+      "oui": 0.97
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0015,
+     "loi": {
+      "oui": 0.97
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "oui": 0.91
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": 0.95
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0042,
+     "loi": {
+      "oui": 0.97
+     },
+     "justification": "Dossier 6 : Moody's Aa3 sous perspective négative, revue le 23 octobre 2026 après une note du 2 octobre doutant d'un compromis budgétaire ; environ 0,8 dégradation par an pour les trois grandes agences (2012-2025), 4 en 14 mois en 2024-2025 ; fenêtre de près de deux ans. Jugement : base élevée même avec un budget publié et un écart contenu ; un écart au-delà de 120 ou 160 pb et l'absence de budget au 31 décembre augmentent le risque ; un vainqueur porteur d'un programme de dépense non financé (MEL, RN, GLU) l'accroît, un vainqueur centriste attaché à la consolidation (PHI, ATT, RET) le réduit sans l'annuler (déficit 2026 vers 5,4 %, dossier 3.2)."
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-PDE": {
+   "nom": "Durcissement de la procédure de déficit excessif",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-BUDGET",
+     "nom": "Loi de finances pour 2027 au 31 décembre 2026",
+     "etats": [
+      "publiée",
+      "non publiée"
+     ],
+     "decalage": 0,
+     "definition": "2026-12-31"
+    },
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.2275,
+     "loi": {
+      "oui": 0.3
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0789,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0063,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0128,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0098,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0061,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0015,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0137,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.399,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.1455,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0159,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0314,
+     "loi": {
+      "oui": 0.45
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0187,
+     "loi": {
+      "oui": 0.2
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0084,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.17
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0242,
+     "loi": {
+      "oui": 0.2
+     },
+     "justification": "Dossier 7 : décisions 126(8) rares (environ six États depuis 2009, aucune pour la France, la Commission ayant jugé en 2025 et 2026 qu'aucune mesure supplémentaire n'était nécessaire). L'écart grandit pourtant : déficit 2026 vers 5,4 % contre 5 % visés, 2027 à 5-5,4 % alors que l'engagement européen était de 4,1 % (Europe 1, 21/04/2026). Jugement : la Commission évitera une escalade avant la présidentielle ; le risque se concentre en 2027-2028 si le nouveau pouvoir assume un dérapage : élevé avec un vainqueur RN ou MEL, faible avec un vainqueur centriste ; un budget non publié au 31 décembre ajoute environ 5 points."
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-TPI": {
+   "nom": "Achats ciblés de la BCE (TPI ou OMT)",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-ECART",
+     "nom": "Écart OAT-Bund 10 ans (moyenne du mois)",
+     "etats": [
+      "< 120 pb",
+      "120-160 pb",
+      "> 160 pb"
+     ],
+     "decalage": 0,
+     "definition": "moyenne mensuelle de l'écart (série BCE collectée)"
+    },
+    {
+     "id": "PV-PDE",
+     "nom": "Durcissement de la procédure de déficit excessif",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2028-09-30"
+     ]
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-ECART=< 120 pb|PV-PDE=oui": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "oui": 0.01
+     },
+     "justification": "Dossier 9 : TPI jamais activé en 51 mois, y compris lors de l'épisode de septembre-octobre 2026 ; critères d'éligibilité excluant un État jugé sans action suivie d'effets (126(8)) et les tensions dues aux fondamentaux ; le gouverneur de la Banque de France juge une intervention prématurée (dossier 8.2). Jugement : avec un écart contenu, quasi nul ; un écart durablement au-delà de 160 pb jugé désordonné rend l'activation plausible (environ 25 %) ; une décision 126(8) la rend beaucoup moins probable (critère 1)."
+    },
+    "VE-ECART=< 120 pb|PV-PDE=non": {
+     "poids_reseau": 0.1915,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "Dossier 9 : TPI jamais activé en 51 mois, y compris lors de l'épisode de septembre-octobre 2026 ; critères d'éligibilité excluant un État jugé sans action suivie d'effets (126(8)) et les tensions dues aux fondamentaux ; le gouverneur de la Banque de France juge une intervention prématurée (dossier 8.2). Jugement : avec un écart contenu, quasi nul ; un écart durablement au-delà de 160 pb jugé désordonné rend l'activation plausible (environ 25 %) ; une décision 126(8) la rend beaucoup moins probable (critère 1)."
+    },
+    "VE-ECART=120-160 pb|PV-PDE=oui": {
+     "poids_reseau": 0.045,
+     "loi": {
+      "oui": 0.03
+     },
+     "justification": "Dossier 9 : TPI jamais activé en 51 mois, y compris lors de l'épisode de septembre-octobre 2026 ; critères d'éligibilité excluant un État jugé sans action suivie d'effets (126(8)) et les tensions dues aux fondamentaux ; le gouverneur de la Banque de France juge une intervention prématurée (dossier 8.2). Jugement : avec un écart contenu, quasi nul ; un écart durablement au-delà de 160 pb jugé désordonné rend l'activation plausible (environ 25 %) ; une décision 126(8) la rend beaucoup moins probable (critère 1)."
+    },
+    "VE-ECART=120-160 pb|PV-PDE=non": {
+     "poids_reseau": 0.5535,
+     "loi": {
+      "oui": 0.07
+     },
+     "justification": "Dossier 9 : TPI jamais activé en 51 mois, y compris lors de l'épisode de septembre-octobre 2026 ; critères d'éligibilité excluant un État jugé sans action suivie d'effets (126(8)) et les tensions dues aux fondamentaux ; le gouverneur de la Banque de France juge une intervention prématurée (dossier 8.2). Jugement : avec un écart contenu, quasi nul ; un écart durablement au-delà de 160 pb jugé désordonné rend l'activation plausible (environ 25 %) ; une décision 126(8) la rend beaucoup moins probable (critère 1)."
+    },
+    "VE-ECART=> 160 pb|PV-PDE=oui": {
+     "poids_reseau": 0.0197,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "Dossier 9 : TPI jamais activé en 51 mois, y compris lors de l'épisode de septembre-octobre 2026 ; critères d'éligibilité excluant un État jugé sans action suivie d'effets (126(8)) et les tensions dues aux fondamentaux ; le gouverneur de la Banque de France juge une intervention prématurée (dossier 8.2). Jugement : avec un écart contenu, quasi nul ; un écart durablement au-delà de 160 pb jugé désordonné rend l'activation plausible (environ 25 %) ; une décision 126(8) la rend beaucoup moins probable (critère 1)."
+    },
+    "VE-ECART=> 160 pb|PV-PDE=non": {
+     "poids_reseau": 0.1722,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "Dossier 9 : TPI jamais activé en 51 mois, y compris lors de l'épisode de septembre-octobre 2026 ; critères d'éligibilité excluant un État jugé sans action suivie d'effets (126(8)) et les tensions dues aux fondamentaux ; le gouverneur de la Banque de France juge une intervention prématurée (dossier 8.2). Jugement : avec un écart contenu, quasi nul ; un écart durablement au-delà de 160 pb jugé désordonné rend l'activation plausible (environ 25 %) ; une décision 126(8) la rend beaucoup moins probable (critère 1)."
+    }
+   },
+   "verrous": []
+  },
+  "VE-ECART": {
+   "nom": "Écart OAT-Bund 10 ans (moyenne du mois)",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "PV-NOTE",
+     "nom": "Dégradation de la note par une agence",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2028-09-30"
+     ]
+    },
+    {
+     "id": "PV-TPI",
+     "nom": "Achats ciblés de la BCE (TPI ou OMT)",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 1,
+     "definition": [
+      "2026-10-10",
+      "2028-09-30"
+     ]
+    }
+   ],
+   "definition": "moyenne mensuelle de l'écart (série BCE collectée)",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "< 120 pb",
+    "120-160 pb",
+    "> 160 pb"
+   ],
+   "cas": {
+    "prec=< 120 pb|PV-NOTE=oui|PV-TPI=oui": {
+     "poids_reseau": 0.0043,
+     "loi": {
+      "< 120 pb": 0.98,
+      "120-160 pb": 0.02,
+      "> 160 pb": 0
+     },
+     "justification": "Dossier 8.1 : de '< 120' vers '120-160', 2 transitions sur 193 depuis 2010. Jugement : un peu plus que ce taux de base vu le contexte 2026 (hausse des taux, budget), davantage après une dégradation ; un TPI actif écrase le risque."
+    },
+    "prec=< 120 pb|PV-NOTE=oui|PV-TPI=non": {
+     "poids_reseau": 0.0788,
+     "loi": {
+      "< 120 pb": 0.94,
+      "120-160 pb": 0.055,
+      "> 160 pb": 0.005
+     },
+     "justification": "Dossier 8.1 : de '< 120' vers '120-160', 2 transitions sur 193 depuis 2010. Jugement : un peu plus que ce taux de base vu le contexte 2026 (hausse des taux, budget), davantage après une dégradation ; un TPI actif écrase le risque."
+    },
+    "prec=< 120 pb|PV-NOTE=non|PV-TPI=oui": {
+     "poids_reseau": 0.0032,
+     "loi": {
+      "< 120 pb": 0.98,
+      "120-160 pb": 0.02,
+      "> 160 pb": 0
+     },
+     "justification": "Dossier 8.1 : de '< 120' vers '120-160', 2 transitions sur 193 depuis 2010. Jugement : un peu plus que ce taux de base vu le contexte 2026 (hausse des taux, budget), davantage après une dégradation ; un TPI actif écrase le risque."
+    },
+    "prec=< 120 pb|PV-NOTE=non|PV-TPI=non": {
+     "poids_reseau": 0.1166,
+     "loi": {
+      "< 120 pb": 0.96,
+      "120-160 pb": 0.037,
+      "> 160 pb": 0.003
+     },
+     "justification": "Dossier 8.1 : de '< 120' vers '120-160', 2 transitions sur 193 depuis 2010. Jugement : un peu plus que ce taux de base vu le contexte 2026 (hausse des taux, budget), davantage après une dégradation ; un TPI actif écrase le risque."
+    },
+    "prec=120-160 pb|PV-NOTE=oui|PV-TPI=oui": {
+     "poids_reseau": 0.0073,
+     "loi": {
+      "< 120 pb": 0.4,
+      "120-160 pb": 0.57,
+      "> 160 pb": 0.03
+     },
+     "justification": "Dossier 8.1 : de '120-160' vers '< 120', 2 sur 6 ; aucune vers '> 160' ; épisode 2026 à 127-147 pb début octobre (8.2, optionfinance.fr 01/10/2026 environ 140 pb). Jugement : forte persistance mensuelle, retour sous 120 pb environ 1 fois sur 4 ; une dégradation accroît la persistance et le risque d'emballement ; un TPI actif favorise la détente (précédent OMT 2012)."
+    },
+    "prec=120-160 pb|PV-NOTE=oui|PV-TPI=non": {
+     "poids_reseau": 0.2601,
+     "loi": {
+      "< 120 pb": 0.18,
+      "120-160 pb": 0.74,
+      "> 160 pb": 0.08
+     },
+     "justification": "Dossier 8.1 : de '120-160' vers '< 120', 2 sur 6 ; aucune vers '> 160' ; épisode 2026 à 127-147 pb début octobre (8.2, optionfinance.fr 01/10/2026 environ 140 pb). Jugement : forte persistance mensuelle, retour sous 120 pb environ 1 fois sur 4 ; une dégradation accroît la persistance et le risque d'emballement ; un TPI actif favorise la détente (précédent OMT 2012)."
+    },
+    "prec=120-160 pb|PV-NOTE=non|PV-TPI=oui": {
+     "poids_reseau": 0.0046,
+     "loi": {
+      "< 120 pb": 0.45,
+      "120-160 pb": 0.53,
+      "> 160 pb": 0.02
+     },
+     "justification": "Dossier 8.1 : de '120-160' vers '< 120', 2 sur 6 ; aucune vers '> 160' ; épisode 2026 à 127-147 pb début octobre (8.2, optionfinance.fr 01/10/2026 environ 140 pb). Jugement : forte persistance mensuelle, retour sous 120 pb environ 1 fois sur 4 ; une dégradation accroît la persistance et le risque d'emballement ; un TPI actif favorise la détente (précédent OMT 2012)."
+    },
+    "prec=120-160 pb|PV-NOTE=non|PV-TPI=non": {
+     "poids_reseau": 0.3438,
+     "loi": {
+      "< 120 pb": 0.25,
+      "120-160 pb": 0.7,
+      "> 160 pb": 0.05
+     },
+     "justification": "Dossier 8.1 : de '120-160' vers '< 120', 2 sur 6 ; aucune vers '> 160' ; épisode 2026 à 127-147 pb début octobre (8.2, optionfinance.fr 01/10/2026 environ 140 pb). Jugement : forte persistance mensuelle, retour sous 120 pb environ 1 fois sur 4 ; une dégradation accroît la persistance et le risque d'emballement ; un TPI actif favorise la détente (précédent OMT 2012)."
+    },
+    "prec=> 160 pb|PV-NOTE=oui|PV-TPI=oui": {
+     "poids_reseau": 0.0029,
+     "loi": {
+      "< 120 pb": 0.08,
+      "120-160 pb": 0.55,
+      "> 160 pb": 0.37
+     },
+     "justification": "Dossier 8.1 : état jamais observé depuis 2010 (maximum 154 pb). Jugement : un tel niveau traduirait une crise auto-entretenue, donc forte persistance (environ 60 %) ; un TPI actif favoriserait le retour sous 160 pb."
+    },
+    "prec=> 160 pb|PV-NOTE=oui|PV-TPI=non": {
+     "poids_reseau": 0.1145,
+     "loi": {
+      "< 120 pb": 0.03,
+      "120-160 pb": 0.3,
+      "> 160 pb": 0.67
+     },
+     "justification": "Dossier 8.1 : état jamais observé depuis 2010 (maximum 154 pb). Jugement : un tel niveau traduirait une crise auto-entretenue, donc forte persistance (environ 60 %) ; un TPI actif favoriserait le retour sous 160 pb."
+    },
+    "prec=> 160 pb|PV-NOTE=non|PV-TPI=oui": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "< 120 pb": 0.1,
+      "120-160 pb": 0.6,
+      "> 160 pb": 0.3
+     },
+     "justification": "Dossier 8.1 : état jamais observé depuis 2010 (maximum 154 pb). Jugement : un tel niveau traduirait une crise auto-entretenue, donc forte persistance (environ 60 %) ; un TPI actif favoriserait le retour sous 160 pb."
+    },
+    "prec=> 160 pb|PV-NOTE=non|PV-TPI=non": {
+     "poids_reseau": 0.063,
+     "loi": {
+      "< 120 pb": 0.05,
+      "120-160 pb": 0.35,
+      "> 160 pb": 0.6
+     },
+     "justification": "Dossier 8.1 : état jamais observé depuis 2010 (maximum 154 pb). Jugement : un tel niveau traduirait une crise auto-entretenue, donc forte persistance (environ 60 %) ; un TPI actif favoriserait le retour sous 160 pb."
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-15": {
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": 0.22
+  },
+  "EV-15b": {
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2027-01-01",
+    "fin": "2027-05-02"
+   },
+   "probabilite": 0.1
+  },
+  "EV-02": {
+   "critere": "Aucune loi de finances pour 2027 n'est publiée au Journal officiel au 31 décembre 2026. Une loi spéciale ou une ordonnance prise au titre de l'article 47 de la Constitution n'est pas une loi de finances.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": 0.63
+  },
+  "EV-50": {
+   "critere": "Pendant la fenêtre, Sébastien Lecornu, Premier ministre au 10 octobre 2026, cesse de l'être : un décret publié au Journal officiel nomme une autre personne Premier ministre, ou met fin à ses fonctions, quelle qu'en soit la cause (démission, censure, démission du Gouvernement). Si un décret met fin à ses fonctions et qu'un décret publié au plus tard le dernier jour de la fenêtre le nomme de nouveau Premier ministre, la réponse est « non » ; s'il n'est pas renommé au dernier jour de la fenêtre, y compris s'il expédie les affaires courantes, la réponse est « oui », et la date du fait est celle du décret qui a mis fin à ses fonctions.",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-05-02"
+   },
+   "probabilite": 0.35
+  },
+  "EV-49": {
+   "critere": "Pendant la fenêtre, Édouard Geffray, ministre de l'Éducation nationale au 10 octobre 2026, cesse de détenir ce portefeuille : un décret publié au Journal officiel nomme une autre personne à la tête du ministère chargé de l'Éducation nationale, ou le nomme à d'autres fonctions sans ce portefeuille, ou met fin à ses fonctions. Si un décret met fin à ses fonctions (démission du Gouvernement comprise) et qu'un décret publié au plus tard le dernier jour de la fenêtre le reconduit à la tête de ce ministère, la réponse est « non » ; s'il n'est pas reconduit au dernier jour de la fenêtre, y compris s'il expédie les affaires courantes, la réponse est « oui », et la date du fait est celle du décret qui a mis fin à ses fonctions.",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   },
+   "probabilite": 0.17
+  },
+  "EV-16a": {
+   "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-05-02"
+   },
+   "probabilite": 0.05
+  },
+  "EV-01": {
+   "critere": "Au moins une des agences Moody's, S&P Global Ratings ou Fitch Ratings abaisse d'au moins un cran la note de crédit à long terme de la République française pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.86
+  },
+  "EV-04": {
+   "critere": "Le Conseil de l'Union européenne adopte une décision visant la France au titre de l'article 126, paragraphe 8 ou paragraphe 9, du traité sur le fonctionnement de l'Union européenne.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.24
+  },
+  "EV-46": {
+   "critere": "Pendant la fenêtre, la Banque centrale européenne annonce, par un communiqué ou une décision publiée, des achats de titres de dette publique française au titre de l'instrument de protection de la transmission (TPI) ou des opérations monétaires sur titres (OMT). Des achats au titre d'autres programmes (APP, PEPP, y compris la flexibilité des réinvestissements) ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.08
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-10"
+}

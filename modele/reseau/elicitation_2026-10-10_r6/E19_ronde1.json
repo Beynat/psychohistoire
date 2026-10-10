@@ -1,0 +1,921 @@
+{
+ "evaluateur": "E19",
+ "date": "2026-10-10",
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "VE-SOND": {
+   "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "PV-BLOC",
+     "nom": "Candidatures du bloc central",
+     "etats": [
+      "les deux",
+      "Philippe seul",
+      "Attal seul",
+      "aucun des deux"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    }
+   ],
+   "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "centre",
+    "gauche",
+    "droite"
+   ],
+   "cas": {
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux": {
+     "poids_reseau": 0.2125,
+     "loi": {
+      "centre": 0.6,
+      "gauche": 0.38,
+      "droite": 0.02
+     },
+     "justification": "dossier 6.1 : en septembre 2026, avec Philippe et Attal, le centre est devant Mélenchon dans 3 hypothèses sur 19 (14 derrière) ; persistance mensuelle forte de l'état précédent (centre), dossier 6.2."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul": {
+     "poids_reseau": 0.307,
+     "loi": {
+      "centre": 0.85,
+      "gauche": 0.13,
+      "droite": 0.02
+     },
+     "justification": "dossier 6.1 : Philippe seul devance Mélenchon dans 13 hypothèses sur 22 (5 égalités) en septembre 2026, 7/8 en juillet et août ; persistance mensuelle forte de l'état précédent (centre), dossier 6.2."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul": {
+     "poids_reseau": 0.043,
+     "loi": {
+      "centre": 0.5,
+      "gauche": 0.47,
+      "droite": 0.03
+     },
+     "justification": "dossier 6.1 : Attal seul n'est devant Mélenchon dans aucune des 15 hypothèses de septembre (2 égalités) ; persistance mensuelle forte de l'état précédent (centre), dossier 6.2."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux": {
+     "poids_reseau": 0.0136,
+     "loi": {
+      "centre": 0.25,
+      "gauche": 0.55,
+      "droite": 0.2
+     },
+     "justification": "jugement : sans Philippe ni Attal, le centre perd son candidat principal ; Mélenchon (16,5 en septembre, dossier 6.2) devient favori, Retailleau (8-12) peut récupérer une part ; persistance mensuelle forte de l'état précédent (centre), dossier 6.2."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux": {
+     "poids_reseau": 0.0407,
+     "loi": {
+      "centre": 0.64,
+      "gauche": 0.34,
+      "droite": 0.02
+     },
+     "justification": "dossier 6.1 : en septembre 2026, avec Philippe et Attal, le centre est devant Mélenchon dans 3 hypothèses sur 19 (14 derrière) ; persistance mensuelle forte de l'état précédent (centre), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+4 points de probabilité)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul": {
+     "poids_reseau": 0.0626,
+     "loi": {
+      "centre": 0.89,
+      "gauche": 0.09,
+      "droite": 0.02
+     },
+     "justification": "dossier 6.1 : Philippe seul devance Mélenchon dans 13 hypothèses sur 22 (5 égalités) en septembre 2026, 7/8 en juillet et août ; persistance mensuelle forte de l'état précédent (centre), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+4 points de probabilité)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul": {
+     "poids_reseau": 0.0095,
+     "loi": {
+      "centre": 0.54,
+      "gauche": 0.43,
+      "droite": 0.03
+     },
+     "justification": "dossier 6.1 : Attal seul n'est devant Mélenchon dans aucune des 15 hypothèses de septembre (2 égalités) ; persistance mensuelle forte de l'état précédent (centre), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+4 points de probabilité)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux": {
+     "poids_reseau": 0.0017,
+     "loi": {
+      "centre": 0.29,
+      "gauche": 0.51,
+      "droite": 0.2
+     },
+     "justification": "jugement : sans Philippe ni Attal, le centre perd son candidat principal ; Mélenchon (16,5 en septembre, dossier 6.2) devient favori, Retailleau (8-12) peut récupérer une part ; persistance mensuelle forte de l'état précédent (centre), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+4 points de probabilité)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux": {
+     "poids_reseau": 0.0092,
+     "loi": {
+      "centre": 0.67,
+      "gauche": 0.31,
+      "droite": 0.02
+     },
+     "justification": "dossier 6.1 : en septembre 2026, avec Philippe et Attal, le centre est devant Mélenchon dans 3 hypothèses sur 19 (14 derrière) ; persistance mensuelle forte de l'état précédent (centre), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+7 points de probabilité)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul": {
+     "poids_reseau": 0.0118,
+     "loi": {
+      "centre": 0.92,
+      "gauche": 0.06,
+      "droite": 0.02
+     },
+     "justification": "dossier 6.1 : Philippe seul devance Mélenchon dans 13 hypothèses sur 22 (5 égalités) en septembre 2026, 7/8 en juillet et août ; persistance mensuelle forte de l'état précédent (centre), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+7 points de probabilité)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul": {
+     "poids_reseau": 0.0015,
+     "loi": {
+      "centre": 0.57,
+      "gauche": 0.4,
+      "droite": 0.03
+     },
+     "justification": "dossier 6.1 : Attal seul n'est devant Mélenchon dans aucune des 15 hypothèses de septembre (2 égalités) ; persistance mensuelle forte de l'état précédent (centre), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+7 points de probabilité)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.32,
+      "gauche": 0.48,
+      "droite": 0.2
+     },
+     "justification": "jugement : sans Philippe ni Attal, le centre perd son candidat principal ; Mélenchon (16,5 en septembre, dossier 6.2) devient favori, Retailleau (8-12) peut récupérer une part ; persistance mensuelle forte de l'état précédent (centre), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+7 points de probabilité)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux": {
+     "poids_reseau": 0.0638,
+     "loi": {
+      "centre": 0.15,
+      "gauche": 0.82,
+      "droite": 0.03
+     },
+     "justification": "dossier 6.1 : en septembre 2026, avec Philippe et Attal, le centre est devant Mélenchon dans 3 hypothèses sur 19 (14 derrière) ; persistance mensuelle forte de l'état précédent (gauche), dossier 6.2."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul": {
+     "poids_reseau": 0.0744,
+     "loi": {
+      "centre": 0.35,
+      "gauche": 0.62,
+      "droite": 0.03
+     },
+     "justification": "dossier 6.1 : Philippe seul devance Mélenchon dans 13 hypothèses sur 22 (5 égalités) en septembre 2026, 7/8 en juillet et août ; persistance mensuelle forte de l'état précédent (gauche), dossier 6.2."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul": {
+     "poids_reseau": 0.0215,
+     "loi": {
+      "centre": 0.15,
+      "gauche": 0.82,
+      "droite": 0.03
+     },
+     "justification": "dossier 6.1 : Attal seul n'est devant Mélenchon dans aucune des 15 hypothèses de septembre (2 égalités) ; persistance mensuelle forte de l'état précédent (gauche), dossier 6.2."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux": {
+     "poids_reseau": 0.0201,
+     "loi": {
+      "centre": 0.05,
+      "gauche": 0.85,
+      "droite": 0.1
+     },
+     "justification": "jugement : sans Philippe ni Attal, le centre perd son candidat principal ; Mélenchon (16,5 en septembre, dossier 6.2) devient favori, Retailleau (8-12) peut récupérer une part ; persistance mensuelle forte de l'état précédent (gauche), dossier 6.2."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux": {
+     "poids_reseau": 0.0135,
+     "loi": {
+      "centre": 0.19,
+      "gauche": 0.78,
+      "droite": 0.03
+     },
+     "justification": "dossier 6.1 : en septembre 2026, avec Philippe et Attal, le centre est devant Mélenchon dans 3 hypothèses sur 19 (14 derrière) ; persistance mensuelle forte de l'état précédent (gauche), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+4 points de probabilité)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "centre": 0.39,
+      "gauche": 0.58,
+      "droite": 0.03
+     },
+     "justification": "dossier 6.1 : Philippe seul devance Mélenchon dans 13 hypothèses sur 22 (5 égalités) en septembre 2026, 7/8 en juillet et août ; persistance mensuelle forte de l'état précédent (gauche), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+4 points de probabilité)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "centre": 0.19,
+      "gauche": 0.78,
+      "droite": 0.03
+     },
+     "justification": "dossier 6.1 : Attal seul n'est devant Mélenchon dans aucune des 15 hypothèses de septembre (2 égalités) ; persistance mensuelle forte de l'état précédent (gauche), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+4 points de probabilité)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux": {
+     "poids_reseau": 0.0066,
+     "loi": {
+      "centre": 0.09,
+      "gauche": 0.81,
+      "droite": 0.1
+     },
+     "justification": "jugement : sans Philippe ni Attal, le centre perd son candidat principal ; Mélenchon (16,5 en septembre, dossier 6.2) devient favori, Retailleau (8-12) peut récupérer une part ; persistance mensuelle forte de l'état précédent (gauche), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+4 points de probabilité)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux": {
+     "poids_reseau": 0.0024,
+     "loi": {
+      "centre": 0.22,
+      "gauche": 0.75,
+      "droite": 0.03
+     },
+     "justification": "dossier 6.1 : en septembre 2026, avec Philippe et Attal, le centre est devant Mélenchon dans 3 hypothèses sur 19 (14 derrière) ; persistance mensuelle forte de l'état précédent (gauche), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+7 points de probabilité)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul": {
+     "poids_reseau": 0.0021,
+     "loi": {
+      "centre": 0.42,
+      "gauche": 0.55,
+      "droite": 0.03
+     },
+     "justification": "dossier 6.1 : Philippe seul devance Mélenchon dans 13 hypothèses sur 22 (5 égalités) en septembre 2026, 7/8 en juillet et août ; persistance mensuelle forte de l'état précédent (gauche), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+7 points de probabilité)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "centre": 0.22,
+      "gauche": 0.75,
+      "droite": 0.03
+     },
+     "justification": "dossier 6.1 : Attal seul n'est devant Mélenchon dans aucune des 15 hypothèses de septembre (2 égalités) ; persistance mensuelle forte de l'état précédent (gauche), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+7 points de probabilité)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "centre": 0.12,
+      "gauche": 0.78,
+      "droite": 0.1
+     },
+     "justification": "jugement : sans Philippe ni Attal, le centre perd son candidat principal ; Mélenchon (16,5 en septembre, dossier 6.2) devient favori, Retailleau (8-12) peut récupérer une part ; persistance mensuelle forte de l'état précédent (gauche), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+7 points de probabilité)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux": {
+     "poids_reseau": 0.0148,
+     "loi": {
+      "centre": 0.15,
+      "gauche": 0.15,
+      "droite": 0.7
+     },
+     "justification": "dossier 6.1 : en septembre 2026, avec Philippe et Attal, le centre est devant Mélenchon dans 3 hypothèses sur 19 (14 derrière) ; persistance mensuelle forte de l'état précédent (droite), dossier 6.2."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul": {
+     "poids_reseau": 0.0162,
+     "loi": {
+      "centre": 0.25,
+      "gauche": 0.1,
+      "droite": 0.65
+     },
+     "justification": "dossier 6.1 : Philippe seul devance Mélenchon dans 13 hypothèses sur 22 (5 égalités) en septembre 2026, 7/8 en juillet et août ; persistance mensuelle forte de l'état précédent (droite), dossier 6.2."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "centre": 0.15,
+      "gauche": 0.15,
+      "droite": 0.7
+     },
+     "justification": "dossier 6.1 : Attal seul n'est devant Mélenchon dans aucune des 15 hypothèses de septembre (2 égalités) ; persistance mensuelle forte de l'état précédent (droite), dossier 6.2."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux": {
+     "poids_reseau": 0.009,
+     "loi": {
+      "centre": 0.05,
+      "gauche": 0.1,
+      "droite": 0.85
+     },
+     "justification": "jugement : sans Philippe ni Attal, le centre perd son candidat principal ; Mélenchon (16,5 en septembre, dossier 6.2) devient favori, Retailleau (8-12) peut récupérer une part ; persistance mensuelle forte de l'état précédent (droite), dossier 6.2."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux": {
+     "poids_reseau": 0.0034,
+     "loi": {
+      "centre": 0.19,
+      "gauche": 0.11,
+      "droite": 0.7
+     },
+     "justification": "dossier 6.1 : en septembre 2026, avec Philippe et Attal, le centre est devant Mélenchon dans 3 hypothèses sur 19 (14 derrière) ; persistance mensuelle forte de l'état précédent (droite), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+4 points de probabilité)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul": {
+     "poids_reseau": 0.0038,
+     "loi": {
+      "centre": 0.29,
+      "gauche": 0.06,
+      "droite": 0.65
+     },
+     "justification": "dossier 6.1 : Philippe seul devance Mélenchon dans 13 hypothèses sur 22 (5 égalités) en septembre 2026, 7/8 en juillet et août ; persistance mensuelle forte de l'état précédent (droite), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+4 points de probabilité)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": 0.19,
+      "gauche": 0.11,
+      "droite": 0.7
+     },
+     "justification": "dossier 6.1 : Attal seul n'est devant Mélenchon dans aucune des 15 hypothèses de septembre (2 égalités) ; persistance mensuelle forte de l'état précédent (droite), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+4 points de probabilité)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux": {
+     "poids_reseau": 0.0031,
+     "loi": {
+      "centre": 0.09,
+      "gauche": 0.06,
+      "droite": 0.85
+     },
+     "justification": "jugement : sans Philippe ni Attal, le centre perd son candidat principal ; Mélenchon (16,5 en septembre, dossier 6.2) devient favori, Retailleau (8-12) peut récupérer une part ; persistance mensuelle forte de l'état précédent (droite), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+4 points de probabilité)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": 0.22,
+      "gauche": 0.08,
+      "droite": 0.7
+     },
+     "justification": "dossier 6.1 : en septembre 2026, avec Philippe et Attal, le centre est devant Mélenchon dans 3 hypothèses sur 19 (14 derrière) ; persistance mensuelle forte de l'état précédent (droite), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+7 points de probabilité)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": 0.32,
+      "gauche": 0.03,
+      "droite": 0.65
+     },
+     "justification": "dossier 6.1 : Philippe seul devance Mélenchon dans 13 hypothèses sur 22 (5 égalités) en septembre 2026, 7/8 en juillet et août ; persistance mensuelle forte de l'état précédent (droite), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+7 points de probabilité)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.22,
+      "gauche": 0.08,
+      "droite": 0.7
+     },
+     "justification": "dossier 6.1 : Attal seul n'est devant Mélenchon dans aucune des 15 hypothèses de septembre (2 égalités) ; persistance mensuelle forte de l'état précédent (droite), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+7 points de probabilité)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": 0.12,
+      "gauche": 0.03,
+      "droite": 0.85
+     },
+     "justification": "jugement : sans Philippe ni Attal, le centre perd son candidat principal ; Mélenchon (16,5 en septembre, dossier 6.2) devient favori, Retailleau (8-12) peut récupérer une part ; persistance mensuelle forte de l'état précédent (droite), dossier 6.2 ; jugement : une popularité présidentielle plus haute profite légèrement au centre (+7 points de probabilité)."
+    }
+   },
+   "verrous": []
+  },
+  "VE-RN": {
+   "nom": "Intentions de vote du candidat RN au premier tour",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "PV-LEPEN",
+     "nom": "Candidature de Marine Le Pen",
+     "etats": [
+      "candidate",
+      "non candidate"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    }
+   ],
+   "definition": "moyenne des sondages du mois pour le candidat du RN (hypothèse principale)",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "< 30 %",
+    "30-35 %",
+    "> 35 %"
+   ],
+   "cas": {
+    "prec=< 30 %|VE-POP=< 25 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.1048,
+     "loi": {
+      "< 30 %": 0.55,
+      "30-35 %": 0.43,
+      "> 35 %": 0.02
+     },
+     "justification": "dossier 5.1 : aucune moyenne mensuelle sous 30,7 depuis mars 2025, donc retour probable vers 30-35."
+    },
+    "prec=< 30 %|VE-POP=< 25 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0194,
+     "loi": {
+      "< 30 %": 0.5,
+      "30-35 %": 0.47,
+      "> 35 %": 0.03
+     },
+     "justification": "dossier 5.1 : aucune moyenne mensuelle sous 30,7 depuis mars 2025, donc retour probable vers 30-35 ; Bardella mesuré 2 à 4 points au-dessus de Le Pen de février à juin 2026 (dossier 5.3), mais l'affaire Mediapart (dossier 4, Ifop 6-7 octobre : 21 % d'image détériorée) tempère ce surplus."
+    },
+    "prec=< 30 %|VE-POP=25-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0298,
+     "loi": {
+      "< 30 %": 0.56,
+      "30-35 %": 0.43,
+      "> 35 %": 0.01
+     },
+     "justification": "dossier 5.1 : aucune moyenne mensuelle sous 30,7 depuis mars 2025, donc retour probable vers 30-35 ; jugement : un président plus populaire retire un peu au RN."
+    },
+    "prec=< 30 %|VE-POP=25-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0045,
+     "loi": {
+      "< 30 %": 0.51,
+      "30-35 %": 0.48,
+      "> 35 %": 0.01
+     },
+     "justification": "dossier 5.1 : aucune moyenne mensuelle sous 30,7 depuis mars 2025, donc retour probable vers 30-35 ; Bardella mesuré 2 à 4 points au-dessus de Le Pen de février à juin 2026 (dossier 5.3), mais l'affaire Mediapart (dossier 4, Ifop 6-7 octobre : 21 % d'image détériorée) tempère ce surplus ; jugement : un président plus populaire retire un peu au RN."
+    },
+    "prec=< 30 %|VE-POP=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0054,
+     "loi": {
+      "< 30 %": 0.57,
+      "30-35 %": 0.42,
+      "> 35 %": 0.01
+     },
+     "justification": "dossier 5.1 : aucune moyenne mensuelle sous 30,7 depuis mars 2025, donc retour probable vers 30-35 ; jugement : un président plus populaire retire un peu au RN."
+    },
+    "prec=< 30 %|VE-POP=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "< 30 %": 0.52,
+      "30-35 %": 0.47,
+      "> 35 %": 0.01
+     },
+     "justification": "dossier 5.1 : aucune moyenne mensuelle sous 30,7 depuis mars 2025, donc retour probable vers 30-35 ; Bardella mesuré 2 à 4 points au-dessus de Le Pen de février à juin 2026 (dossier 5.3), mais l'affaire Mediapart (dossier 4, Ifop 6-7 octobre : 21 % d'image détériorée) tempère ce surplus ; jugement : un président plus populaire retire un peu au RN."
+    },
+    "prec=30-35 %|VE-POP=< 25 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.4175,
+     "loi": {
+      "< 30 %": 0.04,
+      "30-35 %": 0.84,
+      "> 35 %": 0.12
+     },
+     "justification": "dossier 5.1 : Le Pen à 33,9 en septembre 2026, moyennes mensuelles toutes dans 30,7-36,6 ; état très persistant."
+    },
+    "prec=30-35 %|VE-POP=< 25 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0996,
+     "loi": {
+      "< 30 %": 0.05,
+      "30-35 %": 0.7,
+      "> 35 %": 0.25
+     },
+     "justification": "dossier 5.1 : Le Pen à 33,9 en septembre 2026, moyennes mensuelles toutes dans 30,7-36,6 ; état très persistant ; Bardella mesuré 2 à 4 points au-dessus de Le Pen de février à juin 2026 (dossier 5.3), mais l'affaire Mediapart (dossier 4, Ifop 6-7 octobre : 21 % d'image détériorée) tempère ce surplus."
+    },
+    "prec=30-35 %|VE-POP=25-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0816,
+     "loi": {
+      "< 30 %": 0.05,
+      "30-35 %": 0.85,
+      "> 35 %": 0.1
+     },
+     "justification": "dossier 5.1 : Le Pen à 33,9 en septembre 2026, moyennes mensuelles toutes dans 30,7-36,6 ; état très persistant ; jugement : un président plus populaire retire un peu au RN."
+    },
+    "prec=30-35 %|VE-POP=25-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0181,
+     "loi": {
+      "< 30 %": 0.06,
+      "30-35 %": 0.71,
+      "> 35 %": 0.23
+     },
+     "justification": "dossier 5.1 : Le Pen à 33,9 en septembre 2026, moyennes mensuelles toutes dans 30,7-36,6 ; état très persistant ; Bardella mesuré 2 à 4 points au-dessus de Le Pen de février à juin 2026 (dossier 5.3), mais l'affaire Mediapart (dossier 4, Ifop 6-7 octobre : 21 % d'image détériorée) tempère ce surplus ; jugement : un président plus populaire retire un peu au RN."
+    },
+    "prec=30-35 %|VE-POP=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0144,
+     "loi": {
+      "< 30 %": 0.06,
+      "30-35 %": 0.86,
+      "> 35 %": 0.08
+     },
+     "justification": "dossier 5.1 : Le Pen à 33,9 en septembre 2026, moyennes mensuelles toutes dans 30,7-36,6 ; état très persistant ; jugement : un président plus populaire retire un peu au RN."
+    },
+    "prec=30-35 %|VE-POP=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0045,
+     "loi": {
+      "< 30 %": 0.07,
+      "30-35 %": 0.72,
+      "> 35 %": 0.21
+     },
+     "justification": "dossier 5.1 : Le Pen à 33,9 en septembre 2026, moyennes mensuelles toutes dans 30,7-36,6 ; état très persistant ; Bardella mesuré 2 à 4 points au-dessus de Le Pen de février à juin 2026 (dossier 5.3), mais l'affaire Mediapart (dossier 4, Ifop 6-7 octobre : 21 % d'image détériorée) tempère ce surplus ; jugement : un président plus populaire retire un peu au RN."
+    },
+    "prec=> 35 %|VE-POP=< 25 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.1257,
+     "loi": {
+      "< 30 %": 0.02,
+      "30-35 %": 0.4,
+      "> 35 %": 0.58
+     },
+     "justification": "dossier 5.1 : seules 3 moyennes mensuelles au-dessus de 35 (Bardella), retour partiel vers 30-35."
+    },
+    "prec=> 35 %|VE-POP=< 25 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0337,
+     "loi": {
+      "< 30 %": 0.02,
+      "30-35 %": 0.33,
+      "> 35 %": 0.65
+     },
+     "justification": "dossier 5.1 : seules 3 moyennes mensuelles au-dessus de 35 (Bardella), retour partiel vers 30-35 ; Bardella mesuré 2 à 4 points au-dessus de Le Pen de février à juin 2026 (dossier 5.3), mais l'affaire Mediapart (dossier 4, Ifop 6-7 octobre : 21 % d'image détériorée) tempère ce surplus."
+    },
+    "prec=> 35 %|VE-POP=25-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0265,
+     "loi": {
+      "< 30 %": 0.03,
+      "30-35 %": 0.41,
+      "> 35 %": 0.56
+     },
+     "justification": "dossier 5.1 : seules 3 moyennes mensuelles au-dessus de 35 (Bardella), retour partiel vers 30-35 ; jugement : un président plus populaire retire un peu au RN."
+    },
+    "prec=> 35 %|VE-POP=25-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0074,
+     "loi": {
+      "< 30 %": 0.03,
+      "30-35 %": 0.34,
+      "> 35 %": 0.63
+     },
+     "justification": "dossier 5.1 : seules 3 moyennes mensuelles au-dessus de 35 (Bardella), retour partiel vers 30-35 ; Bardella mesuré 2 à 4 points au-dessus de Le Pen de février à juin 2026 (dossier 5.3), mais l'affaire Mediapart (dossier 4, Ifop 6-7 octobre : 21 % d'image détériorée) tempère ce surplus ; jugement : un président plus populaire retire un peu au RN."
+    },
+    "prec=> 35 %|VE-POP=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0046,
+     "loi": {
+      "< 30 %": 0.04,
+      "30-35 %": 0.42,
+      "> 35 %": 0.54
+     },
+     "justification": "dossier 5.1 : seules 3 moyennes mensuelles au-dessus de 35 (Bardella), retour partiel vers 30-35 ; jugement : un président plus populaire retire un peu au RN."
+    },
+    "prec=> 35 %|VE-POP=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "< 30 %": 0.04,
+      "30-35 %": 0.35,
+      "> 35 %": 0.61
+     },
+     "justification": "dossier 5.1 : seules 3 moyennes mensuelles au-dessus de 35 (Bardella), retour partiel vers 30-35 ; Bardella mesuré 2 à 4 points au-dessus de Le Pen de février à juin 2026 (dossier 5.3), mais l'affaire Mediapart (dossier 4, Ifop 6-7 octobre : 21 % d'image détériorée) tempère ce surplus ; jugement : un président plus populaire retire un peu au RN."
+    }
+   },
+   "verrous": []
+  },
+  "PV-AUDIENCE": {
+   "nom": "Audience de la Cour de cassation sur le pourvoi de Marine Le Pen",
+   "nature": "à tout moment",
+   "parents": [],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2027-02-28"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "": {
+     "poids_reseau": 1.0,
+     "loi": {
+      "oui": 0.55
+     },
+     "justification": "Dossier 2.1 et 2.2 : la Cour vise un arrêt « au plus tard début avril 2027 » (LCP, 8 juillet 2026), ce qui avec 6 à 8 semaines de délibéré impose une audience vers mi-février ; mais aucune date n'est fixée, la défense a encore son délai après le 15 octobre, un avocat aux Conseils pronostique « fin février ou début mars » et les trois précédents ont pris 17,5 à 21,5 mois. Jugement : engagement public fort de la Cour, mais glissement de quelques semaines au-delà du 28 février plausible."
+    }
+   },
+   "verrous": []
+  },
+  "PV-POURVOI": {
+   "nom": "Issue du pourvoi de Marine Le Pen au 12 mars 2027 (fin du dépôt des parrainages)",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-AUDIENCE",
+     "nom": "Audience de la Cour de cassation sur le pourvoi de Marine Le Pen",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2027-02-28"
+     ]
+    }
+   ],
+   "definition": null,
+   "date": "2027-03-12",
+   "fenetre": null,
+   "issues": [
+    "rejet ou non-admission",
+    "cassation totale ou partielle",
+    "désistement",
+    "pas d'arrêt"
+   ],
+   "cas": {
+    "PV-AUDIENCE=oui": {
+     "poids_reseau": 0.4947,
+     "loi": {
+      "rejet ou non-admission": 0.3,
+      "cassation totale ou partielle": 0.1,
+      "désistement": 0.01,
+      "pas d'arrêt": 0.59
+     },
+     "justification": "Si l'audience a lieu avant le 28 février, l'arrêt arrive avant le 12 mars seulement si l'audience est tenue tôt (janvier) ou si le délibéré est raccourci : dossier 2.2, délibérés de 6 à 8 semaines, d'où environ 40 % d'arrêt au 12 mars. Partage des issues : taux de cassation de 18,4 % parmi les pourvois examinés (dossier 2.4), relevé à 25 % car la question couvre toute disposition (peine, intérêts civils) et Fillon a obtenu une cassation partielle sur la peine (dossier 2.2) ; désistement très rare pour une candidate qui compte sur l'effet suspensif (jugement)."
+    },
+    "PV-AUDIENCE=non": {
+     "poids_reseau": 0.5053,
+     "loi": {
+      "rejet ou non-admission": 0.004,
+      "cassation totale ou partielle": 0.001,
+      "désistement": 0.01,
+      "pas d'arrêt": 0.985
+     },
+     "justification": "Sans audience avant le 28 février, un arrêt avant le 12 mars est quasi impossible (délibéré de 6 à 8 semaines, dossier 2.2) ; reste un désistement improbable (jugement : aucune déclaration ne l'envisage, dossier 2.3)."
+    }
+   },
+   "verrous": []
+  },
+  "PV-LEPEN": {
+   "nom": "Candidature de Marine Le Pen",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-POURVOI",
+     "nom": "Issue du pourvoi de Marine Le Pen au 12 mars 2027 (fin du dépôt des parrainages)",
+     "etats": [
+      "rejet ou non-admission",
+      "cassation totale ou partielle",
+      "désistement",
+      "pas d'arrêt"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-12"
+    },
+    {
+     "id": "VE-RN",
+     "nom": "Intentions de vote du candidat RN au premier tour",
+     "etats": [
+      "< 30 %",
+      "30-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "moyenne des sondages du mois pour le candidat du RN (hypothèse principale)"
+    }
+   ],
+   "definition": null,
+   "date": "2027-03-26",
+   "fenetre": null,
+   "issues": [
+    "candidate",
+    "non candidate"
+   ],
+   "cas": {
+    "PV-POURVOI=rejet ou non-admission|VE-RN=< 30 %": {
+     "poids_reseau": 0.0313,
+     "loi": {
+      "candidate": 0.55,
+      "non candidate": 0.45
+     },
+     "justification": "Si le pourvoi est rejeté avant le 12 mars, l'éligibilité reste intacte mais le bracelet devient exécutable, probablement pendant la campagne (Bismuth : 41 à 51 jours, dossier 2.5) ; elle avait dit ne pas faire campagne sous bracelet (dossier 3.1, février et juillet 2026), mais s'est déclarée candidate depuis et une suspension (art. 720-1 CPP) reste possible ; le ticket avec Bardella rend le passage de relais facile. Jugement : un peu plus d'une chance sur deux qu'elle reste, davantage si les sondages sont hauts."
+    },
+    "PV-POURVOI=rejet ou non-admission|VE-RN=30-35 %": {
+     "poids_reseau": 0.1267,
+     "loi": {
+      "candidate": 0.6,
+      "non candidate": 0.4
+     },
+     "justification": "Si le pourvoi est rejeté avant le 12 mars, l'éligibilité reste intacte mais le bracelet devient exécutable, probablement pendant la campagne (Bismuth : 41 à 51 jours, dossier 2.5) ; elle avait dit ne pas faire campagne sous bracelet (dossier 3.1, février et juillet 2026), mais s'est déclarée candidate depuis et une suspension (art. 720-1 CPP) reste possible ; le ticket avec Bardella rend le passage de relais facile. Jugement : un peu plus d'une chance sur deux qu'elle reste, davantage si les sondages sont hauts."
+    },
+    "PV-POURVOI=rejet ou non-admission|VE-RN=> 35 %": {
+     "poids_reseau": 0.0393,
+     "loi": {
+      "candidate": 0.65,
+      "non candidate": 0.35
+     },
+     "justification": "Si le pourvoi est rejeté avant le 12 mars, l'éligibilité reste intacte mais le bracelet devient exécutable, probablement pendant la campagne (Bismuth : 41 à 51 jours, dossier 2.5) ; elle avait dit ne pas faire campagne sous bracelet (dossier 3.1, février et juillet 2026), mais s'est déclarée candidate depuis et une suspension (art. 720-1 CPP) reste possible ; le ticket avec Bardella rend le passage de relais facile. Jugement : un peu plus d'une chance sur deux qu'elle reste, davantage si les sondages sont hauts."
+    },
+    "PV-POURVOI=cassation totale ou partielle|VE-RN=< 30 %": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "candidate": 0.94,
+      "non candidate": 0.06
+     },
+     "justification": "Si l'arrêt est cassé, pas de condamnation définitive ni de bracelet avant le scrutin (dossier 2.5, LCP 8 juillet 2026) ; seuls restent les risques ordinaires (santé, choix stratégique), taux de base FN/RN 1 rupture sur 9 (dossier 3.3) dû aux parrainages, sans objet pour le RN aujourd'hui."
+    },
+    "PV-POURVOI=cassation totale ou partielle|VE-RN=30-35 %": {
+     "poids_reseau": 0.0393,
+     "loi": {
+      "candidate": 0.95,
+      "non candidate": 0.05
+     },
+     "justification": "Si l'arrêt est cassé, pas de condamnation définitive ni de bracelet avant le scrutin (dossier 2.5, LCP 8 juillet 2026) ; seuls restent les risques ordinaires (santé, choix stratégique), taux de base FN/RN 1 rupture sur 9 (dossier 3.3) dû aux parrainages, sans objet pour le RN aujourd'hui."
+    },
+    "PV-POURVOI=cassation totale ou partielle|VE-RN=> 35 %": {
+     "poids_reseau": 0.014,
+     "loi": {
+      "candidate": 0.96,
+      "non candidate": 0.04
+     },
+     "justification": "Si l'arrêt est cassé, pas de condamnation définitive ni de bracelet avant le scrutin (dossier 2.5, LCP 8 juillet 2026) ; seuls restent les risques ordinaires (santé, choix stratégique), taux de base FN/RN 1 rupture sur 9 (dossier 3.3) dû aux parrainages, sans objet pour le RN aujourd'hui."
+    },
+    "PV-POURVOI=désistement|VE-RN=< 30 %": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "candidate": 0.45,
+      "non candidate": 0.55
+     },
+     "justification": "Jugement : un désistement serait un choix délibéré rendant la peine exécutoire, plausible surtout dans un scénario de passage de relais à Bardella ; probabilité de candidature autour d'une chance sur deux."
+    },
+    "PV-POURVOI=désistement|VE-RN=30-35 %": {
+     "poids_reseau": 0.0067,
+     "loi": {
+      "candidate": 0.5,
+      "non candidate": 0.5
+     },
+     "justification": "Jugement : un désistement serait un choix délibéré rendant la peine exécutoire, plausible surtout dans un scénario de passage de relais à Bardella ; probabilité de candidature autour d'une chance sur deux."
+    },
+    "PV-POURVOI=désistement|VE-RN=> 35 %": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "candidate": 0.55,
+      "non candidate": 0.45
+     },
+     "justification": "Jugement : un désistement serait un choix délibéré rendant la peine exécutoire, plausible surtout dans un scénario de passage de relais à Bardella ; probabilité de candidature autour d'une chance sur deux."
+    },
+    "PV-POURVOI=pas d'arrêt|VE-RN=< 30 %": {
+     "poids_reseau": 0.1053,
+     "loi": {
+      "candidate": 0.9,
+      "non candidate": 0.1
+     },
+     "justification": "Si aucun arrêt n'est rendu, le pourvoi reste suspensif, pas de bracelet (dossier 2.5, procureure générale) ; candidate déclarée (dossier 3.1) ; risque résiduel de santé ou de retrait stratégique au profit de Bardella si les sondages faiblissent ; taux de base de rupture des grands candidats faible (dossier 3.3)."
+    },
+    "PV-POURVOI=pas d'arrêt|VE-RN=30-35 %": {
+     "poids_reseau": 0.4593,
+     "loi": {
+      "candidate": 0.93,
+      "non candidate": 0.07
+     },
+     "justification": "Si aucun arrêt n'est rendu, le pourvoi reste suspensif, pas de bracelet (dossier 2.5, procureure générale) ; candidate déclarée (dossier 3.1) ; risque résiduel de santé ou de retrait stratégique au profit de Bardella si les sondages faiblissent ; taux de base de rupture des grands candidats faible (dossier 3.3)."
+    },
+    "PV-POURVOI=pas d'arrêt|VE-RN=> 35 %": {
+     "poids_reseau": 0.1647,
+     "loi": {
+      "candidate": 0.94,
+      "non candidate": 0.06
+     },
+     "justification": "Si aucun arrêt n'est rendu, le pourvoi reste suspensif, pas de bracelet (dossier 2.5, procureure générale) ; candidate déclarée (dossier 3.1) ; risque résiduel de santé ou de retrait stratégique au profit de Bardella si les sondages faiblissent ; taux de base de rupture des grands candidats faible (dossier 3.3)."
+    }
+   },
+   "verrous": []
+  },
+  "PV-RNAUTRE": {
+   "nom": "Candidat du RN autre que Marine Le Pen ou Jordan Bardella, sur la liste officielle",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-LEPEN",
+     "nom": "Candidature de Marine Le Pen",
+     "etats": [
+      "candidate",
+      "non candidate"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    }
+   ],
+   "definition": null,
+   "date": "2027-03-26",
+   "fenetre": null,
+   "issues": [
+    "non",
+    "oui"
+   ],
+   "cas": {
+    "PV-LEPEN=candidate": {
+     "poids_reseau": 0.8073,
+     "loi": {
+      "non": 0.995,
+      "oui": 0.005
+     },
+     "justification": "Si Le Pen est candidate, le RN ne présente personne d'autre ; seul subsiste un candidat dissident se réclamant du RN, très improbable (dossier 4 : 0 candidat FN/RN hors famille Le Pen en 9 scrutins)."
+    },
+    "PV-LEPEN=non candidate": {
+     "poids_reseau": 0.1927,
+     "loi": {
+      "non": 0.9,
+      "oui": 0.1
+     },
+     "justification": "Si Le Pen n'est pas candidate, Bardella est le remplaçant annoncé par lui-même et par elle (dossier 4, AFP 17 novembre 2025, Public Sénat 8 juillet 2026) ; l'affaire Mediapart (dossier 4) crée un risque modeste qu'il soit écarté au profit d'un troisième nom, dont aucun n'a été évoqué. Jugement : 10 %."
+    }
+   },
+   "verrous": []
+  },
+  "PV-VACANCE": {
+   "nom": "Vacance de la présidence de la République (démission, décès, empêchement constaté) avant la fin du mandat",
+   "nature": "à tout moment",
+   "parents": [],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2027-05-13"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "": {
+     "poids_reseau": 1.0,
+     "loi": {
+      "oui": 0.012
+     },
+     "justification": "Dossier 7.4 : 2 vacances en 67,75 années-présidence (0,030 par an), soit environ 1,8 % sur 215 jours ; abaissé à 1,2 % : aucune destitution n'a jamais atteint la séance (dossier 7.2), le président a déclaré qu'il irait au terme (dossier 7.3), aucune alerte de santé, et une démission à quelques mois de l'échéance n'aurait guère d'intérêt politique (jugement)."
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-20": {
+   "critere": "Issue, au 31 mars 2027, du pourvoi formé par Marine Le Pen contre l'arrêt de la cour d'appel de Paris du 7 juillet 2026. Une décision de non-admission est rangée avec le rejet. L'issue « cassation totale ou partielle » suppose la cassation d'au moins une disposition de l'arrêt d'appel qui concerne Marine Le Pen (culpabilité, peine ou intérêts civils), sur son pourvoi ou sur un autre ; une cassation qui ne concerne que d'autres prévenus est rangée avec le rejet.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-03-31"
+   },
+   "probabilite": {
+    "rejet ou non-admission": 0.28,
+    "cassation totale ou partielle": 0.09,
+    "désistement": 0.01,
+    "pas d'arrêt au 31 mars 2027": 0.62
+   }
+  },
+  "EV-21": {
+   "critere": "Marine Le Pen figure sur la liste des candidats au premier tour de 2027 arrêtée par le Conseil constitutionnel.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.9
+  },
+  "EV-40a": {
+   "critere": "Marine Le Pen figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.83
+  },
+  "EV-05": {
+   "critere": "Personne proclamée élue président de la République par le Conseil constitutionnel à l'issue de l'élection de 2027. Une issue nommée désigne la personne, quel que soit le parti qui la soutient ; « autre » couvre toute autre personne.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-05-02"
+   },
+   "probabilite": {
+    "Marine Le Pen": 0.42,
+    "Jordan Bardella": 0.06,
+    "Édouard Philippe": 0.29,
+    "Gabriel Attal": 0.04,
+    "Jean-Luc Mélenchon": 0.05,
+    "David Lisnard": 0.005,
+    "Bruno Retailleau": 0.02,
+    "Raphaël Glucksmann": 0.03,
+    "François Hollande": 0.01,
+    "autre": 0.075
+   }
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-10"
+}

@@ -1,0 +1,1577 @@
+{
+ "evaluateur": null,
+ "date": null,
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "PV-CENSURE1a": {
+   "nom": "Censure d'ici fin 2026 (session budgétaire)",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2026-12-31"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-POP=< 25 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.4967,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=< 25 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.4052,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=< 25 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0867,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=25-35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0079,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=25-35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=25-35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=> 35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=> 35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=> 35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-CENSURE1b": {
+   "nom": "Censure de janvier au second tour",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-01-01",
+    "2027-05-02"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-POP=< 25 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.6764,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=< 25 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.1499,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=< 25 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0365,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=25-35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.1015,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=25-35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0158,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=25-35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=> 35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0141,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=> 35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0025,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-POP=> 35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-BUDGET": {
+   "nom": "Loi de finances pour 2027 au 31 décembre 2026",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-CENSURE1a",
+     "nom": "Censure d'ici fin 2026 (session budgétaire)",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2026-12-31"
+     ]
+    },
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": null,
+   "date": "2026-12-31",
+   "fenetre": null,
+   "issues": [
+    "publiée",
+    "non publiée"
+   ],
+   "cas": {
+    "PV-CENSURE1a=oui|VE-POP=< 25 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.084,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|VE-POP=< 25 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.082,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|VE-POP=< 25 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.036,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|VE-POP=25-35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|VE-POP=25-35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|VE-POP=25-35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|VE-POP=> 35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|VE-POP=> 35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|VE-POP=> 35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|VE-POP=< 25 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.3927,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|VE-POP=< 25 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.2907,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|VE-POP=< 25 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.076,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|VE-POP=25-35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.022,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|VE-POP=25-35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0087,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|VE-POP=25-35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|VE-POP=> 35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|VE-POP=> 35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|VE-POP=> 35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "publiée": null,
+      "non publiée": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "PV-GOUV": {
+   "nom": "Fin des fonctions du Premier ministre",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-CENSURE1a",
+     "nom": "Censure d'ici fin 2026 (session budgétaire)",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2026-12-31"
+     ]
+    },
+    {
+     "id": "PV-CENSURE1b",
+     "nom": "Censure de janvier au second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2027-01-01",
+      "2027-05-02"
+     ]
+    },
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    }
+   ],
+   "definition": "critère d'EV-50",
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2027-05-02"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-CENSURE1a=oui|PV-CENSURE1b=oui|VE-POP=< 25 %": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=oui|VE-POP=25-35 %": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=oui|VE-POP=> 35 %": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=non|VE-POP=< 25 %": {
+     "poids_reseau": 0.0465,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=non|VE-POP=25-35 %": {
+     "poids_reseau": 0.0031,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=non|VE-POP=> 35 %": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=oui|VE-POP=< 25 %": {
+     "poids_reseau": 0.0108,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=oui|VE-POP=25-35 %": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=oui|VE-POP=> 35 %": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=non|VE-POP=< 25 %": {
+     "poids_reseau": 0.8607,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=non|VE-POP=25-35 %": {
+     "poids_reseau": 0.0666,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=non|VE-POP=> 35 %": {
+     "poids_reseau": 0.0102,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-DISSOL1": {
+   "nom": "Dissolution avant le second tour",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-CENSURE1a",
+     "nom": "Censure d'ici fin 2026 (session budgétaire)",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2026-12-31"
+     ]
+    },
+    {
+     "id": "PV-CENSURE1b",
+     "nom": "Censure de janvier au second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2027-01-01",
+      "2027-05-02"
+     ]
+    },
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2027-05-02"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-CENSURE1a=oui|PV-CENSURE1b=oui|VE-POP=< 25 %": {
+     "poids_reseau": 0.005,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=oui|VE-POP=25-35 %": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=oui|VE-POP=> 35 %": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=non|VE-POP=< 25 %": {
+     "poids_reseau": 0.1378,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=non|VE-POP=25-35 %": {
+     "poids_reseau": 0.0145,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=oui|PV-CENSURE1b=non|VE-POP=> 35 %": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=oui|VE-POP=< 25 %": {
+     "poids_reseau": 0.0262,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=oui|VE-POP=25-35 %": {
+     "poids_reseau": 0.0031,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=oui|VE-POP=> 35 %": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=non|VE-POP=< 25 %": {
+     "poids_reseau": 0.7434,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=non|VE-POP=25-35 %": {
+     "poids_reseau": 0.0589,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-CENSURE1a=non|PV-CENSURE1b=non|VE-POP=> 35 %": {
+     "poids_reseau": 0.0089,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-NOTE": {
+   "nom": "Dégradation de la note par une agence",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-ECART",
+     "nom": "Écart OAT-Bund 10 ans (moyenne du mois)",
+     "etats": [
+      "< 120 pb",
+      "120-160 pb",
+      "> 160 pb"
+     ],
+     "decalage": 1,
+     "definition": "moyenne mensuelle de l'écart (série BCE collectée)"
+    },
+    {
+     "id": "PV-BUDGET",
+     "nom": "Loi de finances pour 2027 au 31 décembre 2026",
+     "etats": [
+      "publiée",
+      "non publiée"
+     ],
+     "decalage": 0,
+     "definition": "2026-12-31"
+    },
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0462,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0178,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0045,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0018,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0031,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0893,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0351,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0048,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.006,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0036,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0046,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.141,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0546,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0049,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0091,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0066,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0036,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0091,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.2597,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0996,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0092,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0225,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0132,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0051,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0173,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0268,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0098,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0017,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.05,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0186,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0028,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0015,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0042,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-PDE": {
+   "nom": "Durcissement de la procédure de déficit excessif",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-BUDGET",
+     "nom": "Loi de finances pour 2027 au 31 décembre 2026",
+     "etats": [
+      "publiée",
+      "non publiée"
+     ],
+     "decalage": 0,
+     "definition": "2026-12-31"
+    },
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.2275,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0789,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0063,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0128,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0098,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0061,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0015,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0137,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.399,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.1455,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0159,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0314,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0187,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0084,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0242,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-TPI": {
+   "nom": "Achats ciblés de la BCE (TPI ou OMT)",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-ECART",
+     "nom": "Écart OAT-Bund 10 ans (moyenne du mois)",
+     "etats": [
+      "< 120 pb",
+      "120-160 pb",
+      "> 160 pb"
+     ],
+     "decalage": 0,
+     "definition": "moyenne mensuelle de l'écart (série BCE collectée)"
+    },
+    {
+     "id": "PV-PDE",
+     "nom": "Durcissement de la procédure de déficit excessif",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2028-09-30"
+     ]
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-ECART=< 120 pb|PV-PDE=oui": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=< 120 pb|PV-PDE=non": {
+     "poids_reseau": 0.1915,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-PDE=oui": {
+     "poids_reseau": 0.045,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=120-160 pb|PV-PDE=non": {
+     "poids_reseau": 0.5535,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-PDE=oui": {
+     "poids_reseau": 0.0197,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-ECART=> 160 pb|PV-PDE=non": {
+     "poids_reseau": 0.1722,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "VE-ECART": {
+   "nom": "Écart OAT-Bund 10 ans (moyenne du mois)",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "PV-NOTE",
+     "nom": "Dégradation de la note par une agence",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2028-09-30"
+     ]
+    },
+    {
+     "id": "PV-TPI",
+     "nom": "Achats ciblés de la BCE (TPI ou OMT)",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 1,
+     "definition": [
+      "2026-10-10",
+      "2028-09-30"
+     ]
+    }
+   ],
+   "definition": "moyenne mensuelle de l'écart (série BCE collectée)",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "< 120 pb",
+    "120-160 pb",
+    "> 160 pb"
+   ],
+   "cas": {
+    "prec=< 120 pb|PV-NOTE=oui|PV-TPI=oui": {
+     "poids_reseau": 0.0043,
+     "loi": {
+      "< 120 pb": null,
+      "120-160 pb": null,
+      "> 160 pb": null
+     },
+     "justification": null
+    },
+    "prec=< 120 pb|PV-NOTE=oui|PV-TPI=non": {
+     "poids_reseau": 0.0788,
+     "loi": {
+      "< 120 pb": null,
+      "120-160 pb": null,
+      "> 160 pb": null
+     },
+     "justification": null
+    },
+    "prec=< 120 pb|PV-NOTE=non|PV-TPI=oui": {
+     "poids_reseau": 0.0032,
+     "loi": {
+      "< 120 pb": null,
+      "120-160 pb": null,
+      "> 160 pb": null
+     },
+     "justification": null
+    },
+    "prec=< 120 pb|PV-NOTE=non|PV-TPI=non": {
+     "poids_reseau": 0.1166,
+     "loi": {
+      "< 120 pb": null,
+      "120-160 pb": null,
+      "> 160 pb": null
+     },
+     "justification": null
+    },
+    "prec=120-160 pb|PV-NOTE=oui|PV-TPI=oui": {
+     "poids_reseau": 0.0073,
+     "loi": {
+      "< 120 pb": null,
+      "120-160 pb": null,
+      "> 160 pb": null
+     },
+     "justification": null
+    },
+    "prec=120-160 pb|PV-NOTE=oui|PV-TPI=non": {
+     "poids_reseau": 0.2601,
+     "loi": {
+      "< 120 pb": null,
+      "120-160 pb": null,
+      "> 160 pb": null
+     },
+     "justification": null
+    },
+    "prec=120-160 pb|PV-NOTE=non|PV-TPI=oui": {
+     "poids_reseau": 0.0046,
+     "loi": {
+      "< 120 pb": null,
+      "120-160 pb": null,
+      "> 160 pb": null
+     },
+     "justification": null
+    },
+    "prec=120-160 pb|PV-NOTE=non|PV-TPI=non": {
+     "poids_reseau": 0.3438,
+     "loi": {
+      "< 120 pb": null,
+      "120-160 pb": null,
+      "> 160 pb": null
+     },
+     "justification": null
+    },
+    "prec=> 160 pb|PV-NOTE=oui|PV-TPI=oui": {
+     "poids_reseau": 0.0029,
+     "loi": {
+      "< 120 pb": null,
+      "120-160 pb": null,
+      "> 160 pb": null
+     },
+     "justification": null
+    },
+    "prec=> 160 pb|PV-NOTE=oui|PV-TPI=non": {
+     "poids_reseau": 0.1145,
+     "loi": {
+      "< 120 pb": null,
+      "120-160 pb": null,
+      "> 160 pb": null
+     },
+     "justification": null
+    },
+    "prec=> 160 pb|PV-NOTE=non|PV-TPI=oui": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "< 120 pb": null,
+      "120-160 pb": null,
+      "> 160 pb": null
+     },
+     "justification": null
+    },
+    "prec=> 160 pb|PV-NOTE=non|PV-TPI=non": {
+     "poids_reseau": 0.063,
+     "loi": {
+      "< 120 pb": null,
+      "120-160 pb": null,
+      "> 160 pb": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-15": {
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": null
+  },
+  "EV-15b": {
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2027-01-01",
+    "fin": "2027-05-02"
+   },
+   "probabilite": null
+  },
+  "EV-02": {
+   "critere": "Aucune loi de finances pour 2027 n'est publiée au Journal officiel au 31 décembre 2026. Une loi spéciale ou une ordonnance prise au titre de l'article 47 de la Constitution n'est pas une loi de finances.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": null
+  },
+  "EV-50": {
+   "critere": "Pendant la fenêtre, Sébastien Lecornu, Premier ministre au 10 octobre 2026, cesse de l'être : un décret publié au Journal officiel nomme une autre personne Premier ministre, ou met fin à ses fonctions, quelle qu'en soit la cause (démission, censure, démission du Gouvernement). Si un décret met fin à ses fonctions et qu'un décret publié au plus tard le dernier jour de la fenêtre le nomme de nouveau Premier ministre, la réponse est « non » ; s'il n'est pas renommé au dernier jour de la fenêtre, y compris s'il expédie les affaires courantes, la réponse est « oui », et la date du fait est celle du décret qui a mis fin à ses fonctions.",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-05-02"
+   },
+   "probabilite": null
+  },
+  "EV-49": {
+   "critere": "Pendant la fenêtre, Édouard Geffray, ministre de l'Éducation nationale au 10 octobre 2026, cesse de détenir ce portefeuille : un décret publié au Journal officiel nomme une autre personne à la tête du ministère chargé de l'Éducation nationale, ou le nomme à d'autres fonctions sans ce portefeuille, ou met fin à ses fonctions. Si un décret met fin à ses fonctions (démission du Gouvernement comprise) et qu'un décret publié au plus tard le dernier jour de la fenêtre le reconduit à la tête de ce ministère, la réponse est « non » ; s'il n'est pas reconduit au dernier jour de la fenêtre, y compris s'il expédie les affaires courantes, la réponse est « oui », et la date du fait est celle du décret qui a mis fin à ses fonctions.",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   },
+   "probabilite": null
+  },
+  "EV-16a": {
+   "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-05-02"
+   },
+   "probabilite": null
+  },
+  "EV-01": {
+   "critere": "Au moins une des agences Moody's, S&P Global Ratings ou Fitch Ratings abaisse d'au moins un cran la note de crédit à long terme de la République française pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": null
+  },
+  "EV-04": {
+   "critere": "Le Conseil de l'Union européenne adopte une décision visant la France au titre de l'article 126, paragraphe 8 ou paragraphe 9, du traité sur le fonctionnement de l'Union européenne.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": null
+  },
+  "EV-46": {
+   "critere": "Pendant la fenêtre, la Banque centrale européenne annonce, par un communiqué ou une décision publiée, des achats de titres de dette publique française au titre de l'instrument de protection de la transmission (TPI) ou des opérations monétaires sur titres (OMT). Des achats au titre d'autres programmes (APP, PEPP, y compris la flexibilité des réinvestissements) ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": null
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-10"
+}

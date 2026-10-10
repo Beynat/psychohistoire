@@ -1,0 +1,1738 @@
+{
+ "evaluateur": null,
+ "date": null,
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "PV-ECOLO": {
+   "nom": "Vote des adhérents des Écologistes",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+     "etats": [
+      "centre",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1,
+     "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)"
+    }
+   ],
+   "definition": null,
+   "date": "2026-12-13",
+   "fenetre": null,
+   "issues": [
+    "candidature autonome",
+    "soutien à un autre candidat",
+    "autre ou vote non tenu"
+   ],
+   "cas": {
+    "VE-SOND=centre": {
+     "poids_reseau": 0.8767,
+     "loi": {
+      "candidature autonome": null,
+      "soutien à un autre candidat": null,
+      "autre ou vote non tenu": null
+     },
+     "justification": null
+    },
+    "VE-SOND=gauche": {
+     "poids_reseau": 0.1013,
+     "loi": {
+      "candidature autonome": null,
+      "soutien à un autre candidat": null,
+      "autre ou vote non tenu": null
+     },
+     "justification": null
+    },
+    "VE-SOND=droite": {
+     "poids_reseau": 0.022,
+     "loi": {
+      "candidature autonome": null,
+      "soutien à un autre candidat": null,
+      "autre ou vote non tenu": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "PV-BLOC": {
+   "nom": "Candidatures du bloc central",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+     "etats": [
+      "centre",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1,
+     "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)"
+    }
+   ],
+   "definition": null,
+   "date": "2027-03-26",
+   "fenetre": null,
+   "issues": [
+    "les deux",
+    "Philippe seul",
+    "Attal seul",
+    "aucun des deux"
+   ],
+   "cas": {
+    "VE-SOND=centre": {
+     "poids_reseau": 0.7493,
+     "loi": {
+      "les deux": null,
+      "Philippe seul": null,
+      "Attal seul": null,
+      "aucun des deux": null
+     },
+     "justification": null
+    },
+    "VE-SOND=gauche": {
+     "poids_reseau": 0.206,
+     "loi": {
+      "les deux": null,
+      "Philippe seul": null,
+      "Attal seul": null,
+      "aucun des deux": null
+     },
+     "justification": null
+    },
+    "VE-SOND=droite": {
+     "poids_reseau": 0.0447,
+     "loi": {
+      "les deux": null,
+      "Philippe seul": null,
+      "Attal seul": null,
+      "aucun des deux": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "PV-GAUCHE": {
+   "nom": "Nombre de candidats de gauche",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-ECOLO",
+     "nom": "Vote des adhérents des Écologistes",
+     "etats": [
+      "candidature autonome",
+      "soutien à un autre candidat",
+      "autre ou vote non tenu"
+     ],
+     "decalage": 0,
+     "definition": "2026-12-13"
+    },
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+     "etats": [
+      "centre",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1,
+     "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)"
+    }
+   ],
+   "definition": null,
+   "date": "2027-03-26",
+   "fenetre": null,
+   "issues": [
+    "3 ou moins",
+    "4",
+    "5",
+    "6 ou plus"
+   ],
+   "cas": {
+    "PV-ECOLO=candidature autonome|VE-SOND=centre": {
+     "poids_reseau": 0.38,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=candidature autonome|VE-SOND=gauche": {
+     "poids_reseau": 0.1053,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=candidature autonome|VE-SOND=droite": {
+     "poids_reseau": 0.0213,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=centre": {
+     "poids_reseau": 0.304,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=gauche": {
+     "poids_reseau": 0.0827,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=droite": {
+     "poids_reseau": 0.0153,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=centre": {
+     "poids_reseau": 0.0653,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=gauche": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=droite": {
+     "poids_reseau": 0.008,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "PV-DUEL": {
+   "nom": "Duel de second tour",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-BLOC",
+     "nom": "Candidatures du bloc central",
+     "etats": [
+      "les deux",
+      "Philippe seul",
+      "Attal seul",
+      "aucun des deux"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    },
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième bloc derrière le RN dans les intentions de vote",
+     "etats": [
+      "centre",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 0,
+     "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)"
+    },
+    {
+     "id": "PV-LEPEN",
+     "nom": "Candidature de Marine Le Pen",
+     "etats": [
+      "candidate",
+      "non candidate"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    }
+   ],
+   "definition": null,
+   "date": "2027-04-18",
+   "fenetre": null,
+   "issues": [
+    "RN-PHI",
+    "RN-ATT",
+    "RN-MEL",
+    "RN-GLU",
+    "RN-RET",
+    "RN-LIS",
+    "RN-AUT",
+    "PHI-MEL",
+    "PHI-GLU",
+    "AUTRE"
+   ],
+   "cas": {
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=candidate": {
+     "poids_reseau": 0.1987,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.046,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0753,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0133,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=candidate": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate": {
+     "poids_reseau": 0.3013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.072,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0867,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0193,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0187,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0467,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.012,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=candidate": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0073,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=candidate": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0073,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0253,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.012,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "PV-VAINQ": {
+   "nom": "Vainqueur de la présidentielle",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-DUEL",
+     "nom": "Duel de second tour",
+     "etats": [
+      "RN-PHI",
+      "RN-ATT",
+      "RN-MEL",
+      "RN-GLU",
+      "RN-RET",
+      "RN-LIS",
+      "RN-AUT",
+      "PHI-MEL",
+      "PHI-GLU",
+      "AUTRE"
+     ],
+     "decalage": 0,
+     "definition": "2027-04-18"
+    },
+    {
+     "id": "VE-RN",
+     "nom": "Intentions de vote du candidat RN au premier tour",
+     "etats": [
+      "< 30 %",
+      "30-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "moyenne des sondages du mois pour le candidat du RN (hypothèse principale)"
+    },
+    {
+     "id": "PV-LEPEN",
+     "nom": "Candidature de Marine Le Pen",
+     "etats": [
+      "candidate",
+      "non candidate"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    }
+   ],
+   "definition": null,
+   "date": "2027-05-02",
+   "fenetre": null,
+   "issues": [
+    "RN",
+    "PHI",
+    "ATT",
+    "MEL",
+    "GLU",
+    "RET",
+    "LIS",
+    "AUT"
+   ],
+   "cas": {
+    "PV-DUEL=RN-PHI|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.058,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-PHI|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0133,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-PHI|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.2287,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-PHI|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.056,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-PHI|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.082,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-PHI|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0153,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-ATT|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.01,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-ATT|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-ATT|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0247,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-ATT|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.008,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-ATT|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-ATT|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-MEL|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0387,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-MEL|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0127,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-MEL|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.1393,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-MEL|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0293,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-MEL|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0607,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-MEL|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.012,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-GLU|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-GLU|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-GLU|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0387,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-GLU|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-GLU|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.016,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-GLU|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-RET|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-RET|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-RET|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.024,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-RET|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.008,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-RET|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-RET|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-LIS|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-LIS|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-LIS|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-LIS|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-LIS|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-LIS|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-AUT|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-AUT|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-AUT|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0113,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-AUT|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-AUT|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=RN-AUT|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=PHI-MEL|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=PHI-GLU|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=AUTRE|VE-RN=< 30 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=AUTRE|VE-RN=< 30 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=AUTRE|VE-RN=30-35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0133,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=AUTRE|VE-RN=30-35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=AUTRE|VE-RN=> 35 %|PV-LEPEN=candidate": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    },
+    "PV-DUEL=AUTRE|VE-RN=> 35 %|PV-LEPEN=non candidate": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN": null,
+      "PHI": null,
+      "ATT": null,
+      "MEL": null,
+      "GLU": null,
+      "RET": null,
+      "LIS": null,
+      "AUT": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-18": {
+   "critere": "Résultat du vote des adhérents des Écologistes sur la stratégie présidentielle, publié avant le 31 décembre 2026. Issues : candidature autonome d'un membre du parti ; soutien à un candidat d'une autre formation ; autre résultat, ou vote non tenu.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": {
+    "candidature autonome": null,
+    "soutien à un autre candidat": null,
+    "autre ou vote non tenu": null
+   }
+  },
+  "EV-41": {
+   "critere": "Présence d'Édouard Philippe et de Gabriel Attal sur la liste des candidats au premier tour de 2027 arrêtée par le Conseil constitutionnel.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": {
+    "les deux": null,
+    "Philippe seul": null,
+    "Attal seul": null,
+    "aucun des deux": null
+   }
+  },
+  "EV-19": {
+   "critere": "Nombre de candidats figurant sur la liste arrêtée par le Conseil constitutionnel pour le premier tour de 2027 qui sont investis ou soutenus, par une décision publiée, par La France insoumise, le Parti socialiste, Place publique, Les Écologistes, le Parti communiste français, Debout !, Lutte ouvrière ou le Nouveau Parti anticapitaliste (l'une ou l'autre des deux organisations issues de la scission de 2022, NPA-l'Anticapitaliste et NPA-Révolutionnaires).",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": {
+    "3 ou moins": null,
+    "4": null,
+    "5": null,
+    "6 ou plus": null
+   }
+  },
+  "EV-40a": {
+   "critere": "Marine Le Pen figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  },
+  "EV-40b": {
+   "critere": "Édouard Philippe figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  },
+  "EV-40c": {
+   "critere": "Jean-Luc Mélenchon figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  },
+  "EV-40d": {
+   "critere": "David Lisnard figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  },
+  "EV-40e": {
+   "critere": "Gabriel Attal figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  },
+  "EV-40f": {
+   "critere": "Raphaël Glucksmann figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  },
+  "EV-40g": {
+   "critere": "Bruno Retailleau figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  },
+  "EV-05": {
+   "critere": "Personne proclamée élue président de la République par le Conseil constitutionnel à l'issue de l'élection de 2027. Une issue nommée désigne la personne, quel que soit le parti qui la soutient ; « autre » couvre toute autre personne.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-05-02"
+   },
+   "probabilite": {
+    "Marine Le Pen": null,
+    "Jordan Bardella": null,
+    "Édouard Philippe": null,
+    "Gabriel Attal": null,
+    "Jean-Luc Mélenchon": null,
+    "David Lisnard": null,
+    "Bruno Retailleau": null,
+    "Raphaël Glucksmann": null,
+    "François Hollande": null,
+    "autre": null
+   }
+  },
+  "EV-45": {
+   "critere": "Le 30 septembre 2028, l'âge d'ouverture du droit à pension fixé par le code de la sécurité sociale (article L161-17-2 ou disposition qui le remplace) pour les assurés nés en 1970 est inférieur à 64 ans, dans la version de l'article en vigueur à cette date ; une disposition promulguée dont l'entrée en vigueur est postérieure ne compte pas. Cette génération n'est pas concernée par la suspension de la réforme de 2023 : la réponse « oui » suppose un abaissement voté.",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   },
+   "probabilite": null
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-10"
+}
