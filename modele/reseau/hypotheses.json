@@ -99,11 +99,12 @@
     "n_ruptures": 2
    },
    "noeuds": [
+    "PV-VACANCE",
     "PV-DUEL",
     "PV-VAINQ",
     "PV-DISSOL1"
    ],
-   "traitement": "non représentée : masse résiduelle affichée ; nœud rare « fin anticipée du mandat » à l'étape 9. Si elle tombe, tout le calendrier présidentiel est à réindexer (procédure de restructuration rapide).",
+   "traitement": "représentée en partie : nœud rare PV-VACANCE (1,7 % sur la fenêtre, classe de référence), avec un point d'entrée de choc (P-VACANCE) ; ses effets (élection anticipée, calendrier réindexé) ne sont pas modélisés : s'il survient, procédure de restructuration rapide.",
    "signaux": [
     {
      "signal": "Hospitalisation du président ou annulation non expliquée de déplacements internationaux",
@@ -176,7 +177,7 @@
    "noeuds": [
     "VE-POP"
    ],
-   "traitement": "non représentée : questions hors réseau (EV-C1, EV-28, EV-29) ; point d'entrée « choc sécuritaire ou extérieur » sur VE-POP à l'étape 9, sous-réseau ordre public à l'étape 13. Les attentats déplacent la popularité 3 à 6 mois puis l'effet s'efface (classe de référence) : l'observation mensuelle de VE-POP l'absorbe.",
+   "traitement": "non représentée : questions hors réseau (EV-C1, EV-28, EV-29) ; point d'entrée de choc P-POP-HAUSSE (étape 9), sous-réseau ordre public à l'étape 13. Les attentats déplacent la popularité 3 à 6 mois puis l'effet s'efface (classe de référence) : l'observation mensuelle de VE-POP l'absorbe.",
    "signaux": [
     {
      "signal": "Relèvement de Vigipirate au niveau « Urgence attentat » sur tout le territoire",
@@ -218,7 +219,7 @@
     "PV-NOTE",
     "PV-TPI"
    ],
-   "traitement": "partiellement représentée par le canal de l'écart de taux (VE-ECART) ; crise bancaire ou de marché hors de ce canal non représentée, masse résiduelle affichée ; point d'entrée à l'étape 9.",
+   "traitement": "partiellement représentée par le canal de l'écart de taux (VE-ECART) ; crise bancaire ou de marché hors de ce canal non représentée, masse résiduelle affichée ; point d'entrée de choc déclaré (étape 9 : P-ECART-HAUSSE).",
    "signaux": [
     {
      "signal": "CISS (indicateur composite de stress systémique de la BCE) au-dessus de 0,4 pour la zone euro ou la France pendant plus de 2 semaines",

@@ -1041,6 +1041,45 @@ def test_organigramme():
     assert "/*__DONNEES__*/null" in html and "ORGJS" not in html and "function poids(" in html
 
 
+def test_chocs():
+    """Feuille de route, étape 9 : choc imprévu comme intervention sur des points d'entrée déclarés. Les évaluateurs ne
+    choisissent que les ports (majorité) ; l'intensité vient du barème par stade ; une allégation est sans effet ; le
+    choc déplace la variable visée puis s'éteint quand une observation postérieure l'absorbe ; sur un pivot, il
+    multiplie la cote de l'issue visée."""
+    import faits, reseau
+    S = {"variables_etat": [{"id": "VE-X", "etats": ["bas", "moyen", "haut"], "reference": "moyen", "parents": []}],
+         "pivots": [{"id": "PV-D", "nature": "daté", "date": "2026-12-31", "issues": ["a", "b"], "parents": []}],
+         "ports": [{"id": "P-X-BAISSE", "noeud": "VE-X", "sens": "baisse"}, {"id": "P-D", "noeud": "PV-D", "issues": ["b"], "sens": "hausse"}],
+         "mesures": {"EV-X": {"caracteristique": {"type": "etat_max", "noeud": "VE-X", "debut": "2026-11-01", "fin": "2026-11-30"},
+                              "table": {"bas": 100, "moyen": 0, "haut": 0}},
+                     "EV-Y": {"caracteristique": {"type": "etat_max", "noeud": "VE-X", "debut": "2026-12-01", "fin": "2026-12-31"},
+                              "table": {"bas": 100, "moyen": 0, "haut": 0}},
+                     "EV-D": {"caracteristique": {"type": "issue", "noeud": "PV-D"}, "table": "identite"}}}
+    B = {"points_par_unite": 4, "p_retrait_reference": 0.1,
+         "stades": {"procédure engagée": {"points_intentions": -4, "points_popularite": -4, "p_retrait": 0.5, "duree_mois": 3}}}
+    avis = [{"ports": ["P-X-BAISSE", "P-D"]}, {"ports": ["P-X-BAISSE"]}, {"ports": ["P-X-BAISSE", "P-D"]}]
+    c = faits.choc({"id": "C", "fait": "f", "stade": "procédure engagée", "mois": "2026-10", "avis": avis}, S, B)
+    assert c["retenu"] and c["ports"] == {"P-X-BAISSE": 1.0, "P-D": round(math.log(1) - math.log(0.1 / 0.9), 3)}, c
+    assert not faits.choc({"id": "C", "fait": "f", "stade": "allégation", "mois": "2026-10", "avis": avis}, S, B)["retenu"]
+    T = {"noeuds": {"VE-X": {"reference": "moyen", "transition": {e: {"bas": 0.2, "moyen": 0.6, "haut": 0.2} for e in ("bas", "moyen", "haut")}},
+                    "PV-D": {"base": {"a": 0.8, "b": 0.2}}}}
+    q = [{"id": "Q-X", "evenement": "EV-X", "issues": ["oui", "non"], "fenetre": ["2026-10-10", "2026-12-31"]},
+         {"id": "Q-Y", "evenement": "EV-Y", "issues": ["oui", "non"], "fenetre": ["2026-10-10", "2026-12-31"]},
+         {"id": "Q-D", "evenement": "EV-D", "issues": ["a", "b"], "fenetre": ["2026-10-10", "2026-12-31"]}]
+    try:
+        reseau.CHOCS = []
+        sans = reseau.prevoir(S, T, {}, q, 10, 200)
+        reseau.CHOCS = [c]
+        avec = reseau.prevoir(S, T, {}, q, 10, 200)
+        absorbe = reseau.prevoir(S, T, {"VE-X": {"2026-11": "moyen"}}, q, 10, 200)
+    finally:
+        reseau.CHOCS = None
+    assert avec["Q-X"]["oui"] > sans["Q-X"]["oui"] + 8, (sans["Q-X"], avec["Q-X"])          # baisse en novembre
+    assert avec["Q-D"]["b"] > sans["Q-D"]["b"] + 25, (sans["Q-D"], avec["Q-D"])              # cote de « b » × 9
+    assert avec["Q-Y"]["oui"] > sans["Q-Y"]["oui"] + 8, (sans["Q-Y"], avec["Q-Y"])          # toujours actif en décembre
+    assert abs(absorbe["Q-Y"]["oui"] - sans["Q-Y"]["oui"]) < 5, (sans["Q-Y"], absorbe["Q-Y"])  # absorbé par l'observation de novembre
+
+
 def test_agregation_sans_veto():
     """Feuille de route, étape 1 : un zéro isolé chez un évaluateur ne fixe plus l'agrégat à zéro ; un zéro unanime
     reste un zéro."""

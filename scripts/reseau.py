@@ -230,6 +230,43 @@ def appliquer(base, mults, exclus=()):
 
 
 PRIORS = None   # lois a priori des pivots datés {nœud: {issue: p}}, calculées par lois_a_priori
+CHOCS = None    # chocs imprévus retenus (modele/reseau/chocs.jsonl, scripts/faits.py choc), chargés par prevoir
+
+
+def chocs_retenus():
+    """Chocs imprévus retenus (étape 9) : interventions sur des points d'entrée déclarés (« ports » de la structure),
+    d'intensité tirée du barème par stade. Dernière décision par identifiant, si retenue."""
+    from commun import lire_jsonl
+    der = {}
+    for c in lire_jsonl("modele/reseau/chocs.jsonl"):
+        der[c["id"]] = c
+    return [c for c in der.values() if c.get("retenu")]
+
+
+def choc_actif(c, k, obs_noeud):
+    """Un choc agit à partir de son mois, pendant « duree_mois » mois au plus ; sur une variable observée chaque mois,
+    il s'éteint dès qu'une observation postérieure au mois du choc l'a absorbé."""
+    k0 = idx(c["mois"])
+    if k < k0 or k >= k0 + c.get("duree_mois", 3):
+        return False
+    return not any(k0 < j <= k and MOIS[j] in obs_noeud for j in range(len(MOIS)))
+
+
+def inclinaison(loi_, etats_ordre, delta):
+    """Choc sur une variable ordinale : poids de chaque état multiplié par exp(delta × rang)."""
+    return normaliser({e: v * math.exp(delta * etats_ordre.index(e)) for e, v in loi_.items()})
+
+
+def chocs_du_noeud(i, k, obs, structure):
+    """Chocs actifs sur le nœud i au mois k : liste de (issues ciblées ou None pour une inclinaison, delta)."""
+    out = []
+    ports = {p["id"]: p for p in structure.get("ports", [])}
+    for c in (CHOCS or []):
+        for pid_, delta in c["ports"].items():
+            port = ports.get(pid_)
+            if port and port["noeud"] == i and choc_actif(c, k, obs.get(i, {}) if i.startswith("VE-") else {}):
+                out.append((port.get("issues"), delta * (1 if port.get("sens", "hausse") == "hausse" else -1)))
+    return out
 
 
 def cles_cas(n, etats, noeuds, prec=None):
@@ -293,6 +330,9 @@ def simuler(structure, params, obs, rng, priors=None, rngs=None):
                     loi_k = normaliser(valeur_cas(t, n, etats, noeuds, prec))
                 else:
                     loi_k = appliquer(t["transition"][prec], multiplicateurs(t, etats))
+                for issues_c, delta in chocs_du_noeud(i, k, obs, structure):
+                    loi_k = inclinaison(loi_k, n["etats"], delta) if not issues_c else \
+                        normaliser({e: v * (math.exp(delta) if e in issues_c else 1.0) for e, v in loi_k.items()})
                 if minimum:
                     rang = n["etats"].index(minimum)
                     loi_k = normaliser({e: (v if n["etats"].index(e) >= rang else 0.0) for e, v in loi_k.items()})
@@ -309,14 +349,19 @@ def simuler(structure, params, obs, rng, priors=None, rngs=None):
                     continue
                 exclus = [c for par, d in n.get("exclusions", {}).items()
                           if not isinstance(etats.get(par), APriori) for c in d.get(etats.get(par), [])]
+                mc = {}
+                for issues_c, delta in chocs_du_noeud(i, k, obs, structure):
+                    for e in (issues_c or []):
+                        mc[e] = mc.get(e, 1.0) * math.exp(delta)
                 if "cas" in t:
-                    traj[i][k] = tirer(appliquer(valeur_cas(t, n, etats, noeuds), {}, exclus), r)
+                    traj[i][k] = tirer(appliquer(valeur_cas(t, n, etats, noeuds), mc, exclus), r)
                     continue
                 base = t["base"]
                 cond = n.get("conditionnelle")
                 if cond and cond in etats and not isinstance(etats[cond], APriori):
                     base = t["conditionnelle"][etats[cond]]
-                traj[i][k] = tirer(appliquer(base, multiplicateurs(t, etats), exclus), r)
+                m_ = multiplicateurs(t, etats)
+                traj[i][k] = tirer(appliquer(base, {e: m_.get(e, 1.0) * mc.get(e, 1.0) for e in set(m_) | set(mc)}, exclus), r)
             else:   # à tout moment, absorbant
                 d0, d1 = idx(n["fenetre"][0]), idx(n["fenetre"][1])
                 if k < d0:
@@ -343,6 +388,9 @@ def simuler(structure, params, obs, rng, priors=None, rngs=None):
                     p = valeur_cas(t, n, etats, noeuds)
                 else:
                     p = p_modifiee(t["p_fenetre"], multiplicateurs(t, etats).get("oui", 1.0))
+                for issues_c, delta in chocs_du_noeud(i, k, obs, structure):
+                    if not issues_c or "oui" in issues_c:   # choc sur la probabilité de fenêtre, en rapport de cotes
+                        p = p * math.exp(delta) / (1 - p + p * math.exp(delta))
                 # Parent « à tout moment » survenu en cours de fenêtre (déclencheur : censure → départ du Premier
                 # ministre) : la probabilité qu'il implique porte sur le reste de la fenêtre, à partir de sa survenue.
                 debut = d0
@@ -475,7 +523,9 @@ def prevoir(structure, tables, obs, questions, tirages=200, trajectoires=100, gr
     Rend {id: {issue: %, ..., i80: [bas, haut] sur l'issue « oui » ou la première issue}}, plus « __pivots__ » (loi
     de chaque pivot) et « __ess__ » (trajectoires effectives, alerte « combinaison trop rare »)."""
     import preuves as pv
-    global PRIORS
+    global PRIORS, CHOCS
+    if CHOCS is None:
+        CHOCS = chocs_retenus()
     noeuds = noeuds_de(structure)
     pivots_obs = {n: d for n, d in obs.items() if n in noeuds and not n.startswith("VE-") and d}
     obs_ve = {n: d for n, d in obs.items() if n not in pivots_obs}

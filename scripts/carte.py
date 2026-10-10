@@ -29,14 +29,14 @@ COURT = {
     "PV-CENSURE1a": "Censure d'ici fin 2026", "PV-CENSURE1b": "Censure janv.-mai 2027", "PV-BUDGET": "Loi de finances 2027",
     "PV-GOUV": "Départ du Premier ministre", "PV-DISSOL1": "Dissolution avant l'élection", "PV-AUDIENCE": "Audience en cassation",
     "PV-POURVOI": "Arrêt de cassation", "PV-ECOLO": "Choix des écologistes", "PV-BLOC": "Candidatures du centre",
-    "PV-GAUCHE": "Candidats de gauche", "PV-LEPEN": "Candidature Le Pen", "PV-RNAUTRE": "Autre candidat RN", "PV-DUEL": "Second tour",
+    "PV-GAUCHE": "Candidats de gauche", "PV-LEPEN": "Candidature Le Pen", "PV-RNAUTRE": "Autre candidat RN", "PV-VACANCE": "Vacance de la présidence", "PV-DUEL": "Second tour",
     "PV-VAINQ": "Président élu", "PV-DISSOL2a": "Dissolution en mai-juin 2027", "PV-DISSOL2b": "Dissolution après juin 2027", "PV-MAJOR": "Majorité absolue",
     "PV-CENSURE2": "Censure après l'élection",
 }
 LIBELLE_OUI = {
     "PV-NOTE": "dégradation", "PV-PDE": "durcissement", "PV-TPI": "achats", "PV-CENSURE1a": "censure",
     "PV-CENSURE1b": "censure", "PV-GOUV": "départ", "PV-DISSOL1": "dissolution", "PV-AUDIENCE": "audience tenue",
-    "PV-DISSOL2a": "dissolution", "PV-DISSOL2b": "dissolution", "PV-CENSURE2": "censure",
+    "PV-DISSOL2a": "dissolution", "PV-DISSOL2b": "dissolution", "PV-CENSURE2": "censure", "PV-VACANCE": "vacance",
 }
 LIBELLE_NON = {
     "PV-NOTE": "note maintenue", "PV-PDE": "pas de durcissement", "PV-TPI": "pas d'achats", "PV-CENSURE1a": "pas de censure",
@@ -69,6 +69,7 @@ def construire(tirages=100, trajectoires=40, graine=20261010):
     noeuds = reseau.noeuds_de(s)
     poids = []
     reseau.PRIORS = reseau.lois_a_priori(s, tables, obs)
+    reseau.CHOCS = reseau.chocs_retenus()
     rng = random.Random(graine)
     pivots = s["pivots"]
     ve = [v["id"] for v in s["variables_etat"]]

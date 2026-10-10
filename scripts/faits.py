@@ -1,6 +1,14 @@
 """Faits imprévus : décision d'application comme preuve du réseau (annexe, section 11.4 ; feuille de route, étape 2).
 
-Usage : python scripts/faits.py decider < avis.json
+Usage : python scripts/faits.py choc < choc.json
+        choc.json : {"id", "fait", "stade", "mois": "AAAA-MM", "avis": [{"evaluateur", "ports": ["P-…", …]}, …]}
+        Choc imprévu comme intervention (étape 9) : les évaluateurs choisissent seulement les points d'entrée touchés
+        (« ports » de la structure, trois au plus), jamais une intensité ; l'intensité vient du barème par stade
+        (modele/reseau/bareme_chocs.json, calé sur des précédents sourcés). Un port est retenu s'il est choisi par la
+        majorité des évaluateurs ; stade « allégation » : aucun effet (annexe, section 11.2). Écrit la décision dans
+        modele/reseau/chocs.jsonl (ajout seul) ; le moteur l'applique à partir du mois du fait, jusqu'à absorption
+        par l'observation suivante du nœud (sondage, baromètre) ou au plus la durée du barème.
+        python scripts/faits.py decider < avis.json
         avis.json : {"fait", "noeud", "issues": [...], "stade": "allégation" | "procédure" | "mise en cause" |
                      "décision" | "fait public", "mois": "AAAA-MM",
                      "avis": [{"evaluateur", "modele", "p": {issue: P(fait | issue)}}, ...]}
@@ -64,7 +72,47 @@ def decider(f):
             "motifs": motif}
 
 
+def delta_port(port, stade, bareme):
+    """Intensité d'un choc sur un port, en log-cote, selon le barème : variable ordinale, points convertis par
+    « points_par_unite » (inclinaison d'une unité de log-cote par rang) ; pivot, rapport de cotes entre la
+    probabilité de retrait du stade et la probabilité de retrait de référence."""
+    b = bareme["stades"][stade]
+    if port["noeud"].startswith("VE-"):
+        pts = b["points_popularite"] if port["noeud"] == "VE-POP" else b["points_intentions"]
+        return round(abs(pts) / bareme["points_par_unite"], 3)
+    lo = lambda p: math.log(p / (1 - p))
+    return round(max(lo(b["p_retrait"]) - lo(bareme["p_retrait_reference"]), 0.0), 3)
+
+
+def choc(f, structure=None, bareme=None):
+    from commun import lire_json
+    structure = structure or lire_json("modele/reseau/structure_v0.json")
+    bareme = bareme or lire_json("modele/reseau/bareme_chocs.json")
+    ports = {p["id"]: p for p in structure.get("ports", [])}
+    base = {"id": f["id"], "fait": f["fait"], "stade": f["stade"], "mois": f["mois"], "ports": {}, "retenu": False}
+    if f["stade"] == "allégation" or f["stade"] not in bareme["stades"]:
+        return {**base, "motif": "allégation ou stade hors barème : en observation, sans effet"}
+    n = len(f["avis"])
+    votes = {}
+    for a in f["avis"]:
+        for p in a["ports"][:3]:
+            if p not in ports:
+                raise SystemExit(f"port inconnu : {p}")
+            votes[p] = votes.get(p, 0) + 1
+    retenus = {p: delta_port(ports[p], f["stade"], bareme) for p, v in votes.items() if v > n / 2}
+    retenus = {p: d for p, d in retenus.items() if d > 0}
+    return {**base, "ports": retenus, "retenu": bool(retenus), "duree_mois": bareme["stades"][f["stade"]].get("duree_mois", 3),
+            "votes": votes, "motif": "ports choisis par la majorité des évaluateurs ; intensité du barème"}
+
+
 if __name__ == "__main__":
+    if sys.argv[1:] == ["choc"]:
+        d = choc(json.load(sys.stdin))
+        d["decide_le"] = datetime.now(ZoneInfo("Europe/Paris")).isoformat(timespec="seconds")
+        with (RACINE / "modele/reseau/chocs.jsonl").open("a", encoding="utf-8", newline="\n") as h:
+            h.write(json.dumps(d, ensure_ascii=True) + "\n")
+        print(json.dumps(d, ensure_ascii=False))
+        sys.exit(0)
     if sys.argv[1:] != ["decider"]:
         sys.exit(__doc__)
     f = json.load(sys.stdin)

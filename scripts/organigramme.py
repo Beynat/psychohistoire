@@ -89,6 +89,9 @@ for th, ids in {"budget": ["PV-CENSURE1a", "PV-BUDGET", "PV-CENSURE1b", "PV-GOUV
 TETE["PV-RNAUTRE"] = ("Candidat du RN autre que Le Pen ou Bardella", 1, "autre candidat RN")
 SI["PV-RNAUTRE"] = ["le candidat du RN est Le Pen ou Bardella", "le candidat du RN est une autre personne"]
 THEME["PV-RNAUTRE"] = "candidatures"
+TETE["PV-VACANCE"] = ("Vacance de la présidence avant mai 2027", 0, "vacance de la présidence")
+SI["PV-VACANCE"] = ["la présidence devient vacante", "pas de vacance de la présidence"]
+THEME["PV-VACANCE"] = "budget"
 
 
 def phrase(p, k):
@@ -108,6 +111,7 @@ def construire(tirages=100, trajectoires=40, graine=20261010):
     tables = lire_json("modele/reseau/tables_v0.json")
     obs = reseau.observations(s)
     reseau.PRIORS = reseau.lois_a_priori(s, tables, obs)
+    reseau.CHOCS = reseau.chocs_retenus()
     jour = date.today().isoformat()
     notees = pv.preuves_notees(jour)
     noeuds = reseau.noeuds_de(s)

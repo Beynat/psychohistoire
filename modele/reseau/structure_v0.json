@@ -1,5 +1,5 @@
 {
- "version": "structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
+ "version": "structure v0.8 (10 octobre 2026, étape 9 : points d'entrée des chocs, nœud rare PV-VACANCE) ; structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
  "description": "Réseau bayésien dynamique v0, pas mensuel d'octobre 2026 à septembre 2028. Révisé après le pré-mortem du 10 octobre (scratchpad, rapport de 32 causes) : aucun cycle au sein d'un mois (liens au mois précédent marqués « decalage »: 1), au plus trois parents, pivots électoraux par personnes, dette découpée en note, procédure de déficit excessif et TPI ouverts dès octobre 2026, dissolution et censure découpées avant et après la présidentielle, changement de gouvernement ajouté. Hors réseau (notés sur l'ensemble et les comparateurs) : EV-03, EV-44, EV-23, EV-14b, EV-36, EV-06, international, climat, sécurité.",
  "codes_candidats": {
   "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate ; sinon Jordan Bardella, ou un autre candidat si PV-RNAUTRE = oui)",
@@ -631,6 +631,21 @@
     "2027-05-03",
     "2028-09-30"
    ]
+  },
+  {
+   "id": "PV-VACANCE",
+   "nom": "Vacance de la présidence de la République (démission, décès, empêchement constaté) avant la fin du mandat",
+   "nature": "à tout moment",
+   "fenetre": [
+    "2026-10-10",
+    "2027-05-13"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [],
+   "note": "Nœud rare (hypothèse porteuse H-03, étape 9) : probabilité tirée de la classe de référence (2 vacances en 67,75 ans). Ses effets (élection anticipée 20 à 35 jours après, calendrier réindexé) ne sont pas modélisés : s'il survient, procédure de restructuration rapide."
   }
  ],
  "mesures": {
@@ -1265,6 +1280,88 @@
   "PV-GAUCHE": "lue par EV-19 ; l'effet du nombre de candidats de gauche sur le duel passe par les sondages (VE-SOND), pas par un lien direct",
   "PV-RNAUTRE": "lue par EV-05 ; effets en aval non élicités, l'autre candidat RN est traité comme Bardella (hypothèse H-01, étape 9)",
   "VE-LYCEE": "lue par EV-10, EV-47, EV-51 et une conjointe ; aucune élicitation n'a donné d'effet lycéen sur un pivot : lien vers la mobilisation et les pivots à l'étape 13",
-  "PV-AUDIENCE": "sans mesure propre : parent de PV-POURVOI (date de l'arrêt), observable par le jalon J-020"
- }
+  "PV-AUDIENCE": "sans mesure propre : parent de PV-POURVOI (date de l'arrêt), observable par le jalon J-020",
+  "PV-VACANCE": "nœud rare (H-03) : probabilité affichée, effets non modélisés ; s'il survient, restructuration rapide"
+ },
+ "ports": [
+  {
+   "id": "P-RN-BAISSE",
+   "noeud": "VE-RN",
+   "sens": "baisse",
+   "definition": "intentions de vote du candidat RN en baisse (affaire visant le candidat ou son parti)",
+   "absorption": "sondage mensuel suivant (observation de VE-RN)"
+  },
+  {
+   "id": "P-POP-BAISSE",
+   "noeud": "VE-POP",
+   "sens": "baisse",
+   "definition": "popularité de l'exécutif en baisse (affaire visant l'exécutif)",
+   "absorption": "baromètre mensuel suivant (observation de VE-POP)"
+  },
+  {
+   "id": "P-POP-HAUSSE",
+   "noeud": "VE-POP",
+   "sens": "hausse",
+   "definition": "ralliement autour de l'exécutif (attentat, crise extérieure ; hypothèse H-05)",
+   "absorption": "baromètre mensuel suivant"
+  },
+  {
+   "id": "P-ECART-HAUSSE",
+   "noeud": "VE-ECART",
+   "sens": "hausse",
+   "definition": "tension sur l'écart de taux hors canal budgétaire (crise financière ; hypothèse H-06)",
+   "absorption": "moyenne mensuelle suivante (observation de VE-ECART)"
+  },
+  {
+   "id": "P-LEPEN-RETRAIT",
+   "noeud": "PV-LEPEN",
+   "issues": [
+    "non candidate"
+   ],
+   "sens": "hausse",
+   "definition": "Marine Le Pen renonce ou est empêchée pour une autre cause que le pourvoi",
+   "absorption": "aucune avant la liste officielle"
+  },
+  {
+   "id": "P-RN-AUTRE",
+   "noeud": "PV-RNAUTRE",
+   "issues": [
+    "oui"
+   ],
+   "sens": "hausse",
+   "definition": "Jordan Bardella empêché ou retiré (hypothèse H-01)",
+   "absorption": "aucune avant la liste officielle"
+  },
+  {
+   "id": "P-PHILIPPE-RETRAIT",
+   "noeud": "PV-BLOC",
+   "issues": [
+    "Attal seul",
+    "aucun des deux"
+   ],
+   "sens": "hausse",
+   "definition": "Édouard Philippe empêché ou retiré (hypothèse H-02)",
+   "absorption": "aucune avant la liste officielle"
+  },
+  {
+   "id": "P-GOUV-DEPART",
+   "noeud": "PV-GOUV",
+   "issues": [
+    "oui"
+   ],
+   "sens": "hausse",
+   "definition": "départ du Premier ministre hâté par une affaire",
+   "absorption": "aucune"
+  },
+  {
+   "id": "P-VACANCE",
+   "noeud": "PV-VACANCE",
+   "issues": [
+    "oui"
+   ],
+   "sens": "hausse",
+   "definition": "vacance de la présidence rendue plus probable (santé, démission annoncée ; hypothèse H-03)",
+   "absorption": "aucune"
+  }
+ ]
 }

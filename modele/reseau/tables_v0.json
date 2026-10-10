@@ -1,5 +1,5 @@
 {
- "version": "tables v0.7 (E1, E2, E3 ; chaîne présidentielle E4, E5, E6 ; étape 4 : PV-NOTE, PV-PDE, PV-CENSURE1a, PV-CENSURE1b, PV-DISSOL2a, PV-DISSOL2b et VE-LYCEE en lois par cas, E7 et E8 Opus, E9 Sonnet, deux rondes) ; article 12 en verrou daté ; étape 5 : PV-RNAUTRE (classe de référence)",
+ "version": "tables v0.8 (E1, E2, E3 ; chaîne présidentielle E4, E5, E6 ; étape 4 : PV-NOTE, PV-PDE, PV-CENSURE1a, PV-CENSURE1b, PV-DISSOL2a, PV-DISSOL2b et VE-LYCEE en lois par cas, E7 et E8 Opus, E9 Sonnet, deux rondes) ; article 12 en verrou daté ; étape 5 : PV-RNAUTRE (classe de référence) ; étape 9 : PV-VACANCE (classe de référence)",
  "evaluateurs": [
   "E1",
   "E2",
@@ -1104,6 +1104,11 @@
    },
    "sigma": 0.5,
    "derive": "classe de référence (dossier hypotheses_2026-10-10, H-01) : défaillance d'un candidat désigné dans les six mois avant le scrutin, 8,8 % (3 cas sur 34), relevée à 12 % pour l'affaire Mediapart ; impossible si Le Pen est candidate"
+  },
+  "PV-VACANCE": {
+   "p_fenetre": 0.017,
+   "sigma": 0.5,
+   "derive": "classe de référence (dossier hypotheses_2026-10-10, H-03) : 2 vacances (1969, 1974) en 67,75 ans, sur 215 jours"
   }
  },
  "mesures": {
