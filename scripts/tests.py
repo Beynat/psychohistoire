@@ -611,6 +611,29 @@ def test_tables_du_reseau():
     assert any(f"{i} base" in x and "somme" in x for x in tables.verifier(r))
 
 
+def test_faits_et_direction():
+    """Feuille de route v0, blocs 2 et 8 : seuil d'application d'un fait imprévu (signes opposés refusés, plafond
+    puis réduction k = 0,5), application d'un fait retenu par le moteur, quantile de Student du critère de direction."""
+    import faits, reseau, direction
+    oppose = faits.decider({"fait": "f", "noeud": "N", "issues": ["oui", "non"],
+                            "avis": [{"p": {"oui": 0.6, "non": 0.3}}, {"p": {"oui": 0.2, "non": 0.4}}]})
+    assert not oppose["retenu"] and "signes" in oppose["motifs"][0]
+    fort = faits.decider({"fait": "f", "noeud": "N", "issues": ["oui", "non"],
+                          "avis": [{"p": {"oui": 0.9, "non": 0.1}}] * 5})
+    assert fort["retenu"] and abs(fort["multiplicateurs"]["oui"] - 3 ** 0.5) < 0.01, fort
+    S = {"variables_etat": [], "pivots": [{"id": "PV-H", "nature": "à tout moment", "fenetre": ["2026-10-10", "2027-05-02"], "parents": []}],
+         "mesures": {"EV-H": {"caracteristique": {"type": "survenue", "noeud": "PV-H"}, "table": {"oui": 100, "non": 0}}}}
+    T = {"noeuds": {"PV-H": {"p_fenetre": 0.3}}}
+    q = [{"id": "Q", "evenement": "EV-H", "issues": ["oui", "non"], "fenetre": ["2026-10-10", "2027-05-02"]}]
+    reseau.FAITS = {}
+    sans = reseau.prevoir(S, T, {}, q, 30, 200)["Q"]["oui"]
+    reseau.FAITS = {"PV-H": [("2026-10", {"oui": 3.0})]}
+    avec = reseau.prevoir(S, T, {}, q, 30, 200)["Q"]["oui"]
+    reseau.FAITS = None
+    assert avec > sans + 15, (sans, avec)
+    assert direction.quantile_student_90(4) == 1.533 and direction.quantile_student_90(40) == 1.2816
+
+
 def test_cycles_v0():
     """Feuille de route v0, bloc 6 (vérificateur B, 2.1 et 4). Un gel AAAA-MM ne fige la banque qu'à partir du
     premier cycle formel ; un cycle v0 lit les résolutions et les annonces de son propre registre."""

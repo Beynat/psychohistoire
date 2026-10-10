@@ -140,6 +140,19 @@ def appliquer(base, mults, exclus=()):
     return normaliser(poids)
 
 
+def faits_retenus():
+    """Faits imprévus retenus (scripts/faits.py) : {nœud: [(mois, {issue: multiplicateur})]}."""
+    from commun import lire_jsonl
+    out = {}
+    for f in lire_jsonl("modele/reseau/faits.jsonl"):
+        if f.get("retenu") and f.get("mois"):
+            out.setdefault(f["noeud"], []).append((f["mois"], f["multiplicateurs"]))
+    return out
+
+
+FAITS = None
+
+
 def simuler(structure, params, obs, rng):
     """Une trajectoire. obs : {nœud: {mois: état}} observé ; un état observé remplace le tirage."""
     rangs, noeuds = ordre(structure)
@@ -152,6 +165,15 @@ def simuler(structure, params, obs, rng):
                 kk = k - dec(p)
                 if kk >= 0 and traj[pid(p)][kk] is not None:
                     etats[pid(p)] = traj[pid(p)][kk]
+            fm = {}
+            for mois_f, mf in (FAITS or {}).get(i, []):
+                if MOIS[k] >= mois_f:
+                    for iss, m in mf.items():
+                        fm[iss] = fm.get(iss, 1.0) * m
+            if fm:
+                t = dict(t)
+                t["multiplicateurs"] = {**t.get("multiplicateurs", {}), "__faits__": {"x": fm}}
+                etats["__faits__"] = "x"
             vu = obs.get(i, {}).get(MOIS[k])
             if i.startswith("VE-"):
                 if vu:
@@ -247,6 +269,9 @@ def loi(mesure, tables_mesures, ev_id, v, issues):
 def prevoir(structure, tables, obs, questions, tirages=200, trajectoires=100, graine=20261010):
     """questions : liste de {id, evenement, issues, fenetre: [début, fin]} ou de conjointes {id, composantes}.
     Rend {id: {issue: %, ..., i80: [bas, haut] sur l'issue « oui » ou la première issue}}."""
+    global FAITS
+    if FAITS is None:
+        FAITS = faits_retenus()
     rng = random.Random(graine)
     noeuds = noeuds_de(structure)
     mes = structure["mesures"]
