@@ -1,0 +1,910 @@
+{
+ "previsionniste": "P5",
+ "modele": "claude-sonnet-5-5",
+ "gel": "2026-10-10",
+ "recherches": 15,
+ "adresses": [
+  "https://lcp.fr/actualites/lycees-bloques-le-projet-de-loi-casseurs-payeurs-examine-fin-octobre-au-senat-442963",
+  "https://www.dhnet.be/dernieres-depeches/2026/10/02/le-mouvement-de-blocage-des-lycees-devrait-se-poursuivre-vendredi-BXWYF663HZGKDA3FBDJOQSRCQ4/",
+  "https://www.kelwatt.fr/actu/baisse-petrole-prix-carburants-pompe-octobre-2026",
+  "https://lcp.fr/actualites/candidature-a-la-presidentielle-pas-de-choix-definitif-des-ecologistes-avant-la-mi",
+  "https://www.sudradio.fr/sud-radio/presidentielle-2027-marine-le-pen-inebranlable-malgre-laffaire-bardella",
+  "https://www.noovo.info/nouvelles/international/article/le-kremlin-nexclut-pas-une-reprise-des-negociations-trilaterales-avec-lukraine-en-octobre-2026/"
+ ],
+ "previsions": {
+  "Q001": {
+   "probabilites": {
+    "oui": 38,
+    "non": 62
+   },
+   "motif": "Sénat le 27 octobre, procédure accélérée, AN avant fin février, CMP puis saisine probable du Conseil constitutionnel : promulgation avant le 31 mars possible mais serrée, budget en concurrence."
+  },
+  "Q002": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Fenêtre 2027-28 ; pourparlers américains relancés mais territoire bloquant ; taux de base faible, hausse avec un nouveau contexte politique américain/russe."
+  },
+  "Q003": {
+   "probabilites": {
+    "oui": 17,
+    "non": 83
+   },
+   "motif": "Confiance à 86, choc énergétique et troubles sociaux : +2 points en deux mois peu probable."
+  },
+  "Q004": {
+   "probabilites": {
+    "oui": 38,
+    "non": 62
+   },
+   "motif": "Brent quotidien 125 le 6 oct, moyenne d'octobre très volatile ; retour partiel possible (libération de stocks G7)."
+  },
+  "Q005": {
+   "probabilites": {
+    "oui": 13,
+    "non": 87
+   },
+   "motif": "Fenêtre de trois semaines ; Moody's (Aa3 négative) et S&P ont des dates calendaires incertaines ; spread très élargi."
+  },
+  "Q006": {
+   "probabilites": {
+    "oui": 14,
+    "non": 86
+   },
+   "motif": "Gouvernement Lecornu a survécu aux censures ; Assemblée en veille de présidentielle, peu d'intérêt à censurer."
+  },
+  "Q007": {
+   "probabilites": {
+    "oui": 12,
+    "non": 88
+   },
+   "motif": "TPI jamais activé ; conditions de conformité budgétaire discutables ; spread 126 pb en forte hausse."
+  },
+  "Q008": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Inflation 3,4 en hausse portée par l'énergie ; en décembre incertitude sur le pétrole."
+  },
+  "Q009": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Chômage 8,2 en recul depuis mai ; 8,4 demanderait une remontée de 0,2."
+  },
+  "Q010": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Gouvernement a opté pour des aides ciblées ; budget contraint ; fenêtre courte."
+  },
+  "Q011": {
+   "probabilites": {
+    "4,5 % du PIB ou moins": 20,
+    "plus de 4,5 % du PIB": 55,
+    "pas de loi de finances publiée au 31 janvier 2028": 25
+   },
+   "motif": "Déficit 2028 visé improbable sous 4,5 % ; retard budgétaire fréquent (2026 publié en février)."
+  },
+  "Q012": {
+   "probabilites": {
+    "oui": 78,
+    "non": 22
+   },
+   "motif": "Énergie 20,9 en septembre avec Brent plus haut en octobre ; seuil 19,3 en dessous du niveau actuel."
+  },
+  "Q013": {
+   "probabilites": {
+    "candidature autonome": 55,
+    "soutien à un autre candidat": 38,
+    "autre ou vote non tenu": 7
+   },
+   "motif": "Référendum interne du 10 au 13 décembre ; Tondelier reste candidate officielle."
+  },
+  "Q014": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Brent à 125 et présidentielle : mesure générale possible mais l'État est sous contrainte budgétaire."
+  },
+  "Q015": {
+   "probabilites": {
+    "oui": 62,
+    "non": 38
+   },
+   "motif": "Moody's perspective négative, spread à 126 pb, déficit élevé et choc énergétique : une baisse d'ici 2028 est plus probable que non."
+  },
+  "Q016": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Seuil proche du niveau récent 125 mais moyenne mensuelle plus bas si repli."
+  },
+  "Q017": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Budget 2027 en examen sous tension ; censure possible avant la fin de l'année mais précédent 2026 survécu."
+  },
+  "Q018": {
+   "probabilites": {
+    "oui": 82,
+    "non": 18
+   },
+   "motif": "Environ une à deux attaques mortelles par an avec saisine du PNAT ; contexte de guerre au Moyen-Orient."
+  },
+  "Q019": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Un nouveau président dissout souvent pour obtenir une majorité."
+  },
+  "Q020": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Écart quotidien 126,5 en hausse nette ; moyenne d'octobre à 136 exige une poursuite de l'élargissement. Le niveau récent annoncé (136) semble supérieur à la dernière valeur du dossier (126,5)."
+  },
+  "Q021": {
+   "probabilites": {
+    "oui": 36,
+    "non": 64
+   },
+   "motif": "Mêmes éléments avec un mois de plus ; fort risque d'aggravation mais aussi de détente."
+  },
+  "Q022": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Inflation 3,4 en septembre et énergie en hausse ; 3,2 est sous le niveau actuel."
+  },
+  "Q023": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "La suspension chinoise court jusqu'à novembre 2026 ; fenêtre close avant l'échéance."
+  },
+  "Q024": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Fenêtre de trois semaines ; aucune activation TPI en cours."
+  },
+  "Q025": {
+   "probabilites": {
+    "3 ou moins": 12,
+    "4": 27,
+    "5": 31,
+    "6 ou plus": 30
+   },
+   "motif": "Nombreuses candidatures (LFI, PS/PP, Écologistes, PCF, Debout, LO, NPA)."
+  },
+  "Q026": {
+   "probabilites": {
+    "oui": 48,
+    "non": 52
+   },
+   "motif": "Confiance à 86 ; maintien ou baisse du fait du choc de prix."
+  },
+  "Q027": {
+   "probabilites": {
+    "oui": 82,
+    "non": 18
+   },
+   "motif": "Chômage 8,2, seuil 8,0 sous le niveau actuel."
+  },
+  "Q028": {
+   "probabilites": {
+    "avis rendu, compatible": 58,
+    "avis rendu, incompatible": 28,
+    "pas d'avis": 14
+   },
+   "motif": "Saisine en janvier 2026 ; avis typiquement 16 à 24 mois."
+  },
+  "Q029": {
+   "probabilites": {
+    "oui": 17,
+    "non": 83
+   },
+   "motif": "Même logique que Q009 avec horizon plus long."
+  },
+  "Q030": {
+   "probabilites": {
+    "oui": 6,
+    "non": 94
+   },
+   "motif": "Le ministère de l'Intérieur dépasse rarement 500 000 ; mobilisation lycéenne massive mais comptage inférieur."
+  },
+  "Q031": {
+   "probabilites": {
+    "oui": 76,
+    "non": 24
+   },
+   "motif": "Seuil 3,0 sous le niveau actuel de 3,4."
+  },
+  "Q032": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Seuil 3,8 exige une nouvelle hausse de 0,4 point."
+  },
+  "Q033": {
+   "probabilites": {
+    "les deux": 44,
+    "Philippe seul": 52,
+    "Attal seul": 3,
+    "aucun des deux": 1
+   },
+   "motif": "Philippe et Attal déclarés ; Attal peut se retirer."
+  },
+  "Q034": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Environnement favorable aux démocrates aux élections de mi-mandat avec choc d'inflation."
+  },
+  "Q035": {
+   "probabilites": {
+    "oui": 7,
+    "non": 93
+   },
+   "motif": "Fenêtre de trois semaines."
+  },
+  "Q036": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Décision à la majorité qualifiée improbable."
+  },
+  "Q037": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Nouveau gouvernement ou Assemblée fragmentée ; une censure en 17 mois est possible."
+  },
+  "Q038": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "VIGINUM publie fréquemment, mais exigence stricte d'une campagne visant l'élection."
+  },
+  "Q039": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Hausse en 2025 puis contexte tendu ; publication avant 31 mars non assurée."
+  },
+  "Q040": {
+   "probabilites": {
+    "oui": 37,
+    "non": 63
+   },
+   "motif": "Seuil de 138 pb au-dessus du dernier écart quotidien (126,5)."
+  },
+  "Q041": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Crise énergétique et dommages au Golfe : stocks bas plausibles."
+  },
+  "Q042": {
+   "probabilites": {
+    "oui": 72,
+    "non": 28
+   },
+   "motif": "Chômage 8,2 ; 8,1 est atteint si pas de nouvelle baisse."
+  },
+  "Q043": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Abaissement voté improbable avant fin 2028."
+  },
+  "Q044": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Moyenne de décembre incertaine ; retour à la moyenne probable."
+  },
+  "Q045": {
+   "probabilites": {
+    "oui": 70,
+    "non": 30
+   },
+   "motif": "Seuil 18,5 sous le niveau actuel."
+  },
+  "Q046": {
+   "probabilites": {
+    "oui": 58,
+    "non": 42
+   },
+   "motif": "Loi de finances 2025 et 2026 publiées en février ; situation fragmentée."
+  },
+  "Q047": {
+   "probabilites": {
+    "oui": 6,
+    "non": 94
+   },
+   "motif": "Fenêtre de trois semaines."
+  },
+  "Q048": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Dissolution avant la présidentielle très improbable."
+  },
+  "Q049": {
+   "probabilites": {
+    "oui": 4,
+    "non": 96
+   },
+   "motif": "Fenêtre courte."
+  },
+  "Q050": {
+   "probabilites": {
+    "oui": 44,
+    "non": 56
+   },
+   "motif": "Seuil légèrement au-dessus du niveau actuel."
+  },
+  "Q051": {
+   "probabilites": {
+    "oui": 29,
+    "non": 71
+   },
+   "motif": "Seuil 141 pb bien au-dessus du dernier écart."
+  },
+  "Q052": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Seuil 130 pb proche du dernier écart (126,5)."
+  },
+  "Q053": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Un seuil de 500 000 par le ministère est rare."
+  },
+  "Q054": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Philippe donné 21 à 24 % comme seul candidat du centre ; concurrence de Mélenchon et Attal."
+  },
+  "Q055": {
+   "probabilites": {
+    "oui": 33,
+    "non": 67
+   },
+   "motif": "Seuil 3,7 supérieur au niveau actuel."
+  },
+  "Q056": {
+   "probabilites": {
+    "oui": 17,
+    "non": 83
+   },
+   "motif": "Mélenchon à 14-17 % dans les sondages, loin du second tour."
+  },
+  "Q057": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Seuil 143 pb nettement supérieur."
+  },
+  "Q058": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Événement très rare."
+  },
+  "Q059": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Fenêtre courte."
+  },
+  "Q060": {
+   "probabilites": {
+    "oui": 48,
+    "non": 52
+   },
+   "motif": "Confiance à 86."
+  },
+  "Q061": {
+   "probabilites": {
+    "oui": 46,
+    "non": 54
+   },
+   "motif": "Seuil au niveau actuel."
+  },
+  "Q062": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Premier examen au Sénat le 27 octobre ; promulgation avant le 31 octobre impossible."
+  },
+  "Q063": {
+   "probabilites": {
+    "oui": 76,
+    "non": 24
+   },
+   "motif": "Seuil 83 inférieur de 3 points au niveau actuel."
+  },
+  "Q064": {
+   "probabilites": {
+    "oui": 11,
+    "non": 89
+   },
+   "motif": "Seuil 89 demande +3 points."
+  },
+  "Q065": {
+   "probabilites": {
+    "oui": 66,
+    "non": 34
+   },
+   "motif": "Seuil inférieur au niveau actuel."
+  },
+  "Q066": {
+   "probabilites": {
+    "rejet ou non-admission": 58,
+    "cassation totale ou partielle": 15,
+    "désistement": 2,
+    "pas d'arrêt au 31 mars 2027": 25
+   },
+   "motif": "Arrêt d'appel du 7 juillet 2026 ; la Cour de cassation statue probablement avant la présidentielle."
+  },
+  "Q067": {
+   "probabilites": {
+    "oui": 33,
+    "non": 67
+   },
+   "motif": "Croissance nulle au T2 après -0,2 au T1 ; choc énergétique ; sept fenêtres de publication."
+  },
+  "Q068": {
+   "probabilites": {
+    "oui": 76,
+    "non": 24
+   },
+   "motif": "Seuil 84 inférieur."
+  },
+  "Q069": {
+   "probabilites": {
+    "oui": 7,
+    "non": 93
+   },
+   "motif": "Étapes 126(8) ou (9) rares."
+  },
+  "Q070": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Seuil quasi égal au niveau actuel."
+  },
+  "Q071": {
+   "probabilites": {
+    "oui": 18,
+    "non": 82
+   },
+   "motif": "Suspension de novembre 2026 probablement prolongée."
+  },
+  "Q072": {
+   "probabilites": {
+    "oui": 53,
+    "non": 47
+   },
+   "motif": "Seuil égal au niveau actuel."
+  },
+  "Q073": {
+   "probabilites": {
+    "oui": 60,
+    "non": 40
+   },
+   "motif": "1 027 lycées touchés le 1er oct selon l'Intérieur ; mobilisation vers une grande manifestation mardi ; vacances de la Toussaint approchent."
+  },
+  "Q074": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Seuil 3,6 un cran au-dessus du niveau."
+  },
+  "Q075": {
+   "probabilites": {
+    "oui": 92,
+    "non": 8
+   },
+   "motif": "Condamnation d'appel de juillet 2026 la laisse éligible (inéligibilité à 15 mois ferme)."
+  },
+  "Q076": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Crises outre-mer récurrentes (Nouvelle-Calédonie 2024)."
+  },
+  "Q077": {
+   "probabilites": {
+    "oui": 36,
+    "non": 64
+   },
+   "motif": "Seuil 8,3 au-dessus du niveau."
+  },
+  "Q078": {
+   "probabilites": {
+    "oui": 17,
+    "non": 83
+   },
+   "motif": "Ministre Geffray très exposé par le mouvement lycéen."
+  },
+  "Q079": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Vigilance rouge canicule en 2019, 2020, 2022, 2023, 2025."
+  },
+  "Q080": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Retailleau absent du radar sondages."
+  },
+  "Q081": {
+   "probabilites": {
+    "moins de 70 %": 5,
+    "70 à moins de 75 %": 33,
+    "75 à moins de 80 %": 55,
+    "80 % ou plus": 7
+   },
+   "motif": "2022 : 73,7 % ; 2017 : 77,8 %."
+  },
+  "Q082": {
+   "probabilites": {
+    "oui": 7,
+    "non": 93
+   },
+   "motif": "Événement rare."
+  },
+  "Q083": {
+   "probabilites": {
+    "oui": 7,
+    "non": 93
+   },
+   "motif": "Unanimité sur le CFP 2028-34 très improbable avant fin 2026."
+  },
+  "Q084": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Glucksmann à 11-13 %."
+  },
+  "Q085": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Seuil 8,0 sous le niveau actuel."
+  },
+  "Q086": {
+   "probabilites": {
+    "oui": 65,
+    "non": 35
+   },
+   "motif": "Seuil égal au niveau actuel avec énergie en hausse."
+  },
+  "Q087": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Taux de base."
+  },
+  "Q088": {
+   "probabilites": {
+    "oui": 43,
+    "non": 57
+   },
+   "motif": "Seuil 134 pb au-dessus du dernier écart (126,5)."
+  },
+  "Q089": {
+   "probabilites": {
+    "oui": 1.5,
+    "non": 98.5
+   },
+   "motif": "Lisnard très bas."
+  },
+  "Q090": {
+   "probabilites": {
+    "oui": 35,
+    "non": 65
+   },
+   "motif": "Mouvement lycéen fort mais gouvernement a retiré des mesures ; reprise partielle plausible."
+  },
+  "Q091": {
+   "probabilites": {
+    "oui": 60,
+    "non": 40
+   },
+   "motif": "Seuil égal au niveau actuel."
+  },
+  "Q092": {
+   "probabilites": {
+    "Marine Le Pen": 38,
+    "Jordan Bardella": 9,
+    "Édouard Philippe": 28,
+    "Gabriel Attal": 2,
+    "Jean-Luc Mélenchon": 2,
+    "David Lisnard": 1,
+    "Bruno Retailleau": 2,
+    "Raphaël Glucksmann": 5,
+    "François Hollande": 3,
+    "autre": 10
+   },
+   "motif": "Le Pen en tête au premier tour ; Philippe meilleur challenger."
+  },
+  "Q093": {
+   "probabilites": {
+    "oui": 60,
+    "non": 40
+   },
+   "motif": "Choc énergétique et croissance faible : déficit 2027 probablement au-dessus de 5,0 %."
+  },
+  "Q094": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Taux de plus de 18 % rare."
+  },
+  "Q095": {
+   "probabilites": {
+    "oui": 72,
+    "non": 28
+   },
+   "motif": "Sauf dissolution suivie d'une majorité absolue, aucun groupe n'atteint 289."
+  },
+  "Q096": {
+   "probabilites": {
+    "oui": 70,
+    "non": 30
+   },
+   "motif": "Seuil 84 inférieur."
+  },
+  "Q097": {
+   "probabilites": {
+    "oui": 31,
+    "non": 69
+   },
+   "motif": "Seuil 137 pb."
+  },
+  "Q098": {
+   "probabilites": {
+    "oui": 43,
+    "non": 57
+   },
+   "motif": "Seuil égal au niveau actuel."
+  },
+  "Q099": {
+   "probabilites": {
+    "oui": 81,
+    "non": 19
+   },
+   "motif": "Le Pen en tête de tous les sondages, 31-36 %."
+  },
+  "Q100": {
+   "probabilites": {
+    "oui": 44,
+    "non": 56
+   },
+   "motif": "Moyenne de novembre incertaine, retour partiel."
+  },
+  "Q101": {
+   "probabilites": {
+    "oui": 14,
+    "non": 86
+   },
+   "motif": "Seuil très élevé."
+  },
+  "Q102": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Seuil bien supérieur."
+  },
+  "Q103": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Seuil égal au niveau actuel."
+  },
+  "Q104": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Majorité qualifiée improbable."
+  },
+  "Q105": {
+   "probabilites": {
+    "oui": 33,
+    "non": 67
+   },
+   "motif": "Seuil légèrement supérieur au niveau actuel."
+  },
+  "Q106": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "Seuil 24,6 demande +3,7."
+  },
+  "Q107": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Seuil 22,6 demande +1,7."
+  },
+  "Q108": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Fenêtre courte, pourparlers au point mort."
+  },
+  "Q109": {
+   "probabilites": {
+    "oui": 62,
+    "non": 38
+   },
+   "motif": "Seuil égal au niveau actuel avec Brent plus haut en octobre."
+  },
+  "Q110": {
+   "probabilites": {
+    "oui": 23,
+    "non": 77
+   },
+   "motif": "Seuil très élevé."
+  },
+  "Q111": {
+   "probabilites": {
+    "oui": 72,
+    "non": 28
+   },
+   "motif": "Accord probable mais tardif avant fin septembre 2028."
+  },
+  "Q112": {
+   "probabilites": {
+    "oui": 7,
+    "non": 93
+   },
+   "motif": "Attal derrière Philippe 8 contre 16 en face-à-face."
+  },
+  "Q113": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Seuil de 1 000 établissements déjà atteint une fois."
+  },
+  "Q114": {
+   "probabilites": {
+    "oui": 9,
+    "non": 91
+   },
+   "motif": "Pourparlers trilatéraux possibles mais bloqués sur le territoire."
+  },
+  "Q115": {
+   "probabilites": {
+    "oui": 57,
+    "non": 43
+   },
+   "motif": "Seuil égal au niveau actuel."
+  },
+  "Q116": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Plusieurs partis ont soutenu d'autres candidats au premier tour."
+  },
+  "Q117": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Présence militaire française en Ukraine improbable."
+  },
+  "Q118": {
+   "probabilites": {
+    "oui": 42,
+    "non": 58
+   },
+   "motif": "Seuil 131 pb proche du dernier écart."
+  },
+  "Q119": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Contrainte budgétaire mais LPM engagée."
+  },
+  "Q120": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Dissolution avant le second tour en 3 semaines quasi impossible."
+  },
+  "Q121": {
+   "probabilites": {
+    "oui": 27,
+    "non": 73
+   },
+   "motif": "Seuil 23,6."
+  },
+  "Q122": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Fenêtre courte."
+  },
+  "Q123": {
+   "probabilites": {
+    "oui": 17,
+    "non": 83
+   },
+   "motif": "Seuil 88."
+  },
+  "Q124": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Fenêtre courte."
+  },
+  "Q125": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Seuil inférieur."
+  }
+ }
+}
