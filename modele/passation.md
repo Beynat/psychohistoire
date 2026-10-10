@@ -1,48 +1,45 @@
-# Passation — état du projet au 10 octobre 2026 (fin de journée)
+# Passation — état du projet au 10 octobre 2026 (15 h 30)
 
-Document de reprise pour une nouvelle session. Le dépôt fait foi ; ce fichier ne remplace ni `modele/protocole.md` ni `modele/journal.md`. Feuille de route et avancement : document Claude Docs « Psychohistoire — feuille de route v0 » (https://claude.ai/code/artifact/635d3393-6acd-43fd-9c3d-52bcac6a0666), tenu à jour à chaque étape.
+Document de reprise pour une nouvelle session. Le dépôt fait foi ; ce fichier ne remplace ni `modele/protocole.md` ni `modele/journal.md`. **Feuille de route en cours : `modele/feuille_de_route.md`** (14 étapes, avancement en tête du fichier).
 
 ## Objet
 
-Prévisions datées et notées sur la France, d'octobre 2026 à septembre 2028. Dépôt public `Beynat/psychohistoire`, interface `reseau.html` (carte des pivots, témoin et réseau, actualité, échéances) à côté de la piste exploratoire `index.html`. Le long terme (psychohistoire proprement dite) et le modèle Monde sont d'autres modèles, hors v0.
+Prévisions datées et notées sur la France, d'octobre 2026 à septembre 2028. Dépôt public `Beynat/psychohistoire`, interface `reseau.html` (frise actuelle, à remplacer par l'organigramme), piste exploratoire `index.html`. Le long terme et le modèle Monde sont d'autres modèles, hors v0.
 
-## Règles en vigueur (journal du 10 octobre 2026)
+## Comment travailler avec Nathan
 
-- **Protocole en retrait jusqu'à la v0 ajustée.** Restent impératifs : registres en ajout seul, horodatage par script, contrôle à la poussée, tests avant chaque commit, contrôle par mutation pour chaque correction de code.
-- **Règle de correction des trois cas.** On ne corrige tout de suite qu'une erreur irréversible sur les données, une erreur qui empêche un cycle de tourner, ou une erreur qui change une probabilité ou un score de plus de 5 points ou rend une issue indéterminable. Le reste va à la liste de la v0 ajustée (feuille de route). Pas de tour de vérification par principe.
-- **Amélioration continue du réseau.** Passes bimensuelles ; aucune passe ne consulte les prévisions de l'ensemble ou des comparateurs sur une question ouverte ; chaque passe est journalisée avant toute publication de scores ; seules les prévisions telles qu'émises sont notées (chaque ligne porte la version des tables).
-- **Autonomie.** Nathan a délégué toutes les décisions de la feuille de route et autorisé les tâches planifiées listées ci-dessous ; il suit l'avancement dans le document de la feuille de route. On ne revient vers lui que pour une action irréversible sur les données.
-- **Modèles.** Ensemble : trois Opus et deux Sonnet (Haiku et Fable écartés). Deux modèles au lieu de trois : écart assumé pendant la v0.
+- Français, clair, direct, synthétique, sans emoji, peu de mise en forme. Le challenger quand une faille est réelle.
+- **Progression suivie dans la conversation** : tenir la liste des tâches (une par étape de la feuille de route) et indiquer en tête de chaque message d'avancement « Avancement : n / 14 ». Mettre à jour `modele/feuille_de_route.md` (tableau et journal d'avancement) à chaque étape terminée, commit et push.
+- Autonomie : Nathan a délégué les décisions de la feuille de route ; ne revenir vers lui que pour une action irréversible sur les données, un arbitrage de structure ou une question qui change le résultat. Il valide les maquettes avant mise en ligne.
+- Il repère vite les incohérences en lisant les sorties : lui montrer des sorties lisibles (décomposition « d'où vient ce chiffre ») plutôt que des agrégats.
 
-## État
+## Règles en vigueur
 
-- **Statut** (`modele/statut.json`) : `definitif: false`, `v0: true`, `premier_cycle_formel: null`. Les cycles mensuels tournent dès le 1er novembre 2026 sur `registre/v0.jsonl` (annonces et propositions suffixées `_v0`). `scripts/registre.py` refuse toute écriture dans `registre/protocole.jsonl` tant que le protocole n'est pas définitif. La banque n'est figée qu'à partir de `premier_cycle_formel`.
-- **Banque** v1.14 : 63 questions d'événement (49 événements) ; questions sur le mouvement lycéen (EV-10, 10b, 47), la loi « casseurs-payeurs » (EV-48), le ministre de l'Éducation nationale (EV-49), le Premier ministre (EV-50), les interpellations (EV-51), la mobilisation agricole (EV-14b), la mobilisation à 30 jours (EV-52, horizon intermédiaire par ses questions mensuelles). Quatre questions conjointes (pool P2c) dans `modele/banque/conjointes.json`.
-- **Témoin** : consigne v1.6 (au moins cinq pages lues, motifs propres à chaque question, contrôlés par `scripts/verifier_reponse.py`).
-- **Réseau v0** : `modele/reseau/structure_v0.json` (v0.2 : 19 pivots, 6 variables d'état mensuelles, 33 questions rattachées dont 4 conjointes), `tables_v0.json` (trois évaluateurs, agrégation `scripts/tables.py`), `observations.json`, moteur `scripts/reseau.py`, procédure `modele/reseau/procedure.md` (avec ses points ouverts). Faits imprévus : `scripts/faits.py` (seuil d'application), appliqués par le moteur depuis `modele/reseau/faits.jsonl`.
-- **Jalons** : 50 jalons sur 16 liens (`modele/jalons/definitions.jsonl`), statuts et registre fantôme par `scripts/jalons.py`, critère de direction par `scripts/direction.py`. Sans effet sur les probabilités tant que la direction n'est pas validée (40 questions résolues).
-- **Séries d'état** : `data/etat/` (popularité Ifop, sondages, journées de mobilisation, erreur historique des sondages 2012-2022) ; `scripts/etat.py` en tire les états mensuels.
-- **Indicateurs structurels** : IS-01 à IS-05 dans `data.json` (stabilité institutionnelle 6,95 sur 10, niveau de vie populaire 6,41, cohésion sociale 5,24, compétition des élites 5,24), rattachés au réseau comme contexte.
-- **Tri** : faits sans question suivis sous un identifiant stable, émergence à 50 titres en sept jours (`data/reprise.json`).
-- **Cycle d'essai 2026-10-v0** (`registre/essai_v0.jsonl`) : comparateurs, ensemble (5 prévisionnistes) et réseau. EV-10b se résout le 17 octobre.
+- Protocole en retrait jusqu'à la v0 ajustée ; restent impératifs : registres en ajout seul, horodatage par script, contrôle à la poussée, tests avant chaque commit, contrôle par mutation pour chaque correction de code.
+- **Corrections au fil de l'eau jusqu'au 1er novembre** (décision de Nathan du 10 octobre : pas de file de tickets ni de quarantaine, trop d'erreurs à corriger) ; chaque correction est journalisée avec sa cause. Après le premier cycle noté, règle des trois cas (erreur irréversible sur les données, cycle bloqué, effet de plus de 5 points ou issue indéterminable).
+- Évaluateurs : toujours indépendants, sans accès aux registres (`registre/*`), aux cycles (`data/cycles/*`) ni, pour une élicitation, aux tables existantes. Ensemble : trois Opus et deux Sonnet ; évaluateurs de tables : Opus et Sonnet.
+- Une correction se déclenche sur un défaut identifié, pas sur un chiffre qui surprend ; ne jamais remplacer un avis élicité par une appréciation personnelle (leçon du 10 octobre : la correction × 0,4 de la candidature Le Pen a dû être annulée).
+
+## État au 10 octobre, 15 h 30
+
+- **Statut** : `definitif: false`, `v0: true`, `premier_cycle_formel: null`. Premier cycle noté le 1er novembre 2026 sur `registre/v0.jsonl`.
+- **Banque** v1.14 : 63 questions d'événement ; 33 rattachées au réseau, 30 hors réseau.
+- **Réseau v0.4** (`modele/reseau/structure_v0.json`, `tables_v0.json`) : 20 pivots, 6 variables d'état. Changements du 10 octobre (journal) : dissolution après l'élection découpée (mai-juin 2027 / ensuite) ; chaîne présidentielle réélicitée sur dossier sourcé (`modele/reseau/dossiers/presidentielle_2026-10-10.md`, évaluateurs E4, E5, E6 dans `modele/reseau/elicitation_2026-10-10/`) : pourvoi au 12 mars, liste au 26 mars, duel conditionnel aux candidatures du centre, vainqueur selon Le Pen ou Bardella. Chiffres clés : candidature Le Pen 82 % (90 % sans arrêt au 12 mars, 47 % si rejet), majorité absolue 20 %.
+- **Jalons** : vraisemblances par issue v2 (`modele/jalons/vraisemblances_v2.json`, évaluateurs J1, J2) ; 3 jalons équivalents à un état du réseau. Le registre fantôme lit encore la v1 (étape 2).
+- **Revues méthodologiques** : `modele/reseau/revues/2026-10-10_revue_1.md` et `_2.md`. Bogues vérifiés et recommandations repris dans la feuille de route.
+- **Organigramme** : maquette validée sur le fond par Nathan, non déployée ; sources dans `modele/interface/organigramme/` (voir son LISEZMOI). Remarques de Nathan déjà intégrées : événements et probabilités en titre, détail au clic, « d'où vient ce chiffre », jalons avec options avant et après. Dernier point soulevé : un fait qui tranche (Attal renonce) doit s'appliquer sans réduction et faire bouger tout le réseau (étape 2) ; mode « et si » demandé (étape 8).
+- **Données régénérées chaque nuit** par le workflow de collecte : `data/interface_v1.json`, `data/carte_v0.json`.
 - **Tests** : `python scripts/tests.py` (29 tests) et `python scripts/controle_banque.py`.
 
 ## Tâches planifiées
 
 - Tri : `trig_01M5gsZGtbMwVYGUbaCRpELn`, lundi, mercredi et vendredi à 17 h 47.
-- Cycle mensuel : `trig_01SJXN4Fmwjue8foVBeRXddV`, du 1er au 8 à 7 h 52 (registre v0, réseau après l'ensemble).
+- Cycle mensuel : `trig_01SJXN4Fmwjue8foVBeRXddV`, du 1er au 8 à 7 h 52.
 - Résolution d'EV-10b : `trig_01KatJtQ4QF7JRzuh9WNcgaf`, le 17 octobre à 9 h 07.
-- Routine hebdomadaire (jalons, séries, émergences) : `trig_01RYqZSkrEzpry2YkuKq4RFp`, lundi à 8 h 22.
-- Passe bimensuelle du réseau : `trig_01PjDUhLo9E1voyVWbySUWgQ`, les 2 et 16 à 9 h 37.
+- Routine hebdomadaire : `trig_01RYqZSkrEzpry2YkuKq4RFp`, lundi à 8 h 22.
+- Passe bimensuelle du réseau : `trig_01PjDUhLo9E1voyVWbySUWgQ`, les 2 et 16 à 9 h 37 (`procedure.md` dit le 1er et le 15 : à aligner, étape 6).
 
-Chacune ajoute une ligne au tableau « Avancement » de la feuille de route.
-
-## Suite
-
-- **Bloc 10, ergonomie de l'interface** : première version en ligne (journal du 10 octobre) : carte de `reseau.html` alimentée par `scripts/carte.py` (`data/carte_v0.json`, trajectoires du moteur), régénérée chaque nuit avec `scripts/interface.py` par le workflow de collecte. Suite : retours de Nathan sur la lecture, vue mobile dédiée si besoin.
-- Points ouverts de `modele/reseau/procedure.md`, traités par les passes bimensuelles (EV-39 et EV-43, dissolution de début de mandat, revues programmées des agences, usage de la correction historique des sondages).
-- Branchement des indicateurs structurels comme parents (aujourd'hui contexte affiché seulement).
-- Liste de la v0 ajustée (feuille de route).
+Chacune ajoute une ligne au tableau « Avancement » de l'ancienne feuille de route (document Claude Docs) ; à rediriger vers `modele/feuille_de_route.md` (journal d'avancement) à l'étape 6.
 
 ## Contraintes à respecter
 
@@ -52,6 +49,6 @@ Chacune ajoute une ligne au tableau « Avancement » de la feuille de route.
 - Journal des contrôles : branche `controles`, écrite par le seul workflow ; ne jamais y pousser.
 - Sources : méthode de `modele/sources.md`. Une source n'est primaire que pour ses propres actes.
 
-## Préférences de Nathan
+## Pour démarrer la nouvelle session
 
-Français, style clair, direct et synthétique, sans emoji, peu de mise en forme. Le challenger quand une faille est réelle, pas par principe. Avancer sans bloquer sur des sujets de second ordre.
+Lire ce fichier, `modele/feuille_de_route.md`, les deux revues et les entrées du 10 octobre du journal ; recréer la liste des tâches (14 étapes) ; commencer par l'étape 1.

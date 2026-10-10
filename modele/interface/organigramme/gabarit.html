@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Organigramme des pivots</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#FBFBFA;--surface:#FFFFFF;--soft:#F3F3F1;--ink:#1C1C1A;--muted:#62625D;--line:#E4E3DF;--line-strong:#BDBCB5;
+  --accent:#2F4F8F;--accent-soft:rgba(47,79,143,.09);--var:#7A6A3A;--ok:#2E7558;--crit:#A8382B;
+  --t-budget:#2F4F8F;--t-candidatures:#2E7558;--t-election:#6B4C9A;--t-apres:#9A6513;--t-dette:#A8382B;--t-variable:#7A6A3A;
+  --font:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#161615;--surface:#1E1E1C;--soft:#262624;--ink:#ECEBE7;--muted:#A3A29C;--line:#33332F;--line-strong:#55554F;
+  --accent:#93AEEB;--accent-soft:rgba(147,174,235,.12);--var:#C9B47A;--ok:#62B693;--crit:#E07465;
+  --t-budget:#93AEEB;--t-candidatures:#62B693;--t-election:#B79BE0;--t-apres:#D9A34A;--t-dette:#E07465;--t-variable:#C9B47A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161615;--surface:#1E1E1C;--soft:#262624;--ink:#ECEBE7;--muted:#A3A29C;--line:#33332F;--line-strong:#55554F;
+  --accent:#93AEEB;--accent-soft:rgba(147,174,235,.12);--var:#C9B47A;--ok:#62B693;--crit:#E07465;
+  --t-budget:#93AEEB;--t-candidatures:#62B693;--t-election:#B79BE0;--t-apres:#D9A34A;--t-dette:#E07465;--t-variable:#C9B47A;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 14px/1.45 var(--font);font-variant-numeric:tabular-nums}
+.wrap{max-width:none;margin:0 auto;padding:14px 16px 12px}
+h1{font-size:19px;margin:0 0 2px}
+.lede{color:var(--muted);margin:0 0 6px;max-width:120ch}
+.legende{display:flex;flex-wrap:wrap;gap:4px 18px;color:var(--muted);font-size:12px;margin:0 0 10px}
+.legende span{display:inline-flex;align-items:center;gap:6px}
+.pastille{width:10px;height:10px;border-radius:3px;display:inline-block}
+.scroll{overflow-x:auto;overflow-y:hidden;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.cadre{position:relative}
+.org{transform-origin:0 0}
+.org{position:relative;margin:16px}
+.org>svg{position:absolute;left:0;top:0;overflow:visible}
+.n{position:absolute;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.pv{width:260px;border-top:5px solid var(--th);overflow:hidden}
+.pv .c{padding:8px 12px 8px}
+.n.pv{cursor:pointer;transition:box-shadow .15s,transform .15s}
+.n.pv:hover,.n.pv:focus-visible{box-shadow:0 4px 14px rgba(0,0,0,.12);outline:none}
+.pied{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px;padding-top:4px;border-top:1px solid var(--line)}
+.pied span{color:var(--th);font-weight:600}
+dialog{border:0;border-radius:12px;padding:0;max-width:640px;width:calc(100% - 32px);max-height:86vh;overflow:auto;background:var(--surface);color:var(--ink);box-shadow:0 16px 48px rgba(0,0,0,.25)}
+dialog::backdrop{background:rgba(20,20,18,.4)}
+dialog .fermer{all:unset;cursor:pointer;position:absolute;top:12px;right:14px;font-size:24px;line-height:1;color:var(--muted);padding:2px 6px;z-index:2}
+.pv.dl{width:auto;border-top:6px solid var(--th)}
+.pv.dl .c{padding:16px 20px 14px}.pv.dl .titre{font-size:18px}.pv.dl .sec{padding:10px 20px 12px}
+.js .obs{margin-top:2px;font-style:italic}
+.js p.eq{font-size:12px;color:var(--accent);margin:2px 0 4px}
+table.dec{width:100%;border-collapse:collapse;font-size:12.5px;margin:4px 0}
+table.dec th{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;text-align:right;padding:4px 6px;border-bottom:1px solid var(--line);font-weight:600;vertical-align:bottom}
+table.dec th:first-child{text-align:left;text-transform:none;font-size:12px;color:var(--ink);letter-spacing:0}
+table.dec td{padding:5px 6px;border-bottom:1px solid var(--line)}
+table.dec td.nb{text-align:right;white-space:nowrap}
+table.dec tr.tot td{font-weight:700;border-bottom:0}
+table.dec tr.muted td{color:var(--muted)}
+.mb{display:inline-block;width:60px;height:7px;border-radius:4px;background:var(--soft);margin-right:6px;vertical-align:middle;overflow:hidden}.mb i{display:block;height:100%;background:var(--th)}
+ul.af{margin:2px 0;padding-left:18px;font-size:12.5px}ul.af li{margin:3px 0}
+.fia{font-size:12px!important;margin-top:10px!important;padding:5px 9px;border-radius:6px;background:var(--soft)}
+.fia-faible{color:var(--crit)}
+.quand2{color:var(--muted);font-size:11.5px!important;margin:1px 0 4px!important}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin:4px 0}
+.oh,.or{display:grid;grid-template-columns:1fr 78px 150px 62px;gap:8px;align-items:center;font-size:12.5px}
+.oh{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;padding-bottom:3px;border-bottom:1px solid var(--line);margin-bottom:3px}
+.or{padding:2px 0}.or>span:nth-child(2){color:var(--muted);text-align:right}
+.b2{display:flex;align-items:center;gap:6px}.b2 i{display:block;height:7px;border-radius:4px;background:var(--th)}.b2 b{font-size:12.5px}
+.dd{font-weight:700;text-align:right;color:var(--muted)}.dd.up,.dd.down{color:var(--accent)}
+.va{background:var(--surface);border-top-style:dashed}
+.obs1{font-size:12.5px;margin-bottom:4px}
+.spark{display:block}
+.le{display:flex;gap:10px;font-size:11px;color:var(--muted);margin-top:3px}.le i{display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--t-variable);margin-right:4px;vertical-align:-1px}
+.qv{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:5px 0;border-top:1px solid var(--line)}.qv:first-of-type{border-top:0}
+.hors{all:unset;cursor:pointer;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.hl{margin:0;padding-left:16px;font-size:12.5px;columns:2;column-gap:24px}.hl li{margin:2px 0;break-inside:avoid}
+.pv .quand{font-size:11.5px;color:var(--muted)}
+.pv .titre{font-weight:700;font-size:14px;line-height:1.25;margin:1px 0 5px}
+.pv .gros{display:flex;align-items:center;gap:10px}
+.pv .gros b{font-size:21px;color:var(--th);min-width:62px}
+.pv .gros .barre{flex:1;margin:0}
+.barre{display:flex;height:8px;border-radius:4px;overflow:hidden;background:var(--soft)}
+.barre i{display:block;height:100%;background:var(--th)}
+.pv .iss{display:grid;grid-template-columns:1fr 56px 38px;gap:2px 6px;align-items:center;font-size:12.5px}
+.pv .iss b{text-align:right;color:var(--th)}
+.pv .reste{font-size:11.5px;color:var(--muted);margin-top:3px}
+.sec{border-top:1px solid var(--line);padding:7px 14px 9px}
+.sec .h{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.sec p{margin:2px 0;font-size:12.5px;line-height:1.35}
+.fact{margin:8px 0 10px}.fact .ft{font-weight:700;font-size:13px;margin-bottom:4px}.fact .ft span{font-weight:400;color:var(--muted)}
+.cas{display:grid;grid-template-columns:1fr 150px 50px;gap:8px;align-items:center;font-size:13px;padding:2px 0}
+.cas .barre{position:relative;overflow:visible}.cas .barre i{border-radius:4px}
+.cas .barre em{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.55}
+.cas b{text-align:right}
+.note{color:var(--muted);font-size:11.5px!important}
+.js li{grid-template-columns:12px 1fr!important;padding:8px 0!important;border-top:1px solid var(--line)}
+.js li:first-child{border-top:0}
+.jt{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.jt b{font-size:13.5px}
+.pills{display:flex;gap:6px;flex-shrink:0}.pill{font-size:12px;white-space:nowrap;padding:1px 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--muted)}
+.delta{font-weight:700;font-size:13px;white-space:nowrap;padding:1px 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.delta{color:var(--accent)}
+.js p{margin:3px 0 0;font-size:12.5px}
+.js p.obs{font-style:italic;color:var(--muted);font-size:11.5px}
+.sec p b{color:var(--ink)}
+.sec .ctx{font-style:italic;color:var(--var);font-size:12px}
+.js{background:var(--soft)}
+.js ul{list-style:none;margin:0;padding:0}
+.js li{display:grid;grid-template-columns:12px 1fr;gap:0 7px;padding:4px 0;font-size:12.5px;line-height:1.3}
+.js .pt{width:9px;height:9px;border-radius:50%;margin-top:4px;border:1.5px solid var(--muted);background:var(--surface)}
+.js .pt.n2{width:11px;height:11px;margin-top:3px}
+.js .pt.observé{background:var(--ok);border-color:var(--ok)} .js .pt.manqué{background:var(--crit);border-color:var(--crit)}
+.js small{display:block;color:var(--muted);font-size:11.5px}
+.js small b{color:var(--ink);font-weight:600}
+.inf{font:700 11px var(--font);fill:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Organigramme des pivots (maquette)</h1>
+  <p class="lede">De gauche à droite, des causes vers les conséquences. Chaque carte est un événement et sa probabilité ; un clic ouvre ce qui pèse dessus et les jalons à surveiller.</p>
+  <div class="legende">
+    <span><i class="pastille" style="background:var(--t-budget)"></i>budget et gouvernement</span>
+    <span><i class="pastille" style="background:var(--t-candidatures)"></i>justice et candidatures</span>
+    <span><i class="pastille" style="background:var(--t-election)"></i>présidentielle</span>
+    <span><i class="pastille" style="background:var(--t-apres)"></i>après l'élection</span>
+    <span><i class="pastille" style="background:var(--t-dette)"></i>dette et marchés</span>
+    <span><svg width="34" height="10"><line x1="1" y1="5" x2="33" y2="5" stroke="var(--accent)" stroke-width="2.6"/></svg>lien fort : la cause change la conséquence d'au moins 10 points</span>
+    <span><svg width="34" height="10"><line x1="1" y1="5" x2="33" y2="5" stroke="var(--line-strong)" stroke-width="1.4"/></svg>lien faible</span><span><svg width="34" height="10"><line x1="1" y1="5" x2="33" y2="5" stroke="var(--line-strong)" stroke-width="1.4" stroke-dasharray="5 4"/></svg>lien d'une variable suivie chaque mois</span><span><i class="pastille" style="background:var(--t-variable)"></i>variable suivie (mobilisation, popularité, taux, sondages)</span><button class="hors" id="hors"></button>
+    
+  </div>
+  <div class="scroll"><div class="cadre" id="cadre"><div class="org" id="org"></div></div></div>
+  <dialog id="dlg"><button class="fermer" id="x" aria-label="Fermer">×</button><div id="dc"></div></dialog>
+</div>
+<script>__ELK__</script>
+<script>
+const G=__DATA__;
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pc=x=>x==null?"–":(x>0&&x<1?"< 1":Math.round(x))+" %";
+const TEINTES=[1,.6,.38,.24,.15,.1];
+const org=document.getElementById("org");
+function ligneCas(c,ref){return `<div class="cas"><span>${esc(c.si)}</span><div class="barre"><i style="width:${c.p}%"></i>${ref!=null?`<em style="left:${ref}%"></em>`:""}</div><b>${pc(c.p)}</b></div>`}
+function corps(n){const ref=n.p;
+  const effs=n.effets.slice().sort((x,y)=>y.ecart-x.ecart),e0=effs[0];
+  const FIA={bon:"bon : les évaluateurs donnaient des valeurs proches",moyen:"moyen : les évaluateurs divergeaient sensiblement",faible:"faible : les évaluateurs donnaient des valeurs très différentes"};
+  let dec="";
+  if(!e0)dec=`<p>Aucune cause dans le réseau : la probabilité est fixée directement par les évaluateurs.</p>`;
+  else if(n.p!=null){let tot=0;const rows=e0.cas.map(c=>{const ct=c.pr*c.pv/100;tot+=ct;return `<tr><td>${esc(c.si)}</td><td class="nb">${pc(c.pr)}</td><td class="nb"><span class="mb"><i style="width:${c.pv}%"></i></span>${pc(c.pv)}</td><td class="nb">${Math.round(ct)} pts</td></tr>`}).join("");
+    const reste=100-e0.couvert;
+    dec=`<table class="dec"><thead><tr><th>Cas : ${esc(e0.facteur)}</th><th>Proba. du cas</th><th>« ${esc(n.court)} » dans ce cas</th><th>Contribution</th></tr></thead><tbody>${rows}${reste>=1?`<tr class="muted"><td>Autres cas, trop rares pour être chiffrés</td><td class="nb">${pc(reste)}</td><td></td><td class="nb">${Math.round(n.p-tot)} pts</td></tr>`:""}<tr class="tot"><td colspan="3">Total : probabilité de « ${esc(n.court)} »</td><td class="nb">${pc(n.p)}</td></tr></tbody></table>`}
+  else{const rows=e0.cas.map(c=>`<tr><td>${esc(c.si)}</td><td class="nb">${pc(c.pr)}</td>${c.dist.map(v=>`<td class="nb">${pc(v)}</td>`).join("")}</tr>`).join("");
+    dec=`<table class="dec"><thead><tr><th>Cas : ${esc(e0.facteur)}</th><th>Proba. du cas</th>${n.top.map(l=>`<th>${esc(l)}</th>`).join("")}</tr></thead><tbody>${rows}<tr class="tot"><td>Ensemble</td><td class="nb">100 %</td>${n.issues.slice(0,3).map(([l,p])=>`<td class="nb">${pc(p)}</td>`).join("")}</tr></tbody></table>`}
+  const autres=effs.slice(1).map(e=>{const vs=e.cas.map(c=>c.p),lo=Math.min(...vs),hi=Math.max(...vs);const cmin=e.cas.find(c=>c.p===lo),cmax=e.cas.find(c=>c.p===hi);
+    return `<li><b>${esc(e.facteur)}</b>${e.cible?` (sur « ${esc(e.cible)} »)`:""} : ${hi-lo<3?"effet négligeable":`de ${pc(lo)} (${esc(cmin.si.replace(/^Si /,"si "))}) à ${pc(hi)} (${esc(cmax.si.replace(/^Si /,"si "))})`}</li>`}).join("");
+  const ctx=n.ctx.length?`<li>Pris en compte sans chiffrage ici : ${esc(n.ctx.join(", "))}.</li>`:"";
+  const js=n.jalons.length?`<div class="sec js"><div class="h">Jalons à surveiller</div><ul>${n.jalons.map(j=>{
+    const opts=j.options?`<div class="opt"><div class="oh"><span>s'il survient</span><span>aujourd'hui</span><span>après</span><span></span></div>${j.options.map(([l,a,b])=>{const d=b-a;return `<div class="or"><span>${esc(l)}</span><span>${pc(a)}</span><span class="b2"><i style="width:${b}%"></i><b>${pc(b)}</b></span><span class="dd ${d>0?"up":d<0?"down":""}">${d>0?"+":d<0?"−":""}${d?Math.abs(d)+" pts":"="}</span></div>`}).join("")}</div>`:"";
+    const cons=j.consequences&&j.consequences.length?`<div class="opt"><div class="oh"><span>et donc, en aval</span><span>aujourd'hui</span><span>après</span><span></span></div>${j.consequences.map(([l,a,b])=>{const d=b-a;return `<div class="or"><span>${esc(l)}</span><span>${pc(a)}</span><span class="b2"><i style="width:${b}%"></i><b>${pc(b)}</b></span><span class="dd up">${d>0?"+":"−"}${Math.abs(d)} pts</span></div>`}).join("")}</div>`:"";
+    const eq=j.etat_reseau?`<p class="eq">Ce fait équivaut à « ${esc(j.etat_reseau)} » dans le réseau : sa probabilité et ses effets sont ceux du réseau.</p>`:"";
+    return `<li><i class="pt ${j.niveau===2?"n2":""} ${esc(j.statut)}"></i><div><div class="jt"><b>${esc(j.lib)}</b><span class="pills">${j.pobs!=null?`<span class="pill">probable à ${pc(j.pobs)}</span>`:""}</span></div><p class="quand2">${esc(j.quand)}</p>${eq}${opts}${cons}<p class="obs">${esc(j.observable)}</p></div></li>`}).join("")}</ul></div>`:"";
+  return `<div class="sec"><div class="h">D'où vient ce chiffre</div>${dec}${autres||ctx?`<div class="h" style="margin-top:12px">Autres facteurs</div><ul class="af">${autres}${ctx}</ul>`:""}<p class="fia fia-${n.fiabilite.niveau}">Fiabilité des paramètres : ${FIA[n.fiabilite.niveau]}.</p></div>${js}`}
+function tete(n){return n.p!=null?`<div class="gros"><b>${pc(n.p)}</b><div class="barre"><i style="width:${n.p}%"></i></div></div>`:
+    `<div class="iss">${n.issues.slice(0,3).map(([l,p])=>`<span>${esc(l)}</span><div class="barre"><i style="width:${p}%"></i></div><b>${pc(p)}</b>`).join("")}</div>${(n.reste+n.issues.slice(3).reduce((s,x)=>s+x[1],0))>=1?`<div class="reste">autres : ${pc(n.reste+n.issues.slice(3).reduce((s,x)=>s+x[1],0))}</div>`:""}`}
+const TV=[.28,.6,1];
+function spark(n,w,h,axes){const W=w,H=h,k=n.dist.length,bw=W/k;let s=`<svg class="spark" width="${W}" height="${H+(axes?16:0)}" viewBox="0 0 ${W} ${H+(axes?16:0)}">`;
+  n.dist.forEach((d,m)=>{let y=0;d.forEach((v,e)=>{const hh=H*v/100;s+=`<rect x="${m*bw+.5}" y="${y}" width="${bw-1}" height="${hh}" fill="var(--t-variable)" opacity="${TV[e]}"><title>${esc(n.mois[m])} : ${esc(n.etats[e])} ${v} %</title></rect>`;y+=hh})});
+  if(axes)[0,3,6,9,12,15,18,21].forEach(m=>{const [a,mm]=n.mois[m].split("-");s+=`<text x="${m*bw}" y="${H+12}" font-size="10" fill="var(--muted)">${["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."][+mm-1]}${mm==="01"||m===0?" "+a.slice(2):""}</text>`});
+  return s+"</svg>"}
+function legendeEtats(n){return `<div class="le">${n.etats.map((e,i)=>`<span><i style="opacity:${TV[i]}"></i>${esc(e)}</span>`).join("")}</div>`}
+function htmlVariable(n){const o=n.observe;
+  return `<div class="n pv va" id="${n.id}" style="--th:var(--t-variable)" tabindex="0" role="button" aria-label="${esc(n.titre)} : détail"><div class="c"><div class="quand">variable suivie chaque mois</div><div class="titre">${esc(n.titre)}</div>
+  <div class="obs1">${o?`observé : <b>${esc(o[1])}</b> (${esc(o[0])})`:"non observé"}</div>${spark(n,236,30,false)}${legendeEtats(n)}
+  <div class="pied">${n.questions.length?`${n.questions.length} question${n.questions.length>1?"s":""}`:""}${n.questions.length&&n.jalons.length?" · ":""}${n.jalons.length?`${n.jalons.length} jalon${n.jalons.length>1?"s":""}`:""}<span>détail ›</span></div></div></div>`}
+function corpsVariable(n){const qs=n.questions.length?`<div class="sec"><div class="h">Questions notées qui en dépendent</div>${n.questions.map(q=>`<div class="qv"><span>${esc(q.texte)}</span><span class="pills"><span class="pill">réseau ${pc(q.reseau)}</span><span class="pill">ensemble ${pc(q.ensemble)}</span></span></div>`).join("")}</div>`:"";
+  const rel=`<p>Agit sur : ${esc((n.agit_sur||[]).join(", ")||"aucun pivot directement")}.</p><p>Évolue avec : ${esc((n.depend_de||[]).join(", ")||"rien dans le réseau")} (effet du mois précédent).</p>`;
+  return `<div class="sec"><div class="h">Liens</div>${rel}</div><div class="sec"><div class="h">Projection mois par mois</div>${spark(n,560,60,true)}${legendeEtats(n)}${n.definition?`<p class="note">${esc(n.definition)}</p>`:""}</div>${qs}${corps(n)}`}
+function htmlPivot(n){if(n.variable)return htmlVariable(n);const nc=n.effets.length+(n.ctx.length?1:0),nj=n.jalons.length;
+  return `<div class="n pv" id="${n.id}" style="--th:var(--t-${n.theme})" tabindex="0" role="button" aria-label="${esc(n.titre)} : détail"><div class="c"><div class="quand">${esc(n.quand)}</div><div class="titre">${esc(n.titre)}</div>${tete(n)}
+  <div class="pied">${nc?`${nc} facteur${nc>1?"s":""}`:""}${nc&&nj?" · ":""}${nj?`${nj} jalon${nj>1?"s":""}`:""}<span>détail ›</span></div></div></div>`}
+org.innerHTML=G.noeuds.map(htmlPivot).join("");
+const taille=id=>{const e=document.getElementById(id);return {width:e.offsetWidth,height:e.offsetHeight}};
+const graph={id:"racine",layoutOptions:{"elk.algorithm":"layered","elk.direction":"RIGHT","elk.edgeRouting":"ORTHOGONAL",
+  "elk.spacing.nodeNode":"18","elk.layered.spacing.nodeNodeBetweenLayers":"78","elk.separateConnectedComponents":"false","elk.aspectRatio":"3","elk.spacing.edgeNode":"28","elk.spacing.edgeEdge":"14",
+  "elk.layered.spacing.edgeNodeBetweenLayers":"26","elk.layered.spacing.edgeEdgeBetweenLayers":"12","elk.layered.nodePlacement.strategy":"NETWORK_SIMPLEX","elk.layered.layering.strategy":"LONGEST_PATH_SOURCE",
+  "elk.layered.considerModelOrder.strategy":"NODES_AND_EDGES","elk.layered.thoroughness":"30","elk.layered.mergeEdges":"false"},
+  children:G.noeuds.map(n=>({id:n.id,...taille(n.id)})),
+  edges:G.liens.map((l,k)=>({id:"e"+k,sources:[l.de],targets:[l.vers],labels:[]}))};
+new ELK().layout(graph).then(r=>{
+  r.children.forEach(c=>{const e=document.getElementById(c.id);e.style.left=c.x+"px";e.style.top=c.y+"px"});
+  org.style.width=r.width+"px";org.style.height=r.height+"px";
+  const ajuster=()=>{const cadre=document.getElementById("cadre"),dispo=innerHeight-cadre.getBoundingClientRect().top-window.scrollY-28,h=r.height+32,k=Math.min(1,Math.max(.6,dispo/h));
+    org.style.transform=`scale(${k})`;cadre.style.width=(r.width+32)*k+"px";cadre.style.height=h*k+"px"};ajuster();addEventListener("resize",ajuster);
+  let s=`<svg width="${r.width}" height="${r.height}"><defs>${["f","fa"].map((m,k)=>`<marker id="${m}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="${k?"var(--accent)":"var(--line-strong)"}"/></marker>`).join("")}</defs>`;
+  r.edges.forEach((e,k)=>{const l=G.liens[k],fort=l.fort;(e.sections||[]).forEach(sec=>{const pts=[sec.startPoint,...(sec.bendPoints||[]),sec.endPoint];
+    s+=`<path d="M${pts.map(p=>p.x+" "+p.y).join(" L")}" fill="none" stroke="${fort?"var(--accent)":"var(--line-strong)"}" stroke-width="${fort?2.4:1.4}" stroke-linejoin="round" ${l.variable?'stroke-dasharray="5 4" opacity=".75"':""} marker-end="url(#${fort?"fa":"f"})"/>`});
+    (e.labels||[]).forEach(lb=>{s+=`<text class="inf" x="${lb.x+3}" y="${lb.y+11}" paint-order="stroke" stroke="var(--bg)" stroke-width="4">${esc(lb.text)}</text>`})});
+  org.insertAdjacentHTML("afterbegin",s+"</svg>");
+  const dlg=document.getElementById("dlg");document.getElementById("x").onclick=()=>dlg.close();dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+  const ouvrir=id=>{const n=G.noeuds.find(x=>x.id===id);document.getElementById("dc").innerHTML=n.variable?`<div class="pv dl" style="--th:var(--t-variable)"><div class="c"><div class="quand">variable suivie chaque mois</div><div class="titre">${esc(n.titre)}</div><div class="obs1">${n.observe?`observé : <b>${esc(n.observe[1])}</b> (${esc(n.observe[0])})`:""}</div></div>${corpsVariable(n)}</div>`:`<div class="pv dl" style="--th:var(--t-${n.theme})"><div class="c"><div class="quand">${esc(n.quand)}</div><div class="titre">${esc(n.titre)}</div>${tete(n)}</div>${corps(n)}</div>`;dlg.showModal();dlg.scrollTop=0};
+  const bh=document.getElementById("hors");bh.textContent=`${G.hors.length} questions suivies hors réseau ›`;bh.onclick=()=>{document.getElementById("dc").innerHTML=`<div class="pv dl" style="--th:var(--muted)"><div class="c"><div class="titre">Questions suivies hors réseau</div><p class="note">Elles sont prévues par l'ensemble de prévisionnistes et notées, mais aucun pivot ni aucune variable du réseau ne les porte encore. Une passe peut en rattacher.</p></div><div class="sec"><ul class="hl">${G.hors.map(h=>`<li><b>${esc(h.id)}</b> ${esc(h.nom)}</li>`).join("")}</ul></div></div>`;dlg.showModal()};
+  document.querySelectorAll(".n.pv").forEach(e=>{e.onclick=()=>ouvrir(e.id);e.onkeydown=k=>{if(k.key==="Enter"||k.key===" "){k.preventDefault();ouvrir(e.id)}}});document.body.dataset.pret="1"});
+</script>
+</body>
+</html>
