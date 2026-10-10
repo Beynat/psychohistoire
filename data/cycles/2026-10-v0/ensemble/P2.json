@@ -1,0 +1,915 @@
+{
+ "previsionniste": "P2",
+ "modele": "claude-sonnet-5-5",
+ "gel": "2026-10-10",
+ "recherches": 22,
+ "adresses": [
+  "https://lcp.fr/actualites/lycees-bloques-le-projet-de-loi-casseurs-payeurs-examine-fin-octobre-au-senat-442963",
+  "https://fr.euronews.com/2026/10/06/mobilisation-lyceenne-acte-iii-891-lycees-perturbes-annonce-le-ministere-de-linterieur",
+  "https://www.kelwatt.fr/actu/baisse-petrole-prix-carburants-pompe-octobre-2026",
+  "https://www.parlons-politique.fr/actualite-nationale/budget-2027-le-vote-du-rn-peut-il-precipiter-une-nouvelle-crise-politique-a-lassemblee-nationale_27225/",
+  "https://www.noovo.info/nouvelles/international/article/le-kremlin-nexclut-pas-une-reprise-des-negociations-trilaterales-avec-lukraine-en-octobre-2026/",
+  "https://www.connaissancedesenergies.org/afp/gaz-lue-capable-de-repondre-a-la-demande-hivernale-en-depit-de-stocks-historiquement-bas-261008",
+  "https://lcp.fr/actualites/candidature-a-la-presidentielle-pas-de-choix-definitif-des-ecologistes-avant-la-mi",
+  "https://www.leclubdesjuristes.com/en-bref/condamnation-de-marine-le-pen-la-cour-de-cassation-fera-tout-pour-statuer-avant-le-scrutin-presidentiel-affirme-remy-heitz-16893/",
+  "https://www.publicsenat.fr/actualites/politique/budget-2027-sebastien-lecornu-propose-un-effort-de-54-milliards-deuros",
+  "https://www.connaissancedesenergies.org/afp/linflation-grimpe-a-3-en-france-au-plus-haut-depuis-debut-2024-260930",
+  "https://www.elyseescope.com/questions/sondages-presidentielle-2027-mai-2026-bardella-philippe"
+ ],
+ "previsions": {
+  "Q001": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Procédure accélérée, Sénat le 27 octobre, Assemblée avant fin février, puis CMP et possible saisine du Conseil constitutionnel ; publication avant fin mars plausible mais calendrier budgétaire chargé."
+  },
+  "Q002": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Fenêtre octobre 2027-septembre 2028 : un cessez-le-feu général n'est pas exclu après un an de médiation américaine, mais les positions territoriales restent inconciliables."
+  },
+  "Q003": {
+   "probabilites": {
+    "oui": 11,
+    "non": 89
+   },
+   "motif": "Confiance des ménages à 86 en septembre, pressions inflationnistes et énergétiques ; 88 serait une nette amélioration."
+  },
+  "Q004": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Brent spot 125 le 6 octobre (EIA) mais baril à terme autour de 101 et libération de stocks du G7 : forte volatilité, léger repli attendu sur le mois."
+  },
+  "Q005": {
+   "probabilites": {
+    "oui": 18,
+    "non": 82
+   },
+   "motif": "Moody's (perspective négative) a probablement une revue en octobre ; spread très élargi mais agences en général attentistes ; Fitch a déjà revu fin août."
+  },
+  "Q006": {
+   "probabilites": {
+    "oui": 7,
+    "non": 93
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q007": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q008": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q009": {
+   "probabilites": {
+    "oui": 17,
+    "non": 83
+   },
+   "motif": "Chômage à 8,2 % en août (7,8 % un an plus tôt), tendance haussière lente ; 8,4 % demanderait deux hausses de plus."
+  },
+  "Q010": {
+   "probabilites": {
+    "oui": 4,
+    "non": 96
+   },
+   "motif": "Lecornu limite les aides à du ciblé faute de marges budgétaires ; une baisse générale de l'accise ou une remise universelle est improbable à court terme."
+  },
+  "Q011": {
+   "probabilites": {
+    "4,5 % du PIB ou moins": 17,
+    "plus de 4,5 % du PIB": 38,
+    "pas de loi de finances publiée au 31 janvier 2028": 45
+   },
+   "motif": "La LF 2026 n'a été publiée qu'en février ; un nouveau président sans majorité retarderait probablement la LF 2028 ; déficit visé supérieur à 4,5 % probable si publiée."
+  },
+  "Q012": {
+   "probabilites": {
+    "oui": 64,
+    "non": 36
+   },
+   "motif": "Énergie à 20,9 % en septembre ; les prix à la pompe reculent peu ; effet de base défavorable à une baisse rapide."
+  },
+  "Q013": {
+   "probabilites": {
+    "candidature autonome": 58,
+    "soutien à un autre candidat": 33,
+    "autre ou vote non tenu": 9
+   },
+   "motif": "Vote des adhérents du 10 au 13 décembre avec deux options (candidature Tondelier ou ralliement) ; la candidate officielle reste Tondelier ; risque de report faible."
+  },
+  "Q014": {
+   "probabilites": {
+    "oui": 12,
+    "non": 88
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q015": {
+   "probabilites": {
+    "oui": 70,
+    "non": 30
+   },
+   "motif": "Déficit proche de 5,5 %, choc énergétique, spreads élevés, perspective négative chez Moody's : une baisse d'ici fin 2028 est plus probable que non."
+  },
+  "Q016": {
+   "probabilites": {
+    "oui": 33,
+    "non": 67
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q017": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q018": {
+   "probabilites": {
+    "oui": 75,
+    "non": 25
+   },
+   "motif": "Taux de base d'environ un à deux attentats meurtriers par an, contexte de guerre au Moyen-Orient."
+  },
+  "Q019": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q020": {
+   "probabilites": {
+    "oui": 34,
+    "non": 66
+   },
+   "motif": "Écart journalier 126,5 pb (TEC-Bund) soit environ 136 pb en série BCE ; moyenne d'octobre diluée par les premiers jours plus bas ; seuil proche de la valeur récente."
+  },
+  "Q021": {
+   "probabilites": {
+    "oui": 37,
+    "non": 63
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q022": {
+   "probabilites": {
+    "oui": 65,
+    "non": 35
+   },
+   "motif": "Inflation IPCH à 3,4 % en septembre (3,0 % IPC) ; énergie toujours très haute ; repli léger possible en octobre."
+  },
+  "Q023": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "La suspension chinoise des contrôles d'octobre 2025 court jusqu'au 10 novembre 2026, après la fenêtre."
+  },
+  "Q024": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q025": {
+   "probabilites": {
+    "3 ou moins": 22,
+    "4": 33,
+    "5": 28,
+    "6 ou plus": 17
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q026": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q027": {
+   "probabilites": {
+    "oui": 84,
+    "non": 16
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q028": {
+   "probabilites": {
+    "avis rendu, compatible": 60,
+    "avis rendu, incompatible": 28,
+    "pas d'avis": 12
+   },
+   "motif": "Avis demandé par le Parlement européen début 2026 ; durée habituelle de 16 à 24 mois, donc avis plausible d'ici fin 2028 ; compatibilité probable avec risque d'incompatibilité partielle."
+  },
+  "Q029": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q030": {
+   "probabilites": {
+    "oui": 5,
+    "non": 95
+   },
+   "motif": "Le ministère de l'Intérieur a compté environ 256 000 manifestants le 6 octobre ; dépasser 500 000 d'ici fin octobre est très improbable."
+  },
+  "Q031": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q032": {
+   "probabilites": {
+    "oui": 6,
+    "non": 94
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q033": {
+   "probabilites": {
+    "les deux": 28,
+    "Philippe seul": 58,
+    "Attal seul": 4,
+    "aucun des deux": 10
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q034": {
+   "probabilites": {
+    "oui": 85,
+    "non": 15
+   },
+   "motif": "Démocrates en tête du vote générique (environ +8 en mai) ; seuil de 218 sièges, avantage net pour eux."
+  },
+  "Q035": {
+   "probabilites": {
+    "oui": 7,
+    "non": 93
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q036": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q037": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q038": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q039": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Seuil de 326 supposé calé sur le chiffre 2025 ; climat tendu mais premier document publié possiblement partiel."
+  },
+  "Q040": {
+   "probabilites": {
+    "oui": 26,
+    "non": 74
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q041": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Stocks UE à 72 % au 1er octobre (83 % un an plus tôt) ; ENTSOG évoque des niveaux nettement sous 30 % fin mars si le GNL manque ; 35 % au 1er février est un seuil proche de la médiane."
+  },
+  "Q042": {
+   "probabilites": {
+    "oui": 70,
+    "non": 30
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q043": {
+   "probabilites": {
+    "oui": 12,
+    "non": 88
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q044": {
+   "probabilites": {
+    "oui": 29,
+    "non": 71
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q045": {
+   "probabilites": {
+    "oui": 56,
+    "non": 44
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q046": {
+   "probabilites": {
+    "oui": 78,
+    "non": 22
+   },
+   "motif": "Lecornu exclut 49.3 et ordonnances ; sans majorité et avec un RN annonçant voter contre, publication avant le 31 décembre peu probable (la LF 2026 est sortie en février)."
+  },
+  "Q047": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q048": {
+   "probabilites": {
+    "oui": 1.5,
+    "non": 98.5
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q049": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q050": {
+   "probabilites": {
+    "oui": 27,
+    "non": 73
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q051": {
+   "probabilites": {
+    "oui": 26,
+    "non": 74
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q052": {
+   "probabilites": {
+    "oui": 46,
+    "non": 54
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q053": {
+   "probabilites": {
+    "oui": 28,
+    "non": 72
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q054": {
+   "probabilites": {
+    "oui": 58,
+    "non": 42
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q055": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q056": {
+   "probabilites": {
+    "oui": 6,
+    "non": 94
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q057": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q058": {
+   "probabilites": {
+    "oui": 1.5,
+    "non": 98.5
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q059": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q060": {
+   "probabilites": {
+    "oui": 42,
+    "non": 58
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q061": {
+   "probabilites": {
+    "oui": 16,
+    "non": 84
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q062": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q063": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q064": {
+   "probabilites": {
+    "oui": 5,
+    "non": 95
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q065": {
+   "probabilites": {
+    "oui": 43,
+    "non": 57
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q066": {
+   "probabilites": {
+    "rejet ou non-admission": 50,
+    "cassation totale ou partielle": 22,
+    "désistement": 2,
+    "pas d'arrêt au 31 mars 2027": 26
+   },
+   "motif": "La Cour de cassation dit pouvoir juger au plus tard début avril 2027 ; risque que l'arrêt tombe après le 31 mars ; rejet plus probable qu'une cassation."
+  },
+  "Q067": {
+   "probabilites": {
+    "oui": 33,
+    "non": 67
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q068": {
+   "probabilites": {
+    "oui": 75,
+    "non": 25
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q069": {
+   "probabilites": {
+    "oui": 7,
+    "non": 93
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q070": {
+   "probabilites": {
+    "oui": 28,
+    "non": 72
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q071": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q072": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q073": {
+   "probabilites": {
+    "oui": 82,
+    "non": 18
+   },
+   "motif": "Acte III du 6 octobre : 891 établissements perturbés ; nouvel appel à manifester le 13 octobre ; seuil de 300 largement dépassé tant que la dynamique tient avant les vacances."
+  },
+  "Q074": {
+   "probabilites": {
+    "oui": 12,
+    "non": 88
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q075": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Pourvoi en cassation en cours, arrêt attendu au plus tard début avril 2027 ; sa candidature dépend de la décision relative à l'inéligibilité."
+  },
+  "Q076": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q077": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q078": {
+   "probabilites": {
+    "oui": 14,
+    "non": 86
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q079": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q080": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q081": {
+   "probabilites": {
+    "moins de 70 %": 10,
+    "70 à moins de 75 %": 40,
+    "75 à moins de 80 %": 40,
+    "80 % ou plus": 10
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q082": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q083": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q084": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q085": {
+   "probabilites": {
+    "oui": 82,
+    "non": 18
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q086": {
+   "probabilites": {
+    "oui": 42,
+    "non": 58
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q087": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q088": {
+   "probabilites": {
+    "oui": 43,
+    "non": 57
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q089": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q090": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q091": {
+   "probabilites": {
+    "oui": 33,
+    "non": 67
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q092": {
+   "probabilites": {
+    "Marine Le Pen": 12,
+    "Jordan Bardella": 33,
+    "Édouard Philippe": 31,
+    "Gabriel Attal": 2,
+    "Jean-Luc Mélenchon": 2,
+    "David Lisnard": 0.5,
+    "Bruno Retailleau": 2.5,
+    "Raphaël Glucksmann": 5,
+    "François Hollande": 1.5,
+    "autre": 10.5
+   },
+   "motif": "Bardella en tête des sondages (34-38 %), Philippe second ; Le Pen ne peut concourir qu'en cas d'issue favorable en cassation."
+  },
+  "Q093": {
+   "probabilites": {
+    "oui": 72,
+    "non": 28
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q094": {
+   "probabilites": {
+    "oui": 12,
+    "non": 88
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q095": {
+   "probabilites": {
+    "oui": 70,
+    "non": 30
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q096": {
+   "probabilites": {
+    "oui": 72,
+    "non": 28
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q097": {
+   "probabilites": {
+    "oui": 34,
+    "non": 66
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q098": {
+   "probabilites": {
+    "oui": 38,
+    "non": 62
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q099": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q100": {
+   "probabilites": {
+    "oui": 31,
+    "non": 69
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q101": {
+   "probabilites": {
+    "oui": 11,
+    "non": 89
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q102": {
+   "probabilites": {
+    "oui": 14,
+    "non": 86
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q103": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q104": {
+   "probabilites": {
+    "oui": 6,
+    "non": 94
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q105": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q106": {
+   "probabilites": {
+    "oui": 4,
+    "non": 96
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q107": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q108": {
+   "probabilites": {
+    "oui": 1.5,
+    "non": 98.5
+   },
+   "motif": "Reprise de pourparlers trilatéraux évoquée mais aucun cadre commun ; cessez-le-feu général en trois semaines improbable."
+  },
+  "Q109": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q110": {
+   "probabilites": {
+    "oui": 17,
+    "non": 83
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q111": {
+   "probabilites": {
+    "oui": 88,
+    "non": 12
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q112": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q113": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q114": {
+   "probabilites": {
+    "oui": 7,
+    "non": 93
+   },
+   "motif": "Négociations sans cadre commun, blocage sur les territoires ; probabilité modérée d'un cessez-le-feu général d'ici septembre 2027."
+  },
+  "Q115": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q116": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q117": {
+   "probabilites": {
+    "oui": 4,
+    "non": 96
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q118": {
+   "probabilites": {
+    "oui": 48,
+    "non": 52
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q119": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Dépend du dépôt du PLF 2028 avant le 31 octobre 2027 et de la loi de programmation militaire face aux contraintes budgétaires."
+  },
+  "Q120": {
+   "probabilites": {
+    "oui": 0.5,
+    "non": 99.5
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q121": {
+   "probabilites": {
+    "oui": 6,
+    "non": 94
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q122": {
+   "probabilites": {
+    "oui": 0.5,
+    "non": 99.5
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q123": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q124": {
+   "probabilites": {
+    "oui": 0.5,
+    "non": 99.5
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  },
+  "Q125": {
+   "probabilites": {
+    "oui": 60,
+    "non": 40
+   },
+   "motif": "Taux de base et situation actuelle du dossier de données, sans information décisive ; estimation prudente."
+  }
+ }
+}
