@@ -112,6 +112,8 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
     for qid, q in toutes_les_questions(cycles_du_registre(reg)).items():
         if qid in deja or (qid not in emises and not (q.get("avant_emission") and qid in props)):
             continue
+        if q["type"] == "conjointe":
+            continue   # résolue en seconde passe, à partir de ses composantes
         if q["type"] == "variable":
             d = q["details"]
             # Fait foi la première valeur collectée de la période, lue dans le journal en ajout seul
@@ -167,6 +169,24 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
             # Un seul avis, ou deux avis divergents sans troisième, 60 jours après l'échéance (relecture 12, S5).
             nouvelles.append({"resolution": True, "question": qid, "issue": None, "source": "—",
                               "methode": "annulée : pas de résolution concordante 60 jours après l'échéance"})
+    # Questions conjointes (feuille de route v0, bloc 5) : « non » dès qu'une composante est « non » (date du fait :
+    # la plus précoce) ; « oui » quand les deux sont « oui » (date du fait : la plus tardive) ; annulée si une
+    # composante l'est.
+    eff = {**resolutions_effectives(sfx), **{r["question"]: r for r in nouvelles}}
+    for qid, q in toutes_les_questions(cycles_du_registre(reg)).items():
+        if q["type"] != "conjointe" or qid in deja or qid not in emises:
+            continue
+        rs = [eff.get(c) for c in q["details"]["composantes"]]
+        non = [r for r in rs if r and r.get("issue") == "non"]
+        if non:
+            nouvelles.append({"resolution": True, "question": qid, "issue": "non", "date_fait": min(r["date_fait"] for r in non),
+                              "source": "composantes", "methode": "conjointe : une composante résolue « non »"})
+        elif all(r and r.get("issue") == "oui" for r in rs):
+            nouvelles.append({"resolution": True, "question": qid, "issue": "oui", "date_fait": max(r["date_fait"] for r in rs),
+                              "source": "composantes", "methode": "conjointe : deux composantes résolues « oui »"})
+        elif any(r and r.get("issue") is None for r in rs):
+            nouvelles.append({"resolution": True, "question": qid, "issue": None, "source": "—",
+                              "methode": "annulée : une composante annulée"})
     if nouvelles:
         ajouter(f"registre/resolutions{sfx}.jsonl", nouvelles)
     return nouvelles

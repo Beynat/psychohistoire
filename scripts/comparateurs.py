@@ -73,13 +73,18 @@ def previsions(cycle):
     cotes = (lire_gel("cotes.json", "data/cotes.json") or {"marches": []})["marches"]
     # Taux de base gelés avec le cycle (relecture 10, S5) ; à défaut (cycle d'essai sans gel), fichier courant.
     tb = lire_gel("taux_base.json", "modele/taux_base.json")["questions"]
-    lignes = []
+    lignes, conj, tbq = [], [], {}
     for q in banque["questions"]:
         sortie = []
         if q["type"] == "variable":
             d = q["details"]
             p = proba_au_dessus(d["derniere_valeur"], d["seuil"], variations_question(lambda n: lire_serie(cycle, n), d))
             sortie.append(("persistance", {"oui": p, "non": 1 - p}))
+        elif q["type"] == "conjointe":
+            # Taux de base d'une conjointe : produit des taux de base de ses composantes (indépendance), calculé
+            # après la boucle, une fois ceux-ci connus.
+            conj.append(q)
+            continue
         else:
             e = evts[q["details"]["evenement"]]
             u = ({k: 100 / len(e["issues"]) for k in e["issues"]} if e.get("taux_base_mode") == "uniforme"
@@ -99,6 +104,17 @@ def previsions(cycle):
                 p = 1 - (1 - p_f) ** min(ratio, 1)
                 sortie.append(("taux de base", {"oui": p, "non": 1 - p}))
         sortie.append(("50 %", {k: 1 / len(q["issues"]) for k in q["issues"]}))
+        tbq[q["id"]] = dict(sortie).get("taux de base")
+        for auteur, dist in sortie:
+            lignes.append({"question": q["id"], "probabilites": normaliser(dist), "piste": "protocole", "phase": 1,
+                           "auteur": f"comparateur : {auteur}", "origine": f"cycle {cycle}",
+                           "donnees": f"gel du cycle {cycle}"})
+    for q in conj:
+        pa, pb = (tbq.get(x) for x in q["details"]["composantes"])
+        sortie = [("50 %", {"oui": 0.5, "non": 0.5})]
+        if pa and pb:
+            p = pa["oui"] * pb["oui"]
+            sortie.insert(0, ("taux de base", {"oui": p, "non": 1 - p}))
         for auteur, dist in sortie:
             lignes.append({"question": q["id"], "probabilites": normaliser(dist), "piste": "protocole", "phase": 1,
                            "auteur": f"comparateur : {auteur}", "origine": f"cycle {cycle}",

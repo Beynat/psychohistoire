@@ -1,6 +1,6 @@
 {
  "description": "Taux de base des questions d'événement : au moins deux classes de référence, fourchette, classe retenue (sections 7.3 et 8.4). Probabilités en %. « utilisee » est la valeur du comparateur, bornée entre 2 et 98 %.",
- "fusionne_le": "2026-10-10T10:03:17+02:00",
+ "fusionne_le": "2026-10-10T10:52:25+02:00",
  "questions": {
   "EV-01": {
    "id": "EV-01",
@@ -4616,6 +4616,282 @@
    "utilisee": {
     "oui": 21.0,
     "non": 79.0
+   }
+  },
+  "EV-50": {
+   "id": "EV-50",
+   "classes": [
+    {
+     "definition": "Premiers ministres depuis mai 2022 (Assemblée sans majorité absolue) : fins de fonctions effectives Borne (9 janv. 2024), Attal (5 sept. 2024), Barnier (13 déc. 2024), Bayrou (9 sept. 2025). La démission de Lecornu du 6 oct. 2025 suivie de sa reconduction le 10 oct. n'est pas comptée (règle « reconduction = non »). Exposition : du 20 mai 2022 au 1er sept. 2026.",
+     "periode": "mai 2022 - sept. 2026",
+     "k": 4,
+     "n": 51.4,
+     "unite": "mois-Premier ministre",
+     "frequence": 0.0778,
+     "probabilite_fenetre": 40.6,
+     "calcul": "λ = 4/51,4 = 0.0778 par mois ; fenêtre du 10/10/2026 au 02/05/2027 = 204 jours = 6.70 mois ; p = 1 − exp(−λT) = 40.6 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Liste des gouvernements de la Cinquième République (dates des décrets de fin de fonctions)",
+       "url": "https://fr.wikipedia.org/wiki/Liste_des_gouvernements_de_la_Cinqui%C3%A8me_R%C3%A9publique"
+      },
+      {
+       "titre": "Wikipédia, Liste des Premiers ministres de la Cinquième République",
+       "url": "https://fr.wikipedia.org/wiki/Liste_des_Premiers_ministres_de_la_Cinqui%C3%A8me_R%C3%A9publique"
+      }
+     ],
+     "incertitude": "n=4 événements, taux dominé par les censures de 2024 et la dissolution ; Lecornu a déjà survécu à une censure potentielle et à un budget, ce qui suggère un hasard moindre que la moyenne. Poisson supposé alors que les chutes se concentrent à l'automne (budget) ; la fenêtre contient la période budgétaire (nov.-déc.). Aucune information postérieure au 1er sept. 2026 n'est utilisée."
+    },
+    {
+     "definition": "Premiers ministres en poste en octobre précédant une élection présidentielle, Ve République (1964, 1968, 1973, 1980, 1987, 1994, 2001, 2006, 2011, 2016, 2021) : fin de fonctions (hors reconduction) entre octobre et début mai ? Oui : Valls (démission le 6 déc. 2016, pour la primaire). Non : Pompidou 1965, Couve de Murville 1969, Messmer 1974 (démission du 1er avril suivie de reconduction), Barre 1981, Chirac 1988 (démission après le 2nd tour), Balladur 1995, Jospin 2002 (démission le 6 mai, après la fenêtre), Villepin 2007, Fillon 2012, Castex 2022.",
+     "periode": "1964-2022",
+     "k": 1,
+     "n": 11,
+     "unite": "Premiers ministres en poste en octobre de pré-présidentielle",
+     "frequence": 0.0909,
+     "probabilite_fenetre": 9.1,
+     "calcul": "p = 1/11 = 9,1 % (fenêtre calée sur octobre-début mai, pas de conversion) ; Laplace (k+1)/(n+2) = 2/13 = 15,4 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Liste des Premiers ministres de la Cinquième République",
+       "url": "https://fr.wikipedia.org/wiki/Liste_des_Premiers_ministres_de_la_Cinqui%C3%A8me_R%C3%A9publique"
+      },
+      {
+       "titre": "Wikipédia, Liste des gouvernements de la Cinquième République",
+       "url": "https://fr.wikipedia.org/wiki/Liste_des_gouvernements_de_la_Cinqui%C3%A8me_R%C3%A9publique"
+      }
+     ],
+     "incertitude": "n=11, un seul oui, dû à une démission de candidat. Les majorités parlementaires étaient presque toutes absolues ou stables (sauf 1988 relatif, 1990 hors classe), donc la classe sous-estime fortement le régime sans majorité absolue de 2024-2026. Les dates de quelques gouvernements sont citées de mémoire."
+    }
+   ],
+   "fourchette": [
+    9.1,
+    40.6
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 22.0,
+    "motif": "Entre 9,1 % (calme habituel avant présidentielle) et 40,6 % (régime sans majorité). On retient la classe 0 fortement abaissée : le Premier ministre a passé l'épreuve du budget 2026, la proximité de la présidentielle d'avril 2027 pousse les groupes à éviter la censure et la dissolution, mais le budget 2027 en fin d'année, l'absence de majorité et un possible départ de candidature maintiennent un risque supérieur à la classe pré-présidentielle."
+   },
+   "issues": null,
+   "groupe": "ajouts de la banque v1.14 (10 octobre 2026)",
+   "utilisee": {
+    "oui": 22.0,
+    "non": 78.0
+   }
+  },
+  "EV-51": {
+   "id": "EV-51",
+   "classes": [
+    {
+     "definition": "Épisodes nationaux de troubles ou de mobilisation 2005, 2010, 2016, 2018 (gilets jaunes), 2023 (retraites), 2023 (émeutes), 2025 : au moins une journée ou nuit à 1 000 interpellations ou plus ? Oui : 2018 (8 déc. : environ 1 700 interpellations, dont environ 970 à Paris) et 2023 émeutes (nuit du 1er juillet : environ 1 300). Non : 2005 (maximum nocturne de l'ordre de 300-400, total d'environ 2 900 sur trois semaines), 2010, 2016, 2023 retraites (maximum environ 460 le 23 mars), 2025 (environ 675 le 10 sept.).",
+     "periode": "2005-2025",
+     "k": 2,
+     "n": 7,
+     "unite": "épisodes nationaux",
+     "frequence": 0.2857,
+     "probabilite_fenetre": 5.6,
+     "calcul": "Fréquence d'épisodes : 7 en 21 ans = 0,333 par an ; fenêtre du 2 nov. au 30 juin = 0.657 an ; P(au moins un épisode) = 1 − exp(−0,333×0.657) = 19.7 % ; × part des épisodes atteignant 1 000 (2/7 = 28,6 %) = 5.6 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Émeutes de 2005 dans les banlieues françaises",
+       "url": "https://fr.wikipedia.org/wiki/%C3%89meutes_de_2005_dans_les_banlieues_fran%C3%A7aises"
+      },
+      {
+       "titre": "Wikipédia, Mouvement des Gilets jaunes (acte IV du 8 déc. 2018)",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_des_Gilets_jaunes"
+      },
+      {
+       "titre": "Wikipédia, Émeutes de 2023 en France",
+       "url": "https://fr.wikipedia.org/wiki/%C3%89meutes_de_2023_en_France"
+      },
+      {
+       "titre": "Wikipédia, Mouvement social contre la réforme des retraites de 2023",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_social_contre_la_r%C3%A9forme_des_retraites_en_France_en_2023"
+      }
+     ],
+     "incertitude": "Le nombre d'épisodes dépend du périmètre retenu (la liste de la question en compte 7, d'autres épisodes plus petits existent : Nouvel An, 14 juillet, finale du PSG en 2025 à 559). Chiffres quotidiens cités de mémoire à quelques dizaines près ; 2005 et 2023 comptés en nuits, 2018 en journée. Le Nouvel An (31 déc. 2025 : environ 505 interpellations selon le ministère, environ 400 un an plus tôt) reste nettement sous 1 000."
+    },
+    {
+     "definition": "Fréquence par an des journées ou nuits à 1 000 interpellations ou plus selon le ministère, 2005-2025 : 2 jours en 21 ans (8 déc. 2018 ; 1er juill. 2023). Presque-atteintes : 30 juin 2023 (environ 875), 14 juill. 2023 (environ 520), 31 mai 2025 (559).",
+     "periode": "2005-2025",
+     "k": 2,
+     "n": 21,
+     "unite": "années",
+     "frequence": 0.0952,
+     "probabilite_fenetre": 6.1,
+     "calcul": "λ = 2/21 = 0.0952 par an ; fenêtre 0.657 an ; p = 1 − exp(−λT) = 6.1 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Mouvement des Gilets jaunes",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_des_Gilets_jaunes"
+      },
+      {
+       "titre": "Wikipédia, Émeutes de 2023 en France",
+       "url": "https://fr.wikipedia.org/wiki/%C3%89meutes_de_2023_en_France"
+      },
+      {
+       "titre": "Europe 1, « Nouvel An : un bilan en demi-teinte pour Laurent Nuñez » (2 janv. 2026 : environ 505 interpellations)",
+       "url": "https://www.europe1.fr/Police-Justice/nouvel-an-un-bilan-en-demi-teinte-pour-laurent-nunez-877190"
+      }
+     ],
+     "incertitude": "k=2 seulement ; événements rares et groupés sur des chocs (mort d'un jeune lors d'un contrôle, mouvement sans organisation). Hors fenêtre, les deux événements n'étaient pas prévisibles à 8 mois. Le critère inclut tout lien avec manifestations, blocages ou violences urbaines : un attentat ou une violence policière majeure déclencherait la classe émeutes."
+    }
+   ],
+   "fourchette": [
+    5.6,
+    6.1
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 6.0,
+    "motif": "Les deux classes concordent (5,6 % et 6,1 %). On retient 6 % : la campagne présidentielle (printemps 2027) et la période de mobilisations sociales éventuelles autour du budget augmentent peu le risque d'une nuit d'émeutes, et les policiers publient désormais les chiffres de garde à vue de façon plus systématique, ce qui joue légèrement à la hausse."
+   },
+   "issues": null,
+   "groupe": "ajouts de la banque v1.14 (10 octobre 2026)",
+   "utilisee": {
+    "oui": 6.0,
+    "non": 94.0
+   }
+  },
+  "EV-14b": {
+   "id": "EV-14b",
+   "classes": [
+    {
+     "definition": "Mobilisations agricoles nationales 2015 (été), janv.-févr. 2024, nov.-déc. 2024, déc. 2025-janv. 2026 : le ministère de l'Intérieur a-t-il chiffré une journée à au moins 100 actions ? Janv.-févr. 2024 : probablement oui (plusieurs journées autour de 100 actions ou plus recensées fin janvier) ; nov. 2024 (18-20 nov., FNSEA-JA) : probablement oui, de l'ordre d'une centaine ; déc. 2025 : pic documenté de 93 actions environ (19 déc.), 12 actions le 26 déc., 80 actions et plus selon la presse, donc juste sous le seuil ; 2015 : pas de décompte quotidien du ministère retrouvé, compté non.",
+     "periode": "2015-2026",
+     "k": 2,
+     "n": 4,
+     "unite": "mobilisations agricoles nationales",
+     "frequence": 0.5,
+     "probabilite_fenetre": 10.1,
+     "calcul": "P(mobilisation nationale dans la fenêtre) : λ = 4/11,7 = 0,342 par an, fenêtre 0,657 an, p = 20.1 % ; × k/n = 2/4 = 50 % (atteinte du seuil sachant une mobilisation) = 10.1 %",
+     "sources": [
+      {
+       "titre": "La Gazette de France, « Colère agricole : des barrages levés mais pour mieux revenir en janvier » (ministère de l'Intérieur : 93 actions, près de 4 000 personnes, puis 12 actions le 26 déc. 2025)",
+       "url": "https://www.lagazettefrance.fr/article/colere-agricole-des-barrages-leves-mais-pour-mieux-revenir-en-janvier"
+      },
+      {
+       "titre": "Europe 1, « Colère des agriculteurs : les autorités inquiètes avant Noël » (19 déc. 2025, au moins 80 actions)",
+       "url": "https://www.europe1.fr/societe/colere-des-agriculteurs-les-autorites-inquietes-avant-noel-la-mobilisation-samplifie-et-se-structure-875662"
+      },
+      {
+       "titre": "Europe 1, « Colère agricole : quel bilan des manifestations à Paris et en Île-de-France » (8 janv. 2026)",
+       "url": "https://www.europe1.fr/Police-Justice/colere-agricole-quel-est-le-bilan-des-manifestations-des-agriculteurs-a-paris-et-en-ile-de-france-878011"
+      }
+     ],
+     "incertitude": "Classement k incertain : les décomptes quotidiens du ministère ne sont pas systématiquement publiés avant 2024 et les pics de 2024 reposent sur ma mémoire (je ne les ai pas retrouvés en source primaire). Le seuil de 100 est donc borderline : le pic 2025 est à 93, soit à 7 % du seuil. n=4."
+    },
+    {
+     "definition": "Taux de journées à 100 actions ou plus par an, depuis 2015 (k=2 mobilisations ayant atteint le seuil, janv.-févr. 2024 et nov. 2024) et dans le régime récent (2024-2026, 2,7 ans).",
+     "periode": "2015-2026 ; 2024-2026",
+     "k": 2,
+     "n": 11.7,
+     "unite": "années (2015-sept. 2026)",
+     "frequence": 0.1709,
+     "probabilite_fenetre": 10.6,
+     "calcul": "Tout l'historique : λ = 2/11,7 = 0.171 par an ; fenêtre 0.657 an ; p = 10.6 %. Régime récent : λ = 2/2,7 = 0.74 par an ; p = 38.5 %.",
+     "sources": [
+      {
+       "titre": "La Gazette de France, « Colère agricole : des barrages levés mais pour mieux revenir en janvier »",
+       "url": "https://www.lagazettefrance.fr/article/colere-agricole-des-barrages-leves-mais-pour-mieux-revenir-en-janvier"
+      },
+      {
+       "titre": "Connexion France, « Latest update on farmer protests across France » (nov. 2024 : appels FNSEA-JA aux 18-20 nov.)",
+       "url": "https://www.connexionfrance.com/news/latest-update-on-farmer-protests-across-france/689377"
+      }
+     ],
+     "incertitude": "Le seuil de 100 est mal calibré : atteint ou frôlé (93) à chaque mobilisation nationale récente, mais jamais lors de petites mobilisations ; il sépare mal. Je propose un seuil de 80 actions pour une question plus informative (il serait atteint lors de chaque mobilisation nationale de 2024-2025, d'après les décomptes de presse). La saisonnalité est marquée (tous les épisodes entre novembre et février) : la fenêtre du 2 nov. au 30 juin les contient. Les causes récentes (dermatose, Mercosur, normes, revenus) restent ouvertes."
+    }
+   ],
+   "fourchette": [
+    10.1,
+    38.5
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 25.0,
+    "motif": "Entre 10,6 % (historique long) et 39 % (régime récent). On retient 25 % : la mobilisation 2025-2026 a frôlé le seuil (93) et les deux dossiers qui l'ont portée (Mercosur, sanitaire) ne sont pas clos ; la présidentielle de 2027 donne un levier. À l'inverse, le seuil de 100 n'a probablement été atteint que lors des deux plus grosses mobilisations, et le calendrier agricole du printemps réduit la disponibilité."
+   },
+   "issues": null,
+   "groupe": "ajouts de la banque v1.14 (10 octobre 2026)",
+   "utilisee": {
+    "oui": 25.0,
+    "non": 75.0
+   }
+  },
+  "EV-52": {
+   "id": "EV-52",
+   "classes": [
+    {
+     "definition": "Mois calendaires 2010-2025 comptant au moins une journée à 200 000 manifestants ou plus (ministère de l'Intérieur) ou 300 établissements perturbés ou plus (Éducation nationale). 27 mois sur 192 : 2010 (mars, mai, juin, sept., oct., nov. ; mars et mai à contrôler), 2013 (janv., mars), 2015 (janv.), 2016 (mars), 2017 (sept., oct. à contrôler), 2018 (mars, nov., déc. avec 450 lycées perturbés le 11 déc.), 2019 (déc.), 2020 (janv.), 2021 (juill., août), 2023 (janv. à juin), 2024 (juin), 2025 (sept.).",
+     "periode": "2010-2025",
+     "k": 27,
+     "n": 192,
+     "unite": "mois calendaires",
+     "frequence": 0.1406,
+     "probabilite_fenetre": 96.9,
+     "calcul": "Mensuel : 27/192 = 14,1 % par mois ; sur 23 mois, en supposant l'indépendance, 1 - (1 - 0,141)^23 = 96.9 % (surestimé : les mois sont groupés)",
+     "sources": [
+      {
+       "titre": "Wikipédia, Mouvement social contre la réforme des retraites de 2023 (chiffres du ministère de l'Intérieur par journée)",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_social_contre_la_r%C3%A9forme_des_retraites_en_France_en_2023"
+      },
+      {
+       "titre": "Wikipédia, Mouvement social français de 2010 contre la réforme des retraites",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_social_fran%C3%A7ais_de_2010_contre_la_r%C3%A9forme_des_retraites"
+      },
+      {
+       "titre": "Wikipédia, Mouvement social contre la loi Travail (2016)",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_social_contre_la_loi_Travail"
+      },
+      {
+       "titre": "Wikipédia, Mouvement des Gilets jaunes",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_des_Gilets_jaunes"
+      }
+     ],
+     "incertitude": "Chiffres de mémoire, plusieurs mois douteux (mars et mai 2010, oct. 2017, juin 2024) : k pourrait valoir 24 à 29, soit 12,5 % à 15,1 %. Le seuil de 200 000 selon le ministère est exigeant : l'Intérieur est la source la plus basse ; le 2 oct. 2025 (environ 195 000) et le 12 nov. 2023 (environ 182 000) ont manqué le seuil. Mois très inégaux (6 mois en 2023, 0 en 2011, 2012, 2014, 2022)."
+    },
+    {
+     "definition": "Épisodes de mobilisation à 200 000 ou 300 établissements, séparés par au moins deux mois sans, 2010-2025 : 13 épisodes en 16 ans (2010 deux, 2013, 2015, 2016, 2017, 2018 deux, 2019-2020, 2021, 2023, 2024, 2025). Plus longue période creuse : décembre 2010 à décembre 2012, soit 25 mois.",
+     "periode": "2010-2025",
+     "k": 13,
+     "n": 16,
+     "unite": "années",
+     "frequence": 0.8125,
+     "probabilite_fenetre": 78.9,
+     "calcul": "λ = 13/16 = 0.8125 épisode par an ; fenêtre du 2 nov. 2026 au 30 sept. 2028 = 23 mois = 1.917 an ; p = 1 − exp(−λT) = 78.9 %. Contrôle par fenêtres glissantes de 23 mois : 167 sur 170 contiennent au moins un mois positif, soit 98,2 %.",
+     "sources": [
+      {
+       "titre": "Wikipédia, Mouvement des Gilets jaunes",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_des_Gilets_jaunes"
+      },
+      {
+       "titre": "Wikipédia, Mouvement social contre la réforme des retraites de 2023",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_social_contre_la_r%C3%A9forme_des_retraites_en_France_en_2023"
+      },
+      {
+       "titre": "AEF, « Une mobilisation en net recul, selon le MEN » (17 déc. 2018 : 450 lycées perturbés le 11 déc.)",
+       "url": "https://media.ac-normandie.fr/-/communication/revue-presse/2018/12/17/AEF_nat_ris_Une%20mobilisation%20en%20net%20recul,%20selon%20le%20MEN.pdf"
+      }
+     ],
+     "incertitude": "Le seul trou de plus de 23 mois (2011-2012) correspond au cycle pré-électoral et post-élection de 2012, analogue du cycle 2026-2028 (présidentielle d'avril-mai 2027). L'indépendance du processus de Poisson est fausse (épisodes groupés). La période étudiée (16 ans) inclut des mouvements exceptionnels (retraites 2010 et 2023, gilets jaunes)."
+    }
+   ],
+   "fourchette": [
+    78.9,
+    98.2
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 80.0,
+    "motif": "Probabilité sur la fenêtre de 23 mois : 80 % (entre 79 % pour les épisodes et 98 % par fenêtres glissantes, abaissée parce que la campagne présidentielle et l'après-élection immédiate ressemblent au creux 2011-2012 et au creux 2022). Probabilité pour un mois calendaire quelconque : 13 % (fréquence 2010-2025 : 27 mois sur 192 soit 14,1 %, abaissée à 13 % car le seuil de 200 000 selon l'Intérieur est exigeant et que les mois d'élection présidentielle et d'été sont rarement positifs, hormis juillet-août 2021). Pour les mois de la campagne (mars-avril 2027), 5 à 8 % ; pour un mois de rentrée ou d'hiver (sept.-janv.), 16 à 18 %."
+   },
+   "issues": null,
+   "groupe": "ajouts de la banque v1.14 (10 octobre 2026)",
+   "utilisee": {
+    "oui": 80.0,
+    "non": 20.0
    }
   }
  },

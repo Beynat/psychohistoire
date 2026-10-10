@@ -19,3 +19,5 @@ Exécutée lundi, mercredi et vendredi par la tâche planifiée du tri (noyau, s
 7. **Rattrapage.** Un titre non trié n'est jamais purgé : un passage manqué est rattrapé au suivant, et chaque fait garde sa date de source. Si le dernier passage date de plus de 7 jours, une ligne est ajoutée à `modele/journal.md` (passage manqué).
 
 En cas d'échec d'une étape : ne pas passer à la suivante, ne rien forcer, consigner l'échec au journal.
+
+**Émergence** (10 octobre 2026, vérificateur A, A-04). `python scripts/tri.py reprise` suit aussi les faits sans question (`non_rattaches` de `data/reprise.json`) et liste dans `emergences` ceux qui comptent au moins 50 titres sur sept jours. Le compte rendu du tri cite chaque émergence ; la passe bimensuelle suivante examine un ajout à la banque.

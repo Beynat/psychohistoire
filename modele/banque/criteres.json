@@ -1,5 +1,5 @@
 {
- "version": "1.13",
+ "version": "1.14",
  "date": "2026-10-10",
  "description": "Critères de résolution de la banque d'événements, seuls transmis aux prévisionnistes. Le texte d'origine du balayage v1 reste dans modele/v1 et figure dans evenements.json sous « contexte_v1 », jamais transmis (relecture 8, G1). Sources de résolution : modele/sources.md, règle 1. Champ « nature » (relecture 9, H1) : « survenue » pour un événement qui peut se produire à tout moment de la fenêtre (taux de base ramené à la fenêtre restante par un risque constant), « constat » pour une issue constatée à date fixe (taux de base non converti). Champ « acte » (relecture 12, K4) : les questions tranchées par le même acte officiel ou liées à la même candidature (pourvoi de Marine Le Pen, liste des candidats et résultats du premier tour de 2027) forment une seule grappe. « taux_base_mode: uniforme » remplace l'ancien drapeau « taux_base » (relecture 12, S4).",
  "second_tour": "2027-05-02",
@@ -365,7 +365,7 @@
    "evenement": "EV-48",
    "nom": "Promulgation de la loi « casseurs-payeurs »",
    "domaine": "société",
-   "critere": "Pendant la fenêtre, une loi issue du projet de loi présenté en conseil des ministres le 16 septembre 2026 sur la réparation des dégradations commises lors de violences collectives (dit « casseurs-payeurs ») est publiée au Journal officiel. Une publication partielle, après censure partielle du Conseil constitutionnel, compte ; une disposition équivalente insérée dans un autre texte ne compte pas.",
+   "critere": "Pendant la fenêtre, une loi issue du projet de loi n° 952 (2025-2026) relatif à la réparation des dommages résultant de violences ou de dégradations commises dans l'espace public et au recouvrement des dommages et intérêts (dit « casseurs-payeurs »), déposé au Sénat le 16 septembre 2026, est publiée au Journal officiel. Une publication partielle, après censure partielle du Conseil constitutionnel, compte ; une disposition équivalente insérée dans un autre texte ne compte pas.",
    "sous_question": null,
    "source_resolution": "Journal officiel",
    "acte": "projet de loi « casseurs-payeurs » (conseil des ministres du 16 septembre 2026)",
@@ -378,11 +378,12 @@
     "non"
    ],
    "pool": "P2b",
-   "mensuelle": true,
+   "mensuelle": false,
    "origine": "ajout du 10 octobre 2026, décision de Nathan (mouvement lycéen, passation du 10 octobre)",
    "accessible": true,
    "motif_inaccessible": null,
-   "nature": "survenue"
+   "nature": "survenue",
+   "revise": "10 octobre 2026, vérificateur A (S-01) : texte nommé, question mensuelle retirée (sans contenu avant l'examen au Sénat)"
   },
   {
    "id": "EV-49",
@@ -1525,6 +1526,98 @@
    "pool": "P2e",
    "mensuelle": true,
    "origine": "relecture 15, S12 (seconde série P2e)",
+   "accessible": true,
+   "motif_inaccessible": null,
+   "nature": "survenue"
+  },
+  {
+   "id": "EV-50",
+   "evenement": "EV-50",
+   "nom": "Fin des fonctions du Premier ministre",
+   "domaine": "politique",
+   "critere": "Pendant la fenêtre, Sébastien Lecornu, Premier ministre au 10 octobre 2026, cesse de l'être : un décret publié au Journal officiel nomme une autre personne Premier ministre, ou met fin à ses fonctions, quelle qu'en soit la cause (démission, censure, démission du Gouvernement). Si un décret met fin à ses fonctions et qu'un décret publié au plus tard le dernier jour de la fenêtre le nomme de nouveau Premier ministre, la réponse est « non » ; s'il n'est pas renommé au dernier jour de la fenêtre, y compris s'il expédie les affaires courantes, la réponse est « oui », et la date du fait est celle du décret qui a mis fin à ses fonctions.",
+   "sous_question": null,
+   "source_resolution": "Journal officiel",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-05-02"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "ajout du 10 octobre 2026, feuille de route v0 (bloc 6), vérificateur A (ajout différé jugé urgent)",
+   "accessible": true,
+   "motif_inaccessible": null,
+   "nature": "survenue"
+  },
+  {
+   "id": "EV-51",
+   "evenement": "EV-51",
+   "nom": "Journée ou nuit à plus de 1 000 interpellations",
+   "domaine": "sécurité",
+   "critere": "Pour au moins une journée ou une nuit de la fenêtre, le ministère de l'Intérieur chiffre à au moins 1 000 le nombre de personnes interpellées en France en lien avec des manifestations, des blocages ou des violences urbaines, pour cette même journée ou cette même nuit. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Un cumul sur plusieurs jours ne compte pas.",
+   "sous_question": null,
+   "source_resolution": "Ministère de l'Intérieur, ou une dépêche AFP, Reuters ou AP qui lui attribue le chiffre",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "ajout du 10 octobre 2026, feuille de route v0 (bloc 6), vérificateur A (A-05)",
+   "accessible": true,
+   "motif_inaccessible": null,
+   "nature": "survenue"
+  },
+  {
+   "id": "EV-14b",
+   "evenement": "EV-14b",
+   "nom": "Mobilisation agricole d'ampleur",
+   "domaine": "société",
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Intérieur chiffre à au moins 100 le nombre d'actions (rassemblements, blocages, barrages filtrants) menées par des agriculteurs en France pour une même journée. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "sous_question": null,
+   "source_resolution": "Ministère de l'Intérieur, ou une dépêche AFP, Reuters ou AP qui lui attribue le chiffre",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "ajout du 10 octobre 2026, feuille de route v0 (bloc 6), vérificateur A (A-06 ; EV-14 retiré sur une prémisse incomplète)",
+   "accessible": true,
+   "motif_inaccessible": null,
+   "nature": "survenue"
+  },
+  {
+   "id": "EV-52",
+   "evenement": "EV-52",
+   "nom": "Journée de mobilisation significative (horizon 30 jours)",
+   "domaine": "société",
+   "critere": "Pendant la fenêtre, pour au moins une journée, le ministère de l'Intérieur chiffre à au moins 200 000 le nombre de manifestants en France, ou le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés (règles de comptage d'EV-10). Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Les comptages des organisateurs et des syndicats ne comptent pas.",
+   "sous_question": null,
+   "source_resolution": "Ministères de l'Intérieur et de l'Éducation nationale, ou une dépêche AFP, Reuters ou AP qui leur attribue le chiffre",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "ajout du 10 octobre 2026, feuille de route v0 (bloc 5) : horizon intermédiaire de 30 jours, porté par ses questions mensuelles",
    "accessible": true,
    "motif_inaccessible": null,
    "nature": "survenue"

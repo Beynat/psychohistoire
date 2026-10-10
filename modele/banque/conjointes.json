@@ -1,0 +1,35 @@
+{
+ "description": "Questions conjointes (pool P2c, noyau section 8.3) : « A et B », chacun selon son critère et dans sa fenêtre. Elles mesurent si le réseau saisit la dépendance entre deux événements, ce que l'ensemble direct ne fait pas explicitement (feuille de route v0, bloc 5). Grappe : celle de A (modele/controle/phase3.md, choix du 10 octobre 2026).",
+ "version": "1.0",
+ "date": "2026-10-10",
+ "conjointes": [
+  {
+   "id": "CJ-01",
+   "a": "EV-15",
+   "b": "EV-50",
+   "lien": "budget → gouvernement",
+   "nom": "Censure avant fin 2026 et départ du Premier ministre avant le 2 mai 2027"
+  },
+  {
+   "id": "CJ-02",
+   "a": "EV-02",
+   "b": "EV-16a",
+   "lien": "budget → dissolution",
+   "nom": "Pas de loi de finances au 31 décembre 2026 et dissolution avant le second tour"
+  },
+  {
+   "id": "CJ-03",
+   "a": "EV-15",
+   "b": "EV-49",
+   "lien": "budget → gouvernement",
+   "nom": "Censure avant fin 2026 et départ du ministre de l'Éducation nationale"
+  },
+  {
+   "id": "CJ-04",
+   "a": "EV-10",
+   "b": "EV-50",
+   "lien": "mobilisation → gouvernement",
+   "nom": "Reprise du mouvement lycéen après la Toussaint et départ du Premier ministre avant le 2 mai 2027"
+  }
+ ]
+}

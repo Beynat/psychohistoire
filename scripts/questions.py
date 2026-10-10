@@ -180,6 +180,21 @@ def generer(gel, etiquette=None, reg="registre/protocole.jsonl"):
                        "grappe": grappe(e),
                        "texte": f"{e['nom']} : le critère est-il rempli entre le {gel} et le {iso_fin_mois(mois)} ?",
                        "echeance": iso_fin_mois(mois), "fenetre": {"debut": gel, "fin": iso_fin_mois(mois)}})
+    # Questions conjointes (pool P2c, feuille de route v0, bloc 5) : émises quand les questions de fenêtre de leurs
+    # deux événements le sont dans ce cycle ; grappe de A.
+    fen = {q["details"]["evenement"]: q for q in qs if q["type"] == "evenement" and q["id"] == f"Q-{q['details']['evenement']}"}
+    for c in (lire_json("modele/banque/conjointes.json") or {"conjointes": []})["conjointes"]:
+        qa, qb = fen.get(c["a"]), fen.get(c["b"])
+        if not (qa and qb and qa["issues"] == ["oui", "non"] and qb["issues"] == ["oui", "non"]):
+            ecartees.append((f"Q-{c['id']}", "une des deux questions n'est pas émise dans ce cycle"))
+            continue
+        ea = next(e for e in evts if e["id"] == c["a"]); eb = next(e for e in evts if e["id"] == c["b"])
+        qs.append({"id": f"Q-{c['id']}", "type": "conjointe", "pool": "P2c", "grappe": qa["grappe"], "issues": ["oui", "non"],
+                   "texte": f"{c['nom']} : les deux critères sont-ils remplis, chacun dans sa fenêtre ? ({ea['nom']}, du {qa['fenetre']['debut']} au {qa['fenetre']['fin']} ; {eb['nom']}, du {qb['fenetre']['debut']} au {qb['fenetre']['fin']})",
+                   "echeance": max(qa["echeance"], qb["echeance"]),
+                   "fenetre": {"debut": gel, "fin": max(qa["echeance"], qb["echeance"])},
+                   "details": {"conjointe": c["id"], "composantes": [qa["id"], qb["id"]],
+                               "critere": f"« Oui » si et seulement si les deux questions sont résolues « oui ». (1) {ea['nom']} : {ea['critere']} (fenêtre du {qa['fenetre']['debut']} au {qa['fenetre']['fin']}). (2) {eb['nom']} : {eb['critere']} (fenêtre du {qb['fenetre']['debut']} au {qb['fenetre']['fin']})."}})
     for i, gs in reliees.items():
         ecartees.append((i, f"ajout reliant plusieurs grappes figées {gs} : grappe {gs[0]} retenue (consigné, non écarté)"))
     return {"cycle": cycle, "gel": gel, "genere_le": maintenant(), "questions": qs,

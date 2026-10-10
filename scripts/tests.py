@@ -490,6 +490,30 @@ def test_verrou_protocole():
         shutil.rmtree(tmp.parent)
 
 
+def test_conjointes():
+    """Feuille de route v0, bloc 5 : une question conjointe est émise en P2c avec ses deux critères, reçoit un taux
+    de base égal au produit de ceux de ses composantes, et se résout « non » dès qu'une composante l'est."""
+    tmp, run = _copie()
+    try:
+        run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
+        run("scripts/questions.py", "2026-11-01", "2026-11", "registre/v0.jsonl")
+        qs = {q["id"]: q for q in json.loads((tmp / "data/cycles/2026-11/questions.json").read_text())["questions"]}
+        c = qs["Q-CJ-01"]
+        assert c["pool"] == "P2c" and c["details"]["composantes"] == ["Q-EV-15", "Q-EV-50"], c
+        assert c["grappe"] == qs["Q-EV-15"]["grappe"]
+        run("scripts/comparateurs.py", "2026-11", "registre/v0.jsonl")
+        lignes = [json.loads(l) for l in (tmp / "registre/v0.jsonl").read_text().splitlines() if l.strip()]
+        tb = {l["question"]: l["probabilites"]["oui"] for l in lignes if l["auteur"] == "comparateur : taux de base" and "oui" in l["probabilites"]}
+        assert abs(tb["Q-CJ-01"] - tb["Q-EV-15"] * tb["Q-EV-50"] / 100) < 0.2, (tb["Q-CJ-01"], tb["Q-EV-15"], tb["Q-EV-50"])
+        (tmp / "registre/resolutions_v0.jsonl").write_text(json.dumps({"resolution": True, "question": "Q-EV-15", "issue": "non",
+            "date_fait": "2026-12-31", "source": "s", "methode": "m", "emise": "2027-01-05T08:00:00+01:00"}) + chr(10))
+        code = "import resolution, json; print(json.dumps([r['question'] + ':' + str(r['issue']) for r in resolution.resoudre('registre/v0.jsonl', '2027-01-06')]))"
+        out = json.loads(run("-c", code).strip().splitlines()[-1])
+        assert "Q-CJ-01:non" in out and not any(x.startswith("Q-CJ-04") for x in out), out
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
 def test_emergence_du_tri():
     """Vérificateur A, A-04 : un fait sans question est suivi d'un passage à l'autre sous un seul identifiant, et
     signalé comme émergence à partir de 50 titres en sept jours."""

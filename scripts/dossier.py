@@ -97,7 +97,7 @@ if __name__ == "__main__":
         reel = {v: k for k, v in anon.items()}
         ecrire_json(f"data/cycles/{et}/anonymisation.json", {"description": "Identifiant remis aux prévisionnistes → identifiant de la banque (relecture 12, S7) ; ordre mélangé, graine « psychohistoire-<étiquette> » (relecture 19, S5).", "correspondance": anon})
         qs = [{"id": reel[q["id"]], **{k: q[k] for k in ("texte", "issues", "echeance")}} | (
-            {"critere": q["details"]["critere"]} if q["type"] == "evenement" else {}) for q in ordre]
+            {"critere": q["details"]["critere"]} if q["type"] in ("evenement", "conjointe") else {}) for q in ordre]
         import json
         with open(sys.argv[2], "w", encoding="utf-8") as f:
             json.dump({"gel": dos["gel"], "questions": qs, "dossier_de_donnees": dos["series"]}, f, ensure_ascii=False, indent=1)
