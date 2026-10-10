@@ -1,6 +1,6 @@
 {
  "description": "Banque d'événements (noyau, section 8.8). Générée par scripts/evenements.py depuis modele/banque/criteres.json. Seuls le nom, la sous-question et le critère sont transmis aux prévisionnistes.",
- "genere_le": "2026-10-06T09:13:12+02:00",
+ "genere_le": "2026-10-10T08:37:12+02:00",
  "premier_tour": "2027-04-18",
  "second_tour": "2027-05-02",
  "evenements": [
@@ -319,14 +319,14 @@
   {
    "id": "EV-10",
    "evenement": "EV-10",
-   "nom": "Extension du mouvement lycéen de septembre 2026",
+   "nom": "Reprise du mouvement lycéen après la Toussaint",
    "domaine": "société",
-   "critere": "Retiré : aucune source officielle ne publie le nombre d'établissements bloqués.",
-   "sous_question": null,
-   "source_resolution": "—",
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "sous_question": "du 2 novembre au 18 décembre 2026",
+   "source_resolution": "Ministère de l'Éducation nationale, chiffre publié par lui ou rapporté par deux agences de presse (AFP, Reuters, AP) ; à défaut de chiffre de ce ministère pour une journée, celui du ministère de l'Intérieur",
    "fenetre": {
-    "debut": "2026-10-03",
-    "fin": "2026-11-15"
+    "debut": "2026-11-02",
+    "fin": "2026-12-18"
    },
    "issues": [
     "oui",
@@ -335,13 +335,112 @@
    "pool": "P2b",
    "mensuelle": false,
    "origine": "balayage v1, critère réécrit (relecture 8)",
-   "motif_inaccessible": "Relecture 8, G3 : critère non résoluble, aucune source officielle ne publie le nombre d'établissements bloqués.",
+   "motif_inaccessible": null,
    "nature": "survenue",
-   "source_accessible": false,
+   "revise": "10 octobre 2026 : rétabli, le retrait reposait sur une prémisse fausse (le ministère de l'Éducation nationale publie chaque jour le nombre d'établissements perturbés)",
+   "motif_reecriture": "Ancien critère : « Retiré : aucune source officielle ne publie le nombre d'établissements bloqués. »",
+   "source_accessible": true,
    "contexte_v1": {
     "critere": "Plus de 300 établissements bloqués au moins 2 semaines consécutives OU extension aux universités avant le 15/11/2026. Taux de base (calcul de B) : les vagues de 2005 ont duré ~3 semaines.",
     "mesure": "~416 établissements bloqués le 29 sept., > 350 le 30 ; 440 puis 625 interpellations ; > 100 blessés ; extension en Belgique le 1er oct."
    }
+  },
+  {
+   "id": "EV-10b",
+   "evenement": "EV-10",
+   "nom": "Mouvement lycéen avant la Toussaint",
+   "domaine": "société",
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "sous_question": "du 12 au 16 octobre 2026",
+   "source_resolution": "Ministère de l'Éducation nationale, chiffre publié par lui ou rapporté par deux agences de presse (AFP, Reuters, AP) ; à défaut de chiffre de ce ministère pour une journée, celui du ministère de l'Intérieur",
+   "fenetre": {
+    "debut": "2026-10-12",
+    "fin": "2026-10-16"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 10 octobre 2026, décision de Nathan (mouvement lycéen, passation du 10 octobre) ; fenêtre courte, pour le cycle d'essai",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Plus de 300 établissements bloqués au moins 2 semaines consécutives OU extension aux universités avant le 15/11/2026. Taux de base (calcul de B) : les vagues de 2005 ont duré ~3 semaines.",
+    "mesure": "~416 établissements bloqués le 29 sept., > 350 le 30 ; 440 puis 625 interpellations ; > 100 blessés ; extension en Belgique le 1er oct."
+   }
+  },
+  {
+   "id": "EV-47",
+   "evenement": "EV-47",
+   "nom": "Nouvelle journée lycéenne à plus de 1 000 établissements",
+   "domaine": "société",
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 1000 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "sous_question": null,
+   "source_resolution": "Ministère de l'Éducation nationale, chiffre publié par lui ou rapporté par deux agences de presse (AFP, Reuters, AP) ; à défaut de chiffre de ce ministère pour une journée, celui du ministère de l'Intérieur",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "ajout du 10 octobre 2026, décision de Nathan (mouvement lycéen, passation du 10 octobre)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-48",
+   "evenement": "EV-48",
+   "nom": "Promulgation de la loi « casseurs-payeurs »",
+   "domaine": "société",
+   "critere": "Pendant la fenêtre, une loi issue du projet de loi présenté en conseil des ministres le 16 septembre 2026 sur la réparation des dégradations commises lors de violences collectives (dit « casseurs-payeurs ») est publiée au Journal officiel. Une publication partielle, après censure partielle du Conseil constitutionnel, compte ; une disposition équivalente insérée dans un autre texte ne compte pas.",
+   "sous_question": null,
+   "source_resolution": "Journal officiel",
+   "acte": "projet de loi « casseurs-payeurs » (conseil des ministres du 16 septembre 2026)",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-03-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "ajout du 10 octobre 2026, décision de Nathan (mouvement lycéen, passation du 10 octobre)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-49",
+   "evenement": "EV-49",
+   "nom": "Départ du ministre de l'Éducation nationale",
+   "domaine": "politique",
+   "critere": "Pendant la fenêtre, un décret publié au Journal officiel met fin aux fonctions de la personne qui détient le portefeuille de l'Éducation nationale au 10 octobre 2026, ou lui retire ce portefeuille, quelle qu'en soit la cause (démission, remaniement, démission du gouvernement). Une reconduction dans le même portefeuille par le décret de nomination du gouvernement suivant ne compte pas.",
+   "sous_question": null,
+   "source_resolution": "Journal officiel",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "ajout du 10 octobre 2026, décision de Nathan (mouvement lycéen, passation du 10 octobre)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true
   },
   {
    "id": "EV-11",

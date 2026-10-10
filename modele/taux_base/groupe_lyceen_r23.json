@@ -1,0 +1,369 @@
+{
+ "groupe": "mouvement lycéen (ajouts du 10 octobre 2026)",
+ "etabli_le": "2026-10-10",
+ "questions": [
+  {
+   "id": "EV-10b",
+   "classes": [
+    {
+     "definition": "Mouvements lycéens nationaux dont le ministère a publié des comptages quotidiens (2010, 2016, 2018, 2023, 2025) : la 3e semaine scolaire après le début du mouvement compte-t-elle une journée à 300 établissements perturbés ou plus ? Non pour 2018 (début 3 déc. ; 3e semaine du 17 déc. : mouvement éteint, 105 le 14 déc.), 2023 (quelques dizaines d'incidents), 2025 (environ 100 perturbés le 10 sept.), 2016 (pas de chiffre ministériel documenté à 300 en 3e semaine) et 2010 (début 12 oct. ; la 3e semaine tombe pendant les vacances de la Toussaint ; pic 379 le 19 oct., en 2e semaine). Aucun oui.",
+     "periode": "2010-2025",
+     "k": 0,
+     "n": 5,
+     "unite": "mouvements lycéens avec comptage ministériel",
+     "frequence": 0.0,
+     "probabilite_fenetre": 14.3,
+     "calcul": "k/n = 0/5 ; estimateur de Laplace (k+1)/(n+2) = 1/7 = 14,3 % (le 0 brut serait trompeur sur n=5)",
+     "sources": [
+      {
+       "titre": "L'Étudiant / Ma Commune, « Retraites : 312 lycées perturbés jeudi matin » (21 oct. 2010 : 261 lundi, 379 mardi, 178 mercredi, 312 jeudi)",
+       "url": "https://www.macommune.info/retraites-312-lycees-perturbes-jeudi-matin"
+      },
+      {
+       "titre": "AEF, « Une mobilisation en net recul, selon le MEN » (17 déc. 2018 : 450 lycées perturbés le 11 déc., 105 le 14 déc. au matin)",
+       "url": "https://media.ac-normandie.fr/-/communication/revue-presse/2018/12/17/AEF_nat_ris_Une%20mobilisation%20en%20net%20recul,%20selon%20le%20MEN.pdf"
+      },
+      {
+       "titre": "AFP, « Retraites : des lycées et facs bloqués » (29 mars 2023 : 53 incidents devant des établissements selon le ministère)",
+       "url": "https://media.ac-normandie.fr/-/communication/revue-presse/2023/03/29/AFP_nat_actu_Retraites.%20Des%20lyc%e9es%20et%20facs%20bloqu%e9s,%20appel%20%e0%20'massifier'%20la%20mobilisation%20des%20jeunes.pdf"
+      },
+      {
+       "titre": "AEF, « Bloquons tout : une centaine de lycées perturbés, 27 bloqués » (10 sept. 2025, MEN)",
+       "url": "https://media.ac-normandie.fr/-/communication/revue-presse/2025/09/10/AEF_nat_cri_National_Mouvement%20'Bloquons%20tout',%20une%20centaine%20de%20lyc%e9es%20perturb%e9s,%2027%20bloqu%e9s%20et%204,6%20%25%20des%20personnels%20en%20gr%e8ve%20(MEN).pdf"
+      },
+      {
+       "titre": "L'Étudiant, dossier loi travail : mobilisation des lycéens (mars-avril 2016)",
+       "url": "https://www.letudiant.fr/educpros/actualite/loi-travail-la-mobilisation-continue.html"
+      }
+     ],
+     "incertitude": "Les comptages ministériels quotidiens publiés sont rares avant 2010 et lacunaires ensuite (2016 : pas de série homogène retrouvée ; 2023 : le ministère a publié des « incidents », pas des établissements perturbés). Le critère 300 n'a donc été atteint que 2 fois dans cet échantillon (2010, 2018), toujours en 1re ou 2e semaine. Classe non conditionnée à l'ampleur du pic : sous-estime un mouvement déjà très massif."
+    },
+    {
+     "definition": "Persistance après le pic dans les deux mouvements lycéens dont la série quotidienne du ministère dépasse 300 (2010, 2018) : le jour le plus fort de la semaine suivant le pic reste-t-il à au moins 30 % du pic (ici ~300 pour un pic de 1 000) ? Oui en 2018 (pic ~700 le 6 déc. ; 450 perturbés le 11 déc., soit 64 %) et en 2010 (pic 379 le 19 oct. ; 312 le 21 oct., soit 82 %). Mais en 2018 la 2e semaine après le pic retombe à 105 (15 %).",
+     "periode": "2010, 2018",
+     "k": 2,
+     "n": 2,
+     "unite": "mouvements avec pic ministériel supérieur à 300",
+     "frequence": 1.0,
+     "probabilite_fenetre": 75.0,
+     "calcul": "k/n = 2/2 ; Laplace (k+1)/(n+2) = 3/4 = 75,0 %",
+     "sources": [
+      {
+       "titre": "L'Étudiant / Ma Commune, « Retraites : 312 lycées perturbés jeudi matin » (21 oct. 2010 : 261 lundi, 379 mardi, 178 mercredi, 312 jeudi)",
+       "url": "https://www.macommune.info/retraites-312-lycees-perturbes-jeudi-matin"
+      },
+      {
+       "titre": "Démotivateur / AFP, « Plus d'une centaine de lycées bloqués selon le ministère » (3 déc. 2018)",
+       "url": "https://www.demotivateur.fr/article/plus-d-une-centaine-de-lycees-bloques-selon-le-ministere-de-l-education-nationale-15069"
+      },
+      {
+       "titre": "AEF, « Une mobilisation en net recul, selon le MEN » (17 déc. 2018 : 450 lycées perturbés le 11 déc., 105 le 14 déc. au matin)",
+       "url": "https://media.ac-normandie.fr/-/communication/revue-presse/2018/12/17/AEF_nat_ris_Une%20mobilisation%20en%20net%20recul,%20selon%20le%20MEN.pdf"
+      },
+      {
+       "titre": "L'Info Durable / AFP, « Mobilisation lycéenne : des dizaines d'établissements toujours perturbés » (5 déc. 2018 : environ 200 lycées bloqués selon le ministre)",
+       "url": "https://www.linfodurable.fr/mobilisation-lyceenne-des-dizaines-detablissements-toujours-perturbes-ou-bloques-8215"
+      }
+     ],
+     "incertitude": "n=2 seulement. Dépend de la date du pic de 2026 (inconnue ici, sans recherche d'actualité) : si le pic est antérieur au 5 oct., la 3e semaine correspond au cas 2018 « 2e semaine après le pic » (15 %), pas au cas « 1re semaine » (64 %). La question suppose un mouvement en cours, donc la classe est conditionnelle à un mouvement déjà vivant."
+    }
+   ],
+   "fourchette": [
+    14.3,
+    75.0
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 40.0,
+    "motif": "Compromis entre la classe 0 (14,3 %, tous mouvements comptés, sans conditionnement au pic) et la classe 1 (75 %, n=2, conditionnée à un pic massif récent). L'intitulé de l'événement frère EV-47 (« nouvelle journée... à plus de 1 000 ») laisse penser qu'un pic de ce niveau a déjà eu lieu : le seuil de 300 vaut alors environ 30 % du pic, ce que 2018 atteignait une semaine après le pic mais plus deux semaines après. Semaine précédant les vacances de la Toussaint (17 oct.) : effet de dernière semaine ambigu (urgence de mobiliser avant la coupure, mais fatigue)."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-10",
+   "classes": [
+    {
+     "definition": "Mouvements lycéens interrompus par des vacances scolaires (Toussaint, Noël, Pâques, février) : reprise à au moins 300 établissements après la coupure ? Oui : 1990 (mouvement d'octobre, nouvelle journée massive le 12 nov. après la Toussaint), 2005 (journées de mars après les vacances de février). Non : 1998 (extinction avant la Toussaint après les concessions Allègre), 2008 (réforme Darcos reportée, reprise partielle seulement), 2010 (après la Toussaint, ~dizaines à 100 lycées le 9 nov.), 2016, 2018 (rien après Noël), 2023, 2025.",
+     "periode": "1990-2025",
+     "k": 2,
+     "n": 9,
+     "unite": "mouvements lycéens coupés par des vacances",
+     "frequence": 0.2222,
+     "probabilite_fenetre": 22.2,
+     "calcul": "p = 2/9 = 22,2 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Mouvements lycéens en France (1986, 1990, 1998, 2005, 2008, 2010, 2016, 2018)",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_lyc%C3%A9en"
+      },
+      {
+       "titre": "L'Étudiant / Ma Commune, « Retraites : 312 lycées perturbés jeudi matin » (21 oct. 2010 : 261 lundi, 379 mardi, 178 mercredi, 312 jeudi)",
+       "url": "https://www.macommune.info/retraites-312-lycees-perturbes-jeudi-matin"
+      },
+      {
+       "titre": "AEF, « Une mobilisation en net recul, selon le MEN » (17 déc. 2018 : 450 lycées perturbés le 11 déc., 105 le 14 déc. au matin)",
+       "url": "https://media.ac-normandie.fr/-/communication/revue-presse/2018/12/17/AEF_nat_ris_Une%20mobilisation%20en%20net%20recul,%20selon%20le%20MEN.pdf"
+      },
+      {
+       "titre": "L'Étudiant, dossier loi travail : mobilisation des lycéens (mars-avril 2016)",
+       "url": "https://www.letudiant.fr/educpros/actualite/loi-travail-la-mobilisation-continue.html"
+      }
+     ],
+     "incertitude": "Pour 1990 et 2005 les chiffres viennent de la presse et de souvenirs historiques, non d'un comptage du ministère au sens du critère ; 2008 classé non par prudence. n=9, classement partiellement subjectif. Les reprises 1990 et 2005 portaient sur un objet toujours ouvert (loi Fillon en discussion, plan Jospin non conclu)."
+    },
+    {
+     "definition": "Sous-ensemble des mouvements lycéens massifs (journées de plus de 100 000 manifestants ou pic ministériel supérieur à 500) : reprise après vacances au niveau de 300 établissements ? Oui : 1990, 2005. Non : 1998, 2006 (CPE retiré avant la reprise), 2018.",
+     "periode": "1990-2018",
+     "k": 2,
+     "n": 5,
+     "unite": "mouvements lycéens massifs",
+     "frequence": 0.4,
+     "probabilite_fenetre": 40.0,
+     "calcul": "p = 2/5 = 40,0 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Mouvements lycéens en France (1986, 1990, 1998, 2005, 2008, 2010, 2016, 2018)",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_lyc%C3%A9en"
+      },
+      {
+       "titre": "AEF, « Une mobilisation en net recul, selon le MEN » (17 déc. 2018 : 450 lycées perturbés le 11 déc., 105 le 14 déc. au matin)",
+       "url": "https://media.ac-normandie.fr/-/communication/revue-presse/2018/12/17/AEF_nat_ris_Une%20mobilisation%20en%20net%20recul,%20selon%20le%20MEN.pdf"
+      }
+     ],
+     "incertitude": "n=5 ; les causes de non-reprise (concession du gouvernement : 1998, 2006) sont endogènes à la réponse du pouvoir, non indépendantes du hasard. La fenêtre 2 nov.-18 déc. (47 jours, 6,5 semaines d'école) est plus longue qu'une reprise typique d'une semaine."
+    }
+   ],
+   "fourchette": [
+    22.2,
+    40.0
+   ],
+   "retenue": {
+    "classe": 0,
+    "probabilite": 25.0,
+    "motif": "La reprise à 300 après une coupure de 16 jours est l'exception (2 cas sur 9) ; la classe mouvements massifs (40 %) est plus proche d'un mouvement déjà très ample mais subit un biais de sélection. Ajout de quelques points pour une fenêtre de 6,5 semaines où un nouveau déclencheur est possible (débat parlementaire du projet de loi casseurs-payeurs, violence policière), retrait si le gouvernement cède avant la Toussaint."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-47",
+   "classes": [
+    {
+     "definition": "Années scolaires 1986-2025 comptant une journée lycéenne à 1 000 établissements perturbés ou plus (chiffre ministériel ou assimilé) : 1990 et 1998 d'après la presse, aucune depuis 2010 (maxima ministériels : 379 en 2010, environ 700 en 2018). Le niveau 1 000 est le triple du seuil de 2010.",
+     "periode": "1986-2025",
+     "k": 2,
+     "n": 40,
+     "unite": "années scolaires",
+     "frequence": 0.05,
+     "probabilite_fenetre": 3.9,
+     "calcul": "λ = 2/40 = 0,05 par année scolaire ; fenêtre du 2 nov. au 30 juin = 0,8 année scolaire ; p = 1 − exp(−0,05 × 0,8) = 3,9 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Mouvements lycéens en France (1986, 1990, 1998, 2005, 2008, 2010, 2016, 2018)",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_lyc%C3%A9en"
+      },
+      {
+       "titre": "L'Étudiant / Ma Commune, « Retraites : 312 lycées perturbés jeudi matin » (21 oct. 2010 : 261 lundi, 379 mardi, 178 mercredi, 312 jeudi)",
+       "url": "https://www.macommune.info/retraites-312-lycees-perturbes-jeudi-matin"
+      },
+      {
+       "titre": "AEF, « Une mobilisation en net recul, selon le MEN » (17 déc. 2018 : 450 lycées perturbés le 11 déc., 105 le 14 déc. au matin)",
+       "url": "https://media.ac-normandie.fr/-/communication/revue-presse/2018/12/17/AEF_nat_ris_Une%20mobilisation%20en%20net%20recul,%20selon%20le%20MEN.pdf"
+      }
+     ],
+     "incertitude": "Très mal mesuré : le ministère ne publiait pas de comptage quotidien avant 2010 et le critère exige un chiffre ministériel. Les cas 1990 et 1998 reposent sur des ordres de grandeur de presse non revérifiés (k pourrait valoir 1 à 3). Taux inconditionnel : ignore qu'un mouvement est en cours."
+    },
+    {
+     "definition": "Mouvements lycéens ayant atteint un pic national puis une extinction (ou une coupure) avant de retrouver un niveau égal au pic précédent : 1990 oui (journée du 12 nov. au moins égale à celles d'octobre) ; non pour 1998, 2005 (les pics de reprise n'ont pas dépassé le premier), 2006, 2008, 2010, 2016, 2018, 2023.",
+     "periode": "1990-2023",
+     "k": 1,
+     "n": 9,
+     "unite": "mouvements lycéens à pic national",
+     "frequence": 0.1111,
+     "probabilite_fenetre": 11.1,
+     "calcul": "p = 1/9 = 11,1 %",
+     "sources": [
+      {
+       "titre": "Wikipédia, Mouvements lycéens en France (1986, 1990, 1998, 2005, 2008, 2010, 2016, 2018)",
+       "url": "https://fr.wikipedia.org/wiki/Mouvement_lyc%C3%A9en"
+      },
+      {
+       "titre": "L'Étudiant / Ma Commune, « Retraites : 312 lycées perturbés jeudi matin » (21 oct. 2010 : 261 lundi, 379 mardi, 178 mercredi, 312 jeudi)",
+       "url": "https://www.macommune.info/retraites-312-lycees-perturbes-jeudi-matin"
+      },
+      {
+       "titre": "AEF, « Une mobilisation en net recul, selon le MEN » (17 déc. 2018 : 450 lycées perturbés le 11 déc., 105 le 14 déc. au matin)",
+       "url": "https://media.ac-normandie.fr/-/communication/revue-presse/2018/12/17/AEF_nat_ris_Une%20mobilisation%20en%20net%20recul,%20selon%20le%20MEN.pdf"
+      },
+      {
+       "titre": "AFP, « Retraites : des lycées et facs bloqués » (29 mars 2023 : 53 incidents devant des établissements selon le ministère)",
+       "url": "https://media.ac-normandie.fr/-/communication/revue-presse/2023/03/29/AFP_nat_actu_Retraites.%20Des%20lyc%e9es%20et%20facs%20bloqu%e9s,%20appel%20%e0%20'massifier'%20la%20mobilisation%20des%20jeunes.pdf"
+      }
+     ],
+     "incertitude": "n=9 ; 1990 qualifié de oui d'après mémoire historique. La classe porte sur le niveau relatif au pic, et suppose que le pic de 2026 a bien atteint 1 000 (inféré de l'intitulé de la question, non vérifié)."
+    }
+   ],
+   "fourchette": [
+    3.9,
+    11.1
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 9.0,
+    "motif": "La classe 1 (11,1 %) est la plus proche de la situation (un pic à 1 000 déjà atteint, question de retour à ce niveau) ; la classe 0 (3,9 %) est un plancher inconditionnel. Fenêtre longue (8 mois) mais incluant la campagne présidentielle (avril 2027) et les examens, peu favorables aux blocages ; léger relèvement pour un déclencheur possible (loi casseurs-payeurs, réformes de rentrée)."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-48",
+   "classes": [
+    {
+     "definition": "Projets de loi en procédure accélérée présentés en conseil des ministres de 2022 à 2025 (échantillon de 13, dépôt → promulgation) : moins de 6,5 mois ? Oui (7) : énergies renouvelables (26/09/2022 → 10/03/2023, 5,5 mois), JO 2024 (déc. 2022 → 19/05/2023, ~5 mois), retraites rectificatif (23/01 → 14/04/2023, 2,7 mois), LPM (04/04 → 01/08/2023, 4 mois), industrie verte (16/05 → 23/10/2023, 5,2 mois), plein emploi (07/06 → 18/12/2023, 6,4 mois), pouvoir d'achat (juillet → 16/08/2022, ~1,5 mois). Non (6) : programmation justice (03/05 → 20/11/2023, 6,6 mois), nucléaire (~8 mois), immigration (12 mois), SREN (12 mois), orientation agricole (~12 mois), simplification de la vie économique (> 12 mois).",
+     "periode": "2022-2025",
+     "k": 7,
+     "n": 13,
+     "unite": "projets de loi en procédure accélérée",
+     "frequence": 0.5385,
+     "probabilite_fenetre": 53.8,
+     "calcul": "p = 7/13 = 53,8 %",
+     "sources": [
+      {
+       "titre": "Légifrance, dossiers législatifs des lois citées (dates de dépôt et de promulgation)",
+       "url": "https://www.legifrance.gouv.fr/liste/dossiers-legislatifs"
+      },
+      {
+       "titre": "Sénat, rapport annuel d'activité 2023-2024, tome I (délai moyen d'adoption 224 j en 2023-24, 179 j en 2022-23, 295 j en 2021-22)",
+       "url": "https://senat.fr/fileadmin/cru-1745098455/Seance/Statistiques/Rapport_annuel/2023-2024/Tome_I_2324.pdf"
+      }
+     ],
+     "incertitude": "Dates citées de mémoire, non toutes revérifiées (à ±2 semaines) ; échantillon non exhaustif (choisi parmi les textes marquants), donc biaisé vers les textes importants ; inclut deux textes d'urgence exceptionnelle (retraites, pouvoir d'achat) peu comparables. Le Sénat donne un délai moyen d'adoption de 179 à 295 jours (6 à 10 mois), proche du seuil de 198 jours."
+    },
+    {
+     "definition": "Même échantillon sans les deux textes d'urgence exceptionnelle (retraites rectificatif, pouvoir d'achat) : 5 sur 11 sous 6,5 mois.",
+     "periode": "2022-2025",
+     "k": 5,
+     "n": 11,
+     "unite": "projets de loi en procédure accélérée ordinaires",
+     "frequence": 0.4545,
+     "probabilite_fenetre": 45.5,
+     "calcul": "p = 5/11 = 45,5 %",
+     "sources": [
+      {
+       "titre": "Légifrance, dossiers législatifs des lois citées",
+       "url": "https://www.legifrance.gouv.fr/liste/dossiers-legislatifs"
+      },
+      {
+       "titre": "Assemblée nationale, procédure accélérée (art. 45, al. 2 de la Constitution)",
+       "url": "https://www.assemblee-nationale.fr/dyn/synthese/la-procedure-legislative"
+      }
+     ],
+     "incertitude": "Mêmes limites ; n=11. Le seuil de 6,5 mois (promulgation avant le 31 mars 2027 pour un dépôt le 16 septembre) est quasi médian dans l'échantillon, donc la probabilité est sensible à une semaine près."
+    },
+    {
+     "definition": "Projets de loi sécuritaires ou d'ordre public en procédure accélérée, 2017-2024 (dépôt → promulgation sous 6,5 mois ?) : oui SILT (22/06 → 30/10/2017, 4,3 mois), anti-casseurs (proposition de loi Sénat oct. 2018 → 10/04/2019, 6,2 mois), renseignement (28/04 → 30/07/2021, 3 mois) ; non asile-immigration 2018 (6,6 mois), sécurité globale (7 mois), séparatisme (8,5 mois), immigration 2024 (12 mois).",
+     "periode": "2017-2024",
+     "k": 3,
+     "n": 7,
+     "unite": "textes d'ordre public en procédure accélérée",
+     "frequence": 0.4286,
+     "probabilite_fenetre": 42.9,
+     "calcul": "p = 3/7 = 42,9 %",
+     "sources": [
+      {
+       "titre": "Légifrance, dossiers législatifs des lois citées",
+       "url": "https://www.legifrance.gouv.fr/liste/dossiers-legislatifs"
+      }
+     ],
+     "incertitude": "n=7 ; dates de mémoire ; mélange de projets de loi et de propositions de loi (anti-casseurs, sécurité globale) ; une partie des textes date d'une Assemblée à majorité absolue (2017-2022), donc plus rapide que la configuration actuelle, ce qui rend cette classe optimiste. Les textes clivants ont souvent été saisis du Conseil constitutionnel, ce qui ajoute jusqu'à un mois."
+    }
+   ],
+   "fourchette": [
+    42.9,
+    53.8
+   ],
+   "retenue": {
+    "classe": 1,
+    "probabilite": 38.0,
+    "motif": "Classe 1 (45,5 %) en base, corrigée à la baisse : la fin d'octobre à décembre est occupée à l'Assemblée par le budget et la sécurité sociale (le texte ne peut guère y être examiné avant janvier), l'Assemblée n'a pas de majorité absolue (amendements, risque de rejet ou d'allongement), et une saisine du Conseil constitutionnel est probable pour un texte sur la responsabilité en cas de violences collectives (jusqu'à un mois). Sens opposé : examen au Sénat dès six semaines après le dépôt et procédure accélérée annoncée traduisent une volonté d'aboutir vite, et la CMP après une lecture par chambre est possible en février."
+   },
+   "issues": null
+  },
+  {
+   "id": "EV-49",
+   "classes": [
+    {
+     "definition": "Ministres de l'Éducation nationale depuis mai 2022 : 6 départs (Ndiaye 07/2023, Attal 01/2024, Oudéa-Castéra 02/2024, Belloubet 09/2024, Genetet 12/2024, Borne 10/2025) en environ 51,5 mois (20/05/2022 → septembre 2026, avec un ministre en poste fin 2025 à septembre 2026 supposé stable).",
+     "periode": "mai 2022 – sept. 2026",
+     "k": 6,
+     "n": 51.5,
+     "unite": "mois-ministère",
+     "frequence": 0.1165,
+     "probabilite_fenetre": 26.9,
+     "calcul": "λ = 6/51,5 = 0,1165 par mois ; fenêtre du 10/10 au 31/12/2026 = 82 jours = 2,69 mois ; p = 1 − exp(−0,1165 × 2,69) = 26.9 %",
+     "sources": [
+      {
+       "titre": "75 secondes, Liste des ministres de l'Éducation nationale en France (Blanquer 17/05/2017 – 20/05/2022 ; Ndiaye jusqu'au 20/07/2023 ; Attal 11/01/2024 ; Oudéa-Castéra 08/02/2024 ; Belloubet 21/09/2024 ; Genetet 23/12/2024 ; Borne)",
+       "url": "https://www.75secondes.fr/etudes/les-ministres-de-leducation-nationale-en-france"
+      },
+      {
+       "titre": "Wikipédia, Liste des ministres français de l'Éducation nationale",
+       "url": "https://fr.wikipedia.org/wiki/Liste_des_ministres_fran%C3%A7ais_de_l%27%C3%89ducation_nationale"
+      }
+     ],
+     "incertitude": "Période exceptionnelle d'instabilité (dissolution de 2024, quatre Premiers ministres) ; extrapolation d'un taux élevé. La date exacte du dernier changement et l'absence de départ entre octobre 2025 et septembre 2026 reposent sur ma connaissance, pas sur une vérification postérieure à juin 2026."
+    },
+    {
+     "definition": "Ministres de l'Éducation nationale depuis mai 2017 : 7 départs (Blanquer 05/2022 et les six suivants) en environ 112 mois (17/05/2017 → septembre 2026).",
+     "periode": "mai 2017 – sept. 2026",
+     "k": 7,
+     "n": 112,
+     "unite": "mois-ministère",
+     "frequence": 0.0625,
+     "probabilite_fenetre": 15.5,
+     "calcul": "λ = 7/112 = 0,0625 par mois ; p = 1 − exp(−0,0625 × 2,69) = 15.5 %",
+     "sources": [
+      {
+       "titre": "75 secondes, Liste des ministres de l'Éducation nationale en France (Blanquer 17/05/2017 – 20/05/2022 ; Ndiaye jusqu'au 20/07/2023 ; Attal 11/01/2024 ; Oudéa-Castéra 08/02/2024 ; Belloubet 21/09/2024 ; Genetet 23/12/2024 ; Borne)",
+       "url": "https://www.75secondes.fr/etudes/les-ministres-de-leducation-nationale-en-france"
+      },
+      {
+       "titre": "Wikipédia, Liste des ministres français de l'Éducation nationale",
+       "url": "https://fr.wikipedia.org/wiki/Liste_des_ministres_fran%C3%A7ais_de_l%27%C3%89ducation_nationale"
+      }
+     ],
+     "incertitude": "Moyenne dominée par la stabilité de Blanquer (5 ans) ; sous-estime le régime actuel d'instabilité gouvernementale. Poisson supposé, alors que les départs se regroupent autour des changements de gouvernement."
+    },
+    {
+     "definition": "Changements de Premier ministre 2022-2026 (Borne 05/2022, Attal 01/2024, Barnier 09/2024, Bayrou 12/2024, Lecornu 09/2025) : 5 en 51,5 mois ; chaque changement de Premier ministre de la période a entraîné un nouveau titulaire de l'Éducation nationale, sauf le remaniement de juillet 2022 (Ndiaye maintenu, non compté ici) ; le taux de changement de gouvernement sert donc de proxy haut du risque de départ.",
+     "periode": "mai 2022 – sept. 2026",
+     "k": 5,
+     "n": 51.5,
+     "unite": "mois (changements de gouvernement)",
+     "frequence": 0.0971,
+     "probabilite_fenetre": 23.0,
+     "calcul": "λ = 5/51,5 = 0,097 par mois ; p = 1 − exp(−0,097 × 2,69) = 23.0 % (borne haute : le risque de remaniement hors changement de Premier ministre s'ajoute, et un changement de gouvernement conserve parfois le ministre)",
+     "sources": [
+      {
+       "titre": "Wikipédia, Liste des gouvernements de la Cinquième République",
+       "url": "https://fr.wikipedia.org/wiki/Liste_des_gouvernements_de_la_Cinqui%C3%A8me_R%C3%A9publique"
+      },
+      {
+       "titre": "Gouvernement.fr, composition du gouvernement",
+       "url": "https://www.info.gouv.fr/composition-du-gouvernement"
+      }
+     ],
+     "incertitude": "Plusieurs changements de gouvernement sont liés aux budgets (Barnier censuré en décembre 2024, Bayrou en septembre 2025, Lecornu démissionnaire puis reconduit en octobre 2025), période qui recoupe la fenêtre ; mais la proximité de la présidentielle d'avril 2027 incite à l'immobilisme. Le critère exclut la simple reconduction dans le même portefeuille."
+    }
+   ],
+   "fourchette": [
+    15.5,
+    26.9
+   ],
+   "retenue": {
+    "classe": 2,
+    "probabilite": 21.0,
+    "motif": "La classe 2 (23,1 %) est le meilleur proxy du risque de chute ou de remaniement dans une fenêtre de budget d'automne, ajustée en bas pour la reconduction fréquente et la proximité de la présidentielle ; la classe 0 (26,9 %) et la classe 1 (15,5 %) encadrent. Un mouvement lycéen seul emporte rarement un ministre de l'Éducation (Savary 1984 est le cas notable ; Chatel 2010, Blanquer 2018, Ndiaye 2023 sont restés) : ajout marginal."
+   },
+   "issues": null
+  }
+ ]
+}
