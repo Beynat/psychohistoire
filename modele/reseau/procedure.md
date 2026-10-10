@@ -25,7 +25,7 @@ Règles (journal du 10 octobre 2026) : aucune passe ne consulte les prévisions 
 
 - EV-39 (journée à plus de 500 000 manifestants) : réseau 44 %, évaluateurs 55 % ; EV-52 proche de la borne haute : la loi de VE-MOBIL est à revoir (forte trop rare, modérée trop fréquente).
 - EV-43 : réseau 48 %, évaluateurs 37 % ; table de mesure à revoir.
-- Dissolution après le second tour : risque mensuel constant sur 17 mois, alors que la dissolution de début de mandat se concentre en mai-juin 2027 (évaluateur E3). Découper comme la censure.
+- Dissolution après le second tour : découpée (PV-DISSOL2a, PV-DISSOL2b) le 10 octobre ; profils de risque élicités sur des tranches de dates réelles à l'étape 10 (fait).
 - Popularité : aucune série mensuelle sourcée à l'élicitation (évaluateur E2) ; à brancher sur `data/etat/popularite.jsonl`.
-- Revues programmées des agences de notation (Moody's le 23 octobre 2026, S&P en novembre) : le risque mensuel constant de PV-NOTE donne environ 5 % pour une dégradation en octobre, sans tenir compte de la revue. Ajouter un multiplicateur de calendrier (mois de revue) ou un pivot daté par revue.
+- Revues programmées des agences de notation : profil calé sur les revues (étape 3), poids d'un mois sans revue élicité à l'étape 10 (fait).
 - Sondages : la moyenne corrigée de l'erreur historique (`scripts/etat.py`, `data/etat/erreur_sondages.json` : RN +0,9 point, centre −0,5, gauche +3,1, droite −1,0) placerait la gauche devant le centre en septembre 2026 (19,5 contre 16,5), alors que la moyenne publiée place le centre deuxième. VE-SOND suit la moyenne publiée ; décider si la correction, établie sur le dernier mois avant le scrutin, doit s'appliquer six mois avant.

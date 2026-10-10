@@ -830,6 +830,51 @@ def test_calendrier():
     assert 42 < r["Q-A"]["oui"] < 58 and r["Q-B"]["oui"] == 0, r
 
 
+def test_profils():
+    """Feuille de route, étape 10 : la conversion d'une répartition élicitée en poids mensuels reproduit exactement la
+    survenue cumulée au cas de référence ; contrôles d'une réponse ; après un déclencheur « immediat », la survenue
+    tombe le mois du déclencheur et non selon le profil."""
+    import random
+    import profils
+    import reseau
+    rep = {"oct": 0, "nov": 0, "dec": 50, "jan": 0, "fev": 0, "mar-mai": 50}
+    for p in (0.05, 0.6):
+        w = profils.poids("PV-GOUV", rep, p, reseau.MOIS)
+        W, ks = sum(w), reseau.MOIS.index("2026-12")
+        cumul = 1 - (1 - p) ** (sum(w[:ks + 1]) / W)
+        assert abs(cumul - p * 0.5) < 1e-5 and w[0] == 0 and w[1] == 0, (p, cumul, w[:8])
+        assert all(x == 0 for x in w[reseau.MOIS.index("2027-06"):]), w
+    # Contrôles : somme différente de 100, justification vide.
+    g = profils.gabarit()
+    for i, tr in profils.TRANCHES.items():
+        for t in g["pivots"][i]["tranches"].values():
+            t["pourcent"], t["justification"] = 100 / len(tr), "jugement : test"
+    g["PV-NOTE"].update({"rapport_hors_revue": 0.2, "justification": "jugement : test"})
+    assert profils.controle(g) == []
+    g["pivots"]["PV-PDE"]["tranches"]["2027-06-07"]["pourcent"] += 5
+    g["pivots"]["PV-GOUV"]["tranches"]["oct"]["justification"] = " "
+    d = profils.controle(g)
+    assert any("PV-PDE : somme" in x for x in d) and any("PV-GOUV oct" in x for x in d), d
+    # Déclencheur immédiat : C survient en janvier 2027 ; G (profil tout en août) suit le mois même si « immediat ».
+    def mois_g(mode):
+        S = {"variables_etat": [], "mesures": {}, "pivots": [
+            {"id": "PV-C", "nature": "à tout moment", "issues": ["oui", "non"], "fenetre": ["2026-10-10", "2027-09-30"], "parents": [],
+             "profil": {"poids": {"2027-01": 1.0}, "defaut": 0.0}},
+            {"id": "PV-G", "nature": "à tout moment", "issues": ["oui", "non"], "fenetre": ["2026-10-10", "2027-09-30"], "parents": ["PV-C"],
+             "profil": {"poids": {"2027-08": 1.0}, "defaut": 0.0}, **({"apres_declencheur": mode} if mode else {})}]}
+        T = {"PV-C": {"p_fenetre": 0.999}, "PV-G": {"p_fenetre": 0.01, "multiplicateurs": {"PV-C": {"oui": {"oui": 5000}}}}}
+        rng, out = random.Random(3), []
+        for _ in range(200):
+            tr = reseau.simuler(S, T, {}, rng, priors={})
+            out.append(reseau.MOIS[reseau.premier_oui(tr["PV-G"], len(reseau.MOIS))] if "oui" in tr["PV-G"] else None)
+        return out
+    reseau._PROFILS.clear()
+    imm, prof = mois_g("immediat"), mois_g(None)
+    assert imm.count("2027-01") > 190, imm.count("2027-01")
+    assert prof.count("2027-08") > 190, prof.count("2027-08")
+    reseau._PROFILS.clear()
+
+
 def test_lois_par_cas():
     """Feuille de route, étape 4 : le moteur lit une table par cas (pivot « à tout moment », pivot daté dont un parent
     n'est pas tranché, variable d'état) ; les jokers d'un évaluateur couvrent les cas, le plus précis l'emporte ; les

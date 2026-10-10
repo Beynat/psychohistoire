@@ -1,0 +1,268 @@
+{
+ "lecture": "Pour chaque pivot, répartis 100 % entre les tranches : part de la survenue qui tombe dans chaque tranche si l'événement survient dans sa fenêtre, dans le cas de référence indiqué. Ce n'est pas la probabilité de l'événement, seulement sa répartition dans le temps. Justification par tranche (URL ou « jugement : … »).",
+ "evaluateur": "",
+ "date": "",
+ "pivots": {
+  "PV-CENSURE1a": {
+   "reference": "Gouvernement Lecornu en place, sans choc imprévu ; censure adoptée d'ici fin 2026.",
+   "tranches": {
+    "oct": {
+     "du": "2026-10-10",
+     "au": "2026-10-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "nov": {
+     "du": "2026-11-01",
+     "au": "2026-11-30",
+     "pourcent": null,
+     "justification": ""
+    },
+    "dec": {
+     "du": "2026-12-01",
+     "au": "2026-12-31",
+     "pourcent": null,
+     "justification": ""
+    }
+   }
+  },
+  "PV-CENSURE1b": {
+   "reference": "Aucune censure en 2026, sans choc imprévu ; censure adoptée entre le 1er janvier et le 2 mai 2027.",
+   "tranches": {
+    "jan": {
+     "du": "2027-01-01",
+     "au": "2027-01-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "fev": {
+     "du": "2027-02-01",
+     "au": "2027-02-28",
+     "pourcent": null,
+     "justification": ""
+    },
+    "mar-mai": {
+     "du": "2027-03-01",
+     "au": "2027-05-02",
+     "pourcent": null,
+     "justification": ""
+    }
+   }
+  },
+  "PV-GOUV": {
+   "reference": "Fin des fonctions de Sébastien Lecornu SANS censure adoptée (démission, remaniement, candidature, autre cause) ; le départ consécutif à une censure est traité à part (immédiat, article 50).",
+   "tranches": {
+    "oct": {
+     "du": "2026-10-10",
+     "au": "2026-10-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "nov": {
+     "du": "2026-11-01",
+     "au": "2026-11-30",
+     "pourcent": null,
+     "justification": ""
+    },
+    "dec": {
+     "du": "2026-12-01",
+     "au": "2026-12-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "jan": {
+     "du": "2027-01-01",
+     "au": "2027-01-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "fev": {
+     "du": "2027-02-01",
+     "au": "2027-02-28",
+     "pourcent": null,
+     "justification": ""
+    },
+    "mar-mai": {
+     "du": "2027-03-01",
+     "au": "2027-05-02",
+     "pourcent": null,
+     "justification": ""
+    }
+   }
+  },
+  "PV-DISSOL1": {
+   "reference": "Dissolution avant le 2 mai 2027 SANS censure préalable ; la dissolution qui suit une censure est traitée par un autre paramètre.",
+   "tranches": {
+    "oct": {
+     "du": "2026-10-10",
+     "au": "2026-10-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "nov": {
+     "du": "2026-11-01",
+     "au": "2026-11-30",
+     "pourcent": null,
+     "justification": ""
+    },
+    "dec": {
+     "du": "2026-12-01",
+     "au": "2026-12-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "jan": {
+     "du": "2027-01-01",
+     "au": "2027-01-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "fev": {
+     "du": "2027-02-01",
+     "au": "2027-02-28",
+     "pourcent": null,
+     "justification": ""
+    },
+    "mar-mai": {
+     "du": "2027-03-01",
+     "au": "2027-05-02",
+     "pourcent": null,
+     "justification": ""
+    }
+   }
+  },
+  "PV-DISSOL2a": {
+   "reference": "Dissolution par le président élu en 2027, entre le 3 mai et le 30 juin 2027 (aucune dissolution avant le 2 mai).",
+   "tranches": {
+    "mai": {
+     "du": "2027-05-03",
+     "au": "2027-05-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "juin": {
+     "du": "2027-06-01",
+     "au": "2027-06-30",
+     "pourcent": null,
+     "justification": ""
+    }
+   }
+  },
+  "PV-DISSOL2b": {
+   "reference": "Dissolution entre juillet 2027 et septembre 2028, aucune dissolution depuis juin 2024 (pas de verrou de l'article 12 en cours).",
+   "tranches": {
+    "2027-T3": {
+     "du": "2027-07-01",
+     "au": "2027-09-30",
+     "pourcent": null,
+     "justification": ""
+    },
+    "2027-T4": {
+     "du": "2027-10-01",
+     "au": "2027-12-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "2028-S1": {
+     "du": "2028-01-01",
+     "au": "2028-06-30",
+     "pourcent": null,
+     "justification": ""
+    },
+    "2028-T3": {
+     "du": "2028-07-01",
+     "au": "2028-09-30",
+     "pourcent": null,
+     "justification": ""
+    }
+   }
+  },
+  "PV-CENSURE2": {
+   "reference": "Censure d'un gouvernement nommé par le président élu en 2027, entre le 3 mai 2027 et le 30 septembre 2028.",
+   "tranches": {
+    "mai-juin": {
+     "du": "2027-05-03",
+     "au": "2027-06-30",
+     "pourcent": null,
+     "justification": ""
+    },
+    "2027-T3": {
+     "du": "2027-07-01",
+     "au": "2027-09-30",
+     "pourcent": null,
+     "justification": ""
+    },
+    "2027-T4": {
+     "du": "2027-10-01",
+     "au": "2027-12-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "2028-S1": {
+     "du": "2028-01-01",
+     "au": "2028-06-30",
+     "pourcent": null,
+     "justification": ""
+    },
+    "2028-T3": {
+     "du": "2028-07-01",
+     "au": "2028-09-30",
+     "pourcent": null,
+     "justification": ""
+    }
+   }
+  },
+  "PV-PDE": {
+   "reference": "Décision du Conseil visant la France au titre de l'article 126, paragraphe 8 ou 9, TFUE, entre le 10 octobre 2026 et le 30 septembre 2028.",
+   "tranches": {
+    "2026-10-2027-01": {
+     "du": "2026-10-10",
+     "au": "2027-01-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "2027-02-05": {
+     "du": "2027-02-01",
+     "au": "2027-05-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "2027-06-07": {
+     "du": "2027-06-01",
+     "au": "2027-07-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "2027-08-10": {
+     "du": "2027-08-01",
+     "au": "2027-10-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "2027-11-2028-01": {
+     "du": "2027-11-01",
+     "au": "2028-01-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "2028-02-05": {
+     "du": "2028-02-01",
+     "au": "2028-05-31",
+     "pourcent": null,
+     "justification": ""
+    },
+    "2028-06-09": {
+     "du": "2028-06-01",
+     "au": "2028-09-30",
+     "pourcent": null,
+     "justification": ""
+    }
+   }
+  }
+ },
+ "PV-NOTE": {
+  "question": "PV-NOTE (abaissement de la note de la France par Moody's, S&P ou Fitch) : rapport entre la probabilité d'un abaissement pendant un mois SANS revue programmée de la France et pendant un mois AVEC une revue programmée, toutes choses égales par ailleurs (nombre positif, par exemple 0,1 ou 0,5).",
+  "rapport_hors_revue": null,
+  "justification": ""
+ }
+}

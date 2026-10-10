@@ -1,0 +1,344 @@
+{
+ "lecture": "Retour de ronde 1 (protocole IDEA) : réponses des deux autres évaluateurs, anonymisées, et écarts de plus de 25 points signalés. Tu peux réviser ou maintenir chaque répartition ; justifie toute révision comme tout maintien d'un avis isolé.",
+ "ecarts_signales": [],
+ "autres": {
+  "autre 1": {
+   "pivots": {
+    "PV-CENSURE1a": {
+     "oct": {
+      "pourcent": 15,
+      "justification": "Jugement : vote solennel de la première partie le 20 octobre (Kohen, https://kohenavocats.com/budget-2027-rejet-commission-7-octobre-2026-49-3-loi-speciale-impots-prestations-recours/) et motion spontanée envisagée par LFI/écologistes/communistes (JDN, https://www.journaldunet.com/business/action-publique/1555095-la-gauche-annonce-une-motion-de-censure-contre-le-gouvernement-lecornu-lors-du-debat-sur-le-budget-2027/) ; une motion spontanée sans 49.3 a peu de chances de réunir le RN, d'où une part modeste."
+     },
+     "nov": {
+      "pourcent": 35,
+      "justification": "Jugement : un éventuel 49.3 sur la première partie ou sur la LFSS (20 jours à l'Assemblée, art. 47-1) tomberait fin octobre-novembre ; c'est le premier point où RN et PS pourraient converger."
+     },
+     "dec": {
+      "pourcent": 50,
+      "justification": "Précédent Barnier, censuré le 4 décembre 2024 sur le 49.3 de la LFSS (dossier §2) ; lectures définitives et échéance des 70 jours au 10 décembre concentrent les 49.3 décisifs et donc la censure."
+     }
+    },
+    "PV-CENSURE1b": {
+     "jan": {
+      "pourcent": 50,
+      "justification": "Précédent 2026 : 49.3 annoncé le 19 janvier, motions votées le 23 janvier (Public Sénat, https://www.publicsenat.fr/actualites/politique/budget-sebastien-lecornu-declenche-un-nouveau-49-3-apres-avoir-surmonte-deux-motions-de-censure) ; si le budget glisse sous loi spéciale, la reprise de janvier est le moment le plus exposé."
+     },
+     "fev": {
+      "pourcent": 30,
+      "justification": "Précédent 2026 : derniers 49.3 et adoption début février (Al Jazeera, https://www.aljazeera.com/news/2026/2/2/france-adopts-2026-budget-after-two-no-confidence-votes-fail) ; une censure sur la lecture définitive reste plausible."
+     },
+     "mar-mai": {
+      "pourcent": 20,
+      "justification": "Jugement : sans texte budgétaire, l'incitation à censurer s'effondre pendant la campagne présidentielle (1er tour 18 avril 2027, https://www.info.gouv.fr/actualite/presidentielle-2027-date-a-retenir-et-informations-cles) ; reste une motion opportuniste en mars, tranche longue mais peu chargée."
+     }
+    },
+    "PV-GOUV": {
+     "oct": {
+      "pourcent": 10,
+      "justification": "Précédent de la démission de Lecornu le 6 octobre 2025 au moment du budget (https://en.wikipedia.org/wiki/Lecornu_governments) ; jugement : démission préventive possible si l'impasse sur la première partie se dessine fin octobre."
+     },
+     "nov": {
+      "pourcent": 10,
+      "justification": "Jugement : démission pour éviter une censure annoncée sur un 49.3 de LFSS ou de première partie, peu probable mais non nulle."
+     },
+     "dec": {
+      "pourcent": 15,
+      "justification": "Jugement : l'échéance de la loi spéciale (avant le 19 décembre, dossier §1) est un point de rupture où le Premier ministre peut remettre sa démission plutôt que d'être censuré."
+     },
+     "jan": {
+      "pourcent": 15,
+      "justification": "Jugement : départ possible si le budget reste bloqué en janvier, comme la reprise des 49.3 en janvier 2026 l'a montré pour la tension maximale."
+     },
+     "fev": {
+      "pourcent": 20,
+      "justification": "Jugement : une fois le budget adopté, fenêtre naturelle de remaniement ou de départ volontaire (candidature, positionnement pour 2027), sans risque de laisser le pays sans loi de finances."
+     },
+     "mar-mai": {
+      "pourcent": 30,
+      "justification": "Jugement : la campagne présidentielle (18 avril-2 mai 2027) favorise démission pour se présenter ou soutenir un candidat, ou changement d'équipe par le président sortant ; tranche longue où les causes non budgétaires dominent."
+     }
+    },
+    "PV-DISSOL1": {
+     "oct": {
+      "pourcent": 15,
+      "justification": "Jugement : une dissolution « de rupture » au début de la discussion budgétaire, comme le 9 juin 2024 (dossier §3), reste possible si le président veut trancher avant le 20 octobre ou juste après un rejet de la première partie."
+     },
+     "nov": {
+      "pourcent": 25,
+      "justification": "Jugement : un blocage constaté sur la première partie ou la LFSS en novembre permettrait des législatives en décembre (20 à 40 jours, art. 12) avant les fêtes."
+     },
+     "dec": {
+      "pourcent": 30,
+      "justification": "Jugement : échec budgétaire et loi spéciale autour du 19 décembre, point de décision maximal ; législatives possibles en janvier."
+     },
+     "jan": {
+      "pourcent": 15,
+      "justification": "Jugement : une dissolution en janvier donnerait des législatives en février-mars, encore séparables de la présidentielle ; motivation résiduelle si l'impasse persiste."
+     },
+     "fev": {
+      "pourcent": 10,
+      "justification": "Jugement : les législatives tomberaient en mars, à quelques semaines de la présidentielle ; le coût politique monte fortement."
+     },
+     "mar-mai": {
+      "pourcent": 5,
+      "justification": "Jugement : une dissolution entre mars et le 2 mai ferait coïncider législatives et présidentielle ; quasi exclue sauf crise majeure, comme mai 1968 (dossier §3)."
+     }
+    },
+    "PV-DISSOL2a": {
+     "mai": {
+      "pourcent": 80,
+      "justification": "Précédents du 22 mai 1981 et du 14 mai 1988, dissolutions dans les jours suivant l'investiture (dossier §3, Journal officiel) ; fin du mandat le 13 mai 2027, investiture vers cette date."
+     },
+     "juin": {
+      "pourcent": 20,
+      "justification": "Jugement : un président élu qui tente d'abord de gouverner avec l'Assemblée sortante pourrait dissoudre en juin après un échec de formation de gouvernement ou un premier vote hostile."
+     }
+    },
+    "PV-DISSOL2b": {
+     "2027-T3": {
+      "pourcent": 15,
+      "justification": "Jugement : si le président n'a pas dissous à l'investiture, un échec rapide du gouvernement pendant la session extraordinaire de juillet peut déclencher une dissolution ; l'été est toutefois peu propice."
+     },
+     "2027-T4": {
+      "pourcent": 35,
+      "justification": "Le PLF 2028 est déposé début octobre 2027 et examiné jusqu'en décembre (dossier §3) ; la première impasse budgétaire du nouveau mandat est le point de décision le plus probable."
+     },
+     "2028-S1": {
+      "pourcent": 35,
+      "justification": "Jugement : après un premier budget arraché au 49.3 ou une censure, dissolution « de convenance » ou de clarification au premier semestre (précédent 21 avril 1997) ; tranche de six mois."
+     },
+     "2028-T3": {
+      "pourcent": 15,
+      "justification": "Jugement : un an après l'élection, dissolution possible avant la session budgétaire de l'automne 2028 ; l'été réduit la plausibilité."
+     }
+    },
+    "PV-CENSURE2": {
+     "mai-juin": {
+      "pourcent": 10,
+      "justification": "Jugement : un premier gouvernement face à une Assemblée hostile non dissoute peut être censuré dès sa déclaration de politique générale, mais la période de grâce et une éventuelle dissolution réduisent ce cas."
+     },
+     "2027-T3": {
+      "pourcent": 10,
+      "justification": "Jugement : session extraordinaire de juillet puis vacances parlementaires ; peu de textes propices au 49.3."
+     },
+     "2027-T4": {
+      "pourcent": 45,
+      "justification": "Précédent Barnier (4 décembre 2024) et budget 2026 (dossier §2) : la session budgétaire d'octobre-décembre 2027 sur le PLF 2028 concentre les 49.3 et les motions."
+     },
+     "2028-S1": {
+      "pourcent": 30,
+      "justification": "Précédent de janvier 2026 (motions du 23 janvier, Public Sénat cité plus haut) : prolongation budgétaire en janvier-février, puis réformes structurelles au printemps ; tranche de six mois."
+     },
+     "2028-T3": {
+      "pourcent": 5,
+      "justification": "Jugement : session extraordinaire de juillet seulement, puis intersession ; censure peu plausible avant octobre 2028."
+     }
+    },
+    "PV-PDE": {
+     "2026-10-2027-01": {
+      "pourcent": 20,
+      "justification": "Paquet d'automne fin novembre 2026 évaluant le projet de plan budgétaire (dossier §4) ; un Ecofin de décembre ou janvier pourrait constater l'absence d'action si le budget 2027 dérape ou passe en loi spéciale."
+     },
+     "2027-02-05": {
+      "pourcent": 10,
+      "justification": "Jugement : rapport d'avancement au 30 avril (COM(2026) 331, https://www.cdep.ro/afaceri_europene/CE/2026/COM_2026_331_FR_ACT_part1_v2.pdf) mais période électorale où la Commission évite d'agir."
+     },
+     "2027-06-07": {
+      "pourcent": 25,
+      "justification": "Paquet de printemps début juin (Le Club des juristes, https://www.leclubdesjuristes.com/en-bref/procedure-de-deficit-excessif-la-commission-europeenne-ne-prend-pas-de-mesures-supplementaires-a-legard-de-la-france-10937/) suivi de l'Ecofin de juin-juillet ; premier point de décision sur les données 2026 exécutées, atténué par la volonté de laisser sa chance au nouvel exécutif."
+     },
+     "2027-08-10": {
+      "pourcent": 5,
+      "justification": "Jugement : pas d'Ecofin en août, aucun paquet ; seulement une décision tardive issue du paquet de printemps en septembre-octobre."
+     },
+     "2027-11-2028-01": {
+      "pourcent": 20,
+      "justification": "Paquet d'automne 2027 jugeant le premier budget du nouveau mandat (PLF 2028, dossier §3) ; Ecofin de décembre ou janvier."
+     },
+     "2028-02-05": {
+      "pourcent": 5,
+      "justification": "Jugement : hors paquet ; seul un dérapage majeur constaté au rapport d'avancement d'avril justifierait une décision."
+     },
+     "2028-06-09": {
+      "pourcent": 15,
+      "justification": "Paquet de printemps 2028 sur l'exécution 2027 et Ecofin de juin-juillet ; dernier point de décision dans la fenêtre."
+     }
+    }
+   },
+   "PV-NOTE": {
+    "question": "PV-NOTE (abaissement de la note de la France par Moody's, S&P ou Fitch) : rapport entre la probabilité d'un abaissement pendant un mois SANS revue programmée de la France et pendant un mois AVEC une revue programmée, toutes choses égales par ailleurs (nombre positif, par exemple 0,1 ou 0,5).",
+    "rapport_hors_revue": 0.15,
+    "justification": "Le règlement 462/2013 impose un calendrier et n'autorise les écarts qu'avec explication détaillée (https://oeil.europarl.europa.eu/oeil/fr/document-summary?id=1285768) ; un seul écart récent pour la France (S&P, 17 octobre 2025, https://www.lafinancepourtous.com/2025/10/20/agences-de-notation-sp-degrade-la-note-de-la-france-et-rejoint-fitch/), déclenché par une crise gouvernementale. Jugement : les décisions se concentrent fortement sur les dates programmées, avec un risque résiduel hors revue lors d'un choc politique (censure, dissolution), d'où environ 0,15."
+   }
+  },
+  "autre 2": {
+   "pivots": {
+    "PV-CENSURE1a": {
+     "oct": {
+      "pourcent": 8,
+      "justification": "jugement : vote solennel sur les recettes le 20 octobre, mais une motion spontanée de gauche n'atteint pas 289 voix sans le PS ni le RN ; 49.3 improbable si tôt (dossier §1, séance à partir du 13 octobre)."
+     },
+     "nov": {
+      "pourcent": 42,
+      "justification": "jugement : le PLFSS (20 jours à l'Assemblée, 50 au total) et la première lecture du PLF (40 jours, ~10 novembre) amènent un 49.3 et les motions de censure correspondantes ; précédent Barnier, 4 décembre 2024, mais le PLFSS vient plus tôt."
+     },
+     "dec": {
+      "pourcent": 50,
+      "justification": "jugement : c'est le moment où le PLF doit aboutir (ordonnance possible le 10 décembre, loi spéciale avant le 19) ; 49.3 sur texte de CMP puis censure, comme le 4 décembre 2024 ; le calendrier pèse sur décembre."
+     }
+    },
+    "PV-CENSURE1b": {
+     "jan": {
+      "pourcent": 50,
+      "justification": "jugement : sans censure en 2026, le budget est passé par loi spéciale ; reprise en janvier avec 49.3 et motions (précédent : 19 et 23 janvier 2026, dossier §2)."
+     },
+     "fev": {
+      "pourcent": 20,
+      "justification": "jugement : prolongation possible des 49.3 sur le budget (adoption début février 2026 en précédent) ; la tension retombe une fois le budget voté."
+     },
+     "mar-mai": {
+      "pourcent": 30,
+      "justification": "jugement : trois mois sans rendez-vous budgétaire ; à l'approche de la présidentielle des 18 avril et 2 mai, les groupes ont peu d'intérêt à censurer, d'où une part modeste pour une tranche longue."
+     }
+    },
+    "PV-GOUV": {
+     "oct": {
+      "pourcent": 10,
+      "justification": "jugement : débat budgétaire à peine ouvert ; démission possible comme le 6 octobre 2025 mais peu probable en pleine discussion du PLF."
+     },
+     "nov": {
+      "pourcent": 12,
+      "justification": "jugement : départ possible si le PLFSS échoue sans censure, ou crise interne à la coalition."
+     },
+     "dec": {
+      "pourcent": 18,
+      "justification": "jugement : échéance de l'ordonnance (10 décembre) et de la loi spéciale (19 décembre) ; démission préférée à un 49.3 jugé trop risqué."
+     },
+     "jan": {
+      "pourcent": 15,
+      "justification": "jugement : reprise du budget et éventuel remaniement de début d'année."
+     },
+     "fev": {
+      "pourcent": 10,
+      "justification": "jugement : fin d'épisode budgétaire, départ moins pressant."
+     },
+     "mar-mai": {
+      "pourcent": 35,
+      "justification": "jugement : trois mois, ministres candidats ou ralliés à une candidature (dépôt des parrainages en mars), remaniement de pré-campagne ; la démission est le mode de sortie sans censure le plus plausible avant le 2 mai."
+     }
+    },
+    "PV-DISSOL1": {
+     "oct": {
+      "pourcent": 8,
+      "justification": "jugement : dissolution sans censure au début du débat budgétaire peu plausible ; article 12 de nouveau utilisable depuis juillet 2025."
+     },
+     "nov": {
+      "pourcent": 12,
+      "justification": "jugement : possible si le blocage budgétaire est patent et sans censure, comme sortie politique."
+     },
+     "dec": {
+      "pourcent": 25,
+      "justification": "jugement : décembre est le moment de l'impasse (loi spéciale avant le 19, dossier §1) ; dissoudre avant l'échéance fait un scrutin en janvier (20 à 40 jours)."
+     },
+     "jan": {
+      "pourcent": 25,
+      "justification": "jugement : si le budget est bloqué par loi spéciale, janvier est la fenêtre naturelle pour trancher par les urnes."
+     },
+     "fev": {
+      "pourcent": 15,
+      "justification": "jugement : encore possible mais à trois mois de la présidentielle, le scrutin devient tardif."
+     },
+     "mar-mai": {
+      "pourcent": 15,
+      "justification": "jugement : dissolution de convenance (précédent 1997) très improbable à ce stade ; législatives à 20-40 jours entrant dans la campagne présidentielle ; trois mois mais peu de poids."
+     }
+    },
+    "PV-DISSOL2a": {
+     "mai": {
+      "pourcent": 82,
+      "justification": "jugement : précédents de 1981 (22 mai) et 1988 (14 mai) : dissolution dans les jours qui suivent l'investiture (fin du mandat 13 mai, dossier §3) pour obtenir une majorité."
+     },
+     "juin": {
+      "pourcent": 18,
+      "justification": "jugement : pour tenir des élections avant l'été il faut dissoudre avant le début juin ; reste une marge pour une dissolution tardive."
+     }
+    },
+    "PV-DISSOL2b": {
+     "2027-T3": {
+      "pourcent": 7,
+      "justification": "jugement : été et session extraordinaire ; peu de déclencheur, le nouveau pouvoir vient d'être installé."
+     },
+     "2027-T4": {
+      "pourcent": 30,
+      "justification": "jugement : examen du PLF 2028 d'octobre à décembre 2027 (dossier §3) ; blocage budgétaire = déclencheur principal."
+     },
+     "2028-S1": {
+      "pourcent": 48,
+      "justification": "jugement : six mois ; reprise du budget en janvier 2028, vote des textes, point d'étape de la législature ; tranche longue donc part plus forte mais pas proportionnelle."
+     },
+     "2028-T3": {
+      "pourcent": 15,
+      "justification": "jugement : rentrée de septembre avant le PLF 2029 ; dissolution d'été peu plausible, septembre possible."
+     }
+    },
+    "PV-CENSURE2": {
+     "mai-juin": {
+      "pourcent": 4,
+      "justification": "jugement : période de grâce d'un nouveau gouvernement, déclaration de politique générale ; censure très improbable."
+     },
+     "2027-T3": {
+      "pourcent": 5,
+      "justification": "jugement : trêve estivale, session extraordinaire limitée."
+     },
+     "2027-T4": {
+      "pourcent": 43,
+      "justification": "jugement : PLF et PLFSS 2028 examinés d'octobre à décembre 2027 ; 49.3 et motions comme en décembre 2024 et janvier 2026 (dossier §2)."
+     },
+     "2028-S1": {
+      "pourcent": 35,
+      "justification": "jugement : reprise d'un budget non voté en janvier, et autres engagements de responsabilité ; six mois."
+     },
+     "2028-T3": {
+      "pourcent": 13,
+      "justification": "jugement : seulement septembre significatif, avant le dépôt du PLF 2029 début octobre."
+     }
+    },
+    "PV-PDE": {
+     "2026-10-2027-01": {
+      "pourcent": 20,
+      "justification": "jugement : projet de plan budgétaire au 15 octobre et paquet d'automne fin novembre (dossier §4) ; un constat d'absence d'action (par. 8) est possible si le budget 2027 échoue ou est insuffisant."
+     },
+     "2027-02-05": {
+      "pourcent": 10,
+      "justification": "jugement : rapport d'avancement au 30 avril, Ecofin de mai ; procédure gelée en juin 2025 et 2026, peu de raisons d'escalade."
+     },
+     "2027-06-07": {
+      "pourcent": 22,
+      "justification": "jugement : paquet de printemps début juin 2027 (dossier §4), Ecofin de juin/juillet : moment type d'une décision au titre du par. 8."
+     },
+     "2027-08-10": {
+      "pourcent": 6,
+      "justification": "jugement : pas d'Ecofin en août ; septembre-octobre sans paquet, seul le plan budgétaire du 15 octobre."
+     },
+     "2027-11-2028-01": {
+      "pourcent": 20,
+      "justification": "jugement : paquet d'automne 2027, avis sur le budget 2028 du nouveau pouvoir."
+     },
+     "2028-02-05": {
+      "pourcent": 7,
+      "justification": "jugement : rapport d'avancement 30 avril, sans paquet décisif."
+     },
+     "2028-06-09": {
+      "pourcent": 15,
+      "justification": "jugement : paquet de printemps 2028 et Ecofin de juin/juillet, plus fenêtre de septembre."
+     }
+    }
+   },
+   "PV-NOTE": {
+    "question": "PV-NOTE (abaissement de la note de la France par Moody's, S&P ou Fitch) : rapport entre la probabilité d'un abaissement pendant un mois SANS revue programmée de la France et pendant un mois AVEC une revue programmée, toutes choses égales par ailleurs (nombre positif, par exemple 0,1 ou 0,5).",
+    "rapport_hors_revue": 0.12,
+    "justification": "jugement : les abaissements tombent presque toujours à la date du calendrier publié (règlement 462/2013, dossier §5) ; seul écart récent, S&P le 17 octobre 2025 avant sa revue du 28 novembre, après la chute du gouvernement. Environ la moitié des mois ont une revue ; un mois hors revue vaut donc environ un huitième d'un mois avec revue."
+   }
+  }
+ }
+}

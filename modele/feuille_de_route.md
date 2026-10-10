@@ -2,7 +2,7 @@
 
 Établie après deux revues méthodologiques indépendantes (`modele/reseau/revues/2026-10-10_revue_1.md` et `_2.md`), validée par Nathan. Elle remplace, pour la suite, la feuille de route v0 (document Claude Docs « Psychohistoire — feuille de route v0 », terminée).
 
-**Avancement : 8 / 14 étapes (57 %).** Mis à jour à chaque étape terminée ; la progression est aussi donnée dans la conversation.
+**Avancement : 9 / 14 étapes (64 %).** Mis à jour à chaque étape terminée ; la progression est aussi donnée dans la conversation.
 
 Décisions de Nathan :
 - Toutes les étapes sont faites d'un seul tenant, dans l'ordre du tableau, y compris celles que les revues renvoyaient à plus tard. Aucune échéance de travail n'est fixée : les estimations de durée se sont révélées biaisées.
@@ -27,7 +27,7 @@ Décisions de Nathan :
 | # | Étape | Contenu | État |
 |---|---|---|---|
 | 9 | Chocs imprévus | Points d'entrée déclarés dans la structure ; barème d'intensité par stade (allégation, procédure, mise en cause) calé sur des précédents sourcés (Fillon, Strauss-Kahn, Griveaux…) ; extinction par absorption dans les sondages ; nœuds rares (remplacement du candidat d'un bloc, fin anticipée du mandat). | fait |
-| 10 | Profils de risque | Probabilités cumulées à des dates réelles pour les pivots « à tout moment » sensibles (dissolution, censure, note, procédure, gouvernement) à la place du risque mensuel constant. | à faire |
+| 10 | Profils de risque | Probabilités cumulées à des dates réelles pour les pivots « à tout moment » sensibles (dissolution, censure, note, procédure, gouvernement) à la place du risque mensuel constant. | fait |
 | 11 | Réélicitation complète | Toutes les tables sur dossier sourcé, lois par cas, deux rondes (protocole IDEA), par ordre de sensibilité. | à faire |
 | 12 | Pondération des évaluateurs | Mécanisme de Cooke sur les questions graines (jalons, états mensuels), activé dès que des résolutions existent. | à faire |
 | 13 | Mouvements sociaux et ordre public | Sous-réseau branché sur la mobilisation et la popularité ; la mobilisation lycéenne agit sur des pivots ; rattachement des questions hors réseau qui ont un parent (EV-48, EV-49, EV-03, EV-44, EV-23, EV-11, EV-12, EV-14b). | à faire |
@@ -47,3 +47,4 @@ Décisions de Nathan :
 | 10 oct. 2026 | 7 | Tests sémantiques du réseau (références, feuilles, sens des liens, invariants, calage), erreur type publiée, rapport d'écarts (`scripts/ecarts.py`). |
 | 10 oct. 2026 | 8 | Organigramme recalculé dans la page à partir des trajectoires du moteur, mode « et si » ; aperçu soumis à Nathan avant mise en ligne. Réseau témoin gelé (fin du bloc 1). |
 | 10 oct. 2026 | 9 | Chocs imprévus sur points d'entrée, barème par stade sur précédents, nœud rare de vacance ; `modele/reseau/rapports/2026-10-10_etape9.md`. |
+| 10 oct. 2026 | 10 | Profils de risque élicités sur tranches de dates réelles (huit pivots, note hors revue), départ immédiat du Premier ministre après censure ; `modele/reseau/rapports/2026-10-10_etape10.md`. |

@@ -270,8 +270,8 @@
   "PV-NOTE": {
    "revues": "toutes les entrées « revue » de Moody's, S&P et Fitch (critère d'EV-01)",
    "poids_revue": 1.0,
-   "poids_hors_revue": 0.25,
-   "motif": "une dégradation tombe le plus souvent à une revue programmée ; une décision hors calendrier reste possible (S&P a dégradé la France le 17 octobre 2025, avant sa revue programmée du 28 novembre) : poids 0,25 par mois sans revue, jugement à éliciter à l'étape 10 (source : La finance pour tous, 20 octobre 2025, https://www.lafinancepourtous.com/2025/10/20/agences-de-notation-sp-degrade-la-note-de-la-france-et-rejoint-fitch/)"
+   "poids_hors_revue": 0.143,
+   "motif": "une dégradation tombe le plus souvent à une revue programmée ; une décision hors calendrier reste possible (S&P a dégradé la France le 17 octobre 2025, avant sa revue programmée du 28 novembre) : poids 0,25 par mois sans revue, jugement à éliciter à l'étape 10 (source : La finance pour tous, 20 octobre 2025, https://www.lafinancepourtous.com/2025/10/20/agences-de-notation-sp-degrade-la-note-de-la-france-et-rejoint-fitch/) Rapport élicité à l'étape 10 (E10, E11, E12, moyenne géométrique) : 0.143."
   }
  }
 }

@@ -1,0 +1,268 @@
+{
+ "lecture": "Pour chaque pivot, répartis 100 % entre les tranches : part de la survenue qui tombe dans chaque tranche si l'événement survient dans sa fenêtre, dans le cas de référence indiqué. Ce n'est pas la probabilité de l'événement, seulement sa répartition dans le temps. Justification par tranche (URL ou « jugement : … »).",
+ "evaluateur": "E12",
+ "date": "2026-10-10",
+ "pivots": {
+  "PV-CENSURE1a": {
+   "reference": "Gouvernement Lecornu en place, sans choc imprévu ; censure adoptée d'ici fin 2026.",
+   "tranches": {
+    "oct": {
+     "du": "2026-10-10",
+     "au": "2026-10-31",
+     "pourcent": 12,
+     "justification": "ronde 2 : relevé de 8 à 12 : les deux autres évaluateurs (15 et 25) soulignent la motion spontanée annoncée par la gauche (JDN) et le vote du 20 octobre ; elle échoue sans PS ni RN, d'où une hausse limitée."
+    },
+    "nov": {
+     "du": "2026-11-01",
+     "au": "2026-11-30",
+     "pourcent": 40,
+     "justification": "ronde 2 : légère baisse (42 à 40) pour compenser octobre ; le 49.3 sur le PLFSS (20 jours) reste le premier vrai point de bascule."
+    },
+    "dec": {
+     "du": "2026-12-01",
+     "au": "2026-12-31",
+     "pourcent": 48,
+     "justification": "ronde 2 : quasi maintenu (50 à 48) : précédent du 4 décembre 2024 et échéances du 10 et du 19 décembre ; l'avis plus bas de l'autre évaluateur (40) ne tient pas compte du fait que la censure doit survenir d'ici fin 2026."
+    }
+   }
+  },
+  "PV-CENSURE1b": {
+   "reference": "Aucune censure en 2026, sans choc imprévu ; censure adoptée entre le 1er janvier et le 2 mai 2027.",
+   "tranches": {
+    "jan": {
+     "du": "2027-01-01",
+     "au": "2027-01-31",
+     "pourcent": 50,
+     "justification": "ronde 2 : maintenu : accord des trois évaluateurs, reprise du budget avec 49.3 et motions le 19 et le 23 janvier 2026."
+    },
+    "fev": {
+     "du": "2027-02-01",
+     "au": "2027-02-28",
+     "pourcent": 27,
+     "justification": "ronde 2 : relevé de 20 à 27 : argument retenu des deux autres (30), l'adoption définitive début février 2026 (Al Jazeera) montre que la queue de navette peut produire une censure."
+    },
+    "mar-mai": {
+     "du": "2027-03-01",
+     "au": "2027-05-02",
+     "pourcent": 23,
+     "justification": "ronde 2 : abaissé de 30 à 23 : à partir de mars la campagne rend la censure peu utile ; mes 30 % étaient trop élevés face aux 20 % des deux autres, dont l'argument est recevable."
+    }
+   }
+  },
+  "PV-GOUV": {
+   "reference": "Fin des fonctions de Sébastien Lecornu SANS censure adoptée (démission, remaniement, candidature, autre cause) ; le départ consécutif à une censure est traité à part (immédiat, article 50).",
+   "tranches": {
+    "oct": {
+     "du": "2026-10-10",
+     "au": "2026-10-31",
+     "pourcent": 12,
+     "justification": "ronde 2 : relevé de 10 à 12 : la démission du 6 octobre 2025 au moment du budget est un précédent direct (Wikipedia, Lecornu governments)."
+    },
+    "nov": {
+     "du": "2026-11-01",
+     "au": "2026-11-30",
+     "pourcent": 13,
+     "justification": "ronde 2 : relevé de 12 à 13 : impasse sur le PLFSS pouvant conduire à une démission plutôt qu'à un 49.3 risqué."
+    },
+    "dec": {
+     "du": "2026-12-01",
+     "au": "2026-12-31",
+     "pourcent": 18,
+     "justification": "ronde 2 : maintenu : échéance de la loi spéciale (avant le 19 décembre), point de rupture, en accord avec les autres (15 et 20)."
+    },
+    "jan": {
+     "du": "2027-01-01",
+     "au": "2027-01-31",
+     "pourcent": 17,
+     "justification": "ronde 2 : relevé de 15 à 17 : remaniement de début d'année ou blocage persistant, les autres donnent 15 et 20."
+    },
+    "fev": {
+     "du": "2027-02-01",
+     "au": "2027-02-28",
+     "pourcent": 12,
+     "justification": "ronde 2 : relevé de 10 à 12 : candidatures et positionnement avant le dépôt des parrainages en mars."
+    },
+    "mar-mai": {
+     "du": "2027-03-01",
+     "au": "2027-05-02",
+     "pourcent": 28,
+     "justification": "ronde 2 : abaissé de 35 à 28 : argument retenu de l'autre évaluateur, la démission traditionnelle suit en général le second tour du 2 mai, donc hors fenêtre ; restent candidatures et remaniement de campagne."
+    }
+   }
+  },
+  "PV-DISSOL1": {
+   "reference": "Dissolution avant le 2 mai 2027 SANS censure préalable ; la dissolution qui suit une censure est traitée par un autre paramètre.",
+   "tranches": {
+    "oct": {
+     "du": "2026-10-10",
+     "au": "2026-10-31",
+     "pourcent": 10,
+     "justification": "ronde 2 : relevé de 8 à 10 : possibilité d'une dissolution de rupture au début de la discussion, mais sans censure et en trois semaines cela reste peu probable (les autres : 15 et 10)."
+    },
+    "nov": {
+     "du": "2026-11-01",
+     "au": "2026-11-30",
+     "pourcent": 14,
+     "justification": "ronde 2 : relevé de 12 à 14 : un blocage constaté sur PLFSS ou PLF peut pousser à trancher par les urnes, législatives 20 à 40 jours après (art. 12)."
+    },
+    "dec": {
+     "du": "2026-12-01",
+     "au": "2026-12-31",
+     "pourcent": 25,
+     "justification": "ronde 2 : maintenu : impasse maximale autour de la loi spéciale (avant le 19 décembre), les autres donnent 30 et 25."
+    },
+    "jan": {
+     "du": "2027-01-01",
+     "au": "2027-01-31",
+     "pourcent": 26,
+     "justification": "ronde 2 : relevé de 25 à 26 : si le budget est bloqué sous loi spéciale, janvier est la fenêtre, avec législatives avant la présidentielle."
+    },
+    "fev": {
+     "du": "2027-02-01",
+     "au": "2027-02-28",
+     "pourcent": 15,
+     "justification": "ronde 2 : maintenu : fenêtre encore ouverte, mais le couplage avec la présidentielle devient contraignant."
+    },
+    "mar-mai": {
+     "du": "2027-03-01",
+     "au": "2027-05-02",
+     "pourcent": 10,
+     "justification": "ronde 2 : abaissé de 15 à 10 : des législatives coïncideraient avec la présidentielle des 18 avril et 2 mai ; les deux autres donnent 5 et 10, argument recevable."
+    }
+   }
+  },
+  "PV-DISSOL2a": {
+   "reference": "Dissolution par le président élu en 2027, entre le 3 mai et le 30 juin 2027 (aucune dissolution avant le 2 mai).",
+   "tranches": {
+    "mai": {
+     "du": "2027-05-03",
+     "au": "2027-05-31",
+     "pourcent": 80,
+     "justification": "ronde 2 : abaissé de 82 à 80 : précédents de 1981 (22 mai) et 1988 (14 mai), mais une tentative préalable de gouvernement avec l'Assemblée sortante est possible (autres : 80 et 75)."
+    },
+    "juin": {
+     "du": "2027-06-01",
+     "au": "2027-06-30",
+     "pourcent": 20,
+     "justification": "ronde 2 : relevé de 18 à 20 : même raison, une dissolution après un premier échec parlementaire en juin n'est pas à exclure."
+    }
+   }
+  },
+  "PV-DISSOL2b": {
+   "reference": "Dissolution entre juillet 2027 et septembre 2028, aucune dissolution depuis juin 2024 (pas de verrou de l'article 12 en cours).",
+   "tranches": {
+    "2027-T3": {
+     "du": "2027-07-01",
+     "au": "2027-09-30",
+     "pourcent": 10,
+     "justification": "ronde 2 : relevé de 7 à 10 : les autres (15 et 15) rappellent qu'un échec rapide du premier gouvernement peut provoquer une dissolution dès juillet, y compris par surprise (9 juin 2024) ; l'été reste peu propice."
+    },
+    "2027-T4": {
+     "du": "2027-10-01",
+     "au": "2027-12-31",
+     "pourcent": 33,
+     "justification": "ronde 2 : relevé de 30 à 33 : PLF 2028 déposé début octobre 2027 et examiné jusqu'en décembre, première impasse budgétaire du nouveau mandat (autres : 35 et 35)."
+    },
+    "2028-S1": {
+     "du": "2028-01-01",
+     "au": "2028-06-30",
+     "pourcent": 42,
+     "justification": "ronde 2 : abaissé de 48 à 42 : les deux autres donnent 35 ; une tranche de six mois mérite plus qu'un trimestre mais pas la moitié."
+    },
+    "2028-T3": {
+     "du": "2028-07-01",
+     "au": "2028-09-30",
+     "pourcent": 15,
+     "justification": "ronde 2 : maintenu : rentrée de septembre 2028 avant le PLF 2029, été peu propice, en accord avec les autres (15)."
+    }
+   }
+  },
+  "PV-CENSURE2": {
+   "reference": "Censure d'un gouvernement nommé par le président élu en 2027, entre le 3 mai 2027 et le 30 septembre 2028.",
+   "tranches": {
+    "mai-juin": {
+     "du": "2027-05-03",
+     "au": "2027-06-30",
+     "pourcent": 8,
+     "justification": "ronde 2 : relevé de 4 à 8 : les autres (10 et 15) soulignent que l'Assemblée élue en 2024 reste hostile et qu'une censure à la déclaration de politique générale est possible ; je maintiens que la période de grâce limite ce risque."
+    },
+    "2027-T3": {
+     "du": "2027-07-01",
+     "au": "2027-09-30",
+     "pourcent": 8,
+     "justification": "ronde 2 : relevé de 5 à 8 : censure possible sur un texte d'urgence en session extraordinaire (autres : 10 et 12), peu de séances."
+    },
+    "2027-T4": {
+     "du": "2027-10-01",
+     "au": "2027-12-31",
+     "pourcent": 41,
+     "justification": "ronde 2 : abaissé de 43 à 41 : PLF 2028 reste le moment typique des 49.3 et des censures, en accord avec 45 et 38."
+    },
+    "2028-S1": {
+     "du": "2028-01-01",
+     "au": "2028-06-30",
+     "pourcent": 30,
+     "justification": "ronde 2 : abaissé de 35 à 30 : prolongation budgétaire en janvier-février et textes de réforme, les autres donnent 30 et 25."
+    },
+    "2028-T3": {
+     "du": "2028-07-01",
+     "au": "2028-09-30",
+     "pourcent": 13,
+     "justification": "ronde 2 : maintenu : septembre 2028 seulement significatif avant le PLF 2029 ; les autres (5 et 10) sont plus bas mais septembre compte."
+    }
+   }
+  },
+  "PV-PDE": {
+   "reference": "Décision du Conseil visant la France au titre de l'article 126, paragraphe 8 ou 9, TFUE, entre le 10 octobre 2026 et le 30 septembre 2028.",
+   "tranches": {
+    "2026-10-2027-01": {
+     "du": "2026-10-10",
+     "au": "2027-01-31",
+     "pourcent": 20,
+     "justification": "ronde 2 : maintenu : paquet d'automne fin novembre 2026 et Ecofin de décembre ou janvier (dossier §4) ; les autres donnent 20 et 18."
+    },
+    "2027-02-05": {
+     "du": "2027-02-01",
+     "au": "2027-05-31",
+     "pourcent": 8,
+     "justification": "ronde 2 : abaissé de 10 à 8 : argument retenu de l'autre évaluateur, la présidentielle d'avril-mai décourage une décision et le rapport du 30 avril n'est pas un paquet décisif."
+    },
+    "2027-06-07": {
+     "du": "2027-06-01",
+     "au": "2027-07-31",
+     "pourcent": 22,
+     "justification": "ronde 2 : maintenu : paquet de printemps début juin 2027, premier après l'élection, Ecofin de juin-juillet (autres : 25 et 22)."
+    },
+    "2027-08-10": {
+     "du": "2027-08-01",
+     "au": "2027-10-31",
+     "pourcent": 6,
+     "justification": "ronde 2 : maintenu : pas d'Ecofin en août, seul le plan budgétaire du 15 octobre (autres : 5 et 5)."
+    },
+    "2027-11-2028-01": {
+     "du": "2027-11-01",
+     "au": "2028-01-31",
+     "pourcent": 22,
+     "justification": "ronde 2 : relevé de 20 à 22 : paquet d'automne 2027 jugeant le premier budget du nouveau mandat, point de décision le plus probable pour les deux autres (20 et 24)."
+    },
+    "2028-02-05": {
+     "du": "2028-02-01",
+     "au": "2028-05-31",
+     "pourcent": 7,
+     "justification": "ronde 2 : maintenu : hors paquet, décision rare (autres : 5 et 6)."
+    },
+    "2028-06-09": {
+     "du": "2028-06-01",
+     "au": "2028-09-30",
+     "pourcent": 15,
+     "justification": "ronde 2 : maintenu : paquet de printemps 2028, dernier point de décision dans la fenêtre (autres : 15 et 19)."
+    }
+   }
+  }
+ },
+ "PV-NOTE": {
+  "question": "PV-NOTE (abaissement de la note de la France par Moody's, S&P ou Fitch) : rapport entre la probabilité d'un abaissement pendant un mois SANS revue programmée de la France et pendant un mois AVEC une revue programmée, toutes choses égales par ailleurs (nombre positif, par exemple 0,1 ou 0,5).",
+  "rapport_hors_revue": 0.13,
+  "justification": "ronde 2 : relevé de 0,12 à 0,13 ; les autres donnent 0,15 en invoquant le risque résiduel hors revue lors d'un choc politique (S&P, 17 octobre 2025, après la chute du gouvernement), argument recevable, mais les abaissements restent presque tous sur les dates du calendrier (règlement 462/2013, dossier §5)."
+ }
+}

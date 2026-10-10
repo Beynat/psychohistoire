@@ -30,7 +30,9 @@ Paramétrage (aucune probabilité mensuelle n'est demandée aux évaluateurs) :
   parent « à tout moment » survient en cours de fenêtre (déclencheur), n compte les mois restants depuis sa
   survenue : la probabilité qu'il implique porte sur le reste de la fenêtre. Un profil (« profil », étape 3) répartit
   la probabilité de fenêtre selon le poids de chaque mois (revues programmées des agences pour PV-NOTE) :
-  h_k = 1 - (1 - P')^(w_k / Σw) ;
+  h_k = 1 - (1 - P')^(w_k / Σw) ; profils des pivots sensibles élicités sur des tranches de dates réelles (étape 10,
+  scripts/profils.py) ; après un déclencheur, « apres_declencheur » remplace le profil (« immediat » : tout le reste
+  de la probabilité le mois du déclencheur ; « plat » : répartition égale) ;
 - verrou daté (« verrous » de la structure) : une issue juridiquement impossible pendant une durée après un fait
   (article 12 : pas de nouvelle dissolution dans l'année qui suit les élections) met le risque à zéro ;
 - parent daté pas encore tranché : son multiplicateur est la moyenne de ses multiplicateurs sous sa loi a priori
@@ -398,13 +400,22 @@ def simuler(structure, params, obs, rng, priors=None, rngs=None):
                         p = p * math.exp(delta) / (1 - p + p * math.exp(delta))
                 # Parent « à tout moment » survenu en cours de fenêtre (déclencheur : censure → départ du Premier
                 # ministre) : la probabilité qu'il implique porte sur le reste de la fenêtre, à partir de sa survenue.
-                debut = d0
+                debut, declenche = d0, False
                 for q in n.get("parents", []):
                     qn = noeuds.get(pid(q))
                     if qn and qn.get("nature") == "à tout moment" and etats.get(pid(q)) == "oui" \
                             and ("cas" in t or t.get("multiplicateurs", {}).get(pid(q), {}).get("oui")):
                         debut = max(debut, premier_oui(traj[pid(q)], k + 1) + dec(q))
+                        declenche = True
                 w = profil(n)
+                # Après un déclencheur, le profil élicité (cas de référence, sans déclencheur) ne vaut plus
+                # (étape 10) : « immediat » (censure → fin des fonctions du Premier ministre, article 50) met toute la
+                # probabilité du reste de la fenêtre sur le mois du déclencheur ; « plat » la répartit également.
+                mode = n.get("apres_declencheur") if declenche else None
+                if mode == "immediat":
+                    w = [1.0 if j == debut else 0.0 for j in range(len(MOIS))]
+                elif mode == "plat":
+                    w = [1.0] * len(MOIS)
                 reste = sum(w[min(debut, k):d1 + 1])
                 h = 1 - (1 - min(p, 1 - 1e-9)) ** (w[k] / reste) if reste > 0 else 0.0
                 traj[i][k] = "oui" if r.random() < h else "non"
