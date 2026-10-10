@@ -1,0 +1,687 @@
+{
+ "evaluateur": "E7",
+ "ronde": 2,
+ "lecture": "Seconde ronde (protocole IDEA). Ci-dessous : (1) les questions où la marginale impliquée par TES lois, calculée par le réseau, s'écarte de plus de 5 points de ton avis direct ; (2) les cas où les évaluateurs donnent des sens opposés par rapport au cas le plus fréquent, avec les lois et justifications anonymes des autres. Pour chaque point : corrige tes lois ou ton avis direct, ou maintiens-les en écrivant pourquoi. Tu peux changer d'avis à la lecture des arguments, sans chercher le consensus pour lui-même.",
+ "marginales": [
+  {
+   "question": "EV-17",
+   "issue": "oui",
+   "implique": 78.4,
+   "direct": 85.0
+  },
+  {
+   "question": "EV-10",
+   "issue": "oui",
+   "implique": 49.1,
+   "direct": 42.0
+  },
+  {
+   "question": "EV-52",
+   "issue": "oui",
+   "implique": 98.1,
+   "direct": 92.0
+  }
+ ],
+ "sens_opposes": [
+  {
+   "noeud": "PV-DISSOL2a",
+   "cas": "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=non",
+   "cas_reference": "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.77
+   },
+   "ta_loi_reference": {
+    "oui": 0.7
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.72
+     },
+     "loi_reference": {
+      "oui": 0.75
+     },
+     "justification_cas": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président PHI sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.5
+     },
+     "loi_reference": {
+      "oui": 0.7
+     },
+     "justification_cas": "jugement : l'Assemblée élue en 2024 n'a pas de majorité pour un nouveau président (PHI) ; les présidents élus ont dissous rapidement quand l'Assemblée leur était défavorable (1981, 1988) ; la popularité du président sortant (> 35 %) ne change presque rien. Source du contexte : https://lcp.fr/actualites/presentation-du-budget-2027-comment-se-deroule-l-examen-du-projet-de-loi-de-finances"
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2a",
+   "cas": "PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=non",
+   "cas_reference": "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.8
+   },
+   "ta_loi_reference": {
+    "oui": 0.7
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.65
+     },
+     "loi_reference": {
+      "oui": 0.75
+     },
+     "justification_cas": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président RET sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.55
+     },
+     "loi_reference": {
+      "oui": 0.7
+     },
+     "justification_cas": "jugement : l'Assemblée élue en 2024 n'a pas de majorité pour un nouveau président (RET) ; les présidents élus ont dissous rapidement quand l'Assemblée leur était défavorable (1981, 1988) ; la popularité du président sortant (25-35 %) ne change presque rien. Source du contexte : https://lcp.fr/actualites/presentation-du-budget-2027-comment-se-deroule-l-examen-du-projet-de-loi-de-finances"
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2a",
+   "cas": "PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=non",
+   "cas_reference": "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.85
+   },
+   "ta_loi_reference": {
+    "oui": 0.7
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.7
+     },
+     "loi_reference": {
+      "oui": 0.75
+     },
+     "justification_cas": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président RET sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.55
+     },
+     "loi_reference": {
+      "oui": 0.7
+     },
+     "justification_cas": "jugement : l'Assemblée élue en 2024 n'a pas de majorité pour un nouveau président (RET) ; les présidents élus ont dissous rapidement quand l'Assemblée leur était défavorable (1981, 1988) ; la popularité du président sortant (> 35 %) ne change presque rien. Source du contexte : https://lcp.fr/actualites/presentation-du-budget-2027-comment-se-deroule-l-examen-du-projet-de-loi-de-finances"
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.21
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.55
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "jugement : Assemblée élue avant la présidentielle, souvent discordante avec le nouveau président ; dissolution probable dès la fin du verrou pour un président RN."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président RN reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.15
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.4
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "jugement : Assemblée élue avant la présidentielle, souvent discordante avec le nouveau président ; dissolution probable dès la fin du verrou pour un président PHI."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président PHI reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=ATT|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.15
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.4
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "jugement : Assemblée élue avant la présidentielle, souvent discordante avec le nouveau président ; dissolution probable dès la fin du verrou pour un président ATT."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président ATT reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.24
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.6
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "jugement : Assemblée élue avant la présidentielle, souvent discordante avec le nouveau président ; dissolution probable dès la fin du verrou pour un président MEL."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président MEL reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.15
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.4
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "jugement : Assemblée élue avant la présidentielle, souvent discordante avec le nouveau président ; dissolution probable dès la fin du verrou pour un président GLU."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président GLU reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.25
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.3
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "jugement : si le président GLU n'a pas dissous en mai-juin 2027, c'est qu'il compose avec l'Assemblée de 2024 ; un blocage durable rend une dissolution plus tard plausible mais non dominante."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.25
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : président GLU qui n'a pas dissous au premier trimestre (accord de gouvernement, ou renoncement) ; sur 15 mois, une dissolution tardive après blocage budgétaire d'automne 2027 ou crise reste possible."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=RET|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.18
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.4
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "jugement : Assemblée élue avant la présidentielle, souvent discordante avec le nouveau président ; dissolution probable dès la fin du verrou pour un président RET."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président RET reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=LIS|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.15
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.4
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "jugement : Assemblée élue avant la présidentielle, souvent discordante avec le nouveau président ; dissolution probable dès la fin du verrou pour un président LIS."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président LIS reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=AUT|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.15
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.4
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "jugement : Assemblée élue avant la présidentielle, souvent discordante avec le nouveau président ; dissolution probable dès la fin du verrou pour un président AUT."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président AUT reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.86
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.77
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur MEL pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.47
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est < 120 pb, base 0.20 ; budget non publiée (+0.12) ; vainqueur MEL (+0.15) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.82
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.75
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur GLU pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.67
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget publiée (0) ; vainqueur GLU (+0.05) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.72
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.7
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur LIS pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.67
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget publiée (0) ; vainqueur LIS (+0.05) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.77
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.75
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur AUT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.62
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget publiée (0) ; vainqueur AUT (+0.00) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.77
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.76
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur PHI pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.66
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget non publiée (+0.12) ; vainqueur PHI (-0.08) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.77
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.76
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur ATT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.66
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget non publiée (+0.12) ; vainqueur ATT (-0.08) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.82
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.78
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur RET pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.69
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget non publiée (+0.12) ; vainqueur RET (-0.05) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.77
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.78
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur LIS pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.79
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget non publiée (+0.12) ; vainqueur LIS (+0.05) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,693 @@
+{
+ "evaluateur": "E8",
+ "ronde": 2,
+ "lecture": "Seconde ronde (protocole IDEA). Ci-dessous : (1) les questions où la marginale impliquée par TES lois, calculée par le réseau, s'écarte de plus de 5 points de ton avis direct ; (2) les cas où les évaluateurs donnent des sens opposés par rapport au cas le plus fréquent, avec les lois et justifications anonymes des autres. Pour chaque point : corrige tes lois ou ton avis direct, ou maintiens-les en écrivant pourquoi. Tu peux changer d'avis à la lecture des arguments, sans chercher le consensus pour lui-même.",
+ "marginales": [
+  {
+   "question": "EV-17",
+   "issue": "oui",
+   "implique": 76.3,
+   "direct": 70.0
+  },
+  {
+   "question": "EV-10",
+   "issue": "oui",
+   "implique": 60.1,
+   "direct": 55.0
+  },
+  {
+   "question": "EV-47",
+   "issue": "oui",
+   "implique": 36.6,
+   "direct": 30.0
+  },
+  {
+   "question": "EV-52",
+   "issue": "oui",
+   "implique": 99.0,
+   "direct": 92.0
+  }
+ ],
+ "sens_opposes": [
+  {
+   "noeud": "PV-DISSOL2a",
+   "cas": "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=non",
+   "cas_reference": "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.72
+   },
+   "ta_loi_reference": {
+    "oui": 0.75
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.77
+     },
+     "loi_reference": {
+      "oui": 0.7
+     },
+     "justification_cas": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président PHI face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.77."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.5
+     },
+     "loi_reference": {
+      "oui": 0.7
+     },
+     "justification_cas": "jugement : l'Assemblée élue en 2024 n'a pas de majorité pour un nouveau président (PHI) ; les présidents élus ont dissous rapidement quand l'Assemblée leur était défavorable (1981, 1988) ; la popularité du président sortant (> 35 %) ne change presque rien. Source du contexte : https://lcp.fr/actualites/presentation-du-budget-2027-comment-se-deroule-l-examen-du-projet-de-loi-de-finances"
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2a",
+   "cas": "PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=non",
+   "cas_reference": "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.65
+   },
+   "ta_loi_reference": {
+    "oui": 0.75
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.8
+     },
+     "loi_reference": {
+      "oui": 0.7
+     },
+     "justification_cas": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RET face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.80."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.55
+     },
+     "loi_reference": {
+      "oui": 0.7
+     },
+     "justification_cas": "jugement : l'Assemblée élue en 2024 n'a pas de majorité pour un nouveau président (RET) ; les présidents élus ont dissous rapidement quand l'Assemblée leur était défavorable (1981, 1988) ; la popularité du président sortant (25-35 %) ne change presque rien. Source du contexte : https://lcp.fr/actualites/presentation-du-budget-2027-comment-se-deroule-l-examen-du-projet-de-loi-de-finances"
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2a",
+   "cas": "PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=non",
+   "cas_reference": "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.7
+   },
+   "ta_loi_reference": {
+    "oui": 0.75
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.85
+     },
+     "loi_reference": {
+      "oui": 0.7
+     },
+     "justification_cas": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RET face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.85."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.55
+     },
+     "loi_reference": {
+      "oui": 0.7
+     },
+     "justification_cas": "jugement : l'Assemblée élue en 2024 n'a pas de majorité pour un nouveau président (RET) ; les présidents élus ont dissous rapidement quand l'Assemblée leur était défavorable (1981, 1988) ; la popularité du président sortant (> 35 %) ne change presque rien. Source du contexte : https://lcp.fr/actualites/presentation-du-budget-2027-comment-se-deroule-l-examen-du-projet-de-loi-de-finances"
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.55
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.21
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "Jugement : l'Assemblée élue avant la présidentielle peut être dissoute après le verrou si elle s'oppose au nouveau président, mais il a déjà renoncé à le faire dans les deux premiers mois ; vainqueur RN : 0.21. Référence : article 12 de la Constitution."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président RN reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.4
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.15
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "Jugement : l'Assemblée élue avant la présidentielle peut être dissoute après le verrou si elle s'oppose au nouveau président, mais il a déjà renoncé à le faire dans les deux premiers mois ; vainqueur PHI : 0.15. Référence : article 12 de la Constitution."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président PHI reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=ATT|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.4
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.15
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "Jugement : l'Assemblée élue avant la présidentielle peut être dissoute après le verrou si elle s'oppose au nouveau président, mais il a déjà renoncé à le faire dans les deux premiers mois ; vainqueur ATT : 0.15. Référence : article 12 de la Constitution."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président ATT reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.6
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.24
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "Jugement : l'Assemblée élue avant la présidentielle peut être dissoute après le verrou si elle s'oppose au nouveau président, mais il a déjà renoncé à le faire dans les deux premiers mois ; vainqueur MEL : 0.24. Référence : article 12 de la Constitution."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président MEL reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.4
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.15
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "Jugement : l'Assemblée élue avant la présidentielle peut être dissoute après le verrou si elle s'oppose au nouveau président, mais il a déjà renoncé à le faire dans les deux premiers mois ; vainqueur GLU : 0.15. Référence : article 12 de la Constitution."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président GLU reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.3
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.25
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "Jugement : le président a renoncé à dissoudre après son élection (coalition ou majorité relative tolérable) ; une dissolution de confort ou de crise reste possible en 15 mois, plus probable s'il est en cohabitation de fait (RN, MEL) ; vainqueur GLU : 0.25. Référence : article 12 de la Constitution."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.25
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : président GLU qui n'a pas dissous au premier trimestre (accord de gouvernement, ou renoncement) ; sur 15 mois, une dissolution tardive après blocage budgétaire d'automne 2027 ou crise reste possible."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=RET|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.4
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.18
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "Jugement : l'Assemblée élue avant la présidentielle peut être dissoute après le verrou si elle s'oppose au nouveau président, mais il a déjà renoncé à le faire dans les deux premiers mois ; vainqueur RET : 0.18. Référence : article 12 de la Constitution."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président RET reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=LIS|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.4
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.15
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "Jugement : l'Assemblée élue avant la présidentielle peut être dissoute après le verrou si elle s'oppose au nouveau président, mais il a déjà renoncé à le faire dans les deux premiers mois ; vainqueur LIS : 0.15. Référence : article 12 de la Constitution."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président LIS reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-DISSOL2b",
+   "cas": "PV-VAINQ=AUT|PV-DISSOL2a=non|PV-DISSOL1=oui",
+   "cas_reference": "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non",
+   "ta_loi_cas": {
+    "oui": 0.4
+   },
+   "ta_loi_reference": {
+    "oui": 0.35
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.15
+     },
+     "loi_reference": {
+      "oui": 0.35
+     },
+     "justification_cas": "Jugement : l'Assemblée élue avant la présidentielle peut être dissoute après le verrou si elle s'oppose au nouveau président, mais il a déjà renoncé à le faire dans les deux premiers mois ; vainqueur AUT : 0.15. Référence : article 12 de la Constitution."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.08
+     },
+     "loi_reference": {
+      "oui": 0.18
+     },
+     "justification_cas": "jugement : dissolution avant le second tour, verrou de 12 mois ; après sa levée (début 2028) une nouvelle dissolution par le président AUT reste possible si l'Assemblée issue de ce scrutin ne lui donne pas de majorité."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.77
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.86
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 non publiée au 31 décembre et une victoire MEL, la probabilité d'au moins un abaissement d'un cran est de 0.86 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.47
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est < 120 pb, base 0.20 ; budget non publiée (+0.12) ; vainqueur MEL (+0.15) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.75
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.82
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 publiée au 31 décembre et une victoire GLU, la probabilité d'au moins un abaissement d'un cran est de 0.82 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.67
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget publiée (0) ; vainqueur GLU (+0.05) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.7
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.72
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 publiée au 31 décembre et une victoire LIS, la probabilité d'au moins un abaissement d'un cran est de 0.72 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.67
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget publiée (0) ; vainqueur LIS (+0.05) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.75
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.77
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 publiée au 31 décembre et une victoire AUT, la probabilité d'au moins un abaissement d'un cran est de 0.77 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.62
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget publiée (0) ; vainqueur AUT (+0.00) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.76
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.77
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 non publiée au 31 décembre et une victoire PHI, la probabilité d'au moins un abaissement d'un cran est de 0.77 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.66
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget non publiée (+0.12) ; vainqueur PHI (-0.08) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.76
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.77
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 non publiée au 31 décembre et une victoire ATT, la probabilité d'au moins un abaissement d'un cran est de 0.77 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.66
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget non publiée (+0.12) ; vainqueur ATT (-0.08) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.78
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.82
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 non publiée au 31 décembre et une victoire RET, la probabilité d'au moins un abaissement d'un cran est de 0.82 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.69
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget non publiée (+0.12) ; vainqueur RET (-0.05) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  },
+  {
+   "noeud": "PV-NOTE",
+   "cas": "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS",
+   "cas_reference": "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN",
+   "ta_loi_cas": {
+    "oui": 0.78
+   },
+   "ta_loi_reference": {
+    "oui": 0.82
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "oui": 0.77
+     },
+     "loi_reference": {
+      "oui": 0.82
+     },
+     "justification_cas": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 non publiée au 31 décembre et une victoire LIS, la probabilité d'au moins un abaissement d'un cran est de 0.77 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "oui": 0.79
+     },
+     "loi_reference": {
+      "oui": 0.57
+     },
+     "justification_cas": "jugement : sur 24 mois, au moins une des trois agences (S&P A+ stable depuis oct. 2025, Fitch A+ depuis sept. 2025, Moody's Aa3 avec perspective négative depuis oct. 2025, cf. https://www.clubpatrimoine.com/contenus/note-souveraine-francaise) abaisse d'un cran. Si l'écart OAT-Bund est > 160 pb, base 0.62 ; budget non publiée (+0.12) ; vainqueur LIS (+0.05) selon le risque budgétaire de son programme. Revues programmées surtout au printemps et à l'automne, donc quatre à six rendez-vous par agence dans la fenêtre."
+    }
+   ]
+  }
+ ]
+}

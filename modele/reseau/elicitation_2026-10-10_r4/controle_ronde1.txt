@@ -1,0 +1,34 @@
+/tmp/claude-0/elic4/E7.json : conforme
+  marginale implicite EV-17 oui : 78.4 contre avis direct 85.0
+  marginale implicite EV-10 oui : 49.1 contre avis direct 42.0
+  marginale implicite EV-52 oui : 98.1 contre avis direct 92.0
+/tmp/claude-0/elic4/E8.json : conforme
+  marginale implicite EV-17 oui : 76.3 contre avis direct 70.0
+  marginale implicite EV-10 oui : 60.1 contre avis direct 55.0
+  marginale implicite EV-47 oui : 36.6 contre avis direct 30.0
+  marginale implicite EV-52 oui : 99.0 contre avis direct 92.0
+/tmp/claude-0/elic4/E9.json : conforme
+  marginale implicite EV-10 oui : 60.2 contre avis direct 45.0
+  marginale implicite EV-47 oui : 38.9 contre avis direct 25.0
+  marginale implicite EV-52 oui : 98.1 contre avis direct 82.0
+  marginale implicite EV-51 oui : 33.9 contre avis direct 12.0
+SENS OPPOSÉS PV-DISSOL2a [PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=non] oui (référence PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non) : [0.36, -0.15, -0.85]
+SENS OPPOSÉS PV-DISSOL2a [PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=non] oui (référence PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non) : [0.54, -0.48, -0.65]
+SENS OPPOSÉS PV-DISSOL2a [PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=non] oui (référence PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non) : [0.89, -0.25, -0.65]
+SENS OPPOSÉS PV-DISSOL2b [PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=oui] oui (référence PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non) : [-0.71, 0.82, -0.93]
+SENS OPPOSÉS PV-DISSOL2b [PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=oui] oui (référence PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non) : [-1.12, 0.21, -0.93]
+SENS OPPOSÉS PV-DISSOL2b [PV-VAINQ=ATT|PV-DISSOL2a=non|PV-DISSOL1=oui] oui (référence PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non) : [-1.12, 0.21, -0.93]
+SENS OPPOSÉS PV-DISSOL2b [PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=oui] oui (référence PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non) : [-0.53, 1.02, -0.93]
+SENS OPPOSÉS PV-DISSOL2b [PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=oui] oui (référence PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non) : [-1.12, 0.21, -0.93]
+SENS OPPOSÉS PV-DISSOL2b [PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=non] oui (référence PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non) : [-0.48, -0.23, 0.42]
+SENS OPPOSÉS PV-DISSOL2b [PV-VAINQ=RET|PV-DISSOL2a=non|PV-DISSOL1=oui] oui (référence PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non) : [-0.9, 0.21, -0.93]
+SENS OPPOSÉS PV-DISSOL2b [PV-VAINQ=LIS|PV-DISSOL2a=non|PV-DISSOL1=oui] oui (référence PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non) : [-1.12, 0.21, -0.93]
+SENS OPPOSÉS PV-DISSOL2b [PV-VAINQ=AUT|PV-DISSOL2a=non|PV-DISSOL1=oui] oui (référence PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non) : [-1.12, 0.21, -0.93]
+SENS OPPOSÉS PV-NOTE [VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [0.3, -0.31, -0.4]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [0.0, -0.42, 0.43]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.57, -0.67, 0.43]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.31, -0.42, 0.21]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.31, -0.36, 0.38]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.31, -0.36, 0.38]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [0.0, -0.25, 0.52]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.31, -0.25, 1.04]
