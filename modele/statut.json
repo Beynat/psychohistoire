@@ -1,7 +1,10 @@
 {
- "description": "Statut du protocole (noyau, section 12). Tant que « definitif » vaut false, aucun cycle de la piste protocole n'est exécuté.",
+ "description": "Statut du protocole (noyau, section 12). « definitif » : décompte formel ouvert. « v0 » : cycles v0 exécutés sur registre/v0.jsonl. Sans l'un ni l'autre, aucun cycle n'est exécuté.",
  "definitif": false,
  "version_definitive": null,
  "declare_le": null,
- "motif": "Processus de relecture en cours : relecture de suivi 22 traitée (v1.28, avec trois audits internes) ; relecture de validation 23 demandée le 6 octobre 2026, en session neuve (noyau, section 12). Compteur du critère d'arrêt : zéro."
+ "motif": "Protocole en retrait jusqu'à la v0 ajustée (cap du 10 octobre 2026). Cycles v0 : étiquette AAAA-MM, registre registre/v0.jsonl (annonces et propositions suffixées _v0) ; registre/protocole.jsonl réservé au décompte formel, verrouillé tant que « definitif » vaut false. « premier_cycle_formel » sera renseigné à la v0 ajustée : la banque se fige à ce cycle.",
+ "v0": true,
+ "premier_cycle_formel": null,
+ "v0_declare_le": "2026-10-10"
 }

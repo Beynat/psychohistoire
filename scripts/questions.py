@@ -30,17 +30,17 @@ def arrondi(v, unite):
     return round(v) if unite == "pb" else round(v, 1)
 
 
-def generer(gel, etiquette=None):
+def generer(gel, etiquette=None, reg="registre/protocole.jsonl"):
     mois = gel[:7]
     cycle = etiquette or mois
     gel_dir = RACINE / "data" / "cycles" / cycle / "gel" / "historique"
     lire = (lambda n: commun.serie(n)) if not gel_dir.exists() else (
         lambda n: [(p, float(v)) for p, v in (l.split(",") for l in (gel_dir / f"{n}.csv").read_text("utf-8").splitlines()[1:] if l)])
-    from resolution import resolutions_effectives
+    from resolution import resolutions_effectives, suffixe
     # Errata de réouverture appliqués (relecture 13, S1). Seules les résolutions dont le fait est établi au gel
     # écartent une question (section 8.2 ; relecture 22, N3) : à la reprise d'un cycle, un fait postérieur au
     # gel ne retire pas la question, ce qui ne retirerait que des « oui ».
-    resolues = {q for q, r in resolutions_effectives("").items()
+    resolues = {q for q, r in resolutions_effectives(suffixe(reg)).items()
                 if (r.get("date_fait") or str(r.get("emise", ""))[:10]) <= gel}
     gel_corr = RACINE / "data" / "cycles" / cycle / "gel" / "correspondances_p1.json"
     correspondances = lire_json(str(gel_corr.relative_to(RACINE)) if gel_corr.exists() else "modele/correspondances_p1.json",
@@ -148,7 +148,7 @@ def generer(gel, etiquette=None):
     # Actes annoncés comme décidés (relecture 20, N1) : la question n'est pas émise si deux agents distincts, ou
     # deux passages, ont consigné une annonce datée au plus tard du gel. L'annonce ne résout pas la question.
     vus_a = {}
-    for a in lire_jsonl("registre/annonces.jsonl"):
+    for a in lire_jsonl(f"registre/annonces{suffixe(reg)}.jsonl"):
         if a.get("annonce") and a["date_annonce"] <= gel:
             vus_a.setdefault(a["question"], set()).add((a["agent"], a["emise"][:10]))
     annoncees = {ev for ev, cles in vus_a.items() if len(cles) >= 2}
@@ -161,7 +161,7 @@ def generer(gel, etiquette=None):
             continue
         qid = f"Q-{e['id']}"
         if e["id"] in annoncees:
-            ecartees.append((qid, "acte annoncé comme décidé avant le gel (registre/annonces.jsonl)"))
+            ecartees.append((qid, f"acte annoncé comme décidé avant le gel (registre/annonces{suffixe(reg)}.jsonl)"))
             continue
         if qid in resolues:
             ecartees.append((qid, "déjà résolue"))
@@ -187,9 +187,11 @@ def generer(gel, etiquette=None):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) not in (2, 3):
-        sys.exit("usage : python scripts/questions.py AAAA-MM-JJ [ETIQUETTE]")
-    gel, etiquette = sys.argv[1], (sys.argv[2] if len(sys.argv) == 3 else None)
+    if len(sys.argv) not in (2, 3, 4):
+        sys.exit("usage : python scripts/questions.py AAAA-MM-JJ [ETIQUETTE] [registre/<fichier>.jsonl]")
+    gel, etiquette = sys.argv[1], (sys.argv[2] if len(sys.argv) >= 3 else None)
+    # Registre du cycle (vérificateur B, constat 2.1) : résolutions et annonces lues avec son suffixe.
+    reg = sys.argv[3] if len(sys.argv) == 4 else "registre/protocole.jsonl"
     # Rattrapage (noyau, section 12) : un passage repris après le jour du gel garde la date du gel du
     # manifeste. Sinon le contrôle des séries périmées (plus de trois jours) écarterait les questions
     # de variables selon le jour de la reprise.
@@ -200,7 +202,7 @@ if __name__ == "__main__":
     # Une banque déjà écrite n'est jamais régénérée (audit interne v1.27, S3) : à la reprise, l'étape est faite.
     if (RACINE / "data" / "cycles" / (etiquette or gel[:7]) / "questions.json").exists():
         sys.exit(f"Les questions du cycle {etiquette or gel[:7]} existent déjà : étape déjà faite.")
-    banque = generer(gel, etiquette)
+    banque = generer(gel, etiquette, reg)
     ecrire_json(f"data/cycles/{banque['cycle']}/questions.json", banque)
     n = len(banque["questions"])
     g = len({q["grappe"] for q in banque["questions"]})

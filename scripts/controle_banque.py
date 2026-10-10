@@ -21,14 +21,18 @@ from commun import RACINE, empreinte, lire_json
 CHAMPS = ("critere", "issues", "fenetre", "nature", "pool", "source_accessible", "mensuelle", "source_resolution",
           "acte", "evenement", "taux_base_mode", "reference_externe",   # relecture 13, S3
           "nom", "sous_question")   # texte remis aux prévisionnistes (relecture 15, S7)
-PREMIER_CYCLE = "2026-11"
 
 
 def gels_reels():
+    """Gels des cycles formels (étiquette AAAA-MM à partir du premier cycle formel de modele/statut.json).
+    Pendant la v0, « premier_cycle_formel » est nul : aucun gel ne fige la banque (feuille de route v0, bloc 6)."""
+    premier = (lire_json("modele/statut.json", {}) or {}).get("premier_cycle_formel")
     out = []
+    if not premier:
+        return out
     for d in sorted((RACINE / "data" / "cycles").glob("*/gel/manifeste.json")):
         et = d.parent.parent.name
-        if re.fullmatch(r"\d{4}-\d{2}", et) and et >= PREMIER_CYCLE:
+        if re.fullmatch(r"\d{4}-\d{2}", et) and et >= premier:
             out.append((et, lire_json(str(d.relative_to(RACINE)))))
     return out
 

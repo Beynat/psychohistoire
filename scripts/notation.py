@@ -224,7 +224,7 @@ def bilan(reg="registre/protocole.jsonl", reference="ensemble direct", aujourdhu
     # Seules comptent les annonces consignées avant l'enregistrement de la résolution (audit interne v1.27, S1) :
     # une annonce consignée après coup, et datée d'avant, ne peut plus couper la question.
     annonces = {}
-    for a in lire_jsonl("registre/annonces.jsonl"):
+    for a in lire_jsonl(f"registre/annonces{sfx}.jsonl"):
         if a.get("annonce"):
             annonces.setdefault(a["question"], []).append(a)
     def annonce_avant(ev, r):

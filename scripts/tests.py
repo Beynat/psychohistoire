@@ -104,7 +104,7 @@ def test_bout_en_bout():
             r = subprocess.run([sys.executable, *a], cwd=tmp, env=env, capture_output=True, text=True)
             assert r.returncode == 0, r.stderr[-2000:]
             return r
-        (tmp / "modele/statut.json").write_text(json.dumps({"definitif": True}))
+        (tmp / "modele/statut.json").write_text(json.dumps({"definitif": True, "premier_cycle_formel": "2026-11"}))
         run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
         run("scripts/questions.py", "2026-11-01", "2026-11")
         run("scripts/comparateurs.py", "2026-11", "registre/e2e.jsonl")
@@ -452,7 +452,7 @@ def test_correspondances_figees():
     tmp, run = _copie()
     try:
         st = tmp / "modele/statut.json"
-        st.write_text(json.dumps({**json.loads(st.read_text()), "definitif": True}))
+        st.write_text(json.dumps({**json.loads(st.read_text()), "definitif": True, "premier_cycle_formel": "2026-11"}))
         run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
         assert "Banque conforme" in run("scripts/controle_banque.py")
         c = tmp / "modele/correspondances_p1.json"
@@ -486,6 +486,38 @@ def test_verrou_protocole():
         st.write_text(json.dumps({**json.loads(st.read_text()), "definitif": True}))
         run("scripts/comparateurs.py", "2026-11")
         assert len(reg.read_bytes()) > len(avant)
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
+def test_cycles_v0():
+    """Feuille de route v0, bloc 6 (vérificateur B, 2.1 et 4). Un gel AAAA-MM ne fige la banque qu'à partir du
+    premier cycle formel ; un cycle v0 lit les résolutions et les annonces de son propre registre."""
+    tmp, run = _copie()
+    try:
+        import subprocess, os
+        env = {**os.environ, "PYTHONPATH": str(tmp / "scripts")}
+        st = tmp / "modele/statut.json"
+        base = json.loads(st.read_text())
+        st.write_text(json.dumps({**base, "definitif": False, "v0": True, "premier_cycle_formel": None}))
+        run("scripts/geler.py", "2026-11-01", "2026-11", "--essai")
+        assert "Banque conforme" in run("scripts/controle_banque.py")
+        st.write_text(json.dumps({**base, "definitif": False, "v0": True, "premier_cycle_formel": "2026-11"}))
+        r = subprocess.run([sys.executable, "scripts/controle_banque.py"], cwd=tmp, env=env, capture_output=True, text=True)
+        assert r.returncode != 0 and "pas déclaré définitif" in r.stdout, r.stdout[-300:]
+        st.write_text(json.dumps({**base, "definitif": False, "v0": True, "premier_cycle_formel": None}))
+        # Q-EV-42 résolue dans le registre v0 : écartée du cycle v0 suivant, émise dans un cycle d'un autre registre.
+        (tmp / "registre/resolutions_v0.jsonl").write_text(json.dumps({"resolution": True, "question": "Q-EV-42",
+            "issue": "oui", "date_fait": "2026-11-20", "source": "s", "methode": "m",
+            "emise": "2026-11-21T08:00:00+01:00"}) + chr(10))
+        run("scripts/geler.py", "2026-12-01", "2026-12", "--essai")
+        run("scripts/questions.py", "2026-12-01", "2026-12", "registre/v0.jsonl")
+        ids = {q["id"] for q in json.loads((tmp / "data/cycles/2026-12/questions.json").read_text())["questions"]}
+        assert not any(i.startswith("Q-EV-42") for i in ids), sorted(i for i in ids if "EV-42" in i)
+        run("scripts/geler.py", "2026-12-01", "essai-autre", "--essai")
+        run("scripts/questions.py", "2026-12-01", "essai-autre", "registre/essai_autre.jsonl")
+        ids = {q["id"] for q in json.loads((tmp / "data/cycles/essai-autre/questions.json").read_text())["questions"]}
+        assert "Q-EV-42" in ids
     finally:
         shutil.rmtree(tmp.parent)
 
@@ -552,7 +584,7 @@ def test_annonces_et_grappes_d_ajout():
         assert g["Q-EV-15g"] == "EV-15b", g.get("Q-EV-15g")
         assert any(e["objet"] == "EV-15e" and "reliant" in e["motif"] for e in b3["ecartees"]), b3["ecartees"][-3:]
         # Audit v1.25, D1 : coupure à la première annonce, quelle que soit l'issue (ici « non »).
-        (tmp / "registre/annonces.jsonl").open("a").write(json.dumps({"annonce": True, "question": "EV-15", "date_annonce": "2026-11-02",
+        (tmp / "registre/annonces_v.jsonl").open("a").write(json.dumps({"annonce": True, "question": "EV-15", "date_annonce": "2026-11-02",
             "source": "s", "agent": "agent-1", "emise": "2026-11-03T08:00:00+01:00"}) + chr(10))
         code = r"""
 import json, notation
@@ -567,17 +599,21 @@ b = notation.bilan('registre/v.jsonl', 'ensemble direct', '2027-02-01')
 print(json.dumps([e["auteur"] for e in b["exclues"] if e["question"] == "Q-EV-15"]))
 """
         assert json.loads(run("-c", code).strip().splitlines()[-1]) == ["ensemble direct"]
+        # Vérificateur B (constat 2.1) : une annonce d'un autre registre ne coupe pas les prévisions de celui-ci.
+        (tmp / "registre/annonces_v.jsonl").rename(tmp / "registre/annonces_autre.jsonl")
+        assert json.loads(run("-c", code).strip().splitlines()[-1]) == []
+        (tmp / "registre/annonces_autre.jsonl").rename(tmp / "registre/annonces_v.jsonl")
         # Audit interne v1.27, S1 : une annonce consignée après la résolution, même datée d'avant, ne coupe rien.
-        (tmp / "registre/annonces.jsonl").write_text(json.dumps({"annonce": True, "question": "EV-15", "date_annonce": "2026-11-02",
+        (tmp / "registre/annonces_v.jsonl").write_text(json.dumps({"annonce": True, "question": "EV-15", "date_annonce": "2026-11-02",
             "source": "s", "agent": "agent-1", "emise": "2027-01-20T08:00:00+01:00"}) + chr(10))
         assert json.loads(run("-c", code).strip().splitlines()[-1]) == []
         # Audit interne v1.27 : une annonce inscrite au journal des contrôles (poussée hors fenêtre) est écartée.
         import hashlib
         brut = json.dumps({"annonce": True, "question": "EV-15", "date_annonce": "2026-11-02", "source": "s",
                            "agent": "agent-1", "emise": "2026-11-03T08:00:00+01:00"})
-        (tmp / "registre/annonces.jsonl").write_text(brut + chr(10))
+        (tmp / "registre/annonces_v.jsonl").write_text(brut + chr(10))
         assert json.loads(run("-c", code).strip().splitlines()[-1]) == ["ensemble direct"]
-        (tmp / "registre/controles.jsonl").write_text(json.dumps({"fichier": "registre/annonces.jsonl",
+        (tmp / "registre/controles.jsonl").write_text(json.dumps({"fichier": "registre/annonces_v.jsonl",
             "empreinte": hashlib.sha256(brut.encode()).hexdigest()}) + chr(10))
         assert json.loads(run("-c", code).strip().splitlines()[-1]) == []
     finally:
