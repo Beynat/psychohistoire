@@ -378,7 +378,9 @@ def simuler(structure, params, obs, rng, priors=None, rngs=None):
                 verrou = False
                 for v in verrous:
                     if i in v["interdit"]:
-                        j = premier_oui(traj[v["si"]], k)
+                        # Mois en cours compris (k + 1) : le nœud verrouillant est tiré avant (ordre topologique), et une
+                        # dissolution d'avril-mai 2027 tombe le même mois que l'ouverture de la fenêtre suivante.
+                        j = premier_oui(traj[v["si"]], k + 1)
                         if j is not None and k <= j + v["duree_mois"]:
                             verrou = True
                 if verrou:

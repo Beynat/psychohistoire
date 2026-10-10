@@ -709,6 +709,11 @@ def test_moteur_etape1():
         T = {"noeuds": {"PV-A": {"p_fenetre": 0.999999}, "PV-B": {"p_fenetre": 0.9}}}
         r = reseau.prevoir(S, T, {}, [q("EV-B", ["2027-05-03", "2027-10-31"]), {**q("EV-B", ["2028-01-01", "2028-09-30"]), "id": "Q-T"}], 20, 200)
         assert r["Q-EV-B"]["oui"] < 1 and r["Q-T"]["oui"] > 20, r
+        # Même mois : dissolution le mois où s'ouvre la fenêtre suivante (verrou compté dès le mois du fait).
+        S["pivots"][0]["fenetre"], S["pivots"][1]["fenetre"] = ["2027-05-01", "2027-05-02"], ["2027-05-03", "2027-06-30"]
+        S["pivots"][1]["parents"] = ["PV-A"]
+        r = reseau.prevoir(S, T, {}, [q("EV-B", ["2027-05-03", "2027-06-30"])], 10, 200)
+        assert r["Q-EV-B"]["oui"] < 1, r
         # 5. Extinction d'un fait : sans objet depuis l'étape 2 (les faits sont des preuves, sans multiplicateur
         # appliqué de mois en mois ; voir test_preuves).
         # 6. Contrôle de cohérence sur toutes les issues d'une question à plusieurs issues (EV-05).
@@ -946,6 +951,7 @@ def test_processus_etape6():
     try:
         import subprocess, os
         env = {**os.environ, "PYTHONPATH": str(tmp / "scripts")}
+        shutil.rmtree(tmp / "modele/reseau/gele", ignore_errors=True)   # le dépôt réel est déjà gelé : on rejoue le gel sur la copie
         r = subprocess.run([sys.executable, "scripts/reseau.py", "--geler"], cwd=tmp, env=env, capture_output=True, text=True)
         assert r.returncode == 0 and (tmp / "modele/reseau/gele/manifeste.json").exists(), r.stderr[-300:]
         r = subprocess.run([sys.executable, "scripts/reseau.py", "--geler"], cwd=tmp, env=env, capture_output=True, text=True)
