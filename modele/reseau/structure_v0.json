@@ -1,5 +1,5 @@
 {
- "version": "structure v0.1 (10 octobre 2026, après pré-mortem)",
+ "version": "structure v0.2 (10 octobre 2026, censure découpée en saison budgétaire et printemps)",
  "description": "Réseau bayésien dynamique v0, pas mensuel d'octobre 2026 à septembre 2028. Révisé après le pré-mortem du 10 octobre (scratchpad, rapport de 32 causes) : aucun cycle au sein d'un mois (liens au mois précédent marqués « decalage »: 1), au plus trois parents, pivots électoraux par personnes, dette découpée en note, procédure de déficit excessif et TPI ouverts dès octobre 2026, dissolution et censure découpées avant et après la présidentielle, changement de gouvernement ajouté. Hors réseau (notés sur l'ensemble et les comparateurs) : EV-03, EV-44, EV-23, EV-14b, EV-36, EV-06, international, climat, sécurité.",
  "codes_candidats": {
   "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate, sinon Jordan Bardella)",
@@ -182,8 +182,8 @@
    ]
   },
   {
-   "id": "PV-CENSURE1",
-   "nom": "Censure avant le second tour",
+   "id": "PV-CENSURE1a",
+   "nom": "Censure d'ici fin 2026 (session budgétaire)",
    "nature": "à tout moment",
    "issues": [
     "oui",
@@ -201,6 +201,29 @@
    ],
    "fenetre": [
     "2026-10-10",
+    "2026-12-31"
+   ]
+  },
+  {
+   "id": "PV-CENSURE1b",
+   "nom": "Censure de janvier au second tour",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    {
+     "id": "VE-POP",
+     "decalage": 1
+    },
+    {
+     "id": "VE-MOBIL",
+     "decalage": 1
+    }
+   ],
+   "fenetre": [
+    "2027-01-01",
     "2027-05-02"
    ]
   },
@@ -213,7 +236,7 @@
     "non publiée"
    ],
    "parents": [
-    "PV-CENSURE1",
+    "PV-CENSURE1a",
     {
      "id": "VE-POP",
      "decalage": 1
@@ -234,7 +257,8 @@
     "non"
    ],
    "parents": [
-    "PV-CENSURE1",
+    "PV-CENSURE1a",
+    "PV-CENSURE1b",
     {
      "id": "VE-POP",
      "decalage": 1
@@ -255,7 +279,8 @@
     "non"
    ],
    "parents": [
-    "PV-CENSURE1",
+    "PV-CENSURE1a",
+    "PV-CENSURE1b",
     {
      "id": "VE-POP",
      "decalage": 1
@@ -524,7 +549,7 @@
   "EV-15": {
    "caracteristique": {
     "type": "survenue",
-    "noeud": "PV-CENSURE1"
+    "noeud": "PV-CENSURE1a"
    },
    "table": {
     "oui": 100,
@@ -535,7 +560,7 @@
   "EV-15b": {
    "caracteristique": {
     "type": "survenue",
-    "noeud": "PV-CENSURE1"
+    "noeud": "PV-CENSURE1b"
    },
    "table": {
     "oui": 100,

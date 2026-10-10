@@ -1,0 +1,12 @@
+{
+ "description": "États observés des variables du réseau, par mois (le moteur ne tire pas un état observé). Mis à jour à chaque passe et avant chaque cycle. Sources : écart OAT-Bund, collecte nocturne ; mobilisation et lycées, chiffres des ministères repris par l'AFP (1 207 établissements le 1er octobre, 891 le 6 ; 256 000 manifestants le 6 octobre selon l'Intérieur) ; popularité, baromètres de septembre (sous 25 %) ; sondages de fin septembre et début octobre (RN 30 à 36 %, Philippe deuxième).",
+ "etabli_le": "2026-10-10",
+ "etats": {
+  "VE-ECART": {"2026-10": "120-160 pb"},
+  "VE-MOBIL": {"2026-10": "modérée"},
+  "VE-LYCEE": {"2026-10": "forte"},
+  "VE-POP": {"2026-10": "< 25 %"},
+  "VE-SOND": {"2026-10": "centre"},
+  "VE-RN": {"2026-10": "30-35 %"}
+ }
+}
