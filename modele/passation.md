@@ -52,23 +52,30 @@ Proposition :
 
 ## L'actualité : le mouvement lycéen comme test
 
-Constat au 10 octobre, sur `data/tri/2026-10.jsonl` :
-- 958 titres triés depuis le 5 octobre, aucun rattaché à une question ;
-- 203 portent sur le mouvement lycéen : blocages, maintien de l'ordre, allocution du Premier ministre du 7 octobre, réponse du gouvernement.
+**L'ampleur.** Selon les ministères, d'après Public Sénat et Maire-info :
+- 1 027 à 1 207 lycées touchés le 1er octobre, sur environ 3 700 ;
+- 564 établissements perturbés le 2 octobre, et environ 400 fermés à titre préventif ;
+- 473 lycées perturbés le 5 octobre ;
+- près de 2 000 interpellations le 1er octobre, et environ 5 000 sur la semaine ;
+- plus de 300 policiers et gendarmes blessés ;
+- un plan en cinq chantiers du Premier ministre, et un projet de loi « casseurs-payeurs ».
 
-Le mouvement est donc bien vu par le tri, mais aucune question ne le capte :
-- EV-10 (extension du mouvement lycéen) a été retiré : aucune source officielle ne publie le nombre d'établissements bloqués ;
-- EV-39 (journée à plus de 500 000 manifestants selon l'Intérieur) a un seuil hors de portée d'un mouvement lycéen ;
-- EV-13 (grève dans la fonction publique) ne le concerne pas.
+C'est un mouvement d'ampleur nationale, du niveau des épisodes de référence (2005, 2010, 2018, 2023).
 
-À faire :
-- **Volet actualité.** Afficher ces faits regroupés (`fait`), avec leur vigilance, même sans question rattachée. C'est le cas typique du volet.
-- **Questions candidates**, par la procédure d'ajout, résolubles sur des sources primaires :
-  - acte du gouvernement en réponse (décret, circulaire, loi) ;
-  - journée lycéenne et étudiante chiffrée par l'Intérieur au-dessus d'un seuil plus bas ;
-  - saisine ou décision d'une juridiction sur le maintien de l'ordre ;
+**Ce que le système en a fait.** Sur `data/tri/2026-10.jsonl` au 10 octobre : 958 titres triés depuis le 5 octobre, dont 203 sur le mouvement, et aucun rattaché à une question. Deux défauts de méthode :
+- **EV-10 a été retiré sur une prémisse fausse.** Le motif était qu'aucune source officielle ne publie le nombre d'établissements bloqués. Or le ministère de l'Éducation nationale publie chaque jour le nombre d'établissements perturbés, et l'Intérieur celui des interpellations.
+- **La banque est une liste figée d'événements définis à l'avance.** Elle ne capte pas un événement émergent. EV-39 (plus de 500 000 manifestants selon l'Intérieur) mesure des manifestations, pas des blocages ; EV-13 porte sur la fonction publique.
+
+**À faire :**
+- **Questions sur le mouvement**, par la procédure d'ajout, résolubles sur les chiffres des ministères :
+  - établissements perturbés au-dessus d'un seuil à une date donnée ;
+  - nouvelle journée au-dessus de 1 000 lycées ;
+  - interpellations ;
+  - adoption du projet de loi « casseurs-payeurs » ;
+  - mesures du plan en cinq chantiers ;
   - démission d'un ministre.
-- **Motifs de non-rattachement.** Les relire comme un signal de ce qui manque à la banque.
+- **Mécanisme d'émergence.** Quand un fait non rattaché dépasse un volume donné (par exemple 50 titres en sept jours), le tri propose un ajout à la banque.
+- **Volet actualité.** Afficher ces faits regroupés, avec leur vigilance, même sans question rattachée.
 
 ## Deux modèles à venir
 
