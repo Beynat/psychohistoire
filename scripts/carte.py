@@ -29,7 +29,7 @@ COURT = {
     "PV-CENSURE1a": "Censure d'ici fin 2026", "PV-CENSURE1b": "Censure janv.-mai 2027", "PV-BUDGET": "Loi de finances 2027",
     "PV-GOUV": "Départ du Premier ministre", "PV-DISSOL1": "Dissolution avant l'élection", "PV-AUDIENCE": "Audience en cassation",
     "PV-POURVOI": "Arrêt de cassation", "PV-ECOLO": "Choix des écologistes", "PV-BLOC": "Candidatures du centre",
-    "PV-GAUCHE": "Candidats de gauche", "PV-LEPEN": "Candidature Le Pen", "PV-DUEL": "Second tour",
+    "PV-GAUCHE": "Candidats de gauche", "PV-LEPEN": "Candidature Le Pen", "PV-RNAUTRE": "Autre candidat RN", "PV-DUEL": "Second tour",
     "PV-VAINQ": "Président élu", "PV-DISSOL2a": "Dissolution en mai-juin 2027", "PV-DISSOL2b": "Dissolution après juin 2027", "PV-MAJOR": "Majorité absolue",
     "PV-CENSURE2": "Censure après l'élection",
 }

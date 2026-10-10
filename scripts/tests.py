@@ -871,6 +871,53 @@ def test_lois_par_cas():
     assert tables.sigma_pondere([(1.0, 0.1), (0.0, 5.0)]) == 0.3 and tables.sigma_pondere([(1.0, 0.8), (1.0, 0.4)]) == 0.6
 
 
+def test_hypotheses():
+    """Feuille de route, étape 5 : registre des hypothèses porteuses (nœuds existants, probabilité de rupture,
+    au moins trois signaux) ; issue « autre candidat RN » : impossible si Le Pen est candidate, et le vainqueur RN
+    est alors Le Pen, Bardella ou « autre » selon l'état des deux pivots ; le tri refuse une hypothèse inconnue."""
+    import reseau
+    racine = Path(__file__).resolve().parent.parent
+    H = json.loads((racine / "modele/reseau/hypotheses.json").read_text())
+    S = json.loads((racine / "modele/reseau/structure_v0.json").read_text())
+    T = json.loads((racine / "modele/reseau/tables_v0.json").read_text())
+    noeuds = reseau.noeuds_de(S)
+    for h in H["hypotheses"]:
+        assert set(h["noeuds"]) <= set(noeuds), (h["id"], h["noeuds"])
+        assert 0 < h["probabilite_rupture"] < 1 and len(h["signaux"]) >= 3 and h["traitement"], h["id"]
+    tab = T["mesures"]["EV-05"]
+    assert reseau.chercher(tab, "RN|candidate|non") == {"Marine Le Pen": 100.0}
+    assert reseau.chercher(tab, "RN|non candidate|non") == {"Jordan Bardella": 100.0}
+    assert reseau.chercher(tab, "RN|non candidate|oui").get("autre") == 100.0
+    import random
+    reseau.PRIORS = reseau.lois_a_priori(S, T, reseau.observations(S), n=200)
+    rng, params, vus = random.Random(3), {i: dict(x) for i, x in T["noeuds"].items()}, set()
+    T2 = json.loads(json.dumps(T))
+    T2["noeuds"]["PV-RNAUTRE"]["cas"]["PV-LEPEN=non candidate"] = {"non": 0.0, "oui": 1.0}   # pour voir la branche
+    T2["noeuds"]["PV-RNAUTRE"]["cas"]["PV-LEPEN=candidate"] = {"non": 0.5, "oui": 0.5}       # l'exclusion doit primer
+    params2 = {i: dict(x) for i, x in T2["noeuds"].items()}
+    for _ in range(300):
+        tr = reseau.simuler(S, params2, reseau.observations(S), rng)
+        vus.add((tr["PV-LEPEN"][-1], tr["PV-RNAUTRE"][-1]))
+    assert ("candidate", "oui") not in vus and ("non candidate", "oui") in vus, vus
+    tmp, run = _copie()
+    try:
+        (tmp / "data/veille.json").write_text(json.dumps({"items": [{"source": "s", "titre": "t", "lien": "http://x/1", "date": "2026-10-09"}]}))
+        import subprocess, os
+        env = {**os.environ, "PYTHONPATH": str(tmp / "scripts")}
+        l = {"lien": "http://x/1", "fait": "f", "decision": "non rattaché", "motif": "m", "hypotheses": ["H-99"]}
+        r = subprocess.run([sys.executable, "scripts/tri.py", "ajouter"], cwd=tmp, env=env, capture_output=True, text=True, input=json.dumps(l) + chr(10))
+        assert r.returncode != 0 and "H-99" in (r.stderr + r.stdout), r.stderr[-200:]
+        l["hypotheses"] = ["H-01"]
+        r = subprocess.run([sys.executable, "scripts/tri.py", "ajouter"], cwd=tmp, env=env, capture_output=True, text=True, input=json.dumps(l) + chr(10))
+        assert r.returncode == 0, r.stderr[-300:]
+        r = subprocess.run([sys.executable, "scripts/tri.py", "reprise"], cwd=tmp, env=env, capture_output=True, text=True)
+        assert r.returncode == 0, r.stderr[-300:]
+        rep = json.loads((tmp / "data/reprise.json").read_text())
+        assert rep["hypotheses"]["H-01"]["faits"] == ["f"], rep.get("hypotheses")
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
 def test_agregation_sans_veto():
     """Feuille de route, étape 1 : un zéro isolé chez un évaluateur ne fixe plus l'agrégat à zéro ; un zéro unanime
     reste un zéro."""

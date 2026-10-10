@@ -1,0 +1,285 @@
+{
+ "description": "Hypothèses porteuses du réseau (feuille de route, étape 5 ; méthode Assumption-Based Planning, RAND) : ce que la structure suppose sans le représenter, ou ne représente qu'en partie. Probabilité de rupture tirée d'une classe de référence sourcée (dossier : modele/reseau/dossiers/hypotheses_2026-10-10.json). Signaux d'alerte : faits observables, rattachés par le tri (scripts/tri.py, champ « hypotheses »), dont la pression est mesurée dans data/reprise.json ; une pression ou un signal déclenche un examen à la passe suivante, jamais un changement de probabilité.",
+ "etabli_le": "2026-10-10",
+ "hypotheses": [
+  {
+   "id": "H-01",
+   "enonce": "Le candidat du Rassemblement national à la présidentielle de 2027 est Marine Le Pen ou Jordan Bardella (période : jusqu'à la publication de la liste officielle, au plus tard le 26 mars 2027).",
+   "probabilite_rupture": 0.04,
+   "calcul": "Taux de base par personne : 4/34 = 11,8 % sur 12 mois ; sur une fenêtre équivalente T-6 à T-1 mois, 3/34 = 8,8 % (Defferre, Delors, Hollande ; DSK tombe à T-11). L'hypothèse porte sur une paire : rupture seulement si Le Pen ET Bardella sont indisponibles. Ajustements : P(Le Pen non candidate d'ici le 26/03/2027) relevée à ~0,30 (cassation possiblement avant la liste ; rejet = bracelet, qu'elle refuse ; mais un arrêt postérieur au 26/03 ne joue plus sur la liste) ; P(Bardella indisponible | Le Pen hors course) relevée de 0,09 à ~0,12 (affaire Mediapart, enquête du Parquet européen de mai 2026 sur des formations médias). 0,30 × 0,12 ≈ 0,036, plus ~0,005 pour un remplaçant tiers ou un événement commun (santé, crise interne) → ≈ 0,04 (fourchette 0,01-0,08). Le basculement Le Pen → Bardella (cas Lula/Haddad) n'est pas une rupture de H-01.",
+   "classe_reference": {
+    "population": "Candidats présumés ou désignés des quatre principales forces à chaque présidentielle française au suffrage direct précédée d'une campagne normale (1965, 1981-2022 ; 1969 et 1974, anticipées, exclues), suivis sur les 12 mois précédant le scrutin. Rupture = la personne présumée/désignée n'est pas sur la liste officielle pour retrait volontaire, scandale, judiciaire ou santé (défaites en primaire exclues). Classe secondaire spécifique au parti : candidatures FN/RN 1974-2022 (9 cas, 1 rupture : J.-M. Le Pen 1981, parrainages).",
+    "periode": "1965-2022 (9 élections)",
+    "n_cas": 34,
+    "n_ruptures": 4
+   },
+   "noeuds": [
+    "PV-LEPEN",
+    "PV-RNAUTRE",
+    "PV-DUEL",
+    "PV-VAINQ",
+    "VE-RN"
+   ],
+   "traitement": "représentée : issue « autre candidat RN » (PV-RNAUTRE, oui à 12 % si Le Pen n'est pas candidate : défaillance de Bardella, classe de référence ; 0 si elle l'est). Effets en aval non élicités : un autre candidat RN est traité comme Bardella dans le duel et le vainqueur, hypothèse à reprendre à l'étape 9 (barème des chocs).",
+   "signaux": [
+    {
+     "signal": "Fixation par la chambre criminelle d'une date d'audience ou d'arrêt antérieure au 26 mars 2027, puis arrêt de rejet du pourvoi de Marine Le Pen (peine ferme sous bracelet devenue définitive)",
+     "source_attendue": "Cour de cassation (courdecassation.fr, rôle et communiqués), AFP, Le Monde"
+    },
+    {
+     "signal": "Déclaration de Marine Le Pen confirmant qu'elle renonce, sans désigner Bardella comme remplaçant, ou annonce d'une désignation par un autre mécanisme (bureau national, vote militant)",
+     "source_attendue": "Communiqué RN, TF1/France 2, AFP"
+    },
+    {
+     "signal": "Ouverture d'une enquête pénale (provocation à la haine, ou faux visant Mediapart) avec convocation ou mise en cause de Bardella, ou expertise judiciaire confirmant l'authenticité des messages",
+     "source_attendue": "Parquet de Paris (communiqué), Mediapart, Le Monde, AFP"
+    },
+    {
+     "signal": "Baisse de Bardella de plus de 5 points dans les baromètres de popularité, ou décrochage du RN sous 28 % au 1er tour dans au moins deux instituts sur un mois",
+     "source_attendue": "Baromètres Ifop-JDD, Elabe, Odoxa ; notices de la Commission des sondages"
+    },
+    {
+     "signal": "Congrès RN de fin octobre 2026 : réélection de Bardella perturbée (candidature rivale, participation faible, statut de candidat présidentiel remis en cause)",
+     "source_attendue": "RN (résultats du congrès), AFP, Public Sénat"
+    }
+   ],
+   "si_rupture": "Le bloc RN aurait un candidat de substitution moins connu, ce qui ferait tomber ou retarder toutes les branches du modèle qui supposent un RN en tête du premier tour (accès au second tour, report des voix, législatives qui suivraient).",
+   "limites": "Petit échantillon (34 cas, 4 ruptures), hétérogène (retraits stratégiques contre empêchements subis). Aucun précédent français d'un candidat empêché par une décision pénale définitive pendant la campagne. Le calendrier de la Cour de cassation est incertain, et un arrêt rendu après le 26 mars sort de la période sans éteindre le risque (article 7 en cas d'empêchement). La source sur la déclaration du 7 juillet (lessentieldeleco) est secondaire ; à recouper avec TF1 ou l'AFP."
+  },
+  {
+   "id": "H-02",
+   "enonce": "Édouard Philippe reste disponible comme candidat jusqu'au 12 mars 2027 (fin des parrainages), malgré l'information judiciaire du PNF ouverte le 19 mai 2026 sur la Cité numérique du Havre.",
+   "probabilite_rupture": 0.12,
+   "calcul": "Taux de base T-6 → T-1 : 3/34 = 8,8 % (fenêtre au 12 mars 2027, environ 5 mois). Le précédent Fillon (1 cas sur 1 de mise en examen d'un candidat désigné en pleine campagne, maintenu) indique qu'une mise en examen ne suffit pas à elle seule à faire sortir un candidat ; la probabilité d'une mise en examen avant mars 2027 est elle-même incertaine (le juge vient d'être saisi). On ajoute environ 3 points pour le risque d'un retrait négocié dans un bloc central divisé (précédent Bayrou 2017, hors classe principale) et pour le risque judiciaire. Résultat ≈ 0,12 (fourchette 0,07-0,20).",
+   "classe_reference": {
+    "population": "Même classe que H-01 (candidats présumés des principales forces, 12 mois avant le scrutin, 1965-2022), appliquée à une personne ; sous-classe des candidats visés par une procédure judiciaire en campagne (Fillon 2017 maintenu, DSK 2011 retiré, J.-M. Le Pen jamais empêché par ses condamnations, M. Le Pen 2022 candidate malgré l'enquête des assistants) ; cas de retrait par alliance (Bayrou 2017).",
+    "periode": "1965-2022",
+    "n_cas": 34,
+    "n_ruptures": 4
+   },
+   "noeuds": [
+    "PV-BLOC",
+    "PV-DUEL"
+   ],
+   "traitement": "représentée : PV-BLOC a des issues sans Philippe (« Attal seul », « aucun des deux », environ 14 % ensemble), proches de la rupture estimée ici (12 %). Pas de nœud ajouté ; écart à surveiller.",
+   "signaux": [
+    {
+     "signal": "Convocation de Philippe par le juge d'instruction en vue d'une mise en examen, ou mise en examen effective (ou statut de témoin assisté, qui serait un signal favorable)",
+     "source_attendue": "PNF (communiqué), AFP, Le Monde, Mediapart"
+    },
+    {
+     "signal": "Recul de Philippe sous 15 % au 1er tour, ou dépassement par Attal ou un candidat LR, dans au moins deux instituts",
+     "source_attendue": "Ifop, Elabe, Odoxa, Ipsos ; Commission des sondages"
+    },
+    {
+     "signal": "Annonce d'un mécanisme de départage dans le bloc central (primaire, sondage arbitre, accord Renaissance-Horizons-LR) avec une date antérieure à mars 2027",
+     "source_attendue": "Communiqués Horizons et Renaissance, Public Sénat, LCP"
+    },
+    {
+     "signal": "Défections publiques de cadres d'Horizons (Béchu, Moutchou) ou appel de Macron à un autre candidat",
+     "source_attendue": "AFP, Le Figaro, Le Monde"
+    },
+    {
+     "signal": "Annonce d'ennuis de santé ou de suspension de campagne",
+     "source_attendue": "Équipe de campagne, AFP"
+    }
+   ],
+   "si_rupture": "Le bloc central perdrait son candidat le mieux placé, ce qui augmenterait la probabilité d'un second tour RN-gauche ou RN-LR et rendrait caducs les scénarios de second tour Philippe-RN.",
+   "limites": "Classe non conditionnée à l'existence d'une procédure judiciaire ; un seul précédent proche (Fillon), qui ne sépare pas l'effet de la mise en examen de celui de la base militante d'un parti installé. Philippe ne dispose pas d'une primaire qui l'aurait légitimé, ce qui le rend plus exposé à un retrait négocié."
+  },
+  {
+   "id": "H-03",
+   "enonce": "Pas de vacance de la présidence de la République (démission, décès, empêchement constaté au titre de l'article 7) avant le 13 mai 2027.",
+   "probabilite_rupture": 0.017,
+   "calcul": "Taux de Poisson λ = 2 / 67,75 = 0,0295 par an. Fenêtre du 10/10/2026 au 13/05/2027 = 215 jours = 0,589 an. P = 1 - exp(-0,0295 × 0,589) = 1,7 %. Par mandat : 2/12 = 17 % sur des mandats entiers de 5 à 7 ans, ce qui donne le même ordre de grandeur une fois ramené à 7 mois. Correctif : un président en fin de second mandat, sans réélection possible, et des tentatives de destitution qui n'ont jamais atteint la majorité des deux tiers ; on n'ajuste pas.",
+   "classe_reference": {
+    "population": "Mandats présidentiels de la Ve République ; rupture = vacance ou empêchement constaté par le Conseil constitutionnel. Exposition : 8 janvier 1959 au 10 octobre 2026 = 67,75 années-présidence.",
+    "periode": "1959-2026",
+    "n_cas": 12,
+    "n_ruptures": 2
+   },
+   "noeuds": [
+    "PV-DUEL",
+    "PV-VAINQ",
+    "PV-DISSOL1"
+   ],
+   "traitement": "non représentée : masse résiduelle affichée ; nœud rare « fin anticipée du mandat » à l'étape 9. Si elle tombe, tout le calendrier présidentiel est à réindexer (procédure de restructuration rapide).",
+   "signaux": [
+    {
+     "signal": "Hospitalisation du président ou annulation non expliquée de déplacements internationaux",
+     "source_attendue": "Communiqué de l'Élysée, AFP"
+    },
+    {
+     "signal": "Adoption par le bureau de l'Assemblée ou du Sénat d'une proposition de résolution de destitution (article 68) jugée recevable et inscrite à l'ordre du jour",
+     "source_attendue": "assemblee-nationale.fr, senat.fr"
+    },
+    {
+     "signal": "Déclaration présidentielle évoquant une démission ou un « référendum-question de confiance »",
+     "source_attendue": "elysee.fr, allocution télévisée"
+    },
+    {
+     "signal": "Saisine du Conseil constitutionnel par le gouvernement aux fins de constater un empêchement",
+     "source_attendue": "conseil-constitutionnel.fr, Journal officiel"
+    }
+   ],
+   "si_rupture": "L'élection anticipée se tiendrait 20 à 35 jours après la vacance (article 7), ce qui comprimerait le calendrier des parrainages et ferait tomber H-04 et l'ensemble des scénarios datés au 18 avril.",
+   "limites": "Deux événements seulement ; risque idiosyncrasique (santé, choix personnel) mal capté par une moyenne historique."
+  },
+  {
+   "id": "H-04",
+   "enonce": "Les scrutins présidentiels ont lieu aux dates prévues (18 avril et 2 mai 2027), hors vacance.",
+   "probabilite_rupture": 0.01,
+   "calcul": "Classe principale : 9 présidentielles et 16 législatives programmées, 0 report → règle de succession de Laplace (0+1)/(25+2) = 3,7 % par scrutin, borne haute peu informative. La date présidentielle est verrouillée par l'article 7 (élection 20 à 35 jours avant la fin du mandat, qui expire le 13 mai 2027) ; seul le Conseil constitutionnel peut reporter, si un candidat meurt ou est empêché dans les 7 jours précédant la date limite des candidatures ou entre les tours (article 7, alinéas 6 à 8), ce qui ne s'est jamais produit. Les reports observés en France (2020, 2021, Nouvelle-Calédonie) portent sur des scrutins locaux fixés par la loi ordinaire. Estimation retenue : ≈ 1 % (0,5 à 2 %), décès ou empêchement d'un candidat et circonstances exceptionnelles (article 16) confondus.",
+   "classe_reference": {
+    "population": "Élections présidentielles et législatives générales françaises depuis 1958 (rupture = report de la date fixée), complétées par les reports d'autres scrutins français et par des cas étrangers de démocraties établies.",
+    "periode": "1958-2026",
+    "n_cas": 25,
+    "n_ruptures": 0
+   },
+   "noeuds": [
+    "PV-DUEL",
+    "PV-VAINQ"
+   ],
+   "traitement": "non représentée : masse résiduelle affichée ; couverte en pratique par H-03 (seule voie juridique de déplacement de la date).",
+   "signaux": [
+    {
+     "signal": "Décès ou empêchement grave d'un candidat dont la candidature est publiée, dans la semaine précédant la date limite ou entre les deux tours",
+     "source_attendue": "Conseil constitutionnel (décision PDR), AFP"
+    },
+    {
+     "signal": "Recours à l'article 16 ou déclaration d'état d'urgence sur le territoire métropolitain au premier trimestre 2027",
+     "source_attendue": "Journal officiel, elysee.fr"
+    },
+    {
+     "signal": "Dépôt d'un projet ou d'une proposition de loi organique modifiant le calendrier électoral de 2027",
+     "source_attendue": "legifrance.gouv.fr, assemblee-nationale.fr"
+    },
+    {
+     "signal": "Décret de convocation des électeurs non publié au Journal officiel à la date habituelle (environ 10 semaines avant le scrutin)",
+     "source_attendue": "Journal officiel"
+    }
+   ],
+   "si_rupture": "Tout le calendrier du modèle (parrainages, liste officielle, tours, législatives qui suivraient) se décalerait, et les hypothèses datées devraient être réindexées.",
+   "limites": "Aucun report de présidentielle à observer : l'estimation repose sur le cadre juridique plus que sur une fréquence. Les cas étrangers sont peu comparables (pandémie, guerre sur le territoire)."
+  },
+  {
+   "id": "H-05",
+   "enonce": "Pas de choc sécuritaire ou extérieur majeur déplaçant durablement la popularité de l'exécutif ou l'agenda (attentat d'au moins 10 morts en France, ou entrée de la France dans un conflit armé de haute intensité), du 10 octobre 2026 au 30 septembre 2028.",
+   "probabilite_rupture": 0.25,
+   "calcul": "Attentats : λ = 3/40 = 0,075 par an → P(24 mois) = 1 - exp(-0,15) = 13,9 %. Sur la sous-période 2012-2026 : λ = 3/14,8 → 33 %. On retient environ 18 %, la menace étant jugée élevée (guerre au Moyen-Orient, attentat déjoué en mars 2026) mais aucun attentat d'au moins 10 morts depuis 2016. Conflit : 3/40 → 13,7 % au sens large, 1/40 → 4,9 % au sens strict ; on retient environ 8 %, l'engagement défensif de 2026 augmentant l'exposition. Combinaison : 1 - (1 - 0,18) × (1 - 0,08) = 0,25 (fourchette 0,15-0,40). Effet sur la popularité : 3 chocs sur 5 mesurés donnent un gain de 19 à 22 points, qui se dissipe en 3 à 6 mois ; Nice 2016 ne produit presque rien. L'agenda sécuritaire, lui, se déplace durablement (état d'urgence de 2015 à 2017). La rupture doit donc se lire surtout comme un déplacement de l'agenda.",
+   "classe_reference": {
+    "population": "(a) Attentats commis en France avec au moins 10 morts depuis 1986 ; (b) entrées de la France dans des campagnes de combat de haute intensité depuis 1986 ; effets mesurés sur la popularité de l'exécutif.",
+    "periode": "10/1986-10/2026 (40 ans) ; sous-période 2012-2026",
+    "n_cas": 12,
+    "n_ruptures": 6
+   },
+   "noeuds": [
+    "VE-POP"
+   ],
+   "traitement": "non représentée : questions hors réseau (EV-C1, EV-28, EV-29) ; point d'entrée « choc sécuritaire ou extérieur » sur VE-POP à l'étape 9, sous-réseau ordre public à l'étape 13. Les attentats déplacent la popularité 3 à 6 mois puis l'effet s'efface (classe de référence) : l'observation mensuelle de VE-POP l'absorbe.",
+   "signaux": [
+    {
+     "signal": "Relèvement de Vigipirate au niveau « Urgence attentat » sur tout le territoire",
+     "source_attendue": "SGDSN (sgdsn.gouv.fr), communiqué de Matignon"
+    },
+    {
+     "signal": "Hausse du nombre d'attentats déjoués annoncés par le ministre de l'Intérieur (plus de 3 sur un trimestre)",
+     "source_attendue": "Ministère de l'Intérieur, PNAT, AFP"
+    },
+    {
+     "signal": "Le Parlement est informé ou consulté sur une intervention au titre de l'article 35, ou une opération française change de nature (frappes offensives sur le territoire d'un État, déploiement terrestre au contact)",
+     "source_attendue": "assemblee-nationale.fr, senat.fr, ministère des Armées"
+    },
+    {
+     "signal": "Pertes militaires françaises d'au moins 5 morts en une opération, ou frappe sur le sol européen d'un membre de l'UE ou de l'OTAN",
+     "source_attendue": "Ministère des Armées, AFP"
+    },
+    {
+     "signal": "Gain de plus de 10 points du président ou du Premier ministre en un mois, ou passage de la sécurité ou du terrorisme en tête des préoccupations",
+     "source_attendue": "Baromètre Ifop-JDD, Elabe, enquêtes de préoccupations Ipsos"
+    }
+   ],
+   "si_rupture": "Les hypothèses de popularité et d'agenda (priorité au pouvoir d'achat, à la dette, à l'immigration) seraient à réestimer, avec une prime temporaire à l'exécutif et une prime durable aux offres sécuritaires dans les intentions de vote.",
+   "limites": "Événements rares et groupés dans le temps (2015-2016), ce qui rend le taux très sensible à la période retenue. Le seuil de 10 morts est arbitraire. « Haute intensité » est mal défini pour les campagnes aériennes. Les baromètres diffèrent : Ifop-JDD pour 1991, Ifop-Fiducial et YouGov pour 2015-2016."
+  },
+  {
+   "id": "H-06",
+   "enonce": "Pas de crise financière aiguë hors du canal de l'écart OAT-Bund (crise bancaire ou de marché systémique touchant la France), du 10 octobre 2026 au 30 septembre 2028.",
+   "probabilite_rupture": 0.12,
+   "calcul": "λ(France) = 2 / 27,8 = 0,072 par an → P(24 mois, du 10/2026 au 09/2028, soit environ 1,97 an) = 1 - exp(-0,142) = 13,2 %. Avec la seule crise purement financière (2008, Covid exclu car choc exogène) : 1/27,8 → 6,8 %. Retenu : 0,12 (fourchette 0,07-0,17). Le choc énergétique lié à la guerre au Moyen-Orient en 2026 ne relève pas le chiffre de façon mesurable, faute de données de stress sous la main.",
+   "classe_reference": {
+    "population": "Crises systémiques (indicateur « Systemic crisis » = 1) dans les États de la zone euro, base ESRB/BCE des crises financières européennes (version de janvier 2022, couverture jusqu'à 2021), recoupée avec Laeven et Valencia (FMI, WP 18/206, 151 crises entre 1970 et 2017). Unité de rupture : crise systémique touchant la France, épisodes de pure dette souveraine exclus.",
+    "periode": "1999-2026 (environ 27,8 ans)",
+    "n_cas": 7,
+    "n_ruptures": 2
+   },
+   "noeuds": [
+    "VE-ECART",
+    "PV-NOTE",
+    "PV-TPI"
+   ],
+   "traitement": "partiellement représentée par le canal de l'écart de taux (VE-ECART) ; crise bancaire ou de marché hors de ce canal non représentée, masse résiduelle affichée ; point d'entrée à l'étape 9.",
+   "signaux": [
+    {
+     "signal": "CISS (indicateur composite de stress systémique de la BCE) au-dessus de 0,4 pour la zone euro ou la France pendant plus de 2 semaines",
+     "source_attendue": "BCE, Data Portal (série CISS)"
+    },
+    {
+     "signal": "Recours d'une grande banque française ou européenne à l'ELA, mise en résolution par le CRU/SRB, ou garantie publique de passifs bancaires",
+     "source_attendue": "BCE, CRU (srb.europa.eu), ACPR, Banque de France"
+    },
+    {
+     "signal": "Chute de plus de 30 % de l'indice des banques européennes (Euro Stoxx Banks) en moins de 3 mois, ou spreads CDS des banques françaises au-dessus de 200 pb",
+     "source_attendue": "Les Échos, Financial Times, Banque de France (Rapport sur la stabilité financière)"
+    },
+    {
+     "signal": "Activation par la BCE d'un nouvel instrument de liquidité d'urgence (programme du type PEPP ou LTRO exceptionnel) sans lien avec l'écart OAT-Bund",
+     "source_attendue": "Communiqués de politique monétaire de la BCE"
+    },
+    {
+     "signal": "Défaillance d'un fonds ou d'un acteur non bancaire systémique (immobilier commercial, crédit privé) avec gel des rachats",
+     "source_attendue": "AMF, ESMA, Rapport sur la stabilité financière de la BCE"
+    }
+   ],
+   "si_rupture": "Le canal budgétaire du modèle (écart OAT-Bund, notation, contraintes sur le budget 2027-2028) serait dominé par une crise exogène, avec risque de plans de soutien et d'union nationale, et les prévisions de déficit et de popularité seraient à refaire.",
+   "limites": "La base ESRB s'arrête à 2021 (mise à jour de décembre 2023, non vérifiée dans le fichier téléchargé). La classification « systémique » du Covid est discutable. Le statut de la France en 2008 dans Laeven et Valencia (« borderline » selon le souvenir de l'auteur) n'a pas pu être vérifié dans le texte consulté. Deux événements seulement pour la France."
+  },
+  {
+   "id": "H-07",
+   "enonce": "Un président élu en 2027 dispose d'un groupe parlementaire de son parti comme unité de mesure pertinente de sa majorité (pas d'alliance en groupes distincts qui change le décompte).",
+   "probabilite_rupture": 0.6,
+   "calcul": "Législatives de confirmation 1981-2022 : 2 ruptures sur 7 (1988, 2022), soit 29 % ; mais des groupes alliés distincts existent dans 5 cas sur 7 (2002, 2007, 2012, 2017, 2022), et la tendance récente est nette : 2 ruptures sur les 3 derniers renouvellements (2022, 2024). Laplace sur 2022-2024 : (2+1)/(2+2) = 75 %. Pour 2027 : un président RN gouvernerait vraisemblablement avec le groupe UDR, distinct, comme en 2024 ; un président Philippe dépendrait d'EPR, MoDem et LR, avec Horizons sous les 50 députés en 2022. On retient 0,6 (fourchette 0,45-0,75), soit le compromis entre le taux long (29 %) et le régime récent (75 %).",
+   "classe_reference": {
+    "population": "Législatives suivant immédiatement une présidentielle (« législatives de confirmation ») de 1981 à 2022, plus la législature de 2024 comme précédent récent de groupes alliés distincts. Rupture = la majorité (absolue ou relative) du camp présidentiel ne se lit pas dans le seul groupe du parti du président : groupes alliés distincts nécessaires pour atteindre 289 sièges, ou pour constituer le bloc de référence.",
+    "periode": "1981-2024",
+    "n_cas": 8,
+    "n_ruptures": 3
+   },
+   "noeuds": [
+    "PV-MAJOR",
+    "PV-CENSURE2"
+   ],
+   "traitement": "hypothèse de mesure : PV-MAJOR suit le groupe du parti du président, comme le critère d'EV-17, donc la notation n'est pas biaisée. Mais la censure après l'élection dépend d'une majorité de gouvernement (groupes alliés), que PV-MAJOR sous-estime dans environ 60 % des cas récents : à reprendre à la réélicitation de PV-CENSURE2 (étape 11), avec un bloc plutôt qu'un groupe.",
+   "signaux": [
+    {
+     "signal": "Accord d'investitures communes RN-UDR (ou Horizons-Renaissance-LR) pour les législatives, maintenant des étiquettes distinctes",
+     "source_attendue": "Communiqués des partis, Le Monde, Public Sénat"
+    },
+    {
+     "signal": "Projections en sièges des instituts donnant au parti du candidat favori moins de 289 sièges seul",
+     "source_attendue": "Ifop, Elabe, Ipsos (projections en sièges)"
+    },
+    {
+     "signal": "Annonce d'un groupe autonome par les alliés à l'ouverture de la législature (déclarations politiques déposées à la présidence de l'Assemblée)",
+     "source_attendue": "assemblee-nationale.fr (Journal officiel, composition des groupes)"
+    },
+    {
+     "signal": "Évolution du nombre de membres des groupes UDR, Horizons ou Démocrate à l'Assemblée sortante (fusions, départs)",
+     "source_attendue": "assemblee-nationale.fr, datan.fr"
+    }
+   ],
+   "si_rupture": "La métrique « sièges du groupe du président » sous-estimerait la majorité ; le modèle devrait mesurer un bloc (somme des groupes alliés, pondérée par leur discipline de vote) et réestimer la stabilité gouvernementale (motions de censure, 49.3).",
+   "limites": "Petit nombre de cas. Les chiffres de groupes pour 1981, 2002, 2007 et 2017 proviennent en partie de Wikipédia et d'agrégats de presse, à recouper avec les publications de l'Assemblée. La notion de « groupe allié nécessaire » demande une règle de décompte fixée à l'avance (par exemple : groupes signataires d'un accord de gouvernement)."
+  }
+ ]
+}

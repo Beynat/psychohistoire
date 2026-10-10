@@ -1,8 +1,8 @@
 {
- "version": "structure v0.6 (10 octobre 2026, étape 3 : dates des pivots datés renvoyées au calendrier sourcé, profil des revues d'agences sur PV-NOTE) ; étape 1 : verrous de l'article 12 ; chaîne présidentielle de la v0.4",
+ "version": "structure v0.7 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12",
  "description": "Réseau bayésien dynamique v0, pas mensuel d'octobre 2026 à septembre 2028. Révisé après le pré-mortem du 10 octobre (scratchpad, rapport de 32 causes) : aucun cycle au sein d'un mois (liens au mois précédent marqués « decalage »: 1), au plus trois parents, pivots électoraux par personnes, dette découpée en note, procédure de déficit excessif et TPI ouverts dès octobre 2026, dissolution et censure découpées avant et après la présidentielle, changement de gouvernement ajouté. Hors réseau (notés sur l'ensemble et les comparateurs) : EV-03, EV-44, EV-23, EV-14b, EV-36, EV-06, international, climat, sécurité.",
  "codes_candidats": {
-  "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate, sinon Jordan Bardella)",
+  "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate ; sinon Jordan Bardella, ou un autre candidat si PV-RNAUTRE = oui)",
   "PHI": "Édouard Philippe",
   "ATT": "Gabriel Attal",
   "MEL": "Jean-Luc Mélenchon",
@@ -405,6 +405,28 @@
    "date_note": "liste officielle des candidats, au plus tard le 26 mars 2027",
    "conditionnelle": "PV-POURVOI",
    "calendrier": "CAL-LISTE"
+  },
+  {
+   "id": "PV-RNAUTRE",
+   "nom": "Candidat du RN autre que Marine Le Pen ou Jordan Bardella, sur la liste officielle",
+   "nature": "daté",
+   "date": "2027-03-26",
+   "calendrier": "CAL-LISTE",
+   "issues": [
+    "non",
+    "oui"
+   ],
+   "parents": [
+    "PV-LEPEN"
+   ],
+   "exclusions": {
+    "PV-LEPEN": {
+     "candidate": [
+      "oui"
+     ]
+    }
+   },
+   "note": "Hypothèse porteuse H-01 (modele/reseau/hypotheses.json) : issue résiduelle. Si oui, le code RN des duels et du vainqueur désigne cet autre candidat, traité comme Bardella en aval (effets non élicités, étape 9)."
   },
   {
    "id": "PV-DUEL",
@@ -936,35 +958,42 @@
      {
       "type": "issue",
       "noeud": "PV-LEPEN"
+     },
+     {
+      "type": "issue",
+      "noeud": "PV-RNAUTRE"
      }
     ]
    },
    "table": {
-    "RN|candidate": {
-     "Marine Le Pen": 100
-    },
-    "RN|*": {
+    "RN|*|non": {
      "Jordan Bardella": 100
     },
-    "PHI|*": {
+    "PHI|*|*": {
      "Édouard Philippe": 100
     },
-    "ATT|*": {
+    "ATT|*|*": {
      "Gabriel Attal": 100
     },
-    "MEL|*": {
+    "MEL|*|*": {
      "Jean-Luc Mélenchon": 100
     },
-    "GLU|*": {
+    "GLU|*|*": {
      "Raphaël Glucksmann": 100
     },
-    "RET|*": {
+    "RET|*|*": {
      "Bruno Retailleau": 100
     },
-    "LIS|*": {
+    "LIS|*|*": {
      "David Lisnard": 100
     },
-    "AUT|*": null
+    "AUT|*|*": null,
+    "RN|*|oui": {
+     "autre": 100
+    },
+    "RN|candidate|non": {
+     "Marine Le Pen": 100
+    }
    },
    "exacte": false,
    "question": "si le vainqueur n'est aucun des sept candidats codés, part de François Hollande et de toute autre personne"
