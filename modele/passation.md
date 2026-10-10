@@ -21,7 +21,8 @@ Prévisions datées et notées sur la France, d'octobre 2026 à septembre 2028. 
 - **Témoin** : consigne v1.6 (au moins cinq pages lues, motifs propres à chaque question, contrôlés par `scripts/verifier_reponse.py`).
 - **Réseau v0** : `modele/reseau/structure_v0.json` (v0.2 : 19 pivots, 6 variables d'état mensuelles, 33 questions rattachées dont 4 conjointes), `tables_v0.json` (trois évaluateurs, agrégation `scripts/tables.py`), `observations.json`, moteur `scripts/reseau.py`, procédure `modele/reseau/procedure.md` (avec ses points ouverts). Faits imprévus : `scripts/faits.py` (seuil d'application), appliqués par le moteur depuis `modele/reseau/faits.jsonl`.
 - **Jalons** : 50 jalons sur 16 liens (`modele/jalons/definitions.jsonl`), statuts et registre fantôme par `scripts/jalons.py`, critère de direction par `scripts/direction.py`. Sans effet sur les probabilités tant que la direction n'est pas validée (40 questions résolues).
-- **Séries d'état** : `data/etat/` (popularité Ifop, sondages, journées de mobilisation) ; `scripts/etat.py` en tire les états mensuels.
+- **Séries d'état** : `data/etat/` (popularité Ifop, sondages, journées de mobilisation, erreur historique des sondages 2012-2022) ; `scripts/etat.py` en tire les états mensuels.
+- **Indicateurs structurels** : IS-01 à IS-05 dans `data.json` (stabilité institutionnelle 6,95 sur 10, niveau de vie populaire 6,41, cohésion sociale 5,24, compétition des élites 5,24), rattachés au réseau comme contexte.
 - **Tri** : faits sans question suivis sous un identifiant stable, émergence à 50 titres en sept jours (`data/reprise.json`).
 - **Cycle d'essai 2026-10-v0** (`registre/essai_v0.jsonl`) : comparateurs, ensemble (5 prévisionnistes) et réseau. EV-10b se résout le 17 octobre.
 - **Tests** : `python scripts/tests.py` (28 tests) et `python scripts/controle_banque.py`.
@@ -36,11 +37,11 @@ Prévisions datées et notées sur la France, d'octobre 2026 à septembre 2028. 
 
 Chacune ajoute une ligne au tableau « Avancement » de la feuille de route.
 
-## Reste à faire pour la v0
+## Suite
 
-- Indicateurs structurels IS-02 à IS-05 (en cours au 10 octobre) et leur branchement comme contexte des pivots.
-- Correction historique de la moyenne des sondages (`scripts/etat.py`, CORRECTION).
-- Points ouverts de `modele/reseau/procedure.md` (EV-39 et EV-43, dissolution de début de mandat, revues programmées des agences).
+- **Bloc 10, ergonomie de l'interface** (demande de Nathan du 10 octobre) : frise des pivots et des jalons, choix de la fenêtre (mois, trimestre, semestre, année), filtre par importance, libellé, probabilité et issues lisibles, fenêtre de détail au clic (hypothèses, conducteurs, jalons, questions, chemin critique). Le chemin critique est à calculer par le moteur à partir des trajectoires. La carte de la piste exploratoire (`index.html`, cartes de pivots et « chemin le plus probable ») est un bon point de départ visuel.
+- Points ouverts de `modele/reseau/procedure.md`, traités par les passes bimensuelles (EV-39 et EV-43, dissolution de début de mandat, revues programmées des agences, usage de la correction historique des sondages).
+- Branchement des indicateurs structurels comme parents (aujourd'hui contexte affiché seulement).
 - Liste de la v0 ajustée (feuille de route).
 
 ## Contraintes à respecter
