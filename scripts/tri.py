@@ -14,7 +14,9 @@ Usage :
         (relecture 12, K6) ; « passage » est fixé ici, à partir de l'horloge système.
         Refuse une ligne incomplète, une clé inconnue, une caractérisation hors liste ou un lien déjà
         trié. decision vaut l'identifiant d'une question qu'il pourrait résoudre (« Q-EV-08 ») ou
-        « non rattaché ».
+        « non rattaché ». Facultatif : hypotheses, liste d'hypothèses porteuses (« H-01 », modele/reseau/
+        hypotheses.json) que le fait met sous pression ; la pression est descriptive et n'entre dans aucune
+        probabilité (feuille de route, étape 5).
     python scripts/tri.py etape < etapes.jsonl
         Ajoute à data/tri/etapes.jsonl, en ajout seul, la vérification d'une étape officielle d'un fait
         par un agent : fait, etape (liste ETAPES), source, date_fait, agent. Le stade d'un fait n'est
@@ -33,7 +35,7 @@ from zoneinfo import ZoneInfo
 from commun import RACINE, lire_json
 
 CLES = {"lien", "fait", "decision", "motif"}
-FACULTATIVES = {"concerne", "caracterisation"}
+FACULTATIVES = {"concerne", "caracterisation", "hypotheses"}
 NATURES = {"pénal lié à la fonction", "pénal hors fonction", "manquement éthique ou politique",
            "vie privée", "décision ou déclaration publique", "autre"}
 # Natures soumises à l'axe « stade » (annexe, section 11.2) ; les autres sont des faits publics (relecture 13, S5).
@@ -98,7 +100,10 @@ def a_trier(sortie):
         suivis += [{"fait": k, "premier_jour": v["premier_jour"], "dernier_jour": v["dernier_jour"], "concerne": [],
                     "statut": "non rattaché", "titres": v["titres"]}
                    for k, v in rep_tout.get("non_rattaches", {}).items() if v["dernier_jour"] >= (date.today() - timedelta(days=30)).isoformat()]
-        json.dump({"titres": items, "questions_ouvertes": questions_ouvertes(), "faits_suivis": suivis},
+        hyp = [{"id": h["id"], "enonce": h["enonce"], "signaux": [x["signal"] for x in h.get("signaux", [])]}
+               for h in (lire_json("modele/reseau/hypotheses.json") or {}).get("hypotheses", [])]
+        json.dump({"titres": items, "questions_ouvertes": questions_ouvertes(), "faits_suivis": suivis,
+                   "hypotheses_porteuses": hyp},
                   f, ensure_ascii=False, indent=1)
     print(f"{len(items)} titres à trier ; {len(questions_ouvertes())} questions d'événement ouvertes ; écrit dans {sortie}")
 
@@ -125,6 +130,9 @@ def ajouter():
             sys.exit(f"ligne {n} : lien déjà trié")
         if d["decision"] not in valides:
             sys.exit(f"ligne {n} : décision « {d['decision']} » inconnue (question ouverte ou « non rattaché »)")
+        hyp_ids = {h["id"] for h in (lire_json("modele/reseau/hypotheses.json") or {}).get("hypotheses", [])}
+        if "hypotheses" in d and (not isinstance(d["hypotheses"], list) or not set(d["hypotheses"]) <= hyp_ids):
+            sys.exit(f"ligne {n} : hypothèses {d['hypotheses']} inconnues (modele/reseau/hypotheses.json)")
         vus.add(d["lien"])
         t = titres.get(d["lien"], {})
         # La caractérisation proposée par l'agent de tri n'est pas écrite dans le dépôt, qui est public
@@ -132,6 +140,7 @@ def ajouter():
         # officielle vérifiée (data/tri/etapes.jsonl).
         lignes.append({"lien": d["lien"], "passage": passage, "fait": d["fait"], "decision": d["decision"], "motif": d["motif"],
                        **({"concerne": d["concerne"]} if "concerne" in d else {}),
+                       **({"hypotheses": d["hypotheses"]} if d.get("hypotheses") else {}),
                        # Seul le type est conservé (relecture 12, K5) : un fait public établi par la source
                        # de son auteur (décision, vote, accord publié) n'est pas une allégation.
                        **({"type_fait": "mise en cause" if c["nature"] in MISES_EN_CAUSE else "fait public"}
@@ -211,6 +220,7 @@ def reprise(aujourdhui=None):
     auj = date.fromisoformat(aujourdhui) if aujourdhui else date.today()
     titres = {i["lien"]: i for i in lire_json("data/veille.json")["items"]}
     faits, libres = {}, {}
+    pression = {}   # hypothèse porteuse → faits rattachés et titres (descriptif, étape 5)
     for f in sorted(TRI.glob("*.jsonl")):
         if f.name in ("etapes.jsonl", "statuts.jsonl"):
             continue
@@ -218,6 +228,9 @@ def reprise(aujourdhui=None):
             if not l.strip():
                 continue
             d = json.loads(l)
+            for h in d.get("hypotheses", []):
+                t = titres.get(d["lien"], {})
+                pression.setdefault(h, []).append((d["fait"], (d.get("date_titre") or t.get("date") or d["passage"])[:10]))
             if d["decision"] == "non rattaché" and not d.get("concerne"):
                 # Fait sans question (vérificateur A, A-04) : suivi à part, pour que l'agent de tri réutilise son
                 # identifiant et que l'émergence d'un sujet sans question soit mesurée.
@@ -315,7 +328,12 @@ def reprise(aujourdhui=None):
         {"description": "Reprise et statut des faits (annexe, sections 11.2 et 11.3) : descriptif, sans effet sur les probabilités. Sept flux suivis (franceinfo, Le Monde, LCP, Public Sénat, Le Figaro, Libération, Mediapart). Stade retenu : « allégation » sauf étape officielle vérifiée par deux agents ; la nature n'est publiée qu'avec une étape vérifiée, jamais « vie privée ».",
          "etabli_le": auj.isoformat(), "faits": sortie,
          "non_rattaches": non_rattaches,
-         "emergences": sorted(k for k, v in non_rattaches.items() if v["emergence"])}, ensure_ascii=False, indent=1), "utf-8")
+         "emergences": sorted(k for k, v in non_rattaches.items() if v["emergence"]),
+         "hypotheses": {h: {"faits": sorted({f for f, _ in obs}), "titres": len(obs),
+                            "titres_7_derniers_jours": sum(1 for _, j in obs if date.fromisoformat(j) > auj - timedelta(days=7)),
+                            "stade_le_plus_haut": max((stades.get(f, "allégation") for f, _ in obs),
+                                                      key=lambda x: (STADES + ["fait établi"]).index(x) if x in STADES + ["fait établi"] else 0)}
+                        for h, obs in pression.items()}}, ensure_ascii=False, indent=1), "utf-8")
     print(f"{len(sortie)} faits suivis dans data/reprise.json")
 
 
