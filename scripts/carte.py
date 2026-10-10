@@ -58,8 +58,9 @@ def libelle_issue(pid, issue):
 def construire(tirages=100, trajectoires=40, graine=20261010):
     s = lire_json("modele/reseau/structure_v0.json")
     tables = lire_json("modele/reseau/tables_v0.json")
-    obs = reseau.observations()
+    obs = reseau.observations(s)
     reseau.FAITS = reseau.faits_retenus()
+    reseau.PRIORS = reseau.lois_a_priori(s, tables, obs)
     rng = random.Random(graine)
     pivots = s["pivots"]
     ve = [v["id"] for v in s["variables_etat"]]
@@ -84,7 +85,8 @@ def construire(tirages=100, trajectoires=40, graine=20261010):
     variables = []
     for v in s["variables_etat"]:
         variables.append({"id": v["id"], "nom": v["nom"], "etats": v["etats"],
-                          "observe": obs.get(v["id"], {}),
+                          "observe": {m: (e if isinstance(e, str) else f"au moins {e['au_moins']}")
+                                      for m, e in obs.get(v["id"], {}).items()},
                           "par_mois": [[round(100 * comptes[v["id"]][k].get(e, 0) / n, 1) for e in v["etats"]]
                                        for k in range(len(reseau.MOIS))]})
     sortie = []

@@ -18,6 +18,9 @@ Ce qu'un évaluateur donne, nœud par nœud (jamais une probabilité mensuelle) 
   directement ; elle sert au contrôle de cohérence (écart de plus de 10 points avec le réseau signalé).
 Agrégation : moyenne en log-cotes des probabilités, moyenne géométrique des multiplicateurs, médiane des
 « direct » ; « sigma » d'un nœud = dispersion moyenne entre évaluateurs en log-cotes (au moins 0,3).
+Un zéro n'est gardé que s'il est unanime : un zéro isolé (probabilité ou multiplicateur) est ramené au plancher
+(PLANCHER_P, PLANCHER_M) et signalé dans « alertes » ; aucun évaluateur n'a de droit de veto (étape 1 de la feuille
+de route, 10 octobre 2026).
 """
 import json
 import math
@@ -27,6 +30,9 @@ import sys
 from commun import RACINE, lire_json
 
 STRUCT = "modele/reseau/structure_v0.json"
+PLANCHER_P = 0.01   # probabilité substituée à un zéro isolé
+PLANCHER_M = 0.05   # multiplicateur substitué à un zéro isolé
+ALERTES = []
 
 
 def reference(n):
@@ -142,12 +148,21 @@ def lo(p):
     return math.log(p / (1 - p))
 
 
-def moy_loi(lois):
-    """Moyenne en log-cotes, issue par issue, puis normalisation ; une issue nulle chez tous reste nulle."""
+def plancher(vals, p, ou=""):
+    """Zéros isolés remplacés par le plancher p (signalés) ; zéro unanime conservé."""
+    if all(v == 0 for v in vals) or not any(v == 0 for v in vals):
+        return vals
+    ALERTES.append(f"{ou} : zéro isolé ramené à {p} ({vals})")
+    return [p if v == 0 else v for v in vals]
+
+
+def moy_loi(lois, ou=""):
+    """Moyenne en log-cotes, issue par issue, puis normalisation ; une issue nulle chez tous reste nulle, un zéro
+    isolé est ramené au plancher."""
     cles = lois[0].keys()
     out = {}
     for c in cles:
-        vals = [l.get(c, 0) for l in lois]
+        vals = plancher([l.get(c, 0) for l in lois], PLANCHER_P, f"{ou} {c}")
         out[c] = 0.0 if all(v == 0 for v in vals) else 1 / (1 + math.exp(-statistics.mean(lo(v) for v in vals)))
     s = sum(out.values())
     return {c: v / s for c, v in out.items()}
@@ -162,7 +177,13 @@ def dispersion(lois):
     return statistics.mean(ecarts) if ecarts else 0.0
 
 
+def moy_mult(ms, ou=""):
+    ms = plancher(ms, PLANCHER_M, ou)
+    return 0.0 if all(m == 0 for m in ms) else math.exp(statistics.mean(math.log(m) for m in ms))
+
+
 def agreger(reponses, version):
+    ALERTES.clear()
     g = gabarit()
     out = {"version": version, "evaluateurs": [r.get("evaluateur") for r in reponses], "noeuds": {}, "mesures": {}, "direct": {}}
     for i, x in g["noeuds"].items():
@@ -170,14 +191,14 @@ def agreger(reponses, version):
         t, disp = {}, []
         if "transition" in x:
             t["reference"] = x["reference"]
-            t["transition"] = {e: moy_loi([y["transition"][e] for y in ys]) for e in x["transition"]}
+            t["transition"] = {e: moy_loi([y["transition"][e] for y in ys], f"{i} transition {e}") for e in x["transition"]}
             disp += [dispersion([y["transition"][e] for y in ys]) for e in x["transition"]]
         if "conditionnelle" in x:
-            t["conditionnelle"] = {e: moy_loi([y["conditionnelle"][e] for y in ys]) for e in x["conditionnelle"]}
+            t["conditionnelle"] = {e: moy_loi([y["conditionnelle"][e] for y in ys], f"{i} {e}") for e in x["conditionnelle"]}
             t["base"] = t["conditionnelle"][next(iter(t["conditionnelle"]))]
             disp += [dispersion([y["conditionnelle"][e] for y in ys]) for e in x["conditionnelle"]]
         elif "base" in x:
-            t["base"] = moy_loi([y["base"] for y in ys])
+            t["base"] = moy_loi([y["base"] for y in ys], f"{i} base")
             disp.append(dispersion([y["base"] for y in ys]))
         if "p_fenetre" in x:
             l = [lo(y["p_fenetre"]) for y in ys]
@@ -189,7 +210,7 @@ def agreger(reponses, version):
                 for e, md in pd.items():
                     for c, m in md.items():
                         mult.setdefault(par, {}).setdefault(e, {}).setdefault(c, []).append(m)
-        t["multiplicateurs"] = {par: {e: {c: (0.0 if 0 in ms else math.exp(statistics.mean(math.log(m) for m in ms)))
+        t["multiplicateurs"] = {par: {e: {c: moy_mult(ms, f"{i} {par}={e} {c}")
                                           for c, ms in md.items()} for e, md in pd.items()} for par, pd in mult.items()}
         t["sigma"] = round(max(statistics.mean(disp) if disp else 0.3, 0.3), 3)
         out["noeuds"][i] = t
@@ -209,6 +230,8 @@ def agreger(reponses, version):
             out["direct"][q] = round(statistics.median(vals), 1)
         else:
             out["direct"][q] = {c: round(statistics.median(v[c] for v in vals), 1) for c in vals[0]}
+    if ALERTES:
+        out["alertes"] = list(ALERTES)
     return out
 
 

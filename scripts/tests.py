@@ -652,11 +652,96 @@ def test_faits_et_direction():
     q = [{"id": "Q", "evenement": "EV-H", "issues": ["oui", "non"], "fenetre": ["2026-10-10", "2027-05-02"]}]
     reseau.FAITS = {}
     sans = reseau.prevoir(S, T, {}, q, 30, 200)["Q"]["oui"]
-    reseau.FAITS = {"PV-H": [("2026-10", {"oui": 3.0})]}
+    reseau.FAITS = {"PV-H": [("2026-10", {"oui": 3.0}, 24)]}
     avec = reseau.prevoir(S, T, {}, q, 30, 200)["Q"]["oui"]
     reseau.FAITS = None
     assert avec > sans + 15, (sans, avec)
     assert direction.quantile_student_90(4) == 1.533 and direction.quantile_student_90(40) == 1.2816
+
+
+def test_moteur_etape1():
+    """Feuille de route, étape 1 (bogues du moteur, revues du 10 octobre 2026). Chaque cas est discriminant : il
+    échoue avec l'ancien comportement (contrôles par mutation consignés au journal)."""
+    import reseau
+    tout = lambda e: {m: e for m in reseau.MOIS}
+    fen = ["2026-10-10", "2028-09-30"]
+    survenue = lambda n: {"caracteristique": {"type": "survenue", "noeud": n}, "table": {"oui": 100, "non": 0}}
+    q = lambda e, f: {"id": f"Q-{e}", "evenement": e, "issues": ["oui", "non"], "fenetre": f}
+    reseau.FAITS = {}
+    try:
+        # 1. Parent daté pas encore tranché : moyenne des multiplicateurs sous sa loi a priori (0,2 × 1 + 0,8 × 0,1
+        # = 0,28), et non l'état de référence (× 1). Fenêtre close avant la date du parent.
+        S = {"variables_etat": [], "mesures": {"EV-H": survenue("PV-H")},
+             "pivots": [{"id": "PV-D", "nature": "daté", "date": "2027-06-30", "issues": ["a", "b"], "parents": []},
+                        {"id": "PV-H", "nature": "à tout moment", "fenetre": fen, "parents": ["PV-D"]}]}
+        T = {"noeuds": {"PV-D": {"base": {"a": 0.2, "b": 0.8}}, "PV-H": {"p_fenetre": 0.8, "multiplicateurs": {"PV-D": {"b": {"oui": 0.1}}}}}}
+        p = reseau.prevoir(S, T, {}, [q("EV-H", ["2026-10-10", "2027-05-31"])], 30, 200)["Q-EV-H"]["oui"]
+        # sans le parent : h = 1 - 0,2^(1/24) par mois sur 8 mois, soit 41 % ; avec × 0,28 sur la fenêtre : 0,224 → 8 %
+        assert p < 15, p
+        # 2. Multiplicateur demandé sur la probabilité de fenêtre : 0,6 relevé × 3 donne 82 % (rapport de cotes), et
+        # non 94 % (risque mensuel multiplié) ; abaissé × 0,5 donne 30 %.
+        S = {"variables_etat": [{"id": "VE-X", "etats": ["r", "s"], "reference": "r", "parents": []}], "mesures": {"EV-H": survenue("PV-H")},
+             "pivots": [{"id": "PV-H", "nature": "à tout moment", "fenetre": fen, "parents": ["VE-X"]}]}
+        T = {"noeuds": {"VE-X": {"reference": "r", "transition": {"r": {"r": 1, "s": 0}, "s": {"r": 0, "s": 1}}},
+                        "PV-H": {"p_fenetre": 0.6, "sigma": 0.01, "multiplicateurs": {"VE-X": {"s": {"oui": 3.0}}}}}}
+        reseau.SIGMA_PLANCHER, plancher = 0.01, reseau.SIGMA_PLANCHER
+        try:
+            p = reseau.prevoir(S, T, {"VE-X": tout("s")}, [q("EV-H", fen)], 5, 2000)["Q-EV-H"]["oui"]
+            assert 78 < p < 86, p
+            T["noeuds"]["PV-H"]["multiplicateurs"]["VE-X"]["s"]["oui"] = 0.5
+            p = reseau.prevoir(S, T, {"VE-X": tout("s")}, [q("EV-H", fen)], 5, 2000)["Q-EV-H"]["oui"]
+            assert 26 < p < 34, p
+        finally:
+            reseau.SIGMA_PLANCHER = plancher
+        # 3. Déclencheur : un parent « à tout moment » survenu en cours de fenêtre agit sur le reste de la fenêtre
+        # (censure en avril → 96 % de départ en avril-mai, et non 55 % en étalant la probabilité sur huit mois).
+        S = {"variables_etat": [], "mesures": {"EV-G": survenue("PV-G")},
+             "pivots": [{"id": "PV-C", "nature": "à tout moment", "fenetre": ["2027-04-01", "2027-04-30"], "parents": []},
+                        {"id": "PV-G", "nature": "à tout moment", "fenetre": ["2026-10-10", "2027-05-02"], "parents": ["PV-C"]}]}
+        T = {"noeuds": {"PV-C": {"p_fenetre": 0.999999}, "PV-G": {"p_fenetre": 0.1, "multiplicateurs": {"PV-C": {"oui": {"oui": 200.0}}}}}}
+        p = reseau.prevoir(S, T, {}, [q("EV-G", ["2027-04-01", "2027-05-02"])], 20, 200)["Q-EV-G"]["oui"]
+        assert p > 85, p
+        # 4. Verrou daté (article 12) : aucune dissolution dans les douze mois qui suivent la précédente.
+        S = {"variables_etat": [], "mesures": {"EV-B": survenue("PV-B")},
+             "verrous": [{"si": "PV-A", "interdit": ["PV-B"], "duree_mois": 12}],
+             "pivots": [{"id": "PV-A", "nature": "à tout moment", "fenetre": ["2026-10-10", "2026-12-31"], "parents": []},
+                        {"id": "PV-B", "nature": "à tout moment", "fenetre": ["2027-05-03", "2028-09-30"], "parents": []}]}
+        T = {"noeuds": {"PV-A": {"p_fenetre": 0.999999}, "PV-B": {"p_fenetre": 0.9}}}
+        r = reseau.prevoir(S, T, {}, [q("EV-B", ["2027-05-03", "2027-10-31"]), {**q("EV-B", ["2028-01-01", "2028-09-30"]), "id": "Q-T"}], 20, 200)
+        assert r["Q-EV-B"]["oui"] < 1 and r["Q-T"]["oui"] > 20, r
+        # 5. Extinction d'un fait : appliqué trois mois, sans effet ensuite ; sur une variable d'état, absorbé par
+        # l'observation suivante.
+        assert reseau.fait_actif("2026-10", 3, 2, {}) and not reseau.fait_actif("2026-10", 3, 3, {})
+        assert not reseau.fait_actif("2026-10", 24, 2, {"2026-11": "x"}) and reseau.fait_actif("2026-10", 24, 0, {"2026-11": "x"})
+        # 6. Contrôle de cohérence sur toutes les issues d'une question à plusieurs issues (EV-05).
+        _, a = reseau.ecart_direct({"Le Pen": 51.3, "Philippe": 20.4, "autre": 28.3}, {"Le Pen": 43, "Philippe": 31.9, "autre": 25.1})
+        assert a == 1
+        assert reseau.ecart_direct({"oui": 50, "non": 50}, 45) == ("  évaluateurs 45", 0)
+        # 7. Observation du mois en cours d'une variable « maximum du mois » : un minimum, pas un état.
+        S = {"variables_etat": [{"id": "VE-M", "etats": ["calme", "modérée", "forte"], "reference": "calme", "parents": []}],
+             "pivots": [], "mesures": {"EV-M": {"caracteristique": {"type": "etat_max", "noeud": "VE-M"}, "table": {"calme": 0, "modérée": 0, "forte": 100}}}}
+        T = {"noeuds": {"VE-M": {"reference": "calme", "transition": {e: {"calme": 0.2, "modérée": 0.4, "forte": 0.4} for e in ("calme", "modérée", "forte")}}}}
+        p = reseau.prevoir(S, T, {"VE-M": {"2026-10": {"au_moins": "modérée"}}}, [q("EV-M", ["2026-10-01", "2026-10-31"])], 20, 200)["Q-EV-M"]["oui"]
+        assert 45 < p < 55, p    # forte 0,4 / (0,4 + 0,4) = 50 % ; un état fixé donnerait 0 %, un tirage libre 40 %
+        # 8. Intervalle à 80 % sans le bruit de simulation : à peu près le même avec 20 ou 400 trajectoires par tirage.
+        S = {"variables_etat": [], "mesures": {"EV-H": survenue("PV-H")},
+             "pivots": [{"id": "PV-H", "nature": "à tout moment", "fenetre": fen, "parents": []}]}
+        T = {"noeuds": {"PV-H": {"p_fenetre": 0.5}}}
+        l = lambda n: (lambda i: i[1] - i[0])(reseau.prevoir(S, T, {}, [q("EV-H", fen)], 200, n, graine=3)["Q-EV-H"]["i80"])
+        petit, grand = l(20), l(400)
+        assert 0.75 < petit / grand < 1.3, (petit, grand)
+    finally:
+        reseau.FAITS = None
+
+
+def test_agregation_sans_veto():
+    """Feuille de route, étape 1 : un zéro isolé chez un évaluateur ne fixe plus l'agrégat à zéro ; un zéro unanime
+    reste un zéro."""
+    import tables
+    assert tables.moy_mult([0, 2, 2]) > 0.5 and tables.moy_mult([0, 0, 0]) == 0
+    l = tables.moy_loi([{"a": 0.0, "b": 1.0}, {"a": 0.3, "b": 0.7}, {"a": 0.3, "b": 0.7}])
+    assert l["a"] > 0.05, l
+    assert tables.moy_loi([{"a": 0.0, "b": 1.0}] * 3)["a"] == 0
 
 
 def test_cycles_v0():

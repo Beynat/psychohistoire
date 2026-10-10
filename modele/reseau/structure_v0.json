@@ -1,5 +1,5 @@
 {
- "version": "structure v0.4 (10 octobre 2026, chaîne présidentielle réélicitée : pourvoi au 12 mars, liste au 26 mars, duel conditionnel aux candidatures du centre, vainqueur selon Le Pen ou Bardella)",
+ "version": "structure v0.5 (10 octobre 2026, étape 1 de la feuille de route : verrous datés de l'article 12, variables « maximum du mois ») ; chaîne présidentielle de la v0.4",
  "description": "Réseau bayésien dynamique v0, pas mensuel d'octobre 2026 à septembre 2028. Révisé après le pré-mortem du 10 octobre (scratchpad, rapport de 32 causes) : aucun cycle au sein d'un mois (liens au mois précédent marqués « decalage »: 1), au plus trois parents, pivots électoraux par personnes, dette découpée en note, procédure de déficit excessif et TPI ouverts dès octobre 2026, dissolution et censure découpées avant et après la présidentielle, changement de gouvernement ajouté. Hors réseau (notés sur l'ensemble et les comparateurs) : EV-03, EV-44, EV-23, EV-14b, EV-36, EV-06, international, climat, sécurité.",
  "codes_candidats": {
   "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate, sinon Jordan Bardella)",
@@ -69,7 +69,8 @@
     }
    ],
    "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000",
-   "source": "data/etat/mobilisation.jsonl"
+   "source": "data/etat/mobilisation.jsonl",
+   "agregat": "maximum"
   },
   {
    "id": "VE-LYCEE",
@@ -84,7 +85,8 @@
     "VE-MOBIL"
    ],
    "definition": "plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000",
-   "source": "data/etat/mobilisation.jsonl"
+   "source": "data/etat/mobilisation.jsonl",
+   "agregat": "maximum"
   },
   {
    "id": "VE-SOND",
@@ -1125,5 +1127,24 @@
     ]
    }
   }
- }
+ },
+ "verrous": [
+  {
+   "si": "PV-DISSOL1",
+   "interdit": [
+    "PV-DISSOL2a",
+    "PV-DISSOL2b"
+   ],
+   "duree_mois": 12,
+   "motif": "article 12 de la Constitution : pas de nouvelle dissolution dans l'année qui suit les élections ; pas mensuel, élections comptées dans le mois qui suit la dissolution, nouvelle dissolution possible à partir du 13e mois après celui de la dissolution"
+  },
+  {
+   "si": "PV-DISSOL2a",
+   "interdit": [
+    "PV-DISSOL2b"
+   ],
+   "duree_mois": 12,
+   "motif": "article 12 de la Constitution, comme ci-dessus"
+  }
+ ]
 }

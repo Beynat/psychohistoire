@@ -1,5 +1,5 @@
 {
- "version": "tables v0.4 (E1, E2, E3 ; chaîne présidentielle par E4, E5 Opus et E6 Sonnet sur dossier sourcé, 10 octobre 2026) ; dissolution après l'élection découpée",
+ "version": "tables v0.5 (E1, E2, E3 ; chaîne présidentielle par E4, E5 Opus et E6 Sonnet sur dossier sourcé, 10 octobre 2026) ; article 12 retiré des multiplicateurs (verrou daté)",
  "evaluateurs": [
   "E1",
   "E2",
@@ -960,15 +960,10 @@
      "> 35 %": {
       "oui": 1.1548003502915456
      }
-    },
-    "PV-DISSOL1": {
-     "oui": {
-      "oui": 0.05
-     }
     }
    },
    "sigma": 0.4,
-   "derive": "passe du 10 octobre 2026 (relecture de cohérence) : 70 % pour un président RN dans les deux mois (suggestion de l'évaluateur E3) ; quasi impossible après une dissolution avant l'élection (article 12, un an)"
+   "derive": "passe du 10 octobre 2026 (relecture de cohérence) : 70 % pour un président RN dans les deux mois (suggestion de l'évaluateur E3) ; l'article 12 est un verrou daté de la structure (étape 1), plus un multiplicateur"
   },
   "PV-DISSOL2b": {
    "p_fenetre": 0.569,
@@ -995,20 +990,10 @@
      "AUT": {
       "oui": 0.6453714584098175
      }
-    },
-    "PV-DISSOL2a": {
-     "oui": {
-      "oui": 0.2
-     }
-    },
-    "PV-DISSOL1": {
-     "oui": {
-      "oui": 0.4
-     }
     }
    },
    "sigma": 0.4,
-   "derive": "passe du 10 octobre 2026 : reste de la probabilité agrégée sur 17 mois (87 %) ; une dissolution de mai-juin interdit la suivante pendant un an (× 0,2), une dissolution avant l'élection aussi (× 0,4)"
+   "derive": "passe du 10 octobre 2026 : reste de la probabilité agrégée sur 17 mois (87 %) ; l'article 12 est un verrou daté de la structure (étape 1), plus un multiplicateur"
   }
  },
  "mesures": {

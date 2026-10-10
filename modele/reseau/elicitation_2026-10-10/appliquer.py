@@ -4,7 +4,7 @@ sys.path.insert(0, 'scripts')
 from tables import moy_loi, dispersion, lo
 CH = '/tmp/claude-0/-home-claude-psychohistoire/23dfa29c-52e0-5c8e-bc30-47a4d773b38e/scratchpad/chantier/'
 R = [json.load(open(CH + f'E{i}.json')) for i in (4, 5, 6)]
-gm = lambda xs: 0.0 if 0 in xs else math.exp(statistics.mean(math.log(x) for x in xs))
+from tables import moy_mult as gm   # zéro isolé ramené au plancher (étape 1) ; aucun zéro isolé chez E4-E6
 def loi(path):
     ls = []
     for r in R:

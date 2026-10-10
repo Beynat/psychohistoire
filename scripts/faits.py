@@ -3,7 +3,9 @@
 Usage : python scripts/faits.py decider < avis.json     avis.json : {"fait", "noeud", "issues": [...],
             "avis": [{"evaluateur", "modele", "p": {issue: P(fait | issue)}}, ...]}
         Écrit la décision dans modele/reseau/faits.jsonl (ajout seul) ; le moteur du réseau applique les faits
-        retenus comme multiplicateurs sur le nœud à partir du mois du fait.
+        retenus comme multiplicateurs sur le nœud à partir du mois du fait, pendant « duree_mois » mois (champ de
+        l'avis, 3 par défaut) ; sur une variable d'état, l'effet s'éteint dès qu'une observation postérieure au fait
+        l'a absorbé (étape 1 de la feuille de route, 10 octobre 2026).
 
 Règles : rapport de chaque issue rapporté à l'issue de référence (la dernière), en log ; pas de mise à jour si les
 évaluateurs divergent de signe, si la moyenne est à moins de deux erreurs types de zéro (dispersion au moins
@@ -21,6 +23,7 @@ from commun import RACINE
 
 SIGMA_PLANCHER = 0.3
 K_FAITS = 0.5
+DUREE_MOIS = 3
 
 
 def decider(f):
@@ -45,7 +48,7 @@ def decider(f):
             continue
         out[i] = round(applique, 3)
     return {"fait": f["fait"], "noeud": f["noeud"], "mois": f.get("mois"), "multiplicateurs": out,
-            "retenu": bool(out), "motifs": motif}
+            "duree_mois": f.get("duree_mois", DUREE_MOIS), "retenu": bool(out), "motifs": motif}
 
 
 if __name__ == "__main__":
