@@ -1054,24 +1054,28 @@ def test_chocs():
     multiplie la cote de l'issue visée."""
     import faits, reseau
     S = {"variables_etat": [{"id": "VE-X", "etats": ["bas", "moyen", "haut"], "reference": "moyen", "parents": []}],
-         "pivots": [{"id": "PV-D", "nature": "daté", "date": "2026-12-31", "issues": ["a", "b"], "parents": []}],
+         "pivots": [{"id": "PV-D", "nature": "daté", "date": "2027-03-31", "issues": ["a", "b"], "parents": []}],
          "ports": [{"id": "P-X-BAISSE", "noeud": "VE-X", "sens": "baisse"}, {"id": "P-D", "noeud": "PV-D", "issues": ["b"], "sens": "hausse"}],
          "mesures": {"EV-X": {"caracteristique": {"type": "etat_max", "noeud": "VE-X", "debut": "2026-11-01", "fin": "2026-11-30"},
                               "table": {"bas": 100, "moyen": 0, "haut": 0}},
                      "EV-Y": {"caracteristique": {"type": "etat_max", "noeud": "VE-X", "debut": "2026-12-01", "fin": "2026-12-31"},
                               "table": {"bas": 100, "moyen": 0, "haut": 0}},
                      "EV-D": {"caracteristique": {"type": "issue", "noeud": "PV-D"}, "table": "identite"}}}
-    B = {"points_par_unite": 4, "p_retrait_reference": 0.1,
-         "stades": {"procédure engagée": {"points_intentions": -4, "points_popularite": -4, "p_retrait": 0.5, "duree_mois": 3}}}
+    B = {"largeur_classe": {"VE-X": 4}, "p_retrait_reference": 0.1,
+         "stades": {"procédure engagée": {"points_intentions": -4, "points_popularite": -4, "p_retrait_candidat": 0.5, "p_retrait_ministre": 0.5, "duree_mois": 3}}}
+    S["pivots"][0]["id"] = "PV-LEPEN"; S["ports"][1]["noeud"] = "PV-LEPEN"; S["mesures"]["EV-D"]["caracteristique"]["noeud"] = "PV-LEPEN"
     avis = [{"ports": ["P-X-BAISSE", "P-D"]}, {"ports": ["P-X-BAISSE"]}, {"ports": ["P-X-BAISSE", "P-D"]}]
     c = faits.choc({"id": "C", "fait": "f", "stade": "procédure engagée", "mois": "2026-10", "avis": avis}, S, B)
     assert c["retenu"] and c["ports"] == {"P-X-BAISSE": 1.0, "P-D": round(math.log(1) - math.log(0.1 / 0.9), 3)}, c
-    assert not faits.choc({"id": "C", "fait": "f", "stade": "allégation", "mois": "2026-10", "avis": avis}, S, B)["retenu"]
+    B2 = json.loads(json.dumps(B)); B2["stades"]["allégation"] = B["stades"]["procédure engagée"]
+    assert not faits.choc({"id": "C", "fait": "f", "stade": "allégation", "mois": "2026-10", "avis": avis}, S, B2)["retenu"]
+    minorite = [{"ports": ["P-X-BAISSE", "P-D"]}, {"ports": ["P-X-BAISSE"]}, {"ports": ["P-X-BAISSE"]}]
+    assert "P-D" not in faits.choc({"id": "C", "fait": "f", "stade": "procédure engagée", "mois": "2026-10", "avis": minorite}, S, B)["ports"]
     T = {"noeuds": {"VE-X": {"reference": "moyen", "transition": {e: {"bas": 0.2, "moyen": 0.6, "haut": 0.2} for e in ("bas", "moyen", "haut")}},
-                    "PV-D": {"base": {"a": 0.8, "b": 0.2}}}}
+                    "PV-LEPEN": {"base": {"a": 0.8, "b": 0.2}}}}
     q = [{"id": "Q-X", "evenement": "EV-X", "issues": ["oui", "non"], "fenetre": ["2026-10-10", "2026-12-31"]},
          {"id": "Q-Y", "evenement": "EV-Y", "issues": ["oui", "non"], "fenetre": ["2026-10-10", "2026-12-31"]},
-         {"id": "Q-D", "evenement": "EV-D", "issues": ["a", "b"], "fenetre": ["2026-10-10", "2026-12-31"]}]
+         {"id": "Q-D", "evenement": "EV-D", "issues": ["a", "b"], "fenetre": ["2026-10-10", "2027-03-31"]}]
     try:
         reseau.CHOCS = []
         sans = reseau.prevoir(S, T, {}, q, 10, 200)
@@ -1082,8 +1086,17 @@ def test_chocs():
         reseau.CHOCS = None
     assert avec["Q-X"]["oui"] > sans["Q-X"]["oui"] + 8, (sans["Q-X"], avec["Q-X"])          # baisse en novembre
     assert avec["Q-D"]["b"] > sans["Q-D"]["b"] + 25, (sans["Q-D"], avec["Q-D"])              # cote de « b » × 9
+    # (le choc d'octobre, de trois mois au barème, agit encore sur le pivot tranché en mars : pas d'absorption)
     assert avec["Q-Y"]["oui"] > sans["Q-Y"]["oui"] + 8, (sans["Q-Y"], avec["Q-Y"])          # toujours actif en décembre
     assert abs(absorbe["Q-Y"]["oui"] - sans["Q-Y"]["oui"]) < 5, (sans["Q-Y"], absorbe["Q-Y"])  # absorbé par l'observation de novembre
+    # Barème réel : intensités par port et par stade, dans le sens du port seulement.
+    racine = Path(__file__).resolve().parent.parent
+    SR, BR = (json.loads((racine / f).read_text()) for f in ("modele/reseau/structure_v0.json", "modele/reseau/bareme_chocs.json"))
+    P = {x["id"]: x for x in SR["ports"]}
+    assert faits.delta_port(P["P-RN-BAISSE"], "procédure engagée", BR) == 0.4
+    assert faits.delta_port(P["P-POP-HAUSSE"], "procédure engagée", BR) == 0 and faits.delta_port(P["P-POP-HAUSSE"], "choc sécuritaire", BR) == 2.0
+    assert faits.delta_port(P["P-PHILIPPE-RETRAIT"], "procédure engagée", BR) == 0 < faits.delta_port(P["P-PHILIPPE-RETRAIT"], "mise en cause formelle", BR)
+    assert faits.delta_port(P["P-VACANCE"], "mise en cause formelle", BR) == 0
 
 
 def test_agregation_sans_veto():

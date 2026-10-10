@@ -1,0 +1,43 @@
+{
+ "description": "Barème d'intensité des chocs imprévus par stade (feuille de route, étape 9), calé sur des précédents sourcés (modele/reseau/dossiers/precedents_chocs_2026-10-10.json : Fillon 2017, Strauss-Kahn 2011, Griveaux 2020, Cahuzac 2013, Benalla 2018, Sarkozy 2016, Bayrou et Ferrand 2017, Mélenchon 2018, Le Pen 2024-2026, Bétharram 2025). Les évaluateurs ne choisissent jamais l'intensité : seulement les points d'entrée touchés. Fixé avant tout fait à traiter.",
+ "etabli_le": "2026-10-10",
+ "largeur_classe": {
+  "VE-RN": 5,
+  "VE-POP": 10,
+  "VE-ECART": 40,
+  "_note": "points (pb pour l'écart) correspondant à une unité d'inclinaison en log-cote par rang : une classe de la variable"
+ },
+ "p_retrait_reference": 0.088,
+ "_note_reference": "probabilité de retrait d'un candidat désigné dans les six mois avant le scrutin, hors affaire (classe de référence H-01 : 3 cas sur 34)",
+ "stades": {
+  "procédure engagée": {
+   "points_intentions": -2,
+   "points_popularite": -7.5,
+   "p_retrait_candidat": 0.088,
+   "p_retrait_ministre": 0.5,
+   "duree_mois": 1,
+   "appui": "intentions : Fillon (information judiciaire), Sarkozy (réquisitoire Bygmalion) −2 ; popularité : Mélenchon (perquisitions) −5, Bayrou 2017 −10 ; retrait : aucun candidat, trois ministres sur trois (Cahuzac, Bayrou, Ferrand) ; effet résorbé en une à deux semaines"
+  },
+  "mise en cause formelle": {
+   "points_intentions": 0,
+   "points_popularite": -5,
+   "p_retrait_candidat": 0.25,
+   "p_retrait_ministre": 0.5,
+   "duree_mois": 1,
+   "appui": "intentions : Fillon (mise en examen) −1,5, Le Pen (réquisitions) +2, effet nul (stade annoncé à l'avance) ; popularité : Sarkozy, Hollande via Cahuzac −5 ; retrait : un sur quatre (Strauss-Kahn)"
+  },
+  "choc sécuritaire": {
+   "points_intentions": 0,
+   "points_popularite": 20,
+   "p_retrait_candidat": 0.088,
+   "p_retrait_ministre": 0.088,
+   "duree_mois": 4,
+   "appui": "attentats de 2015 : gains de 19 à 22 points de popularité de l'exécutif, effacés en trois à six mois ; presque rien après Nice 2016 (dossier hypotheses_2026-10-10, H-05). Port P-POP-HAUSSE seulement"
+  }
+ },
+ "sans_effet": {
+  "allégation": "annexe, section 11.2 : en observation, sans mise à jour ; l'effet sur l'opinion passe par le sondage suivant (Fillon : −6,5 points d'intentions, un seul cas qui cumule révélation et enquête)",
+  "décision": "effet sur l'opinion faible et non univoque (Le Pen 2025 −1, 2026 +3) ; l'éligibilité relève de la structure (pourvoi, candidature), pas du barème"
+ },
+ "limites": "une à trois mesures par stade ; instituts parfois différents avant et après ; le premier choc d'une affaire absorbe l'essentiel de l'effet ; plusieurs séries lues sur Wikipédia, à recouper. Ports sans barème établi (P-ECART-HAUSSE, P-VACANCE) : pas d'intensité automatique, traitement par la procédure de restructuration rapide."
+}

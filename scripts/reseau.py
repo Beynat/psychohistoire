@@ -264,7 +264,10 @@ def chocs_du_noeud(i, k, obs, structure):
     for c in (CHOCS or []):
         for pid_, delta in c["ports"].items():
             port = ports.get(pid_)
-            if port and port["noeud"] == i and choc_actif(c, k, obs.get(i, {}) if i.startswith("VE-") else {}):
+            # Variable observée : actif jusqu'à absorption ou durée du barème. Pivot : actif du mois du choc jusqu'à
+            # ce que le pivot soit tranché (aucune observation ne l'absorbe avant ; « absorption » des ports).
+            actif = choc_actif(c, k, obs.get(i, {})) if i.startswith("VE-") else k >= idx(c["mois"])
+            if port and port["noeud"] == i and actif:
                 out.append((port.get("issues"), delta * (1 if port.get("sens", "hausse") == "hausse" else -1)))
     return out
 

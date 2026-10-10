@@ -78,10 +78,17 @@ def delta_port(port, stade, bareme):
     probabilité de retrait du stade et la probabilité de retrait de référence."""
     b = bareme["stades"][stade]
     if port["noeud"].startswith("VE-"):
+        if port["noeud"] not in bareme["largeur_classe"]:
+            return 0.0
         pts = b["points_popularite"] if port["noeud"] == "VE-POP" else b["points_intentions"]
-        return round(abs(pts) / bareme["points_par_unite"], 3)
+        sens = 1 if port.get("sens", "hausse") == "hausse" else -1
+        # Un choc ne joue que dans le sens du port (baisse pour un port « baisse ») : sinon intensité nulle.
+        return round(max(sens * pts, 0) / bareme["largeur_classe"][port["noeud"]], 3)
+    cle = {"PV-GOUV": "p_retrait_ministre"}.get(port["noeud"], "p_retrait_candidat")
+    if port["noeud"] not in ("PV-GOUV", "PV-LEPEN", "PV-RNAUTRE", "PV-BLOC"):
+        return 0.0   # port sans barème établi (vacance, écart de taux…)
     lo = lambda p: math.log(p / (1 - p))
-    return round(max(lo(b["p_retrait"]) - lo(bareme["p_retrait_reference"]), 0.0), 3)
+    return round(max(lo(b[cle]) - lo(bareme["p_retrait_reference"]), 0.0), 3)
 
 
 def choc(f, structure=None, bareme=None):
