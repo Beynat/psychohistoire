@@ -27,7 +27,7 @@ Usage :
 """
 import json
 import sys
-from datetime import datetime
+from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
 from commun import RACINE, lire_json
@@ -57,6 +57,9 @@ ETAPES = {
     "fait public vérifié": "fait établi",
 }
 TRI = RACINE / "data" / "tri"
+# Émergence (passation du 10 octobre 2026) : un fait sans question repris par au moins 50 titres en sept jours
+# est signalé dans data/reprise.json (« emergences ») pour un ajout à la banque à la passe suivante.
+SEUIL_EMERGENCE = 50
 
 
 def deja_tries():
@@ -87,9 +90,14 @@ def a_trier(sortie):
              for i in lire_json("data/veille.json")["items"] if i["lien"] not in tries]
     with open(sortie, "w", encoding="utf-8") as f:
         rep = lire_json("data/reprise.json", {"faits": {}})["faits"]
+        rep_tout = lire_json("data/reprise.json", {})
         suivis = [{"fait": k, "premier_jour": v["premier_jour"], "dernier_jour": v["dernier_jour"],
                    "concerne": v["concerne"], "stade_retenu": v.get("stade_retenu"), "statut": v.get("statut")}
                   for k, v in rep.items()]  # un fait retombé reste listé : il garde son identifiant et reste clos
+        # Faits sans question des 30 derniers jours (vérificateur A, A-04) : l'agent réutilise leur identifiant.
+        suivis += [{"fait": k, "premier_jour": v["premier_jour"], "dernier_jour": v["dernier_jour"], "concerne": [],
+                    "statut": "non rattaché", "titres": v["titres"]}
+                   for k, v in rep_tout.get("non_rattaches", {}).items() if v["dernier_jour"] >= (date.today() - timedelta(days=30)).isoformat()]
         json.dump({"titres": items, "questions_ouvertes": questions_ouvertes(), "faits_suivis": suivis},
                   f, ensure_ascii=False, indent=1)
     print(f"{len(items)} titres à trier ; {len(questions_ouvertes())} questions d'événement ouvertes ; écrit dans {sortie}")
@@ -202,7 +210,7 @@ def reprise(aujourdhui=None):
     from datetime import date, timedelta
     auj = date.fromisoformat(aujourdhui) if aujourdhui else date.today()
     titres = {i["lien"]: i for i in lire_json("data/veille.json")["items"]}
-    faits = {}
+    faits, libres = {}, {}
     for f in sorted(TRI.glob("*.jsonl")):
         if f.name in ("etapes.jsonl", "statuts.jsonl"):
             continue
@@ -211,6 +219,12 @@ def reprise(aujourdhui=None):
                 continue
             d = json.loads(l)
             if d["decision"] == "non rattaché" and not d.get("concerne"):
+                # Fait sans question (vérificateur A, A-04) : suivi à part, pour que l'agent de tri réutilise son
+                # identifiant et que l'émergence d'un sujet sans question soit mesurée.
+                t = titres.get(d["lien"], {})
+                y = libres.setdefault(d["fait"], [])
+                y.append(((d.get("date_titre") or t.get("date") or d["passage"])[:10],
+                          (d.get("source") or t.get("source") or "?").split(" · ")[0]))
                 continue
             x = faits.setdefault(d["fait"], {"obs": [], "concerne": set(), "decision": set(), "type": None})
             x["type"] = d.get("type_fait") or x["type"]
@@ -289,9 +303,19 @@ def reprise(aujourdhui=None):
         with (TRI / "statuts.jsonl").open("a", encoding="utf-8") as h:
             for x in nouvelles_decisions:
                 h.write(json.dumps({**x, "decide_le": auj.isoformat()}, ensure_ascii=True) + "\n")
+    non_rattaches = {}
+    for k, obs in libres.items():
+        if k in sortie:
+            continue
+        jours = sorted({j for j, _ in obs})
+        n7 = sum(1 for j, _ in obs if date.fromisoformat(j) > auj - timedelta(days=7))
+        non_rattaches[k] = {"titres": len(obs), "titres_7_derniers_jours": n7, "sources_distinctes": len({s for _, s in obs}),
+                            "premier_jour": jours[0], "dernier_jour": jours[-1], "emergence": n7 >= SEUIL_EMERGENCE}
     (RACINE / "data" / "reprise.json").write_text(json.dumps(
         {"description": "Reprise et statut des faits (annexe, sections 11.2 et 11.3) : descriptif, sans effet sur les probabilités. Sept flux suivis (franceinfo, Le Monde, LCP, Public Sénat, Le Figaro, Libération, Mediapart). Stade retenu : « allégation » sauf étape officielle vérifiée par deux agents ; la nature n'est publiée qu'avec une étape vérifiée, jamais « vie privée ».",
-         "etabli_le": auj.isoformat(), "faits": sortie}, ensure_ascii=False, indent=1), "utf-8")
+         "etabli_le": auj.isoformat(), "faits": sortie,
+         "non_rattaches": non_rattaches,
+         "emergences": sorted(k for k, v in non_rattaches.items() if v["emergence"])}, ensure_ascii=False, indent=1), "utf-8")
     print(f"{len(sortie)} faits suivis dans data/reprise.json")
 
 

@@ -490,6 +490,25 @@ def test_verrou_protocole():
         shutil.rmtree(tmp.parent)
 
 
+def test_emergence_du_tri():
+    """Vérificateur A, A-04 : un fait sans question est suivi d'un passage à l'autre sous un seul identifiant, et
+    signalé comme émergence à partir de 50 titres en sept jours."""
+    tmp, run = _copie()
+    try:
+        from datetime import date as _d
+        auj = _d.today().isoformat()
+        lignes = [{"lien": f"https://exemple.fr/{i}", "passage": f"{auj}T10:00:00+02:00", "fait": "sujet-test",
+                   "decision": "non rattaché", "motif": "m", "source": f"source{i % 3}", "date_titre": f"{auj}T09:00Z"}
+                  for i in range(52)]
+        (tmp / "data/tri/2099-01.jsonl").write_text("".join(json.dumps(x) + chr(10) for x in lignes))
+        run("scripts/tri.py", "reprise")
+        r = json.loads((tmp / "data/reprise.json").read_text())
+        assert r["non_rattaches"]["sujet-test"]["titres"] == 52, r["non_rattaches"].get("sujet-test")
+        assert "sujet-test" in r["emergences"], r["emergences"]
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
 def test_reseau_moteur():
     """Feuille de route v0, bloc 4 : la probabilité sur fenêtre donnée par les évaluateurs est retrouvée après
     conversion en risque mensuel ; un multiplicateur d'état parent déplace l'issue dans le bon sens ; un cycle
