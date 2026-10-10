@@ -50,6 +50,8 @@ table{border-collapse:collapse;width:100%;font-size:14px}
 th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
 th{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap}
 td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+#t-comp td:first-child{min-width:340px}
+#t-faits td:first-child{min-width:200px}
 .tw{overflow-x:auto}
 .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
 .v-élevé{background:var(--crit-soft);color:var(--crit)}
@@ -142,8 +144,8 @@ function carte(D){
   const t=d=>Date.parse(d+"T00:00:00Z");
   const X=d=>{for(let i=1;i<P.length;i++){if(t(d)<=t(P[i][0])){const a=P[i-1],b=P[i];return X0+(a[1]+(b[1]-a[1])*(t(d)-t(a[0]))/(t(b[0])-t(a[0])))*(X1-X0)}}return X1};
   const LANES=[
-    {nom:"Budget et gouvernement",rangs:{"PV-CENSURE1a":0,"PV-BUDGET":1,"PV-CENSURE1b":0,"PV-GOUV":2,"PV-DISSOL1":3}},
-    {nom:"Justice et candidatures",rangs:{"PV-AUDIENCE":0,"PV-POURVOI":0,"PV-LEPEN":1,"PV-ECOLO":2,"PV-GAUCHE":2,"PV-BLOC":3}},
+    {nom:"Budget et gouvernement",rangs:{"PV-CENSURE1a":0,"PV-BUDGET":1,"PV-CENSURE1b":2,"PV-GOUV":3,"PV-DISSOL1":4}},
+    {nom:"Justice et candidatures",rangs:{"PV-AUDIENCE":0,"PV-POURVOI":1,"PV-LEPEN":2,"PV-ECOLO":3,"PV-GAUCHE":4,"PV-BLOC":5}},
     {nom:"Présidentielle",rangs:{"PV-DUEL":0,"PV-VAINQ":1}},
     {nom:"Après 2027",rangs:{"PV-DISSOL2":0,"PV-MAJOR":1,"PV-CENSURE2":2}},
     {nom:"Dette et marchés",rangs:{"PV-NOTE":0,"PV-PDE":1,"PV-TPI":2}}];
@@ -154,18 +156,25 @@ function carte(D){
   for(let a=2026,m=10;a<2028||(a===2028&&m<=9);m===12?(a++,m=1):m++){
     const d=`${a}-${String(m).padStart(2,"0")}-01`, x=X(d);
     el("line",{x1:x,x2:x,y1:44,y2:H-10,stroke:"var(--line)","stroke-width":m===1?1.2:.6});
-    if(m%3===1||(a===2027&&[4,5].includes(m))) txt(x+3,38,dfr(d).replace(/^1 /,""),{"font-size":11,fill:"var(--muted)"});
+    if((a<2027||(a===2027&&m<=10))?(m%3===1||(a===2027&&[4,5].includes(m))):(m===1||m===7)) txt(x+3,38,dfr(d).replace(/^1 /,""),{"font-size":11,fill:"var(--muted)"});
   }
   const auj=new Date().toISOString().slice(0,10);
   el("line",{x1:X(auj),x2:X(auj),y1:24,y2:H-10,stroke:"var(--accent)","stroke-dasharray":"3 3"});
   txt(X(auj)+4,24,"aujourd'hui",{"font-size":11,fill:"var(--accent)"});
-  [["2026-12-31","budget"],["2027-04-18","1er tour"],["2027-05-02","2nd tour"]].forEach(([d,s])=>{
-    txt(X(d),56,s,{"font-size":10.5,"text-anchor":"middle",fill:"var(--muted)","font-weight":600});});
+  [["2026-12-31","budget",0],["2027-04-18","1er tour",-14],["2027-05-02","2nd tour",14]].forEach(([d,s,dx])=>{
+    txt(X(d)+dx,56,s,{"font-size":10.5,"text-anchor":"middle",fill:"var(--muted)","font-weight":600});});
   const piv=Object.fromEntries(D.pivots.map(p=>[p.id,p]));
-  const prob=id=>{const p=piv[id];for(const q of p.questions){const r=D.questions.find(x=>x.id==="Q-"+q);const v=r&&r.auteurs["réseau v0"];if(v){const k="oui" in v.p?"oui":Object.entries(v.p).sort((a,b)=>b[1]-a[1])[0][0];return {q,k,v:v.p[k]}}}return null};
+  // Question affichée sur chaque pivot, et nom de l'issue qu'elle mesure.
+  const REF={"PV-CENSURE1a":["EV-15","censure"],"PV-CENSURE1b":["EV-15b","censure"],"PV-BUDGET":["EV-02","non publiée"],"PV-GOUV":["EV-50","départ"],
+    "PV-DISSOL1":["EV-16a","dissolution"],"PV-POURVOI":["EV-20",null],"PV-LEPEN":["EV-21","candidate"],"PV-ECOLO":["EV-18",null],"PV-GAUCHE":["EV-19",null],
+    "PV-BLOC":["EV-41",null],"PV-DUEL":["EV-40a","Marine Le Pen qualifiée"],"PV-VAINQ":["EV-05",null],"PV-DISSOL2":["EV-16b","dissolution"],
+    "PV-MAJOR":["EV-17","moins de 289 en sept. 2028"],"PV-CENSURE2":["EV-15c","censure"],"PV-NOTE":["EV-01","dégradation"],"PV-PDE":["EV-04","durcissement"],"PV-TPI":["EV-46","achats"]};
+  const prob=id=>{const ref=REF[id]; if(!ref) return null; const r=D.questions.find(x=>x.id==="Q-"+ref[0]); const v=r&&r.auteurs["réseau v0"]; if(!v) return null;
+    const k="oui" in v.p?"oui":Object.entries(v.p).sort((a,b)=>b[1]-a[1])[0][0]; return {q:ref[0],k:ref[1]||k,v:v.p[k]}};
+  const COURT={"VE-POP":"popularité","VE-MOBIL":"mobilisation","VE-ECART":"écart OAT-Bund","VE-SOND":"2e bloc dans les sondages","VE-RN":"intentions de vote RN","VE-LYCEE":"lycées"};
   LANES.forEach((L,li)=>{
     const n=Math.max(...Object.values(L.rangs))+1;
-    el("rect",{x:8,y:y-6,width:W-16,height:n*RH+4,rx:6,fill:li%2?"var(--soft)":"transparent",opacity:.6});
+    el("rect",{x:8,y:y-6,width:W-16,height:n*RH+4,rx:6,fill:li%2?"var(--soft)":"transparent",opacity:.6,"pointer-events":"none"});
     txt(14,y+12,L.nom,{"font-size":12,"font-weight":700,fill:"var(--muted)"});
     for(const [id,r] of Object.entries(L.rangs)){
       const p=piv[id]; if(!p) continue;
@@ -179,12 +188,17 @@ function carte(D){
   const gL=el("g",{});
   const variablesDe={};
   D.liens.forEach(l=>{
-    if(l.de.startsWith("VE-")){(variablesDe[l.vers]=variablesDe[l.vers]||[]).push(D.variables.find(v=>v.id===l.de)?.nom||l.de);return}
+    if(l.de.startsWith("VE-")){(variablesDe[l.vers]=variablesDe[l.vers]||[]).push(COURT[l.de]||l.de);return}
     const a=pos[l.de], b=pos[l.vers]; if(!a||!b) return;
-    const xa=a.x1, xb=Math.max(b.x0, xa+12), ya=a.y, yb=b.y, mx=(xa+xb)/2;
-    el("path",{d:`M${xa} ${ya} C${mx} ${ya} ${mx} ${yb} ${xb} ${yb}`,fill:"none",stroke:"var(--muted)","stroke-width":1,opacity:.5},gL);
+    // Le lien part du parent au moment où il agit sur l'enfant : sa date, ou le début de la fenêtre de l'enfant.
+    // Un parent daté agit à sa date ; deux pivots « à tout moment » se lient au milieu de leur période commune.
+    let xa,xb;
+    if(!piv[l.de].fenetre){xa=a.x1; xb=Math.min(Math.max(a.x1,b.x0),b.x1)}
+    else{const xo=Math.max(a.x0,b.x0), xe=Math.min(a.x1,b.x1); if(xo<=xe){xa=xb=xo+(xe-xo)*.35}else{xa=a.x1;xb=b.x0}}
+    const ya=a.y, yb=b.y, dx=Math.max(Math.abs(xb-xa)/2,18);
+    el("path",{d:`M${xa} ${ya} C${xa+dx} ${ya} ${xb-dx} ${yb} ${xb} ${yb}`,fill:"none",stroke:"var(--muted)","stroke-width":1,opacity:.55},gL);
     l.jalons.forEach(jid=>{const j=D.jalons.find(x=>x.id===jid); if(!j) return;
-      const x=Math.min(Math.max(X(j.fenetre.debut),xa),xb), f=(x-xa)/Math.max(xb-xa,1), yj=ya+(yb-ya)*(3*f*f-2*f*f*f);
+      const x0=Math.min(xa,xb), x1=Math.max(xa,xb), x=Math.min(Math.max(X(j.fenetre.debut),x0),x1), f=x1>x0?(x-xa)/(xb-xa):.5, yj=ya+(yb-ya)*(3*f*f-2*f*f*f)+(x1>x0?0:(D.jalons.indexOf(j)%5-2)*5);
       jalon(x,yj,j,gL)});
   });
   // Jalons des liens depuis une variable : posés sur la rangée du pivot enfant
@@ -197,6 +211,7 @@ function carte(D){
   // Pivots
   for(const [id,ps] of Object.entries(pos)){
     const p=piv[id], g=el("g",{tabindex:0,role:"button","aria-label":p.nom,style:"cursor:pointer"});
+    el("rect",{x:Math.min(ps.x0,ps.x1)-10,y:ps.y-24,width:Math.abs(ps.x1-ps.x0)+20,height:42,fill:"transparent"},g);
     if(p.fenetre){
       el("line",{x1:ps.x0,x2:ps.x1,y1:ps.y,y2:ps.y,stroke:"var(--accent)","stroke-width":6,"stroke-linecap":"round",opacity:.85},g);
     }else{

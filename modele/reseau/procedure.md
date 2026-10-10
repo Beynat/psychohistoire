@@ -23,3 +23,4 @@ Règles (journal du 10 octobre 2026) : aucune passe ne consulte les prévisions 
 - EV-43 : réseau 48 %, évaluateurs 37 % ; table de mesure à revoir.
 - Dissolution après le second tour : risque mensuel constant sur 17 mois, alors que la dissolution de début de mandat se concentre en mai-juin 2027 (évaluateur E3). Découper comme la censure.
 - Popularité : aucune série mensuelle sourcée à l'élicitation (évaluateur E2) ; à brancher sur `data/etat/popularite.jsonl`.
+- Revues programmées des agences de notation (Moody's le 23 octobre 2026, S&P en novembre) : le risque mensuel constant de PV-NOTE donne environ 5 % pour une dégradation en octobre, sans tenir compte de la revue. Ajouter un multiplicateur de calendrier (mois de revue) ou un pivot daté par revue.
