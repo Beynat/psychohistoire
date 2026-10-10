@@ -1,0 +1,3008 @@
+{
+ "cycle": "2026-10-v0",
+ "gel": "2026-10-10",
+ "genere_le": "2026-10-10T08:39:57+02:00",
+ "questions": [
+  {
+   "id": "Q-2026-10-v0-ecart_FR_DE_pb-2026-10-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-10 est-elle supérieure ou égale à 134 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 136 pb) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-10",
+    "seuil": 134,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 135.88,
+    "pas": 0,
+    "quantile": 20,
+    "n_variations": 201,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 135.9,
+     "correction": 9.4,
+     "date": "2026-10-09"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-ecart_FR_DE_pb-2026-10-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-10 est-elle supérieure ou égale à 136 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 136 pb) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-10",
+    "seuil": 136,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 135.88,
+    "pas": 0,
+    "quantile": 50,
+    "n_variations": 201,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 135.9,
+     "correction": 9.4,
+     "date": "2026-10-09"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-ecart_FR_DE_pb-2026-10-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-10 est-elle supérieure ou égale à 138 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 136 pb) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-10",
+    "seuil": 138,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 135.88,
+    "pas": 0,
+    "quantile": 80,
+    "n_variations": 201,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 135.9,
+     "correction": 9.4,
+     "date": "2026-10-09"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-ecart_FR_DE_pb-2026-11-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-11 est-elle supérieure ou égale à 131 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 136 pb) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-11",
+    "seuil": 131,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 135.88,
+    "pas": 1,
+    "quantile": 20,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 135.9,
+     "correction": 9.4,
+     "date": "2026-10-09"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-ecart_FR_DE_pb-2026-11-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-11 est-elle supérieure ou égale à 136 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 136 pb) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-11",
+    "seuil": 136,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 135.88,
+    "pas": 1,
+    "quantile": 50,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 135.9,
+     "correction": 9.4,
+     "date": "2026-10-09"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-ecart_FR_DE_pb-2026-11-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-11 est-elle supérieure ou égale à 141 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 136 pb) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-11",
+    "seuil": 141,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 135.88,
+    "pas": 1,
+    "quantile": 80,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 135.9,
+     "correction": 9.4,
+     "date": "2026-10-09"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-ecart_FR_DE_pb-2026-12-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-12 est-elle supérieure ou égale à 130 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 136 pb) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-12",
+    "seuil": 130,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 135.88,
+    "pas": 2,
+    "quantile": 20,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 135.9,
+     "correction": 9.4,
+     "date": "2026-10-09"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-ecart_FR_DE_pb-2026-12-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-12 est-elle supérieure ou égale à 137 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 136 pb) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-12",
+    "seuil": 137,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 135.88,
+    "pas": 2,
+    "quantile": 50,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 135.9,
+     "correction": 9.4,
+     "date": "2026-10-09"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-ecart_FR_DE_pb-2026-12-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "ecart_FR_DE_pb-2026-T4",
+   "texte": "La valeur de « écart de taux à 10 ans France-Allemagne (moyenne mensuelle, BCE) » pour 2026-12 est-elle supérieure ou égale à 143 pb ? (Dernière valeur publiée au gel : 82 pb pour 2026-08 ; niveau récent estimé d'après les données quotidiennes : 136 pb) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "ecart_FR_DE_pb",
+    "periode": "2026-12",
+    "seuil": 143,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 135.88,
+    "pas": 2,
+    "quantile": 80,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-08",
+     82.0
+    ],
+    "ancrage_quotidien": {
+     "proxy": "ecart_FR_DE_journalier_pb",
+     "niveau_estime": 135.9,
+     "correction": 9.4,
+     "date": "2026-10-09"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_ipch_FR-2026-10-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-10 est-elle supérieure ou égale à 3.2 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-10",
+    "seuil": 3.2,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 1,
+    "quantile": 20,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_ipch_FR-2026-10-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-10 est-elle supérieure ou égale à 3.4 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-10",
+    "seuil": 3.4,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 1,
+    "quantile": 50,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_ipch_FR-2026-10-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-10 est-elle supérieure ou égale à 3.6 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-10",
+    "seuil": 3.6,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 1,
+    "quantile": 80,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_ipch_FR-2026-11-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-11 est-elle supérieure ou égale à 3.1 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-11",
+    "seuil": 3.1,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 2,
+    "quantile": 20,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_ipch_FR-2026-11-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-11 est-elle supérieure ou égale à 3.4 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-11",
+    "seuil": 3.4,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 2,
+    "quantile": 50,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_ipch_FR-2026-11-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-11 est-elle supérieure ou égale à 3.7 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-11",
+    "seuil": 3.7,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 2,
+    "quantile": 80,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_ipch_FR-2026-12-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-12 est-elle supérieure ou égale à 3.0 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-12",
+    "seuil": 3.0,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 3,
+    "quantile": 20,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_ipch_FR-2026-12-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-12 est-elle supérieure ou égale à 3.4 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-12",
+    "seuil": 3.4,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 3,
+    "quantile": 50,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_ipch_FR-2026-12-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_ipch_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH France sur un an » pour 2026-12 est-elle supérieure ou égale à 3.8 % ? (Dernière valeur publiée au gel : 3.4 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "inflation_ipch_FR",
+    "periode": "2026-12",
+    "seuil": 3.8,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 3.4,
+    "pas": 3,
+    "quantile": 80,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-09",
+     3.4
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-chomage_FR-2026-10-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-10 est-elle supérieure ou égale à 8.1 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-10",
+    "seuil": 8.1,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 2,
+    "quantile": 20,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-chomage_FR-2026-10-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-10 est-elle supérieure ou égale à 8.2 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-10",
+    "seuil": 8.2,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 2,
+    "quantile": 50,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-chomage_FR-2026-10-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-10 est-elle supérieure ou égale à 8.3 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-10",
+    "seuil": 8.3,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 2,
+    "quantile": 80,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-chomage_FR-2026-11-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-11 est-elle supérieure ou égale à 8.0 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-11",
+    "seuil": 8.0,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 3,
+    "quantile": 20,
+    "n_variations": 197,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-chomage_FR-2026-11-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-11 est-elle supérieure ou égale à 8.2 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-11",
+    "seuil": 8.2,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 3,
+    "quantile": 50,
+    "n_variations": 197,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-chomage_FR-2026-11-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-11 est-elle supérieure ou égale à 8.4 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-11",
+    "seuil": 8.4,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 3,
+    "quantile": 80,
+    "n_variations": 197,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-chomage_FR-2026-12-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-12 est-elle supérieure ou égale à 8.0 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-12",
+    "seuil": 8.0,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 4,
+    "quantile": 20,
+    "n_variations": 196,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-chomage_FR-2026-12-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-12 est-elle supérieure ou égale à 8.2 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-12",
+    "seuil": 8.2,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 4,
+    "quantile": 50,
+    "n_variations": 196,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-chomage_FR-2026-12-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "chomage_FR-2026-T4",
+   "texte": "La valeur de « taux de chômage France (Eurostat, CVS) » pour 2026-12 est-elle supérieure ou égale à 8.4 % ? (Dernière valeur publiée au gel : 8.2 % pour 2026-08) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "chomage_FR",
+    "periode": "2026-12",
+    "seuil": 8.4,
+    "derniere_periode": "2026-08",
+    "derniere_valeur": 8.2,
+    "pas": 4,
+    "quantile": 80,
+    "n_variations": 196,
+    "derniere_publiee": [
+     "2026-08",
+     8.2
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-brent_mensuel-2026-10-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "brent_mensuel-2026-T4",
+   "texte": "La valeur de « prix du Brent, moyenne mensuelle (EIA) » pour 2026-10 est-elle supérieure ou égale à 123.3 $/baril ? (Dernière valeur publiée au gel : 114.16 $/baril pour 2026-09 ; niveau récent estimé d'après les données quotidiennes : 125 $/baril) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "brent_mensuel",
+    "periode": "2026-10",
+    "seuil": 123.3,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 125.44,
+    "pas": 0,
+    "quantile": 20,
+    "n_variations": 201,
+    "derniere_publiee": [
+     "2026-09",
+     114.16
+    ],
+    "ancrage_quotidien": {
+     "proxy": "brent_journalier",
+     "niveau_estime": 125.4,
+     "correction": 0.0,
+     "date": "2026-10-06"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-brent_mensuel-2026-10-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "brent_mensuel-2026-T4",
+   "texte": "La valeur de « prix du Brent, moyenne mensuelle (EIA) » pour 2026-10 est-elle supérieure ou égale à 125.5 $/baril ? (Dernière valeur publiée au gel : 114.16 $/baril pour 2026-09 ; niveau récent estimé d'après les données quotidiennes : 125 $/baril) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "brent_mensuel",
+    "periode": "2026-10",
+    "seuil": 125.5,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 125.44,
+    "pas": 0,
+    "quantile": 50,
+    "n_variations": 201,
+    "derniere_publiee": [
+     "2026-09",
+     114.16
+    ],
+    "ancrage_quotidien": {
+     "proxy": "brent_journalier",
+     "niveau_estime": 125.4,
+     "correction": 0.0,
+     "date": "2026-10-06"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-brent_mensuel-2026-10-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "brent_mensuel-2026-T4",
+   "texte": "La valeur de « prix du Brent, moyenne mensuelle (EIA) » pour 2026-10 est-elle supérieure ou égale à 127.9 $/baril ? (Dernière valeur publiée au gel : 114.16 $/baril pour 2026-09 ; niveau récent estimé d'après les données quotidiennes : 125 $/baril) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "brent_mensuel",
+    "periode": "2026-10",
+    "seuil": 127.9,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 125.44,
+    "pas": 0,
+    "quantile": 80,
+    "n_variations": 201,
+    "derniere_publiee": [
+     "2026-09",
+     114.16
+    ],
+    "ancrage_quotidien": {
+     "proxy": "brent_journalier",
+     "niveau_estime": 125.4,
+     "correction": 0.0,
+     "date": "2026-10-06"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-brent_mensuel-2026-11-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "brent_mensuel-2026-T4",
+   "texte": "La valeur de « prix du Brent, moyenne mensuelle (EIA) » pour 2026-11 est-elle supérieure ou égale à 120.2 $/baril ? (Dernière valeur publiée au gel : 114.16 $/baril pour 2026-09 ; niveau récent estimé d'après les données quotidiennes : 125 $/baril) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "brent_mensuel",
+    "periode": "2026-11",
+    "seuil": 120.2,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 125.44,
+    "pas": 1,
+    "quantile": 20,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     114.16
+    ],
+    "ancrage_quotidien": {
+     "proxy": "brent_journalier",
+     "niveau_estime": 125.4,
+     "correction": 0.0,
+     "date": "2026-10-06"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-brent_mensuel-2026-11-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "brent_mensuel-2026-T4",
+   "texte": "La valeur de « prix du Brent, moyenne mensuelle (EIA) » pour 2026-11 est-elle supérieure ou égale à 125.7 $/baril ? (Dernière valeur publiée au gel : 114.16 $/baril pour 2026-09 ; niveau récent estimé d'après les données quotidiennes : 125 $/baril) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "brent_mensuel",
+    "periode": "2026-11",
+    "seuil": 125.7,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 125.44,
+    "pas": 1,
+    "quantile": 50,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     114.16
+    ],
+    "ancrage_quotidien": {
+     "proxy": "brent_journalier",
+     "niveau_estime": 125.4,
+     "correction": 0.0,
+     "date": "2026-10-06"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-brent_mensuel-2026-11-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "brent_mensuel-2026-T4",
+   "texte": "La valeur de « prix du Brent, moyenne mensuelle (EIA) » pour 2026-11 est-elle supérieure ou égale à 131.6 $/baril ? (Dernière valeur publiée au gel : 114.16 $/baril pour 2026-09 ; niveau récent estimé d'après les données quotidiennes : 125 $/baril) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "brent_mensuel",
+    "periode": "2026-11",
+    "seuil": 131.6,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 125.44,
+    "pas": 1,
+    "quantile": 80,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     114.16
+    ],
+    "ancrage_quotidien": {
+     "proxy": "brent_journalier",
+     "niveau_estime": 125.4,
+     "correction": 0.0,
+     "date": "2026-10-06"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-brent_mensuel-2026-12-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "brent_mensuel-2026-T4",
+   "texte": "La valeur de « prix du Brent, moyenne mensuelle (EIA) » pour 2026-12 est-elle supérieure ou égale à 117.6 $/baril ? (Dernière valeur publiée au gel : 114.16 $/baril pour 2026-09 ; niveau récent estimé d'après les données quotidiennes : 125 $/baril) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "brent_mensuel",
+    "periode": "2026-12",
+    "seuil": 117.6,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 125.44,
+    "pas": 2,
+    "quantile": 20,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     114.16
+    ],
+    "ancrage_quotidien": {
+     "proxy": "brent_journalier",
+     "niveau_estime": 125.4,
+     "correction": 0.0,
+     "date": "2026-10-06"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-brent_mensuel-2026-12-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "brent_mensuel-2026-T4",
+   "texte": "La valeur de « prix du Brent, moyenne mensuelle (EIA) » pour 2026-12 est-elle supérieure ou égale à 126.8 $/baril ? (Dernière valeur publiée au gel : 114.16 $/baril pour 2026-09 ; niveau récent estimé d'après les données quotidiennes : 125 $/baril) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "brent_mensuel",
+    "periode": "2026-12",
+    "seuil": 126.8,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 125.44,
+    "pas": 2,
+    "quantile": 50,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     114.16
+    ],
+    "ancrage_quotidien": {
+     "proxy": "brent_journalier",
+     "niveau_estime": 125.4,
+     "correction": 0.0,
+     "date": "2026-10-06"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-brent_mensuel-2026-12-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "brent_mensuel-2026-T4",
+   "texte": "La valeur de « prix du Brent, moyenne mensuelle (EIA) » pour 2026-12 est-elle supérieure ou égale à 133.8 $/baril ? (Dernière valeur publiée au gel : 114.16 $/baril pour 2026-09 ; niveau récent estimé d'après les données quotidiennes : 125 $/baril) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "brent_mensuel",
+    "periode": "2026-12",
+    "seuil": 133.8,
+    "derniere_periode": "2026-10",
+    "derniere_valeur": 125.44,
+    "pas": 2,
+    "quantile": 80,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     114.16
+    ],
+    "ancrage_quotidien": {
+     "proxy": "brent_journalier",
+     "niveau_estime": 125.4,
+     "correction": 0.0,
+     "date": "2026-10-06"
+    }
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_energie_FR-2026-10-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_energie_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH énergie France sur un an (Eurostat) » pour 2026-10 est-elle supérieure ou égale à 19.3 % ? (Dernière valeur publiée au gel : 20.9 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "inflation_energie_FR",
+    "periode": "2026-10",
+    "seuil": 19.3,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 20.9,
+    "pas": 1,
+    "quantile": 20,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     20.9
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_energie_FR-2026-10-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_energie_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH énergie France sur un an (Eurostat) » pour 2026-10 est-elle supérieure ou égale à 21.0 % ? (Dernière valeur publiée au gel : 20.9 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "inflation_energie_FR",
+    "periode": "2026-10",
+    "seuil": 21.0,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 20.9,
+    "pas": 1,
+    "quantile": 50,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     20.9
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_energie_FR-2026-10-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_energie_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH énergie France sur un an (Eurostat) » pour 2026-10 est-elle supérieure ou égale à 22.6 % ? (Dernière valeur publiée au gel : 20.9 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "inflation_energie_FR",
+    "periode": "2026-10",
+    "seuil": 22.6,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 20.9,
+    "pas": 1,
+    "quantile": 80,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     20.9
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_energie_FR-2026-11-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_energie_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH énergie France sur un an (Eurostat) » pour 2026-11 est-elle supérieure ou égale à 18.5 % ? (Dernière valeur publiée au gel : 20.9 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "inflation_energie_FR",
+    "periode": "2026-11",
+    "seuil": 18.5,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 20.9,
+    "pas": 2,
+    "quantile": 20,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     20.9
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_energie_FR-2026-11-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_energie_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH énergie France sur un an (Eurostat) » pour 2026-11 est-elle supérieure ou égale à 20.8 % ? (Dernière valeur publiée au gel : 20.9 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "inflation_energie_FR",
+    "periode": "2026-11",
+    "seuil": 20.8,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 20.9,
+    "pas": 2,
+    "quantile": 50,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     20.9
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_energie_FR-2026-11-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_energie_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH énergie France sur un an (Eurostat) » pour 2026-11 est-elle supérieure ou égale à 23.6 % ? (Dernière valeur publiée au gel : 20.9 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "inflation_energie_FR",
+    "periode": "2026-11",
+    "seuil": 23.6,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 20.9,
+    "pas": 2,
+    "quantile": 80,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     20.9
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_energie_FR-2026-12-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_energie_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH énergie France sur un an (Eurostat) » pour 2026-12 est-elle supérieure ou égale à 17.7 % ? (Dernière valeur publiée au gel : 20.9 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "inflation_energie_FR",
+    "periode": "2026-12",
+    "seuil": 17.7,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 20.9,
+    "pas": 3,
+    "quantile": 20,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-09",
+     20.9
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_energie_FR-2026-12-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_energie_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH énergie France sur un an (Eurostat) » pour 2026-12 est-elle supérieure ou égale à 21.0 % ? (Dernière valeur publiée au gel : 20.9 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "inflation_energie_FR",
+    "periode": "2026-12",
+    "seuil": 21.0,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 20.9,
+    "pas": 3,
+    "quantile": 50,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-09",
+     20.9
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-inflation_energie_FR-2026-12-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "inflation_energie_FR-2026-T4",
+   "texte": "La valeur de « inflation IPCH énergie France sur un an (Eurostat) » pour 2026-12 est-elle supérieure ou égale à 24.6 % ? (Dernière valeur publiée au gel : 20.9 % pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "inflation_energie_FR",
+    "periode": "2026-12",
+    "seuil": 24.6,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 20.9,
+    "pas": 3,
+    "quantile": 80,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-09",
+     20.9
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-confiance_menages_FR-2026-10-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "confiance_menages_FR-2026-T4",
+   "texte": "La valeur de « indicateur synthétique de confiance des ménages (Insee, CVS) » pour 2026-10 est-elle supérieure ou égale à 84.0 points ? (Dernière valeur publiée au gel : 86 points pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "confiance_menages_FR",
+    "periode": "2026-10",
+    "seuil": 84.0,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 86.0,
+    "pas": 1,
+    "quantile": 20,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     86.0
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-confiance_menages_FR-2026-10-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "confiance_menages_FR-2026-T4",
+   "texte": "La valeur de « indicateur synthétique de confiance des ménages (Insee, CVS) » pour 2026-10 est-elle supérieure ou égale à 86.0 points ? (Dernière valeur publiée au gel : 86 points pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "confiance_menages_FR",
+    "periode": "2026-10",
+    "seuil": 86.0,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 86.0,
+    "pas": 1,
+    "quantile": 50,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     86.0
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-confiance_menages_FR-2026-10-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "confiance_menages_FR-2026-T4",
+   "texte": "La valeur de « indicateur synthétique de confiance des ménages (Insee, CVS) » pour 2026-10 est-elle supérieure ou égale à 88.0 points ? (Dernière valeur publiée au gel : 86 points pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "details": {
+    "serie": "confiance_menages_FR",
+    "periode": "2026-10",
+    "seuil": 88.0,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 86.0,
+    "pas": 1,
+    "quantile": 80,
+    "n_variations": 200,
+    "derniere_publiee": [
+     "2026-09",
+     86.0
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-confiance_menages_FR-2026-11-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "confiance_menages_FR-2026-T4",
+   "texte": "La valeur de « indicateur synthétique de confiance des ménages (Insee, CVS) » pour 2026-11 est-elle supérieure ou égale à 84.0 points ? (Dernière valeur publiée au gel : 86 points pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "confiance_menages_FR",
+    "periode": "2026-11",
+    "seuil": 84.0,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 86.0,
+    "pas": 2,
+    "quantile": 20,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     86.0
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-confiance_menages_FR-2026-11-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "confiance_menages_FR-2026-T4",
+   "texte": "La valeur de « indicateur synthétique de confiance des ménages (Insee, CVS) » pour 2026-11 est-elle supérieure ou égale à 86.0 points ? (Dernière valeur publiée au gel : 86 points pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "confiance_menages_FR",
+    "periode": "2026-11",
+    "seuil": 86.0,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 86.0,
+    "pas": 2,
+    "quantile": 50,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     86.0
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-confiance_menages_FR-2026-11-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "confiance_menages_FR-2026-T4",
+   "texte": "La valeur de « indicateur synthétique de confiance des ménages (Insee, CVS) » pour 2026-11 est-elle supérieure ou égale à 88.0 points ? (Dernière valeur publiée au gel : 86 points pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "serie": "confiance_menages_FR",
+    "periode": "2026-11",
+    "seuil": 88.0,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 86.0,
+    "pas": 2,
+    "quantile": 80,
+    "n_variations": 199,
+    "derniere_publiee": [
+     "2026-09",
+     86.0
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-confiance_menages_FR-2026-12-q20",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "confiance_menages_FR-2026-T4",
+   "texte": "La valeur de « indicateur synthétique de confiance des ménages (Insee, CVS) » pour 2026-12 est-elle supérieure ou égale à 83.0 points ? (Dernière valeur publiée au gel : 86 points pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "confiance_menages_FR",
+    "periode": "2026-12",
+    "seuil": 83.0,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 86.0,
+    "pas": 3,
+    "quantile": 20,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-09",
+     86.0
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-confiance_menages_FR-2026-12-q50",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "confiance_menages_FR-2026-T4",
+   "texte": "La valeur de « indicateur synthétique de confiance des ménages (Insee, CVS) » pour 2026-12 est-elle supérieure ou égale à 86.0 points ? (Dernière valeur publiée au gel : 86 points pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "confiance_menages_FR",
+    "periode": "2026-12",
+    "seuil": 86.0,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 86.0,
+    "pas": 3,
+    "quantile": 50,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-09",
+     86.0
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "id": "Q-2026-10-v0-confiance_menages_FR-2026-12-q80",
+   "type": "variable",
+   "pool": "P2a",
+   "grappe": "confiance_menages_FR-2026-T4",
+   "texte": "La valeur de « indicateur synthétique de confiance des ménages (Insee, CVS) » pour 2026-12 est-elle supérieure ou égale à 89.0 points ? (Dernière valeur publiée au gel : 86 points pour 2026-09) Résolution sur la première valeur publiée et collectée pour cette période ; les révisions ultérieures ne comptent pas.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-01-31",
+   "details": {
+    "serie": "confiance_menages_FR",
+    "periode": "2026-12",
+    "seuil": 89.0,
+    "derniere_periode": "2026-09",
+    "derniere_valeur": 86.0,
+    "pas": 3,
+    "quantile": 80,
+    "n_variations": 198,
+    "derniere_publiee": [
+     "2026-09",
+     86.0
+    ],
+    "ancrage_quotidien": null
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-01",
+    "critere": "Au moins une des agences Moody's, S&P Global Ratings ou Fitch Ratings abaisse d'au moins un cran la note de crédit à long terme de la République française pendant la fenêtre."
+   },
+   "id": "Q-EV-01",
+   "pool": "P2b",
+   "grappe": "EV-01",
+   "texte": "Dégradation de la note souveraine : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-01",
+    "critere": "Au moins une des agences Moody's, S&P Global Ratings ou Fitch Ratings abaisse d'au moins un cran la note de crédit à long terme de la République française pendant la fenêtre."
+   },
+   "id": "Q-EV-01-2026-10-v0",
+   "pool": "P2b",
+   "grappe": "EV-01",
+   "texte": "Dégradation de la note souveraine : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-02",
+    "critere": "Aucune loi de finances pour 2027 n'est publiée au Journal officiel au 31 décembre 2026. Une loi spéciale ou une ordonnance prise au titre de l'article 47 de la Constitution n'est pas une loi de finances."
+   },
+   "id": "Q-EV-02",
+   "pool": "P2b",
+   "grappe": "EV-02",
+   "texte": "Pas de loi de finances pour 2027 au 31 décembre 2026 : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2026-12-31)",
+   "echeance": "2026-12-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-03",
+    "critere": "Le déficit public de 2027, au sens de Maastricht, publié par l'Insee lors de la notification de mars 2028, est strictement supérieur à 5,0 % du PIB."
+   },
+   "id": "Q-EV-03",
+   "pool": "P2b",
+   "grappe": "EV-03",
+   "texte": "Déficit 2027 au-dessus de 5,0 % du PIB : le critère est-il rempli ? (fenêtre du 2028-03-01 au 2028-04-30)",
+   "echeance": "2028-04-30",
+   "fenetre": {
+    "debut": "2028-03-01",
+    "fin": "2028-04-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-04",
+    "critere": "Le Conseil de l'Union européenne adopte une décision visant la France au titre de l'article 126, paragraphe 8 ou paragraphe 9, du traité sur le fonctionnement de l'Union européenne."
+   },
+   "id": "Q-EV-04",
+   "pool": "P2b",
+   "grappe": "EV-04",
+   "texte": "Durcissement de la procédure de déficit excessif : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-04",
+    "critere": "Le Conseil de l'Union européenne adopte une décision visant la France au titre de l'article 126, paragraphe 8 ou paragraphe 9, du traité sur le fonctionnement de l'Union européenne."
+   },
+   "id": "Q-EV-04-2026-10-v0",
+   "pool": "P2b",
+   "grappe": "EV-04",
+   "texte": "Durcissement de la procédure de déficit excessif : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "Marine Le Pen",
+    "Jordan Bardella",
+    "Édouard Philippe",
+    "Gabriel Attal",
+    "Jean-Luc Mélenchon",
+    "David Lisnard",
+    "Bruno Retailleau",
+    "Raphaël Glucksmann",
+    "François Hollande",
+    "autre"
+   ],
+   "details": {
+    "evenement": "EV-05",
+    "critere": "Personne proclamée élue président de la République par le Conseil constitutionnel à l'issue de l'élection de 2027. Une issue nommée désigne la personne, quel que soit le parti qui la soutient ; « autre » couvre toute autre personne."
+   },
+   "id": "Q-EV-05",
+   "pool": "P1",
+   "grappe": "EV-05",
+   "texte": "Vainqueur de l'élection présidentielle 2027 : quelle issue, selon le critère ? (échéance : 2027-05-02)",
+   "echeance": "2027-05-02",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-05-02"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-06",
+    "critere": "Le jour où l'Insee publie la première estimation de la variation trimestrielle du PIB en volume de la France pour un trimestre T+1 compris entre le quatrième trimestre 2026 et le deuxième trimestre 2028, cette première estimation et la variation du trimestre T publiée le même jour (éventuellement révisée) sont toutes deux strictement négatives. Les révisions publiées à d'autres dates ne comptent pas."
+   },
+   "id": "Q-EV-06",
+   "pool": "P2b",
+   "grappe": "EV-06",
+   "texte": "Récession technique : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-08-15)",
+   "echeance": "2028-08-15",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2028-08-15"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-07",
+    "critere": "Un communiqué de l'ANSSI, d'un ministère, de l'ACPR, de la Banque de France ou de l'AMF confirme une cyberattaque ayant interrompu pendant plus de 24 heures consécutives, à l'échelle nationale ou d'une région, la distribution d'électricité, de gaz ou d'eau, le transport ferroviaire ou aérien, ou un système de paiement ou un établissement bancaire d'importance systémique. Pour un système de paiement ou un établissement bancaire, l'interruption porte sur les paiements ou sur l'accès des clients à leurs comptes, tous canaux confondus : une indisponibilité de la seule banque en ligne, les cartes et les agences fonctionnant, ne compte pas. La durée d'interruption est celle qu'établit ce communiqué ; s'il ne la donne pas, celle qu'établit le communiqué de l'opérateur concerné ou deux agences de presse concordantes (AFP, Reuters, AP)."
+   },
+   "id": "Q-EV-07",
+   "pool": "P2b",
+   "grappe": "EV-07",
+   "texte": "Cyberattaque majeure contre un service essentiel : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-07",
+    "critere": "Un communiqué de l'ANSSI, d'un ministère, de l'ACPR, de la Banque de France ou de l'AMF confirme une cyberattaque ayant interrompu pendant plus de 24 heures consécutives, à l'échelle nationale ou d'une région, la distribution d'électricité, de gaz ou d'eau, le transport ferroviaire ou aérien, ou un système de paiement ou un établissement bancaire d'importance systémique. Pour un système de paiement ou un établissement bancaire, l'interruption porte sur les paiements ou sur l'accès des clients à leurs comptes, tous canaux confondus : une indisponibilité de la seule banque en ligne, les cartes et les agences fonctionnant, ne compte pas. La durée d'interruption est celle qu'établit ce communiqué ; s'il ne la donne pas, celle qu'établit le communiqué de l'opérateur concerné ou deux agences de presse concordantes (AFP, Reuters, AP)."
+   },
+   "id": "Q-EV-07-2026-10-v0",
+   "pool": "P2b",
+   "grappe": "EV-07",
+   "texte": "Cyberattaque majeure contre un service essentiel : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-08",
+    "critere": "Pendant la fenêtre, le SGDSN (VIGINUM) ou le gouvernement publie un rapport ou un communiqué qui attribue à un État étranger, ou à un acteur qu'il présente comme lié à un État étranger, une campagne de manipulation de l'information et présente expressément l'élection présidentielle de 2027 comme l'objectif de cette campagne, et non seulement comme son contexte. Une publication antérieure à la fenêtre ne compte pas. Une mise en garde générale sur un risque d'ingérence ne suffit pas : il faut une campagne déterminée, attribuée et visant l'élection. Exemple qui compte : un rapport qui écrit qu'une campagne attribuée « vise à influencer l'élection présidentielle de 2027 ». Exemple qui ne compte pas : un rapport qui décrit une campagne « dans le contexte » ou « à l'approche » de l'élection sans lui en attribuer l'objectif."
+   },
+   "id": "Q-EV-08",
+   "pool": "P2b",
+   "grappe": "EV-08",
+   "texte": "Ingérence étrangère visant la présidentielle : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-08",
+    "critere": "Pendant la fenêtre, le SGDSN (VIGINUM) ou le gouvernement publie un rapport ou un communiqué qui attribue à un État étranger, ou à un acteur qu'il présente comme lié à un État étranger, une campagne de manipulation de l'information et présente expressément l'élection présidentielle de 2027 comme l'objectif de cette campagne, et non seulement comme son contexte. Une publication antérieure à la fenêtre ne compte pas. Une mise en garde générale sur un risque d'ingérence ne suffit pas : il faut une campagne déterminée, attribuée et visant l'élection. Exemple qui compte : un rapport qui écrit qu'une campagne attribuée « vise à influencer l'élection présidentielle de 2027 ». Exemple qui ne compte pas : un rapport qui décrit une campagne « dans le contexte » ou « à l'approche » de l'élection sans lui en attribuer l'objectif."
+   },
+   "id": "Q-EV-08-2026-10-v0",
+   "pool": "P2b",
+   "grappe": "EV-08",
+   "texte": "Ingérence étrangère visant la présidentielle : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-09a",
+    "critere": "Météo-France place au moins un département métropolitain en vigilance rouge canicule entre le 1er juin et le 15 septembre 2027."
+   },
+   "id": "Q-EV-09a",
+   "pool": "P2b",
+   "grappe": "EV-09a",
+   "texte": "Canicule extrême à l'été 2027 : le critère est-il rempli ? (fenêtre du 2027-06-01 au 2027-09-15)",
+   "echeance": "2027-09-15",
+   "fenetre": {
+    "debut": "2027-06-01",
+    "fin": "2027-09-15"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-09b",
+    "critere": "Météo-France place au moins un département métropolitain en vigilance rouge canicule entre le 1er juin et le 15 septembre 2028."
+   },
+   "id": "Q-EV-09b",
+   "pool": "P2b",
+   "grappe": "EV-09b",
+   "texte": "Canicule extrême à l'été 2028 : le critère est-il rempli ? (fenêtre du 2028-06-01 au 2028-09-15)",
+   "echeance": "2028-09-15",
+   "fenetre": {
+    "debut": "2028-06-01",
+    "fin": "2028-09-15"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-10",
+    "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N."
+   },
+   "id": "Q-EV-10",
+   "pool": "P2b",
+   "grappe": "EV-10",
+   "texte": "Reprise du mouvement lycéen après la Toussaint : le critère est-il rempli ? (fenêtre du 2026-11-02 au 2026-12-18)",
+   "echeance": "2026-12-18",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2026-12-18"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-10b",
+    "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N."
+   },
+   "id": "Q-EV-10b",
+   "pool": "P2b",
+   "grappe": "EV-10b",
+   "texte": "Mouvement lycéen avant la Toussaint : le critère est-il rempli ? (fenêtre du 2026-10-12 au 2026-10-16)",
+   "echeance": "2026-10-16",
+   "fenetre": {
+    "debut": "2026-10-12",
+    "fin": "2026-10-16"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-47",
+    "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 1000 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N."
+   },
+   "id": "Q-EV-47",
+   "pool": "P2b",
+   "grappe": "EV-47",
+   "texte": "Nouvelle journée lycéenne à plus de 1 000 établissements : le critère est-il rempli ? (fenêtre du 2026-11-02 au 2027-06-30)",
+   "echeance": "2027-06-30",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-48",
+    "critere": "Pendant la fenêtre, une loi issue du projet de loi présenté en conseil des ministres le 16 septembre 2026 sur la réparation des dégradations commises lors de violences collectives (dit « casseurs-payeurs ») est publiée au Journal officiel. Une publication partielle, après censure partielle du Conseil constitutionnel, compte ; une disposition équivalente insérée dans un autre texte ne compte pas."
+   },
+   "id": "Q-EV-48",
+   "pool": "P2b",
+   "grappe": "projet de loi « casseurs-payeurs » (conseil des ministres du 16 septembre 2026)",
+   "texte": "Promulgation de la loi « casseurs-payeurs » : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-03-31)",
+   "echeance": "2027-03-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-03-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-48",
+    "critere": "Pendant la fenêtre, une loi issue du projet de loi présenté en conseil des ministres le 16 septembre 2026 sur la réparation des dégradations commises lors de violences collectives (dit « casseurs-payeurs ») est publiée au Journal officiel. Une publication partielle, après censure partielle du Conseil constitutionnel, compte ; une disposition équivalente insérée dans un autre texte ne compte pas."
+   },
+   "id": "Q-EV-48-2026-10-v0",
+   "pool": "P2b",
+   "grappe": "projet de loi « casseurs-payeurs » (conseil des ministres du 16 septembre 2026)",
+   "texte": "Promulgation de la loi « casseurs-payeurs » : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-49",
+    "critere": "Pendant la fenêtre, un décret publié au Journal officiel met fin aux fonctions de la personne qui détient le portefeuille de l'Éducation nationale au 10 octobre 2026, ou lui retire ce portefeuille, quelle qu'en soit la cause (démission, remaniement, démission du gouvernement). Une reconduction dans le même portefeuille par le décret de nomination du gouvernement suivant ne compte pas."
+   },
+   "id": "Q-EV-49",
+   "pool": "P2b",
+   "grappe": "EV-49",
+   "texte": "Départ du ministre de l'Éducation nationale : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2026-12-31)",
+   "echeance": "2026-12-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-13",
+    "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État communiqué par le ministère chargé de la fonction publique (chiffres de la DGAFP) dépasse 18 %. La valeur retenue est celle publiée par le ministère ou la DGAFP, lue 30 jours après la journée (à défaut, à la première lecture qui suit) ; faute de page de publication, le chiffre du ministère rapporté par deux agences concordantes."
+   },
+   "id": "Q-EV-13",
+   "pool": "P2b",
+   "grappe": "EV-13",
+   "texte": "Grève massive dans la fonction publique : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2026-12-31)",
+   "echeance": "2026-12-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-15",
+    "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre."
+   },
+   "id": "Q-EV-15",
+   "pool": "P2b",
+   "grappe": "EV-15",
+   "texte": "Censure du gouvernement avant fin 2026 : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2026-12-31)",
+   "echeance": "2026-12-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-15b",
+    "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) entre le 1er janvier 2027 et le 2 mai 2027."
+   },
+   "id": "Q-EV-15b",
+   "pool": "P2b",
+   "grappe": "EV-15b",
+   "texte": "Censure du gouvernement avant le second tour de 2027 : le critère est-il rempli ? (fenêtre du 2027-01-01 au 2027-05-02)",
+   "echeance": "2027-05-02",
+   "fenetre": {
+    "debut": "2027-01-01",
+    "fin": "2027-05-02"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-15c",
+    "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) entre le 3 mai 2027 et le 30 septembre 2028."
+   },
+   "id": "Q-EV-15c",
+   "pool": "P2b",
+   "grappe": "EV-15c",
+   "texte": "Censure du gouvernement après le second tour de 2027 : le critère est-il rempli ? (fenêtre du 2027-05-03 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2027-05-03",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-16a",
+    "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel entre le début de la fenêtre et le 2 mai 2027."
+   },
+   "id": "Q-EV-16a",
+   "pool": "P2b",
+   "grappe": "EV-16a",
+   "texte": "Dissolution avant le second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-05-02)",
+   "echeance": "2027-05-02",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-05-02"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-16a",
+    "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel entre le début de la fenêtre et le 2 mai 2027."
+   },
+   "id": "Q-EV-16a-2026-10-v0",
+   "pool": "P2b",
+   "grappe": "EV-16a",
+   "texte": "Dissolution avant le second tour : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-16b",
+    "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel entre le 3 mai 2027 et le 30 septembre 2028."
+   },
+   "id": "Q-EV-16b",
+   "pool": "P2b",
+   "grappe": "EV-16b",
+   "texte": "Dissolution après le second tour : le critère est-il rempli ? (fenêtre du 2027-05-03 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2027-05-03",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-17",
+    "critere": "Le 30 septembre 2028, selon la composition des groupes publiée par l'Assemblée nationale, le groupe qui compte le plus de députés membres du parti dont le président élu en 2027 est membre au jour du second tour compte moins de 289 membres, apparentés compris ; si aucun groupe ne compte de député de ce parti, la réponse est « oui ». Si le président élu n'est membre d'aucun parti, le groupe retenu est celui qui a déclaré le soutenir au premier tour et compte le plus de membres."
+   },
+   "id": "Q-EV-17",
+   "pool": "P2b",
+   "grappe": "EV-17",
+   "texte": "Président élu sans majorité de son groupe : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-C1",
+    "critere": "Le parquet national antiterroriste se saisit d'une attaque commise en France pendant la fenêtre et ayant fait au moins un mort, hors auteurs."
+   },
+   "id": "Q-EV-C1",
+   "pool": "P2b",
+   "grappe": "EV-C1",
+   "texte": "Attentat terroriste meurtrier : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-C1",
+    "critere": "Le parquet national antiterroriste se saisit d'une attaque commise en France pendant la fenêtre et ayant fait au moins un mort, hors auteurs."
+   },
+   "id": "Q-EV-C1-2026-10-v0",
+   "pool": "P2b",
+   "grappe": "EV-C1",
+   "texte": "Attentat terroriste meurtrier : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-C2",
+    "critere": "Pendant la fenêtre, un décret déclarant l'état d'urgence (loi du 3 avril 1955) sur tout ou partie d'un territoire situé outre-mer (département, région ou collectivité d'outre-mer, ou Nouvelle-Calédonie), est publié au Journal officiel ; ou un couvre-feu général (applicable à toute la population, pour un motif d'ordre public) couvrant la commune la plus peuplée de l'un de ces territoires est en vigueur au moins 7 jours consécutifs. Un couvre-feu limité aux mineurs ou motivé par un phénomène naturel ne compte pas."
+   },
+   "id": "Q-EV-C2",
+   "pool": "P2b",
+   "grappe": "EV-C2",
+   "texte": "Crise d'ordre public grave outre-mer : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-C2",
+    "critere": "Pendant la fenêtre, un décret déclarant l'état d'urgence (loi du 3 avril 1955) sur tout ou partie d'un territoire situé outre-mer (département, région ou collectivité d'outre-mer, ou Nouvelle-Calédonie), est publié au Journal officiel ; ou un couvre-feu général (applicable à toute la population, pour un motif d'ordre public) couvrant la commune la plus peuplée de l'un de ces territoires est en vigueur au moins 7 jours consécutifs. Un couvre-feu limité aux mineurs ou motivé par un phénomène naturel ne compte pas."
+   },
+   "id": "Q-EV-C2-2026-10-v0",
+   "pool": "P2b",
+   "grappe": "EV-C2",
+   "texte": "Crise d'ordre public grave outre-mer : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-C3a",
+    "critere": "Le Conseil européen parvient à un accord unanime sur le cadre financier pluriannuel 2028-2034, constaté dans ses conclusions, avant le 31 décembre 2026."
+   },
+   "id": "Q-EV-C3a",
+   "pool": "P2b",
+   "grappe": "EV-C3",
+   "texte": "Accord sur le cadre financier européen avant fin 2026 : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2026-12-31)",
+   "echeance": "2026-12-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-C3b",
+    "critere": "Le Conseil européen parvient à un accord unanime sur le cadre financier pluriannuel 2028-2034, constaté dans ses conclusions, avant le 30 septembre 2028."
+   },
+   "id": "Q-EV-C3b",
+   "pool": "P2b",
+   "grappe": "EV-C3",
+   "texte": "Accord sur le cadre financier européen avant fin septembre 2028 : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "avis rendu, compatible",
+    "avis rendu, incompatible",
+    "pas d'avis"
+   ],
+   "details": {
+    "evenement": "EV-C4",
+    "critere": "La Cour de justice de l'Union européenne rend son avis sur la demande d'avis relative à l'accord UE-Mercosur pendant la fenêtre. Issues : avis concluant à la compatibilité ; avis concluant à une incompatibilité, même partielle ; pas d'avis rendu."
+   },
+   "id": "Q-EV-C4",
+   "pool": "P2b",
+   "grappe": "EV-C4",
+   "texte": "Avis de la CJUE sur l'accord UE-Mercosur : quelle issue, selon le critère ? (échéance : 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "candidature autonome",
+    "soutien à un autre candidat",
+    "autre ou vote non tenu"
+   ],
+   "details": {
+    "evenement": "EV-18",
+    "critere": "Résultat du vote des adhérents des Écologistes sur la stratégie présidentielle, publié avant le 31 décembre 2026. Issues : candidature autonome d'un membre du parti ; soutien à un candidat d'une autre formation ; autre résultat, ou vote non tenu."
+   },
+   "id": "Q-EV-18",
+   "pool": "P2b",
+   "grappe": "EV-18",
+   "texte": "Décision des Écologistes : quelle issue, selon le critère ? (échéance : 2026-12-31)",
+   "echeance": "2026-12-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "3 ou moins",
+    "4",
+    "5",
+    "6 ou plus"
+   ],
+   "details": {
+    "evenement": "EV-19",
+    "critere": "Nombre de candidats figurant sur la liste arrêtée par le Conseil constitutionnel pour le premier tour de 2027 qui sont investis ou soutenus, par une décision publiée, par La France insoumise, le Parti socialiste, Place publique, Les Écologistes, le Parti communiste français, Debout !, Lutte ouvrière ou le Nouveau Parti anticapitaliste (l'une ou l'autre des deux organisations issues de la scission de 2022, NPA-l'Anticapitaliste et NPA-Révolutionnaires)."
+   },
+   "id": "Q-EV-19",
+   "pool": "P2b",
+   "grappe": "présidentielle 2027, premier tour",
+   "texte": "Nombre de candidats de gauche : quelle issue, selon le critère ? (échéance : 2027-04-18)",
+   "echeance": "2027-04-18",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-04-18"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "rejet ou non-admission",
+    "cassation totale ou partielle",
+    "désistement",
+    "pas d'arrêt au 31 mars 2027"
+   ],
+   "details": {
+    "evenement": "EV-20",
+    "critere": "Issue, au 31 mars 2027, du pourvoi formé par Marine Le Pen contre l'arrêt de la cour d'appel de Paris du 7 juillet 2026. Une décision de non-admission est rangée avec le rejet. L'issue « cassation totale ou partielle » suppose la cassation d'au moins une disposition de l'arrêt d'appel qui concerne Marine Le Pen (culpabilité, peine ou intérêts civils), sur son pourvoi ou sur un autre ; une cassation qui ne concerne que d'autres prévenus est rangée avec le rejet."
+   },
+   "id": "Q-EV-20",
+   "pool": "P2b",
+   "grappe": "présidentielle 2027, premier tour",
+   "texte": "Pourvoi de Marine Le Pen : quelle issue, selon le critère ? (échéance : 2027-03-31)",
+   "echeance": "2027-03-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-03-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-21",
+    "critere": "Marine Le Pen figure sur la liste des candidats au premier tour de 2027 arrêtée par le Conseil constitutionnel."
+   },
+   "id": "Q-EV-21",
+   "pool": "P2b",
+   "grappe": "présidentielle 2027, premier tour",
+   "texte": "Marine Le Pen candidate : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "echeance": "2027-04-18",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-04-18"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "moins de 70 %",
+    "70 à moins de 75 %",
+    "75 à moins de 80 %",
+    "80 % ou plus"
+   ],
+   "details": {
+    "evenement": "EV-23",
+    "critere": "Taux de participation au premier tour de l'élection présidentielle de 2027, France entière, proclamé par le Conseil constitutionnel."
+   },
+   "id": "Q-EV-23",
+   "pool": "P2b",
+   "grappe": "présidentielle 2027, premier tour",
+   "texte": "Participation au premier tour : quelle issue, selon le critère ? (échéance : 2027-04-18)",
+   "echeance": "2027-04-18",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-04-18"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-40a",
+    "critere": "Marine Le Pen figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul."
+   },
+   "id": "Q-EV-40a",
+   "pool": "P2b",
+   "grappe": "présidentielle 2027, premier tour",
+   "texte": "Qualification de Marine Le Pen au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "echeance": "2027-04-18",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-04-18"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-40b",
+    "critere": "Édouard Philippe figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul."
+   },
+   "id": "Q-EV-40b",
+   "pool": "P2b",
+   "grappe": "présidentielle 2027, premier tour",
+   "texte": "Qualification de Édouard Philippe au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "echeance": "2027-04-18",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-04-18"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-40c",
+    "critere": "Jean-Luc Mélenchon figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul."
+   },
+   "id": "Q-EV-40c",
+   "pool": "P2b",
+   "grappe": "présidentielle 2027, premier tour",
+   "texte": "Qualification de Jean-Luc Mélenchon au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "echeance": "2027-04-18",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-04-18"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-40d",
+    "critere": "David Lisnard figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul."
+   },
+   "id": "Q-EV-40d",
+   "pool": "P2b",
+   "grappe": "présidentielle 2027, premier tour",
+   "texte": "Qualification de David Lisnard au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "echeance": "2027-04-18",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-04-18"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-40e",
+    "critere": "Gabriel Attal figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul."
+   },
+   "id": "Q-EV-40e",
+   "pool": "P2b",
+   "grappe": "présidentielle 2027, premier tour",
+   "texte": "Qualification de Gabriel Attal au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "echeance": "2027-04-18",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-04-18"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-40f",
+    "critere": "Raphaël Glucksmann figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul."
+   },
+   "id": "Q-EV-40f",
+   "pool": "P2b",
+   "grappe": "présidentielle 2027, premier tour",
+   "texte": "Qualification de Raphaël Glucksmann au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "echeance": "2027-04-18",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-04-18"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-40g",
+    "critere": "Bruno Retailleau figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul."
+   },
+   "id": "Q-EV-40g",
+   "pool": "P2b",
+   "grappe": "présidentielle 2027, premier tour",
+   "texte": "Qualification de Bruno Retailleau au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "echeance": "2027-04-18",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-04-18"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "les deux",
+    "Philippe seul",
+    "Attal seul",
+    "aucun des deux"
+   ],
+   "details": {
+    "evenement": "EV-41",
+    "critere": "Présence d'Édouard Philippe et de Gabriel Attal sur la liste des candidats au premier tour de 2027 arrêtée par le Conseil constitutionnel."
+   },
+   "id": "Q-EV-41",
+   "pool": "P2b",
+   "grappe": "présidentielle 2027, premier tour",
+   "texte": "Candidatures du bloc central : quelle issue, selon le critère ? (échéance : 2027-04-18)",
+   "echeance": "2027-04-18",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-04-18"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-39",
+    "critere": "Pendant la fenêtre, le ministère de l'Intérieur chiffre à plus de 500 000 le nombre de manifestants en France pour une même journée. Le chiffre retenu est celui du ministère, publié par lui ou rapporté par au moins deux agences de presse (AFP, Reuters, AP) ; les comptages des organisateurs ne comptent pas."
+   },
+   "id": "Q-EV-39",
+   "pool": "P2b",
+   "grappe": "EV-39",
+   "texte": "Journée de mobilisation à plus de 500 000 manifestants : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-39",
+    "critere": "Pendant la fenêtre, le ministère de l'Intérieur chiffre à plus de 500 000 le nombre de manifestants en France pour une même journée. Le chiffre retenu est celui du ministère, publié par lui ou rapporté par au moins deux agences de presse (AFP, Reuters, AP) ; les comptages des organisateurs ne comptent pas."
+   },
+   "id": "Q-EV-39-2026-10-v0",
+   "pool": "P2b",
+   "grappe": "EV-39",
+   "texte": "Journée de mobilisation à plus de 500 000 manifestants : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-42",
+    "critere": "Pendant la fenêtre, une loi, une ordonnance ou un décret publié au Journal officiel instaure une remise sur le prix des carburants ouverte à tous les consommateurs, ou abaisse le tarif normal de l'accise applicable au gazole routier ou aux essences. Une aide ciblée (sous condition de revenu, de profession ou de kilométrage) et une baisse limitée au gazole non routier ou à une profession ne comptent pas. Les essences s'entendent des supercarburants SP95, SP95-E10 et SP98 ; le superéthanol E85 n'en fait pas partie."
+   },
+   "id": "Q-EV-42",
+   "pool": "P2b",
+   "grappe": "EV-42",
+   "texte": "Baisse générale du prix des carburants : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "echeance": "2027-04-18",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-04-18"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-42",
+    "critere": "Pendant la fenêtre, une loi, une ordonnance ou un décret publié au Journal officiel instaure une remise sur le prix des carburants ouverte à tous les consommateurs, ou abaisse le tarif normal de l'accise applicable au gazole routier ou aux essences. Une aide ciblée (sous condition de revenu, de profession ou de kilométrage) et une baisse limitée au gazole non routier ou à une profession ne comptent pas. Les essences s'entendent des supercarburants SP95, SP95-E10 et SP98 ; le superéthanol E85 n'en fait pas partie."
+   },
+   "id": "Q-EV-42-2026-10-v0",
+   "pool": "P2b",
+   "grappe": "EV-42",
+   "texte": "Baisse générale du prix des carburants : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-38",
+    "critere": "Le taux de remplissage agrégé des stockages de gaz de l'Union européenne publié par AGSI+ (Gas Infrastructure Europe) pour le 1er février 2027 est strictement inférieur à 35 %. La valeur retenue est celle relevée par la collecte nocturne (API AGSI+) les 2 et 3 février 2027 et inscrite en ajout seul ; à défaut, celle affichée par AGSI+ le 3 février 2027 (capture archivée ce jour-là, ou la plus proche après). Une révision ultérieure ne change pas l'issue."
+   },
+   "id": "Q-EV-38",
+   "pool": "P2b",
+   "grappe": "EV-38",
+   "texte": "Stocks de gaz bas à la sortie de l'hiver : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-02-01)",
+   "echeance": "2027-02-01",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-02-01"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-29",
+    "critere": "Pendant la fenêtre, le gouvernement informe le Parlement, au titre de l'article 35, alinéa 2, de la Constitution, d'une intervention des forces armées sur le territoire ukrainien."
+   },
+   "id": "Q-EV-29",
+   "pool": "P2b",
+   "grappe": "EV-29",
+   "texte": "Militaires français en Ukraine : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-29",
+    "critere": "Pendant la fenêtre, le gouvernement informe le Parlement, au titre de l'article 35, alinéa 2, de la Constitution, d'une intervention des forces armées sur le territoire ukrainien."
+   },
+   "id": "Q-EV-29-2026-10-v0",
+   "pool": "P2b",
+   "grappe": "EV-29",
+   "texte": "Militaires français en Ukraine : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-36",
+    "critere": "Les crédits de paiement de la mission Défense, hors contributions au compte d'affectation spéciale Pensions, inscrits dans le projet de loi de finances pour 2028 déposé à l'Assemblée nationale, sont au moins égaux à l'annuité 2028 fixée par la loi de programmation militaire en vigueur au dépôt. Si aucun projet de loi de finances pour 2028 n'est déposé au 31 octobre 2027, la réponse est « non »."
+   },
+   "id": "Q-EV-36",
+   "pool": "P2b",
+   "grappe": "EV-36",
+   "texte": "Crédits de défense 2028 conformes à la programmation : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-10-31)",
+   "echeance": "2027-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-35",
+    "critere": "Le premier document publié pendant la fenêtre par le ministère de l'Intérieur qui donne le nombre d'actes antimusulmans recensés sur l'ensemble de l'année 2026, qu'il s'intitule « tendances » ou « bilan annuel », fait état de plus de 326 actes. Un chiffre portant sur une partie de l'année (« depuis le 1er janvier », premiers mois) ne compte pas. Le seuil de 326 est le nombre de 2025 publié dans le communiqué « Actes antireligieux – Tendances 2025 » du 12 février 2026. Si aucun nombre pour l'ensemble de 2026 n'est publié au 31 mars 2027, la question est annulée."
+   },
+   "id": "Q-EV-35",
+   "pool": "P2b",
+   "grappe": "EV-35",
+   "texte": "Hausse des actes antimusulmans en 2026 : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-03-31)",
+   "echeance": "2027-03-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-03-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-43",
+    "critere": "Le Premier ministre en fonction le 30 septembre 2028 est membre d'un parti qui a investi ou soutenu, par une décision publiée, au premier tour de 2027, un candidat autre que le président élu. Une coalition dont le Premier ministre vient d'un tel parti compte."
+   },
+   "id": "Q-EV-43",
+   "pool": "P2b",
+   "grappe": "EV-43",
+   "texte": "Premier ministre issu d'un parti concurrent au premier tour : le critère est-il rempli ? (fenêtre du 2027-05-02 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "4,5 % du PIB ou moins",
+    "plus de 4,5 % du PIB",
+    "pas de loi de finances publiée au 31 janvier 2028"
+   ],
+   "details": {
+    "evenement": "EV-44",
+    "critere": "Solde public effectif (et non structurel ni conjoncturel) de 2028 prévu par l'article liminaire de la loi de finances initiale pour 2028 publiée au Journal officiel."
+   },
+   "id": "Q-EV-44",
+   "pool": "P2b",
+   "grappe": "EV-44",
+   "texte": "Déficit visé par le premier budget du nouveau président : quelle issue, selon le critère ? (échéance : 2028-01-31)",
+   "echeance": "2028-01-31",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-01-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-45",
+    "critere": "Le 30 septembre 2028, l'âge d'ouverture du droit à pension fixé par le code de la sécurité sociale (article L161-17-2 ou disposition qui le remplace) pour les assurés nés en 1970 est inférieur à 64 ans, dans la version de l'article en vigueur à cette date ; une disposition promulguée dont l'entrée en vigueur est postérieure ne compte pas. Cette génération n'est pas concernée par la suspension de la réforme de 2023 : la réponse « oui » suppose un abaissement voté."
+   },
+   "id": "Q-EV-45",
+   "pool": "P2b",
+   "grappe": "EV-45",
+   "texte": "Âge légal abaissé sous 64 ans (génération 1970) : le critère est-il rempli ? (fenêtre du 2027-05-02 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-46",
+    "critere": "Pendant la fenêtre, la Banque centrale européenne annonce, par un communiqué ou une décision publiée, des achats de titres de dette publique française au titre de l'instrument de protection de la transmission (TPI) ou des opérations monétaires sur titres (OMT). Des achats au titre d'autres programmes (APP, PEPP, y compris la flexibilité des réinvestissements) ne comptent pas."
+   },
+   "id": "Q-EV-46",
+   "pool": "P2b",
+   "grappe": "EV-46",
+   "texte": "Achats ciblés de la BCE (TPI ou OMT) pour la France : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-46",
+    "critere": "Pendant la fenêtre, la Banque centrale européenne annonce, par un communiqué ou une décision publiée, des achats de titres de dette publique française au titre de l'instrument de protection de la transmission (TPI) ou des opérations monétaires sur titres (OMT). Des achats au titre d'autres programmes (APP, PEPP, y compris la flexibilité des réinvestissements) ne comptent pas."
+   },
+   "id": "Q-EV-46-2026-10-v0",
+   "pool": "P2b",
+   "grappe": "EV-46",
+   "texte": "Achats ciblés de la BCE (TPI ou OMT) pour la France : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-28",
+    "critere": "Pendant la fenêtre, les gouvernements russe et ukrainien annoncent tous deux un cessez-le-feu général couvrant l'ensemble de la ligne de front, sans terme fixé ou d'une durée prévue d'au moins 30 jours, ou un accord de paix. Une trêve de durée plus courte ne compte pas."
+   },
+   "id": "Q-EV-28",
+   "pool": "P2e",
+   "grappe": "EV-28",
+   "texte": "Cessez-le-feu en Ukraine : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-09-30)",
+   "echeance": "2027-09-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-28",
+    "critere": "Pendant la fenêtre, les gouvernements russe et ukrainien annoncent tous deux un cessez-le-feu général couvrant l'ensemble de la ligne de front, sans terme fixé ou d'une durée prévue d'au moins 30 jours, ou un accord de paix. Une trêve de durée plus courte ne compte pas."
+   },
+   "id": "Q-EV-28-2026-10-v0",
+   "pool": "P2e",
+   "grappe": "EV-28",
+   "texte": "Cessez-le-feu en Ukraine : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-28b",
+    "critere": "Pendant la fenêtre, les gouvernements russe et ukrainien annoncent tous deux un cessez-le-feu général couvrant l'ensemble de la ligne de front, sans terme fixé ou d'une durée prévue d'au moins 30 jours, ou un accord de paix. Une trêve de durée plus courte ne compte pas. Seule compte une annonce faite pendant la fenêtre : un cessez-le-feu ou un accord annoncé avant elle ne compte pas, même s'il est toujours en vigueur."
+   },
+   "id": "Q-EV-28b",
+   "pool": "P2e",
+   "grappe": "EV-28b",
+   "texte": "Cessez-le-feu en Ukraine (seconde période) : le critère est-il rempli ? (fenêtre du 2027-10-01 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2027-10-01",
+    "fin": "2028-09-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-30",
+    "critere": "À l'issue des élections du 3 novembre 2026, le Parti démocrate détient au moins 218 sièges à la Chambre des représentants des États-Unis, selon les résultats certifiés."
+   },
+   "id": "Q-EV-30",
+   "pool": "P2e",
+   "grappe": "EV-30",
+   "texte": "Chambre des représentants aux démocrates : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2026-12-31)",
+   "echeance": "2026-12-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-32",
+    "critere": "Pendant la fenêtre, des contrôles chinois à l'exportation sur des terres rares ou des aimants à base de terres rares entrent en application et s'appliquent aux exportations vers l'Union européenne, qu'il s'agisse de nouvelles mesures ou de la fin d'une suspension sans prolongation, selon les annonces ou les textes du ministère chinois du Commerce (MOFCOM). La prolongation d'une suspension ne compte pas."
+   },
+   "id": "Q-EV-32",
+   "pool": "P2e",
+   "grappe": "EV-32",
+   "texte": "Restrictions chinoises sur les terres rares visant l'UE : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-06-30)",
+   "echeance": "2027-06-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-06-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-32",
+    "critere": "Pendant la fenêtre, des contrôles chinois à l'exportation sur des terres rares ou des aimants à base de terres rares entrent en application et s'appliquent aux exportations vers l'Union européenne, qu'il s'agisse de nouvelles mesures ou de la fin d'une suspension sans prolongation, selon les annonces ou les textes du ministère chinois du Commerce (MOFCOM). La prolongation d'une suspension ne compte pas."
+   },
+   "id": "Q-EV-32-2026-10-v0",
+   "pool": "P2e",
+   "grappe": "EV-32",
+   "texte": "Restrictions chinoises sur les terres rares visant l'UE : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-33",
+    "critere": "Pendant la fenêtre, le Conseil de l'Union européenne adopte une décision suspendant tout ou partie de l'accord d'association entre l'UE et Israël."
+   },
+   "id": "Q-EV-33",
+   "pool": "P2e",
+   "grappe": "EV-33",
+   "texte": "Suspension de l'accord UE-Israël : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-06-30)",
+   "echeance": "2027-06-30",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-06-30"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-33",
+    "critere": "Pendant la fenêtre, le Conseil de l'Union européenne adopte une décision suspendant tout ou partie de l'accord d'association entre l'UE et Israël."
+   },
+   "id": "Q-EV-33-2026-10-v0",
+   "pool": "P2e",
+   "grappe": "EV-33",
+   "texte": "Suspension de l'accord UE-Israël : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "echeance": "2026-10-31",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-10-31"
+   }
+  },
+  {
+   "type": "evenement",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "details": {
+    "evenement": "EV-33b",
+    "critere": "Pendant la fenêtre, le Conseil de l'Union européenne adopte une décision suspendant tout ou partie de l'accord d'association entre l'UE et Israël. Seule compte une décision adoptée pendant la fenêtre : une suspension décidée avant elle ne compte pas, même si elle est toujours en vigueur ; une nouvelle décision qui l'étend compte."
+   },
+   "id": "Q-EV-33b",
+   "pool": "P2e",
+   "grappe": "EV-33b",
+   "texte": "Suspension de l'accord UE-Israël (seconde période) : le critère est-il rempli ? (fenêtre du 2027-07-01 au 2028-09-30)",
+   "echeance": "2028-09-30",
+   "fenetre": {
+    "debut": "2027-07-01",
+    "fin": "2028-09-30"
+   }
+  }
+ ],
+ "ecartees": [
+  {
+   "objet": "EV-11",
+   "motif": "Le nombre de communes touchées n'est publié qu'au cas par cas ; ACLED exige un compte."
+  },
+  {
+   "objet": "EV-12",
+   "motif": "Résolution sur ACLED, qui exige un compte. Remplacé par EV-39 (relecture 8)."
+  },
+  {
+   "objet": "EV-14",
+   "motif": "Résolution sur ACLED, qui exige un compte."
+  }
+ ]
+}

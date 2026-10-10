@@ -1,0 +1,553 @@
+{
+ "cycle": "2026-10-v0",
+ "gel": "2026-10-10",
+ "series": [
+  {
+   "serie": "brent_journalier",
+   "libelle": "Prix spot du Brent, quotidien (EIA)",
+   "unite": "$/baril",
+   "derniere": {
+    "periode": "2026-10-06",
+    "valeur": 125.44
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-09-04",
+    "valeur": 102.24
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-07-07",
+    "valeur": 71.78
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-10-06",
+    "valeur": 67.09
+   }
+  },
+  {
+   "serie": "brent_mensuel",
+   "libelle": "Prix spot du Brent, moyenne mensuelle (EIA)",
+   "unite": "$/baril",
+   "derniere": {
+    "periode": "2026-09",
+    "valeur": 114.16
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-08",
+    "valeur": 91.08
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-06",
+    "valeur": 85.4
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-09",
+    "valeur": 67.99
+   }
+  },
+  {
+   "serie": "bund_10a_journalier_DE",
+   "libelle": "Taux allemand 10 ans, quotidien (Bundesbank, courbe Svensson)",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-10-09",
+    "valeur": 3.53
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-09-09",
+    "valeur": 3.45
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-07-10",
+    "valeur": 3.13
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-10-09",
+    "valeur": 2.76
+   }
+  },
+  {
+   "serie": "chomage_FR",
+   "libelle": "Taux de chômage France, mensuel CVS (Eurostat)",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-08",
+    "valeur": 8.2
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-07",
+    "valeur": 8.3
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-05",
+    "valeur": 8.4
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-08",
+    "valeur": 7.8
+   }
+  },
+  {
+   "serie": "confiance_menages_FR",
+   "libelle": "Indicateur synthétique de confiance des ménages (Insee, CVS)",
+   "unite": "points",
+   "derniere": {
+    "periode": "2026-09",
+    "valeur": 86.0
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-08",
+    "valeur": 86.0
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-06",
+    "valeur": 84.0
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-09",
+    "valeur": 88.0
+   }
+  },
+  {
+   "serie": "dette_pib_FR",
+   "libelle": "Dette publique France, % du PIB, trimestrielle",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-Q1",
+    "valeur": 117.6
+   },
+   "il_y_a_1_mois": {
+    "periode": "2025-Q4",
+    "valeur": 115.7
+   },
+   "il_y_a_3_mois": {
+    "periode": "2025-Q3",
+    "valeur": 117.3
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-Q1",
+    "valeur": 113.6
+   }
+  },
+  {
+   "serie": "ecart_FR_DE_journalier_pb",
+   "libelle": "Écart de taux 10 ans France-Allemagne, quotidien (TEC 10 Banque de France moins Bund Bundesbank ; environ 9 pb sous la série BCE)",
+   "unite": "pb",
+   "derniere": {
+    "periode": "2026-10-09",
+    "valeur": 126.5
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-09-09",
+    "valeur": 79.5
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-07-10",
+    "valeur": 68.0
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-10-09",
+    "valeur": 73.0
+   }
+  },
+  {
+   "serie": "ecart_FR_DE_pb",
+   "libelle": "Écart de taux 10 ans France-Allemagne, moyenne mensuelle (BCE)",
+   "unite": "pb",
+   "derniere": {
+    "periode": "2026-08",
+    "valeur": 82.0
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-07",
+    "valeur": 78.0
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-05",
+    "valeur": 70.0
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-08",
+    "valeur": 75.0
+   }
+  },
+  {
+   "serie": "inflation_energie_FR",
+   "libelle": "Inflation IPCH énergie, France, sur un an (Eurostat)",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-09",
+    "valeur": 20.9
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-08",
+    "valeur": 16.5
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-06",
+    "valeur": 11.0
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-09",
+    "valeur": -4.3
+   }
+  },
+  {
+   "serie": "inflation_ipch_FR",
+   "libelle": "Inflation IPCH France sur un an",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-09",
+    "valeur": 3.4
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-08",
+    "valeur": 2.6
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-06",
+    "valeur": 2.0
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-09",
+    "valeur": 1.1
+   }
+  },
+  {
+   "serie": "oat_tec10_journalier_FR",
+   "libelle": "Taux de l'État à échéance constante 10 ans, quotidien (Banque de France)",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-10-09",
+    "valeur": 4.795
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-09-09",
+    "valeur": 4.245
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-07-10",
+    "valeur": 3.81
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-10-09",
+    "valeur": 3.49
+   }
+  },
+  {
+   "serie": "pib_croissance_ga_FR",
+   "libelle": "Croissance du PIB réel France sur un an",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-Q2",
+    "valeur": 0.5
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-Q1",
+    "valeur": 0.7
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-Q1",
+    "valeur": 0.7
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-Q2",
+    "valeur": 0.8
+   }
+  },
+  {
+   "serie": "pib_croissance_trim_FR",
+   "libelle": "Croissance du PIB réel France sur un trimestre",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-Q2",
+    "valeur": 0.0
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-Q1",
+    "valeur": -0.2
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-Q1",
+    "valeur": -0.2
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-Q2",
+    "valeur": 0.2
+   }
+  },
+  {
+   "serie": "taux_10a_DE",
+   "libelle": "Taux souverain 10 ans Allemagne, moyenne mensuelle (BCE)",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-08",
+    "valeur": 3.185
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-07",
+    "valeur": 3.07
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-05",
+    "valeur": 3.045
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-08",
+    "valeur": 2.674
+   }
+  },
+  {
+   "serie": "taux_10a_FR",
+   "libelle": "Taux souverain 10 ans France, moyenne mensuelle (BCE)",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-08",
+    "valeur": 4.0
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-07",
+    "valeur": 3.85
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-05",
+    "valeur": 3.74
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-08",
+    "valeur": 3.42
+   }
+  },
+  {
+   "serie": "webstat_climat_affaires_industrie",
+   "libelle": "Climat des affaires, industrie manufacturière (Banque de France)",
+   "unite": "indice",
+   "derniere": {
+    "periode": "2026-08",
+    "valeur": 100.0
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-07",
+    "valeur": 99.0
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-05",
+    "valeur": 98.0
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-08",
+    "valeur": 100.0
+   }
+  },
+  {
+   "serie": "webstat_climat_affaires_services",
+   "libelle": "Climat des affaires, services marchands (Banque de France)",
+   "unite": "indice",
+   "derniere": {
+    "periode": "2026-08",
+    "valeur": 97.0
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-07",
+    "valeur": 95.0
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-05",
+    "valeur": 92.0
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-08",
+    "valeur": 97.0
+   }
+  },
+  {
+   "serie": "webstat_defaillances_12m_FR",
+   "libelle": "Défaillances d'entreprises cumulées sur 12 mois, France",
+   "unite": "nombre",
+   "derniere": {
+    "periode": "2026-07",
+    "valeur": 70605.0
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-06",
+    "valeur": 70816.0
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-04",
+    "valeur": 70244.0
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-07",
+    "valeur": 67505.0
+   }
+  },
+  {
+   "serie": "webstat_ecart_IT_DE_pb",
+   "libelle": "Écart de taux 10 ans Italie-Allemagne, mensuel",
+   "unite": "pb",
+   "derniere": {
+    "periode": "2026-09",
+    "valeur": 89.2
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-08",
+    "valeur": 80.7
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-06",
+    "valeur": 74.2
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-09",
+    "valeur": 85.0
+   }
+  },
+  {
+   "serie": "webstat_eur_usd_journalier",
+   "libelle": "Cours de l'euro en dollars, quotidien",
+   "unite": "USD",
+   "derniere": {
+    "periode": "2026-10-08",
+    "valeur": 1.1186
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-09-08",
+    "valeur": 1.1614
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-07-09",
+    "valeur": 1.1435
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-10-08",
+    "valeur": 1.1627
+   }
+  },
+  {
+   "serie": "webstat_oat_tec2_journalier",
+   "libelle": "Taux de l'État à échéance constante 2 ans, quotidien",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-10-09",
+    "valeur": 3.602
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-09-09",
+    "valeur": 3.197
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-07-10",
+    "valeur": 2.8
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-10-09",
+    "valeur": 2.16
+   }
+  },
+  {
+   "serie": "webstat_oat_tec30_journalier",
+   "libelle": "Taux de l'État à échéance constante 30 ans, quotidien",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-10-09",
+    "valeur": 5.357
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-09-09",
+    "valeur": 4.993
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-07-10",
+    "valeur": 4.63
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-10-09",
+    "valeur": 4.35
+   }
+  },
+  {
+   "serie": "webstat_pente_FR_2_10_pb",
+   "libelle": "Pente de la courbe française 10 ans moins 2 ans, quotidienne",
+   "unite": "pb",
+   "derniere": {
+    "periode": "2026-10-09",
+    "valeur": 119.3
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-09-09",
+    "valeur": 104.8
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-07-10",
+    "valeur": 101.0
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-10-09",
+    "valeur": 133.0
+   }
+  },
+  {
+   "serie": "webstat_taux_10a_DE_mensuel",
+   "libelle": "Taux 10 ans Allemagne, mensuel (Banque de France)",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-09",
+    "valeur": 3.4855
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-08",
+    "valeur": 3.2016
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-06",
+    "valeur": 2.963
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-09",
+    "valeur": 2.7134
+   }
+  },
+  {
+   "serie": "webstat_taux_10a_IT_mensuel",
+   "libelle": "Taux 10 ans Italie, mensuel (Banque de France)",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-09",
+    "valeur": 4.3772
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-08",
+    "valeur": 4.0082
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-06",
+    "valeur": 3.7046
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-09",
+    "valeur": 3.5634
+   }
+  },
+  {
+   "serie": "webstat_teg_credit_habitat",
+   "libelle": "Taux effectif global des nouveaux crédits à l'habitat",
+   "unite": "%",
+   "derniere": {
+    "periode": "2026-08",
+    "valeur": 3.8407
+   },
+   "il_y_a_1_mois": {
+    "periode": "2026-07",
+    "valeur": 3.8031
+   },
+   "il_y_a_3_mois": {
+    "periode": "2026-05",
+    "valeur": 3.7117
+   },
+   "il_y_a_12_mois": {
+    "periode": "2025-08",
+    "valeur": 3.6255
+   }
+  }
+ ],
+ "note": "Données gelées du cycle, collectées sans IA. Les questions sur des séries se résolvent sur la série citée dans le texte de la question."
+}

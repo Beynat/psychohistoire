@@ -1,0 +1,1623 @@
+{
+ "description": "Banque d'événements (noyau, section 8.8). Générée par scripts/evenements.py depuis modele/banque/criteres.json. Seuls le nom, la sous-question et le critère sont transmis aux prévisionnistes.",
+ "genere_le": "2026-10-10T08:37:12+02:00",
+ "premier_tour": "2027-04-18",
+ "second_tour": "2027-05-02",
+ "evenements": [
+  {
+   "id": "EV-01",
+   "evenement": "EV-01",
+   "nom": "Dégradation de la note souveraine",
+   "domaine": "finances publiques",
+   "critere": "Au moins une des agences Moody's, S&P Global Ratings ou Fitch Ratings abaisse d'au moins un cran la note de crédit à long terme de la République française pendant la fenêtre.",
+   "sous_question": null,
+   "source_resolution": "Communiqué de l'agence (acte propre) ; page des notations de l'Agence France Trésor",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Au moins une agence (Moody's, S&P, Fitch) abaisse d'au moins un cran la note long terme entre le 03/10/2026 et le 30/09/2028. Échéances : Moody's 23/10/2026, S&P 27/11/2026. Pas de probabilité de marché.",
+    "mesure": "AFT, page des notations ; communiqués des agences."
+   }
+  },
+  {
+   "id": "EV-02",
+   "evenement": "EV-02",
+   "nom": "Pas de loi de finances pour 2027 au 31 décembre 2026",
+   "domaine": "finances publiques",
+   "critere": "Aucune loi de finances pour 2027 n'est publiée au Journal officiel au 31 décembre 2026. Une loi spéciale ou une ordonnance prise au titre de l'article 47 de la Constitution n'est pas une loi de finances.",
+   "sous_question": null,
+   "source_resolution": "Journal officiel (Légifrance)",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "constat",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Aucune LFI 2027 votée publiée au JO au 31/12/2026. Modalités à enregistrer : (a) loi spéciale ; (b) ordonnance budgétaire au titre de l'art. 47 (B : aucun précédent sous la Ve République à sa connaissance, non vérifié). Pas de probabilité de marché.",
+    "mesure": "Légifrance, JO ; dossier législatif AN. Vote attendu le 17/11/2026 (B)."
+   }
+  },
+  {
+   "id": "EV-03",
+   "evenement": "EV-03",
+   "nom": "Déficit 2027 au-dessus de 5,0 % du PIB",
+   "domaine": "finances publiques",
+   "critere": "Le déficit public de 2027, au sens de Maastricht, publié par l'Insee lors de la notification de mars 2028, est strictement supérieur à 5,0 % du PIB.",
+   "sous_question": null,
+   "source_resolution": "Insee, notification de mars 2028",
+   "fenetre": {
+    "debut": "2028-03-01",
+    "fin": "2028-04-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "constat",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Déficit 2027 notifié > 5,0 % du PIB.",
+    "mesure": "INSEE, notification de mars 2028."
+   }
+  },
+  {
+   "id": "EV-04",
+   "evenement": "EV-04",
+   "nom": "Durcissement de la procédure de déficit excessif",
+   "domaine": "finances publiques",
+   "critere": "Le Conseil de l'Union européenne adopte une décision visant la France au titre de l'article 126, paragraphe 8 ou paragraphe 9, du traité sur le fonctionnement de l'Union européenne.",
+   "sous_question": null,
+   "source_resolution": "Conseil de l'UE ; Journal officiel de l'UE",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Décision du Conseil au titre de l'art. 126(8) ou 126(9) TFUE visant la France entre le 03/10/2026 et le 30/09/2028.",
+    "mesure": "Conseil de l'UE / Commission, Semestre européen."
+   }
+  },
+  {
+   "id": "EV-05",
+   "evenement": "EV-05",
+   "nom": "Vainqueur de l'élection présidentielle 2027",
+   "domaine": "politique",
+   "critere": "Personne proclamée élue président de la République par le Conseil constitutionnel à l'issue de l'élection de 2027. Une issue nommée désigne la personne, quel que soit le parti qui la soutient ; « autre » couvre toute autre personne.",
+   "sous_question": null,
+   "source_resolution": "Conseil constitutionnel, proclamation des résultats",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-05-02"
+   },
+   "issues": [
+    "Marine Le Pen",
+    "Jordan Bardella",
+    "Édouard Philippe",
+    "Gabriel Attal",
+    "Jean-Luc Mélenchon",
+    "David Lisnard",
+    "Bruno Retailleau",
+    "Raphaël Glucksmann",
+    "François Hollande",
+    "autre"
+   ],
+   "pool": "P1",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "blocs": {
+    "Marine Le Pen": "RN",
+    "Jordan Bardella": "RN",
+    "Édouard Philippe": "bloc central",
+    "Gabriel Attal": "bloc central",
+    "Jean-Luc Mélenchon": "gauche",
+    "Raphaël Glucksmann": "gauche",
+    "François Hollande": "gauche",
+    "David Lisnard": "droite",
+    "Bruno Retailleau": "droite",
+    "autre": "autre"
+   },
+   "reference_externe": {
+    "source": "Polymarket",
+    "evenement": "Next French Presidential Election",
+    "issues": {
+     "Marine Le Pen": "Marine Le Pen",
+     "Jordan Bardella": "Jordan Bardella",
+     "Édouard Philippe": "Édouard Philippe",
+     "Gabriel Attal": "Gabriel Attal",
+     "Jean-Luc Mélenchon": "Jean-Luc Mélenchon",
+     "David Lisnard": "David Lisnard",
+     "Bruno Retailleau": "Bruno Retailleau",
+     "Raphaël Glucksmann": "Raphaël Glucksmann",
+     "François Hollande": "François Hollande"
+    },
+    "reste": "autre"
+   },
+   "motif_inaccessible": null,
+   "nature": "constat",
+   "taux_base_mode": "uniforme",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Critère catégoriel : vainqueur proclamé ; binaire dérivé : victoire du candidat RN. Polymarket au 03/10/2026 : Le Pen 45 %, Philippe 19 %, Lisnard 12 %, Mélenchon 12-13 %, Bardella 5 %, Hollande 5 %. Metaculus : Le Pen 34,3 %, Philippe 25,5 %, Mélenchon 9,8 %. Date à vérifier : B et Fondapol donnent le 1er tour le 18/04/2027, l'URL Polymarket de A porte « 04-11 ».",
+    "mesure": "Conseil constitutionnel ; sondages : 1er tour Le Pen 34-37 %, Philippe 14-19 %, Mélenchon 16-19 % (sept. 2026) ; 2nd tour Le Pen 51-54 % contre Philippe (juil. 2026)."
+   }
+  },
+  {
+   "id": "EV-06",
+   "evenement": "EV-06",
+   "nom": "Récession technique",
+   "domaine": "économie",
+   "critere": "Le jour où l'Insee publie la première estimation de la variation trimestrielle du PIB en volume de la France pour un trimestre T+1 compris entre le quatrième trimestre 2026 et le deuxième trimestre 2028, cette première estimation et la variation du trimestre T publiée le même jour (éventuellement révisée) sont toutes deux strictement négatives. Les révisions publiées à d'autres dates ne comptent pas.",
+   "sous_question": null,
+   "source_resolution": "Insee, comptes trimestriels (première estimation)",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-08-15"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "revise": "relecture 12 (S9)",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Deux trimestres consécutifs < 0 en 1re estimation entre T3 2026 et T2 2028.",
+    "mesure": "INSEE, comptes trimestriels (1re estimation)."
+   }
+  },
+  {
+   "id": "EV-07",
+   "evenement": "EV-07",
+   "nom": "Cyberattaque majeure contre un service essentiel",
+   "domaine": "sécurité",
+   "critere": "Un communiqué de l'ANSSI, d'un ministère, de l'ACPR, de la Banque de France ou de l'AMF confirme une cyberattaque ayant interrompu pendant plus de 24 heures consécutives, à l'échelle nationale ou d'une région, la distribution d'électricité, de gaz ou d'eau, le transport ferroviaire ou aérien, ou un système de paiement ou un établissement bancaire d'importance systémique. Pour un système de paiement ou un établissement bancaire, l'interruption porte sur les paiements ou sur l'accès des clients à leurs comptes, tous canaux confondus : une indisponibilité de la seule banque en ligne, les cartes et les agences fonctionnant, ne compte pas. La durée d'interruption est celle qu'établit ce communiqué ; s'il ne la donne pas, celle qu'établit le communiqué de l'opérateur concerné ou deux agences de presse concordantes (AFP, Reuters, AP).",
+   "sous_question": null,
+   "source_resolution": "Communiqués de l'ANSSI, des ministères, de l'ACPR, de la Banque de France ou de l'AMF",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_reecriture": "Relecture 8, G3 : la liste des opérateurs d'importance vitale est classifiée ; les services visés sont désormais nommés.",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Incident confirmé par l'ANSSI ou un régulateur, interruption > 24 h d'un OIV ou d'un établissement financier systémique.",
+    "mesure": "ANSSI, panorama annuel ; ACPR, BdF."
+   }
+  },
+  {
+   "id": "EV-08",
+   "evenement": "EV-08",
+   "nom": "Ingérence étrangère visant la présidentielle",
+   "domaine": "sécurité",
+   "critere": "Pendant la fenêtre, le SGDSN (VIGINUM) ou le gouvernement publie un rapport ou un communiqué qui attribue à un État étranger, ou à un acteur qu'il présente comme lié à un État étranger, une campagne de manipulation de l'information et présente expressément l'élection présidentielle de 2027 comme l'objectif de cette campagne, et non seulement comme son contexte. Une publication antérieure à la fenêtre ne compte pas. Une mise en garde générale sur un risque d'ingérence ne suffit pas : il faut une campagne déterminée, attribuée et visant l'élection. Exemple qui compte : un rapport qui écrit qu'une campagne attribuée « vise à influencer l'élection présidentielle de 2027 ». Exemple qui ne compte pas : un rapport qui décrit une campagne « dans le contexte » ou « à l'approche » de l'élection sans lui en attribuer l'objectif.",
+   "sous_question": null,
+   "source_resolution": "SGDSN, VIGINUM ; communiqués du gouvernement",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "revise": "relecture 21",
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Rapport VIGINUM ou gouvernemental attribuant à un acteur étranger une campagne visant la présidentielle 2027.",
+    "mesure": "SGDSN/VIGINUM, rapports publics."
+   }
+  },
+  {
+   "id": "EV-09a",
+   "evenement": "EV-09",
+   "nom": "Canicule extrême à l'été 2027",
+   "domaine": "climat",
+   "critere": "Météo-France place au moins un département métropolitain en vigilance rouge canicule entre le 1er juin et le 15 septembre 2027.",
+   "sous_question": "été 2027",
+   "source_resolution": "Météo-France, vigilances",
+   "fenetre": {
+    "debut": "2027-06-01",
+    "fin": "2027-09-15"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "revise": "relecture 12 (S9)",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Vigilance rouge canicule sur au moins un département à l'été 2027 ou 2028, ou perte agricole chiffrée par l'INSEE ≥ 0,1 pt de PIB. Remarque : le premier volet est peu discriminant (probabilité élevée) ; le second est le plus informatif.",
+    "mesure": "Météo-France, vigilances et bilans ; Agreste."
+   }
+  },
+  {
+   "id": "EV-09b",
+   "evenement": "EV-09",
+   "nom": "Canicule extrême à l'été 2028",
+   "domaine": "climat",
+   "critere": "Météo-France place au moins un département métropolitain en vigilance rouge canicule entre le 1er juin et le 15 septembre 2028.",
+   "sous_question": "été 2028",
+   "source_resolution": "Météo-France, vigilances",
+   "fenetre": {
+    "debut": "2028-06-01",
+    "fin": "2028-09-15"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "revise": "relecture 12 (S9)",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Vigilance rouge canicule sur au moins un département à l'été 2027 ou 2028, ou perte agricole chiffrée par l'INSEE ≥ 0,1 pt de PIB. Remarque : le premier volet est peu discriminant (probabilité élevée) ; le second est le plus informatif.",
+    "mesure": "Météo-France, vigilances et bilans ; Agreste."
+   }
+  },
+  {
+   "id": "EV-10",
+   "evenement": "EV-10",
+   "nom": "Reprise du mouvement lycéen après la Toussaint",
+   "domaine": "société",
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "sous_question": "du 2 novembre au 18 décembre 2026",
+   "source_resolution": "Ministère de l'Éducation nationale, chiffre publié par lui ou rapporté par deux agences de presse (AFP, Reuters, AP) ; à défaut de chiffre de ce ministère pour une journée, celui du ministère de l'Intérieur",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2026-12-18"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "revise": "10 octobre 2026 : rétabli, le retrait reposait sur une prémisse fausse (le ministère de l'Éducation nationale publie chaque jour le nombre d'établissements perturbés)",
+   "motif_reecriture": "Ancien critère : « Retiré : aucune source officielle ne publie le nombre d'établissements bloqués. »",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Plus de 300 établissements bloqués au moins 2 semaines consécutives OU extension aux universités avant le 15/11/2026. Taux de base (calcul de B) : les vagues de 2005 ont duré ~3 semaines.",
+    "mesure": "~416 établissements bloqués le 29 sept., > 350 le 30 ; 440 puis 625 interpellations ; > 100 blessés ; extension en Belgique le 1er oct."
+   }
+  },
+  {
+   "id": "EV-10b",
+   "evenement": "EV-10",
+   "nom": "Mouvement lycéen avant la Toussaint",
+   "domaine": "société",
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "sous_question": "du 12 au 16 octobre 2026",
+   "source_resolution": "Ministère de l'Éducation nationale, chiffre publié par lui ou rapporté par deux agences de presse (AFP, Reuters, AP) ; à défaut de chiffre de ce ministère pour une journée, celui du ministère de l'Intérieur",
+   "fenetre": {
+    "debut": "2026-10-12",
+    "fin": "2026-10-16"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 10 octobre 2026, décision de Nathan (mouvement lycéen, passation du 10 octobre) ; fenêtre courte, pour le cycle d'essai",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Plus de 300 établissements bloqués au moins 2 semaines consécutives OU extension aux universités avant le 15/11/2026. Taux de base (calcul de B) : les vagues de 2005 ont duré ~3 semaines.",
+    "mesure": "~416 établissements bloqués le 29 sept., > 350 le 30 ; 440 puis 625 interpellations ; > 100 blessés ; extension en Belgique le 1er oct."
+   }
+  },
+  {
+   "id": "EV-47",
+   "evenement": "EV-47",
+   "nom": "Nouvelle journée lycéenne à plus de 1 000 établissements",
+   "domaine": "société",
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 1000 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, du fait de la mobilisation lycéenne (blocage, filtrage, fermeture préventive comprise), pour une même journée. Le chiffre retenu est celui du ministère pour la journée, publié par lui ou rapporté par au moins deux agences de presse ; à défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "sous_question": null,
+   "source_resolution": "Ministère de l'Éducation nationale, chiffre publié par lui ou rapporté par deux agences de presse (AFP, Reuters, AP) ; à défaut de chiffre de ce ministère pour une journée, celui du ministère de l'Intérieur",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "ajout du 10 octobre 2026, décision de Nathan (mouvement lycéen, passation du 10 octobre)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-48",
+   "evenement": "EV-48",
+   "nom": "Promulgation de la loi « casseurs-payeurs »",
+   "domaine": "société",
+   "critere": "Pendant la fenêtre, une loi issue du projet de loi présenté en conseil des ministres le 16 septembre 2026 sur la réparation des dégradations commises lors de violences collectives (dit « casseurs-payeurs ») est publiée au Journal officiel. Une publication partielle, après censure partielle du Conseil constitutionnel, compte ; une disposition équivalente insérée dans un autre texte ne compte pas.",
+   "sous_question": null,
+   "source_resolution": "Journal officiel",
+   "acte": "projet de loi « casseurs-payeurs » (conseil des ministres du 16 septembre 2026)",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-03-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "ajout du 10 octobre 2026, décision de Nathan (mouvement lycéen, passation du 10 octobre)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-49",
+   "evenement": "EV-49",
+   "nom": "Départ du ministre de l'Éducation nationale",
+   "domaine": "politique",
+   "critere": "Pendant la fenêtre, un décret publié au Journal officiel met fin aux fonctions de la personne qui détient le portefeuille de l'Éducation nationale au 10 octobre 2026, ou lui retire ce portefeuille, quelle qu'en soit la cause (démission, remaniement, démission du gouvernement). Une reconduction dans le même portefeuille par le décret de nomination du gouvernement suivant ne compte pas.",
+   "sous_question": null,
+   "source_resolution": "Journal officiel",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "ajout du 10 octobre 2026, décision de Nathan (mouvement lycéen, passation du 10 octobre)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-11",
+   "evenement": "EV-11",
+   "nom": "Émeutes urbaines nationales",
+   "domaine": "société",
+   "critere": "Non émis.",
+   "sous_question": null,
+   "source_resolution": "—",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": "Le nombre de communes touchées n'est publié qu'au cas par cas ; ACLED exige un compte.",
+   "nature": "survenue",
+   "source_accessible": false,
+   "contexte_v1": {
+    "critere": "Plus de 200 communes touchées en 7 jours. Taux de base (calcul de B) : ~2 épisodes en ~20 ans, de l'ordre de 10 % par an.",
+    "mesure": "ACLED « riots » ; Intérieur (véhicules incendiés, interpellations)."
+   }
+  },
+  {
+   "id": "EV-12",
+   "evenement": "EV-12",
+   "nom": "Mouvement de masse décentralisé",
+   "domaine": "société",
+   "critere": "Non émis ; remplacé par EV-39.",
+   "sous_question": null,
+   "source_resolution": "—",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": "Résolution sur ACLED, qui exige un compte. Remplacé par EV-39 (relecture 8).",
+   "nature": "survenue",
+   "source_accessible": false,
+   "contexte_v1": {
+    "critere": "Plus de 400 rassemblements le même jour hors appel syndical. Taux de base (calcul de B) : ~25 % par an.",
+    "mesure": "ACLED hebdomadaire ; Intérieur."
+   }
+  },
+  {
+   "id": "EV-13",
+   "evenement": "EV-13",
+   "nom": "Grève massive dans la fonction publique",
+   "domaine": "société",
+   "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État communiqué par le ministère chargé de la fonction publique (chiffres de la DGAFP) dépasse 18 %. La valeur retenue est celle publiée par le ministère ou la DGAFP, lue 30 jours après la journée (à défaut, à la première lecture qui suit) ; faute de page de publication, le chiffre du ministère rapporté par deux agences concordantes.",
+   "sous_question": null,
+   "source_resolution": "Ministère chargé de la fonction publique (chiffres de la DGAFP) ; à défaut, deux agences concordantes rapportant ce chiffre",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "revise": "relecture 21",
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Taux de grévistes de la FPE > 18 % lors d'une journée avant le 31/12/2026.",
+    "mesure": "DGAFP, taux de grévistes par versant : 29/09/2026 9,64 % État, 5,68 % territoriale, 4,5 % hospitalière ; 18,8 % le 05/12/2024."
+   }
+  },
+  {
+   "id": "EV-14",
+   "evenement": "EV-14",
+   "nom": "Mobilisation agricole",
+   "domaine": "société",
+   "critere": "Non émis.",
+   "sous_question": null,
+   "source_resolution": "—",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": "Résolution sur ACLED, qui exige un compte.",
+   "nature": "survenue",
+   "source_accessible": false,
+   "contexte_v1": {
+    "critere": "Plus de 100 blocages agricoles ACLED en un mois. Taux de base (calcul de B) : au moins 1 vague par an.",
+    "mesure": "ACLED, manifestations d'agriculteurs, France."
+   }
+  },
+  {
+   "id": "EV-15",
+   "evenement": "EV-15",
+   "nom": "Censure du gouvernement avant fin 2026",
+   "domaine": "politique",
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
+   "sous_question": "avant le 31 décembre 2026",
+   "source_resolution": "Assemblée nationale, scrutins",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Adoption d'une motion de censure avant le 31/12/2026. Taux de base (calcul de B) : 1 censure (Barnier, déc. 2024) et 1 chute sur question de confiance (Bayrou, sept. 2025) en 4 budgets. Pas de marché.",
+    "mesure": "Scrutins de l'AN sur les motions de censure."
+   }
+  },
+  {
+   "id": "EV-15b",
+   "evenement": "EV-15",
+   "nom": "Censure du gouvernement avant le second tour de 2027",
+   "domaine": "politique",
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) entre le 1er janvier 2027 et le 2 mai 2027.",
+   "sous_question": "du 1er janvier 2027 au second tour",
+   "source_resolution": "Assemblée nationale, scrutins",
+   "fenetre": {
+    "debut": "2027-01-01",
+    "fin": "2027-05-02"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "relecture 15, I3 (gouvernabilité après 2026)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Adoption d'une motion de censure avant le 31/12/2026. Taux de base (calcul de B) : 1 censure (Barnier, déc. 2024) et 1 chute sur question de confiance (Bayrou, sept. 2025) en 4 budgets. Pas de marché.",
+    "mesure": "Scrutins de l'AN sur les motions de censure."
+   }
+  },
+  {
+   "id": "EV-15c",
+   "evenement": "EV-15",
+   "nom": "Censure du gouvernement après le second tour de 2027",
+   "domaine": "politique",
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) entre le 3 mai 2027 et le 30 septembre 2028.",
+   "sous_question": "après le second tour",
+   "source_resolution": "Assemblée nationale, scrutins",
+   "fenetre": {
+    "debut": "2027-05-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "relecture 15, I3 (gouvernabilité après 2026)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Adoption d'une motion de censure avant le 31/12/2026. Taux de base (calcul de B) : 1 censure (Barnier, déc. 2024) et 1 chute sur question de confiance (Bayrou, sept. 2025) en 4 budgets. Pas de marché.",
+    "mesure": "Scrutins de l'AN sur les motions de censure."
+   }
+  },
+  {
+   "id": "EV-16a",
+   "evenement": "EV-16",
+   "nom": "Dissolution avant le second tour",
+   "domaine": "politique",
+   "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel entre le début de la fenêtre et le 2 mai 2027.",
+   "sous_question": "avant le second tour",
+   "source_resolution": "Journal officiel",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-05-02"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Critère élargi par la fusion à toute la période : décret de dissolution entre le 03/10/2026 et le 30/09/2028, avec deux fenêtres à résoudre séparément (avant / après le second tour 2027). Polymarket : ~5 % d'annonce avant le 31/12/2026 ; aucune cote pour la fenêtre post-présidentielle.",
+    "mesure": "Décret de dissolution (JO)."
+   }
+  },
+  {
+   "id": "EV-16b",
+   "evenement": "EV-16",
+   "nom": "Dissolution après le second tour",
+   "domaine": "politique",
+   "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel entre le 3 mai 2027 et le 30 septembre 2028.",
+   "sous_question": "après le second tour",
+   "source_resolution": "Journal officiel",
+   "fenetre": {
+    "debut": "2027-05-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Critère élargi par la fusion à toute la période : décret de dissolution entre le 03/10/2026 et le 30/09/2028, avec deux fenêtres à résoudre séparément (avant / après le second tour 2027). Polymarket : ~5 % d'annonce avant le 31/12/2026 ; aucune cote pour la fenêtre post-présidentielle.",
+    "mesure": "Décret de dissolution (JO)."
+   }
+  },
+  {
+   "id": "EV-17",
+   "evenement": "EV-17",
+   "nom": "Président élu sans majorité de son groupe",
+   "domaine": "politique",
+   "critere": "Le 30 septembre 2028, selon la composition des groupes publiée par l'Assemblée nationale, le groupe qui compte le plus de députés membres du parti dont le président élu en 2027 est membre au jour du second tour compte moins de 289 membres, apparentés compris ; si aucun groupe ne compte de député de ce parti, la réponse est « oui ». Si le président élu n'est membre d'aucun parti, le groupe retenu est celui qui a déclaré le soutenir au premier tour et compte le plus de membres.",
+   "sous_question": null,
+   "source_resolution": "Assemblée nationale, composition des groupes",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage v1, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "revise": "relecture 21",
+   "nature": "constat",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Correction de la fusion : B suppose des législatives en juin 2027, qui ne sont pas au calendrier et supposent une dissolution (EV-16). Critère : à l'issue des premières législatives tenues sur la période, aucun bloc soutenant le président n'atteint 289 sièges ; si aucune législative n'a lieu, résolution sur la composition existante. Pas de probabilité externe.",
+    "mesure": "Composition de l'AN après des législatives."
+   }
+  },
+  {
+   "id": "EV-C1",
+   "evenement": "EV-C1",
+   "nom": "Attentat terroriste meurtrier",
+   "domaine": "sécurité",
+   "critere": "Le parquet national antiterroriste se saisit d'une attaque commise en France pendant la fenêtre et ayant fait au moins un mort, hors auteurs.",
+   "sous_question": null,
+   "source_resolution": "Parquet national antiterroriste, communiqués",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "balayage C, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Attentat pour lequel le PNAT se saisit, faisant au moins un mort hors assaillant, entre le 03/10/2026 et le 30/09/2028. Pas de probabilité externe ; taux de base à calculer depuis les TE-SAT 2016-2026.",
+    "mesure": "Europol TE-SAT (annuel) ; PNAT, saisines ; chronologie Wikipédia ; niveau Vigipirate (SGDSN)."
+   }
+  },
+  {
+   "id": "EV-C2",
+   "evenement": "EV-C2",
+   "nom": "Crise d'ordre public grave outre-mer",
+   "domaine": "outre-mer",
+   "critere": "Pendant la fenêtre, un décret déclarant l'état d'urgence (loi du 3 avril 1955) sur tout ou partie d'un territoire situé outre-mer (département, région ou collectivité d'outre-mer, ou Nouvelle-Calédonie), est publié au Journal officiel ; ou un couvre-feu général (applicable à toute la population, pour un motif d'ordre public) couvrant la commune la plus peuplée de l'un de ces territoires est en vigueur au moins 7 jours consécutifs. Un couvre-feu limité aux mineurs ou motivé par un phénomène naturel ne compte pas.",
+   "sous_question": null,
+   "source_resolution": "Journal officiel ; recueils des actes administratifs des préfectures",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "balayage C, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "revise": "relecture 10",
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "État d'urgence (loi de 1955) déclaré, ou couvre-feu préfectoral couvrant l'agglomération principale d'un territoire ultramarin pendant au moins 7 jours, entre le 03/10/2026 et le 30/09/2028. Pas de probabilité externe ; précédents : NC 2024, Martinique 2024.",
+    "mesure": "Arrêtés préfectoraux (couvre-feu), décrets d'état d'urgence (JO) ; ACLED, émeutes par territoire."
+   }
+  },
+  {
+   "id": "EV-C3a",
+   "evenement": "EV-C3",
+   "nom": "Accord sur le cadre financier européen avant fin 2026",
+   "domaine": "Europe",
+   "critere": "Le Conseil européen parvient à un accord unanime sur le cadre financier pluriannuel 2028-2034, constaté dans ses conclusions, avant le 31 décembre 2026.",
+   "sous_question": "avant le 31/12/2026",
+   "source_resolution": "Conclusions du Conseil européen",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage C, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Accord unanime du Conseil européen sur le CFP 2028-2034 : (a) avant le 31/12/2026 (objectif du 17-18/12/2026, sommet extraordinaire les 26-27/11) ; (b) avant le 30/09/2028. Pas de probabilité externe.",
+    "mesure": "Conclusions du Conseil européen ; accord du Parlement européen. Proposition : 1 986,2 Md€ (prix courants)."
+   }
+  },
+  {
+   "id": "EV-C3b",
+   "evenement": "EV-C3",
+   "nom": "Accord sur le cadre financier européen avant fin septembre 2028",
+   "domaine": "Europe",
+   "critere": "Le Conseil européen parvient à un accord unanime sur le cadre financier pluriannuel 2028-2034, constaté dans ses conclusions, avant le 30 septembre 2028.",
+   "sous_question": "avant le 30/09/2028",
+   "source_resolution": "Conclusions du Conseil européen",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage C, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Accord unanime du Conseil européen sur le CFP 2028-2034 : (a) avant le 31/12/2026 (objectif du 17-18/12/2026, sommet extraordinaire les 26-27/11) ; (b) avant le 30/09/2028. Pas de probabilité externe.",
+    "mesure": "Conclusions du Conseil européen ; accord du Parlement européen. Proposition : 1 986,2 Md€ (prix courants)."
+   }
+  },
+  {
+   "id": "EV-C4",
+   "evenement": "EV-C4",
+   "nom": "Avis de la CJUE sur l'accord UE-Mercosur",
+   "domaine": "Europe",
+   "critere": "La Cour de justice de l'Union européenne rend son avis sur la demande d'avis relative à l'accord UE-Mercosur pendant la fenêtre. Issues : avis concluant à la compatibilité ; avis concluant à une incompatibilité, même partielle ; pas d'avis rendu.",
+   "sous_question": null,
+   "source_resolution": "Cour de justice de l'UE, registre et avis",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "avis rendu, compatible",
+    "avis rendu, incompatible",
+    "pas d'avis"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "balayage C, critère réécrit (relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "constat",
+   "source_accessible": true,
+   "contexte_v1": {
+    "critere": "Avis rendu entre le 03/10/2026 et le 30/09/2028 ; modalités : compatible / incompatible ; binaire dérivé : suspension de l'application provisoire. Délai évoqué : jusqu'à 18 mois après la saisine, soit vers juillet 2027. Pas de probabilité externe.",
+    "mesure": "Registre de la CJUE (avis 1/26 ou numéro à vérifier) ; Parlement européen, procédure d'approbation."
+   }
+  },
+  {
+   "id": "EV-18",
+   "evenement": "EV-18",
+   "nom": "Décision des Écologistes",
+   "domaine": "politique",
+   "critere": "Résultat du vote des adhérents des Écologistes sur la stratégie présidentielle, publié avant le 31 décembre 2026. Issues : candidature autonome d'un membre du parti ; soutien à un candidat d'une autre formation ; autre résultat, ou vote non tenu.",
+   "sous_question": null,
+   "source_resolution": "Les Écologistes, résultat publié (partie prenante, pour sa propre décision)",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "issues": [
+    "candidature autonome",
+    "soutien à un autre candidat",
+    "autre ou vote non tenu"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "constat",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-19",
+   "evenement": "EV-19",
+   "nom": "Nombre de candidats de gauche",
+   "domaine": "politique",
+   "critere": "Nombre de candidats figurant sur la liste arrêtée par le Conseil constitutionnel pour le premier tour de 2027 qui sont investis ou soutenus, par une décision publiée, par La France insoumise, le Parti socialiste, Place publique, Les Écologistes, le Parti communiste français, Debout !, Lutte ouvrière ou le Nouveau Parti anticapitaliste (l'une ou l'autre des deux organisations issues de la scission de 2022, NPA-l'Anticapitaliste et NPA-Révolutionnaires).",
+   "sous_question": null,
+   "source_resolution": "Conseil constitutionnel (liste) ; décisions publiées des partis",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "issues": [
+    "3 ou moins",
+    "4",
+    "5",
+    "6 ou plus"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-20",
+   "evenement": "EV-20",
+   "nom": "Pourvoi de Marine Le Pen",
+   "domaine": "politique",
+   "critere": "Issue, au 31 mars 2027, du pourvoi formé par Marine Le Pen contre l'arrêt de la cour d'appel de Paris du 7 juillet 2026. Une décision de non-admission est rangée avec le rejet. L'issue « cassation totale ou partielle » suppose la cassation d'au moins une disposition de l'arrêt d'appel qui concerne Marine Le Pen (culpabilité, peine ou intérêts civils), sur son pourvoi ou sur un autre ; une cassation qui ne concerne que d'autres prévenus est rangée avec le rejet.",
+   "sous_question": null,
+   "source_resolution": "Cour de cassation, arrêts et communiqués",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-03-31"
+   },
+   "issues": [
+    "rejet ou non-admission",
+    "cassation totale ou partielle",
+    "désistement",
+    "pas d'arrêt au 31 mars 2027"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-21",
+   "evenement": "EV-21",
+   "nom": "Marine Le Pen candidate",
+   "domaine": "politique",
+   "critere": "Marine Le Pen figure sur la liste des candidats au premier tour de 2027 arrêtée par le Conseil constitutionnel.",
+   "sous_question": null,
+   "source_resolution": "Conseil constitutionnel",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-23",
+   "evenement": "EV-23",
+   "nom": "Participation au premier tour",
+   "domaine": "politique",
+   "critere": "Taux de participation au premier tour de l'élection présidentielle de 2027, France entière, proclamé par le Conseil constitutionnel.",
+   "sous_question": null,
+   "source_resolution": "Conseil constitutionnel, proclamation des résultats du premier tour",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "issues": [
+    "moins de 70 %",
+    "70 à moins de 75 %",
+    "75 à moins de 80 %",
+    "80 % ou plus"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-40a",
+   "evenement": "EV-40",
+   "nom": "Qualification de Marine Le Pen au second tour",
+   "domaine": "politique",
+   "critere": "Marine Le Pen figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
+   "source_resolution": "Conseil constitutionnel",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "reference_externe": {
+    "source": "Polymarket",
+    "evenement": "Next French Presidential Election: who will advance to the 2nd round?",
+    "issues": {
+     "oui": "Marine Le Pen"
+    }
+   },
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-40b",
+   "evenement": "EV-40",
+   "nom": "Qualification de Édouard Philippe au second tour",
+   "domaine": "politique",
+   "critere": "Édouard Philippe figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
+   "source_resolution": "Conseil constitutionnel",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "reference_externe": {
+    "source": "Polymarket",
+    "evenement": "Next French Presidential Election: who will advance to the 2nd round?",
+    "issues": {
+     "oui": "Édouard Philippe"
+    }
+   },
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-40c",
+   "evenement": "EV-40",
+   "nom": "Qualification de Jean-Luc Mélenchon au second tour",
+   "domaine": "politique",
+   "critere": "Jean-Luc Mélenchon figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
+   "source_resolution": "Conseil constitutionnel",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "reference_externe": {
+    "source": "Polymarket",
+    "evenement": "Next French Presidential Election: who will advance to the 2nd round?",
+    "issues": {
+     "oui": "Jean-Luc Mélenchon"
+    }
+   },
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-40d",
+   "evenement": "EV-40",
+   "nom": "Qualification de David Lisnard au second tour",
+   "domaine": "politique",
+   "critere": "David Lisnard figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
+   "source_resolution": "Conseil constitutionnel",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "reference_externe": {
+    "source": "Polymarket",
+    "evenement": "Next French Presidential Election: who will advance to the 2nd round?",
+    "issues": {
+     "oui": "David Lisnard"
+    }
+   },
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-40e",
+   "evenement": "EV-40",
+   "nom": "Qualification de Gabriel Attal au second tour",
+   "domaine": "politique",
+   "critere": "Gabriel Attal figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
+   "source_resolution": "Conseil constitutionnel",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "reference_externe": {
+    "source": "Polymarket",
+    "evenement": "Next French Presidential Election: who will advance to the 2nd round?",
+    "issues": {
+     "oui": "Gabriel Attal"
+    }
+   },
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-40f",
+   "evenement": "EV-40",
+   "nom": "Qualification de Raphaël Glucksmann au second tour",
+   "domaine": "politique",
+   "critere": "Raphaël Glucksmann figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
+   "source_resolution": "Conseil constitutionnel",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "reference_externe": {
+    "source": "Polymarket",
+    "evenement": "Next French Presidential Election: who will advance to the 2nd round?",
+    "issues": {
+     "oui": "Raphaël Glucksmann"
+    }
+   },
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-40g",
+   "evenement": "EV-40",
+   "nom": "Qualification de Bruno Retailleau au second tour",
+   "domaine": "politique",
+   "critere": "Bruno Retailleau figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "sous_question": null,
+   "source_resolution": "Conseil constitutionnel",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "reference_externe": {
+    "source": "Polymarket",
+    "evenement": "Next French Presidential Election: who will advance to the 2nd round?",
+    "issues": {
+     "oui": "Bruno Retailleau"
+    }
+   },
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-41",
+   "evenement": "EV-41",
+   "nom": "Candidatures du bloc central",
+   "domaine": "politique",
+   "critere": "Présence d'Édouard Philippe et de Gabriel Attal sur la liste des candidats au premier tour de 2027 arrêtée par le Conseil constitutionnel.",
+   "sous_question": null,
+   "source_resolution": "Conseil constitutionnel",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "issues": [
+    "les deux",
+    "Philippe seul",
+    "Attal seul",
+    "aucun des deux"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "reference_externe": {
+    "source": "Polymarket",
+    "evenement": "2027 French Presidential Election: Attal vs Philippe",
+    "issues": {
+     "les deux": "Both",
+     "Philippe seul": "Édouard Philippe",
+     "Attal seul": "Gabriel Attal",
+     "aucun des deux": "Neither"
+    }
+   },
+   "motif_inaccessible": null,
+   "nature": "constat",
+   "acte": "présidentielle 2027, premier tour",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-39",
+   "evenement": "EV-39",
+   "nom": "Journée de mobilisation à plus de 500 000 manifestants",
+   "domaine": "société",
+   "critere": "Pendant la fenêtre, le ministère de l'Intérieur chiffre à plus de 500 000 le nombre de manifestants en France pour une même journée. Le chiffre retenu est celui du ministère, publié par lui ou rapporté par au moins deux agences de presse (AFP, Reuters, AP) ; les comptages des organisateurs ne comptent pas.",
+   "sous_question": null,
+   "source_resolution": "Ministère de l'Intérieur, directement ou rapporté par deux agences de presse",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "survenue",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-42",
+   "evenement": "EV-42",
+   "nom": "Baisse générale du prix des carburants",
+   "domaine": "économie",
+   "critere": "Pendant la fenêtre, une loi, une ordonnance ou un décret publié au Journal officiel instaure une remise sur le prix des carburants ouverte à tous les consommateurs, ou abaisse le tarif normal de l'accise applicable au gazole routier ou aux essences. Une aide ciblée (sous condition de revenu, de profession ou de kilométrage) et une baisse limitée au gazole non routier ou à une profession ne comptent pas. Les essences s'entendent des supercarburants SP95, SP95-E10 et SP98 ; le superéthanol E85 n'en fait pas partie.",
+   "sous_question": null,
+   "source_resolution": "Journal officiel",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "survenue",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-38",
+   "evenement": "EV-38",
+   "nom": "Stocks de gaz bas à la sortie de l'hiver",
+   "domaine": "énergie",
+   "critere": "Le taux de remplissage agrégé des stockages de gaz de l'Union européenne publié par AGSI+ (Gas Infrastructure Europe) pour le 1er février 2027 est strictement inférieur à 35 %. La valeur retenue est celle relevée par la collecte nocturne (API AGSI+) les 2 et 3 février 2027 et inscrite en ajout seul ; à défaut, celle affichée par AGSI+ le 3 février 2027 (capture archivée ce jour-là, ou la plus proche après). Une révision ultérieure ne change pas l'issue.",
+   "sous_question": null,
+   "source_resolution": "AGSI+ (plateforme de transparence prévue par le droit de l'UE)",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-02-01"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "constat",
+   "revise": "relecture 21",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-29",
+   "evenement": "EV-29",
+   "nom": "Militaires français en Ukraine",
+   "domaine": "défense",
+   "critere": "Pendant la fenêtre, le gouvernement informe le Parlement, au titre de l'article 35, alinéa 2, de la Constitution, d'une intervention des forces armées sur le territoire ukrainien.",
+   "sous_question": null,
+   "source_resolution": "Assemblée nationale et Sénat (déclaration du gouvernement)",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-36",
+   "evenement": "EV-36",
+   "nom": "Crédits de défense 2028 conformes à la programmation",
+   "domaine": "défense",
+   "critere": "Les crédits de paiement de la mission Défense, hors contributions au compte d'affectation spéciale Pensions, inscrits dans le projet de loi de finances pour 2028 déposé à l'Assemblée nationale, sont au moins égaux à l'annuité 2028 fixée par la loi de programmation militaire en vigueur au dépôt. Si aucun projet de loi de finances pour 2028 n'est déposé au 31 octobre 2027, la réponse est « non ».",
+   "sous_question": null,
+   "source_resolution": "Projet de loi de finances (Assemblée nationale) ; loi de programmation militaire (Légifrance)",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-10-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-35",
+   "evenement": "EV-35",
+   "nom": "Hausse des actes antimusulmans en 2026",
+   "domaine": "société",
+   "critere": "Le premier document publié pendant la fenêtre par le ministère de l'Intérieur qui donne le nombre d'actes antimusulmans recensés sur l'ensemble de l'année 2026, qu'il s'intitule « tendances » ou « bilan annuel », fait état de plus de 326 actes. Un chiffre portant sur une partie de l'année (« depuis le 1er janvier », premiers mois) ne compte pas. Le seuil de 326 est le nombre de 2025 publié dans le communiqué « Actes antireligieux – Tendances 2025 » du 12 février 2026. Si aucun nombre pour l'ensemble de 2026 n'est publié au 31 mars 2027, la question est annulée.",
+   "sous_question": null,
+   "source_resolution": "Ministère de l'Intérieur, premier document donnant le nombre d'actes antimusulmans de 2026 (tendances ou bilan annuel)",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-03-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "constat",
+   "revise": "relecture de suivi 22",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-43",
+   "evenement": "EV-43",
+   "nom": "Premier ministre issu d'un parti concurrent au premier tour",
+   "domaine": "politique",
+   "critere": "Le Premier ministre en fonction le 30 septembre 2028 est membre d'un parti qui a investi ou soutenu, par une décision publiée, au premier tour de 2027, un candidat autre que le président élu. Une coalition dont le Premier ministre vient d'un tel parti compte.",
+   "sous_question": null,
+   "source_resolution": "Journal officiel (décret de nomination) ; déclarations publiques du parti",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-44",
+   "evenement": "EV-44",
+   "nom": "Déficit visé par le premier budget du nouveau président",
+   "domaine": "finances publiques",
+   "critere": "Solde public effectif (et non structurel ni conjoncturel) de 2028 prévu par l'article liminaire de la loi de finances initiale pour 2028 publiée au Journal officiel.",
+   "sous_question": null,
+   "source_resolution": "Journal officiel (loi de finances pour 2028)",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-01-31"
+   },
+   "issues": [
+    "4,5 % du PIB ou moins",
+    "plus de 4,5 % du PIB",
+    "pas de loi de finances publiée au 31 janvier 2028"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "nature": "constat",
+   "revise": "relecture 21",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-45",
+   "evenement": "EV-45",
+   "nom": "Âge légal abaissé sous 64 ans (génération 1970)",
+   "domaine": "social",
+   "critere": "Le 30 septembre 2028, l'âge d'ouverture du droit à pension fixé par le code de la sécurité sociale (article L161-17-2 ou disposition qui le remplace) pour les assurés nés en 1970 est inférieur à 64 ans, dans la version de l'article en vigueur à cette date ; une disposition promulguée dont l'entrée en vigueur est postérieure ne compte pas. Cette génération n'est pas concernée par la suspension de la réforme de 2023 : la réponse « oui » suppose un abaissement voté.",
+   "sous_question": null,
+   "source_resolution": "Légifrance, code de la sécurité sociale",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": false,
+   "origine": "ajout du 4 octobre 2026 (analyse du périmètre, relecture 8)",
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "constat",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-46",
+   "evenement": "EV-46",
+   "nom": "Achats ciblés de la BCE (TPI ou OMT) pour la France",
+   "domaine": "finances publiques",
+   "critere": "Pendant la fenêtre, la Banque centrale européenne annonce, par un communiqué ou une décision publiée, des achats de titres de dette publique française au titre de l'instrument de protection de la transmission (TPI) ou des opérations monétaires sur titres (OMT). Des achats au titre d'autres programmes (APP, PEPP, y compris la flexibilité des réinvestissements) ne comptent pas.",
+   "sous_question": null,
+   "source_resolution": "Banque centrale européenne, communiqués et décisions",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2b",
+   "mensuelle": true,
+   "origine": "relecture 15, S12 (bloc BCE)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-28",
+   "evenement": "EV-28",
+   "nom": "Cessez-le-feu en Ukraine",
+   "domaine": "international : Ukraine",
+   "critere": "Pendant la fenêtre, les gouvernements russe et ukrainien annoncent tous deux un cessez-le-feu général couvrant l'ensemble de la ligne de front, sans terme fixé ou d'une durée prévue d'au moins 30 jours, ou un accord de paix. Une trêve de durée plus courte ne compte pas.",
+   "sous_question": "jusqu'au 30 septembre 2027",
+   "source_resolution": "Présidences russe et ukrainienne ; Conseil de sécurité de l'ONU",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2e",
+   "mensuelle": true,
+   "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "survenue",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-28b",
+   "evenement": "EV-28",
+   "nom": "Cessez-le-feu en Ukraine (seconde période)",
+   "domaine": "international : Ukraine",
+   "critere": "Pendant la fenêtre, les gouvernements russe et ukrainien annoncent tous deux un cessez-le-feu général couvrant l'ensemble de la ligne de front, sans terme fixé ou d'une durée prévue d'au moins 30 jours, ou un accord de paix. Une trêve de durée plus courte ne compte pas. Seule compte une annonce faite pendant la fenêtre : un cessez-le-feu ou un accord annoncé avant elle ne compte pas, même s'il est toujours en vigueur.",
+   "sous_question": "du 1er octobre 2027 au 30 septembre 2028",
+   "source_resolution": "Présidences russe et ukrainienne ; Conseil de sécurité de l'ONU",
+   "fenetre": {
+    "debut": "2027-10-01",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2e",
+   "mensuelle": true,
+   "origine": "relecture 15, S12 (seconde série P2e)",
+   "motif_inaccessible": null,
+   "revise": "relecture 9",
+   "nature": "survenue",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-30",
+   "evenement": "EV-30",
+   "nom": "Chambre des représentants aux démocrates",
+   "domaine": "international : États-Unis",
+   "critere": "À l'issue des élections du 3 novembre 2026, le Parti démocrate détient au moins 218 sièges à la Chambre des représentants des États-Unis, selon les résultats certifiés.",
+   "sous_question": null,
+   "source_resolution": "Clerk of the House ; certifications des États",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2e",
+   "mensuelle": false,
+   "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
+   "motif_inaccessible": null,
+   "nature": "constat",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-32",
+   "evenement": "EV-32",
+   "nom": "Restrictions chinoises sur les terres rares visant l'UE",
+   "domaine": "international : Chine",
+   "critere": "Pendant la fenêtre, des contrôles chinois à l'exportation sur des terres rares ou des aimants à base de terres rares entrent en application et s'appliquent aux exportations vers l'Union européenne, qu'il s'agisse de nouvelles mesures ou de la fin d'une suspension sans prolongation, selon les annonces ou les textes du ministère chinois du Commerce (MOFCOM). La prolongation d'une suspension ne compte pas.",
+   "sous_question": null,
+   "source_resolution": "Ministère chinois du Commerce (MOFCOM)",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-06-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2e",
+   "mensuelle": true,
+   "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
+   "motif_inaccessible": null,
+   "revise": "relecture 10",
+   "nature": "survenue",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-33",
+   "evenement": "EV-33",
+   "nom": "Suspension de l'accord UE-Israël",
+   "domaine": "international : Proche-Orient",
+   "critere": "Pendant la fenêtre, le Conseil de l'Union européenne adopte une décision suspendant tout ou partie de l'accord d'association entre l'UE et Israël.",
+   "sous_question": "jusqu'au 30 juin 2027",
+   "source_resolution": "Conseil de l'UE ; Journal officiel de l'UE",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-06-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2e",
+   "mensuelle": true,
+   "origine": "indicateur international (décision de Nathan, 4 octobre 2026), pool descriptif",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true
+  },
+  {
+   "id": "EV-33b",
+   "evenement": "EV-33",
+   "nom": "Suspension de l'accord UE-Israël (seconde période)",
+   "domaine": "international : Proche-Orient",
+   "critere": "Pendant la fenêtre, le Conseil de l'Union européenne adopte une décision suspendant tout ou partie de l'accord d'association entre l'UE et Israël. Seule compte une décision adoptée pendant la fenêtre : une suspension décidée avant elle ne compte pas, même si elle est toujours en vigueur ; une nouvelle décision qui l'étend compte.",
+   "sous_question": "du 1er juillet 2027 au 30 septembre 2028",
+   "source_resolution": "Conseil de l'UE ; Journal officiel de l'UE",
+   "fenetre": {
+    "debut": "2027-07-01",
+    "fin": "2028-09-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "pool": "P2e",
+   "mensuelle": true,
+   "origine": "relecture 15, S12 (seconde série P2e)",
+   "motif_inaccessible": null,
+   "nature": "survenue",
+   "source_accessible": true
+  }
+ ]
+}
