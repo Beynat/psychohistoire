@@ -491,6 +491,12 @@ def ecarts_marginaux(rep, m=None):
     return out
 
 
+def sigma_pondere(disp):
+    """σ d'un nœud : moyenne des dispersions par cas, pondérée par la fréquence du cas, au moins 0,3."""
+    tw = sum(w for w, _ in disp)
+    return round(max(sum(w * d for w, d in disp) / tw if tw > 0 else 0.3, 0.3), 3)
+
+
 def agreger_cas(reps, version):
     """Agrégation des lois par cas : moyenne des log-cotes cas par cas (zéro isolé au plancher) ; σ du nœud =
     dispersion moyenne entre évaluateurs. Remplace les nœuds dans tables_v0.json (anciens paramètres retirés)."""
@@ -498,17 +504,20 @@ def agreger_cas(reps, version):
     t = lire_json("modele/reseau/tables_v0.json")
     for nid in reps[0]["noeuds"]:
         ls = [lois_de(r, nid) for r in reps]
+        poids = {c: x.get("poids_reseau", 1.0) for c, x in reps[0]["noeuds"][nid]["cas"].items()}
         cas, disp = {}, []
         for c in ls[0]:
             vals = [l[c] for l in ls]
+            w = poids.get(c, 0.0)
             if isinstance(vals[0], dict):
                 cas[c] = {k: round(v, 5) for k, v in moy_loi(vals, f"{nid} [{c}]").items()}
-                disp.append(dispersion(vals))
+                disp.append((w, dispersion(vals)))
             else:
                 v = plancher(vals, PLANCHER_P, f"{nid} [{c}]")
                 cas[c] = 0.0 if all(x == 0 for x in v) else round(1 / (1 + math.exp(-statistics.mean(lo(x) for x in v))), 5)
-                disp.append(statistics.pstdev([lo(x) for x in v]))
-        t["noeuds"][nid] = {"cas": cas, "sigma": round(max(statistics.mean(disp) if disp else 0.3, 0.3), 3),
+                disp.append((w, statistics.pstdev([lo(x) for x in v])))
+        # σ du nœud : dispersion moyenne pondérée par la fréquence des cas (un cas sous verrou, de poids nul, ne compte pas)
+        t["noeuds"][nid] = {"cas": cas, "sigma": sigma_pondere(disp),
                             "evaluateurs": [r.get("evaluateur") for r in reps], "format": "lois par cas v1"}
         if ALERTES:
             t["noeuds"][nid]["alertes"] = [a for a in ALERTES if a.startswith(nid)]

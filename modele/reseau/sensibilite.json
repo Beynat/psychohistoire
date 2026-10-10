@@ -1,0 +1,268 @@
+{
+ "version_tables": "tables v0.5 (E1, E2, E3 ; chaîne présidentielle par E4, E5 Opus et E6 Sonnet sur dossier sourcé, 10 octobre 2026) ; article 12 retiré des multiplicateurs (verrou daté)",
+ "tirages": 30,
+ "trajectoires": 300,
+ "lecture": "écart-type, en points, de chaque question quand seuls les paramètres du nœud sont tirés ; total = somme sur les questions du plus fort écart-type par question",
+ "noeuds": {
+  "PV-CENSURE1a": {
+   "total": 23.5,
+   "sigma": 0.3,
+   "effets": {
+    "Q-EV-15 oui": 6.1,
+    "Q-CJ-01 oui": 5.4,
+    "Q-EV-50 oui": 4.0,
+    "Q-EV-02 oui": 1.8,
+    "Q-CJ-03 oui": 1.8,
+    "Q-CJ-04 oui": 1.7,
+    "Q-EV-49 oui": 1.2,
+    "Q-CJ-02 oui": 0.9,
+    "Q-EV-16a oui": 0.6
+   }
+  },
+  "VE-LYCEE": {
+   "total": 22.7,
+   "sigma": 0.57,
+   "effets": {
+    "Q-EV-10 oui": 9.1,
+    "Q-EV-47 oui": 7.1,
+    "Q-CJ-04 oui": 3.5,
+    "Q-EV-51 oui": 3.0
+   }
+  },
+  "VE-MOBIL": {
+   "total": 17.6,
+   "sigma": 0.376,
+   "effets": {
+    "Q-EV-39 oui": 9.4,
+    "Q-EV-13 oui": 2.5,
+    "Q-EV-10 oui": 2.1,
+    "Q-EV-51 oui": 1.1,
+    "Q-EV-47 oui": 1.0,
+    "Q-CJ-04 oui": 1.0,
+    "Q-EV-52 oui": 0.5
+   }
+  },
+  "PV-BLOC": {
+   "total": 16.2,
+   "sigma": 0.416,
+   "effets": {
+    "Q-EV-41 Philippe seul": 8.6,
+    "Q-EV-41 les deux": 6.6,
+    "Q-EV-41 Attal seul": 3.8,
+    "Q-EV-41 aucun des deux": 2.8,
+    "Q-EV-40b oui": 2.7,
+    "Q-EV-05 Édouard Philippe": 1.4,
+    "Q-EV-40c oui": 1.1,
+    "Q-EV-40g oui": 0.9,
+    "Q-EV-05 Marine Le Pen": 0.9,
+    "Q-EV-40e oui": 0.8,
+    "Q-EV-40f oui": 0.7,
+    "Q-EV-05 Bruno Retailleau": 0.7,
+    "Q-EV-05 Raphaël Glucksmann": 0.5
+   }
+  },
+  "PV-PDE": {
+   "total": 14.4,
+   "sigma": 0.87,
+   "effets": {
+    "Q-EV-04 oui": 14.4
+   }
+  },
+  "PV-DUEL": {
+   "total": 13.9,
+   "sigma": 0.3,
+   "effets": {
+    "Q-EV-40c oui": 3.9,
+    "Q-EV-40b oui": 3.6,
+    "Q-EV-40f oui": 3.0,
+    "Q-EV-05 Édouard Philippe": 1.3,
+    "Q-EV-40g oui": 1.1,
+    "Q-EV-40e oui": 1.0,
+    "Q-EV-05 Marine Le Pen": 0.9,
+    "Q-EV-05 Raphaël Glucksmann": 0.9,
+    "Q-EV-05 Bruno Retailleau": 0.8,
+    "Q-EV-05 Jean-Luc Mélenchon": 0.6
+   }
+  },
+  "PV-NOTE": {
+   "total": 13.3,
+   "sigma": 0.708,
+   "effets": {
+    "Q-EV-01 oui": 13.3
+   }
+  },
+  "PV-CENSURE2": {
+   "total": 9.4,
+   "sigma": 0.419,
+   "effets": {
+    "Q-EV-15c oui": 9.4
+   }
+  },
+  "PV-GOUV": {
+   "total": 9.0,
+   "sigma": 0.3,
+   "effets": {
+    "Q-EV-50 oui": 4.0,
+    "Q-CJ-01 oui": 1.5,
+    "Q-CJ-04 oui": 1.5,
+    "Q-EV-49 oui": 1.2,
+    "Q-CJ-03 oui": 0.8
+   }
+  },
+  "PV-DISSOL1": {
+   "total": 8.1,
+   "sigma": 0.3,
+   "effets": {
+    "Q-EV-16a oui": 3.2,
+    "Q-CJ-02 oui": 2.5,
+    "Q-EV-16b oui": 1.8,
+    "Q-EV-17 oui": 0.6
+   }
+  },
+  "PV-ECOLO": {
+   "total": 8.0,
+   "sigma": 0.3,
+   "effets": {
+    "Q-EV-18 soutien à un autre candidat": 5.9,
+    "Q-EV-18 candidature autonome": 5.5,
+    "Q-EV-19 6 ou plus": 2.1,
+    "Q-EV-18 autre ou vote non tenu": 1.8,
+    "Q-EV-19 5": 1.2,
+    "Q-EV-19 4": 0.6
+   }
+  },
+  "PV-MAJOR": {
+   "total": 7.9,
+   "sigma": 0.3,
+   "effets": {
+    "Q-EV-17 oui": 3.6,
+    "Q-EV-43 oui": 2.3,
+    "Q-EV-45 oui": 1.2,
+    "Q-EV-15c oui": 0.8
+   }
+  },
+  "PV-GAUCHE": {
+   "total": 6.3,
+   "sigma": 0.3,
+   "effets": {
+    "Q-EV-19 4": 6.3,
+    "Q-EV-19 5": 6.2,
+    "Q-EV-19 6 ou plus": 5.8,
+    "Q-EV-19 3 ou moins": 2.9
+   }
+  },
+  "PV-DISSOL2a": {
+   "total": 5.9,
+   "sigma": 0.4,
+   "effets": {
+    "Q-EV-16b oui": 3.5,
+    "Q-EV-17 oui": 1.0,
+    "Q-EV-43 oui": 0.9,
+    "Q-EV-45 oui": 0.5
+   }
+  },
+  "PV-POURVOI": {
+   "total": 5.7,
+   "sigma": 0.3,
+   "effets": {
+    "Q-EV-20 rejet ou non-admission": 2.0,
+    "Q-EV-20 pas d'arrêt au 31 mars 2027": 1.8,
+    "Q-EV-20 cassation totale ou partielle": 1.5,
+    "Q-EV-21 oui": 1.3,
+    "Q-EV-40a oui": 1.3,
+    "Q-EV-05 Marine Le Pen": 1.1,
+    "Q-EV-05 Jordan Bardella": 1.1,
+    "Q-EV-20 désistement": 0.6
+   }
+  },
+  "PV-BUDGET": {
+   "total": 5.6,
+   "sigma": 0.39,
+   "effets": {
+    "Q-EV-02 oui": 5.0,
+    "Q-CJ-02 oui": 0.6
+   }
+  },
+  "PV-DISSOL2b": {
+   "total": 5.5,
+   "sigma": 0.4,
+   "effets": {
+    "Q-EV-16b oui": 4.2,
+    "Q-EV-17 oui": 1.3
+   }
+  },
+  "PV-CENSURE1b": {
+   "total": 5.2,
+   "sigma": 0.3,
+   "effets": {
+    "Q-EV-15b oui": 2.5,
+    "Q-EV-50 oui": 1.3,
+    "Q-EV-16a oui": 0.8,
+    "Q-CJ-02 oui": 0.6
+   }
+  },
+  "PV-LEPEN": {
+   "total": 5.0,
+   "sigma": 0.3,
+   "effets": {
+    "Q-EV-21 oui": 2.0,
+    "Q-EV-40a oui": 1.9,
+    "Q-EV-05 Marine Le Pen": 1.1,
+    "Q-EV-05 Jordan Bardella": 1.1
+   }
+  },
+  "PV-VAINQ": {
+   "total": 2.1,
+   "sigma": 0.3,
+   "effets": {
+    "Q-EV-05 Marine Le Pen": 2.1,
+    "Q-EV-05 Édouard Philippe": 2.0,
+    "Q-EV-05 Jean-Luc Mélenchon": 0.9,
+    "Q-EV-05 Raphaël Glucksmann": 0.8,
+    "Q-EV-05 Jordan Bardella": 0.7
+   }
+  },
+  "PV-AUDIENCE": {
+   "total": 1.9,
+   "sigma": 0.3,
+   "effets": {
+    "Q-EV-20 pas d'arrêt au 31 mars 2027": 1.9,
+    "Q-EV-20 rejet ou non-admission": 1.2,
+    "Q-EV-20 cassation totale ou partielle": 0.8
+   }
+  },
+  "VE-ECART": {
+   "total": 1.7,
+   "sigma": 0.402,
+   "effets": {
+    "Q-EV-01 oui": 1.7
+   }
+  },
+  "PV-TPI": {
+   "total": 1.2,
+   "sigma": 0.47,
+   "effets": {
+    "Q-EV-46 oui": 1.2
+   }
+  },
+  "VE-SOND": {
+   "total": 1.1,
+   "sigma": 0.3,
+   "effets": {
+    "Q-EV-40b oui": 0.6,
+    "Q-EV-40c oui": 0.5
+   }
+  },
+  "VE-POP": {
+   "total": 0,
+   "sigma": 0.316,
+   "effets": {}
+  },
+  "VE-RN": {
+   "total": 0,
+   "sigma": 0.3,
+   "effets": {}
+  }
+ },
+ "note": "Calculée sur les tables v0.5 (avant la ronde de l'étape 4), 30 tirages × 300 trajectoires par nœud, nombres aléatoires propres à chaque nœud."
+}

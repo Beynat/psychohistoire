@@ -1,0 +1,1733 @@
+{
+ "evaluateur": "E7",
+ "date": "2026-10-10",
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "PV-NOTE": {
+   "nom": "Dégradation de la note par une agence",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-ECART",
+     "nom": "Écart OAT-Bund 10 ans (moyenne du mois)",
+     "etats": [
+      "< 120 pb",
+      "120-160 pb",
+      "> 160 pb"
+     ],
+     "decalage": 1,
+     "definition": "moyenne mensuelle de l'écart (série BCE collectée)"
+    },
+    {
+     "id": "PV-BUDGET",
+     "nom": "Loi de finances pour 2027 au 31 décembre 2026",
+     "etats": [
+      "publiée",
+      "non publiée"
+     ],
+     "decalage": 0,
+     "definition": "2026-12-31"
+    },
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0472,
+     "loi": {
+      "oui": 0.6
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 publiée au 31 décembre et une victoire RN, la probabilité d'au moins un abaissement d'un cran est de 0.63 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.63 -> 0.60 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0183,
+     "loi": {
+      "oui": 0.45
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 publiée au 31 décembre et une victoire PHI, la probabilité d'au moins un abaissement d'un cran est de 0.48 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.48 -> 0.45 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "oui": 0.45
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 publiée au 31 décembre et une victoire ATT, la probabilité d'au moins un abaissement d'un cran est de 0.48 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.48 -> 0.45 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0037,
+     "loi": {
+      "oui": 0.73
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 publiée au 31 décembre et une victoire MEL, la probabilité d'au moins un abaissement d'un cran est de 0.78 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.78 -> 0.73 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": 0.55
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 publiée au 31 décembre et une victoire GLU, la probabilité d'au moins un abaissement d'un cran est de 0.58 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.58 -> 0.55 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "oui": 0.5
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 publiée au 31 décembre et une victoire RET, la probabilité d'au moins un abaissement d'un cran est de 0.53 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.53 -> 0.50 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "oui": 0.45
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 publiée au 31 décembre et une victoire LIS, la probabilité d'au moins un abaissement d'un cran est de 0.48 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.48 -> 0.45 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0031,
+     "loi": {
+      "oui": 0.5
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 publiée au 31 décembre et une victoire AUT, la probabilité d'au moins un abaissement d'un cran est de 0.53 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.53 -> 0.50 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0941,
+     "loi": {
+      "oui": 0.68
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 non publiée au 31 décembre et une victoire RN, la probabilité d'au moins un abaissement d'un cran est de 0.71 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.71 -> 0.68 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0375,
+     "loi": {
+      "oui": 0.53
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 non publiée au 31 décembre et une victoire PHI, la probabilité d'au moins un abaissement d'un cran est de 0.56 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.56 -> 0.53 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.003,
+     "loi": {
+      "oui": 0.53
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 non publiée au 31 décembre et une victoire ATT, la probabilité d'au moins un abaissement d'un cran est de 0.56 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.56 -> 0.53 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0074,
+     "loi": {
+      "oui": 0.81
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 non publiée au 31 décembre et une victoire MEL, la probabilité d'au moins un abaissement d'un cran est de 0.86 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.86 -> 0.81 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0035,
+     "loi": {
+      "oui": 0.63
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 non publiée au 31 décembre et une victoire GLU, la probabilité d'au moins un abaissement d'un cran est de 0.66 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.66 -> 0.63 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "oui": 0.58
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 non publiée au 31 décembre et une victoire RET, la probabilité d'au moins un abaissement d'un cran est de 0.61 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.61 -> 0.58 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.53
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 non publiée au 31 décembre et une victoire LIS, la probabilité d'au moins un abaissement d'un cran est de 0.56 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.56 -> 0.53 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0065,
+     "loi": {
+      "oui": 0.58
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart < 120 pb, un budget 2027 non publiée au 31 décembre et une victoire AUT, la probabilité d'au moins un abaissement d'un cran est de 0.61 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.61 -> 0.58 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.1241,
+     "loi": {
+      "oui": 0.75
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 publiée au 31 décembre et une victoire RN, la probabilité d'au moins un abaissement d'un cran est de 0.75 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0463,
+     "loi": {
+      "oui": 0.6
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 publiée au 31 décembre et une victoire PHI, la probabilité d'au moins un abaissement d'un cran est de 0.60 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0037,
+     "loi": {
+      "oui": 0.6
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 publiée au 31 décembre et une victoire ATT, la probabilité d'au moins un abaissement d'un cran est de 0.60 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0098,
+     "loi": {
+      "oui": 0.88
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 publiée au 31 décembre et une victoire MEL, la probabilité d'au moins un abaissement d'un cran est de 0.90 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.90 -> 0.88 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "oui": 0.7
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 publiée au 31 décembre et une victoire GLU, la probabilité d'au moins un abaissement d'un cran est de 0.70 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0029,
+     "loi": {
+      "oui": 0.65
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 publiée au 31 décembre et une victoire RET, la probabilité d'au moins un abaissement d'un cran est de 0.65 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": 0.6
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 publiée au 31 décembre et une victoire LIS, la probabilité d'au moins un abaissement d'un cran est de 0.60 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0109,
+     "loi": {
+      "oui": 0.65
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 publiée au 31 décembre et une victoire AUT, la probabilité d'au moins un abaissement d'un cran est de 0.65 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.2754,
+     "loi": {
+      "oui": 0.82
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 non publiée au 31 décembre et une victoire RN, la probabilité d'au moins un abaissement d'un cran est de 0.82 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.1062,
+     "loi": {
+      "oui": 0.67
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 non publiée au 31 décembre et une victoire PHI, la probabilité d'au moins un abaissement d'un cran est de 0.67 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0074,
+     "loi": {
+      "oui": 0.67
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 non publiée au 31 décembre et une victoire ATT, la probabilité d'au moins un abaissement d'un cran est de 0.67 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0187,
+     "loi": {
+      "oui": 0.95
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 non publiée au 31 décembre et une victoire MEL, la probabilité d'au moins un abaissement d'un cran est de 0.97 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent. Ronde 2 : 0.97 -> 0.95 ; jugement : un écart durablement sous 120 pb signale que les marchés ne jugent pas la trajectoire hors de contrôle, ce qui retient davantage les agences (effet porté à -0,15 avec budget publié, -0,07 sans) ; prime MEL légèrement réduite (0,88), son programme ne se traduisant pas par une dégradation certaine si les taux restent sages."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0111,
+     "loi": {
+      "oui": 0.77
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 non publiée au 31 décembre et une victoire GLU, la probabilité d'au moins un abaissement d'un cran est de 0.77 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0062,
+     "loi": {
+      "oui": 0.72
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 non publiée au 31 décembre et une victoire RET, la probabilité d'au moins un abaissement d'un cran est de 0.72 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "oui": 0.67
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 non publiée au 31 décembre et une victoire LIS, la probabilité d'au moins un abaissement d'un cran est de 0.67 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0196,
+     "loi": {
+      "oui": 0.72
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart 120-160 pb, un budget 2027 non publiée au 31 décembre et une victoire AUT, la probabilité d'au moins un abaissement d'un cran est de 0.72 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0214,
+     "loi": {
+      "oui": 0.87
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 publiée au 31 décembre et une victoire RN, la probabilité d'au moins un abaissement d'un cran est de 0.87 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0078,
+     "loi": {
+      "oui": 0.72
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 publiée au 31 décembre et une victoire PHI, la probabilité d'au moins un abaissement d'un cran est de 0.72 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.72
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 publiée au 31 décembre et une victoire ATT, la probabilité d'au moins un abaissement d'un cran est de 0.72 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "oui": 0.97
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 publiée au 31 décembre et une victoire MEL, la probabilité d'au moins un abaissement d'un cran est de 0.97 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "oui": 0.82
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 publiée au 31 décembre et une victoire GLU, la probabilité d'au moins un abaissement d'un cran est de 0.82 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "oui": 0.77
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 publiée au 31 décembre et une victoire RET, la probabilité d'au moins un abaissement d'un cran est de 0.77 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "oui": 0.72
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 publiée au 31 décembre et une victoire LIS, la probabilité d'au moins un abaissement d'un cran est de 0.72 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0026,
+     "loi": {
+      "oui": 0.77
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 publiée au 31 décembre et une victoire AUT, la probabilité d'au moins un abaissement d'un cran est de 0.77 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0525,
+     "loi": {
+      "oui": 0.92
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 non publiée au 31 décembre et une victoire RN, la probabilité d'au moins un abaissement d'un cran est de 0.92 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0196,
+     "loi": {
+      "oui": 0.77
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 non publiée au 31 décembre et une victoire PHI, la probabilité d'au moins un abaissement d'un cran est de 0.77 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "oui": 0.77
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 non publiée au 31 décembre et une victoire ATT, la probabilité d'au moins un abaissement d'un cran est de 0.77 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0042,
+     "loi": {
+      "oui": 0.97
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 non publiée au 31 décembre et une victoire MEL, la probabilité d'au moins un abaissement d'un cran est de 0.97 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0016,
+     "loi": {
+      "oui": 0.87
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 non publiée au 31 décembre et une victoire GLU, la probabilité d'au moins un abaissement d'un cran est de 0.87 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0015,
+     "loi": {
+      "oui": 0.82
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 non publiée au 31 décembre et une victoire RET, la probabilité d'au moins un abaissement d'un cran est de 0.82 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": 0.77
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 non publiée au 31 décembre et une victoire LIS, la probabilité d'au moins un abaissement d'un cran est de 0.77 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0036,
+     "loi": {
+      "oui": 0.82
+     },
+     "justification": "Sources : AFT, notations de la France (https://www.aft.gouv.fr/en/frances-credit-ratings) : Moody's Aa3 perspective négative, revue le 23 octobre 2026 ; S&P A+ stable, revue le 27 novembre 2026 ; Fitch A+ stable confirmée le 28 août 2026. Écart OAT-Bund vers 124 pb le 30 septembre 2026, plus haut depuis 2012 (Reuters cité par france-epargne.fr). Jugement : sur deux ans et environ huit revues programmées de trois agences, avec un écart > 160 pb, un budget 2027 non publiée au 31 décembre et une victoire AUT, la probabilité d'au moins un abaissement d'un cran est de 0.82 ; la perspective négative de Moody's rend le risque élevé dès octobre 2026, un programme de dépense non financé (MEL, RN) l'augmente, une alternance centriste et un budget voté le réduisent."
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-PDE": {
+   "nom": "Durcissement de la procédure de déficit excessif",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-BUDGET",
+     "nom": "Loi de finances pour 2027 au 31 décembre 2026",
+     "etats": [
+      "publiée",
+      "non publiée"
+     ],
+     "decalage": 0,
+     "definition": "2026-12-31"
+    },
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.1894,
+     "loi": {
+      "oui": 0.2
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est publiée et que RN gagne, probabilité 0.20, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.067,
+     "loi": {
+      "oui": 0.09
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est publiée et que PHI gagne, probabilité 0.09, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0065,
+     "loi": {
+      "oui": 0.09
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est publiée et que ATT gagne, probabilité 0.09, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0149,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est publiée et que MEL gagne, probabilité 0.35, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0082,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est publiée et que GLU gagne, probabilité 0.15, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.003,
+     "loi": {
+      "oui": 0.18
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est publiée et que RET gagne, probabilité 0.18, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est publiée et que LIS gagne, probabilité 0.12, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0146,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est publiée et que AUT gagne, probabilité 0.12, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.434,
+     "loi": {
+      "oui": 0.24
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est non publiée et que RN gagne, probabilité 0.24, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.1629,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est non publiée et que PHI gagne, probabilité 0.12, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0116,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est non publiée et que ATT gagne, probabilité 0.12, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0306,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est non publiée et que MEL gagne, probabilité 0.40, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0136,
+     "loi": {
+      "oui": 0.18
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est non publiée et que GLU gagne, probabilité 0.18, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0108,
+     "loi": {
+      "oui": 0.22
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est non publiée et que RET gagne, probabilité 0.22, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est non publiée et que LIS gagne, probabilité 0.15, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0311,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "Source : recommandation du Conseil COM(2026) 210 du 3 juin 2026 : la PDE visant la France est « suspendue » (action suivie d'effets jugée satisfaisante), mais la Commission prévoit 5,7 % de déficit en 2027 et un dépassement du plafond de dépenses nettes. Jugement : une décision au titre de l'article 126 §8 ou §9 est rare (France 2003 bloquée, Hongrie 2012) ; si le budget 2027 est non publiée et que AUT gagne, probabilité 0.15, plus forte si le nouveau pouvoir assume une dérive budgétaire et défie le cadre européen."
+    }
+   },
+   "verrous": []
+  },
+  "PV-CENSURE1a": {
+   "nom": "Censure d'ici fin 2026 (session budgétaire)",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2026-12-31"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-POP=< 25 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.5223,
+     "loi": {
+      "oui": 0.17
+     },
+     "justification": "Sources : calendrier du PLF 2027, vote sur l'ensemble le 17 novembre, délai de 70 jours le 10 décembre (nosparlementaires.fr, 9 octobre 2026) ; le PS juge le projet « provocation » sans menacer de censure (AFP, 7 octobre) ; le RN (122 députés) ne s'interdit pas la censure (journaldunet, 18 septembre 2026) ; en 2025-2026, huit motions ont échoué, la plus haute à 269 voix. Jugement : seule la censure Barnier (décembre 2024) a abouti sous la Ve depuis 1962 ; un 49.3 ou des ordonnances rendent un vote possible, mais le PS et le RN hésitent à renverser un gouvernement à six mois de la présidentielle ; avec une popularité < 25 % et une mobilisation calme, probabilité 0.17."
+    },
+    "VE-POP=< 25 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.3846,
+     "loi": {
+      "oui": 0.22
+     },
+     "justification": "Sources : calendrier du PLF 2027, vote sur l'ensemble le 17 novembre, délai de 70 jours le 10 décembre (nosparlementaires.fr, 9 octobre 2026) ; le PS juge le projet « provocation » sans menacer de censure (AFP, 7 octobre) ; le RN (122 députés) ne s'interdit pas la censure (journaldunet, 18 septembre 2026) ; en 2025-2026, huit motions ont échoué, la plus haute à 269 voix. Jugement : seule la censure Barnier (décembre 2024) a abouti sous la Ve depuis 1962 ; un 49.3 ou des ordonnances rendent un vote possible, mais le PS et le RN hésitent à renverser un gouvernement à six mois de la présidentielle ; avec une popularité < 25 % et une mobilisation modérée, probabilité 0.22."
+    },
+    "VE-POP=< 25 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0793,
+     "loi": {
+      "oui": 0.3
+     },
+     "justification": "Sources : calendrier du PLF 2027, vote sur l'ensemble le 17 novembre, délai de 70 jours le 10 décembre (nosparlementaires.fr, 9 octobre 2026) ; le PS juge le projet « provocation » sans menacer de censure (AFP, 7 octobre) ; le RN (122 députés) ne s'interdit pas la censure (journaldunet, 18 septembre 2026) ; en 2025-2026, huit motions ont échoué, la plus haute à 269 voix. Jugement : seule la censure Barnier (décembre 2024) a abouti sous la Ve depuis 1962 ; un 49.3 ou des ordonnances rendent un vote possible, mais le PS et le RN hésitent à renverser un gouvernement à six mois de la présidentielle ; avec une popularité < 25 % et une mobilisation forte, probabilité 0.30."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0069,
+     "loi": {
+      "oui": 0.13
+     },
+     "justification": "Sources : calendrier du PLF 2027, vote sur l'ensemble le 17 novembre, délai de 70 jours le 10 décembre (nosparlementaires.fr, 9 octobre 2026) ; le PS juge le projet « provocation » sans menacer de censure (AFP, 7 octobre) ; le RN (122 députés) ne s'interdit pas la censure (journaldunet, 18 septembre 2026) ; en 2025-2026, huit motions ont échoué, la plus haute à 269 voix. Jugement : seule la censure Barnier (décembre 2024) a abouti sous la Ve depuis 1962 ; un 49.3 ou des ordonnances rendent un vote possible, mais le PS et le RN hésitent à renverser un gouvernement à six mois de la présidentielle ; avec une popularité 25-35 % et une mobilisation calme, probabilité 0.13."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0049,
+     "loi": {
+      "oui": 0.17
+     },
+     "justification": "Sources : calendrier du PLF 2027, vote sur l'ensemble le 17 novembre, délai de 70 jours le 10 décembre (nosparlementaires.fr, 9 octobre 2026) ; le PS juge le projet « provocation » sans menacer de censure (AFP, 7 octobre) ; le RN (122 députés) ne s'interdit pas la censure (journaldunet, 18 septembre 2026) ; en 2025-2026, huit motions ont échoué, la plus haute à 269 voix. Jugement : seule la censure Barnier (décembre 2024) a abouti sous la Ve depuis 1962 ; un 49.3 ou des ordonnances rendent un vote possible, mais le PS et le RN hésitent à renverser un gouvernement à six mois de la présidentielle ; avec une popularité 25-35 % et une mobilisation modérée, probabilité 0.17."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "oui": 0.24
+     },
+     "justification": "Sources : calendrier du PLF 2027, vote sur l'ensemble le 17 novembre, délai de 70 jours le 10 décembre (nosparlementaires.fr, 9 octobre 2026) ; le PS juge le projet « provocation » sans menacer de censure (AFP, 7 octobre) ; le RN (122 députés) ne s'interdit pas la censure (journaldunet, 18 septembre 2026) ; en 2025-2026, huit motions ont échoué, la plus haute à 269 voix. Jugement : seule la censure Barnier (décembre 2024) a abouti sous la Ve depuis 1962 ; un 49.3 ou des ordonnances rendent un vote possible, mais le PS et le RN hésitent à renverser un gouvernement à six mois de la présidentielle ; avec une popularité 25-35 % et une mobilisation forte, probabilité 0.24."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "Sources : calendrier du PLF 2027, vote sur l'ensemble le 17 novembre, délai de 70 jours le 10 décembre (nosparlementaires.fr, 9 octobre 2026) ; le PS juge le projet « provocation » sans menacer de censure (AFP, 7 octobre) ; le RN (122 députés) ne s'interdit pas la censure (journaldunet, 18 septembre 2026) ; en 2025-2026, huit motions ont échoué, la plus haute à 269 voix. Jugement : seule la censure Barnier (décembre 2024) a abouti sous la Ve depuis 1962 ; un 49.3 ou des ordonnances rendent un vote possible, mais le PS et le RN hésitent à renverser un gouvernement à six mois de la présidentielle ; avec une popularité > 35 % et une mobilisation calme, probabilité 0.10."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "oui": 0.13
+     },
+     "justification": "Sources : calendrier du PLF 2027, vote sur l'ensemble le 17 novembre, délai de 70 jours le 10 décembre (nosparlementaires.fr, 9 octobre 2026) ; le PS juge le projet « provocation » sans menacer de censure (AFP, 7 octobre) ; le RN (122 députés) ne s'interdit pas la censure (journaldunet, 18 septembre 2026) ; en 2025-2026, huit motions ont échoué, la plus haute à 269 voix. Jugement : seule la censure Barnier (décembre 2024) a abouti sous la Ve depuis 1962 ; un 49.3 ou des ordonnances rendent un vote possible, mais le PS et le RN hésitent à renverser un gouvernement à six mois de la présidentielle ; avec une popularité > 35 % et une mobilisation modérée, probabilité 0.13."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.2
+     },
+     "justification": "Sources : calendrier du PLF 2027, vote sur l'ensemble le 17 novembre, délai de 70 jours le 10 décembre (nosparlementaires.fr, 9 octobre 2026) ; le PS juge le projet « provocation » sans menacer de censure (AFP, 7 octobre) ; le RN (122 députés) ne s'interdit pas la censure (journaldunet, 18 septembre 2026) ; en 2025-2026, huit motions ont échoué, la plus haute à 269 voix. Jugement : seule la censure Barnier (décembre 2024) a abouti sous la Ve depuis 1962 ; un 49.3 ou des ordonnances rendent un vote possible, mais le PS et le RN hésitent à renverser un gouvernement à six mois de la présidentielle ; avec une popularité > 35 % et une mobilisation forte, probabilité 0.20."
+    }
+   },
+   "verrous": []
+  },
+  "PV-CENSURE1b": {
+   "nom": "Censure de janvier au second tour",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-01-01",
+    "2027-05-02"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-POP=< 25 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.6853,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Source : clôture anticipée de la session ordinaire au 28 février 2027 (nosparlementaires.fr, 9 octobre 2026) ; précédent de janvier-février 2026, budget adopté par 49.3 le 2 février sans censure. Jugement : fenêtre utile courte (janvier-février, si le budget glisse), campagne présidentielle ensuite, et les oppositions n'ont plus d'intérêt à renverser un gouvernement sortant ; popularité < 25 %, mobilisation calme : 0.08."
+    },
+    "VE-POP=< 25 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.1452,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "Source : clôture anticipée de la session ordinaire au 28 février 2027 (nosparlementaires.fr, 9 octobre 2026) ; précédent de janvier-février 2026, budget adopté par 49.3 le 2 février sans censure. Jugement : fenêtre utile courte (janvier-février, si le budget glisse), campagne présidentielle ensuite, et les oppositions n'ont plus d'intérêt à renverser un gouvernement sortant ; popularité < 25 %, mobilisation modérée : 0.10."
+    },
+    "VE-POP=< 25 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0351,
+     "loi": {
+      "oui": 0.14
+     },
+     "justification": "Source : clôture anticipée de la session ordinaire au 28 février 2027 (nosparlementaires.fr, 9 octobre 2026) ; précédent de janvier-février 2026, budget adopté par 49.3 le 2 février sans censure. Jugement : fenêtre utile courte (janvier-février, si le budget glisse), campagne présidentielle ensuite, et les oppositions n'ont plus d'intérêt à renverser un gouvernement sortant ; popularité < 25 %, mobilisation forte : 0.14."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0998,
+     "loi": {
+      "oui": 0.06
+     },
+     "justification": "Source : clôture anticipée de la session ordinaire au 28 février 2027 (nosparlementaires.fr, 9 octobre 2026) ; précédent de janvier-février 2026, budget adopté par 49.3 le 2 février sans censure. Jugement : fenêtre utile courte (janvier-février, si le budget glisse), campagne présidentielle ensuite, et les oppositions n'ont plus d'intérêt à renverser un gouvernement sortant ; popularité 25-35 %, mobilisation calme : 0.06."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0147,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Source : clôture anticipée de la session ordinaire au 28 février 2027 (nosparlementaires.fr, 9 octobre 2026) ; précédent de janvier-février 2026, budget adopté par 49.3 le 2 février sans censure. Jugement : fenêtre utile courte (janvier-février, si le budget glisse), campagne présidentielle ensuite, et les oppositions n'ont plus d'intérêt à renverser un gouvernement sortant ; popularité 25-35 %, mobilisation modérée : 0.08."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0045,
+     "loi": {
+      "oui": 0.11
+     },
+     "justification": "Source : clôture anticipée de la session ordinaire au 28 février 2027 (nosparlementaires.fr, 9 octobre 2026) ; précédent de janvier-février 2026, budget adopté par 49.3 le 2 février sans censure. Jugement : fenêtre utile courte (janvier-février, si le budget glisse), campagne présidentielle ensuite, et les oppositions n'ont plus d'intérêt à renverser un gouvernement sortant ; popularité 25-35 %, mobilisation forte : 0.11."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0141,
+     "loi": {
+      "oui": 0.05
+     },
+     "justification": "Source : clôture anticipée de la session ordinaire au 28 février 2027 (nosparlementaires.fr, 9 octobre 2026) ; précédent de janvier-février 2026, budget adopté par 49.3 le 2 février sans censure. Jugement : fenêtre utile courte (janvier-février, si le budget glisse), campagne présidentielle ensuite, et les oppositions n'ont plus d'intérêt à renverser un gouvernement sortant ; popularité > 35 %, mobilisation calme : 0.05."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": 0.06
+     },
+     "justification": "Source : clôture anticipée de la session ordinaire au 28 février 2027 (nosparlementaires.fr, 9 octobre 2026) ; précédent de janvier-février 2026, budget adopté par 49.3 le 2 février sans censure. Jugement : fenêtre utile courte (janvier-février, si le budget glisse), campagne présidentielle ensuite, et les oppositions n'ont plus d'intérêt à renverser un gouvernement sortant ; popularité > 35 %, mobilisation modérée : 0.06."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "oui": 0.09
+     },
+     "justification": "Source : clôture anticipée de la session ordinaire au 28 février 2027 (nosparlementaires.fr, 9 octobre 2026) ; précédent de janvier-février 2026, budget adopté par 49.3 le 2 février sans censure. Jugement : fenêtre utile courte (janvier-février, si le budget glisse), campagne présidentielle ensuite, et les oppositions n'ont plus d'intérêt à renverser un gouvernement sortant ; popularité > 35 %, mobilisation forte : 0.09."
+    }
+   },
+   "verrous": []
+  },
+  "PV-DISSOL2a": {
+   "nom": "Dissolution dans les deux mois suivant le second tour",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    },
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "PV-DISSOL1",
+     "nom": "Dissolution avant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2027-05-02"
+     ]
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-05-03",
+    "2027-06-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0081,
+     "loi": {
+      "oui": 0.52
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RN face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.45. Ronde 2 : 0.45 -> 0.52 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.4943,
+     "loi": {
+      "oui": 0.77
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RN face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.70. Ronde 2 : 0.70 -> 0.77 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "oui": 0.55
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RN face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.55."
+    },
+    "PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.1013,
+     "loi": {
+      "oui": 0.8
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RN face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.80."
+    },
+    "PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.57
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RN face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.60. Ronde 2 : 0.60 -> 0.57 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0147,
+     "loi": {
+      "oui": 0.82
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RN face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.85. Ronde 2 : 0.85 -> 0.82 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0029,
+     "loi": {
+      "oui": 0.44
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président PHI face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.37. Ronde 2 : 0.37 -> 0.44 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.186,
+     "loi": {
+      "oui": 0.69
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président PHI face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.62. Ronde 2 : 0.62 -> 0.69 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=PHI|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "oui": 0.47
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président PHI face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.47."
+    },
+    "PV-VAINQ=PHI|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0343,
+     "loi": {
+      "oui": 0.72
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président PHI face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.72."
+    },
+    "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.49
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président PHI face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.52. Ronde 2 : 0.52 -> 0.49 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0071,
+     "loi": {
+      "oui": 0.74
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président PHI face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.77. Ronde 2 : 0.77 -> 0.74 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=ATT|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président ATT face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.33. Ronde 2 : 0.33 -> 0.40 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=ATT|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0119,
+     "loi": {
+      "oui": 0.65
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président ATT face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.58. Ronde 2 : 0.58 -> 0.65 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=ATT|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.43
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président ATT face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.43."
+    },
+    "PV-VAINQ=ATT|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0048,
+     "loi": {
+      "oui": 0.68
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président ATT face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.68."
+    },
+    "PV-VAINQ=ATT|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.45
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président ATT face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.48. Ronde 2 : 0.48 -> 0.45 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=ATT|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "oui": 0.7
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président ATT face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.73. Ronde 2 : 0.73 -> 0.70 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=MEL|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.54
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président MEL face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.47. Ronde 2 : 0.47 -> 0.54 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=MEL|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0333,
+     "loi": {
+      "oui": 0.79
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président MEL face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.72. Ronde 2 : 0.72 -> 0.79 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=MEL|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.57
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président MEL face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.57."
+    },
+    "PV-VAINQ=MEL|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0076,
+     "loi": {
+      "oui": 0.82
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président MEL face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.82."
+    },
+    "PV-VAINQ=MEL|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.59
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président MEL face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.62. Ronde 2 : 0.62 -> 0.59 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=MEL|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "oui": 0.84
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président MEL face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.87. Ronde 2 : 0.87 -> 0.84 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=GLU|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président GLU face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.33. Ronde 2 : 0.33 -> 0.40 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=GLU|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0176,
+     "loi": {
+      "oui": 0.65
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président GLU face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.58. Ronde 2 : 0.58 -> 0.65 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=GLU|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.43
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président GLU face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.43."
+    },
+    "PV-VAINQ=GLU|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "oui": 0.68
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président GLU face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.68."
+    },
+    "PV-VAINQ=GLU|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.45
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président GLU face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.48. Ronde 2 : 0.48 -> 0.45 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=GLU|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.7
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président GLU face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.73. Ronde 2 : 0.73 -> 0.70 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=RET|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.52
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RET face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.45. Ronde 2 : 0.45 -> 0.52 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=RET|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0152,
+     "loi": {
+      "oui": 0.77
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RET face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.70. Ronde 2 : 0.70 -> 0.77 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.55
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RET face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.55."
+    },
+    "PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "oui": 0.8
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RET face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.80."
+    },
+    "PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.57
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RET face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.60. Ronde 2 : 0.60 -> 0.57 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.82
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président RET face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.85. Ronde 2 : 0.85 -> 0.82 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=LIS|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.32
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président LIS face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.25. Ronde 2 : 0.25 -> 0.32 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=LIS|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "oui": 0.57
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président LIS face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.50. Ronde 2 : 0.50 -> 0.57 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=LIS|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président LIS face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.35."
+    },
+    "PV-VAINQ=LIS|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.6
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président LIS face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.60."
+    },
+    "PV-VAINQ=LIS|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.37
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président LIS face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.40. Ronde 2 : 0.40 -> 0.37 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=LIS|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.62
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président LIS face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.65. Ronde 2 : 0.65 -> 0.62 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=AUT|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.32
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président AUT face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.25. Ronde 2 : 0.25 -> 0.32 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=AUT|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0347,
+     "loi": {
+      "oui": 0.57
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président AUT face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité < 25 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.50. Ronde 2 : 0.50 -> 0.57 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=AUT|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président AUT face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.35."
+    },
+    "PV-VAINQ=AUT|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0076,
+     "loi": {
+      "oui": 0.6
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président AUT face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité 25-35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.60."
+    },
+    "PV-VAINQ=AUT|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.37
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président AUT face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; une Assemblée élue quelques mois plus tôt (dissolution avant le second tour) réduit fortement l'intérêt d'une nouvelle dissolution, verrou mis à part : 0.40. Ronde 2 : 0.40 -> 0.37 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    },
+    "PV-VAINQ=AUT|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0024,
+     "loi": {
+      "oui": 0.62
+     },
+     "justification": "Précédents : Mitterrand dissout le 22 mai 1981 et le 14 mai 1988, quelques jours après son élection, pour obtenir une majorité ; l'Assemblée élue en 2024 est sans majorité (Ve République, art. 12). Jugement : un président AUT face à une Assemblée qui ne lui est pas acquise dissout très probablement dès sa prise de fonction ; une popularité > 35 % réduit l'appétit pour un scrutin ; sans dissolution préalable, l'Assemblée de 2024 reste à recomposer : 0.65. Ronde 2 : 0.65 -> 0.62 ; jugement : avec un décalage d'un mois, VE-POP mesure surtout la popularité du président sortant (avril 2027) ou celle, encore peu informative, du nouvel élu ; son effet sur la décision de dissoudre est donc faible (ramené à -0,03 / +0,02)."
+    }
+   },
+   "verrous": [
+    {
+     "si": "PV-DISSOL1",
+     "interdit": [
+      "PV-DISSOL2a",
+      "PV-DISSOL2b"
+     ],
+     "duree_mois": 12,
+     "motif": "article 12 de la Constitution : pas de nouvelle dissolution dans l'année qui suit les élections ; pas mensuel, élections comptées dans le mois qui suit la dissolution, nouvelle dissolution possible à partir du 13e mois après celui de la dissolution"
+    }
+   ]
+  },
+  "PV-DISSOL2b": {
+   "nom": "Dissolution de juillet 2027 à septembre 2028",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    },
+    {
+     "id": "PV-DISSOL2a",
+     "nom": "Dissolution dans les deux mois suivant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2027-05-03",
+      "2027-06-30"
+     ]
+    },
+    {
+     "id": "PV-DISSOL1",
+     "nom": "Dissolution avant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2027-05-02"
+     ]
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-07-01",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-VAINQ=RN|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur RN : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=RN|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.2288,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur RN : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0858,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "Jugement (ronde 2, 0.21 -> 0.40) : avec une dissolution avant le second tour, l'absence de dissolution en mai-juin 2027 est imposée par le verrou de l'article 12 et ne révèle pas un renoncement ; le nouveau président RN hérite d'une Assemblée élue avant lui, souvent discordante, et peut dissoudre dès la levée du verrou (printemps 2028). La fenêtre restante est courte (quelques mois avant septembre 2028) et l'Assemblée peut lui être déjà favorable si elle a été élue dans la même dynamique, d'où une probabilité entre 0,35 et 0,45 (plus élevée pour RN et MEL, dont la majorité serait la plus improbable)."
+    },
+    "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.2652,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "Jugement : le président a renoncé à dissoudre après son élection (coalition ou majorité relative tolérable) ; une dissolution de confort ou de crise reste possible en 15 mois, plus probable s'il est en cohabitation de fait (RN, MEL) ; vainqueur RN : 0.35. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur PHI : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0483,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur PHI : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0307,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "Jugement (ronde 2, 0.15 -> 0.35) : avec une dissolution avant le second tour, l'absence de dissolution en mai-juin 2027 est imposée par le verrou de l'article 12 et ne révèle pas un renoncement ; le nouveau président PHI hérite d'une Assemblée élue avant lui, souvent discordante, et peut dissoudre dès la levée du verrou (printemps 2028). La fenêtre restante est courte (quelques mois avant septembre 2028) et l'Assemblée peut lui être déjà favorable si elle a été élue dans la même dynamique, d'où une probabilité entre 0,35 et 0,45 (plus élevée pour RN et MEL, dont la majorité serait la plus improbable)."
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.1959,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "Jugement : le président a renoncé à dissoudre après son élection (coalition ou majorité relative tolérable) ; une dissolution de confort ou de crise reste possible en 15 mois, plus probable s'il est en cohabitation de fait (RN, MEL) ; vainqueur PHI : 0.25. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur ATT : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0052,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur ATT : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0042,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "Jugement (ronde 2, 0.15 -> 0.35) : avec une dissolution avant le second tour, l'absence de dissolution en mai-juin 2027 est imposée par le verrou de l'article 12 et ne révèle pas un renoncement ; le nouveau président ATT hérite d'une Assemblée élue avant lui, souvent discordante, et peut dissoudre dès la levée du verrou (printemps 2028). La fenêtre restante est courte (quelques mois avant septembre 2028) et l'Assemblée peut lui être déjà favorable si elle a été élue dans la même dynamique, d'où une probabilité entre 0,35 et 0,45 (plus élevée pour RN et MEL, dont la majorité serait la plus improbable)."
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0074,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "Jugement : le président a renoncé à dissoudre après son élection (coalition ou majorité relative tolérable) ; une dissolution de confort ou de crise reste possible en 15 mois, plus probable s'il est en cohabitation de fait (RN, MEL) ; vainqueur ATT : 0.25. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur MEL : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0189,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur MEL : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0021,
+     "loi": {
+      "oui": 0.45
+     },
+     "justification": "Jugement (ronde 2, 0.24 -> 0.45) : avec une dissolution avant le second tour, l'absence de dissolution en mai-juin 2027 est imposée par le verrou de l'article 12 et ne révèle pas un renoncement ; le nouveau président MEL hérite d'une Assemblée élue avant lui, souvent discordante, et peut dissoudre dès la levée du verrou (printemps 2028). La fenêtre restante est courte (quelques mois avant septembre 2028) et l'Assemblée peut lui être déjà favorable si elle a été élue dans la même dynamique, d'où une probabilité entre 0,35 et 0,45 (plus élevée pour RN et MEL, dont la majorité serait la plus improbable)."
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0118,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "Jugement : le président a renoncé à dissoudre après son élection (coalition ou majorité relative tolérable) ; une dissolution de confort ou de crise reste possible en 15 mois, plus probable s'il est en cohabitation de fait (RN, MEL) ; vainqueur MEL : 0.40. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur GLU : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0062,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur GLU : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "Jugement (ronde 2, 0.15 -> 0.35) : avec une dissolution avant le second tour, l'absence de dissolution en mai-juin 2027 est imposée par le verrou de l'article 12 et ne révèle pas un renoncement ; le nouveau président GLU hérite d'une Assemblée élue avant lui, souvent discordante, et peut dissoudre dès la levée du verrou (printemps 2028). La fenêtre restante est courte (quelques mois avant septembre 2028) et l'Assemblée peut lui être déjà favorable si elle a été élue dans la même dynamique, d'où une probabilité entre 0,35 et 0,45 (plus élevée pour RN et MEL, dont la majorité serait la plus improbable)."
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0097,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "Jugement : le président a renoncé à dissoudre après son élection (coalition ou majorité relative tolérable) ; une dissolution de confort ou de crise reste possible en 15 mois, plus probable s'il est en cohabitation de fait (RN, MEL) ; vainqueur GLU : 0.25. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur RET : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0032,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur RET : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "Jugement (ronde 2, 0.18 -> 0.35) : avec une dissolution avant le second tour, l'absence de dissolution en mai-juin 2027 est imposée par le verrou de l'article 12 et ne révèle pas un renoncement ; le nouveau président RET hérite d'une Assemblée élue avant lui, souvent discordante, et peut dissoudre dès la levée du verrou (printemps 2028). La fenêtre restante est courte (quelques mois avant septembre 2028) et l'Assemblée peut lui être déjà favorable si elle a été élue dans la même dynamique, d'où une probabilité entre 0,35 et 0,45 (plus élevée pour RN et MEL, dont la majorité serait la plus improbable)."
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0088,
+     "loi": {
+      "oui": 0.3
+     },
+     "justification": "Jugement : le président a renoncé à dissoudre après son élection (coalition ou majorité relative tolérable) ; une dissolution de confort ou de crise reste possible en 15 mois, plus probable s'il est en cohabitation de fait (RN, MEL) ; vainqueur RET : 0.30. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur LIS : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur LIS : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "Jugement (ronde 2, 0.15 -> 0.35) : avec une dissolution avant le second tour, l'absence de dissolution en mai-juin 2027 est imposée par le verrou de l'article 12 et ne révèle pas un renoncement ; le nouveau président LIS hérite d'une Assemblée élue avant lui, souvent discordante, et peut dissoudre dès la levée du verrou (printemps 2028). La fenêtre restante est courte (quelques mois avant septembre 2028) et l'Assemblée peut lui être déjà favorable si elle a été élue dans la même dynamique, d'où une probabilité entre 0,35 et 0,45 (plus élevée pour RN et MEL, dont la majorité serait la plus improbable)."
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "Jugement : le président a renoncé à dissoudre après son élection (coalition ou majorité relative tolérable) ; une dissolution de confort ou de crise reste possible en 15 mois, plus probable s'il est en cohabitation de fait (RN, MEL) ; vainqueur LIS : 0.25. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur AUT : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0088,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "Jugement : une Assemblée élue en juin 2027 sur demande du président est rarement redissoute à court terme (aucun précédent de double dissolution rapprochée depuis 1958, hors verrou) ; vainqueur AUT : 0.08. Référence : article 12 de la Constitution."
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.007,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "Jugement (ronde 2, 0.15 -> 0.35) : avec une dissolution avant le second tour, l'absence de dissolution en mai-juin 2027 est imposée par le verrou de l'article 12 et ne révèle pas un renoncement ; le nouveau président AUT hérite d'une Assemblée élue avant lui, souvent discordante, et peut dissoudre dès la levée du verrou (printemps 2028). La fenêtre restante est courte (quelques mois avant septembre 2028) et l'Assemblée peut lui être déjà favorable si elle a été élue dans la même dynamique, d'où une probabilité entre 0,35 et 0,45 (plus élevée pour RN et MEL, dont la majorité serait la plus improbable)."
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0423,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "Jugement : le président a renoncé à dissoudre après son élection (coalition ou majorité relative tolérable) ; une dissolution de confort ou de crise reste possible en 15 mois, plus probable s'il est en cohabitation de fait (RN, MEL) ; vainqueur AUT : 0.25. Référence : article 12 de la Constitution."
+    }
+   },
+   "verrous": [
+    {
+     "si": "PV-DISSOL1",
+     "interdit": [
+      "PV-DISSOL2a",
+      "PV-DISSOL2b"
+     ],
+     "duree_mois": 12,
+     "motif": "article 12 de la Constitution : pas de nouvelle dissolution dans l'année qui suit les élections ; pas mensuel, élections comptées dans le mois qui suit la dissolution, nouvelle dissolution possible à partir du 13e mois après celui de la dissolution"
+    },
+    {
+     "si": "PV-DISSOL2a",
+     "interdit": [
+      "PV-DISSOL2b"
+     ],
+     "duree_mois": 12,
+     "motif": "article 12 de la Constitution, comme ci-dessus"
+    }
+   ]
+  },
+  "VE-LYCEE": {
+   "nom": "Mobilisation lycéenne",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 0,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": "plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "cas": {
+    "prec=calme|VE-MOBIL=calme": {
+     "poids_reseau": 0.7156,
+     "loi": {
+      "calme": 0.965,
+      "modérée": 0.03,
+      "forte": 0.005
+     },
+     "justification": "Sources : mouvement lycéen depuis le 25 septembre 2026 ; 1 027 lycées concernés le 1er octobre (ministère de l'Intérieur, AFP via dhnet.be) ; 891 établissements aux cours suspendus le 6 octobre et 256 000 manifestants selon l'Intérieur (euronews, 6 octobre 2026) ; plan en cinq chantiers de Matignon (thotismedia). Jugement : les mouvements lycéens (2010, 2018) retombent vite, surtout après des vacances, mais repartent avec une mobilisation générale ; état précédent calme, mobilisation générale calme : persistance modérée, rechute fréquente vers le calme."
+    },
+    "prec=calme|VE-MOBIL=modérée": {
+     "poids_reseau": 0.1466,
+     "loi": {
+      "calme": 0.75,
+      "modérée": 0.2,
+      "forte": 0.05
+     },
+     "justification": "Sources : mouvement lycéen depuis le 25 septembre 2026 ; 1 027 lycées concernés le 1er octobre (ministère de l'Intérieur, AFP via dhnet.be) ; 891 établissements aux cours suspendus le 6 octobre et 256 000 manifestants selon l'Intérieur (euronews, 6 octobre 2026) ; plan en cinq chantiers de Matignon (thotismedia). Jugement : les mouvements lycéens (2010, 2018) retombent vite, surtout après des vacances, mais repartent avec une mobilisation générale ; état précédent calme, mobilisation générale modérée : persistance modérée, rechute fréquente vers le calme."
+    },
+    "prec=calme|VE-MOBIL=forte": {
+     "poids_reseau": 0.0312,
+     "loi": {
+      "calme": 0.45,
+      "modérée": 0.35,
+      "forte": 0.2
+     },
+     "justification": "Sources : mouvement lycéen depuis le 25 septembre 2026 ; 1 027 lycées concernés le 1er octobre (ministère de l'Intérieur, AFP via dhnet.be) ; 891 établissements aux cours suspendus le 6 octobre et 256 000 manifestants selon l'Intérieur (euronews, 6 octobre 2026) ; plan en cinq chantiers de Matignon (thotismedia). Jugement : les mouvements lycéens (2010, 2018) retombent vite, surtout après des vacances, mais repartent avec une mobilisation générale ; état précédent calme, mobilisation générale forte : persistance modérée, rechute fréquente vers le calme."
+    },
+    "prec=modérée|VE-MOBIL=calme": {
+     "poids_reseau": 0.0341,
+     "loi": {
+      "calme": 0.75,
+      "modérée": 0.22,
+      "forte": 0.03
+     },
+     "justification": "Sources : mouvement lycéen depuis le 25 septembre 2026 ; 1 027 lycées concernés le 1er octobre (ministère de l'Intérieur, AFP via dhnet.be) ; 891 établissements aux cours suspendus le 6 octobre et 256 000 manifestants selon l'Intérieur (euronews, 6 octobre 2026) ; plan en cinq chantiers de Matignon (thotismedia). Jugement : les mouvements lycéens (2010, 2018) retombent vite, surtout après des vacances, mais repartent avec une mobilisation générale ; état précédent modérée, mobilisation générale calme : persistance modérée, rechute fréquente vers le calme."
+    },
+    "prec=modérée|VE-MOBIL=modérée": {
+     "poids_reseau": 0.01,
+     "loi": {
+      "calme": 0.45,
+      "modérée": 0.43,
+      "forte": 0.12
+     },
+     "justification": "Sources : mouvement lycéen depuis le 25 septembre 2026 ; 1 027 lycées concernés le 1er octobre (ministère de l'Intérieur, AFP via dhnet.be) ; 891 établissements aux cours suspendus le 6 octobre et 256 000 manifestants selon l'Intérieur (euronews, 6 octobre 2026) ; plan en cinq chantiers de Matignon (thotismedia). Jugement : les mouvements lycéens (2010, 2018) retombent vite, surtout après des vacances, mais repartent avec une mobilisation générale ; état précédent modérée, mobilisation générale modérée : persistance modérée, rechute fréquente vers le calme."
+    },
+    "prec=modérée|VE-MOBIL=forte": {
+     "poids_reseau": 0.0034,
+     "loi": {
+      "calme": 0.2,
+      "modérée": 0.45,
+      "forte": 0.35
+     },
+     "justification": "Sources : mouvement lycéen depuis le 25 septembre 2026 ; 1 027 lycées concernés le 1er octobre (ministère de l'Intérieur, AFP via dhnet.be) ; 891 établissements aux cours suspendus le 6 octobre et 256 000 manifestants selon l'Intérieur (euronews, 6 octobre 2026) ; plan en cinq chantiers de Matignon (thotismedia). Jugement : les mouvements lycéens (2010, 2018) retombent vite, surtout après des vacances, mais repartent avec une mobilisation générale ; état précédent modérée, mobilisation générale forte : persistance modérée, rechute fréquente vers le calme."
+    },
+    "prec=forte|VE-MOBIL=calme": {
+     "poids_reseau": 0.034,
+     "loi": {
+      "calme": 0.75,
+      "modérée": 0.2,
+      "forte": 0.05
+     },
+     "justification": "Sources : mouvement lycéen depuis le 25 septembre 2026 ; 1 027 lycées concernés le 1er octobre (ministère de l'Intérieur, AFP via dhnet.be) ; 891 établissements aux cours suspendus le 6 octobre et 256 000 manifestants selon l'Intérieur (euronews, 6 octobre 2026) ; plan en cinq chantiers de Matignon (thotismedia). Jugement : les mouvements lycéens (2010, 2018) retombent vite, surtout après des vacances, mais repartent avec une mobilisation générale ; état précédent forte, mobilisation générale calme : persistance modérée, rechute fréquente vers le calme."
+    },
+    "prec=forte|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0192,
+     "loi": {
+      "calme": 0.45,
+      "modérée": 0.35,
+      "forte": 0.2
+     },
+     "justification": "Sources : mouvement lycéen depuis le 25 septembre 2026 ; 1 027 lycées concernés le 1er octobre (ministère de l'Intérieur, AFP via dhnet.be) ; 891 établissements aux cours suspendus le 6 octobre et 256 000 manifestants selon l'Intérieur (euronews, 6 octobre 2026) ; plan en cinq chantiers de Matignon (thotismedia). Jugement : les mouvements lycéens (2010, 2018) retombent vite, surtout après des vacances, mais repartent avec une mobilisation générale ; état précédent forte, mobilisation générale modérée : persistance modérée, rechute fréquente vers le calme."
+    },
+    "prec=forte|VE-MOBIL=forte": {
+     "poids_reseau": 0.0058,
+     "loi": {
+      "calme": 0.15,
+      "modérée": 0.3,
+      "forte": 0.55
+     },
+     "justification": "Sources : mouvement lycéen depuis le 25 septembre 2026 ; 1 027 lycées concernés le 1er octobre (ministère de l'Intérieur, AFP via dhnet.be) ; 891 établissements aux cours suspendus le 6 octobre et 256 000 manifestants selon l'Intérieur (euronews, 6 octobre 2026) ; plan en cinq chantiers de Matignon (thotismedia). Jugement : les mouvements lycéens (2010, 2018) retombent vite, surtout après des vacances, mais repartent avec une mobilisation générale ; état précédent forte, mobilisation générale forte : persistance modérée, rechute fréquente vers le calme."
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-01": {
+   "critere": "Au moins une des agences Moody's, S&P Global Ratings ou Fitch Ratings abaisse d'au moins un cran la note de crédit à long terme de la République française pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.77
+  },
+  "EV-04": {
+   "critere": "Le Conseil de l'Union européenne adopte une décision visant la France au titre de l'article 126, paragraphe 8 ou paragraphe 9, du traité sur le fonctionnement de l'Union européenne.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.18
+  },
+  "EV-15": {
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": 0.2
+  },
+  "EV-15b": {
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2027-01-01",
+    "fin": "2027-05-02"
+   },
+   "probabilite": 0.08
+  },
+  "EV-16b": {
+   "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel entre le 3 mai 2027 et le 30 septembre 2028.",
+   "fenetre": {
+    "debut": "2027-05-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.78
+  },
+  "EV-17": {
+   "critere": "Le 30 septembre 2028, selon la composition des groupes publiée par l'Assemblée nationale, le groupe qui compte le plus de députés membres du parti dont le président élu en 2027 est membre au jour du second tour compte moins de 289 membres, apparentés compris ; si aucun groupe ne compte de député de ce parti, la réponse est « oui ». Si le président élu n'est membre d'aucun parti, le groupe retenu est celui qui a déclaré le soutenir au premier tour et compte le plus de membres.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.8
+  },
+  "EV-10": {
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, pour une même journée, quelle qu'en soit la cause déclarée (blocage, filtrage, intrusion, fermeture préventive ou administrative). Si le ministère donne pour une même journée plusieurs catégories disjointes (par exemple « perturbés » et « cours suspendus », ou « fermés » et « perturbés »), leur somme est retenue. S'il donne plusieurs chiffres successifs pour la même journée (matin, mi-journée, fin de journée, décompte cumulé), le plus élevé est retenu. Une fourchette vaut sa borne basse ; un chiffre « au moins » ou « plus de » N vaut N ; un pourcentage d'établissements ouverts n'est pas converti en nombre. Le chiffre retenu est celui que le ministère publie (site, communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant à ce ministère ; une seule dépêche suffit. À défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur, sous les mêmes règles. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2026-12-18"
+   },
+   "probabilite": 0.47
+  },
+  "EV-47": {
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 1000 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, pour une même journée, quelle qu'en soit la cause déclarée (blocage, filtrage, intrusion, fermeture préventive ou administrative). Si le ministère donne pour une même journée plusieurs catégories disjointes (par exemple « perturbés » et « cours suspendus », ou « fermés » et « perturbés »), leur somme est retenue. S'il donne plusieurs chiffres successifs pour la même journée (matin, mi-journée, fin de journée, décompte cumulé), le plus élevé est retenu. Une fourchette vaut sa borne basse ; un chiffre « au moins » ou « plus de » N vaut N ; un pourcentage d'établissements ouverts n'est pas converti en nombre. Le chiffre retenu est celui que le ministère publie (site, communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant à ce ministère ; une seule dépêche suffit. À défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur, sous les mêmes règles. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "probabilite": 0.25
+  },
+  "EV-52": {
+   "critere": "Pendant la fenêtre, pour au moins une journée, le ministère de l'Intérieur chiffre à au moins 200 000 le nombre de manifestants en France, ou le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés (règles de comptage d'EV-10). Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Les comptages des organisateurs et des syndicats ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.95
+  },
+  "EV-51": {
+   "critere": "Pour au moins une journée ou une nuit de la fenêtre, le ministère de l'Intérieur chiffre à au moins 1 000 le nombre de personnes interpellées en France en lien avec des manifestations, des blocages ou des violences urbaines, pour cette même journée ou cette même nuit. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Un cumul sur plusieurs jours ne compte pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "probabilite": 0.3
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-10",
+ "ronde_2": [
+  {
+   "point": "EV-17 (implique 78,4 / direct 85)",
+   "decision": "corrigé",
+   "motif": "Je n'ai pas de loi propre sur la taille du groupe présidentiel ; la marginale du réseau repose sur des dissolutions (DISSOL2a/2b) qui, si elles ont lieu, peuvent donner une majorité absolue au vainqueur RN. Mon 0,85 sous-estimait ce chemin. Avis direct ramené à 0,80, proche de l'impliqué."
+  },
+  {
+   "point": "EV-10 (implique 49,1 / direct 42)",
+   "decision": "corrigé",
+   "motif": "Le mouvement d'octobre est 'forte' (1 027 lycées le 1er octobre, 891 le 6 octobre), et la persistance d'un mois sur l'autre que j'ai donnée dans VE-LYCEE implique environ 0,49 pour novembre-décembre. Je garde VE-LYCEE et j'aligne mon avis direct à 0,47 : la coupure des vacances de la Toussaint (17 octobre - 2 novembre) et le plan de Matignon justifient de rester légèrement sous l'impliqué."
+  },
+  {
+   "point": "EV-52 (implique 98,1 / direct 92)",
+   "decision": "corrigé",
+   "motif": "Écart dû surtout à la mobilisation générale (VE-MOBIL), non élicitée ici, et pas à VE-LYCEE, que je ne force pas. Sur près de deux ans, avec une présidentielle, de possibles législatives et un budget sous 49.3, au moins une journée à 200 000 manifestants selon l'Intérieur est quasi certaine (256 000 le 6 octobre 2026). Je relève l'avis direct à 0,95 ; je reste un peu sous 0,98 parce que la chronique de VE-MOBIL du réseau me semble persistante, notamment en été et en période électorale où les grandes journées sont rares."
+  },
+  {
+   "point": "PV-DISSOL2a, cas PHI / RET avec VE-POP 25-35 % ou > 35 % (sens opposés)",
+   "decision": "corrigé",
+   "motif": "Argument d'autre 2 retenu : VE-POP mesure la popularité du président du mois précédent, peu informative sur la décision du nouvel élu. J'ai réduit l'effet de popularité (-0,03 pour < 25 %, +0,02 pour > 35 %, au lieu de -0,10 et +0,05). Je garde le niveau (0,72-0,82) : sans dissolution préalable, l'Assemblée de 2024 est sans majorité pour tout vainqueur, et les précédents de 1981 et 1988 dominent. Je ne descends pas à 0,50-0,55 pour PHI ou RET, car une coalition de centre-droit tenable avec cette Assemblée reste minoritaire."
+  },
+  {
+   "point": "PV-DISSOL2b, cas PV-DISSOL2a=non et PV-DISSOL1=oui (sens opposés)",
+   "decision": "corrigé",
+   "motif": "Argument d'autre 1 retenu : dans ces cas, l'absence de dissolution en mai-juin est imposée par le verrou de 12 mois et ne révèle pas un renoncement. Ma décote (x0,6) confondait les deux situations. Lois relevées à 0,35-0,45 (0,40 pour RN, 0,45 pour MEL). Je reste sous les 0,55-0,60 d'autre 1 : la fenêtre utile après le verrou est courte, et l'Assemblée élue juste avant la présidentielle peut déjà être favorable au vainqueur."
+  },
+  {
+   "point": "PV-DISSOL2b, cas GLU|non|non",
+   "decision": "maintenu",
+   "motif": "0,25 est dans la fourchette des deux autres (0,30 et 0,25) et cohérent avec ma logique : un président qui n'a pas dissous alors qu'il le pouvait compose avec l'Assemblée ; la dissolution tardive reste possible après un blocage budgétaire à l'automne 2027, mais n'est pas dominante."
+  },
+  {
+   "point": "PV-NOTE, cas < 120 pb | non publiée | MEL",
+   "decision": "corrigé",
+   "motif": "0,86 surpondérait le vainqueur face à un écart bas. Un écart durablement sous 120 pb signifie que les marchés ne valident pas un dérapage. Effet < 120 pb renforcé (-0,15 avec budget publié, -0,07 sans), base MEL ramenée à 0,88 : ce cas passe à 0,81. Je reste au-dessus de 0,47 (autre 2) : Moody's est déjà en perspective négative et un programme MEL non financé entraînerait au moins une action sur deux ans."
+  },
+  {
+   "point": "PV-NOTE, cas > 160 pb (GLU, LIS, AUT, PHI, ATT, RET, LIS avec budget publié ou non)",
+   "decision": "maintenu",
+   "motif": "Mes lois (0,72-0,82) sont proches de celles d'autre 1 (0,70-0,78), et le sens opposé vient surtout de la référence d'autre 2 (0,57), plus basse que la mienne (0,82). Avec un écart au-delà de 160 pb, au niveau de l'Italie ou au-delà, sur deux ans et environ huit revues, une baisse d'un cran est plus probable que non. Je garde aussi ma référence (120-160 pb, sans budget, RN) à 0,82 : c'est le cas central, cohérent avec mon avis direct EV-01 (0,77) et la marginale de mes lois (0,74)."
+  },
+  {
+   "point": "EV-16b (non signalé)",
+   "decision": "corrigé",
+   "motif": "Après la hausse de DISSOL2a (marginale de mes lois 0,74) et de DISSOL2b (0,24), la combinaison donne autour de 0,78 ; avis direct ajusté de 0,76 à 0,78."
+  }
+ ]
+}

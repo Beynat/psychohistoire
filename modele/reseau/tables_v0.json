@@ -1,5 +1,5 @@
 {
- "version": "tables v0.5 (E1, E2, E3 ; chaîne présidentielle par E4, E5 Opus et E6 Sonnet sur dossier sourcé, 10 octobre 2026) ; article 12 retiré des multiplicateurs (verrou daté)",
+ "version": "tables v0.6 (E1, E2, E3 ; chaîne présidentielle E4, E5, E6 ; étape 4 : PV-NOTE, PV-PDE, PV-CENSURE1a, PV-CENSURE1b, PV-DISSOL2a, PV-DISSOL2b et VE-LYCEE en lois par cas, E7 et E8 Opus, E9 Sonnet, deux rondes) ; article 12 en verrou daté",
  "evaluateurs": [
   "E1",
   "E2",
@@ -121,40 +121,61 @@
    "sigma": 0.376
   },
   "VE-LYCEE": {
-   "reference": "calme",
-   "transition": {
-    "calme": {
-     "calme": 0.9716523984790004,
-     "modérée": 0.022473963642583954,
-     "forte": 0.005873637878415696
+   "cas": {
+    "prec=calme|VE-MOBIL=calme": {
+     "calme": 0.9557,
+     "modérée": 0.03636,
+     "forte": 0.00794
     },
-    "modérée": {
-     "calme": 0.7761338750504705,
-     "modérée": 0.17634983127510884,
-     "forte": 0.04751629367442079
+    "prec=calme|VE-MOBIL=modérée": {
+     "calme": 0.75861,
+     "modérée": 0.18822,
+     "forte": 0.05317
     },
-    "forte": {
-     "calme": 0.7633186089894648,
-     "modérée": 0.155040136766026,
-     "forte": 0.08164125424450926
+    "prec=calme|VE-MOBIL=forte": {
+     "calme": 0.48508,
+     "modérée": 0.3174,
+     "forte": 0.19752
+    },
+    "prec=modérée|VE-MOBIL=calme": {
+     "calme": 0.71786,
+     "modérée": 0.23601,
+     "forte": 0.04613
+    },
+    "prec=modérée|VE-MOBIL=modérée": {
+     "calme": 0.4007,
+     "modérée": 0.44487,
+     "forte": 0.15443
+    },
+    "prec=modérée|VE-MOBIL=forte": {
+     "calme": 0.19787,
+     "modérée": 0.43556,
+     "forte": 0.36656
+    },
+    "prec=forte|VE-MOBIL=calme": {
+     "calme": 0.66873,
+     "modérée": 0.23894,
+     "forte": 0.09234
+    },
+    "prec=forte|VE-MOBIL=modérée": {
+     "calme": 0.39652,
+     "modérée": 0.39032,
+     "forte": 0.21316
+    },
+    "prec=forte|VE-MOBIL=forte": {
+     "calme": 0.13949,
+     "modérée": 0.3165,
+     "forte": 0.544
     }
    },
-   "multiplicateurs": {
-    "VE-MOBIL": {
-     "modérée": {
-      "calme": 0.7488872387218507,
-      "modérée": 1.9129311827723892,
-      "forte": 2.1253171383652223
-     },
-     "forte": {
-      "calme": 0.4641588833612779,
-      "modérée": 2.663712005227802,
-      "forte": 4.308869380063767
-     }
-    }
-   },
-   "sigma": 0.57,
-   "calibre": "transitions mélangées à 45 % avec un retour au calme, pour reproduire les probabilités directes médianes des évaluateurs sur EV-10 (41 %) et EV-47 (25 %) ; recherche sur une grille, sans consulter l'ensemble ni aucune issue"
+   "sigma": 0.3,
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1",
+   "alertes": []
   },
   "VE-SOND": {
    "reference": "centre",
@@ -251,80 +272,90 @@
    "sigma": 0.3
   },
   "PV-NOTE": {
-   "p_fenetre": 0.7027928833537879,
-   "multiplicateurs": {
-    "VE-ECART": {
-     "< 120 pb": {
-      "oui": 0.6
-     },
-     "> 160 pb": {
-      "oui": 1.5939878537739165
-     }
-    },
-    "PV-BUDGET": {
-     "non publiée": {
-      "oui": 1.348191451116008
-     }
-    },
-    "PV-VAINQ": {
-     "PHI": {
-      "oui": 0.7150646264958075
-     },
-     "ATT": {
-      "oui": 0.7329486044391188
-     },
-     "MEL": {
-      "oui": 1.1972157672583759
-     },
-     "GLU": {
-      "oui": 0.8990731198386166
-     },
-     "RET": {
-      "oui": 0.7416859538532379
-     },
-     "LIS": {
-      "oui": 0.720483214721452
-     },
-     "AUT": {
-      "oui": 0.896280949311433
-     }
-    }
+   "cas": {
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=RN": 0.56377,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": 0.43317,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": 0.43317,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": 0.70839,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": 0.51338,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=RET": 0.46316,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": 0.45665,
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": 0.48995,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": 0.64449,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": 0.51335,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": 0.51335,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": 0.78038,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": 0.59374,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": 0.54351,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": 0.53668,
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": 0.57023,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=RN": 0.7213,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": 0.59007,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": 0.59007,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": 0.82715,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": 0.67046,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=RET": 0.62031,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": 0.61337,
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": 0.64693,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": 0.79853,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": 0.66678,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": 0.66678,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": 0.90896,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": 0.74721,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": 0.69706,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": 0.69017,
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": 0.72381,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=RN": 0.84491,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": 0.76701,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": 0.76701,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": 0.9332,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": 0.8184,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=RET": 0.78793,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": 0.78198,
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": 0.7966,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": 0.90408,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": 0.80575,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": 0.80575,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": 0.95607,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": 0.8602,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": 0.82735,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": 0.82255,
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": 0.83704
    },
-   "sigma": 0.708
+   "sigma": 0.3,
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1"
   },
   "PV-PDE": {
-   "p_fenetre": 0.15266012318901362,
-   "multiplicateurs": {
-    "PV-BUDGET": {
-     "non publiée": {
-      "oui": 1.5939878537739165
-     }
-    },
-    "PV-VAINQ": {
-     "PHI": {
-      "oui": 0.6
-     },
-     "ATT": {
-      "oui": 0.6
-     },
-     "MEL": {
-      "oui": 1.21644039911468
-     },
-     "GLU": {
-      "oui": 0.7829735282337728
-     },
-     "RET": {
-      "oui": 0.6316359597656379
-     },
-     "LIS": {
-      "oui": 0.5943921952763129
-     },
-     "AUT": {
-      "oui": 0.7883735163105242
-     }
-    }
+   "cas": {
+    "PV-BUDGET=publiée|PV-VAINQ=RN": 0.12528,
+    "PV-BUDGET=publiée|PV-VAINQ=PHI": 0.05728,
+    "PV-BUDGET=publiée|PV-VAINQ=ATT": 0.05728,
+    "PV-BUDGET=publiée|PV-VAINQ=MEL": 0.21842,
+    "PV-BUDGET=publiée|PV-VAINQ=GLU": 0.09834,
+    "PV-BUDGET=publiée|PV-VAINQ=RET": 0.08344,
+    "PV-BUDGET=publiée|PV-VAINQ=LIS": 0.07006,
+    "PV-BUDGET=publiée|PV-VAINQ=AUT": 0.08309,
+    "PV-BUDGET=non publiée|PV-VAINQ=RN": 0.17108,
+    "PV-BUDGET=non publiée|PV-VAINQ=PHI": 0.09763,
+    "PV-BUDGET=non publiée|PV-VAINQ=ATT": 0.09763,
+    "PV-BUDGET=non publiée|PV-VAINQ=MEL": 0.26841,
+    "PV-BUDGET=non publiée|PV-VAINQ=GLU": 0.13826,
+    "PV-BUDGET=non publiée|PV-VAINQ=RET": 0.12817,
+    "PV-BUDGET=non publiée|PV-VAINQ=LIS": 0.10865,
+    "PV-BUDGET=non publiée|PV-VAINQ=AUT": 0.12374
    },
-   "sigma": 0.87
+   "sigma": 0.716,
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1"
   },
   "PV-TPI": {
    "p_fenetre": 0.03648091153261158,
@@ -883,118 +914,182 @@
    "sigma": 0.419
   },
   "PV-CENSURE1a": {
-   "p_fenetre": 0.24,
-   "multiplicateurs": {
-    "VE-POP": {
-     "25-35 %": {
-      "oui": 0.7651724731089556
-     },
-     "> 35 %": {
-      "oui": 0.5646216173286172
-     }
-    },
-    "VE-MOBIL": {
-     "modérée": {
-      "oui": 1.2324480295498077
-     },
-     "forte": {
-      "oui": 1.6509636244473134
-     }
-    }
+   "cas": {
+    "VE-POP=< 25 %|VE-MOBIL=calme": 0.17022,
+    "VE-POP=< 25 %|VE-MOBIL=modérée": 0.22872,
+    "VE-POP=< 25 %|VE-MOBIL=forte": 0.323,
+    "VE-POP=25-35 %|VE-MOBIL=calme": 0.12678,
+    "VE-POP=25-35 %|VE-MOBIL=modérée": 0.17604,
+    "VE-POP=25-35 %|VE-MOBIL=forte": 0.25514,
+    "VE-POP=> 35 %|VE-MOBIL=calme": 0.08679,
+    "VE-POP=> 35 %|VE-MOBIL=modérée": 0.12226,
+    "VE-POP=> 35 %|VE-MOBIL=forte": 0.18589
    },
    "sigma": 0.3,
-   "derive": "p_fenetre = médiane des probabilités directes des évaluateurs pour EV-15 ; multiplicateurs de PV-CENSURE1"
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1"
   },
   "PV-CENSURE1b": {
-   "p_fenetre": 0.1,
-   "multiplicateurs": {
-    "VE-POP": {
-     "25-35 %": {
-      "oui": 0.7651724731089556
-     },
-     "> 35 %": {
-      "oui": 0.5646216173286172
-     }
-    },
-    "VE-MOBIL": {
-     "modérée": {
-      "oui": 1.2324480295498077
-     },
-     "forte": {
-      "oui": 1.6509636244473134
-     }
-    }
+   "cas": {
+    "VE-POP=< 25 %|VE-MOBIL=calme": 0.07392,
+    "VE-POP=< 25 %|VE-MOBIL=modérée": 0.10825,
+    "VE-POP=< 25 %|VE-MOBIL=forte": 0.16173,
+    "VE-POP=25-35 %|VE-MOBIL=calme": 0.05527,
+    "VE-POP=25-35 %|VE-MOBIL=modérée": 0.08328,
+    "VE-POP=25-35 %|VE-MOBIL=forte": 0.12573,
+    "VE-POP=> 35 %|VE-MOBIL=calme": 0.03977,
+    "VE-POP=> 35 %|VE-MOBIL=modérée": 0.06011,
+    "VE-POP=> 35 %|VE-MOBIL=forte": 0.0934
    },
    "sigma": 0.3,
-   "derive": "p_fenetre = médiane des probabilités directes des évaluateurs pour EV-15b ; multiplicateurs de PV-CENSURE1"
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1"
   },
   "PV-DISSOL2a": {
-   "p_fenetre": 0.7,
-   "multiplicateurs": {
-    "PV-VAINQ": {
-     "PHI": {
-      "oui": 0.7107853506470305
-     },
-     "ATT": {
-      "oui": 0.6685205344273679
-     },
-     "MEL": {
-      "oui": 1.0
-     },
-     "GLU": {
-      "oui": 0.8136461142839199
-     },
-     "RET": {
-      "oui": 0.749332739861262
-     },
-     "LIS": {
-      "oui": 0.749332739861262
-     },
-     "AUT": {
-      "oui": 0.6453714584098175
-     }
-    },
-    "VE-POP": {
-     "25-35 %": {
-      "oui": 1.0626585691826111
-     },
-     "> 35 %": {
-      "oui": 1.1548003502915456
-     }
-    }
+   "cas": {
+    "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=oui": 0.16244,
+    "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non": 0.75758,
+    "PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=oui": 0.16799,
+    "PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=non": 0.7669,
+    "PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=oui": 0.1718,
+    "PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=non": 0.77417,
+    "PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=oui": 0.1215,
+    "PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=non": 0.69054,
+    "PV-VAINQ=PHI|VE-POP=25-35 %|PV-DISSOL1=oui": 0.12587,
+    "PV-VAINQ=PHI|VE-POP=25-35 %|PV-DISSOL1=non": 0.69694,
+    "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=oui": 0.12884,
+    "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=non": 0.70103,
+    "PV-VAINQ=ATT|VE-POP=< 25 %|PV-DISSOL1=oui": 0.11577,
+    "PV-VAINQ=ATT|VE-POP=< 25 %|PV-DISSOL1=non": 0.66345,
+    "PV-VAINQ=ATT|VE-POP=25-35 %|PV-DISSOL1=oui": 0.12006,
+    "PV-VAINQ=ATT|VE-POP=25-35 %|PV-DISSOL1=non": 0.67015,
+    "PV-VAINQ=ATT|VE-POP=> 35 %|PV-DISSOL1=oui": 0.12295,
+    "PV-VAINQ=ATT|VE-POP=> 35 %|PV-DISSOL1=non": 0.67438,
+    "PV-VAINQ=MEL|VE-POP=< 25 %|PV-DISSOL1=oui": 0.16612,
+    "PV-VAINQ=MEL|VE-POP=< 25 %|PV-DISSOL1=non": 0.80726,
+    "PV-VAINQ=MEL|VE-POP=25-35 %|PV-DISSOL1=oui": 0.1718,
+    "PV-VAINQ=MEL|VE-POP=25-35 %|PV-DISSOL1=non": 0.81554,
+    "PV-VAINQ=MEL|VE-POP=> 35 %|PV-DISSOL1=oui": 0.17573,
+    "PV-VAINQ=MEL|VE-POP=> 35 %|PV-DISSOL1=non": 0.82274,
+    "PV-VAINQ=GLU|VE-POP=< 25 %|PV-DISSOL1=oui": 0.11577,
+    "PV-VAINQ=GLU|VE-POP=< 25 %|PV-DISSOL1=non": 0.66787,
+    "PV-VAINQ=GLU|VE-POP=25-35 %|PV-DISSOL1=oui": 0.12006,
+    "PV-VAINQ=GLU|VE-POP=25-35 %|PV-DISSOL1=non": 0.67356,
+    "PV-VAINQ=GLU|VE-POP=> 35 %|PV-DISSOL1=oui": 0.12295,
+    "PV-VAINQ=GLU|VE-POP=> 35 %|PV-DISSOL1=non": 0.67691,
+    "PV-VAINQ=RET|VE-POP=< 25 %|PV-DISSOL1=oui": 0.1334,
+    "PV-VAINQ=RET|VE-POP=< 25 %|PV-DISSOL1=non": 0.71684,
+    "PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=oui": 0.13812,
+    "PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=non": 0.7245,
+    "PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=oui": 0.14137,
+    "PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=non": 0.72963,
+    "PV-VAINQ=LIS|VE-POP=< 25 %|PV-DISSOL1=oui": 0.10441,
+    "PV-VAINQ=LIS|VE-POP=< 25 %|PV-DISSOL1=non": 0.62776,
+    "PV-VAINQ=LIS|VE-POP=25-35 %|PV-DISSOL1=oui": 0.10868,
+    "PV-VAINQ=LIS|VE-POP=25-35 %|PV-DISSOL1=non": 0.63364,
+    "PV-VAINQ=LIS|VE-POP=> 35 %|PV-DISSOL1=oui": 0.11152,
+    "PV-VAINQ=LIS|VE-POP=> 35 %|PV-DISSOL1=non": 0.63701,
+    "PV-VAINQ=AUT|VE-POP=< 25 %|PV-DISSOL1=oui": 0.10441,
+    "PV-VAINQ=AUT|VE-POP=< 25 %|PV-DISSOL1=non": 0.63501,
+    "PV-VAINQ=AUT|VE-POP=25-35 %|PV-DISSOL1=oui": 0.10868,
+    "PV-VAINQ=AUT|VE-POP=25-35 %|PV-DISSOL1=non": 0.64051,
+    "PV-VAINQ=AUT|VE-POP=> 35 %|PV-DISSOL1=oui": 0.11152,
+    "PV-VAINQ=AUT|VE-POP=> 35 %|PV-DISSOL1=non": 0.6436
    },
-   "sigma": 0.4,
-   "derive": "passe du 10 octobre 2026 (relecture de cohérence) : 70 % pour un président RN dans les deux mois (suggestion de l'évaluateur E3) ; l'article 12 est un verrou daté de la structure (étape 1), plus un multiplicateur"
+   "sigma": 0.3,
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1",
+   "alertes": [
+    "PV-DISSOL2a [PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.52, 0.4, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.55, 0.4, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.57, 0.4, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.44, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=PHI|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.47, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.49, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=ATT|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.4, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=ATT|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.43, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=ATT|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.45, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=MEL|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.54, 0.4, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=MEL|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.57, 0.4, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=MEL|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.59, 0.4, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=GLU|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.4, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=GLU|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.43, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=GLU|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.45, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=RET|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.52, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.55, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.57, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=LIS|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.32, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=LIS|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.35, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=LIS|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.37, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=AUT|VE-POP=< 25 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.32, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=AUT|VE-POP=25-35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.35, 0.25, 0.0])",
+    "PV-DISSOL2a [PV-VAINQ=AUT|VE-POP=> 35 %|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.37, 0.25, 0.0])"
+   ]
   },
   "PV-DISSOL2b": {
-   "p_fenetre": 0.569,
-   "multiplicateurs": {
-    "PV-VAINQ": {
-     "PHI": {
-      "oui": 0.7107853506470305
-     },
-     "ATT": {
-      "oui": 0.6685205344273679
-     },
-     "MEL": {
-      "oui": 1.0
-     },
-     "GLU": {
-      "oui": 0.8136461142839199
-     },
-     "RET": {
-      "oui": 0.749332739861262
-     },
-     "LIS": {
-      "oui": 0.749332739861262
-     },
-     "AUT": {
-      "oui": 0.6453714584098175
-     }
-    }
+   "cas": {
+    "PV-VAINQ=RN|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=RN|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.28434,
+    "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non": 0.31456,
+    "PV-VAINQ=PHI|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=PHI|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.23037,
+    "PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=non": 0.24773,
+    "PV-VAINQ=ATT|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=ATT|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=ATT|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.23037,
+    "PV-VAINQ=ATT|PV-DISSOL2a=non|PV-DISSOL1=non": 0.24773,
+    "PV-VAINQ=MEL|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=MEL|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.3146,
+    "PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=non": 0.36523,
+    "PV-VAINQ=GLU|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=GLU|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.23037,
+    "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=non": 0.26603,
+    "PV-VAINQ=RET|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=RET|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=RET|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.23037,
+    "PV-VAINQ=RET|PV-DISSOL2a=non|PV-DISSOL1=non": 0.26367,
+    "PV-VAINQ=LIS|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=LIS|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=LIS|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.23037,
+    "PV-VAINQ=LIS|PV-DISSOL2a=non|PV-DISSOL1=non": 0.24773,
+    "PV-VAINQ=AUT|PV-DISSOL2a=oui|PV-DISSOL1=oui": 0.04698,
+    "PV-VAINQ=AUT|PV-DISSOL2a=oui|PV-DISSOL1=non": 0.05866,
+    "PV-VAINQ=AUT|PV-DISSOL2a=non|PV-DISSOL1=oui": 0.23037,
+    "PV-VAINQ=AUT|PV-DISSOL2a=non|PV-DISSOL1=non": 0.24773
    },
-   "sigma": 0.4,
-   "derive": "passe du 10 octobre 2026 : reste de la probabilité agrégée sur 17 mois (87 %) ; l'article 12 est un verrou daté de la structure (étape 1), plus un multiplicateur"
+   "sigma": 0.45,
+   "evaluateurs": [
+    "E7",
+    "E8",
+    "E9"
+   ],
+   "format": "lois par cas v1",
+   "alertes": [
+    "PV-DISSOL2b [PV-VAINQ=RN|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=PHI|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=ATT|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=MEL|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=GLU|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=RET|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=LIS|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])",
+    "PV-DISSOL2b [PV-VAINQ=AUT|PV-DISSOL2a=oui|PV-DISSOL1=oui] : zéro isolé ramené à 0.01 ([0.08, 0.12, 0.0])"
+   ]
   }
  },
  "mesures": {
@@ -1080,22 +1175,22 @@
   }
  },
  "direct": {
-  "EV-01": 70,
-  "EV-04": 18,
+  "EV-01": 75.0,
+  "EV-04": 18.0,
   "EV-46": 4,
-  "EV-15": 24,
-  "EV-15b": 10,
+  "EV-15": 20.0,
+  "EV-15b": 8.0,
   "EV-15c": 27,
   "EV-16a": 8,
-  "EV-16b": 85,
+  "EV-16b": 78.0,
   "EV-50": 35,
   "EV-02": 62,
   "EV-39": 55,
-  "EV-10": 41,
-  "EV-47": 25,
-  "EV-52": 88,
+  "EV-10": 52.0,
+  "EV-47": 30.0,
+  "EV-52": 95.0,
   "EV-13": 15,
-  "EV-51": 35,
+  "EV-51": 30.0,
   "EV-49": 20,
   "EV-18": {
    "candidature autonome": 50,
@@ -1140,8 +1235,9 @@
    "François Hollande": 1.7,
    "autre": 4.5
   },
-  "EV-17": 80,
+  "EV-17": 78.0,
   "EV-43": 37,
   "EV-45": 13
- }
+ },
+ "direct_note": "Avis directs d'EV-01, EV-04, EV-15, EV-15b, EV-16b, EV-17, EV-10, EV-47, EV-52 et EV-51 : médiane de E7 à E9 après la seconde ronde (étape 4) ; les autres, médiane de E1 à E3 ou de E4 à E6. Diagnostic seulement, jamais une cible."
 }

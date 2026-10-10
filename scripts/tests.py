@@ -867,6 +867,8 @@ def test_lois_par_cas():
         so = tables.sens_opposes([a, b])
         assert so and so[0]["cas"] == "VE-X=b", so
         assert not tables.sens_opposes([a, a])
+    # σ pondéré par la fréquence des cas : un cas sous verrou (poids nul) très dispersé ne gonfle pas l'incertitude.
+    assert tables.sigma_pondere([(1.0, 0.1), (0.0, 5.0)]) == 0.3 and tables.sigma_pondere([(1.0, 0.8), (1.0, 0.4)]) == 0.6
 
 
 def test_agregation_sans_veto():

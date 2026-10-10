@@ -1,0 +1,1733 @@
+{
+ "evaluateur": "E8",
+ "date": "2026-10-10",
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "PV-NOTE": {
+   "nom": "Dégradation de la note par une agence",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-ECART",
+     "nom": "Écart OAT-Bund 10 ans (moyenne du mois)",
+     "etats": [
+      "< 120 pb",
+      "120-160 pb",
+      "> 160 pb"
+     ],
+     "decalage": 1,
+     "definition": "moyenne mensuelle de l'écart (série BCE collectée)"
+    },
+    {
+     "id": "PV-BUDGET",
+     "nom": "Loi de finances pour 2027 au 31 décembre 2026",
+     "etats": [
+      "publiée",
+      "non publiée"
+     ],
+     "decalage": 0,
+     "definition": "2026-12-31"
+    },
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0472,
+     "loi": {
+      "oui": 0.59
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur RN pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0183,
+     "loi": {
+      "oui": 0.45
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur PHI pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "oui": 0.45
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur ATT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0037,
+     "loi": {
+      "oui": 0.8
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur MEL pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé, le programme de dépense non financé d'un président MEL domine la détente de l'écart ; les agences jugent la trajectoire, pas seulement le marché."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": 0.52
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur GLU pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "oui": 0.47
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur RET pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "oui": 0.47
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur LIS pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0031,
+     "loi": {
+      "oui": 0.52
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur AUT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0941,
+     "loi": {
+      "oui": 0.67
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur RN pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0375,
+     "loi": {
+      "oui": 0.53
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur PHI pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.003,
+     "loi": {
+      "oui": 0.53
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur ATT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0074,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur MEL pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé, le programme de dépense non financé d'un président MEL domine la détente de l'écart ; les agences jugent la trajectoire, pas seulement le marché."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0035,
+     "loi": {
+      "oui": 0.6
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur GLU pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "oui": 0.55
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur RET pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.55
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur LIS pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0065,
+     "loi": {
+      "oui": 0.6
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur AUT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.1241,
+     "loi": {
+      "oui": 0.74
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur RN pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0463,
+     "loi": {
+      "oui": 0.6
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur PHI pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0037,
+     "loi": {
+      "oui": 0.6
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur ATT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0098,
+     "loi": {
+      "oui": 0.84
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur MEL pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "oui": 0.67
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur GLU pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0029,
+     "loi": {
+      "oui": 0.62
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur RET pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": 0.62
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur LIS pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0109,
+     "loi": {
+      "oui": 0.67
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur AUT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.2754,
+     "loi": {
+      "oui": 0.82
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur RN pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.1062,
+     "loi": {
+      "oui": 0.68
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur PHI pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0074,
+     "loi": {
+      "oui": 0.68
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur ATT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0187,
+     "loi": {
+      "oui": 0.92
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur MEL pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0111,
+     "loi": {
+      "oui": 0.75
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur GLU pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0062,
+     "loi": {
+      "oui": 0.7
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur RET pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "oui": 0.7
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur LIS pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0196,
+     "loi": {
+      "oui": 0.75
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur AUT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0214,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur RN pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé à 0,85, un écart > 160 pb (zone jamais atteinte depuis 2012) signale une crise de confiance qui rend une baisse quasi certaine quel que soit le vainqueur ; ce cas ne peut être sous le cas de référence 120-160 pb."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0078,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur PHI pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé à 0,85, un écart > 160 pb (zone jamais atteinte depuis 2012) signale une crise de confiance qui rend une baisse quasi certaine quel que soit le vainqueur ; ce cas ne peut être sous le cas de référence 120-160 pb."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur ATT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé à 0,85, un écart > 160 pb (zone jamais atteinte depuis 2012) signale une crise de confiance qui rend une baisse quasi certaine quel que soit le vainqueur ; ce cas ne peut être sous le cas de référence 120-160 pb."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "oui": 0.92
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur MEL pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur GLU pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé à 0,85, un écart > 160 pb (zone jamais atteinte depuis 2012) signale une crise de confiance qui rend une baisse quasi certaine quel que soit le vainqueur ; ce cas ne peut être sous le cas de référence 120-160 pb."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur RET pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé à 0,85, un écart > 160 pb (zone jamais atteinte depuis 2012) signale une crise de confiance qui rend une baisse quasi certaine quel que soit le vainqueur ; ce cas ne peut être sous le cas de référence 120-160 pb."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur LIS pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé à 0,85, un écart > 160 pb (zone jamais atteinte depuis 2012) signale une crise de confiance qui rend une baisse quasi certaine quel que soit le vainqueur ; ce cas ne peut être sous le cas de référence 120-160 pb."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0026,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur AUT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé à 0,85, un écart > 160 pb (zone jamais atteinte depuis 2012) signale une crise de confiance qui rend une baisse quasi certaine quel que soit le vainqueur ; ce cas ne peut être sous le cas de référence 120-160 pb."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.0525,
+     "loi": {
+      "oui": 0.9
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur RN pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.0196,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur PHI pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé à 0,85, un écart > 160 pb (zone jamais atteinte depuis 2012) signale une crise de confiance qui rend une baisse quasi certaine quel que soit le vainqueur ; ce cas ne peut être sous le cas de référence 120-160 pb."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur ATT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé à 0,85, un écart > 160 pb (zone jamais atteinte depuis 2012) signale une crise de confiance qui rend une baisse quasi certaine quel que soit le vainqueur ; ce cas ne peut être sous le cas de référence 120-160 pb."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0042,
+     "loi": {
+      "oui": 0.96
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur MEL pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0016,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur GLU pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé à 0,85, un écart > 160 pb (zone jamais atteinte depuis 2012) signale une crise de confiance qui rend une baisse quasi certaine quel que soit le vainqueur ; ce cas ne peut être sous le cas de référence 120-160 pb."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0015,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur RET pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé à 0,85, un écart > 160 pb (zone jamais atteinte depuis 2012) signale une crise de confiance qui rend une baisse quasi certaine quel que soit le vainqueur ; ce cas ne peut être sous le cas de référence 120-160 pb."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur LIS pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé à 0,85, un écart > 160 pb (zone jamais atteinte depuis 2012) signale une crise de confiance qui rend une baisse quasi certaine quel que soit le vainqueur ; ce cas ne peut être sous le cas de référence 120-160 pb."
+    },
+    "VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0036,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Moody's Aa3 perspective négative depuis oct. 2025, maintenue le 10/04/2026 (https://allnews.ch/node/152441), prochaine revue 23/10/2026 ; Fitch A+ stable confirmée 28/08/2026, S&P A+ revue 27/11/2026 (https://www.france-epargne.fr/news/oat-10-ans-au-dessus-de-4-la-france-aborde-la-revue-fitch-du-28-aout-sur-la-defensive) ; écart OAT-Bund ~120-128 pb le 30/09/2026, plus haut depuis 2012 (https://www.france-epargne.fr/news/lecart-entre-loat-et-le-bund-atteint-120-points-de-base-un-niveau-inedit-depuis-2012). jugement : si ce cas vaut sur toute la fenêtre (deux ans, au moins six revues programmées), la perspective négative de Moody's et la dérive du déficit rendent une baisse d'un cran probable ; un vainqueur AUT pèse selon son programme budgétaire, une LFI publiée retire environ 8 points, un écart < 120 pb environ 15 points, > 160 pb en ajoute 8. Ronde 2 : relevé à 0,85, un écart > 160 pb (zone jamais atteinte depuis 2012) signale une crise de confiance qui rend une baisse quasi certaine quel que soit le vainqueur ; ce cas ne peut être sous le cas de référence 120-160 pb."
+    }
+   },
+   "verrous": [],
+   "profil": "risque concentré sur les mois de revue programmée des agences (calendrier sourcé) ; donner la probabilité sur toute la fenêtre"
+  },
+  "PV-PDE": {
+   "nom": "Durcissement de la procédure de déficit excessif",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-BUDGET",
+     "nom": "Loi de finances pour 2027 au 31 décembre 2026",
+     "etats": [
+      "publiée",
+      "non publiée"
+     ],
+     "decalage": 0,
+     "definition": "2026-12-31"
+    },
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-BUDGET=publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.1894,
+     "loi": {
+      "oui": 0.22
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si RN gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.067,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si PHI gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0065,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si ATT gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0149,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si MEL gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0082,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si GLU gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.003,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si RET gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": 0.07
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si LIS gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0146,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si AUT gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=RN": {
+     "poids_reseau": 0.434,
+     "loi": {
+      "oui": 0.27
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si RN gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=PHI": {
+     "poids_reseau": 0.1629,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si PHI gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=ATT": {
+     "poids_reseau": 0.0116,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si ATT gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=MEL": {
+     "poids_reseau": 0.0306,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si MEL gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=GLU": {
+     "poids_reseau": 0.0136,
+     "loi": {
+      "oui": 0.2
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si GLU gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=RET": {
+     "poids_reseau": 0.0108,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si RET gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=LIS": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si LIS gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    },
+    "PV-BUDGET=non publiée|PV-VAINQ=AUT": {
+     "poids_reseau": 0.0311,
+     "loi": {
+      "oui": 0.2
+     },
+     "justification": "France en PDE depuis 2024 ; la Commission a jugé la trajectoire 2026 conforme aux taux recommandés à l'automne 2025 (https://www.ifrap.org/situation-financiere-de-la-france-une-mansuetude-etonnante-de-la-commission-europeenne) ; Lecornu annonce un déficit de 6-7 % sans budget adopté (https://www.leclubdesjuristes.com/en-bref/budget-2027-le-premier-ministre-ecarte-le-recours-a-une-loi-speciale-16812/). jugement : une décision 126(8)/(9) reste rare (précédents Grèce, Espagne/Portugal 2016) ; si AUT gagne, la probabilité dépend de sa volonté de s'écarter de la trajectoire ; LFI publiée : -5 points."
+    }
+   },
+   "verrous": []
+  },
+  "PV-CENSURE1a": {
+   "nom": "Censure d'ici fin 2026 (session budgétaire)",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2026-12-31"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-POP=< 25 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.5223,
+     "loi": {
+      "oui": 0.22
+     },
+     "justification": "Gouvernement Lecornu minoritaire ; LFI promet la censure sur le budget 2027 (https://beninwebtv.bj/france-melenchon-promet-de-censurer-le-gouvernement-sur-le-budget-2027/), Faure : « Si rien ne change, nous censurerons » (27/09/2026, https://www.titrespresse.com/22914002603/sebastien-lecornu-olivier) ; précédents : Barnier censuré déc. 2024, Lecornu a survécu en oct. 2025 et janv. 2026 (https://en.wikipedia.org/wiki/Lecornu_governments). jugement : il faut PS + RN + LFI ; la voie des ordonnances (art. 47) et la menace de dissolution freinent ; une impopularité forte et la rue augmentent le risque."
+    },
+    "VE-POP=< 25 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.3846,
+     "loi": {
+      "oui": 0.27
+     },
+     "justification": "Gouvernement Lecornu minoritaire ; LFI promet la censure sur le budget 2027 (https://beninwebtv.bj/france-melenchon-promet-de-censurer-le-gouvernement-sur-le-budget-2027/), Faure : « Si rien ne change, nous censurerons » (27/09/2026, https://www.titrespresse.com/22914002603/sebastien-lecornu-olivier) ; précédents : Barnier censuré déc. 2024, Lecornu a survécu en oct. 2025 et janv. 2026 (https://en.wikipedia.org/wiki/Lecornu_governments). jugement : il faut PS + RN + LFI ; la voie des ordonnances (art. 47) et la menace de dissolution freinent ; une impopularité forte et la rue augmentent le risque."
+    },
+    "VE-POP=< 25 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0793,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "Gouvernement Lecornu minoritaire ; LFI promet la censure sur le budget 2027 (https://beninwebtv.bj/france-melenchon-promet-de-censurer-le-gouvernement-sur-le-budget-2027/), Faure : « Si rien ne change, nous censurerons » (27/09/2026, https://www.titrespresse.com/22914002603/sebastien-lecornu-olivier) ; précédents : Barnier censuré déc. 2024, Lecornu a survécu en oct. 2025 et janv. 2026 (https://en.wikipedia.org/wiki/Lecornu_governments). jugement : il faut PS + RN + LFI ; la voie des ordonnances (art. 47) et la menace de dissolution freinent ; une impopularité forte et la rue augmentent le risque."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0069,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "Gouvernement Lecornu minoritaire ; LFI promet la censure sur le budget 2027 (https://beninwebtv.bj/france-melenchon-promet-de-censurer-le-gouvernement-sur-le-budget-2027/), Faure : « Si rien ne change, nous censurerons » (27/09/2026, https://www.titrespresse.com/22914002603/sebastien-lecornu-olivier) ; précédents : Barnier censuré déc. 2024, Lecornu a survécu en oct. 2025 et janv. 2026 (https://en.wikipedia.org/wiki/Lecornu_governments). jugement : il faut PS + RN + LFI ; la voie des ordonnances (art. 47) et la menace de dissolution freinent ; une impopularité forte et la rue augmentent le risque."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0049,
+     "loi": {
+      "oui": 0.2
+     },
+     "justification": "Gouvernement Lecornu minoritaire ; LFI promet la censure sur le budget 2027 (https://beninwebtv.bj/france-melenchon-promet-de-censurer-le-gouvernement-sur-le-budget-2027/), Faure : « Si rien ne change, nous censurerons » (27/09/2026, https://www.titrespresse.com/22914002603/sebastien-lecornu-olivier) ; précédents : Barnier censuré déc. 2024, Lecornu a survécu en oct. 2025 et janv. 2026 (https://en.wikipedia.org/wiki/Lecornu_governments). jugement : il faut PS + RN + LFI ; la voie des ordonnances (art. 47) et la menace de dissolution freinent ; une impopularité forte et la rue augmentent le risque."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "oui": 0.27
+     },
+     "justification": "Gouvernement Lecornu minoritaire ; LFI promet la censure sur le budget 2027 (https://beninwebtv.bj/france-melenchon-promet-de-censurer-le-gouvernement-sur-le-budget-2027/), Faure : « Si rien ne change, nous censurerons » (27/09/2026, https://www.titrespresse.com/22914002603/sebastien-lecornu-olivier) ; précédents : Barnier censuré déc. 2024, Lecornu a survécu en oct. 2025 et janv. 2026 (https://en.wikipedia.org/wiki/Lecornu_governments). jugement : il faut PS + RN + LFI ; la voie des ordonnances (art. 47) et la menace de dissolution freinent ; une impopularité forte et la rue augmentent le risque."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "Gouvernement Lecornu minoritaire ; LFI promet la censure sur le budget 2027 (https://beninwebtv.bj/france-melenchon-promet-de-censurer-le-gouvernement-sur-le-budget-2027/), Faure : « Si rien ne change, nous censurerons » (27/09/2026, https://www.titrespresse.com/22914002603/sebastien-lecornu-olivier) ; précédents : Barnier censuré déc. 2024, Lecornu a survécu en oct. 2025 et janv. 2026 (https://en.wikipedia.org/wiki/Lecornu_governments). jugement : il faut PS + RN + LFI ; la voie des ordonnances (art. 47) et la menace de dissolution freinent ; une impopularité forte et la rue augmentent le risque."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "oui": 0.14
+     },
+     "justification": "Gouvernement Lecornu minoritaire ; LFI promet la censure sur le budget 2027 (https://beninwebtv.bj/france-melenchon-promet-de-censurer-le-gouvernement-sur-le-budget-2027/), Faure : « Si rien ne change, nous censurerons » (27/09/2026, https://www.titrespresse.com/22914002603/sebastien-lecornu-olivier) ; précédents : Barnier censuré déc. 2024, Lecornu a survécu en oct. 2025 et janv. 2026 (https://en.wikipedia.org/wiki/Lecornu_governments). jugement : il faut PS + RN + LFI ; la voie des ordonnances (art. 47) et la menace de dissolution freinent ; une impopularité forte et la rue augmentent le risque."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.2
+     },
+     "justification": "Gouvernement Lecornu minoritaire ; LFI promet la censure sur le budget 2027 (https://beninwebtv.bj/france-melenchon-promet-de-censurer-le-gouvernement-sur-le-budget-2027/), Faure : « Si rien ne change, nous censurerons » (27/09/2026, https://www.titrespresse.com/22914002603/sebastien-lecornu-olivier) ; précédents : Barnier censuré déc. 2024, Lecornu a survécu en oct. 2025 et janv. 2026 (https://en.wikipedia.org/wiki/Lecornu_governments). jugement : il faut PS + RN + LFI ; la voie des ordonnances (art. 47) et la menace de dissolution freinent ; une impopularité forte et la rue augmentent le risque."
+    }
+   },
+   "verrous": []
+  },
+  "PV-CENSURE1b": {
+   "nom": "Censure de janvier au second tour",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-01-01",
+    "2027-05-02"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-POP=< 25 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.6853,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "jugement : en pleine campagne présidentielle, renverser un gouvernement de fin de mandat rapporte peu ; le budget, s'il n'est pas voté, peut passer par ordonnances (art. 47) sans 49.3 ; risque résiduel lié à un 49.3 ou à une crise sociale, plus élevé si la popularité est basse et la rue mobilisée."
+    },
+    "VE-POP=< 25 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.1452,
+     "loi": {
+      "oui": 0.14
+     },
+     "justification": "jugement : en pleine campagne présidentielle, renverser un gouvernement de fin de mandat rapporte peu ; le budget, s'il n'est pas voté, peut passer par ordonnances (art. 47) sans 49.3 ; risque résiduel lié à un 49.3 ou à une crise sociale, plus élevé si la popularité est basse et la rue mobilisée."
+    },
+    "VE-POP=< 25 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0351,
+     "loi": {
+      "oui": 0.2
+     },
+     "justification": "jugement : en pleine campagne présidentielle, renverser un gouvernement de fin de mandat rapporte peu ; le budget, s'il n'est pas voté, peut passer par ordonnances (art. 47) sans 49.3 ; risque résiduel lié à un 49.3 ou à une crise sociale, plus élevé si la popularité est basse et la rue mobilisée."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0998,
+     "loi": {
+      "oui": 0.07
+     },
+     "justification": "jugement : en pleine campagne présidentielle, renverser un gouvernement de fin de mandat rapporte peu ; le budget, s'il n'est pas voté, peut passer par ordonnances (art. 47) sans 49.3 ; risque résiduel lié à un 49.3 ou à une crise sociale, plus élevé si la popularité est basse et la rue mobilisée."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0147,
+     "loi": {
+      "oui": 0.1
+     },
+     "justification": "jugement : en pleine campagne présidentielle, renverser un gouvernement de fin de mandat rapporte peu ; le budget, s'il n'est pas voté, peut passer par ordonnances (art. 47) sans 49.3 ; risque résiduel lié à un 49.3 ou à une crise sociale, plus élevé si la popularité est basse et la rue mobilisée."
+    },
+    "VE-POP=25-35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0045,
+     "loi": {
+      "oui": 0.15
+     },
+     "justification": "jugement : en pleine campagne présidentielle, renverser un gouvernement de fin de mandat rapporte peu ; le budget, s'il n'est pas voté, peut passer par ordonnances (art. 47) sans 49.3 ; risque résiduel lié à un 49.3 ou à une crise sociale, plus élevé si la popularité est basse et la rue mobilisée."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=calme": {
+     "poids_reseau": 0.0141,
+     "loi": {
+      "oui": 0.05
+     },
+     "justification": "jugement : en pleine campagne présidentielle, renverser un gouvernement de fin de mandat rapporte peu ; le budget, s'il n'est pas voté, peut passer par ordonnances (art. 47) sans 49.3 ; risque résiduel lié à un 49.3 ou à une crise sociale, plus élevé si la popularité est basse et la rue mobilisée."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "oui": 0.08
+     },
+     "justification": "jugement : en pleine campagne présidentielle, renverser un gouvernement de fin de mandat rapporte peu ; le budget, s'il n'est pas voté, peut passer par ordonnances (art. 47) sans 49.3 ; risque résiduel lié à un 49.3 ou à une crise sociale, plus élevé si la popularité est basse et la rue mobilisée."
+    },
+    "VE-POP=> 35 %|VE-MOBIL=forte": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : en pleine campagne présidentielle, renverser un gouvernement de fin de mandat rapporte peu ; le budget, s'il n'est pas voté, peut passer par ordonnances (art. 47) sans 49.3 ; risque résiduel lié à un 49.3 ou à une crise sociale, plus élevé si la popularité est basse et la rue mobilisée."
+    }
+   },
+   "verrous": []
+  },
+  "PV-DISSOL2a": {
+   "nom": "Dissolution dans les deux mois suivant le second tour",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    },
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "PV-DISSOL1",
+     "nom": "Dissolution avant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2027-05-02"
+     ]
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-05-03",
+    "2027-06-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0081,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.4943,
+     "loi": {
+      "oui": 0.78
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président RN sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=RN|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.1013,
+     "loi": {
+      "oui": 0.8
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président RN sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0147,
+     "loi": {
+      "oui": 0.82
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président RN sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0029,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=PHI|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.186,
+     "loi": {
+      "oui": 0.66
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président PHI sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=PHI|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=PHI|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0343,
+     "loi": {
+      "oui": 0.68
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président PHI sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=PHI|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0071,
+     "loi": {
+      "oui": 0.7
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président PHI sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=ATT|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=ATT|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0119,
+     "loi": {
+      "oui": 0.66
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président ATT sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=ATT|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=ATT|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0048,
+     "loi": {
+      "oui": 0.68
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président ATT sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=ATT|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=ATT|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "oui": 0.7
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président ATT sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=MEL|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=MEL|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0333,
+     "loi": {
+      "oui": 0.83
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président MEL sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=MEL|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=MEL|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0076,
+     "loi": {
+      "oui": 0.85
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président MEL sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=MEL|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=MEL|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "oui": 0.87
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président MEL sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=GLU|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=GLU|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0176,
+     "loi": {
+      "oui": 0.63
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président GLU sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=GLU|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=GLU|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "oui": 0.65
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président GLU sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=GLU|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=GLU|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.67
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président GLU sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=RET|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=RET|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0152,
+     "loi": {
+      "oui": 0.63
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président RET sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=RET|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "oui": 0.65
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président RET sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.67
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président RET sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=LIS|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=LIS|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "oui": 0.63
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président LIS sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=LIS|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=LIS|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.65
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président LIS sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=LIS|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=LIS|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.67
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président LIS sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=AUT|VE-POP=< 25 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=AUT|VE-POP=< 25 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0347,
+     "loi": {
+      "oui": 0.63
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président AUT sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=AUT|VE-POP=25-35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=AUT|VE-POP=25-35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0076,
+     "loi": {
+      "oui": 0.65
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président AUT sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    },
+    "PV-VAINQ=AUT|VE-POP=> 35 %|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement : Assemblée élue quelques mois plus tôt ; même hors verrou de l'article 12 (appliqué à part), l'envie de redissoudre aussitôt serait plus faible."
+    },
+    "PV-VAINQ=AUT|VE-POP=> 35 %|PV-DISSOL1=non": {
+     "poids_reseau": 0.0024,
+     "loi": {
+      "oui": 0.67
+     },
+     "justification": "Précédents : Mitterrand dissout dès son élection en 1981 et 1988 faute de majorité ; l'Assemblée élue en 2024 n'a pas de majorité (motions de 2025-2026, https://en.wikipedia.org/wiki/Lecornu_governments). jugement : un nouveau président AUT sans majorité dissout très probablement dans les deux mois ; un candidat central pourrait tenter une coalition, d'où une probabilité plus basse. Ronde 2 : effet de la popularité réduit à ±2 points, VE-POP décalé d'un mois mesure en mai la popularité du président sortant, peu pertinente pour la décision du nouveau."
+    }
+   },
+   "verrous": [
+    {
+     "si": "PV-DISSOL1",
+     "interdit": [
+      "PV-DISSOL2a",
+      "PV-DISSOL2b"
+     ],
+     "duree_mois": 12,
+     "motif": "article 12 de la Constitution : pas de nouvelle dissolution dans l'année qui suit les élections ; pas mensuel, élections comptées dans le mois qui suit la dissolution, nouvelle dissolution possible à partir du 13e mois après celui de la dissolution"
+    }
+   ]
+  },
+  "PV-DISSOL2b": {
+   "nom": "Dissolution de juillet 2027 à septembre 2028",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "PV-VAINQ",
+     "nom": "Vainqueur de la présidentielle",
+     "etats": [
+      "RN",
+      "PHI",
+      "ATT",
+      "MEL",
+      "GLU",
+      "RET",
+      "LIS",
+      "AUT"
+     ],
+     "decalage": 0,
+     "definition": "2027-05-02"
+    },
+    {
+     "id": "PV-DISSOL2a",
+     "nom": "Dissolution dans les deux mois suivant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2027-05-03",
+      "2027-06-30"
+     ]
+    },
+    {
+     "id": "PV-DISSOL1",
+     "nom": "Dissolution avant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2027-05-02"
+     ]
+    }
+   ],
+   "definition": null,
+   "date": null,
+   "fenetre": [
+    "2027-07-01",
+    "2028-09-30"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "PV-VAINQ=RN|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=RN|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.2288,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0858,
+     "loi": {
+      "oui": 0.3
+     },
+     "justification": "jugement (ronde 2, abaissé) : l'Assemblée élue juste avant la présidentielle l'a été dans le même climat politique, souvent proche du rapport de forces de la présidentielle ; la fenêtre ouverte après le verrou de l'art. 12 (traité à part) est courte (quelques mois avant sept. 2028) ; dissolution possible si discordance nette, plus pour un président RN ou MEL sans majorité."
+    },
+    "PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.2652,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "jugement : si le président RN n'a pas dissous en mai-juin 2027, c'est qu'il compose avec l'Assemblée de 2024 ; un blocage durable rend une dissolution plus tard plausible mais non dominante."
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0483,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0307,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement (ronde 2, abaissé) : l'Assemblée élue juste avant la présidentielle l'a été dans le même climat politique, souvent proche du rapport de forces de la présidentielle ; la fenêtre ouverte après le verrou de l'art. 12 (traité à part) est courte (quelques mois avant sept. 2028) ; dissolution possible si discordance nette, plus pour un président RN ou MEL sans majorité."
+    },
+    "PV-VAINQ=PHI|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.1959,
+     "loi": {
+      "oui": 0.3
+     },
+     "justification": "jugement : si le président PHI n'a pas dissous en mai-juin 2027, c'est qu'il compose avec l'Assemblée de 2024 ; un blocage durable rend une dissolution plus tard plausible mais non dominante."
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0052,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0042,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement (ronde 2, abaissé) : l'Assemblée élue juste avant la présidentielle l'a été dans le même climat politique, souvent proche du rapport de forces de la présidentielle ; la fenêtre ouverte après le verrou de l'art. 12 (traité à part) est courte (quelques mois avant sept. 2028) ; dissolution possible si discordance nette, plus pour un président RN ou MEL sans majorité."
+    },
+    "PV-VAINQ=ATT|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0074,
+     "loi": {
+      "oui": 0.3
+     },
+     "justification": "jugement : si le président ATT n'a pas dissous en mai-juin 2027, c'est qu'il compose avec l'Assemblée de 2024 ; un blocage durable rend une dissolution plus tard plausible mais non dominante."
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0189,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0021,
+     "loi": {
+      "oui": 0.35
+     },
+     "justification": "jugement (ronde 2, abaissé) : l'Assemblée élue juste avant la présidentielle l'a été dans le même climat politique, souvent proche du rapport de forces de la présidentielle ; la fenêtre ouverte après le verrou de l'art. 12 (traité à part) est courte (quelques mois avant sept. 2028) ; dissolution possible si discordance nette, plus pour un président RN ou MEL sans majorité."
+    },
+    "PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0118,
+     "loi": {
+      "oui": 0.4
+     },
+     "justification": "jugement : si le président MEL n'a pas dissous en mai-juin 2027, c'est qu'il compose avec l'Assemblée de 2024 ; un blocage durable rend une dissolution plus tard plausible mais non dominante."
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0062,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement (ronde 2, abaissé) : l'Assemblée élue juste avant la présidentielle l'a été dans le même climat politique, souvent proche du rapport de forces de la présidentielle ; la fenêtre ouverte après le verrou de l'art. 12 (traité à part) est courte (quelques mois avant sept. 2028) ; dissolution possible si discordance nette, plus pour un président RN ou MEL sans majorité."
+    },
+    "PV-VAINQ=GLU|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0097,
+     "loi": {
+      "oui": 0.3
+     },
+     "justification": "jugement : si le président GLU n'a pas dissous en mai-juin 2027, c'est qu'il compose avec l'Assemblée de 2024 ; un blocage durable rend une dissolution plus tard plausible mais non dominante."
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0032,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement (ronde 2, abaissé) : l'Assemblée élue juste avant la présidentielle l'a été dans le même climat politique, souvent proche du rapport de forces de la présidentielle ; la fenêtre ouverte après le verrou de l'art. 12 (traité à part) est courte (quelques mois avant sept. 2028) ; dissolution possible si discordance nette, plus pour un président RN ou MEL sans majorité."
+    },
+    "PV-VAINQ=RET|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0088,
+     "loi": {
+      "oui": 0.3
+     },
+     "justification": "jugement : si le président RET n'a pas dissous en mai-juin 2027, c'est qu'il compose avec l'Assemblée de 2024 ; un blocage durable rend une dissolution plus tard plausible mais non dominante."
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement (ronde 2, abaissé) : l'Assemblée élue juste avant la présidentielle l'a été dans le même climat politique, souvent proche du rapport de forces de la présidentielle ; la fenêtre ouverte après le verrou de l'art. 12 (traité à part) est courte (quelques mois avant sept. 2028) ; dissolution possible si discordance nette, plus pour un président RN ou MEL sans majorité."
+    },
+    "PV-VAINQ=LIS|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.3
+     },
+     "justification": "jugement : si le président LIS n'a pas dissous en mai-juin 2027, c'est qu'il compose avec l'Assemblée de 2024 ; un blocage durable rend une dissolution plus tard plausible mais non dominante."
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0088,
+     "loi": {
+      "oui": 0.12
+     },
+     "justification": "jugement : Assemblée élue en juin 2027 sur l'élan présidentiel ; une nouvelle dissolution dans les 15 mois suivants est peu probable (verrou de l'art. 12 traité à part)."
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.007,
+     "loi": {
+      "oui": 0.25
+     },
+     "justification": "jugement (ronde 2, abaissé) : l'Assemblée élue juste avant la présidentielle l'a été dans le même climat politique, souvent proche du rapport de forces de la présidentielle ; la fenêtre ouverte après le verrou de l'art. 12 (traité à part) est courte (quelques mois avant sept. 2028) ; dissolution possible si discordance nette, plus pour un président RN ou MEL sans majorité."
+    },
+    "PV-VAINQ=AUT|PV-DISSOL2a=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0423,
+     "loi": {
+      "oui": 0.3
+     },
+     "justification": "jugement : si le président AUT n'a pas dissous en mai-juin 2027, c'est qu'il compose avec l'Assemblée de 2024 ; un blocage durable rend une dissolution plus tard plausible mais non dominante."
+    }
+   },
+   "verrous": [
+    {
+     "si": "PV-DISSOL1",
+     "interdit": [
+      "PV-DISSOL2a",
+      "PV-DISSOL2b"
+     ],
+     "duree_mois": 12,
+     "motif": "article 12 de la Constitution : pas de nouvelle dissolution dans l'année qui suit les élections ; pas mensuel, élections comptées dans le mois qui suit la dissolution, nouvelle dissolution possible à partir du 13e mois après celui de la dissolution"
+    },
+    {
+     "si": "PV-DISSOL2a",
+     "interdit": [
+      "PV-DISSOL2b"
+     ],
+     "duree_mois": 12,
+     "motif": "article 12 de la Constitution, comme ci-dessus"
+    }
+   ]
+  },
+  "VE-LYCEE": {
+   "nom": "Mobilisation lycéenne",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-MOBIL",
+     "nom": "Mobilisation sociale (manifestants)",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 0,
+     "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000"
+    }
+   ],
+   "definition": "plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "cas": {
+    "prec=calme|VE-MOBIL=calme": {
+     "poids_reseau": 0.7156,
+     "loi": {
+      "calme": 0.95,
+      "modérée": 0.04,
+      "forte": 0.01
+     },
+     "justification": "Mouvement d'octobre 2026 : 891 établissements perturbés le 6/10 selon l'Éducation nationale, 256 000 manifestants selon l'Intérieur (https://fr.euronews.com/2026/10/06/mobilisation-lyceenne-acte-iii-891-lycees-perturbes-annonce-le-ministere-de-linterieur). jugement : les mouvements lycéens sont brefs et s'éteignent souvent aux vacances (2010, 2016, 2018) ; forte persistance seulement si la rue adulte reste mobilisée ; mois calmes très stables."
+    },
+    "prec=calme|VE-MOBIL=modérée": {
+     "poids_reseau": 0.1466,
+     "loi": {
+      "calme": 0.8,
+      "modérée": 0.15,
+      "forte": 0.05
+     },
+     "justification": "Mouvement d'octobre 2026 : 891 établissements perturbés le 6/10 selon l'Éducation nationale, 256 000 manifestants selon l'Intérieur (https://fr.euronews.com/2026/10/06/mobilisation-lyceenne-acte-iii-891-lycees-perturbes-annonce-le-ministere-de-linterieur). jugement : les mouvements lycéens sont brefs et s'éteignent souvent aux vacances (2010, 2016, 2018) ; forte persistance seulement si la rue adulte reste mobilisée ; mois calmes très stables."
+    },
+    "prec=calme|VE-MOBIL=forte": {
+     "poids_reseau": 0.0312,
+     "loi": {
+      "calme": 0.55,
+      "modérée": 0.3,
+      "forte": 0.15
+     },
+     "justification": "Mouvement d'octobre 2026 : 891 établissements perturbés le 6/10 selon l'Éducation nationale, 256 000 manifestants selon l'Intérieur (https://fr.euronews.com/2026/10/06/mobilisation-lyceenne-acte-iii-891-lycees-perturbes-annonce-le-ministere-de-linterieur). jugement : les mouvements lycéens sont brefs et s'éteignent souvent aux vacances (2010, 2016, 2018) ; forte persistance seulement si la rue adulte reste mobilisée ; mois calmes très stables."
+    },
+    "prec=modérée|VE-MOBIL=calme": {
+     "poids_reseau": 0.0341,
+     "loi": {
+      "calme": 0.6,
+      "modérée": 0.32,
+      "forte": 0.08
+     },
+     "justification": "Mouvement d'octobre 2026 : 891 établissements perturbés le 6/10 selon l'Éducation nationale, 256 000 manifestants selon l'Intérieur (https://fr.euronews.com/2026/10/06/mobilisation-lyceenne-acte-iii-891-lycees-perturbes-annonce-le-ministere-de-linterieur). jugement : les mouvements lycéens sont brefs et s'éteignent souvent aux vacances (2010, 2016, 2018) ; forte persistance seulement si la rue adulte reste mobilisée ; mois calmes très stables."
+    },
+    "prec=modérée|VE-MOBIL=modérée": {
+     "poids_reseau": 0.01,
+     "loi": {
+      "calme": 0.4,
+      "modérée": 0.45,
+      "forte": 0.15
+     },
+     "justification": "Mouvement d'octobre 2026 : 891 établissements perturbés le 6/10 selon l'Éducation nationale, 256 000 manifestants selon l'Intérieur (https://fr.euronews.com/2026/10/06/mobilisation-lyceenne-acte-iii-891-lycees-perturbes-annonce-le-ministere-de-linterieur). jugement : les mouvements lycéens sont brefs et s'éteignent souvent aux vacances (2010, 2016, 2018) ; forte persistance seulement si la rue adulte reste mobilisée ; mois calmes très stables."
+    },
+    "prec=modérée|VE-MOBIL=forte": {
+     "poids_reseau": 0.0034,
+     "loi": {
+      "calme": 0.25,
+      "modérée": 0.45,
+      "forte": 0.3
+     },
+     "justification": "Mouvement d'octobre 2026 : 891 établissements perturbés le 6/10 selon l'Éducation nationale, 256 000 manifestants selon l'Intérieur (https://fr.euronews.com/2026/10/06/mobilisation-lyceenne-acte-iii-891-lycees-perturbes-annonce-le-ministere-de-linterieur). jugement : les mouvements lycéens sont brefs et s'éteignent souvent aux vacances (2010, 2016, 2018) ; forte persistance seulement si la rue adulte reste mobilisée ; mois calmes très stables."
+    },
+    "prec=forte|VE-MOBIL=calme": {
+     "poids_reseau": 0.034,
+     "loi": {
+      "calme": 0.55,
+      "modérée": 0.3,
+      "forte": 0.15
+     },
+     "justification": "Mouvement d'octobre 2026 : 891 établissements perturbés le 6/10 selon l'Éducation nationale, 256 000 manifestants selon l'Intérieur (https://fr.euronews.com/2026/10/06/mobilisation-lyceenne-acte-iii-891-lycees-perturbes-annonce-le-ministere-de-linterieur). jugement : les mouvements lycéens sont brefs et s'éteignent souvent aux vacances (2010, 2016, 2018) ; forte persistance seulement si la rue adulte reste mobilisée ; mois calmes très stables."
+    },
+    "prec=forte|VE-MOBIL=modérée": {
+     "poids_reseau": 0.0192,
+     "loi": {
+      "calme": 0.4,
+      "modérée": 0.4,
+      "forte": 0.2
+     },
+     "justification": "Mouvement d'octobre 2026 : 891 établissements perturbés le 6/10 selon l'Éducation nationale, 256 000 manifestants selon l'Intérieur (https://fr.euronews.com/2026/10/06/mobilisation-lyceenne-acte-iii-891-lycees-perturbes-annonce-le-ministere-de-linterieur). jugement : les mouvements lycéens sont brefs et s'éteignent souvent aux vacances (2010, 2016, 2018) ; forte persistance seulement si la rue adulte reste mobilisée ; mois calmes très stables."
+    },
+    "prec=forte|VE-MOBIL=forte": {
+     "poids_reseau": 0.0058,
+     "loi": {
+      "calme": 0.15,
+      "modérée": 0.35,
+      "forte": 0.5
+     },
+     "justification": "Mouvement d'octobre 2026 : 891 établissements perturbés le 6/10 selon l'Éducation nationale, 256 000 manifestants selon l'Intérieur (https://fr.euronews.com/2026/10/06/mobilisation-lyceenne-acte-iii-891-lycees-perturbes-annonce-le-ministere-de-linterieur). jugement : les mouvements lycéens sont brefs et s'éteignent souvent aux vacances (2010, 2016, 2018) ; forte persistance seulement si la rue adulte reste mobilisée ; mois calmes très stables."
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-01": {
+   "critere": "Au moins une des agences Moody's, S&P Global Ratings ou Fitch Ratings abaisse d'au moins un cran la note de crédit à long terme de la République française pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.75
+  },
+  "EV-04": {
+   "critere": "Le Conseil de l'Union européenne adopte une décision visant la France au titre de l'article 126, paragraphe 8 ou paragraphe 9, du traité sur le fonctionnement de l'Union européenne.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.2
+  },
+  "EV-15": {
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": 0.25
+  },
+  "EV-15b": {
+   "critere": "L'Assemblée nationale adopte une motion de censure contre le gouvernement (article 49, alinéa 2 ou 3, de la Constitution) pendant la fenêtre.",
+   "fenetre": {
+    "debut": "2027-01-01",
+    "fin": "2027-05-02"
+   },
+   "probabilite": 0.11
+  },
+  "EV-16b": {
+   "critere": "Un décret de dissolution de l'Assemblée nationale (article 12 de la Constitution) est publié au Journal officiel entre le 3 mai 2027 et le 30 septembre 2028.",
+   "fenetre": {
+    "debut": "2027-05-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.78
+  },
+  "EV-17": {
+   "critere": "Le 30 septembre 2028, selon la composition des groupes publiée par l'Assemblée nationale, le groupe qui compte le plus de députés membres du parti dont le président élu en 2027 est membre au jour du second tour compte moins de 289 membres, apparentés compris ; si aucun groupe ne compte de député de ce parti, la réponse est « oui ». Si le président élu n'est membre d'aucun parti, le groupe retenu est celui qui a déclaré le soutenir au premier tour et compte le plus de membres.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.75
+  },
+  "EV-10": {
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, pour une même journée, quelle qu'en soit la cause déclarée (blocage, filtrage, intrusion, fermeture préventive ou administrative). Si le ministère donne pour une même journée plusieurs catégories disjointes (par exemple « perturbés » et « cours suspendus », ou « fermés » et « perturbés »), leur somme est retenue. S'il donne plusieurs chiffres successifs pour la même journée (matin, mi-journée, fin de journée, décompte cumulé), le plus élevé est retenu. Une fourchette vaut sa borne basse ; un chiffre « au moins » ou « plus de » N vaut N ; un pourcentage d'établissements ouverts n'est pas converti en nombre. Le chiffre retenu est celui que le ministère publie (site, communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant à ce ministère ; une seule dépêche suffit. À défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur, sous les mêmes règles. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2026-12-18"
+   },
+   "probabilite": 0.6
+  },
+  "EV-47": {
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 1000 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, pour une même journée, quelle qu'en soit la cause déclarée (blocage, filtrage, intrusion, fermeture préventive ou administrative). Si le ministère donne pour une même journée plusieurs catégories disjointes (par exemple « perturbés » et « cours suspendus », ou « fermés » et « perturbés »), leur somme est retenue. S'il donne plusieurs chiffres successifs pour la même journée (matin, mi-journée, fin de journée, décompte cumulé), le plus élevé est retenu. Une fourchette vaut sa borne basse ; un chiffre « au moins » ou « plus de » N vaut N ; un pourcentage d'établissements ouverts n'est pas converti en nombre. Le chiffre retenu est celui que le ministère publie (site, communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant à ce ministère ; une seule dépêche suffit. À défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur, sous les mêmes règles. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "probabilite": 0.35
+  },
+  "EV-52": {
+   "critere": "Pendant la fenêtre, pour au moins une journée, le ministère de l'Intérieur chiffre à au moins 200 000 le nombre de manifestants en France, ou le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés (règles de comptage d'EV-10). Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Les comptages des organisateurs et des syndicats ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.95
+  },
+  "EV-51": {
+   "critere": "Pour au moins une journée ou une nuit de la fenêtre, le ministère de l'Intérieur chiffre à au moins 1 000 le nombre de personnes interpellées en France en lien avec des manifestations, des blocages ou des violences urbaines, pour cette même journée ou cette même nuit. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Un cumul sur plusieurs jours ne compte pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "probabilite": 0.3
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-10",
+ "ronde_2": [
+  {
+   "point": "EV-17 (impliqué 76,3 / direct 70)",
+   "decision": "corrigé",
+   "motif": "Avis direct porté à 0,75 : sans dissolution aucun groupe n'atteint 289 (Assemblée de 2024 éclatée), et même après dissolution une majorité absolue du parti présidentiel n'est pas acquise (2022 : majorité relative). Lois de dissolution conservées comme socle."
+  },
+  {
+   "point": "EV-10 (60,1 / 55)",
+   "decision": "corrigé",
+   "motif": "Avis direct porté à 0,60 : le mouvement a dépassé 891 établissements le 6/10 (Éducation nationale) et la rentrée de novembre coïncide avec l'examen du budget ; reprise après la Toussaint plausible. Lois VE-LYCEE maintenues."
+  },
+  {
+   "point": "EV-47 (36,6 / 30)",
+   "decision": "corrigé",
+   "motif": "Avis direct porté à 0,35 : l'observation d'octobre classe déjà le mois en « forte » (≥ 1 000 un jour), le seuil a donc été franchi une fois ; sur huit mois une nouvelle pointe est crédible, sans être majoritaire vu la brièveté habituelle des mouvements lycéens."
+  },
+  {
+   "point": "EV-52 (99,0 / 92)",
+   "decision": "corrigé",
+   "motif": "Avis direct porté à 0,95 ; lois VE-LYCEE maintenues. L'écart restant vient surtout de la dynamique de VE-MOBIL (non élicitée ici) : 256 000 manifestants selon l'Intérieur dès le 6/10, et 23 mois incluant présidentielle, législatives éventuelles et budgets. Je garde 0,95 plutôt que 0,99 : des périodes calmes de deux ans sous le seuil de 200 000 (chiffre Intérieur) ont existé (2020-2022)."
+  },
+  {
+   "point": "PV-DISSOL2a, PHI/RET selon VE-POP",
+   "decision": "corrigé",
+   "motif": "Argument retenu : VE-POP décalé d'un mois mesure en mai la popularité du président sortant ; gradient ramené à ±2 points. Niveaux maintenus (PHI 0,68, RET 0,65) : un président centre-droit peut tenter une coalition avec le bloc central et LR, d'où un niveau sous RN et MEL, mais la tradition 1981/1988 garde la dissolution majoritaire. Je n'adopte ni 0,50-0,55 (sous-estime le précédent) ni 0,80-0,85 (ignore l'option coalition)."
+  },
+  {
+   "point": "PV-DISSOL2b, cas DISSOL1=oui",
+   "decision": "corrigé",
+   "motif": "Abaissé de 0,40-0,60 à 0,25-0,35. Argument retenu : l'Assemblée élue juste avant la présidentielle reflète le même climat, et la fenêtre utile après le verrou est courte. Je rejette en revanche l'argument « il a renoncé dans les deux mois » : 2a=non y est imposé par le verrou, ce n'est pas un choix. D'où des valeurs au-dessus de 0,08-0,21."
+  },
+  {
+   "point": "PV-DISSOL2b, GLU sans dissolution antérieure",
+   "decision": "maintenu",
+   "motif": "0,30 contre 0,25 chez les deux autres : écart faible ; un président PS sans majorité et sans dissolution initiale gouverne par coalition fragile, un blocage budgétaire à l'automne 2027 peut déclencher une dissolution tardive."
+  },
+  {
+   "point": "PV-NOTE, cas > 160 pb (GLU, LIS, AUT, PHI, ATT, RET)",
+   "decision": "corrigé",
+   "motif": "Mes lois plaçaient ces cas sous la référence 120-160 pb, ce qui est incohérent : un écart > 160 pb est un signal de crise. Plancher porté à 0,85 pour tous les cas > 160 pb."
+  },
+  {
+   "point": "PV-NOTE, < 120 pb, MEL, budget non publié",
+   "decision": "corrigé",
+   "motif": "Porté de 0,77 à 0,85 : le risque budgétaire d'un programme MEL domine l'effet de détente de l'écart ; garde un ordre cohérent avec RN."
+  }
+ ]
+}

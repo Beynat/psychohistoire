@@ -1,0 +1,20 @@
+/tmp/claude-0/elic4/E7.json : conforme
+/tmp/claude-0/elic4/E8.json : conforme
+  marginale implicite EV-16b oui : 72.8 contre avis direct 78.0
+/tmp/claude-0/elic4/E9.json : conforme
+  marginale implicite EV-47 oui : 36.8 contre avis direct 30.0
+  marginale implicite EV-52 oui : 98.9 contre avis direct 88.0
+  marginale implicite EV-51 oui : 32.6 contre avis direct 17.0
+SENS OPPOSÉS PV-DISSOL2a [PV-VAINQ=RN|VE-POP=> 35 %|PV-DISSOL1=non] oui (référence PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non) : [0.31, 0.25, -0.28]
+SENS OPPOSÉS PV-DISSOL2a [PV-VAINQ=RET|VE-POP=> 35 %|PV-DISSOL1=non] oui (référence PV-VAINQ=RN|VE-POP=< 25 %|PV-DISSOL1=non) : [0.31, -0.56, -0.19]
+SENS OPPOSÉS PV-DISSOL2b [PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=oui] oui (référence PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non) : [0.21, -0.23, -0.42]
+SENS OPPOSÉS PV-DISSOL2b [PV-VAINQ=MEL|PV-DISSOL2a=non|PV-DISSOL1=oui] oui (référence PV-VAINQ=RN|PV-DISSOL2a=non|PV-DISSOL1=non) : [0.42, 0.0, -0.42]
+SENS OPPOSÉS PV-NOTE [VE-ECART=< 120 pb|PV-BUDGET=non publiée|PV-VAINQ=MEL] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.07, 0.22, -0.48]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=PHI] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.57, 0.22, -0.2]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=ATT] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.57, 0.22, -0.2]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=RET] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.31, 0.22, -0.1]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=LIS] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.57, 0.22, 0.05]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=publiée|PV-VAINQ=AUT] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.31, 0.22, 0.05]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=PHI] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.31, 0.22, 0.23]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=ATT] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.31, 0.22, 0.23]
+SENS OPPOSÉS PV-NOTE [VE-ECART=> 160 pb|PV-BUDGET=non publiée|PV-VAINQ=LIS] oui (référence VE-ECART=120-160 pb|PV-BUDGET=non publiée|PV-VAINQ=RN) : [-0.31, 0.22, 0.56]
