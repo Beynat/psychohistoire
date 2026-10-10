@@ -7,7 +7,11 @@ Usage :
     python scripts/reseau.py --controle [--tirages N] [--trajectoires N]
         Prévisions sur les fenêtres de la banque et contrôle de cohérence avec les probabilités données
         directement par les évaluateurs ; aucune écriture.
-    python scripts/reseau.py ETIQUETTE --registre registre/<fichier>.jsonl [--tirages N] [--trajectoires N]
+    python scripts/reseau.py --geler
+        Gèle la version témoin du réseau (modele/reseau/gele/, une seule fois ; étape 6).
+    python scripts/reseau.py ETIQUETTE --registre registre/<fichier>.jsonl [--gele] [--tirages N] [--trajectoires N]
+        Avec --gele : prévisions de la version témoin, auteur « réseau v0 gelé ». Sans : réseau courant, refusé si la
+        structure, les tables ou le calendrier ont été modifiés dans les 48 heures avant le gel du cycle.
         Prévisions pour les questions du cycle ETIQUETTE (fenêtre propre à chaque question), écrites au registre
         par scripts/registre.py, auteur « réseau v0 », avec la version des tables et l'intervalle à 80 %.
 
@@ -48,9 +52,15 @@ import math
 import random
 import sys
 
+from pathlib import Path
+
 from commun import lire_json
 
 VERSION = "réseau v0"
+VERSION_GELEE = "réseau v0 gelé"
+FICHIERS_RESEAU = ("modele/reseau/structure_v0.json", "modele/reseau/tables_v0.json", "modele/reseau/calendrier.json")
+DOSSIER_GELE = "modele/reseau/gele"
+DELAI_GEL_HEURES = 48
 DEBUT, FIN = (2026, 10), (2028, 9)
 SIGMA_PLANCHER = 0.3
 
@@ -182,6 +192,7 @@ def p_modifiee(p, m):
 
 
 _PROFILS = {}
+CHEMIN_CALENDRIER = "modele/reseau/calendrier.json"   # calendrier gelé pour la version témoin (charger)
 
 
 def profil(n):
@@ -195,7 +206,7 @@ def profil(n):
     pr = n.get("profil")
     w = [1.0] * len(MOIS)
     if isinstance(pr, str):
-        cal = lire_json("modele/reseau/calendrier.json")
+        cal = lire_json(CHEMIN_CALENDRIER)
         d = cal["profils"][pr]
         revues = {}
         for e in cal["entrees"]:
@@ -458,8 +469,10 @@ def _prevoir(structure, tables, obs, questions, tirages, trajectoires, graine, p
     noeuds = noeuds_de(structure)
     mes = structure["mesures"]
     tm = tables.get("mesures", {})
-    simples = [q for q in questions if "composantes" not in q]
+    simples = [q for q in questions if "composantes" not in q and "rapide" not in q]
     conj = [q for q in questions if "composantes" in q]
+    rap = [q for q in questions if "rapide" in q]
+    v2 = (lire_json("modele/jalons/vraisemblances_v2.json") or {}).get("jalons", {}) if rap else {}
     cles = {q["id"]: ("oui" if "composantes" in q or "oui" in q["issues"] else q["issues"][0]) for q in questions}
     tot = {q["id"]: {} for q in questions}           # sommes pondérées sur tous les tirages
     par_tirage = {q["id"]: [] for q in questions}    # (moyenne pondérée, poids du tirage, variance de simulation)
@@ -487,6 +500,16 @@ def _prevoir(structure, tables, obs, questions, tirages, trajectoires, graine, p
                 pa, pb = (p_oui.get(c) for c in q["composantes"])
                 x = (pa or 0) * (pb or 0)     # indépendance conditionnelle à la trajectoire
                 res[q["id"]] = {"oui": x, "non": 1 - x}
+            for q in rap:
+                d = q["rapide"]
+                if d["rapide"] == "jalon":
+                    # P(jalon observé | trajectoire) = vraisemblance v2 de l'issue du nœud dans la trajectoire
+                    e = pv.issue_noeud(traj, d["noeud"], noeuds[d["noeud"]])
+                    x = v2[d["jalon"]]["vraisemblances"].get(e, 0.0)
+                    res[q["id"]] = {"oui": x, "non": 1 - x}
+                else:
+                    e = traj[d["noeud"]][idx(d["mois"])]
+                    res[q["id"]] = {i: (1.0 if i == e else 0.0) for i in q["issues"]}
             lignes.append((w, res))
         W = sum(w for w, _ in lignes)
         for q in questions:
@@ -560,9 +583,73 @@ def questions_cycle(structure, etiquette):
                         "fenetre": [q["fenetre"]["debut"], q["fenetre"]["fin"]]})
         elif q["type"] == "conjointe":
             out.append({"id": q["id"], "composantes": q["details"]["composantes"]})
+        elif q["type"] == "rapide":
+            out.append({"id": q["id"], "rapide": q["details"], "issues": q["issues"]})
     # Les composantes d'une conjointe doivent être calculées dans le même passage.
     ids = {q["id"] for q in out}
     return [q for q in out if "composantes" not in q or all(c in ids for c in q["composantes"])]
+
+
+def geler():
+    """Version témoin du réseau (feuille de route, étape 6) : copie de la structure, des tables et du calendrier dans
+    modele/reseau/gele/, avec leurs empreintes ; une seule fois. Elle est ensuite notée comme un auteur à part
+    (« réseau v0 gelé ») : seules les observations, les pivots tranchés et les preuves qui tranchent la font bouger."""
+    import hashlib
+    import shutil
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+    from commun import RACINE
+    d = RACINE / DOSSIER_GELE
+    if (d / "manifeste.json").exists():
+        sys.exit(f"{DOSSIER_GELE} existe déjà : le réseau témoin ne se gèle qu'une fois.")
+    d.mkdir(parents=True, exist_ok=True)
+    emp = {}
+    for f in FICHIERS_RESEAU:
+        shutil.copyfile(RACINE / f, d / Path(f).name)
+        emp[Path(f).name] = hashlib.sha256((RACINE / f).read_bytes()).hexdigest()
+    m = {"gele_le": datetime.now(ZoneInfo("Europe/Paris")).isoformat(timespec="seconds"), "empreintes": emp,
+         "regle": "jamais modifié ; noté comme « réseau v0 gelé » à côté du réseau courant (étape 6)"}
+    (d / "manifeste.json").write_text(json.dumps(m, ensure_ascii=False, indent=1) + "\n", "utf-8")
+    return m
+
+
+def charger(gele=False):
+    """Structure et tables : courantes, ou version témoin gelée (empreintes vérifiées)."""
+    if not gele:
+        return lire_json(FICHIERS_RESEAU[0]), lire_json(FICHIERS_RESEAU[1])
+    import hashlib
+    from commun import RACINE
+    m = lire_json(f"{DOSSIER_GELE}/manifeste.json")
+    if not m:
+        sys.exit("Réseau témoin non gelé (python scripts/reseau.py --geler).")
+    for nom, h in m["empreintes"].items():
+        if hashlib.sha256((RACINE / DOSSIER_GELE / nom).read_bytes()).hexdigest() != h:
+            sys.exit(f"{DOSSIER_GELE}/{nom} : empreinte modifiée depuis le gel")
+    global CHEMIN_CALENDRIER
+    CHEMIN_CALENDRIER = f"{DOSSIER_GELE}/calendrier.json"
+    _PROFILS.clear()
+    return lire_json(f"{DOSSIER_GELE}/structure_v0.json"), lire_json(f"{DOSSIER_GELE}/tables_v0.json")
+
+
+def controle_gel_48h(etiquette, maintenant=None):
+    """Gel du réseau 48 heures avant chaque cycle (étape 6) : aucun commit sur la structure, les tables ou le
+    calendrier dans les 48 heures qui précèdent le gel du cycle (manifeste du gel). Rend la liste des défauts."""
+    import subprocess
+    from datetime import datetime, timedelta
+    from commun import RACINE
+    m = lire_json(f"data/cycles/{etiquette}/gel/manifeste.json")
+    if not m:
+        return []   # cycle d'essai sans gel : pas de contrôle
+    gel = datetime.fromisoformat(m["gele_le"])
+    seuil = gel - timedelta(hours=DELAI_GEL_HEURES)
+    d = []
+    for f in FICHIERS_RESEAU:
+        r = subprocess.run(["git", "log", "-1", "--format=%cI", "--", f], cwd=RACINE, capture_output=True, text=True)
+        if r.returncode == 0 and r.stdout.strip():
+            t = datetime.fromisoformat(r.stdout.strip())
+            if seuil < t:
+                d.append(f"{f} modifié le {t.isoformat()}, moins de {DELAI_GEL_HEURES} heures avant le gel du cycle ({gel.isoformat()})")
+    return d
 
 
 def observations(structure=None):
@@ -579,8 +666,11 @@ def observations(structure=None):
 
 if __name__ == "__main__":
     args = sys.argv[1:]
-    structure = lire_json("modele/reseau/structure_v0.json")
-    tables = lire_json("modele/reseau/tables_v0.json")
+    if "--geler" in args:
+        print(json.dumps(geler(), ensure_ascii=False))
+        sys.exit(0)
+    gele = "--gele" in args
+    structure, tables = charger(gele)
     if tables is None:
         sys.exit("modele/reseau/tables_v0.json absent : tables non encore élicitées.")
     nt = int(args[args.index("--tirages") + 1]) if "--tirages" in args else 200
@@ -631,13 +721,16 @@ if __name__ == "__main__":
     if "--registre" not in args:
         sys.exit("Indiquer --registre registre/<fichier>.jsonl")
     reg = args[args.index("--registre") + 1]
+    defauts = [] if gele else controle_gel_48h(etiquette)
+    if defauts:
+        sys.exit("Gel de 48 heures non respecté (étape 6) : " + " ; ".join(defauts))
     qs = questions_cycle(structure, etiquette)
     prev = prevoir(structure, tables, observations(), qs, nt, ntr, preuves=pv.preuves_notees(jour))
     e = prev["__ess__"]
     if e["alerte"]:
         sys.exit(f"Combinaison trop rare : {e['effectives']} trajectoires effectives sur {e['trajectoires']} ; relancer avec plus de trajectoires.")
     lignes = [{"question": q["id"], "probabilites": {k: v for k, v in prev[q["id"]].items() if k != "i80"},
-               "piste": "v0", "auteur": VERSION, "version": tables.get("version", VERSION),
+               "piste": "v0", "auteur": VERSION_GELEE if gele else VERSION, "version": tables.get("version", VERSION),
                "origine": f"cycle {etiquette}", "donnees": f"gel du cycle {etiquette}",
                "intervalle_80": prev[q["id"]]["i80"], "preuves": e["preuves"],
                "trajectoires_effectives": e["effectives"]} for q in qs]

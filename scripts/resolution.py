@@ -114,6 +114,14 @@ def resoudre(reg="registre/protocole.jsonl", aujourdhui=None):
             continue
         if q["type"] == "conjointe":
             continue   # résolue en seconde passe, à partir de ses composantes
+        if q["type"] == "rapide":
+            # Pool des questions rapides (feuille de route, étape 6) : résolues par script, sur le statut du jalon
+            # ou l'état observé de la variable, une fois établis.
+            import rapides
+            r = rapides.resolution(q)
+            if r:
+                nouvelles.append({"resolution": True, "question": qid, **r, "methode": "script (questions rapides)"})
+            continue
         if q["type"] == "variable":
             d = q["details"]
             # Fait foi la première valeur collectée de la période, lue dans le journal en ajout seul

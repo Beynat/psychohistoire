@@ -80,6 +80,8 @@ def previsions(cycle):
             d = q["details"]
             p = proba_au_dessus(d["derniere_valeur"], d["seuil"], variations_question(lambda n: lire_serie(cycle, n), d))
             sortie.append(("persistance", {"oui": p, "non": 1 - p}))
+        elif q["type"] == "rapide":
+            pass   # questions rapides (étape 6) : seul le comparateur 50 %
         elif q["type"] == "conjointe":
             # Taux de base d'une conjointe : produit des taux de base de ses composantes (indépendance), calculé
             # après la boucle, une fois ceux-ci connus.

@@ -918,6 +918,57 @@ def test_hypotheses():
         shutil.rmtree(tmp.parent)
 
 
+def test_processus_etape6():
+    """Feuille de route, étape 6 : questions rapides (jalons et variables, pool PR) générées, prévues par le moteur et
+    résolues par script ; réseau témoin gelé une seule fois et protégé par empreintes ; gel de 48 heures avant un cycle."""
+    import rapides, reseau
+    import unittest.mock as um
+    qs = rapides.generer("2026-11-01", "2026-11")
+    assert any(q["details"]["rapide"] == "jalon" for q in qs) and sum(q["details"]["rapide"] == "variable" for q in qs) == 6
+    assert all(q["pool"] == "PR" and q["type"] == "rapide" for q in qs)
+    racine = Path(__file__).resolve().parent.parent
+    S = json.loads((racine / "modele/reseau/structure_v0.json").read_text())
+    T = json.loads((racine / "modele/reseau/tables_v0.json").read_text())
+    jal = next(q for q in qs if q["details"].get("jalon") == "J-001")
+    var = next(q for q in qs if q["details"].get("noeud") == "VE-POP")
+    p = reseau.prevoir(S, T, reseau.observations(S), [{"id": q["id"], "rapide": q["details"], "issues": q["issues"]} for q in (jal, var)], 3, 60)
+    assert 0 < p[jal["id"]]["oui"] < 100 and abs(sum(v for k, v in p[var["id"]].items() if k != "i80") - 100) < 0.5, p
+    st = [{"jalon": "J-001", "statut": "observé", "date": "2026-11-20", "source": "s"}]
+    with um.patch.object(rapides, "lire_jsonl", lambda f: st if "statuts" in f else []):
+        assert rapides.resolution(jal)["issue"] == "oui"
+    obs = {"etabli_le": "2026-12-02", "etats": {"VE-POP": {"2026-11": "< 25 %"}}}
+    with um.patch.object(rapides, "lire_json", lambda f: obs):
+        assert rapides.resolution(var)["issue"] == "< 25 %"
+    obs["etabli_le"] = "2026-11-20"   # mois pas encore écoulé : pas de résolution
+    with um.patch.object(rapides, "lire_json", lambda f: obs):
+        assert rapides.resolution(var) is None
+    tmp, run = _copie()
+    try:
+        import subprocess, os
+        env = {**os.environ, "PYTHONPATH": str(tmp / "scripts")}
+        r = subprocess.run([sys.executable, "scripts/reseau.py", "--geler"], cwd=tmp, env=env, capture_output=True, text=True)
+        assert r.returncode == 0 and (tmp / "modele/reseau/gele/manifeste.json").exists(), r.stderr[-300:]
+        r = subprocess.run([sys.executable, "scripts/reseau.py", "--geler"], cwd=tmp, env=env, capture_output=True, text=True)
+        assert r.returncode != 0, "second gel accepté"
+        f = tmp / "modele/reseau/gele/tables_v0.json"
+        f.write_text(f.read_text().replace('"sigma"', '"sigma" ', 1))
+        r = subprocess.run([sys.executable, "-c", "import reseau; reseau.charger(True)"], cwd=tmp / "scripts", env=env, capture_output=True, text=True)
+        assert r.returncode != 0 and "empreinte" in (r.stderr + r.stdout), r.stderr[-300:]
+        for c in (["init", "-q"], ["add", "-A"], ["-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "t"]):
+            subprocess.run(["git", *c], cwd=tmp, check=True, capture_output=True)
+        from datetime import datetime, timedelta
+        from zoneinfo import ZoneInfo
+        (tmp / "data/cycles/9999-01/gel").mkdir(parents=True)
+        for heures, attendu in ((1, True), (72, False)):
+            g = (datetime.now(ZoneInfo("Europe/Paris")) + timedelta(hours=heures)).isoformat(timespec="seconds")
+            (tmp / "data/cycles/9999-01/gel/manifeste.json").write_text(json.dumps({"gele_le": g}))
+            r = subprocess.run([sys.executable, "-c", "import reseau; print(len(reseau.controle_gel_48h('9999-01')))"],
+                               cwd=tmp / "scripts", env=env, capture_output=True, text=True)
+            assert (r.stdout.strip() != "0") == attendu, (heures, r.stdout, r.stderr[-200:])
+    finally:
+        shutil.rmtree(tmp.parent)
+
+
 def test_agregation_sans_veto():
     """Feuille de route, étape 1 : un zéro isolé chez un évaluateur ne fixe plus l'agrégat à zéro ; un zéro unanime
     reste un zéro."""

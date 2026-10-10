@@ -38,9 +38,9 @@ Prévisions datées et notées sur la France, d'octobre 2026 à septembre 2028. 
 - Cycle mensuel : `trig_01SJXN4Fmwjue8foVBeRXddV`, du 1er au 8 à 7 h 52.
 - Résolution d'EV-10b : `trig_01KatJtQ4QF7JRzuh9WNcgaf`, le 17 octobre à 9 h 07.
 - Routine hebdomadaire : `trig_01RYqZSkrEzpry2YkuKq4RFp`, lundi à 8 h 22.
-- Passe bimensuelle du réseau : `trig_01PjDUhLo9E1voyVWbySUWgQ`, les 2 et 16 à 9 h 37 (`procedure.md` dit le 1er et le 15 : à aligner, étape 6).
+- Passe bimensuelle du réseau : `trig_01PjDUhLo9E1voyVWbySUWgQ`, les 2 et 16 à 9 h 37 (alignée dans `procedure.md`, étape 6).
 
-Chacune ajoute une ligne au tableau « Avancement » de l'ancienne feuille de route (document Claude Docs) ; à rediriger vers `modele/feuille_de_route.md` (journal d'avancement) à l'étape 6.
+Chacune ajoute une ligne au journal d'avancement de `modele/feuille_de_route.md` (redirigées le 10 octobre, étape 6).
 
 ## Contraintes à respecter
 
