@@ -1,5 +1,5 @@
 {
- "version": "tables v0 (E1, E2 Opus ; E3 Sonnet ; 10 octobre 2026) ; v0.2 : censure découpée (dérivée) ; persistance lycéenne calibrée (λ = 0,45) ; v0.3 : dissolution après l'élection découpée, candidature Le Pen selon le pourvoi (passe du 10 octobre)",
+ "version": "tables v0 (E1, E2 Opus ; E3 Sonnet ; 10 octobre 2026) ; v0.2 : censure découpée (dérivée) ; persistance lycéenne calibrée (λ = 0,45) ; v0.3 : dissolution après l'élection découpée, candidature Le Pen revenue à l'agrégation (réélicitation en cours) (passe du 10 octobre)",
  "evaluateurs": [
   "E1",
   "E2",
@@ -546,20 +546,16 @@
    "multiplicateurs": {
     "PV-POURVOI": {
      "cassation totale ou partielle": {
-      "candidate": 1.1,
-      "non candidate": 0.5
+      "candidate": 1.0476895531716472,
+      "non candidate": 0.8728518735186042
      },
      "désistement": {
-      "candidate": 0.4,
-      "non candidate": 4.0
+      "candidate": 1.0,
+      "non candidate": 0.8879040017426006
      },
      "pas d'arrêt": {
       "candidate": 1.0322801154563672,
       "non candidate": 0.8617738760127536
-     },
-     "rejet ou non-admission": {
-      "candidate": 0.4,
-      "non candidate": 4.0
      }
     },
     "VE-RN": {
@@ -573,8 +569,7 @@
      }
     }
    },
-   "sigma": 0.674,
-   "derive": "passe du 10 octobre 2026 (relecture de cohérence) : rejet ou désistement rendent définitif l'arrêt d'appel (un an sous bracelet, qu'elle refuse pour faire campagne) ; cassation : candidature quasi certaine"
+   "sigma": 0.674
   },
   "PV-DUEL": {
    "base": {
