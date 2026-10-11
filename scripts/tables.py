@@ -644,13 +644,21 @@ def agreger_mesures(reps, version=None):
     """Moyenne des log-cotes par entrée (moyenne des lois pour une entrée à plusieurs issues) ; un 0 ou un 100 isolé
     est ramené à 0,5 ou 99,5 (pas de veto), unanime il est gardé. Écrit les tables dans tables_v0.json."""
     t = lire_json("modele/reseau/tables_v0.json")
+    cles = {q: set(m.get("table", {})) for q, m in _structure()["mesures"].items()}
     for q, agg in agregat_mesures(reps).items():
-        t.setdefault("mesures", {}).setdefault(q, {}).update(agg)   # les entrées fixes restent
+        t.setdefault("mesures", {})[q] = fusion_mesure(t["mesures"].get(q, {}), agg, cles.get(q))
     t.setdefault("direct", {}).update(directs_medians(reps))
     if version:
         t["version"] = version
     (RACINE / "modele/reseau/tables_v0.json").write_text(json.dumps(t, ensure_ascii=False, indent=1) + "\n", "utf-8")
     return {q: t["mesures"][q] for q in reps[0]["mesures"]}
+
+
+def fusion_mesure(ancienne, agg, cles=None):
+    """Table agrégée fusionnée à l'ancienne : les entrées fixes restent ; une entrée absente de la table de la
+    structure (table redécoupée, étape 13) est retirée."""
+    t = {**ancienne, **agg}
+    return {k: v for k, v in t.items() if cles is None or k in cles}
 
 
 def agregat_mesures(reps):

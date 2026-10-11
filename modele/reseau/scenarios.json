@@ -1,0 +1,31 @@
+{
+ "description": "Scénarios de rupture codés comme interventions (feuille de route, étape 14 ; revue 2, point 14). Chaque scénario doit pouvoir s'exprimer dans le réseau et produire des sorties du sens attendu ; « exige » : un échec fait échouer les tests ; sinon le scénario est exploratoire et un échec signale un port ou un lien manquant (point ouvert). Interventions : « choc » (ports de la structure, delta en log-cote, mois, durée) ou « observation » (état imposé à un nœud pour des mois). Les scénarios ajoutés par la red team des passes portent leur source et leur date.",
+ "seuil_points": 2,
+ "scenarios": [
+  {"id": "S-01", "source": "revue 2, point 14", "recit": "Effondrement du candidat RN dans les sondages (affaire, faute de campagne) à partir de décembre 2026.",
+   "exige": true,
+   "interventions": [{"type": "choc", "ports": {"P-RN-BAISSE": 2.0}, "mois": "2026-12", "duree_mois": 6}],
+   "attendus": [{"question": "EV-05", "issue": "Marine Le Pen", "sens": "-"}, {"question": "EV-40a", "issue": "oui", "sens": "-"}]},
+  {"id": "S-02", "source": "revue 2, point 14", "recit": "Écart OAT-Bund durablement au-delà de 160 points de base de novembre 2026 à mars 2027 (crise de la dette).",
+   "exige": true,
+   "interventions": [{"type": "observation", "noeud": "VE-ECART", "mois": ["2026-11", "2026-12", "2027-01", "2027-02", "2027-03"], "etat": "> 160 pb"}],
+   "attendus": [{"question": "EV-01", "issue": "oui", "sens": "+"}, {"question": "EV-46", "issue": "oui", "sens": "+"}],
+   "exploratoires": [{"question": "EV-04", "issue": "oui", "sens": "+"}]},
+  {"id": "S-03", "source": "revue 2, point 14", "recit": "Mouvement social durable : plus de 500 000 manifestants chaque mois de novembre 2026 à février 2027.",
+   "exige": true,
+   "interventions": [{"type": "observation", "noeud": "VE-MOBIL", "mois": ["2026-11", "2026-12", "2027-01", "2027-02"], "etat": "forte"}],
+   "attendus": [{"question": "EV-39", "issue": "oui", "sens": "+"}, {"question": "EV-10", "issue": "oui", "sens": "+"}, {"question": "EV-15", "issue": "oui", "sens": "+"}]},
+  {"id": "S-04", "source": "revue 2, point 14", "recit": "Fin anticipée du mandat présidentiel en janvier 2027 (vacance, élection anticipée).",
+   "exige": false,
+   "interventions": [{"type": "observation", "noeud": "PV-VACANCE", "mois": ["2027-01"], "etat": "oui"}],
+   "exploratoires": [{"question": "EV-05", "issue": "Édouard Philippe", "sens": "±"}, {"question": "EV-16a", "issue": "oui", "sens": "±"}]},
+  {"id": "S-05", "source": "revue 2, point 14", "recit": "Accord de la gauche sur une candidature unique ou presque (trois candidats de gauche au plus).",
+   "exige": false,
+   "interventions": [{"type": "observation", "noeud": "PV-GAUCHE", "mois": ["2027-03"], "etat": "3 ou moins"}],
+   "exploratoires": [{"question": "EV-40c", "issue": "oui", "sens": "+"}, {"question": "EV-40f", "issue": "oui", "sens": "+"}]},
+  {"id": "S-06", "source": "revue 2, point 14", "recit": "Édouard Philippe se retire ou est empêché avant les parrainages.",
+   "exige": true,
+   "interventions": [{"type": "choc", "ports": {"P-PHILIPPE-RETRAIT": 3.0}, "mois": "2026-12", "duree_mois": 12}],
+   "attendus": [{"question": "EV-40b", "issue": "oui", "sens": "-"}, {"question": "EV-41", "issue": "Philippe seul", "sens": "-"}]}
+ ]
+}

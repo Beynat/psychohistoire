@@ -1,5 +1,5 @@
 {
- "version": "structure v0.9 (10 octobre 2026, étape 10 : profils de risque élicités sur tranches de dates réelles pour huit pivots « à tout moment », départ immédiat du Premier ministre après censure) ; structure v0.8 (10 octobre 2026, étape 9 : points d'entrée des chocs, nœud rare PV-VACANCE) ; structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
+ "version": "structure v0.10 (11 octobre 2026, étape 13 : sous-réseau mouvements et ordre public — VE-LYCEE décalé parent de VE-MOBIL, pivot PV-CASSEURS, satellites EV-48, EV-49, EV-03, EV-44, EV-23, EV-14b) ; structure v0.9 (10 octobre 2026, étape 10 : profils de risque élicités sur tranches de dates réelles pour huit pivots « à tout moment », départ immédiat du Premier ministre après censure) ; structure v0.8 (10 octobre 2026, étape 9 : points d'entrée des chocs, nœud rare PV-VACANCE) ; structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
  "description": "Réseau bayésien dynamique v0, pas mensuel d'octobre 2026 à septembre 2028. Révisé après le pré-mortem du 10 octobre (scratchpad, rapport de 32 causes) : aucun cycle au sein d'un mois (liens au mois précédent marqués « decalage »: 1), au plus trois parents, pivots électoraux par personnes, dette découpée en note, procédure de déficit excessif et TPI ouverts dès octobre 2026, dissolution et censure découpées avant et après la présidentielle, changement de gouvernement ajouté. Hors réseau (notés sur l'ensemble et les comparateurs) : EV-03, EV-44, EV-23, EV-14b, EV-36, EV-06, international, climat, sécurité.",
  "codes_candidats": {
   "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate ; sinon Jordan Bardella, ou un autre candidat si PV-RNAUTRE = oui)",
@@ -66,11 +66,23 @@
     {
      "id": "VE-POP",
      "decalage": 1
+    },
+    {
+     "id": "VE-LYCEE",
+     "decalage": 1
     }
    ],
    "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000",
    "source": "data/etat/mobilisation.jsonl",
-   "agregat": "maximum"
+   "agregat": "maximum",
+   "sens": [
+    {
+     "parent": "VE-LYCEE",
+     "etat": "forte",
+     "issue": "forte",
+     "signe": "+"
+    }
+   ]
   },
   {
    "id": "VE-LYCEE",
@@ -948,6 +960,38 @@
    ],
    "parents": [],
    "note": "Nœud rare (hypothèse porteuse H-03, étape 9) : probabilité tirée de la classe de référence (2 vacances en 67,75 ans). Ses effets (élection anticipée 20 à 35 jours après, calendrier réindexé) ne sont pas modélisés : s'il survient, procédure de restructuration rapide."
+  },
+  {
+   "id": "PV-CASSEURS",
+   "nom": "Publication de la loi « casseurs-payeurs » (projet de loi n° 952) au Journal officiel",
+   "nature": "à tout moment",
+   "fenetre": [
+    "2026-10-10",
+    "2027-03-31"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "parents": [
+    {
+     "id": "VE-LYCEE",
+     "decalage": 1
+    },
+    "PV-CENSURE1a",
+    "PV-CENSURE1b",
+    "PV-DISSOL1"
+   ],
+   "definition": "critère d'EV-48",
+   "note": "Étape 13 (sous-réseau mouvements et ordre public) : la mobilisation lycéenne et les violences qui l'accompagnent peuvent accélérer l'inscription du texte ; une censure ou une dissolution l'interrompt.",
+   "sens": [
+    {
+     "parent": "PV-DISSOL1",
+     "etat": "oui",
+     "issue": "oui",
+     "signe": "-"
+    }
+   ]
   }
  ],
  "mesures": {
@@ -1169,16 +1213,28 @@
   },
   "EV-49": {
    "caracteristique": {
-    "type": "survenue",
-    "noeud": "PV-GOUV",
-    "fin": "2026-12-31"
+    "type": "conjonction",
+    "elements": [
+     {
+      "type": "survenue",
+      "noeud": "PV-GOUV",
+      "fin": "2026-12-31"
+     },
+     {
+      "type": "etat_max",
+      "noeud": "VE-LYCEE",
+      "fin": "2026-12-31"
+     }
+    ]
    },
    "table": {
-    "oui": null,
-    "non": null
+    "oui|*": null,
+    "non|calme": null,
+    "non|modérée": null,
+    "non|forte": null
    },
    "exacte": false,
-   "question": "probabilité que le ministre de l'Éducation nationale quitte ce portefeuille d'ici au 31 décembre 2026, selon qu'il y a eu ou non changement de Premier ministre"
+   "question": "probabilité que le ministre de l'Éducation nationale quitte ce portefeuille d'ici au 31 décembre 2026, selon qu'il y a eu ou non changement de Premier ministre et, sinon, selon le plus haut niveau de mobilisation lycéenne d'ici là"
   },
   "EV-18": {
    "caracteristique": {
@@ -1438,6 +1494,108 @@
    },
    "exacte": false,
    "question": "probabilité que l'âge légal pour la génération 1970 soit inférieur à 64 ans au 30 septembre 2028, selon le vainqueur et sa majorité"
+  },
+  "EV-48": {
+   "caracteristique": {
+    "type": "survenue",
+    "noeud": "PV-CASSEURS"
+   },
+   "table": {
+    "oui": 100,
+    "non": 0
+   },
+   "exacte": true
+  },
+  "EV-03": {
+   "caracteristique": {
+    "type": "conjonction",
+    "elements": [
+     {
+      "type": "issue",
+      "noeud": "PV-BUDGET"
+     },
+     {
+      "type": "issue",
+      "noeud": "PV-VAINQ"
+     }
+    ]
+   },
+   "table": {
+    "publiée|RN": null,
+    "publiée|MEL": null,
+    "publiée|*": null,
+    "non publiée|RN": null,
+    "non publiée|MEL": null,
+    "non publiée|*": null
+   },
+   "exacte": false,
+   "question": "probabilité que le déficit public 2027 notifié en mars 2028 dépasse 5,0 % du PIB, selon la loi de finances 2027 au 31 décembre 2026 et le vainqueur de la présidentielle"
+  },
+  "EV-44": {
+   "caracteristique": {
+    "type": "conjonction",
+    "elements": [
+     {
+      "type": "issue",
+      "noeud": "PV-VAINQ"
+     },
+     {
+      "type": "issue",
+      "noeud": "PV-MAJOR"
+     },
+     {
+      "type": "survenue",
+      "noeud": "PV-CENSURE2",
+      "debut": "2027-10-01",
+      "fin": "2028-01-31"
+     }
+    ]
+   },
+   "table": {
+    "RN|*|non": null,
+    "MEL|*|non": null,
+    "*|289 ou plus|non": null,
+    "*|moins de 289|non": null,
+    "*|*|oui": null
+   },
+   "exacte": false,
+   "question": "loi du solde public 2028 prévu par la loi de finances pour 2028 (ou pas de loi au 31 janvier 2028), selon le vainqueur, la majorité et une censure pendant la session budgétaire"
+  },
+  "EV-23": {
+   "caracteristique": {
+    "type": "conjonction",
+    "elements": [
+     {
+      "type": "issue",
+      "noeud": "PV-LEPEN"
+     },
+     {
+      "type": "issue",
+      "noeud": "PV-BLOC"
+     }
+    ]
+   },
+   "table": {
+    "candidate|*": null,
+    "non candidate|*": null
+   },
+   "exacte": false,
+   "question": "loi du taux de participation au premier tour de 2027, selon la candidature de Marine Le Pen"
+  },
+  "EV-14b": {
+   "caracteristique": {
+    "type": "etat_max",
+    "noeud": "VE-MOBIL",
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "table": {
+    "calme": null,
+    "modérée": null,
+    "forte": null
+   },
+   "exacte": false,
+   "question": "probabilité d'une journée à au moins 100 actions d'agriculteurs selon l'Intérieur, selon le plus haut niveau de mobilisation sociale de la période"
   }
  },
  "conjointes": {
@@ -1581,9 +1739,9 @@
   "PV-DISSOL2b": "lue par EV-16b et EV-17 ; la composition de l'Assemblée qui suivrait n'est pas modélisée (hors horizon des questions rattachées)",
   "PV-GAUCHE": "lue par EV-19 ; l'effet du nombre de candidats de gauche sur le duel passe par les sondages (VE-SOND), pas par un lien direct",
   "PV-RNAUTRE": "lue par EV-05 ; effets en aval non élicités, l'autre candidat RN est traité comme Bardella (hypothèse H-01, étape 9)",
-  "VE-LYCEE": "lue par EV-10, EV-47, EV-51 et une conjointe ; aucune élicitation n'a donné d'effet lycéen sur un pivot : lien vers la mobilisation et les pivots à l'étape 13",
   "PV-AUDIENCE": "sans mesure propre : parent de PV-POURVOI (date de l'arrêt), observable par le jalon J-020",
-  "PV-VACANCE": "nœud rare (H-03) : probabilité affichée, effets non modélisés ; s'il survient, restructuration rapide"
+  "PV-VACANCE": "nœud rare (H-03) : probabilité affichée, effets non modélisés ; s'il survient, restructuration rapide",
+  "PV-CASSEURS": "lue par EV-48 ; pas d'effet élicité de la loi sur un autre nœud de l'horizon"
  },
  "ports": [
   {

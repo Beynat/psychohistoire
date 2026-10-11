@@ -1,0 +1,183 @@
+{
+ "evaluateur": null,
+ "date": null,
+ "lecture": "Chaque table relie l'état des nœuds du réseau à la question de la banque. Pour chaque entrée, donner la valeur demandée (« unite ») et une justification d'au moins une phrase (référence au dossier, URL, ou « jugement : … »). Une clé « a|b » suit l'ordre des nœuds de la mesure ; « * » vaut pour tout état. Remplir aussi « direct » : probabilité de la question jugée directement.",
+ "mesures": {
+  "EV-49": {
+   "question": "probabilité que le ministre de l'Éducation nationale quitte ce portefeuille d'ici au 31 décembre 2026, selon qu'il y a eu ou non changement de Premier ministre et, sinon, selon le plus haut niveau de mobilisation lycéenne d'ici là",
+   "table": {
+    "oui|*": null,
+    "non|calme": null,
+    "non|modérée": null,
+    "non|forte": null
+   },
+   "unite": "probabilité de « oui » en %",
+   "entrees_fixes": {},
+   "noeuds": [
+    "PV-GOUV",
+    "VE-LYCEE"
+   ],
+   "critere": "Pendant la fenêtre, Édouard Geffray, ministre de l'Éducation nationale au 10 octobre 2026, cesse de détenir ce portefeuille : un décret publié au Journal officiel nomme une autre personne à la tête du ministère chargé de l'Éducation nationale, ou le nomme à d'autres fonctions sans ce portefeuille, ou met fin à ses fonctions. Si un décret met fin à ses fonctions (démission du Gouvernement comprise) et qu'un décret publié au plus tard le dernier jour de la fenêtre le reconduit à la tête de ce ministère, la réponse est « non » ; s'il n'est pas reconduit au dernier jour de la fenêtre, y compris s'il expédie les affaires courantes, la réponse est « oui », et la date du fait est celle du décret qui a mis fin à ses fonctions.",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   },
+   "justifications": {
+    "oui|*": null,
+    "non|calme": null,
+    "non|modérée": null,
+    "non|forte": null
+   }
+  },
+  "EV-03": {
+   "question": "probabilité que le déficit public 2027 notifié en mars 2028 dépasse 5,0 % du PIB, selon la loi de finances 2027 au 31 décembre 2026 et le vainqueur de la présidentielle",
+   "table": {
+    "publiée|RN": null,
+    "publiée|MEL": null,
+    "publiée|*": null,
+    "non publiée|RN": null,
+    "non publiée|MEL": null,
+    "non publiée|*": null
+   },
+   "unite": "probabilité de « oui » en %",
+   "entrees_fixes": {},
+   "noeuds": [
+    "PV-BUDGET",
+    "PV-VAINQ"
+   ],
+   "critere": "Le déficit public de 2027, au sens de Maastricht, publié par l'Insee lors de la notification de mars 2028, est strictement supérieur à 5,0 % du PIB.",
+   "fenetre": {
+    "debut": "2028-03-01",
+    "fin": "2028-04-30"
+   },
+   "justifications": {
+    "publiée|RN": null,
+    "publiée|MEL": null,
+    "publiée|*": null,
+    "non publiée|RN": null,
+    "non publiée|MEL": null,
+    "non publiée|*": null
+   }
+  },
+  "EV-44": {
+   "question": "loi du solde public 2028 prévu par la loi de finances pour 2028 (ou pas de loi au 31 janvier 2028), selon le vainqueur, la majorité et une censure pendant la session budgétaire",
+   "table": {
+    "RN|*|non": {
+     "4,5 % du PIB ou moins": null,
+     "plus de 4,5 % du PIB": null,
+     "pas de loi de finances publiée au 31 janvier 2028": null
+    },
+    "MEL|*|non": {
+     "4,5 % du PIB ou moins": null,
+     "plus de 4,5 % du PIB": null,
+     "pas de loi de finances publiée au 31 janvier 2028": null
+    },
+    "*|289 ou plus|non": {
+     "4,5 % du PIB ou moins": null,
+     "plus de 4,5 % du PIB": null,
+     "pas de loi de finances publiée au 31 janvier 2028": null
+    },
+    "*|moins de 289|non": {
+     "4,5 % du PIB ou moins": null,
+     "plus de 4,5 % du PIB": null,
+     "pas de loi de finances publiée au 31 janvier 2028": null
+    },
+    "*|*|oui": {
+     "4,5 % du PIB ou moins": null,
+     "plus de 4,5 % du PIB": null,
+     "pas de loi de finances publiée au 31 janvier 2028": null
+    }
+   },
+   "unite": "loi en % sur les issues",
+   "entrees_fixes": {},
+   "noeuds": [
+    "PV-VAINQ",
+    "PV-MAJOR",
+    "PV-CENSURE2"
+   ],
+   "critere": "Solde public effectif (et non structurel ni conjoncturel) de 2028 prévu par l'article liminaire de la loi de finances initiale pour 2028 publiée au Journal officiel.",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-01-31"
+   },
+   "justifications": {
+    "RN|*|non": null,
+    "MEL|*|non": null,
+    "*|289 ou plus|non": null,
+    "*|moins de 289|non": null,
+    "*|*|oui": null
+   }
+  },
+  "EV-23": {
+   "question": "loi du taux de participation au premier tour de 2027, selon la candidature de Marine Le Pen",
+   "table": {
+    "candidate|*": {
+     "moins de 70 %": null,
+     "70 à moins de 75 %": null,
+     "75 à moins de 80 %": null,
+     "80 % ou plus": null
+    },
+    "non candidate|*": {
+     "moins de 70 %": null,
+     "70 à moins de 75 %": null,
+     "75 à moins de 80 %": null,
+     "80 % ou plus": null
+    }
+   },
+   "unite": "loi en % sur les issues",
+   "entrees_fixes": {},
+   "noeuds": [
+    "PV-LEPEN",
+    "PV-BLOC"
+   ],
+   "critere": "Taux de participation au premier tour de l'élection présidentielle de 2027, France entière, proclamé par le Conseil constitutionnel.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "justifications": {
+    "candidate|*": null,
+    "non candidate|*": null
+   }
+  },
+  "EV-14b": {
+   "question": "probabilité d'une journée à au moins 100 actions d'agriculteurs selon l'Intérieur, selon le plus haut niveau de mobilisation sociale de la période",
+   "table": {
+    "calme": null,
+    "modérée": null,
+    "forte": null
+   },
+   "unite": "probabilité de « oui » en %",
+   "entrees_fixes": {},
+   "noeuds": [
+    "VE-MOBIL"
+   ],
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Intérieur chiffre à au moins 100 le nombre d'actions (rassemblements, blocages, barrages filtrants) menées par des agriculteurs en France pour une même journée. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "justifications": {
+    "calme": null,
+    "modérée": null,
+    "forte": null
+   }
+  }
+ },
+ "direct": {
+  "EV-49": null,
+  "EV-03": null,
+  "EV-44": {
+   "4,5 % du PIB ou moins": null,
+   "plus de 4,5 % du PIB": null,
+   "pas de loi de finances publiée au 31 janvier 2028": null
+  },
+  "EV-23": {
+   "moins de 70 %": null,
+   "70 à moins de 75 %": null,
+   "75 à moins de 80 %": null,
+   "80 % ou plus": null
+  },
+  "EV-14b": null
+ }
+}

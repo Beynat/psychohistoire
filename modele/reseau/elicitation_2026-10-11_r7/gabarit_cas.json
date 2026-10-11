@@ -1,0 +1,598 @@
+{
+ "evaluateur": null,
+ "date": null,
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "VE-MOBIL": {
+   "nom": "Mobilisation sociale (manifestants)",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "VE-LYCEE",
+     "nom": "Mobilisation lycéenne",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000"
+    }
+   ],
+   "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "cas": {
+    "prec=calme|VE-POP=< 25 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.5316,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=calme|VE-POP=< 25 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0286,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=calme|VE-POP=< 25 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.003,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=calme|VE-POP=25-35 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.1331,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=calme|VE-POP=25-35 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0052,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=calme|VE-POP=25-35 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=calme|VE-POP=> 35 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0825,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=calme|VE-POP=> 35 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0035,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=calme|VE-POP=> 35 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-POP=< 25 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0729,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-POP=< 25 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0283,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-POP=< 25 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0415,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-POP=25-35 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0153,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-POP=25-35 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-POP=25-35 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-POP=> 35 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0084,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-POP=> 35 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0026,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=modérée|VE-POP=> 35 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-POP=< 25 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0138,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-POP=< 25 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0086,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-POP=< 25 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0083,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-POP=25-35 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-POP=25-35 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0016,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-POP=25-35 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-POP=> 35 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-POP=> 35 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    },
+    "prec=forte|VE-POP=> 35 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "calme": null,
+      "modérée": null,
+      "forte": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "PV-CASSEURS": {
+   "nom": "Publication de la loi « casseurs-payeurs » (projet de loi n° 952) au Journal officiel",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-LYCEE",
+     "nom": "Mobilisation lycéenne",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000"
+    },
+    {
+     "id": "PV-CENSURE1a",
+     "nom": "Censure d'ici fin 2026 (session budgétaire)",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2026-12-31"
+     ]
+    },
+    {
+     "id": "PV-CENSURE1b",
+     "nom": "Censure de janvier au second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2027-01-01",
+      "2027-05-02"
+     ]
+    },
+    {
+     "id": "PV-DISSOL1",
+     "nom": "Dissolution avant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2027-05-02"
+     ]
+    }
+   ],
+   "definition": "critère d'EV-48",
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2027-03-31"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-LYCEE=calme|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.005,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0062,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0955,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0139,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.5393,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0258,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.003,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0951,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0266,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.1774,
+     "loi": {
+      "oui": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-39": {
+   "critere": "Pendant la fenêtre, le ministère de l'Intérieur chiffre à plus de 500 000 le nombre de manifestants en France pour une même journée. Le chiffre retenu est celui du ministère, publié par lui ou rapporté par au moins deux agences de presse (AFP, Reuters, AP) ; les comptages des organisateurs ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": null
+  },
+  "EV-52": {
+   "critere": "Pendant la fenêtre, pour au moins une journée, le ministère de l'Intérieur chiffre à au moins 200 000 le nombre de manifestants en France, ou le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés (règles de comptage d'EV-10). Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Les comptages des organisateurs et des syndicats ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2028-09-30"
+   },
+   "probabilite": null
+  },
+  "EV-13": {
+   "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État communiqué par le ministère chargé de la fonction publique dépasse 18 %. Est retenu le plus élevé des taux communiqués pour cette journée (mi-journée ou journée entière ; taux de l'ensemble de la fonction publique de l'État, et non d'un seul ministère), publié par le ministère ou la DGAFP, ou rapporté par l'AFP, Reuters ou AP en l'attribuant au ministère ; une seule dépêche suffit. Une révision publiée plus de 30 jours après la journée ne change pas l'issue.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": null
+  },
+  "EV-51": {
+   "critere": "Pour au moins une journée ou une nuit de la fenêtre, le ministère de l'Intérieur chiffre à au moins 1 000 le nombre de personnes interpellées en France en lien avec des manifestations, des blocages ou des violences urbaines, pour cette même journée ou cette même nuit. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Un cumul sur plusieurs jours ne compte pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "probabilite": null
+  },
+  "EV-14b": {
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Intérieur chiffre à au moins 100 le nombre d'actions (rassemblements, blocages, barrages filtrants) menées par des agriculteurs en France pour une même journée. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "probabilite": null
+  },
+  "EV-48": {
+   "critere": "Pendant la fenêtre, une loi issue du projet de loi n° 952 (2025-2026) relatif à la réparation des dommages résultant de violences ou de dégradations commises dans l'espace public et au recouvrement des dommages et intérêts (dit « casseurs-payeurs »), déposé au Sénat le 16 septembre 2026, est publiée au Journal officiel. Une publication partielle, après censure partielle du Conseil constitutionnel, compte ; une disposition équivalente insérée dans un autre texte ne compte pas.",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-03-31"
+   },
+   "probabilite": null
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-11"
+}

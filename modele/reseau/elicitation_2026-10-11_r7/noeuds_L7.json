@@ -1,0 +1,132 @@
+{
+ "noeuds": [
+  {
+   "id": "VE-MOBIL",
+   "nom": "Mobilisation sociale (manifestants)",
+   "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000",
+   "etats": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "parents": [
+    "VE-POP",
+    "VE-LYCEE"
+   ]
+  },
+  {
+   "id": "PV-CASSEURS",
+   "nom": "Publication de la loi « casseurs-payeurs » (projet de loi n° 952) au Journal officiel",
+   "definition": "critère d'EV-48",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "nature": "à tout moment",
+   "fenetre": [
+    "2026-10-10",
+    "2027-03-31"
+   ],
+   "parents": [
+    "VE-LYCEE",
+    "PV-CENSURE1a",
+    "PV-CENSURE1b",
+    "PV-DISSOL1"
+   ]
+  }
+ ],
+ "questions_satellites": {
+  "EV-48": {
+   "critere": "Pendant la fenêtre, une loi issue du projet de loi n° 952 (2025-2026) relatif à la réparation des dommages résultant de violences ou de dégradations commises dans l'espace public et au recouvrement des dommages et intérêts (dit « casseurs-payeurs »), déposé au Sénat le 16 septembre 2026, est publiée au Journal officiel. Une publication partielle, après censure partielle du Conseil constitutionnel, compte ; une disposition équivalente insérée dans un autre texte ne compte pas.",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-03-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "noeuds_lus": [
+    "PV-CASSEURS"
+   ]
+  },
+  "EV-49": {
+   "critere": "Pendant la fenêtre, Édouard Geffray, ministre de l'Éducation nationale au 10 octobre 2026, cesse de détenir ce portefeuille : un décret publié au Journal officiel nomme une autre personne à la tête du ministère chargé de l'Éducation nationale, ou le nomme à d'autres fonctions sans ce portefeuille, ou met fin à ses fonctions. Si un décret met fin à ses fonctions (démission du Gouvernement comprise) et qu'un décret publié au plus tard le dernier jour de la fenêtre le reconduit à la tête de ce ministère, la réponse est « non » ; s'il n'est pas reconduit au dernier jour de la fenêtre, y compris s'il expédie les affaires courantes, la réponse est « oui », et la date du fait est celle du décret qui a mis fin à ses fonctions.",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "noeuds_lus": [
+    "PV-GOUV",
+    "VE-LYCEE"
+   ]
+  },
+  "EV-03": {
+   "critere": "Le déficit public de 2027, au sens de Maastricht, publié par l'Insee lors de la notification de mars 2028, est strictement supérieur à 5,0 % du PIB.",
+   "fenetre": {
+    "debut": "2028-03-01",
+    "fin": "2028-04-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "noeuds_lus": [
+    "PV-BUDGET",
+    "PV-VAINQ"
+   ]
+  },
+  "EV-44": {
+   "critere": "Solde public effectif (et non structurel ni conjoncturel) de 2028 prévu par l'article liminaire de la loi de finances initiale pour 2028 publiée au Journal officiel.",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-01-31"
+   },
+   "issues": [
+    "4,5 % du PIB ou moins",
+    "plus de 4,5 % du PIB",
+    "pas de loi de finances publiée au 31 janvier 2028"
+   ],
+   "noeuds_lus": [
+    "PV-VAINQ",
+    "PV-MAJOR",
+    "PV-CENSURE2"
+   ]
+  },
+  "EV-23": {
+   "critere": "Taux de participation au premier tour de l'élection présidentielle de 2027, France entière, proclamé par le Conseil constitutionnel.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "issues": [
+    "moins de 70 %",
+    "70 à moins de 75 %",
+    "75 à moins de 80 %",
+    "80 % ou plus"
+   ],
+   "noeuds_lus": [
+    "PV-LEPEN",
+    "PV-BLOC"
+   ]
+  },
+  "EV-14b": {
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Intérieur chiffre à au moins 100 le nombre d'actions (rassemblements, blocages, barrages filtrants) menées par des agriculteurs en France pour une même journée. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "noeuds_lus": [
+    "VE-MOBIL"
+   ]
+  }
+ }
+}

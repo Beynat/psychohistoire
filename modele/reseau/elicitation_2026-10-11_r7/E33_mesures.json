@@ -1,0 +1,183 @@
+{
+ "evaluateur": "E33",
+ "date": "2026-10-11",
+ "lecture": "Chaque table relie l'état des nœuds du réseau à la question de la banque. Pour chaque entrée, donner la valeur demandée (« unite ») et une justification d'au moins une phrase (référence au dossier, URL, ou « jugement : … »). Une clé « a|b » suit l'ordre des nœuds de la mesure ; « * » vaut pour tout état. Remplir aussi « direct » : probabilité de la question jugée directement.",
+ "mesures": {
+  "EV-49": {
+   "question": "probabilité que le ministre de l'Éducation nationale quitte ce portefeuille d'ici au 31 décembre 2026, selon qu'il y a eu ou non changement de Premier ministre et, sinon, selon le plus haut niveau de mobilisation lycéenne d'ici là",
+   "table": {
+    "oui|*": 80,
+    "non|calme": 3,
+    "non|modérée": 5,
+    "non|forte": 9
+   },
+   "unite": "probabilité de « oui » en %",
+   "entrees_fixes": {},
+   "noeuds": [
+    "PV-GOUV",
+    "VE-LYCEE"
+   ],
+   "critere": "Pendant la fenêtre, Édouard Geffray, ministre de l'Éducation nationale au 10 octobre 2026, cesse de détenir ce portefeuille : un décret publié au Journal officiel nomme une autre personne à la tête du ministère chargé de l'Éducation nationale, ou le nomme à d'autres fonctions sans ce portefeuille, ou met fin à ses fonctions. Si un décret met fin à ses fonctions (démission du Gouvernement comprise) et qu'un décret publié au plus tard le dernier jour de la fenêtre le reconduit à la tête de ce ministère, la réponse est « non » ; s'il n'est pas reconduit au dernier jour de la fenêtre, y compris s'il expédie les affaires courantes, la réponse est « oui », et la date du fait est celle du décret qui a mis fin à ses fonctions.",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2026-12-31"
+   },
+   "justifications": {
+    "oui|*": "ronde 2 : jugement : un changement de Premier ministre met fin aux fonctions de tous les ministres ; les trois derniers changements de la 17e législature ont remplacé le titulaire (dossier 3.3), reconduction avant le 31 déc. possible mais minoritaire. (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "non|calme": "ronde 2 : jugement : sans changement de gouvernement, départ isolé très rare (aucun ministre de l'Éducation parti dans les trois mois d'un pic sur huit épisodes, dossier 3.2). (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "non|modérée": "ronde 2 : jugement : même base ; léger risque de remaniement ou de démission sous pression (dossier 3.2, 3.1 : aucun appel à démission trouvé). (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "non|forte": "ronde 2 : jugement : mobilisation forte accroît le risque de sacrifice du ministre (Devaquet 1986, Darcos 2009 après retrait), mais précédents surtout sans départ (dossier 3.2). (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)"
+   }
+  },
+  "EV-03": {
+   "question": "probabilité que le déficit public 2027 notifié en mars 2028 dépasse 5,0 % du PIB, selon la loi de finances 2027 au 31 décembre 2026 et le vainqueur de la présidentielle",
+   "table": {
+    "publiée|RN": 76,
+    "publiée|MEL": 79,
+    "publiée|*": 68,
+    "non publiée|RN": 86,
+    "non publiée|MEL": 88,
+    "non publiée|*": 82
+   },
+   "unite": "probabilité de « oui » en %",
+   "entrees_fixes": {},
+   "noeuds": [
+    "PV-BUDGET",
+    "PV-VAINQ"
+   ],
+   "critere": "Le déficit public de 2027, au sens de Maastricht, publié par l'Insee lors de la notification de mars 2028, est strictement supérieur à 5,0 % du PIB.",
+   "fenetre": {
+    "debut": "2028-03-01",
+    "fin": "2028-04-30"
+   },
+   "justifications": {
+    "publiée|RN": "ronde 2 : jugement : PLF visé à 5,0 % mais HCFP 5,2-5,3 % et rapporteur général 5,35-5,4 % (dossier 4.1) ; 2 dépassements d'objectif sur 3 ans (4.2) ; programme RN coûteux (retraites, 4.3) et exécution du second semestre 2027 par le nouveau pouvoir. (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "publiée|MEL": "ronde 2 : jugement : même base budgétaire (dossier 4.1-4.2), avec dérapage plus probable sur la seconde moitié de 2027 (programme de dépenses et restructuration de dette, 4.3). (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "publiée|*": "ronde 2 : jugement : autres vainqueurs (Philippe, Attal, Retailleau...) plus orientés consolidation, mais la base reste au-dessus de 5,0 % (HCFP, rapporteur général ; OFCE à 4,4 % sous hypothèse PSMT), dossier 4.1. (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "non publiée|RN": "ronde 2 : jugement : loi spéciale, pas de mesures d'effort de 40 milliards (dossier 4.1) ; précédent 2025 où le résultat est toutefois ressorti sous l'objectif (4.2), d'où une marge d'incertitude. (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "non publiée|MEL": "ronde 2 : jugement : même logique que RN sans budget, avec dérapage ultérieur un peu plus probable. (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "non publiée|*": "ronde 2 : jugement : absence de loi de finances 2027 priverait l'effort structurel de près de 40 milliards (dossier 4.1) ; le précédent 2025 (5,1 contre 5,4 visé) tempère. (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)"
+   }
+  },
+  "EV-44": {
+   "question": "loi du solde public 2028 prévu par la loi de finances pour 2028 (ou pas de loi au 31 janvier 2028), selon le vainqueur, la majorité et une censure pendant la session budgétaire",
+   "table": {
+    "RN|*|non": {
+     "4,5 % du PIB ou moins": 30,
+     "plus de 4,5 % du PIB": 46,
+     "pas de loi de finances publiée au 31 janvier 2028": 24
+    },
+    "MEL|*|non": {
+     "4,5 % du PIB ou moins": 12,
+     "plus de 4,5 % du PIB": 53,
+     "pas de loi de finances publiée au 31 janvier 2028": 35
+    },
+    "*|289 ou plus|non": {
+     "4,5 % du PIB ou moins": 50,
+     "plus de 4,5 % du PIB": 40,
+     "pas de loi de finances publiée au 31 janvier 2028": 10
+    },
+    "*|moins de 289|non": {
+     "4,5 % du PIB ou moins": 32,
+     "plus de 4,5 % du PIB": 40,
+     "pas de loi de finances publiée au 31 janvier 2028": 28
+    },
+    "*|*|oui": {
+     "4,5 % du PIB ou moins": 12,
+     "plus de 4,5 % du PIB": 18,
+     "pas de loi de finances publiée au 31 janvier 2028": 70
+    }
+   },
+   "unite": "loi en % sur les issues",
+   "entrees_fixes": {},
+   "noeuds": [
+    "PV-VAINQ",
+    "PV-MAJOR",
+    "PV-CENSURE2"
+   ],
+   "critere": "Solde public effectif (et non structurel ni conjoncturel) de 2028 prévu par l'article liminaire de la loi de finances initiale pour 2028 publiée au Journal officiel.",
+   "fenetre": {
+    "debut": "2027-05-02",
+    "fin": "2028-01-31"
+   },
+   "justifications": {
+    "RN|*|non": "ronde 2 : jugement : aucun solde 2028 publié (dossier 5.1) ; trajectoire linéaire vers 2,9 % en 2029 donnerait ~3,95 % mais PLF réalistes améliorent de 0-0,7 point par an ; nouveau pouvoir RN, programme coûteux (4.3) ; lois de finances 2025 et 2026 publiées en février (5.2). (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "MEL|*|non": "ronde 2 : jugement : programme de dépenses, majorité incertaine ; mêmes précédents de publication tardive (dossier 5.2) ; cible 2028 plus probablement au-dessus de 4,5 %. (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "*|289 ou plus|non": "ronde 2 : jugement : majorité absolue facilite l'adoption avant fin janvier (dossier 5.2, LFI 2023 par 49.3 en décembre) ; l'amélioration de plus de 0,5 point depuis ~5,0 % en 2027 reste un objectif ambitieux mais proche de la trajectoire de retour sous 3 % en 2029 (5.1). (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "*|moins de 289|non": "ronde 2 : jugement : sans majorité, adoption tardive probable (précédents 2025 et 2026, dossier 5.2) ; le texte voté est plus laxiste que le projet (2026 : 4,7 puis 5,0 %). (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "*|*|oui": "ronde 2 : jugement : censure en session budgétaire renvoie à la loi spéciale puis à une loi publiée après le 31 janvier (dossier 5.2, précédents 2025 et 2026), sauf adoption rapide par un gouvernement suivant. (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)"
+   }
+  },
+  "EV-23": {
+   "question": "loi du taux de participation au premier tour de 2027, selon la candidature de Marine Le Pen",
+   "table": {
+    "candidate|*": {
+     "moins de 70 %": 7,
+     "70 à moins de 75 %": 40,
+     "75 à moins de 80 %": 40,
+     "80 % ou plus": 13
+    },
+    "non candidate|*": {
+     "moins de 70 %": 10,
+     "70 à moins de 75 %": 43,
+     "75 à moins de 80 %": 36,
+     "80 % ou plus": 11
+    }
+   },
+   "unite": "loi en % sur les issues",
+   "entrees_fixes": {},
+   "noeuds": [
+    "PV-LEPEN",
+    "PV-BLOC"
+   ],
+   "critere": "Taux de participation au premier tour de l'élection présidentielle de 2027, France entière, proclamé par le Conseil constitutionnel.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "justifications": {
+    "candidate|*": "ronde 2 : jugement : série 1965-2022 de 71,6 % à 84,8 %, baisse continue depuis 2007 (73,7 % en 2022), Ifop 74,5 % des inscrits « tout à fait certains » (dossier 6.1-6.2) ; candidature de Marine Le Pen = enjeu polarisé, mobilisation un peu plus forte. (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "non candidate|*": "ronde 2 : jugement : sans Marine Le Pen, électorat RN potentiellement moins mobilisé et campagne moins dramatisée ; mêmes références (dossier 6.1-6.2), léger déplacement vers le bas. (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)"
+   }
+  },
+  "EV-14b": {
+   "question": "probabilité d'une journée à au moins 100 actions d'agriculteurs selon l'Intérieur, selon le plus haut niveau de mobilisation sociale de la période",
+   "table": {
+    "calme": 20,
+    "modérée": 28,
+    "forte": 38
+   },
+   "unite": "probabilité de « oui » en %",
+   "entrees_fixes": {},
+   "noeuds": [
+    "VE-MOBIL"
+   ],
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Intérieur chiffre à au moins 100 le nombre d'actions (rassemblements, blocages, barrages filtrants) menées par des agriculteurs en France pour une même journée. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "justifications": {
+    "calme": "ronde 2 : jugement : en l'absence de mobilisation sociale générale, un jour à 100 actions agricoles dépend de chocs propres (maladie animale, Mercosur) ; un seul jour connu au-dessus de 100 (18 déc. 2025, dossier 7.1). (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "modérée": "ronde 2 : jugement : lien non mesuré (dossier 7.2), léger effet de climat social et de fatigue des forces de l'ordre ; base proche du taux propre aux agriculteurs. (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)",
+    "forte": "ronde 2 : jugement : un climat de forte mobilisation sociale favorise la convergence et les appels de la FNSEA/Coordination rurale, lien non mesuré (dossier 7.2). (maintenu ou ajusté après comparaison avec les deux autres évaluateurs)"
+   }
+  }
+ },
+ "direct": {
+  "EV-49": 0.17,
+  "EV-03": 0.73,
+  "EV-44": {
+   "4,5 % du PIB ou moins": 0.28,
+   "plus de 4,5 % du PIB": 0.44,
+   "pas de loi de finances publiée au 31 janvier 2028": 0.28
+  },
+  "EV-23": {
+   "moins de 70 %": 0.08,
+   "70 à moins de 75 %": 0.41,
+   "75 à moins de 80 %": 0.38,
+   "80 % ou plus": 0.13
+  },
+  "EV-14b": 0.25
+ }
+}

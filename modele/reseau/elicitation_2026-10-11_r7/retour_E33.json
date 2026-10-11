@@ -1,0 +1,402 @@
+{
+ "evaluateur": "E33",
+ "ronde": 2,
+ "lecture": "Seconde ronde (protocole IDEA). (1) défauts de ta réponse ; (2) questions où la marginale impliquée par TES lois s'écarte de plus de 5 points de ton avis direct ; (3) cas où les évaluateurs donnent des sens opposés par rapport au cas le plus fréquent, avec les lois et justifications anonymes des autres ; (4) pour chaque nœud, les lois et justifications des autres sur les trois cas les plus fréquents. Corrige ou maintiens en écrivant pourquoi.",
+ "defauts": [],
+ "marginales": [
+  {
+   "question": "EV-39",
+   "issue": "oui",
+   "implique": 69.2,
+   "direct": 20.0
+  },
+  {
+   "question": "EV-52",
+   "issue": "oui",
+   "implique": 99.6,
+   "direct": 62.0
+  },
+  {
+   "question": "EV-13",
+   "issue": "oui",
+   "implique": 25.5,
+   "direct": 3.0
+  },
+  {
+   "question": "EV-51",
+   "issue": "oui",
+   "implique": 33.9,
+   "direct": 10.0
+  },
+  {
+   "question": "EV-14b",
+   "issue": "oui",
+   "implique": 32.3,
+   "direct": 17.0
+  }
+ ],
+ "sens_opposes": [],
+ "noeuds": {
+  "VE-MOBIL": {
+   "prec=calme|VE-POP=< 25 %|VE-LYCEE=calme": {
+    "autre 1": {
+     "loi": {
+      "calme": 0.88,
+      "modérée": 0.1,
+      "forte": 0.02
+     },
+     "justification": "jugement : série du projet [MO] 3.2 (7 mois mesurés sur 22 : 4 calmes, 15 mois sans chiffre Intérieur, donc calme) ; forte persistance de l'état calme ; pas d'apport lycéen le mois précédent. Popularité sous 25 % : terrain favorable ([MO] 5.2)."
+    },
+    "autre 2": {
+     "loi": {
+      "calme": 0.88,
+      "modérée": 0.1,
+      "forte": 0.02
+     },
+     "justification": "Jugement : état stable dominant ; série du projet [MO] 3.2 (4 mois calmes sur 7 mesurés, 1 forte) ; une journée >200 000 sans lycéens suppose un appel interprofessionnel, rare hors réforme majeure. Popularité basse rend l'escalade un peu plus probable ([MO] 5.2)."
+    }
+   },
+   "prec=calme|VE-POP=25-35 %|VE-LYCEE=calme": {
+    "autre 1": {
+     "loi": {
+      "calme": 0.884,
+      "modérée": 0.097,
+      "forte": 0.019
+     },
+     "justification": "jugement : série du projet [MO] 3.2 (7 mois mesurés sur 22 : 4 calmes, 15 mois sans chiffre Intérieur, donc calme) ; forte persistance de l'état calme ; pas d'apport lycéen le mois précédent. Popularité plus haute : léger transfert vers calme (lien VE-POP, [MO] 5.2)."
+    },
+    "autre 2": {
+     "loi": {
+      "calme": 0.91,
+      "modérée": 0.075,
+      "forte": 0.015
+     },
+     "justification": "Jugement : état stable dominant ; série du projet [MO] 3.2 (4 mois calmes sur 7 mesurés, 1 forte) ; une journée >200 000 sans lycéens suppose un appel interprofessionnel, rare hors réforme majeure. Popularité basse rend l'escalade un peu plus probable ([MO] 5.2). Popularité plus haute : légère réduction des escalades (jugement)."
+    }
+   },
+   "prec=calme|VE-POP=> 35 %|VE-LYCEE=calme": {
+    "autre 1": {
+     "loi": {
+      "calme": 0.887,
+      "modérée": 0.094,
+      "forte": 0.019
+     },
+     "justification": "jugement : série du projet [MO] 3.2 (7 mois mesurés sur 22 : 4 calmes, 15 mois sans chiffre Intérieur, donc calme) ; forte persistance de l'état calme ; pas d'apport lycéen le mois précédent. Popularité plus haute : léger transfert vers calme (lien VE-POP, [MO] 5.2)."
+    },
+    "autre 2": {
+     "loi": {
+      "calme": 0.93,
+      "modérée": 0.06,
+      "forte": 0.01
+     },
+     "justification": "Jugement : état stable dominant ; série du projet [MO] 3.2 (4 mois calmes sur 7 mesurés, 1 forte) ; une journée >200 000 sans lycéens suppose un appel interprofessionnel, rare hors réforme majeure. Popularité basse rend l'escalade un peu plus probable ([MO] 5.2). Popularité plus haute : légère réduction des escalades (jugement)."
+    }
+   }
+  },
+  "PV-CASSEURS": {
+   "VE-LYCEE=calme|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=non": {
+    "autre 1": {
+     "loi": 0.22,
+     "justification": "jugement : Sénat les 27-28 oct. puis Assemblée seulement après le PLF (10 déc.) et avant la clôture de fin février ; CMP, saisine probable du Conseil constitutionnel (2019-780 DC) et promulgation ; 196 jours entre dépôt et fin de fenêtre contre 206 jours en moyenne en procédure accélérée (dossier 2.2, 2.4) ; Maire-info juge l'adoption « peu probable » ; base 0.22 selon le niveau lycéen, le gouvernement liant l'accélération aux dégâts (2.5)."
+    },
+    "autre 2": {
+     "loi": 0.18,
+     "justification": "Jugement : 196 jours entre dépôt et fin de fenêtre contre 206 jours de délai moyen en procédure accélérée (Sénat, rapport 2023-2024, dossier 2.4) ; Assemblée occupée par le PLF jusqu'au 10 décembre et fin des travaux fin février 2027 (LCP) ; saisine probable du Conseil constitutionnel par la gauche (précédent 2019, un mois) qui repousse la publication vers fin mars ; Maire-info juge l'adoption « peu probable » (2.2). Lycées calmes : moindre pression pour accélérer."
+    }
+   },
+   "VE-LYCEE=forte|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=non": {
+    "autre 1": {
+     "loi": 0.33,
+     "justification": "jugement : Sénat les 27-28 oct. puis Assemblée seulement après le PLF (10 déc.) et avant la clôture de fin février ; CMP, saisine probable du Conseil constitutionnel (2019-780 DC) et promulgation ; 196 jours entre dépôt et fin de fenêtre contre 206 jours en moyenne en procédure accélérée (dossier 2.2, 2.4) ; Maire-info juge l'adoption « peu probable » ; base 0.33 selon le niveau lycéen, le gouvernement liant l'accélération aux dégâts (2.5)."
+    },
+    "autre 2": {
+     "loi": 0.28,
+     "justification": "Jugement : 196 jours entre dépôt et fin de fenêtre contre 206 jours de délai moyen en procédure accélérée (Sénat, rapport 2023-2024, dossier 2.4) ; Assemblée occupée par le PLF jusqu'au 10 décembre et fin des travaux fin février 2027 (LCP) ; saisine probable du Conseil constitutionnel par la gauche (précédent 2019, un mois) qui repousse la publication vers fin mars ; Maire-info juge l'adoption « peu probable » (2.2). Mobilisation lycéenne forte : le gouvernement lie l'accélération aux dégâts (2.5), inscription plus probable en janvier à l'Assemblée."
+    }
+   },
+   "VE-LYCEE=calme|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=non": {
+    "autre 1": {
+     "loi": 0.099,
+     "justification": "jugement : Sénat les 27-28 oct. puis Assemblée seulement après le PLF (10 déc.) et avant la clôture de fin février ; CMP, saisine probable du Conseil constitutionnel (2019-780 DC) et promulgation ; 196 jours entre dépôt et fin de fenêtre contre 206 jours en moyenne en procédure accélérée (dossier 2.2, 2.4) ; Maire-info juge l'adoption « peu probable » ; base 0.22 selon le niveau lycéen, le gouvernement liant l'accélération aux dégâts (2.5) ; censure en fin 2026 : affaires courantes puis nouveau gouvernement, ordre du jour de janvier-février perdu en partie ([BG] 4)."
+    },
+    "autre 2": {
+     "loi": 0.07,
+     "justification": "Jugement : une censure d'ici fin 2026 laisse un gouvernement aux affaires courantes ~3 semaines (précédent décembre 2024, dossier 2.5) puis un nouveau gouvernement priorisant le budget ; le texte n'est pas caduc mais l'Assemblée n'a plus le temps avant la fin février 2027 (LCP, dossier 2.2)."
+    }
+   }
+  }
+ },
+ "defauts_mesures": [],
+ "mesures": {
+  "EV-49": {
+   "oui|*": {
+    "autre 1": {
+     "valeur": 80,
+     "justification": "jugement : un changement de Premier ministre met fin aux fonctions de tous les ministres (dossier 3.3) ; ministre technicien reconduit possible, mais les trois changements de la 17e législature ont tous changé de ministre, et une censure en décembre laisse peu de temps pour une reconduction avant le 31."
+    },
+    "autre 2": {
+     "valeur": 65,
+     "justification": "Jugement : un changement de Premier ministre met fin aux fonctions de tous les ministres (dossier 3.3) ; dans la 17e législature, chaque nouveau gouvernement a changé de ministre de l'Éducation (3 sur 3), mais un profil technique peut être reconduit et la reconduction doit intervenir avant le 31 décembre."
+    }
+   },
+   "non|calme": {
+    "autre 1": {
+     "valeur": 4,
+     "justification": "jugement : sans changement de gouvernement, 2 remplacements sur 42 fins d'année, tous liés à un nouveau gouvernement (dossier 3.3) ; reste un remaniement ou une démission isolée."
+    },
+    "autre 2": {
+     "valeur": 3,
+     "justification": "Dossier 3.3 : hors changement de gouvernement, aucun remplacement entre octobre et décembre depuis 1984 ; durée moyenne ~1,9 an ; seul un remaniement ou une démission personnelle."
+    }
+   },
+   "non|modérée": {
+    "autre 1": {
+     "valeur": 6,
+     "justification": "jugement : aucune démission d'un ministre en titre dans les trois mois d'un pic lycéen sur huit épisodes (dossier 3.2) ; légère hausse pour remaniement partiel."
+    },
+    "autre 2": {
+     "valeur": 4,
+     "justification": "Dossier 3.2 : sur huit épisodes lycéens depuis 1986, aucun ministre en titre parti dans les trois mois du pic ; légère hausse du risque de remaniement ciblé."
+    }
+   },
+   "non|forte": {
+    "autre 1": {
+     "valeur": 10,
+     "justification": "jugement : mouvement fort, critiques sur le plan d'urgence (dossier 3.1), possible remaniement de « premières décisions » fin octobre ; mais précédents de maintien (1990, 2010, 2018) et un seul départ de ministre délégué (1986)."
+    },
+    "autre 2": {
+     "valeur": 7,
+     "justification": "Jugement : mouvement plus massif avec blessés et enquêtes IGPN (dossier 1.1) et critiques du plan d'urgence (3.1) ; un remaniement ciblé ou une démission devient envisageable, sans précédent en titre (seul Devaquet, ministre délégué, 1986)."
+    }
+   }
+  },
+  "EV-03": {
+   "publiée|RN": {
+    "autre 1": {
+     "valeur": 75,
+     "justification": "jugement : HCFP 5,2-5,3 % et rapporteur 5,35-5,4 % pour 2027 (dossier 4.1) ; RN : retraites à 62 ans et tension sur les taux (OAT 4,84 %) dans la seconde moitié de 2027."
+    },
+    "autre 2": {
+     "valeur": 85,
+     "justification": "Jugement : HCFP 5,2-5,3 %, rapporteur général 5,35-5,4 % pour 2027 (dossier 4.1) ; un gouvernement RN à mi-année maintient la retraite vers 62 ans et des baisses d'impôts, sans effet d'économies en 2027."
+    }
+   },
+   "publiée|MEL": {
+    "autre 1": {
+     "valeur": 85,
+     "justification": "jugement : restructuration de dette et retraites à 60 ans (dossier 4.3), choc de taux probable ; dépassement très probable."
+    },
+    "autre 2": {
+     "valeur": 88,
+     "justification": "Jugement : même base 5,2-5,4 % (4.1) ; programme de dépenses et tension sur les taux (OAT 4,84 %, 4.1) rendent un déficit sous 5,0 % très improbable."
+    }
+   },
+   "publiée|*": {
+    "autre 1": {
+     "valeur": 62,
+     "justification": "jugement : objectif 5,0 % jugé optimiste par le HCFP et l'OFCE ; 2 dépassements sur 3 années récentes (dossier 4.2) ; un vainqueur central peut freiner la dépense au second semestre."
+    },
+    "autre 2": {
+     "valeur": 74,
+     "justification": "Base 5,2-5,4 % selon HCFP et rapporteur (4.1) ; 2 dépassements d'objectif sur 3 ans (4.2), croissance 2027 surestimée (1 % contre 0,7-0,9 %) ; la sous-exécution de 2025 (5,1 contre 5,4) laisse une chance réelle de passer sous le seuil."
+    }
+   },
+   "non publiée|RN": {
+    "autre 1": {
+     "valeur": 73,
+     "justification": "jugement : loi spéciale contient la dépense en début d'année (2025 sous l'objectif, dossier 4.2), effet faible face au biais RN."
+    },
+    "autre 2": {
+     "valeur": 86,
+     "justification": "Jugement : loi spéciale au départ puis loi en février (précédents 2025, 2026, dossier 4.2) ; effet de gel des dépenses compensé par la politique du nouveau gouvernement."
+    }
+   },
+   "non publiée|MEL": {
+    "autre 1": {
+     "valeur": 83,
+     "justification": "jugement : même raisonnement, effet de contention marginal."
+    },
+    "autre 2": {
+     "valeur": 89,
+     "justification": "Jugement : comme la ligne publiée, gel initial sans effet sur la politique post-élection."
+    }
+   },
+   "non publiée|*": {
+    "autre 1": {
+     "valeur": 60,
+     "justification": "jugement : loi spéciale puis loi tardive ont donné en 2025 un déficit sous l'objectif (dossier 4.2) ; mais point de départ 2026 à 5,4 % et croissance revue en baisse."
+    },
+    "autre 2": {
+     "valeur": 74,
+     "justification": "Dossier 4.2 : en 2025, sans loi au 31 décembre, le déficit est ressorti sous l'objectif (5,1 contre 5,4) ; effet de gel qui compense une partie de la perte de mesures de recettes."
+    }
+   }
+  },
+  "EV-44": {
+   "RN|*|non": {
+    "autre 1": {
+     "valeur": {
+      "4,5 % du PIB ou moins": 25,
+      "plus de 4,5 % du PIB": 55,
+      "pas de loi de finances publiée au 31 janvier 2028": 20
+     },
+     "justification": "jugement : un solde 2028 ≤ 4,5 % exige 0,7 à 0,9 point d'amélioration depuis un 2027 estimé à 5,2-5,4 % (dossier 5.1, 4.1) ; le RN n'a pas publié d'objectif et maintient les retraites à 62 ans ; tension de marché pouvant pousser à afficher un effort."
+    },
+    "autre 2": {
+     "valeur": {
+      "4,5 % du PIB ou moins": 30,
+      "plus de 4,5 % du PIB": 50,
+      "pas de loi de finances publiée au 31 janvier 2028": 20
+     },
+     "justification": "Jugement : plan d'économies de 125 Md€ affiché (dossier 4.3) mais retraite à 62 ans ; un article liminaire ≤4,5 % suppose 0,5-0,8 point d'amélioration depuis 5,0-5,3 % (5.1) ; risque de loi tardive si pas de majorité absolue."
+    }
+   },
+   "MEL|*|non": {
+    "autre 1": {
+     "valeur": {
+      "4,5 % du PIB ou moins": 8,
+      "plus de 4,5 % du PIB": 57,
+      "pas de loi de finances publiée au 31 janvier 2028": 35
+     },
+     "justification": "jugement : programme de dépense et de restructuration de dette (dossier 4.3) ; budget conflictuel, risque élevé de loi tardive."
+    },
+    "autre 2": {
+     "valeur": {
+      "4,5 % du PIB ou moins": 10,
+      "plus de 4,5 % du PIB": 55,
+      "pas de loi de finances publiée au 31 janvier 2028": 35
+     },
+     "justification": "Jugement : restructuration de dette et dépenses (4.3) ; trajectoire européenne probablement abandonnée ; Assemblée hostile probable, d'où forte part sans loi au 31 janvier (précédents 2025, 2026, 5.2)."
+    }
+   },
+   "*|289 ou plus|non": {
+    "autre 1": {
+     "valeur": {
+      "4,5 % du PIB ou moins": 50,
+      "plus de 4,5 % du PIB": 42,
+      "pas de loi de finances publiée au 31 janvier 2028": 8
+     },
+     "justification": "jugement : majorité absolue : loi votée en décembre comme avant 2025 (dossier 5.2) ; l'article liminaire affiche souvent un objectif ambitieux (PLF 2026 : -0,7 point), trajectoire linéaire vers 3 % en 2029 passant par 3,95 % (5.1)."
+    },
+    "autre 2": {
+     "valeur": {
+      "4,5 % du PIB ou moins": 55,
+      "plus de 4,5 % du PIB": 40,
+      "pas de loi de finances publiée au 31 janvier 2028": 5
+     },
+     "justification": "Jugement : majorité absolue, loi votée en décembre (habitude d'avant 2025, 5.2) ; objectifs affichés souvent optimistes (amélioration de 0,4-0,7 point prévue par les PLF, 5.1) et trajectoire linéaire vers <3 % en 2029 à ~3,95 % en 2028 (5.1)."
+    }
+   },
+   "*|moins de 289|non": {
+    "autre 1": {
+     "valeur": {
+      "4,5 % du PIB ou moins": 30,
+      "plus de 4,5 % du PIB": 42,
+      "pas de loi de finances publiée au 31 janvier 2028": 28
+     },
+     "justification": "jugement : sans majorité, objectif dégradé au Parlement (2026 : 4,7 → 5,0 %, dossier 5.1) et risque de loi publiée en février (2025, 2026)."
+    },
+    "autre 2": {
+     "valeur": {
+      "4,5 % du PIB ou moins": 40,
+      "plus de 4,5 % du PIB": 40,
+      "pas de loi de finances publiée au 31 janvier 2028": 20
+     },
+     "justification": "Dossier 5.1-5.2 : majorité relative, compromis parlementaires qui dégradent le solde (2026 : 4,7 → 5,0 %) et lois publiées en février en 2025 et 2026."
+    }
+   },
+   "*|*|oui": {
+    "autre 1": {
+     "valeur": {
+      "4,5 % du PIB ou moins": 8,
+      "plus de 4,5 % du PIB": 17,
+      "pas de loi de finances publiée au 31 janvier 2028": 75
+     },
+     "justification": "jugement : censure pendant l'examen : précédent décembre 2024, loi publiée le 14 février 2025 (dossier 5.2)."
+    },
+    "autre 2": {
+     "valeur": {
+      "4,5 % du PIB ou moins": 15,
+      "plus de 4,5 % du PIB": 25,
+      "pas de loi de finances publiée au 31 janvier 2028": 60
+     },
+     "justification": "Jugement : une censure en session budgétaire a conduit en 2024 à une loi spéciale et une loi publiée le 14 février 2025 (5.2) ; issue « pas de loi » dominante."
+    }
+   }
+  },
+  "EV-23": {
+   "candidate|*": {
+    "autre 1": {
+     "valeur": {
+      "moins de 70 %": 7,
+      "70 à moins de 75 %": 40,
+      "75 à moins de 80 %": 43,
+      "80 % ou plus": 10
+     },
+     "justification": "jugement : 73,7 % en 2022 et baisse continue depuis 2007 (dossier 6.1), mais intérêt plus élevé qu'en 2021 (Elabe 71 % contre 68 %) et 74,5 % « tout à fait certains » (Ifop, 6.2) ; un duel à fort enjeu avec une Le Pen en tête mobilise."
+    },
+    "autre 2": {
+     "valeur": {
+      "moins de 70 %": 7,
+      "70 à moins de 75 %": 40,
+      "75 à moins de 80 %": 40,
+      "80 % ou plus": 13
+     },
+     "justification": "Dossier 6.1 : baisse continue depuis 2007 jusqu'à 73,7 % en 2022 ; Ifop septembre 2026 : 74,5 % « tout à fait certains », intérêt en hausse (Elabe 71 % contre 68 % en 2021, 6.2) ; une candidature Le Pen polarise et soutient la participation."
+    }
+   },
+   "non candidate|*": {
+    "autre 1": {
+     "valeur": {
+      "moins de 70 %": 9,
+      "70 à moins de 75 %": 43,
+      "75 à moins de 80 %": 39,
+      "80 % ou plus": 9
+     },
+     "justification": "jugement : candidature de substitution (Bardella) moins polarisante, possible démobilisation d'une partie de l'électorat RN ; distribution un peu décalée vers le bas."
+    },
+    "autre 2": {
+     "valeur": {
+      "moins de 70 %": 10,
+      "70 à moins de 75 %": 45,
+      "75 à moins de 80 %": 36,
+      "80 % ou plus": 9
+     },
+     "justification": "Jugement : inéligibilité confirmée de Le Pen (6.3) peut démobiliser une partie de son électorat et fragmenter l'offre ; même base 6.1-6.2, légèrement décalée vers le bas."
+    }
+   }
+  },
+  "EV-14b": {
+   "calme": {
+    "autre 1": {
+     "valeur": 32,
+     "justification": "jugement : mobilisations agricoles d'hiver récurrentes (janv. 2024, nov. 2024, déc. 2025, dossier 7.1) mais un seul chiffre Intérieur connu au-dessus de 100 ; séries distinctes de VE-MOBIL."
+    },
+    "autre 2": {
+     "valeur": 22,
+     "justification": "Dossier 7.1 : un seul jour ≥100 actions attribué à l'Intérieur (18 décembre 2025) sur trois vagues 2024-2026 ; mobilisations agricoles d'hiver récurrentes (Mercosur, PAC −22 %, 7.2) indépendantes du climat social."
+    }
+   },
+   "modérée": {
+    "autre 1": {
+     "valeur": 38,
+     "justification": "jugement : climat social plus tendu, légère hausse ; lien non mesuré (dossier 7.2)."
+    },
+    "autre 2": {
+     "valeur": 30,
+     "justification": "Jugement : séries distinctes (7.2) mais climat de contestation et période préélectorale rendent les syndicats agricoles plus offensifs."
+    }
+   },
+   "forte": {
+    "autre 1": {
+     "valeur": 45,
+     "justification": "jugement : convergence possible (vie chère, gilets jaunes) et décomptes Intérieur plus fréquents en période d'agitation."
+    },
+    "autre 2": {
+     "valeur": 40,
+     "justification": "Jugement : un climat social fort coïncide souvent avec un gouvernement fragilisé et des concessions, ce qui encourage les actions agricoles coordonnées."
+    }
+   }
+  }
+ }
+}

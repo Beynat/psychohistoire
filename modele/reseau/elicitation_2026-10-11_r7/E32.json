@@ -1,0 +1,598 @@
+{
+ "evaluateur": "E32",
+ "date": "2026-10-11",
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités.",
+ "noeuds": {
+  "VE-MOBIL": {
+   "nom": "Mobilisation sociale (manifestants)",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "VE-LYCEE",
+     "nom": "Mobilisation lycéenne",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000"
+    }
+   ],
+   "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "cas": {
+    "prec=calme|VE-POP=< 25 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.5316,
+     "loi": {
+      "calme": 0.88,
+      "modérée": 0.108,
+      "forte": 0.012
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : état stable dominant ; série du projet [MO] 3.2 (4 mois calmes sur 7 mesurés, 1 forte) ; une journée >200 000 sans lycéens suppose un appel interprofessionnel, rare hors réforme majeure. Popularité basse rend l'escalade un peu plus probable ([MO] 5.2)."
+    },
+    "prec=calme|VE-POP=< 25 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0286,
+     "loi": {
+      "calme": 0.65,
+      "modérée": 0.315,
+      "forte": 0.035
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : un mouvement lycéen modéré pousse le chiffre Intérieur, qui compte lycéens et étudiants (dossier 1.1, fait de structure) ; 2018 montre qu'il ne suffit pas à dépasser 200 000 sans relais adulte (dossier 1.3)."
+    },
+    "prec=calme|VE-POP=< 25 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.003,
+     "loi": {
+      "calme": 0.45,
+      "modérée": 0.47,
+      "forte": 0.08
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : aucun précédent observé de VE-LYCEE forte (dossier 1.3) ; un mouvement de plus de 1 000 établissements entraînerait probablement l'intersyndicale éducation, comme le 6 octobre 2026 (256-266 000), d'où une forte part modérée ; forte exige une intersyndicale interprofessionnelle (2006, 2010)."
+    },
+    "prec=calme|VE-POP=25-35 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.1331,
+     "loi": {
+      "calme": 0.91,
+      "modérée": 0.081,
+      "forte": 0.009
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : état stable dominant ; série du projet [MO] 3.2 (4 mois calmes sur 7 mesurés, 1 forte) ; une journée >200 000 sans lycéens suppose un appel interprofessionnel, rare hors réforme majeure. Popularité basse rend l'escalade un peu plus probable ([MO] 5.2). Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=calme|VE-POP=25-35 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0052,
+     "loi": {
+      "calme": 0.7,
+      "modérée": 0.272,
+      "forte": 0.028
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : un mouvement lycéen modéré pousse le chiffre Intérieur, qui compte lycéens et étudiants (dossier 1.1, fait de structure) ; 2018 montre qu'il ne suffit pas à dépasser 200 000 sans relais adulte (dossier 1.3). Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=calme|VE-POP=25-35 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "calme": 0.5,
+      "modérée": 0.435,
+      "forte": 0.065
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : aucun précédent observé de VE-LYCEE forte (dossier 1.3) ; un mouvement de plus de 1 000 établissements entraînerait probablement l'intersyndicale éducation, comme le 6 octobre 2026 (256-266 000), d'où une forte part modérée ; forte exige une intersyndicale interprofessionnelle (2006, 2010). Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=calme|VE-POP=> 35 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0825,
+     "loi": {
+      "calme": 0.93,
+      "modérée": 0.064,
+      "forte": 0.006
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : état stable dominant ; série du projet [MO] 3.2 (4 mois calmes sur 7 mesurés, 1 forte) ; une journée >200 000 sans lycéens suppose un appel interprofessionnel, rare hors réforme majeure. Popularité basse rend l'escalade un peu plus probable ([MO] 5.2). Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=calme|VE-POP=> 35 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0035,
+     "loi": {
+      "calme": 0.74,
+      "modérée": 0.24,
+      "forte": 0.02
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : un mouvement lycéen modéré pousse le chiffre Intérieur, qui compte lycéens et étudiants (dossier 1.1, fait de structure) ; 2018 montre qu'il ne suffit pas à dépasser 200 000 sans relais adulte (dossier 1.3). Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=calme|VE-POP=> 35 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "calme": 0.55,
+      "modérée": 0.395,
+      "forte": 0.055
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : aucun précédent observé de VE-LYCEE forte (dossier 1.3) ; un mouvement de plus de 1 000 établissements entraînerait probablement l'intersyndicale éducation, comme le 6 octobre 2026 (256-266 000), d'où une forte part modérée ; forte exige une intersyndicale interprofessionnelle (2006, 2010). Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=modérée|VE-POP=< 25 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0729,
+     "loi": {
+      "calme": 0.6,
+      "modérée": 0.365,
+      "forte": 0.035
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : décrue après pic (2010 en novembre, 2018 en décembre, dossier 1.3), mais persistance d'une partie des mobilisations adultes le mois suivant."
+    },
+    "prec=modérée|VE-POP=< 25 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0283,
+     "loi": {
+      "calme": 0.4,
+      "modérée": 0.52,
+      "forte": 0.08
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : persistance d'un état modéré soutenu par les lycéens ; 2010 et 2018 montrent une décrue fréquente après deux mois (dossier 1.3)."
+    },
+    "prec=modérée|VE-POP=< 25 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0415,
+     "loi": {
+      "calme": 0.33,
+      "modérée": 0.55,
+      "forte": 0.12
+     },
+     "justification": "ronde 2 : maintenu, aucun fait nouveau ni argument des autres évaluateurs sur ce cas. Jugement : cas courant (octobre 2026 : VE-MOBIL modérée, VE-LYCEE forte selon observations) ; novembre commence par les vacances de la Toussaint jusqu'au 2 novembre (dossier 1.2), la FAGE annonce des journées plus larges mais aucune date interprofessionnelle n'est trouvée (1.1) ; Bristielle et Frajerman jugent la convergence peu probable ; forte limitée à 10-12 %."
+    },
+    "prec=modérée|VE-POP=25-35 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0153,
+     "loi": {
+      "calme": 0.65,
+      "modérée": 0.322,
+      "forte": 0.028
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : décrue après pic (2010 en novembre, 2018 en décembre, dossier 1.3), mais persistance d'une partie des mobilisations adultes le mois suivant. Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=modérée|VE-POP=25-35 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "calme": 0.45,
+      "modérée": 0.485,
+      "forte": 0.065
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : persistance d'un état modéré soutenu par les lycéens ; 2010 et 2018 montrent une décrue fréquente après deux mois (dossier 1.3). Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=modérée|VE-POP=25-35 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "calme": 0.38,
+      "modérée": 0.52,
+      "forte": 0.1
+     },
+     "justification": "ronde 2 : maintenu, aucun fait nouveau ni argument des autres évaluateurs sur ce cas. Jugement : cas courant (octobre 2026 : VE-MOBIL modérée, VE-LYCEE forte selon observations) ; novembre commence par les vacances de la Toussaint jusqu'au 2 novembre (dossier 1.2), la FAGE annonce des journées plus larges mais aucune date interprofessionnelle n'est trouvée (1.1) ; Bristielle et Frajerman jugent la convergence peu probable ; forte limitée à 10-12 %. Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=modérée|VE-POP=> 35 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0084,
+     "loi": {
+      "calme": 0.7,
+      "modérée": 0.28,
+      "forte": 0.02
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : décrue après pic (2010 en novembre, 2018 en décembre, dossier 1.3), mais persistance d'une partie des mobilisations adultes le mois suivant. Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=modérée|VE-POP=> 35 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0026,
+     "loi": {
+      "calme": 0.5,
+      "modérée": 0.445,
+      "forte": 0.055
+     },
+     "justification": "ronde 2 : transitions vers « forte » abaissées, car la marginale impliquée d'EV-39 (59 %) dépassait le taux de base : trois épisodes au-dessus de 500 000 selon l'Intérieur en dix ans (retraites 2019-2020, retraites 2023, septembre 2025, mémoire, non vérifié), soit environ 45 % sur deux ans ; la masse retirée passe à « modérée ». Jugement : persistance d'un état modéré soutenu par les lycéens ; 2010 et 2018 montrent une décrue fréquente après deux mois (dossier 1.3). Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=modérée|VE-POP=> 35 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "calme": 0.43,
+      "modérée": 0.49,
+      "forte": 0.08
+     },
+     "justification": "ronde 2 : maintenu, aucun fait nouveau ni argument des autres évaluateurs sur ce cas. Jugement : cas courant (octobre 2026 : VE-MOBIL modérée, VE-LYCEE forte selon observations) ; novembre commence par les vacances de la Toussaint jusqu'au 2 novembre (dossier 1.2), la FAGE annonce des journées plus larges mais aucune date interprofessionnelle n'est trouvée (1.1) ; Bristielle et Frajerman jugent la convergence peu probable ; forte limitée à 10-12 %. Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=forte|VE-POP=< 25 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0138,
+     "loi": {
+      "calme": 0.3,
+      "modérée": 0.45,
+      "forte": 0.25
+     },
+     "justification": "ronde 2 : maintenu, aucun fait nouveau ni argument des autres évaluateurs sur ce cas. Jugement : après un mois fort, retombée fréquente (2006 retrait, 2010 décrue de novembre, dossier 1.3), mais l'intersyndicale garde souvent une journée au-dessus de 200 000."
+    },
+    "prec=forte|VE-POP=< 25 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0086,
+     "loi": {
+      "calme": 0.2,
+      "modérée": 0.45,
+      "forte": 0.35
+     },
+     "justification": "ronde 2 : maintenu, aucun fait nouveau ni argument des autres évaluateurs sur ce cas. Jugement : mouvement adulte fort entretenu par les lycéens ; en 2010, deux mois forts consécutifs (septembre-octobre) avant la décrue (dossier 1.3)."
+    },
+    "prec=forte|VE-POP=< 25 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0083,
+     "loi": {
+      "calme": 0.12,
+      "modérée": 0.43,
+      "forte": 0.45
+     },
+     "justification": "ronde 2 : maintenu, aucun fait nouveau ni argument des autres évaluateurs sur ce cas. Jugement : configuration sans précédent ministériel (dossier 1.3) ; proche de mars 2006 ou octobre 2010, où l'état fort a persisté au moins un mois ; partage entre persistance et décrue."
+    },
+    "prec=forte|VE-POP=25-35 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "calme": 0.35,
+      "modérée": 0.43,
+      "forte": 0.22
+     },
+     "justification": "ronde 2 : maintenu, aucun fait nouveau ni argument des autres évaluateurs sur ce cas. Jugement : après un mois fort, retombée fréquente (2006 retrait, 2010 décrue de novembre, dossier 1.3), mais l'intersyndicale garde souvent une journée au-dessus de 200 000. Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=forte|VE-POP=25-35 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0016,
+     "loi": {
+      "calme": 0.23,
+      "modérée": 0.45,
+      "forte": 0.32
+     },
+     "justification": "ronde 2 : maintenu, aucun fait nouveau ni argument des autres évaluateurs sur ce cas. Jugement : mouvement adulte fort entretenu par les lycéens ; en 2010, deux mois forts consécutifs (septembre-octobre) avant la décrue (dossier 1.3). Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=forte|VE-POP=25-35 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "calme": 0.15,
+      "modérée": 0.43,
+      "forte": 0.42
+     },
+     "justification": "ronde 2 : maintenu, aucun fait nouveau ni argument des autres évaluateurs sur ce cas. Jugement : configuration sans précédent ministériel (dossier 1.3) ; proche de mars 2006 ou octobre 2010, où l'état fort a persisté au moins un mois ; partage entre persistance et décrue. Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=forte|VE-POP=> 35 %|VE-LYCEE=calme": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "calme": 0.4,
+      "modérée": 0.4,
+      "forte": 0.2
+     },
+     "justification": "ronde 2 : maintenu, aucun fait nouveau ni argument des autres évaluateurs sur ce cas. Jugement : après un mois fort, retombée fréquente (2006 retrait, 2010 décrue de novembre, dossier 1.3), mais l'intersyndicale garde souvent une journée au-dessus de 200 000. Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=forte|VE-POP=> 35 %|VE-LYCEE=modérée": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "calme": 0.26,
+      "modérée": 0.45,
+      "forte": 0.29
+     },
+     "justification": "ronde 2 : maintenu, aucun fait nouveau ni argument des autres évaluateurs sur ce cas. Jugement : mouvement adulte fort entretenu par les lycéens ; en 2010, deux mois forts consécutifs (septembre-octobre) avant la décrue (dossier 1.3). Popularité plus haute : légère réduction des escalades (jugement)."
+    },
+    "prec=forte|VE-POP=> 35 %|VE-LYCEE=forte": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "calme": 0.18,
+      "modérée": 0.42,
+      "forte": 0.4
+     },
+     "justification": "ronde 2 : maintenu, aucun fait nouveau ni argument des autres évaluateurs sur ce cas. Jugement : configuration sans précédent ministériel (dossier 1.3) ; proche de mars 2006 ou octobre 2010, où l'état fort a persisté au moins un mois ; partage entre persistance et décrue. Popularité plus haute : légère réduction des escalades (jugement)."
+    }
+   },
+   "verrous": []
+  },
+  "PV-CASSEURS": {
+   "nom": "Publication de la loi « casseurs-payeurs » (projet de loi n° 952) au Journal officiel",
+   "nature": "à tout moment",
+   "parents": [
+    {
+     "id": "VE-LYCEE",
+     "nom": "Mobilisation lycéenne",
+     "etats": [
+      "calme",
+      "modérée",
+      "forte"
+     ],
+     "decalage": 1,
+     "definition": "plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000"
+    },
+    {
+     "id": "PV-CENSURE1a",
+     "nom": "Censure d'ici fin 2026 (session budgétaire)",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2026-12-31"
+     ]
+    },
+    {
+     "id": "PV-CENSURE1b",
+     "nom": "Censure de janvier au second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2027-01-01",
+      "2027-05-02"
+     ]
+    },
+    {
+     "id": "PV-DISSOL1",
+     "nom": "Dissolution avant le second tour",
+     "etats": [
+      "oui",
+      "non"
+     ],
+     "decalage": 0,
+     "definition": [
+      "2026-10-10",
+      "2027-05-02"
+     ]
+    }
+   ],
+   "definition": "critère d'EV-48",
+   "date": null,
+   "fenetre": [
+    "2026-10-10",
+    "2027-03-31"
+   ],
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "cas": {
+    "VE-LYCEE=calme|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une dissolution suspend l'Assemblée plusieurs semaines et relance le calendrier (Sénat sans séance de juin à octobre 2024, dossier 2.5) ; adoption définitive et publication avant le 31 mars 2027 quasi impossibles."
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.005,
+     "loi": {
+      "oui": 0.05
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une censure d'ici fin 2026 laisse un gouvernement aux affaires courantes ~3 semaines (précédent décembre 2024, dossier 2.5) puis un nouveau gouvernement priorisant le budget ; le texte n'est pas caduc mais l'Assemblée n'a plus le temps avant la fin février 2027 (LCP, dossier 2.2). Seconde censure en 2027 : encore moins."
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0062,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une dissolution suspend l'Assemblée plusieurs semaines et relance le calendrier (Sénat sans séance de juin à octobre 2024, dossier 2.5) ; adoption définitive et publication avant le 31 mars 2027 quasi impossibles."
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0955,
+     "loi": {
+      "oui": 0.07
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une censure d'ici fin 2026 laisse un gouvernement aux affaires courantes ~3 semaines (précédent décembre 2024, dossier 2.5) puis un nouveau gouvernement priorisant le budget ; le texte n'est pas caduc mais l'Assemblée n'a plus le temps avant la fin février 2027 (LCP, dossier 2.2)."
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une dissolution suspend l'Assemblée plusieurs semaines et relance le calendrier (Sénat sans séance de juin à octobre 2024, dossier 2.5) ; adoption définitive et publication avant le 31 mars 2027 quasi impossibles."
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0139,
+     "loi": {
+      "oui": 0.06
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une censure entre janvier et mai interrompt l'examen à l'Assemblée au moment où il devrait avoir lieu (après le PLF, dossier 2.2) ; seul un vote très rapide avant la censure laisse une chance."
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une dissolution suspend l'Assemblée plusieurs semaines et relance le calendrier (Sénat sans séance de juin à octobre 2024, dossier 2.5) ; adoption définitive et publication avant le 31 mars 2027 quasi impossibles."
+    },
+    "VE-LYCEE=calme|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.5393,
+     "loi": {
+      "oui": 0.18
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : 196 jours entre dépôt et fin de fenêtre contre 206 jours de délai moyen en procédure accélérée (Sénat, rapport 2023-2024, dossier 2.4) ; Assemblée occupée par le PLF jusqu'au 10 décembre et fin des travaux fin février 2027 (LCP) ; saisine probable du Conseil constitutionnel par la gauche (précédent 2019, un mois) qui repousse la publication vers fin mars ; Maire-info juge l'adoption « peu probable » (2.2). Lycées calmes : moindre pression pour accélérer."
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une dissolution suspend l'Assemblée plusieurs semaines et relance le calendrier (Sénat sans séance de juin à octobre 2024, dossier 2.5) ; adoption définitive et publication avant le 31 mars 2027 quasi impossibles."
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "oui": 0.05
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une censure d'ici fin 2026 laisse un gouvernement aux affaires courantes ~3 semaines (précédent décembre 2024, dossier 2.5) puis un nouveau gouvernement priorisant le budget ; le texte n'est pas caduc mais l'Assemblée n'a plus le temps avant la fin février 2027 (LCP, dossier 2.2). Seconde censure en 2027 : encore moins."
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une dissolution suspend l'Assemblée plusieurs semaines et relance le calendrier (Sénat sans séance de juin à octobre 2024, dossier 2.5) ; adoption définitive et publication avant le 31 mars 2027 quasi impossibles."
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0258,
+     "loi": {
+      "oui": 0.07
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une censure d'ici fin 2026 laisse un gouvernement aux affaires courantes ~3 semaines (précédent décembre 2024, dossier 2.5) puis un nouveau gouvernement priorisant le budget ; le texte n'est pas caduc mais l'Assemblée n'a plus le temps avant la fin février 2027 (LCP, dossier 2.2)."
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une dissolution suspend l'Assemblée plusieurs semaines et relance le calendrier (Sénat sans séance de juin à octobre 2024, dossier 2.5) ; adoption définitive et publication avant le 31 mars 2027 quasi impossibles."
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.003,
+     "loi": {
+      "oui": 0.06
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une censure entre janvier et mai interrompt l'examen à l'Assemblée au moment où il devrait avoir lieu (après le PLF, dossier 2.2) ; seul un vote très rapide avant la censure laisse une chance."
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une dissolution suspend l'Assemblée plusieurs semaines et relance le calendrier (Sénat sans séance de juin à octobre 2024, dossier 2.5) ; adoption définitive et publication avant le 31 mars 2027 quasi impossibles."
+    },
+    "VE-LYCEE=modérée|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0951,
+     "loi": {
+      "oui": 0.22
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : 196 jours entre dépôt et fin de fenêtre contre 206 jours de délai moyen en procédure accélérée (Sénat, rapport 2023-2024, dossier 2.4) ; Assemblée occupée par le PLF jusqu'au 10 décembre et fin des travaux fin février 2027 (LCP) ; saisine probable du Conseil constitutionnel par la gauche (précédent 2019, un mois) qui repousse la publication vers fin mars ; Maire-info juge l'adoption « peu probable » (2.2). Pression lycéenne modérée : le gouvernement maintient la priorité (lettre du 4 octobre, 2.2)."
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une dissolution suspend l'Assemblée plusieurs semaines et relance le calendrier (Sénat sans séance de juin à octobre 2024, dossier 2.5) ; adoption définitive et publication avant le 31 mars 2027 quasi impossibles."
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "oui": 0.05
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une censure d'ici fin 2026 laisse un gouvernement aux affaires courantes ~3 semaines (précédent décembre 2024, dossier 2.5) puis un nouveau gouvernement priorisant le budget ; le texte n'est pas caduc mais l'Assemblée n'a plus le temps avant la fin février 2027 (LCP, dossier 2.2). Seconde censure en 2027 : encore moins."
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une dissolution suspend l'Assemblée plusieurs semaines et relance le calendrier (Sénat sans séance de juin à octobre 2024, dossier 2.5) ; adoption définitive et publication avant le 31 mars 2027 quasi impossibles."
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.0266,
+     "loi": {
+      "oui": 0.07
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une censure d'ici fin 2026 laisse un gouvernement aux affaires courantes ~3 semaines (précédent décembre 2024, dossier 2.5) puis un nouveau gouvernement priorisant le budget ; le texte n'est pas caduc mais l'Assemblée n'a plus le temps avant la fin février 2027 (LCP, dossier 2.2)."
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une dissolution suspend l'Assemblée plusieurs semaines et relance le calendrier (Sénat sans séance de juin à octobre 2024, dossier 2.5) ; adoption définitive et publication avant le 31 mars 2027 quasi impossibles."
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=non": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "oui": 0.06
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une censure entre janvier et mai interrompt l'examen à l'Assemblée au moment où il devrait avoir lieu (après le PLF, dossier 2.2) ; seul un vote très rapide avant la censure laisse une chance."
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=oui": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "oui": 0.02
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : une dissolution suspend l'Assemblée plusieurs semaines et relance le calendrier (Sénat sans séance de juin à octobre 2024, dossier 2.5) ; adoption définitive et publication avant le 31 mars 2027 quasi impossibles."
+    },
+    "VE-LYCEE=forte|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=non": {
+     "poids_reseau": 0.1774,
+     "loi": {
+      "oui": 0.28
+     },
+     "justification": "ronde 2 : maintenu ; les autres évaluateurs (0,22 et 0,33-0,40 sur les cas fréquents) s'appuient sur les mêmes faits, sans argument nouveau sur le calendrier de l'Assemblée ni sur la saisine du Conseil constitutionnel. Jugement : 196 jours entre dépôt et fin de fenêtre contre 206 jours de délai moyen en procédure accélérée (Sénat, rapport 2023-2024, dossier 2.4) ; Assemblée occupée par le PLF jusqu'au 10 décembre et fin des travaux fin février 2027 (LCP) ; saisine probable du Conseil constitutionnel par la gauche (précédent 2019, un mois) qui repousse la publication vers fin mars ; Maire-info juge l'adoption « peu probable » (2.2). Mobilisation lycéenne forte : le gouvernement lie l'accélération aux dégâts (2.5), inscription plus probable en janvier à l'Assemblée."
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-39": {
+   "critere": "Pendant la fenêtre, le ministère de l'Intérieur chiffre à plus de 500 000 le nombre de manifestants en France pour une même journée. Le chiffre retenu est celui du ministère, publié par lui ou rapporté par au moins deux agences de presse (AFP, Reuters, AP) ; les comptages des organisateurs ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.48
+  },
+  "EV-52": {
+   "critere": "Pendant la fenêtre, pour au moins une journée, le ministère de l'Intérieur chiffre à au moins 200 000 le nombre de manifestants en France, ou le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés (règles de comptage d'EV-10). Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Les comptages des organisateurs et des syndicats ne comptent pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2028-09-30"
+   },
+   "probabilite": 0.95
+  },
+  "EV-13": {
+   "critere": "Pour au moins une journée de la fenêtre, le taux de grévistes de la fonction publique de l'État communiqué par le ministère chargé de la fonction publique dépasse 18 %. Est retenu le plus élevé des taux communiqués pour cette journée (mi-journée ou journée entière ; taux de l'ensemble de la fonction publique de l'État, et non d'un seul ministère), publié par le ministère ou la DGAFP, ou rapporté par l'AFP, Reuters ou AP en l'attribuant au ministère ; une seule dépêche suffit. Une révision publiée plus de 30 jours après la journée ne change pas l'issue.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": 0.06
+  },
+  "EV-51": {
+   "critere": "Pour au moins une journée ou une nuit de la fenêtre, le ministère de l'Intérieur chiffre à au moins 1 000 le nombre de personnes interpellées en France en lien avec des manifestations, des blocages ou des violences urbaines, pour cette même journée ou cette même nuit. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N. Un cumul sur plusieurs jours ne compte pas.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "probabilite": 0.1
+  },
+  "EV-14b": {
+   "critere": "Pour au moins une journée de la fenêtre, le ministère de l'Intérieur chiffre à au moins 100 le nombre d'actions (rassemblements, blocages, barrages filtrants) menées par des agriculteurs en France pour une même journée. Le chiffre retenu est celui que le ministère publie (communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant au ministère ; une seule dépêche suffit. Un chiffre « au moins » ou « plus de » N vaut N.",
+   "fenetre": {
+    "debut": "2026-11-02",
+    "fin": "2027-06-30"
+   },
+   "probabilite": 0.28
+  },
+  "EV-48": {
+   "critere": "Pendant la fenêtre, une loi issue du projet de loi n° 952 (2025-2026) relatif à la réparation des dommages résultant de violences ou de dégradations commises dans l'espace public et au recouvrement des dommages et intérêts (dit « casseurs-payeurs »), déposé au Sénat le 16 septembre 2026, est publiée au Journal officiel. Une publication partielle, après censure partielle du Conseil constitutionnel, compte ; une disposition équivalente insérée dans un autre texte ne compte pas.",
+   "fenetre": {
+    "debut": "2026-10-10",
+    "fin": "2027-03-31"
+   },
+   "probabilite": 0.19
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "centre"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-11"
+}

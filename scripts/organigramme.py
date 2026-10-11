@@ -92,6 +92,9 @@ THEME["PV-RNAUTRE"] = "candidatures"
 TETE["PV-VACANCE"] = ("Vacance de la présidence avant mai 2027", 0, "vacance de la présidence")
 SI["PV-VACANCE"] = ["la présidence devient vacante", "pas de vacance de la présidence"]
 THEME["PV-VACANCE"] = "budget"
+TETE["PV-CASSEURS"] = ("Loi « casseurs-payeurs » publiée avant avril 2027", 0, "loi casseurs-payeurs")
+SI["PV-CASSEURS"] = ["la loi « casseurs-payeurs » est publiée", "la loi « casseurs-payeurs » n'est pas publiée"]
+THEME["PV-CASSEURS"] = "budget"
 
 
 def phrase(p, k):

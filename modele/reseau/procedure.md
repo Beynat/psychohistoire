@@ -15,6 +15,10 @@ Le réseau bayésien dynamique v0 prévoit les questions de la banque rattachée
 
 **Pondération des évaluateurs (étape 12).** Un lot d'évaluateurs devient actif quand chacun a au moins 12 graines résolues (`poids_cooke.json`, champ « actif »). À la passe du 16 qui suit (jamais dans les 48 heures avant un gel), les tables du lot sont réagrégées avec ces poids : `python3 scripts/tables.py agreger_cas <réponses du lot> --version TEXTE --gabarit <gabarit du lot> --poids modele/reseau/poids_cooke.json`, puis `python3 scripts/tables.py directs <toutes les réponses>`, rapport d'écarts (`scripts/ecarts.py`) et ligne au journal. Les lots sans graines (offre présidentielle, après 2027, tables de mesure) restent à poids égaux.
 
+**Red team et scénarios de rupture (étape 14).** À chaque passe, après les corrections : un sous-agent neuf (opus), sans accès aux tables, aux registres, aux cycles ni aux prévisions de l'ensemble, reçoit `modele/reseau/hypotheses.json`, la structure (nœuds, ports, sans les tables) et `modele/reseau/scenarios.json`. Il propose au plus deux scénarios hors des hypothèses porteuses et hors des scénarios déjà inscrits, au format de `scenarios.json` (exploratoires, avec récit, source « red team AAAA-MM-JJ » et attendus de sens). Ils sont ajoutés au fichier sans retirer aucun scénario, puis `python3 scripts/scenarios.py` est lancé. Un scénario non exprimable (port ou nœud manquant) ou sans effet dans le sens attendu devient un point ouvert ; un scénario exigé qui échoue fait échouer les tests. La structure ne change que sur un défaut identifié.
+
+**Pré-mortem (étape 14, tâche planifiée trimestrielle, le 5 de janvier, avril, juillet et octobre).** Un agent neuf, qui n'a pas travaillé sur le réseau, suppose qu'au 30 septembre 2028 le réseau a fait moins bien que le témoin, et écrit les causes plausibles de cet échec, classées par vraisemblance et par coût de prévention, dans `modele/reseau/premortem/AAAA-MM-JJ.md`. Il lit la structure, les hypothèses, les scénarios, les rapports d'étape, le journal et les scores publiés, jamais les prévisions de l'ensemble sur une question ouverte. Chaque cause retenue devient un point ouvert ; une ligne au journal.
+
 ## Passe bimensuelle (le 2 et le 16 de chaque mois, tâche planifiée)
 
 Règles (journal du 10 octobre 2026) : aucune passe ne consulte les prévisions de l'ensemble ni des comparateurs sur une question ouverte ; chaque passe est inscrite au journal, avec son motif, avant toute publication de scores ; seules les prévisions telles qu'émises sont notées, chacune avec la version des tables.
@@ -25,6 +29,9 @@ Règles (journal du 10 octobre 2026) : aucune passe ne consulte les prévisions 
 4. Si les tables ou la structure ont changé, nouvelles prévisions du réseau pour les questions du dernier cycle (`python3 scripts/reseau.py M --registre R`), qui s'ajoutent aux précédentes sans les remplacer.
 
 ## Points ouverts pour la première passe
+
+- Scénarios de rupture (étape 14, `scenarios_resultats.json`) : sans effet sur leurs cibles, trois liens manquent. (1) Écart OAT-Bund durable → PV-PDE : la procédure de déficit ne lit pas l'écart. (2) PV-VACANCE : aucun effet modélisé (H-03, restructuration rapide prévue). (3) PV-GAUCHE → second tour : un accord de la gauche ne change pas PV-DUEL, l'effet ne passant que par VE-SOND. À décider sur défaut identifié, pas d'office.
+- Questions satellites (étape 13) : EV-23 ne lit que la candidature de Marine Le Pen ; EV-44 ne distingue que RN et Mélenchon parmi les vainqueurs.
 
 - EV-39, EV-52 (loi de VE-MOBIL) et EV-43 (table de mesure) : réélicités à l'étape 11 (fait).
 - Dissolution après le second tour : découpée (PV-DISSOL2a, PV-DISSOL2b) le 10 octobre ; profils de risque élicités sur des tranches de dates réelles à l'étape 10 (fait).

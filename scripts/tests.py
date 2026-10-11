@@ -945,6 +945,7 @@ def test_tables_de_mesure():
     r = lambda a, b: {"mesures": {"EV-X": {"table": {"k1": a, "k2": b}}}}
     ag = tables.agregat_mesures([r(0, 0), r(20, 0), r(20, 0)])["EV-X"]
     assert 5 < ag["k1"] < 8 and ag["k2"] == 0, ag   # zéro isolé ramené à 0,5 % ; zéro unanime gardé
+    assert tables.fusion_mesure({"oui": 40, "non": 9, "fixe": 100}, {"oui|*": 78}, {"oui|*", "fixe"}) == {"oui|*": 78, "fixe": 100}
 
 
 def test_cooke():
@@ -985,6 +986,30 @@ def test_cooke():
         pass
     l = tables.moy_loi([{"a": 0.2, "b": 0.8}, {"a": 0.8, "b": 0.2}], poids=[1.0, 0.0])
     assert abs(l["a"] - 0.2) < 1e-9, l
+
+
+def test_scenarios():
+    """Feuille de route, étape 14 : scénarios de rupture. Chaque scénario inscrit s'exprime (ports, nœuds et états
+    existants, questions de la banque) ; les interventions deviennent observations et chocs ; règle de sens."""
+    import scenarios
+    racine = Path(__file__).resolve().parent.parent
+    S = json.loads((racine / "modele/reseau/structure_v0.json").read_text())
+    sc = json.loads((racine / "modele/reseau/scenarios.json").read_text())
+    ev = {e["id"] for e in json.loads((racine / "modele/evenements.json").read_text())["evenements"]}
+    ids = [x["id"] for x in sc["scenarios"]]
+    assert len(ids) == len(set(ids)), ids
+    for x in sc["scenarios"]:
+        assert not scenarios.exprimable(x, S), (x["id"], scenarios.exprimable(x, S))
+        assert x.get("attendus") or x.get("exploratoires"), x["id"]
+        for a in x.get("attendus", []) + x.get("exploratoires", []):
+            assert a["question"] in ev and a["sens"] in "+-±", (x["id"], a)
+    assert scenarios.exprimable({"interventions": [{"type": "choc", "ports": {"P-INCONNU": 1}, "mois": "2026-12"}]}, S)
+    assert scenarios.exprimable({"interventions": [{"type": "observation", "noeud": "VE-MOBIL", "mois": ["2026-12"], "etat": "énorme"}]}, S)
+    obs, ch = scenarios.appliquer([{"type": "observation", "noeud": "VE-MOBIL", "mois": ["2026-12", "2027-01"], "etat": "forte"},
+                                   {"type": "choc", "ports": {"P-RN-BAISSE": 2.0}, "mois": "2026-12"}], {"VE-MOBIL": {"2026-10": "modérée"}})
+    assert obs["VE-MOBIL"] == {"2026-10": "modérée", "2026-12": "forte", "2027-01": "forte"} and ch[0]["ports"] == {"P-RN-BAISSE": 2.0}
+    assert scenarios.tenu(40, 43, "+", 2) and not scenarios.tenu(40, 41, "+", 2) and scenarios.tenu(40, 37, "-", 2)
+    assert scenarios.tenu(40, 37, "±", 2) and not scenarios.tenu(40, 43, "-", 2)
 
 
 def test_hypotheses():

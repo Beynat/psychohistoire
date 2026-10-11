@@ -1,0 +1,193 @@
+{
+ "seuil_points": 2,
+ "tirages": 40,
+ "trajectoires": 100,
+ "scenarios": [
+  {
+   "id": "S-01",
+   "recit": "Effondrement du candidat RN dans les sondages (affaire, faute de campagne) à partir de décembre 2026.",
+   "exige": true,
+   "defauts": [],
+   "resultats": [
+    {
+     "question": "EV-05",
+     "issue": "Marine Le Pen",
+     "sens": "-",
+     "avant": 52.0,
+     "apres": 43.3,
+     "tenu": true,
+     "obligatoire": true
+    },
+    {
+     "question": "EV-40a",
+     "issue": "oui",
+     "sens": "-",
+     "avant": 80.2,
+     "apres": 77.8,
+     "tenu": true,
+     "obligatoire": true
+    }
+   ],
+   "tenu": true,
+   "ess": 1.0
+  },
+  {
+   "id": "S-02",
+   "recit": "Écart OAT-Bund durablement au-delà de 160 points de base de novembre 2026 à mars 2027 (crise de la dette).",
+   "exige": true,
+   "defauts": [],
+   "resultats": [
+    {
+     "question": "EV-01",
+     "issue": "oui",
+     "sens": "+",
+     "avant": 80.3,
+     "apres": 83.9,
+     "tenu": true,
+     "obligatoire": true
+    },
+    {
+     "question": "EV-46",
+     "issue": "oui",
+     "sens": "+",
+     "avant": 4.2,
+     "apres": 10.3,
+     "tenu": true,
+     "obligatoire": true
+    },
+    {
+     "question": "EV-04",
+     "issue": "oui",
+     "sens": "+",
+     "avant": 17.8,
+     "apres": 17.2,
+     "tenu": false,
+     "obligatoire": false
+    }
+   ],
+   "tenu": true,
+   "ess": 1.0
+  },
+  {
+   "id": "S-03",
+   "recit": "Mouvement social durable : plus de 500 000 manifestants chaque mois de novembre 2026 à février 2027.",
+   "exige": true,
+   "defauts": [],
+   "resultats": [
+    {
+     "question": "EV-39",
+     "issue": "oui",
+     "sens": "+",
+     "avant": 39.5,
+     "apres": 100.0,
+     "tenu": true,
+     "obligatoire": true
+    },
+    {
+     "question": "EV-10",
+     "issue": "oui",
+     "sens": "+",
+     "avant": 49.5,
+     "apres": 81.8,
+     "tenu": true,
+     "obligatoire": true
+    },
+    {
+     "question": "EV-15",
+     "issue": "oui",
+     "sens": "+",
+     "avant": 23.3,
+     "apres": 26.4,
+     "tenu": true,
+     "obligatoire": true
+    }
+   ],
+   "tenu": true,
+   "ess": 1.0
+  },
+  {
+   "id": "S-04",
+   "recit": "Fin anticipée du mandat présidentiel en janvier 2027 (vacance, élection anticipée).",
+   "exige": false,
+   "defauts": [],
+   "resultats": [
+    {
+     "question": "EV-05",
+     "issue": "Édouard Philippe",
+     "sens": "±",
+     "avant": 20.5,
+     "apres": 19.9,
+     "tenu": false,
+     "obligatoire": false
+    },
+    {
+     "question": "EV-16a",
+     "issue": "oui",
+     "sens": "±",
+     "avant": 4.3,
+     "apres": 4.2,
+     "tenu": false,
+     "obligatoire": false
+    }
+   ],
+   "tenu": true,
+   "ess": 1.0
+  },
+  {
+   "id": "S-05",
+   "recit": "Accord de la gauche sur une candidature unique ou presque (trois candidats de gauche au plus).",
+   "exige": false,
+   "defauts": [],
+   "resultats": [
+    {
+     "question": "EV-40c",
+     "issue": "oui",
+     "sens": "+",
+     "avant": 38.0,
+     "apres": 38.8,
+     "tenu": false,
+     "obligatoire": false
+    },
+    {
+     "question": "EV-40f",
+     "issue": "oui",
+     "sens": "+",
+     "avant": 8.1,
+     "apres": 9.1,
+     "tenu": false,
+     "obligatoire": false
+    }
+   ],
+   "tenu": true,
+   "ess": 0.085
+  },
+  {
+   "id": "S-06",
+   "recit": "Édouard Philippe se retire ou est empêché avant les parrainages.",
+   "exige": true,
+   "defauts": [],
+   "resultats": [
+    {
+     "question": "EV-40b",
+     "issue": "oui",
+     "sens": "-",
+     "avant": 36.0,
+     "apres": 7.1,
+     "tenu": true,
+     "obligatoire": true
+    },
+    {
+     "question": "EV-41",
+     "issue": "Philippe seul",
+     "sens": "-",
+     "avant": 50.4,
+     "apres": 11.0,
+     "tenu": true,
+     "obligatoire": true
+    }
+   ],
+   "tenu": true,
+   "ess": 1.0
+  }
+ ]
+}

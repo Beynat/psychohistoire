@@ -1,5 +1,5 @@
 {
- "version": "tables v0.9 (10 octobre 2026, étape 11 : réélicitation complète sur dossiers sourcés, lois par cas des 28 nœuds et tables de mesure, E13 à E30, deux rondes IDEA) ; tables v0.8 (E1, E2, E3 ; chaîne présidentielle E4, E5, E6 ; étape 4 : PV-NOTE, PV-PDE, PV-CENSURE1a, PV-CENSURE1b, PV-DISSOL2a, PV-DISSOL2b et VE-LYCEE en lois par cas, E7 et E8 Opus, E9 Sonnet, deux rondes) ; article 12 en verrou daté ; étape 5 : PV-RNAUTRE (classe de référence) ; étape 9 : PV-VACANCE (classe de référence)",
+ "version": "tables v0.10 (11 octobre 2026, étape 13 : VE-MOBIL avec la mobilisation lycéenne du mois précédent, PV-CASSEURS, tables de mesure des satellites EV-49, EV-03, EV-44, EV-23, EV-14b ; E31, E32 Opus, E33 Sonnet, deux rondes IDEA) ; tables v0.9 (10 octobre 2026, étape 11 : réélicitation complète sur dossiers sourcés, lois par cas des 28 nœuds et tables de mesure, E13 à E30, deux rondes IDEA) ; tables v0.8 (E1, E2, E3 ; chaîne présidentielle E4, E5, E6 ; étape 4 : PV-NOTE, PV-PDE, PV-CENSURE1a, PV-CENSURE1b, PV-DISSOL2a, PV-DISSOL2b et VE-LYCEE en lois par cas, E7 et E8 Opus, E9 Sonnet, deux rondes) ; article 12 en verrou daté ; étape 5 : PV-RNAUTRE (classe de référence) ; étape 9 : PV-VACANCE (classe de référence)",
  "evaluateurs": [
   "E1",
   "E2",
@@ -184,57 +184,147 @@
   },
   "VE-MOBIL": {
    "cas": {
-    "prec=calme|VE-POP=< 25 %": {
-     "calme": 0.90021,
-     "modérée": 0.08686,
-     "forte": 0.01293
+    "prec=calme|VE-POP=< 25 %|VE-LYCEE=calme": {
+     "calme": 0.90743,
+     "modérée": 0.08594,
+     "forte": 0.00662
     },
-    "prec=calme|VE-POP=25-35 %": {
-     "calme": 0.9094,
-     "modérée": 0.0786,
-     "forte": 0.012
+    "prec=calme|VE-POP=< 25 %|VE-LYCEE=modérée": {
+     "calme": 0.71206,
+     "modérée": 0.26475,
+     "forte": 0.02319
     },
-    "prec=calme|VE-POP=> 35 %": {
-     "calme": 0.92198,
-     "modérée": 0.06815,
-     "forte": 0.00987
+    "prec=calme|VE-POP=< 25 %|VE-LYCEE=forte": {
+     "calme": 0.5058,
+     "modérée": 0.42671,
+     "forte": 0.06749
     },
-    "prec=modérée|VE-POP=< 25 %": {
-     "calme": 0.53694,
-     "modérée": 0.39347,
-     "forte": 0.06959
+    "prec=calme|VE-POP=25-35 %|VE-LYCEE=calme": {
+     "calme": 0.92465,
+     "modérée": 0.07056,
+     "forte": 0.00478
     },
-    "prec=modérée|VE-POP=25-35 %": {
-     "calme": 0.58363,
-     "modérée": 0.35318,
-     "forte": 0.06319
+    "prec=calme|VE-POP=25-35 %|VE-LYCEE=modérée": {
+     "calme": 0.74897,
+     "modérée": 0.23405,
+     "forte": 0.01698
     },
-    "prec=modérée|VE-POP=> 35 %": {
-     "calme": 0.63104,
-     "modérée": 0.31957,
-     "forte": 0.04939
+    "prec=calme|VE-POP=25-35 %|VE-LYCEE=forte": {
+     "calme": 0.54846,
+     "modérée": 0.39684,
+     "forte": 0.05471
     },
-    "prec=forte|VE-POP=< 25 %": {
-     "calme": 0.29748,
-     "modérée": 0.36911,
-     "forte": 0.33341
+    "prec=calme|VE-POP=> 35 %|VE-LYCEE=calme": {
+     "calme": 0.93666,
+     "modérée": 0.05928,
+     "forte": 0.00405
     },
-    "prec=forte|VE-POP=25-35 %": {
-     "calme": 0.34756,
-     "modérée": 0.35977,
-     "forte": 0.29267
+    "prec=calme|VE-POP=> 35 %|VE-LYCEE=modérée": {
+     "calme": 0.77959,
+     "modérée": 0.2093,
+     "forte": 0.01111
     },
-    "prec=forte|VE-POP=> 35 %": {
-     "calme": 0.3902,
-     "modérée": 0.35738,
-     "forte": 0.25242
+    "prec=calme|VE-POP=> 35 %|VE-LYCEE=forte": {
+     "calme": 0.59667,
+     "modérée": 0.37023,
+     "forte": 0.0331
+    },
+    "prec=modérée|VE-POP=< 25 %|VE-LYCEE=calme": {
+     "calme": 0.61902,
+     "modérée": 0.34813,
+     "forte": 0.03285
+    },
+    "prec=modérée|VE-POP=< 25 %|VE-LYCEE=modérée": {
+     "calme": 0.4356,
+     "modérée": 0.50354,
+     "forte": 0.06086
+    },
+    "prec=modérée|VE-POP=< 25 %|VE-LYCEE=forte": {
+     "calme": 0.33993,
+     "modérée": 0.54086,
+     "forte": 0.11921
+    },
+    "prec=modérée|VE-POP=25-35 %|VE-LYCEE=calme": {
+     "calme": 0.6593,
+     "modérée": 0.31654,
+     "forte": 0.02416
+    },
+    "prec=modérée|VE-POP=25-35 %|VE-LYCEE=modérée": {
+     "calme": 0.47702,
+     "modérée": 0.47371,
+     "forte": 0.04927
+    },
+    "prec=modérée|VE-POP=25-35 %|VE-LYCEE=forte": {
+     "calme": 0.37703,
+     "modérée": 0.51953,
+     "forte": 0.10344
+    },
+    "prec=modérée|VE-POP=> 35 %|VE-LYCEE=calme": {
+     "calme": 0.70109,
+     "modérée": 0.28194,
+     "forte": 0.01697
+    },
+    "prec=modérée|VE-POP=> 35 %|VE-LYCEE=modérée": {
+     "calme": 0.52357,
+     "modérée": 0.43937,
+     "forte": 0.03706
+    },
+    "prec=modérée|VE-POP=> 35 %|VE-LYCEE=forte": {
+     "calme": 0.41828,
+     "modérée": 0.49492,
+     "forte": 0.0868
+    },
+    "prec=forte|VE-POP=< 25 %|VE-LYCEE=calme": {
+     "calme": 0.35868,
+     "modérée": 0.44912,
+     "forte": 0.1922
+    },
+    "prec=forte|VE-POP=< 25 %|VE-LYCEE=modérée": {
+     "calme": 0.23999,
+     "modérée": 0.46745,
+     "forte": 0.29256
+    },
+    "prec=forte|VE-POP=< 25 %|VE-LYCEE=forte": {
+     "calme": 0.15682,
+     "modérée": 0.447,
+     "forte": 0.39618
+    },
+    "prec=forte|VE-POP=25-35 %|VE-LYCEE=calme": {
+     "calme": 0.40983,
+     "modérée": 0.42786,
+     "forte": 0.1623
+    },
+    "prec=forte|VE-POP=25-35 %|VE-LYCEE=modérée": {
+     "calme": 0.27922,
+     "modérée": 0.46026,
+     "forte": 0.26052
+    },
+    "prec=forte|VE-POP=25-35 %|VE-LYCEE=forte": {
+     "calme": 0.1951,
+     "modérée": 0.44628,
+     "forte": 0.35862
+    },
+    "prec=forte|VE-POP=> 35 %|VE-LYCEE=calme": {
+     "calme": 0.46019,
+     "modérée": 0.39703,
+     "forte": 0.14278
+    },
+    "prec=forte|VE-POP=> 35 %|VE-LYCEE=modérée": {
+     "calme": 0.32125,
+     "modérée": 0.45472,
+     "forte": 0.22403
+    },
+    "prec=forte|VE-POP=> 35 %|VE-LYCEE=forte": {
+     "calme": 0.23522,
+     "modérée": 0.44385,
+     "forte": 0.32093
     }
    },
-   "sigma": 0.3,
+   "sigma": 0.484,
    "evaluateurs": [
-    "E13",
-    "E14",
-    "E15"
+    "E31",
+    "E32",
+    "E33"
    ],
    "format": "lois par cas v1"
   },
@@ -2256,6 +2346,41 @@
     "E21"
    ],
    "format": "lois par cas v1"
+  },
+  "PV-CASSEURS": {
+   "cas": {
+    "VE-LYCEE=calme|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=oui": 0.01217,
+    "VE-LYCEE=calme|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=non": 0.04828,
+    "VE-LYCEE=calme|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=oui": 0.01629,
+    "VE-LYCEE=calme|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=non": 0.08552,
+    "VE-LYCEE=calme|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=oui": 0.01733,
+    "VE-LYCEE=calme|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=non": 0.08734,
+    "VE-LYCEE=calme|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=oui": 0.02753,
+    "VE-LYCEE=calme|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=non": 0.1995,
+    "VE-LYCEE=modérée|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=oui": 0.0134,
+    "VE-LYCEE=modérée|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=non": 0.0571,
+    "VE-LYCEE=modérée|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=oui": 0.01932,
+    "VE-LYCEE=modérée|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=non": 0.10175,
+    "VE-LYCEE=modérée|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=oui": 0.02053,
+    "VE-LYCEE=modérée|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=non": 0.10382,
+    "VE-LYCEE=modérée|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=oui": 0.03267,
+    "VE-LYCEE=modérée|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=non": 0.25257,
+    "VE-LYCEE=forte|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=oui": 0.01443,
+    "VE-LYCEE=forte|PV-CENSURE1a=oui|PV-CENSURE1b=oui|PV-DISSOL1=non": 0.06588,
+    "VE-LYCEE=forte|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=oui": 0.02236,
+    "VE-LYCEE=forte|PV-CENSURE1a=oui|PV-CENSURE1b=non|PV-DISSOL1=non": 0.1178,
+    "VE-LYCEE=forte|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=oui": 0.02389,
+    "VE-LYCEE=forte|PV-CENSURE1a=non|PV-CENSURE1b=oui|PV-DISSOL1=non": 0.12066,
+    "VE-LYCEE=forte|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=oui": 0.03808,
+    "VE-LYCEE=forte|PV-CENSURE1a=non|PV-CENSURE1b=non|PV-DISSOL1=non": 0.31605
+   },
+   "sigma": 0.3,
+   "evaluateurs": [
+    "E31",
+    "E32",
+    "E33"
+   ],
+   "format": "lois par cas v1"
   }
  },
  "mesures": {
@@ -2272,8 +2397,10 @@
    "*|forte": 65.11
   },
   "EV-49": {
-   "oui": 47.31,
-   "non": 8.97
+   "oui|*": 78.42,
+   "non|calme": 3.3,
+   "non|modérée": 4.94,
+   "non|forte": 8.58
   },
   "EV-20": {
    "rejet ou non-admission": {
@@ -2342,6 +2469,60 @@
    "GLU|*": 13.94,
    "*|289 ou plus": 2.62,
    "*|moins de 289": 5.0
+  },
+  "EV-03": {
+   "publiée|RN": 79.06,
+   "publiée|MEL": 84.34,
+   "publiée|*": 68.2,
+   "non publiée|RN": 82.37,
+   "non publiée|MEL": 86.87,
+   "non publiée|*": 72.89
+  },
+  "EV-44": {
+   "RN|*|non": {
+    "4,5 % du PIB ou moins": 28.3,
+    "plus de 4,5 % du PIB": 50.4,
+    "pas de loi de finances publiée au 31 janvier 2028": 21.3
+   },
+   "MEL|*|non": {
+    "4,5 % du PIB ou moins": 9.89,
+    "plus de 4,5 % du PIB": 55.07,
+    "pas de loi de finances publiée au 31 janvier 2028": 35.04
+   },
+   "*|289 ou plus|non": {
+    "4,5 % du PIB ou moins": 51.81,
+    "plus de 4,5 % du PIB": 40.77,
+    "pas de loi de finances publiée au 31 janvier 2028": 7.41
+   },
+   "*|moins de 289|non": {
+    "4,5 % du PIB ou moins": 33.99,
+    "plus de 4,5 % du PIB": 40.8,
+    "pas de loi de finances publiée au 31 janvier 2028": 25.21
+   },
+   "*|*|oui": {
+    "4,5 % du PIB ou moins": 9.9,
+    "plus de 4,5 % du PIB": 19.81,
+    "pas de loi de finances publiée au 31 janvier 2028": 70.29
+   }
+  },
+  "EV-23": {
+   "candidate|*": {
+    "moins de 70 %": 7.01,
+    "70 à moins de 75 %": 40.03,
+    "75 à moins de 80 %": 41.03,
+    "80 % ou plus": 11.93
+   },
+   "non candidate|*": {
+    "moins de 70 %": 9.66,
+    "70 à moins de 75 %": 43.69,
+    "75 à moins de 80 %": 37.01,
+    "80 % ou plus": 9.63
+   }
+  },
+  "EV-14b": {
+   "calme": 24.32,
+   "modérée": 31.86,
+   "forte": 40.97
   }
  },
  "direct": {
@@ -2355,13 +2536,13 @@
   "EV-16b": 80.0,
   "EV-50": 35.0,
   "EV-02": 64.0,
-  "EV-39": 50.0,
+  "EV-39": 49.0,
   "EV-10": 43.0,
   "EV-47": 15.0,
   "EV-52": 95.0,
-  "EV-13": 9.0,
-  "EV-51": 17.5,
-  "EV-49": 18.5,
+  "EV-13": 6.0,
+  "EV-51": 14.0,
+  "EV-49": 18.0,
   "EV-18": {
    "candidature autonome": 49.0,
    "soutien à un autre candidat": 41.0,
@@ -2407,7 +2588,21 @@
   },
   "EV-17": 73.0,
   "EV-43": 31.5,
-  "EV-45": 15.0
+  "EV-45": 15.0,
+  "EV-03": 73.0,
+  "EV-44": {
+   "4,5 % du PIB ou moins": 28.3,
+   "plus de 4,5 % du PIB": 43.4,
+   "pas de loi de finances publiée au 31 janvier 2028": 28.3
+  },
+  "EV-23": {
+   "moins de 70 %": 8.1,
+   "70 à moins de 75 %": 42.4,
+   "75 à moins de 80 %": 38.4,
+   "80 % ou plus": 11.1
+  },
+  "EV-14b": 28.0,
+  "EV-48": 21.0
  },
  "direct_note": "Avis directs d'EV-01, EV-04, EV-15, EV-15b, EV-16b, EV-17, EV-10, EV-47, EV-52 et EV-51 : médiane de E7 à E9 après la seconde ronde (étape 4) ; les autres, médiane de E1 à E3 ou de E4 à E6. Diagnostic seulement, jamais une cible."
 }
