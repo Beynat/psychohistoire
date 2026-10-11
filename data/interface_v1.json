@@ -1,11 +1,11 @@
 {
- "genere_le": "2026-10-10",
+ "genere_le": "2026-10-11",
  "registre": "registre/essai_v0.jsonl",
  "cycle": "2026-10-v0",
- "version_structure": "structure v0.4 (10 octobre 2026, chaîne présidentielle réélicitée : pourvoi au 12 mars, liste au 26 mars, duel conditionnel aux candidatures du centre, vainqueur selon Le Pen ou Bardella)",
- "version_tables": "tables v0.4 (E1, E2, E3 ; chaîne présidentielle par E4, E5 Opus et E6 Sonnet sur dossier sourcé, 10 octobre 2026) ; dissolution après l'élection découpée",
+ "version_structure": "structure v0.10 (11 octobre 2026, étape 13 : sous-réseau mouvements et ordre public — VE-LYCEE décalé parent de VE-MOBIL, pivot PV-CASSEURS, satellites EV-48, EV-49, EV-03, EV-44, EV-23, EV-14b) ; structure v0.9 (10 octobre 2026, étape 10 : profils de risque élicités sur tranches de dates réelles pour huit pivots « à tout moment », départ immédiat du Premier ministre après censure) ; structure v0.8 (10 octobre 2026, étape 9 : points d'entrée des chocs, nœud rare PV-VACANCE) ; structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
+ "version_tables": "tables v0.10 (11 octobre 2026, étape 13 : VE-MOBIL avec la mobilisation lycéenne du mois précédent, PV-CASSEURS, tables de mesure des satellites EV-49, EV-03, EV-44, EV-23, EV-14b ; E31, E32 Opus, E33 Sonnet, deux rondes IDEA) ; tables v0.9 (10 octobre 2026, étape 11 : réélicitation complète sur dossiers sourcés, lois par cas des 28 nœuds et tables de mesure, E13 à E30, deux rondes IDEA) ; tables v0.8 (E1, E2, E3 ; chaîne présidentielle E4, E5, E6 ; étape 4 : PV-NOTE, PV-PDE, PV-CENSURE1a, PV-CENSURE1b, PV-DISSOL2a, PV-DISSOL2b et VE-LYCEE en lois par cas, E7 et E8 Opus, E9 Sonnet, deux rondes) ; article 12 en verrou daté ; étape 5 : PV-RNAUTRE (classe de référence) ; étape 9 : PV-VACANCE (classe de référence)",
  "codes_candidats": {
-  "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate, sinon Jordan Bardella)",
+  "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate ; sinon Jordan Bardella, ou un autre candidat si PV-RNAUTRE = oui)",
   "PHI": "Édouard Philippe",
   "ATT": "Gabriel Attal",
   "MEL": "Jean-Luc Mélenchon",
@@ -115,7 +115,8 @@
     "non publiée"
    ],
    "questions": [
-    "EV-02"
+    "EV-02",
+    "EV-03"
    ],
    "indicateurs": [
     "Stabilité institutionnelle"
@@ -219,13 +220,14 @@
     "aucun des deux"
    ],
    "questions": [
+    "EV-23",
     "EV-41"
    ],
    "indicateurs": [
     "Compétition des élites"
    ],
-   "date": "2027-03-15",
-   "date_note": "liste officielle des candidats ; date exacte à confirmer"
+   "date": "2027-03-26",
+   "date_note": "liste officielle des candidats, au plus tard le 26 mars 2027 (calendrier, CAL-LISTE)"
   },
   {
    "id": "PV-GAUCHE",
@@ -243,8 +245,8 @@
    "indicateurs": [
     "Compétition des élites"
    ],
-   "date": "2027-03-15",
-   "date_note": "liste officielle des candidats ; date exacte à confirmer"
+   "date": "2027-03-26",
+   "date_note": "liste officielle des candidats, au plus tard le 26 mars 2027 (calendrier, CAL-LISTE)"
   },
   {
    "id": "PV-LEPEN",
@@ -257,11 +259,27 @@
    "questions": [
     "EV-05",
     "EV-21",
+    "EV-23",
     "EV-40a"
    ],
    "indicateurs": [],
    "date": "2027-03-26",
    "date_note": "liste officielle des candidats, au plus tard le 26 mars 2027"
+  },
+  {
+   "id": "PV-RNAUTRE",
+   "nom": "Candidat du RN autre que Marine Le Pen ou Jordan Bardella, sur la liste officielle",
+   "nature": "daté",
+   "issues": [
+    "non",
+    "oui"
+   ],
+   "questions": [
+    "EV-05"
+   ],
+   "indicateurs": [],
+   "date": "2027-03-26",
+   "date_note": null
   },
   {
    "id": "PV-DUEL",
@@ -307,7 +325,9 @@
     "AUT"
    ],
    "questions": [
+    "EV-03",
     "EV-05",
+    "EV-44",
     "EV-45"
    ],
    "indicateurs": [],
@@ -325,7 +345,9 @@
    "questions": [
     "EV-16b"
    ],
-   "indicateurs": [],
+   "indicateurs": [
+    "Stabilité institutionnelle"
+   ],
    "fenetre": [
     "2027-05-03",
     "2027-06-30"
@@ -343,7 +365,9 @@
     "EV-16b",
     "EV-17"
    ],
-   "indicateurs": [],
+   "indicateurs": [
+    "Stabilité institutionnelle"
+   ],
    "fenetre": [
     "2027-07-01",
     "2028-09-30"
@@ -360,6 +384,7 @@
    "questions": [
     "EV-17",
     "EV-43",
+    "EV-44",
     "EV-45"
    ],
    "indicateurs": [
@@ -377,7 +402,8 @@
     "non"
    ],
    "questions": [
-    "EV-15c"
+    "EV-15c",
+    "EV-44"
    ],
    "indicateurs": [
     "Stabilité institutionnelle"
@@ -385,6 +411,38 @@
    "fenetre": [
     "2027-05-03",
     "2028-09-30"
+   ]
+  },
+  {
+   "id": "PV-VACANCE",
+   "nom": "Vacance de la présidence de la République (démission, décès, empêchement constaté) avant la fin du mandat",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "questions": [],
+   "indicateurs": [],
+   "fenetre": [
+    "2026-10-10",
+    "2027-05-13"
+   ]
+  },
+  {
+   "id": "PV-CASSEURS",
+   "nom": "Publication de la loi « casseurs-payeurs » (projet de loi n° 952) au Journal officiel",
+   "nature": "à tout moment",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "questions": [
+    "EV-48"
+   ],
+   "indicateurs": [],
+   "fenetre": [
+    "2026-10-10",
+    "2027-03-31"
    ]
   }
  ],
@@ -431,6 +489,7 @@
    },
    "questions": [
     "EV-13",
+    "EV-14b",
     "EV-39",
     "EV-51",
     "EV-52"
@@ -451,6 +510,7 @@
    "questions": [
     "EV-10",
     "EV-47",
+    "EV-49",
     "EV-51",
     "EV-52"
    ]
@@ -701,6 +761,12 @@
    "jalons": []
   },
   {
+   "de": "PV-LEPEN",
+   "vers": "PV-RNAUTRE",
+   "decalage": 0,
+   "jalons": []
+  },
+  {
    "de": "PV-BLOC",
    "vers": "PV-DUEL",
    "decalage": 0,
@@ -809,6 +875,30 @@
    "jalons": []
   },
   {
+   "de": "VE-LYCEE",
+   "vers": "PV-CASSEURS",
+   "decalage": 1,
+   "jalons": []
+  },
+  {
+   "de": "PV-CENSURE1a",
+   "vers": "PV-CASSEURS",
+   "decalage": 0,
+   "jalons": []
+  },
+  {
+   "de": "PV-CENSURE1b",
+   "vers": "PV-CASSEURS",
+   "decalage": 0,
+   "jalons": []
+  },
+  {
+   "de": "PV-DISSOL1",
+   "vers": "PV-CASSEURS",
+   "decalage": 0,
+   "jalons": []
+  },
+  {
    "de": "PV-NOTE",
    "vers": "VE-ECART",
    "decalage": 0,
@@ -837,6 +927,12 @@
   },
   {
    "de": "VE-POP",
+   "vers": "VE-MOBIL",
+   "decalage": 1,
+   "jalons": []
+  },
+  {
+   "de": "VE-LYCEE",
    "vers": "VE-MOBIL",
    "decalage": 1,
    "jalons": []
@@ -5799,7 +5895,7 @@
    "debut": "2026-10-10",
    "fin": "2027-03-31",
    "pool": "P2b",
-   "reseau": false
+   "reseau": true
   },
   {
    "id": "EV-20",
@@ -5839,7 +5935,7 @@
    "debut": "2026-10-03",
    "fin": "2027-04-18",
    "pool": "P2b",
-   "reseau": false
+   "reseau": true
   },
   {
    "id": "EV-40a",
@@ -5983,7 +6079,7 @@
    "debut": "2026-11-02",
    "fin": "2027-06-30",
    "pool": "P2b",
-   "reseau": false
+   "reseau": true
   },
   {
    "id": "EV-09a",
@@ -6015,7 +6111,7 @@
    "debut": "2027-05-02",
    "fin": "2028-01-31",
    "pool": "P2b",
-   "reseau": false
+   "reseau": true
   },
   {
    "id": "EV-03",
@@ -6023,7 +6119,7 @@
    "debut": "2028-03-01",
    "fin": "2028-04-30",
    "pool": "P2b",
-   "reseau": false
+   "reseau": true
   },
   {
    "id": "EV-06",
