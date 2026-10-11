@@ -2,7 +2,7 @@
 
 Établie après deux revues méthodologiques indépendantes (`modele/reseau/revues/2026-10-10_revue_1.md` et `_2.md`), validée par Nathan. Elle remplace, pour la suite, la feuille de route v0 (document Claude Docs « Psychohistoire — feuille de route v0 », terminée).
 
-**Avancement : 10 / 14 étapes (71 %).** Mis à jour à chaque étape terminée ; la progression est aussi donnée dans la conversation.
+**Avancement : 11 / 14 étapes (79 %).** Mis à jour à chaque étape terminée ; la progression est aussi donnée dans la conversation.
 
 Décisions de Nathan :
 - Toutes les étapes sont faites d'un seul tenant, dans l'ordre du tableau, y compris celles que les revues renvoyaient à plus tard. Aucune échéance de travail n'est fixée : les estimations de durée se sont révélées biaisées.
@@ -29,7 +29,7 @@ Décisions de Nathan :
 | 9 | Chocs imprévus | Points d'entrée déclarés dans la structure ; barème d'intensité par stade (allégation, procédure, mise en cause) calé sur des précédents sourcés (Fillon, Strauss-Kahn, Griveaux…) ; extinction par absorption dans les sondages ; nœuds rares (remplacement du candidat d'un bloc, fin anticipée du mandat). | fait |
 | 10 | Profils de risque | Probabilités cumulées à des dates réelles pour les pivots « à tout moment » sensibles (dissolution, censure, note, procédure, gouvernement) à la place du risque mensuel constant. | fait |
 | 11 | Réélicitation complète | Toutes les tables sur dossier sourcé, lois par cas, deux rondes (protocole IDEA), par ordre de sensibilité. | fait |
-| 12 | Pondération des évaluateurs | Mécanisme de Cooke sur les questions graines (jalons, états mensuels), activé dès que des résolutions existent. | à faire |
+| 12 | Pondération des évaluateurs | Mécanisme de Cooke sur les questions graines (jalons, états mensuels), activé dès que des résolutions existent. | fait (mécanisme en place ; activation automatique à 12 graines) |
 | 13 | Mouvements sociaux et ordre public | Sous-réseau branché sur la mobilisation et la popularité ; la mobilisation lycéenne agit sur des pivots ; rattachement des questions hors réseau qui ont un parent (EV-48, EV-49, EV-03, EV-44, EV-23, EV-11, EV-12, EV-14b). | à faire |
 | 14 | Red team et pré-mortem | Red team de scénarios hors hypothèses à chaque passe ; pré-mortem périodique par un agent neuf, programmés. | à faire |
 
@@ -49,3 +49,4 @@ Décisions de Nathan :
 | 10 oct. 2026 | 9 | Chocs imprévus sur points d'entrée, barème par stade sur précédents, nœud rare de vacance ; `modele/reseau/rapports/2026-10-10_etape9.md`. |
 | 10 oct. 2026 | 10 | Profils de risque élicités sur tranches de dates réelles (huit pivots, note hors revue), départ immédiat du Premier ministre après censure ; `modele/reseau/rapports/2026-10-10_etape10.md`. |
 | 10 oct. 2026 | 11 | Réélicitation complète (28 nœuds, 8 tables de mesure, 18 évaluateurs, dossiers sourcés), tables v0.9 ; cinq points de structure soumis à Nathan ; `modele/reseau/rapports/2026-10-10_etape11.md`. |
+| 11 oct. 2026 | 12 | Modèle de Cooke sur les états mensuels : graines enregistrées le 1er, poids par lot dès 12 graines résolues, réagrégation à la passe du 16 ; `modele/reseau/rapports/2026-10-11_etape12.md`. |

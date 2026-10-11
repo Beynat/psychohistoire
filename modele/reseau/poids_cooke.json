@@ -1,0 +1,108 @@
+{
+ "min_graines": 12,
+ "lots": [
+  {
+   "evaluateurs": [
+    "E13",
+    "E14",
+    "E15"
+   ],
+   "noeuds": [
+    "VE-LYCEE",
+    "VE-MOBIL",
+    "VE-POP"
+   ],
+   "actif": false,
+   "graines": {
+    "E13": 0,
+    "E14": 0,
+    "E15": 0
+   }
+  },
+  {
+   "evaluateurs": [
+    "E16",
+    "E17",
+    "E18"
+   ],
+   "noeuds": [
+    "PV-BUDGET",
+    "PV-CENSURE1a",
+    "PV-CENSURE1b",
+    "PV-DISSOL1",
+    "PV-GOUV",
+    "PV-NOTE",
+    "PV-PDE",
+    "PV-TPI",
+    "VE-ECART"
+   ],
+   "actif": false,
+   "graines": {
+    "E16": 0,
+    "E17": 0,
+    "E18": 0
+   }
+  },
+  {
+   "evaluateurs": [
+    "E19",
+    "E20",
+    "E21"
+   ],
+   "noeuds": [
+    "PV-AUDIENCE",
+    "PV-LEPEN",
+    "PV-POURVOI",
+    "PV-RNAUTRE",
+    "PV-VACANCE",
+    "VE-RN",
+    "VE-SOND"
+   ],
+   "actif": false,
+   "graines": {
+    "E19": 0,
+    "E20": 0,
+    "E21": 0
+   }
+  },
+  {
+   "evaluateurs": [
+    "E22",
+    "E23",
+    "E24"
+   ],
+   "noeuds": [
+    "PV-BLOC",
+    "PV-DUEL",
+    "PV-ECOLO",
+    "PV-GAUCHE",
+    "PV-VAINQ"
+   ],
+   "actif": false,
+   "graines": {
+    "E22": 0,
+    "E23": 0,
+    "E24": 0
+   }
+  },
+  {
+   "evaluateurs": [
+    "E25",
+    "E26",
+    "E27"
+   ],
+   "noeuds": [
+    "PV-CENSURE2",
+    "PV-DISSOL2a",
+    "PV-DISSOL2b",
+    "PV-MAJOR"
+   ],
+   "actif": false,
+   "graines": {
+    "E25": 0,
+    "E26": 0,
+    "E27": 0
+   }
+  }
+ ]
+}

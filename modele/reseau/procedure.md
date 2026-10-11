@@ -5,12 +5,15 @@ Le réseau bayésien dynamique v0 prévoit les questions de la banque rattachée
 ## À chaque cycle (étape 4 bis de `modele/controle/cycle_mensuel.md`)
 
 1. Mettre à jour `observations.json` : pour chaque variable d'état, l'état observé du mois écoulé et du mois en cours s'il est connu (définitions dans `structure_v0.json`, séries dans `data/etat/`). Pour une variable « maximum du mois », l'observation du mois en cours n'est qu'un minimum (le moteur la traite ainsi). Un pivot déjà tranché y est inscrit avec son issue et son mois.
+1 bis. Questions graines (étape 12) : le 1er du mois seulement, après la mise à jour des observations, `python3 scripts/cooke.py graines M` (prévision de chaque évaluateur de tables pour l'état du mois de chaque variable, au cas observé ; refusé après le 1er) ; puis `python3 scripts/cooke.py scores` (calibration, information et poids par lot sur les graines résolues, `modele/reseau/poids_cooke.json`). Un enregistrement manqué n'est pas rattrapé.
 2. `python3 scripts/reseau.py --controle` : écarts de plus de 10 points avec les probabilités directes des évaluateurs. Ils sont consignés au compte rendu ; ils ne bloquent pas l'émission.
 3. `python3 scripts/reseau.py M --registre R` (R : registre du cycle), puis, si `modele/reseau/gele/manifeste.json` existe, `python3 scripts/reseau.py M --registre R --gele` (auteur « réseau v0 gelé »), puis commit et poussée dans l'heure. Les questions rapides du cycle (pool PR, `scripts/rapides.py`) sont prévues dans le même passage.
 
 **Gel de 48 heures (étape 6).** Aucune modification de `structure_v0.json`, `tables_v0.json` ou `calendrier.json` dans les 48 heures qui précèdent le gel d'un cycle : le moteur refuse alors d'émettre le réseau courant (le réseau gelé reste émis). Les observations et les preuves (jalons, faits) restent des données et peuvent entrer.
 
 **Réseau témoin gelé (étape 6).** À la fin du bloc 1 de la feuille de route, `python3 scripts/reseau.py --geler` copie la structure, les tables et le calendrier dans `modele/reseau/gele/` avec leurs empreintes ; cette version n'est plus jamais modifiée et est notée comme un auteur à part. Le gain des passes se lit comme l'écart de score entre le réseau courant et le réseau gelé (`modele/reseau/comparaison.md`).
+
+**Pondération des évaluateurs (étape 12).** Un lot d'évaluateurs devient actif quand chacun a au moins 12 graines résolues (`poids_cooke.json`, champ « actif »). À la passe du 16 qui suit (jamais dans les 48 heures avant un gel), les tables du lot sont réagrégées avec ces poids : `python3 scripts/tables.py agreger_cas <réponses du lot> --version TEXTE --gabarit <gabarit du lot> --poids modele/reseau/poids_cooke.json`, puis `python3 scripts/tables.py directs <toutes les réponses>`, rapport d'écarts (`scripts/ecarts.py`) et ligne au journal. Les lots sans graines (offre présidentielle, après 2027, tables de mesure) restent à poids égaux.
 
 ## Passe bimensuelle (le 2 et le 16 de chaque mois, tâche planifiée)
 

@@ -947,6 +947,46 @@ def test_tables_de_mesure():
     assert 5 < ag["k1"] < 8 and ag["k2"] == 0, ag   # zéro isolé ramené à 0,5 % ; zéro unanime gardé
 
 
+def test_cooke():
+    """Feuille de route, étape 12 : modèle classique de Cooke sur les états mensuels. Un évaluateur calibré l'emporte
+    sur un évaluateur sûr de lui et faux ; prévision d'une graine au cas observé, conditionnelle à un parent du même
+    mois ; antériorité de l'enregistrement ; agrégation pondérée."""
+    import random
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+    import cooke, tables
+    assert abs(cooke.chi2_sf(3.841, 1) - 0.05) < 1e-3 and abs(cooke.chi2_sf(18.307, 10) - 0.05) < 1e-3
+    rng = random.Random(1)
+    reel = ["a" if rng.random() < 0.7 else ("b" if rng.random() < 0.67 else "c") for _ in range(30)]
+    A, B = {"a": 0.7, "b": 0.2, "c": 0.1}, {"a": 0.05, "b": 0.9, "c": 0.05}
+    r = cooke.poids_lot({"EA": [(f"g{i}", A, x) for i, x in enumerate(reel)], "EB": [(f"g{i}", B, x) for i, x in enumerate(reel)]})
+    assert r["poids"]["EA"] > 0.99 and r["poids"]["EB"] < 0.01, r
+    assert r["scores"]["EA"]["calibration"] > 0.05 > r["scores"]["EB"]["calibration"], r
+    assert cooke.poids_alpha({"EA": (0.5, 0.3), "EB": (0.02, 1.0)}, 0.05) == {"EA": 0.15, "EB": 0.0}
+    u = {"a": 1 / 3, "b": 1 / 3, "c": 1 / 3}
+    assert abs(cooke.information([(u, "a")])) < 1e-12 and cooke.information([(A, "a")]) > 0.2
+    # Prévision : VE-X dépend de VE-Z (mois précédent, observé) et de VE-Y (même mois, inconnu à l'enregistrement).
+    noeuds = {"VE-X": {"id": "VE-X", "etats": ["u", "v"], "reference": "u", "parents": [{"id": "VE-Z", "decalage": 1}, "VE-Y"]},
+              "VE-Y": {"id": "VE-Y", "etats": ["p", "q"], "reference": "p", "parents": []},
+              "VE-Z": {"id": "VE-Z", "etats": ["m", "n"], "reference": "m", "parents": []}}
+    rep = {"noeuds": {"VE-X": {"cas": {"prec=*|VE-Z=*|VE-Y=*": {"loi": {"u": 0.5, "v": 0.5}},
+                                       "prec=u|VE-Z=n|VE-Y=q": {"loi": {"u": 0.1, "v": 0.9}}}}}}
+    obs = {"VE-X": {"2026-11": "u", "2026-12": "v"}, "VE-Z": {"2026-11": "n"}, "VE-Y": {"2026-12": "q"}}
+    p = cooke.prevision(rep, "VE-X", noeuds["VE-X"], noeuds, obs, "2026-12", {})
+    assert p["conditions"] == ["VE-Y"] and p["lois"]["VE-Y=q"] == {"u": 0.1, "v": 0.9} and p["lois"]["VE-Y=p"]["u"] == 0.5, p
+    g = {"mois": "2026-12", "noeud": "VE-X", "evaluateur": "EA", **p}
+    res = cooke.resolues([g], obs, "2027-01-05", noeuds)
+    assert res == [("EA", "2026-12", "VE-X", {"u": 0.1, "v": 0.9}, "v")], res
+    assert cooke.resolues([g], obs, "2026-12-20", noeuds) == []          # mois pas encore clos
+    try:
+        cooke.graines("2026-11", maintenant=datetime(2026, 11, 2, 9, 0, tzinfo=ZoneInfo("Europe/Paris")))
+        assert False, "graines enregistrées après le début du mois"
+    except SystemExit:
+        pass
+    l = tables.moy_loi([{"a": 0.2, "b": 0.8}, {"a": 0.8, "b": 0.2}], poids=[1.0, 0.0])
+    assert abs(l["a"] - 0.2) < 1e-9, l
+
+
 def test_hypotheses():
     """Feuille de route, étape 5 : registre des hypothèses porteuses (nœuds existants, probabilité de rupture,
     au moins trois signaux) ; issue « autre candidat RN » : impossible si Le Pen est candidate, et le vainqueur RN

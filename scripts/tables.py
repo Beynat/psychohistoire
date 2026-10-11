@@ -11,7 +11,7 @@ Usage :
                                                         loi invalide, marginale implicite à plus de 5 points de
                                                         l'avis direct, sens opposés entre évaluateurs) ; code 1
                                                         si un défaut bloque l'agrégation
-    python scripts/tables.py agreger_cas R1.json R2.json ... --version TEXTE [--gabarit G.json]
+    python scripts/tables.py agreger_cas R1.json R2.json ... --version TEXTE [--gabarit G.json] [--poids P.json]
                                                         agrège les lois par cas (moyenne des log-cotes, zéro isolé
                                                         au plancher) et remplace les nœuds dans tables_v0.json
     python scripts/tables.py gabarit_mesures EV-a,EV-b SORTIE.json
@@ -179,14 +179,19 @@ def plancher(vals, p, ou=""):
     return [p if v == 0 else v for v in vals]
 
 
-def moy_loi(lois, ou=""):
+def moy_ponderee(xs, poids=None):
+    poids = poids or [1.0] * len(xs)
+    return sum(w * x for w, x in zip(poids, xs)) / sum(poids)
+
+
+def moy_loi(lois, ou="", poids=None):
     """Moyenne en log-cotes, issue par issue, puis normalisation ; une issue nulle chez tous reste nulle, un zéro
-    isolé est ramené au plancher."""
+    isolé est ramené au plancher. Poids des évaluateurs facultatifs (Cooke, étape 12)."""
     cles = lois[0].keys()
     out = {}
     for c in cles:
         vals = plancher([l.get(c, 0) for l in lois], PLANCHER_P, f"{ou} {c}")
-        out[c] = 0.0 if all(v == 0 for v in vals) else 1 / (1 + math.exp(-statistics.mean(lo(v) for v in vals)))
+        out[c] = 0.0 if all(v == 0 for v in vals) else 1 / (1 + math.exp(-moy_ponderee([lo(v) for v in vals], poids)))
     s = sum(out.values())
     return {c: v / s for c, v in out.items()}
 
@@ -555,12 +560,15 @@ def directs_communs(reps):
     return out
 
 
-def agreger_cas(reps, version, gabarit=None):
+def agreger_cas(reps, version, gabarit=None, poids_eval=None):
     """Agrégation des lois par cas : moyenne des log-cotes cas par cas (zéro isolé au plancher) ; σ du nœud =
     dispersion moyenne entre évaluateurs, pondérée par la fréquence des cas. Remplace les nœuds dans tables_v0.json
     (anciens paramètres retirés) et les avis directs des questions de la ronde (médianes)."""
     ALERTES.clear()
     t = lire_json("modele/reseau/tables_v0.json")
+    pe = [poids_eval.get(r.get("evaluateur"), 0.0) for r in reps] if poids_eval else None
+    if pe is not None and sum(pe) <= 0:
+        pe = None
     for nid in reps[0]["noeuds"]:
         ls = [lois_de(r, nid) for r in reps]
         poids = poids_des_cas(reps, nid, list(ls[0]), gabarit)
@@ -569,15 +577,17 @@ def agreger_cas(reps, version, gabarit=None):
             vals = [l[c] for l in ls]
             w = poids.get(c, 0.0)
             if isinstance(vals[0], dict):
-                cas[c] = {k: round(v, 5) for k, v in moy_loi(vals, f"{nid} [{c}]").items()}
+                cas[c] = {k: round(v, 5) for k, v in moy_loi(vals, f"{nid} [{c}]", pe).items()}
                 disp.append((w, dispersion(vals)))
             else:
                 v = plancher(vals, PLANCHER_P, f"{nid} [{c}]")
-                cas[c] = 0.0 if all(x == 0 for x in v) else round(1 / (1 + math.exp(-statistics.mean(lo(x) for x in v))), 5)
+                cas[c] = 0.0 if all(x == 0 for x in v) else round(1 / (1 + math.exp(-moy_ponderee([lo(x) for x in v], pe))), 5)
                 disp.append((w, statistics.pstdev([lo(x) for x in v])))
         # σ du nœud : dispersion moyenne pondérée par la fréquence des cas (un cas sous verrou, de poids nul, ne compte pas)
         t["noeuds"][nid] = {"cas": cas, "sigma": sigma_pondere(disp),
                             "evaluateurs": [r.get("evaluateur") for r in reps], "format": "lois par cas v1"}
+        if pe:
+            t["noeuds"][nid]["poids_evaluateurs"] = {r.get("evaluateur"): round(w / sum(pe), 4) for r, w in zip(reps, pe)}
         if ALERTES:
             t["noeuds"][nid]["alertes"] = [a for a in ALERTES if a.startswith(nid)]
     t.setdefault("direct", {}).update(directs_medians(reps))
@@ -724,8 +734,16 @@ if __name__ == "__main__":
     elif a[:1] == ["agreger_cas"] and len(a) >= 3:
         version = a[a.index("--version") + 1] if "--version" in a else "tables v0"
         gab = a[a.index("--gabarit") + 1] if "--gabarit" in a else None
-        fichiers = [x for x in a[1:] if not x.startswith("--") and x not in (version, gab)]
-        agreger_cas([json.load(open(f, encoding="utf-8")) for f in fichiers], version, lire_json(gab) if gab else None)
+        pds = a[a.index("--poids") + 1] if "--poids" in a else None
+        fichiers = [x for x in a[1:] if not x.startswith("--") and x not in (version, gab, pds)]
+        reps = [json.load(open(f, encoding="utf-8")) for f in fichiers]
+        pe = None
+        if pds:   # poids de Cooke du lot de ces évaluateurs, s'il est actif (scripts/cooke.py scores)
+            ids = sorted(r.get("evaluateur") for r in reps)
+            lot = next((l for l in lire_json(pds)["lots"] if sorted(l["evaluateurs"]) == ids and l.get("actif")), None)
+            pe = lot["poids"] if lot else None
+            print("poids de Cooke : " + (json.dumps(pe) if pe else "lot non actif, poids égaux"))
+        agreger_cas(reps, version, lire_json(gab) if gab else None, pe)
         print(f"modele/reseau/tables_v0.json mis à jour ({len(fichiers)} évaluateurs)")
     elif a[:1] == ["gabarit_mesures"] and len(a) == 3:
         json.dump(gabarit_mesures(a[1].split(",")), open(a[2], "w", encoding="utf-8"), ensure_ascii=False, indent=1)
