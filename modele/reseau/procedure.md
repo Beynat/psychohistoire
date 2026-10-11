@@ -30,6 +30,8 @@ Règles (journal du 10 octobre 2026) : aucune passe ne consulte les prévisions 
 
 ## Points ouverts pour la première passe
 
+- Pré-mortem du 11 octobre 2026 (`modele/reseau/premortem/2026-10-11.md`), causes retenues : (1) réseau figé entre deux élicitations face à un témoin qui relit l'actualité chaque mois : réélicitation à date fixe des nœuds sensibles pendant la séquence présidentielle, à décider ; (2) composition des lots : la marginale d'EV-05 (Le Pen 52,8 %) n'est celle d'aucun évaluateur (avis directs 40,8 %), et l'écart H-01 (30 % de non-candidature) contre EV-21 (12 %) est à trancher par une ronde de retour au niveau du réseau et par le test de reproduction par évaluateur (revue 2, test 4) ; (3) liens faibles ou absents dans la chaîne présidentielle (PV-DUEL sans VE-RN ni PV-GAUCHE) ; (4) concentration du risque dans la chaîne présidentielle : verdict par famille à pré-enregistrer avant février 2027 ; (5) dossier unique par lot : vérificateur des faits avant la ronde 1 pour les lots L3 et L4.
+
 - Scénarios de rupture (étape 14, `scenarios_resultats.json`) : sans effet sur leurs cibles, trois liens manquent. (1) Écart OAT-Bund durable → PV-PDE : la procédure de déficit ne lit pas l'écart. (2) PV-VACANCE : aucun effet modélisé (H-03, restructuration rapide prévue). (3) PV-GAUCHE → second tour : un accord de la gauche ne change pas PV-DUEL, l'effet ne passant que par VE-SOND. À décider sur défaut identifié, pas d'office.
 - Questions satellites (étape 13) : EV-23 ne lit que la candidature de Marine Le Pen ; EV-44 ne distingue que RN et Mélenchon parmi les vainqueurs.
 

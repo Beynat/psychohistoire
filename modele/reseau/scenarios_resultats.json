@@ -1,6 +1,6 @@
 {
  "seuil_points": 2,
- "tirages": 40,
+ "tirages": 200,
  "trajectoires": 100,
  "scenarios": [
   {
@@ -13,8 +13,8 @@
      "question": "EV-05",
      "issue": "Marine Le Pen",
      "sens": "-",
-     "avant": 52.0,
-     "apres": 43.3,
+     "avant": 52.6,
+     "apres": 43.8,
      "tenu": true,
      "obligatoire": true
     },
@@ -22,8 +22,8 @@
      "question": "EV-40a",
      "issue": "oui",
      "sens": "-",
-     "avant": 80.2,
-     "apres": 77.8,
+     "avant": 80.9,
+     "apres": 78.7,
      "tenu": true,
      "obligatoire": true
     }
@@ -41,8 +41,8 @@
      "question": "EV-01",
      "issue": "oui",
      "sens": "+",
-     "avant": 80.3,
-     "apres": 83.9,
+     "avant": 80.0,
+     "apres": 85.4,
      "tenu": true,
      "obligatoire": true
     },
@@ -50,8 +50,8 @@
      "question": "EV-46",
      "issue": "oui",
      "sens": "+",
-     "avant": 4.2,
-     "apres": 10.3,
+     "avant": 4.6,
+     "apres": 10.6,
      "tenu": true,
      "obligatoire": true
     },
@@ -59,8 +59,8 @@
      "question": "EV-04",
      "issue": "oui",
      "sens": "+",
-     "avant": 17.8,
-     "apres": 17.2,
+     "avant": 17.7,
+     "apres": 17.7,
      "tenu": false,
      "obligatoire": false
     }
@@ -78,7 +78,7 @@
      "question": "EV-39",
      "issue": "oui",
      "sens": "+",
-     "avant": 39.5,
+     "avant": 41.4,
      "apres": 100.0,
      "tenu": true,
      "obligatoire": true
@@ -87,8 +87,8 @@
      "question": "EV-10",
      "issue": "oui",
      "sens": "+",
-     "avant": 49.5,
-     "apres": 81.8,
+     "avant": 50.6,
+     "apres": 82.4,
      "tenu": true,
      "obligatoire": true
     },
@@ -96,8 +96,8 @@
      "question": "EV-15",
      "issue": "oui",
      "sens": "+",
-     "avant": 23.3,
-     "apres": 26.4,
+     "avant": 22.9,
+     "apres": 26.3,
      "tenu": true,
      "obligatoire": true
     }
@@ -115,8 +115,8 @@
      "question": "EV-05",
      "issue": "Édouard Philippe",
      "sens": "±",
-     "avant": 20.5,
-     "apres": 19.9,
+     "avant": 19.9,
+     "apres": 19.6,
      "tenu": false,
      "obligatoire": false
     },
@@ -124,8 +124,8 @@
      "question": "EV-16a",
      "issue": "oui",
      "sens": "±",
-     "avant": 4.3,
-     "apres": 4.2,
+     "avant": 4.2,
+     "apres": 4.0,
      "tenu": false,
      "obligatoire": false
     }
@@ -143,8 +143,8 @@
      "question": "EV-40c",
      "issue": "oui",
      "sens": "+",
-     "avant": 38.0,
-     "apres": 38.8,
+     "avant": 37.3,
+     "apres": 37.3,
      "tenu": false,
      "obligatoire": false
     },
@@ -153,13 +153,13 @@
      "issue": "oui",
      "sens": "+",
      "avant": 8.1,
-     "apres": 9.1,
+     "apres": 8.8,
      "tenu": false,
      "obligatoire": false
     }
    ],
    "tenu": true,
-   "ess": 0.085
+   "ess": 0.0804
   },
   {
    "id": "S-06",
@@ -171,8 +171,8 @@
      "question": "EV-40b",
      "issue": "oui",
      "sens": "-",
-     "avant": 36.0,
-     "apres": 7.1,
+     "avant": 36.9,
+     "apres": 7.0,
      "tenu": true,
      "obligatoire": true
     },
@@ -180,8 +180,8 @@
      "question": "EV-41",
      "issue": "Philippe seul",
      "sens": "-",
-     "avant": 50.4,
-     "apres": 11.0,
+     "avant": 52.2,
+     "apres": 10.0,
      "tenu": true,
      "obligatoire": true
     }

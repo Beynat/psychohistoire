@@ -54,7 +54,7 @@ def tenu(avant, apres, sens, seuil):
     return d >= seuil if sens == "+" else d <= -seuil if sens == "-" else abs(d) >= seuil
 
 
-def evaluer(tirages=40, trajectoires=100, ids=None):
+def evaluer(tirages=200, trajectoires=100, ids=None):
     s = lire_json("modele/reseau/structure_v0.json")
     t = lire_json("modele/reseau/tables_v0.json")
     sc_all = lire_json("modele/reseau/scenarios.json")
@@ -93,7 +93,7 @@ def evaluer(tirages=40, trajectoires=100, ids=None):
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    nt = int(a[a.index("--tirages") + 1]) if "--tirages" in a else 40
+    nt = int(a[a.index("--tirages") + 1]) if "--tirages" in a else 200
     ntr = int(a[a.index("--trajectoires") + 1]) if "--trajectoires" in a else 100
     ids = a[a.index("--ids") + 1].split(",") if "--ids" in a else None
     r = evaluer(nt, ntr, ids)

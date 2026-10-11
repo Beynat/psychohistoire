@@ -1120,6 +1120,9 @@ def test_semantique_reseau():
     L = lambda f: json.loads((racine / f).read_text())
     S, T = L("modele/reseau/structure_v0.json"), L("modele/reseau/tables_v0.json")
     N = reseau.noeuds_de(S)
+    # Au plus trois parents par nœud (règle de la structure), exception déclarée : PV-CASSEURS (étape 13).
+    for i, n in N.items():
+        assert len(n.get("parents", [])) <= 3 or i in {"PV-CASSEURS"}, (i, n.get("parents"))
     anciens = S.get("anciens_identifiants", {})
     ref = lambda i: anciens.get(i, i)
     cites = {l["noeud"] for v in S["indicateurs"]["liens"].values() for l in v["liens"]}
