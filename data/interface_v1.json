@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-10-11",
+ "genere_le": "2026-10-12",
  "registre": "registre/essai_v0.jsonl",
  "cycle": "2026-10-v0",
  "version_structure": "structure v0.10 (11 octobre 2026, étape 13 : sous-réseau mouvements et ordre public — VE-LYCEE décalé parent de VE-MOBIL, pivot PV-CASSEURS, satellites EV-48, EV-49, EV-03, EV-44, EV-23, EV-14b) ; structure v0.9 (10 octobre 2026, étape 10 : profils de risque élicités sur tranches de dates réelles pour huit pivots « à tout moment », départ immédiat du Premier ministre après censure) ; structure v0.8 (10 octobre 2026, étape 9 : points d'entrée des chocs, nœud rare PV-VACANCE) ; structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
@@ -5651,7 +5651,7 @@
     "statut": "fait public non vérifié, en observation",
     "type": "fait public",
     "allegation": false,
-    "vigilance": "élevé"
+    "vigilance": "modéré"
    },
    {
     "fait": "investisseurs-confiance-france",
@@ -5805,7 +5805,143 @@
     "vigilance": "modéré"
    }
   ],
-  "sans_question": [],
+  "sans_question": [
+   {
+    "fait": "lycee-maintien-ordre-polemique",
+    "titres": 43,
+    "titres_7_derniers_jours": 37,
+    "sources_distinctes": 6,
+    "premier_jour": "2026-10-05",
+    "dernier_jour": "2026-10-07",
+    "emergence": false
+   },
+   {
+    "fait": "maintien-ordre-manifestations-lyceennes",
+    "titres": 24,
+    "titres_7_derniers_jours": 24,
+    "sources_distinctes": 5,
+    "premier_jour": "2026-10-07",
+    "dernier_jour": "2026-10-09",
+    "emergence": false
+   },
+   {
+    "fait": "allocution-premier-ministre-7-octobre",
+    "titres": 18,
+    "titres_7_derniers_jours": 17,
+    "sources_distinctes": 7,
+    "premier_jour": "2026-10-05",
+    "dernier_jour": "2026-10-09",
+    "emergence": false
+   },
+   {
+    "fait": "lycee-revendications-batiments",
+    "titres": 15,
+    "titres_7_derniers_jours": 13,
+    "sources_distinctes": 4,
+    "premier_jour": "2026-10-05",
+    "dernier_jour": "2026-10-07",
+    "emergence": false
+   },
+   {
+    "fait": "programmes-audiovisuels-public-senat",
+    "titres": 42,
+    "titres_7_derniers_jours": 13,
+    "sources_distinctes": 2,
+    "premier_jour": "2026-10-05",
+    "dernier_jour": "2026-10-07",
+    "emergence": false
+   },
+   {
+    "fait": "mouvement-lyceen-blocages",
+    "titres": 13,
+    "titres_7_derniers_jours": 13,
+    "sources_distinctes": 5,
+    "premier_jour": "2026-10-07",
+    "dernier_jour": "2026-10-09",
+    "emergence": false
+   },
+   {
+    "fait": "programme-budgetaire-rn",
+    "titres": 13,
+    "titres_7_derniers_jours": 13,
+    "sources_distinctes": 6,
+    "premier_jour": "2026-10-08",
+    "dernier_jour": "2026-10-09",
+    "emergence": false
+   },
+   {
+    "fait": "lycee-grenade-lens-blessure",
+    "titres": 12,
+    "titres_7_derniers_jours": 10,
+    "sources_distinctes": 4,
+    "premier_jour": "2026-10-05",
+    "dernier_jour": "2026-10-07",
+    "emergence": false
+   },
+   {
+    "fait": "culture-cinema-spectacles",
+    "titres": 10,
+    "titres_7_derniers_jours": 10,
+    "sources_distinctes": 2,
+    "premier_jour": "2026-10-06",
+    "dernier_jour": "2026-10-07",
+    "emergence": false
+   },
+   {
+    "fait": "reponse-gouvernement-mouvement-lyceen",
+    "titres": 10,
+    "titres_7_derniers_jours": 10,
+    "sources_distinctes": 3,
+    "premier_jour": "2026-10-08",
+    "dernier_jour": "2026-10-09",
+    "emergence": false
+   },
+   {
+    "fait": "lycee-reponse-gouvernement-consultation",
+    "titres": 11,
+    "titres_7_derniers_jours": 9,
+    "sources_distinctes": 7,
+    "premier_jour": "2026-10-05",
+    "dernier_jour": "2026-10-07",
+    "emergence": false
+   },
+   {
+    "fait": "societe-sante-aidants-travail",
+    "titres": 9,
+    "titres_7_derniers_jours": 9,
+    "sources_distinctes": 3,
+    "premier_jour": "2026-10-06",
+    "dernier_jour": "2026-10-07",
+    "emergence": false
+   },
+   {
+    "fait": "contre-budget-rn",
+    "titres": 11,
+    "titres_7_derniers_jours": 9,
+    "sources_distinctes": 6,
+    "premier_jour": "2026-10-05",
+    "dernier_jour": "2026-10-07",
+    "emergence": false
+   },
+   {
+    "fait": "loi-integrale-texte-societe",
+    "titres": 9,
+    "titres_7_derniers_jours": 9,
+    "sources_distinctes": 5,
+    "premier_jour": "2026-10-06",
+    "dernier_jour": "2026-10-07",
+    "emergence": false
+   },
+   {
+    "fait": "sechee-aide-agriculteurs",
+    "titres": 8,
+    "titres_7_derniers_jours": 8,
+    "sources_distinctes": 4,
+    "premier_jour": "2026-10-08",
+    "dernier_jour": "2026-10-09",
+    "emergence": false
+   }
+  ],
   "emergences": []
  },
  "echeances": [
