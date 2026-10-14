@@ -1,6 +1,6 @@
 {
  "description": "Reprise et statut des faits (annexe, sections 11.2 et 11.3) : descriptif, sans effet sur les probabilités. Sept flux suivis (franceinfo, Le Monde, LCP, Public Sénat, Le Figaro, Libération, Mediapart). Stade retenu : « allégation » sauf étape officielle vérifiée par deux agents ; la nature n'est publiée qu'avec une étape vérifiée, jamais « vie privée ».",
- "etabli_le": "2026-10-12",
+ "etabli_le": "2026-10-14",
  "faits": {
   "revelations-presse-ecrits-rn": {
    "sources_distinctes": 7,
@@ -14,11 +14,11 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 6,
-   "sources_7_derniers_jours": 5,
-   "titres": 40,
-   "jours": 11,
+   "sources_7_derniers_jours": 4,
+   "titres": 43,
+   "jours": 12,
    "premier_jour": "2026-09-30",
-   "dernier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-13",
    "concerne": [
     "Q-EV-05",
     "Q-EV-40a"
@@ -28,7 +28,7 @@
    "nature_verifiee": null,
    "type_fait": "mise en cause",
    "date_reexamen": "2026-10-14",
-   "statut": "en observation"
+   "statut": "retombé"
   },
   "mobilisation-6-octobre": {
    "sources_distinctes": 3,
@@ -38,7 +38,7 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 3,
-   "sources_7_derniers_jours": 3,
+   "sources_7_derniers_jours": 2,
    "titres": 14,
    "jours": 5,
    "premier_jour": "2026-10-05",
@@ -61,7 +61,7 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 3,
-   "sources_7_derniers_jours": 3,
+   "sources_7_derniers_jours": 2,
    "titres": 11,
    "jours": 4,
    "premier_jour": "2026-10-05",
@@ -84,7 +84,7 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 3,
-   "sources_7_derniers_jours": 2,
+   "sources_7_derniers_jours": 0,
    "titres": 6,
    "jours": 4,
    "premier_jour": "2026-10-04",
@@ -133,7 +133,7 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 6,
-   "sources_7_derniers_jours": 6,
+   "sources_7_derniers_jours": 4,
    "titres": 46,
    "jours": 9,
    "premier_jour": "2026-09-30",
@@ -340,10 +340,10 @@
    ],
    "sources_7_premiers_jours": 3,
    "sources_7_derniers_jours": 3,
-   "titres": 12,
-   "jours": 3,
+   "titres": 14,
+   "jours": 4,
    "premier_jour": "2026-10-07",
-   "dernier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-13",
    "concerne": [
     "Q-EV-42"
    ],
@@ -409,15 +409,17 @@
    ],
    "sources_7_premiers_jours": 6,
    "sources_7_derniers_jours": 6,
-   "titres": 21,
-   "jours": 4,
+   "titres": 25,
+   "jours": 5,
    "premier_jour": "2026-10-09",
-   "dernier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-13",
    "concerne": [
     "Q-EV-10b",
     "Q-EV-52"
    ],
-   "peut_resoudre": [],
+   "peut_resoudre": [
+    "Q-EV-10b"
+   ],
    "stade_retenu": null,
    "nature_verifiee": null,
    "type_fait": "fait public",
@@ -489,16 +491,17 @@
    "statut": "fait public non vérifié, en observation"
   },
   "prix-carburants-impacts": {
-   "sources_distinctes": 1,
+   "sources_distinctes": 2,
    "sources": [
+    "Libération",
     "franceinfo"
    ],
-   "sources_7_premiers_jours": 1,
-   "sources_7_derniers_jours": 1,
-   "titres": 6,
-   "jours": 4,
+   "sources_7_premiers_jours": 2,
+   "sources_7_derniers_jours": 2,
+   "titres": 8,
+   "jours": 5,
    "premier_jour": "2026-10-09",
-   "dernier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-13",
    "concerne": [
     "Q-EV-42"
    ],
@@ -518,10 +521,10 @@
    ],
    "sources_7_premiers_jours": 3,
    "sources_7_derniers_jours": 3,
-   "titres": 5,
-   "jours": 3,
+   "titres": 9,
+   "jours": 5,
    "premier_jour": "2026-10-09",
-   "dernier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
    "concerne": [
     "Q-EV-02"
    ],
@@ -717,10 +720,10 @@
    ],
    "sources_7_premiers_jours": 2,
    "sources_7_derniers_jours": 2,
-   "titres": 2,
-   "jours": 1,
+   "titres": 3,
+   "jours": 2,
    "premier_jour": "2026-10-09",
-   "dernier_jour": "2026-10-09",
+   "dernier_jour": "2026-10-13",
    "concerne": [
     "Q-EV-32"
    ],
@@ -773,6 +776,450 @@
    "nature_verifiee": null,
    "type_fait": "fait public",
    "date_reexamen": "2026-11-11",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "budget-2027-debat-assemblee": {
+   "sources_distinctes": 5,
+   "sources": [
+    "LCP",
+    "Le Figaro",
+    "Le Monde",
+    "Libération",
+    "franceinfo"
+   ],
+   "sources_7_premiers_jours": 5,
+   "sources_7_derniers_jours": 5,
+   "titres": 11,
+   "jours": 3,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
+   "concerne": [
+    "Q-EV-02",
+    "Q-EV-15"
+   ],
+   "peut_resoudre": [
+    "Q-EV-02"
+   ],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-11",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "campagne-candidat-lfi": {
+   "sources_distinctes": 2,
+   "sources": [
+    "Le Monde",
+    "franceinfo"
+   ],
+   "sources_7_premiers_jours": 2,
+   "sources_7_derniers_jours": 2,
+   "titres": 2,
+   "jours": 1,
+   "premier_jour": "2026-10-14",
+   "dernier_jour": "2026-10-14",
+   "concerne": [
+    "Q-EV-40c"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-13",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "mouvement-lyceen-poursuite-vacances": {
+   "sources_distinctes": 3,
+   "sources": [
+    "Mediapart",
+    "Public Sénat",
+    "franceinfo"
+   ],
+   "sources_7_premiers_jours": 3,
+   "sources_7_derniers_jours": 3,
+   "titres": 7,
+   "jours": 3,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
+   "concerne": [
+    "Q-EV-10",
+    "Q-EV-47"
+   ],
+   "peut_resoudre": [
+    "Q-EV-10"
+   ],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-11",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "budget-2027-deficit-dette-marches": {
+   "sources_distinctes": 4,
+   "sources": [
+    "Le Figaro",
+    "Le Monde",
+    "Public Sénat",
+    "franceinfo"
+   ],
+   "sources_7_premiers_jours": 4,
+   "sources_7_derniers_jours": 4,
+   "titres": 8,
+   "jours": 3,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
+   "concerne": [
+    "Q-EV-01"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-11",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "frappes-russes-ukraine": {
+   "sources_distinctes": 1,
+   "sources": [
+    "Libération"
+   ],
+   "sources_7_premiers_jours": 1,
+   "sources_7_derniers_jours": 1,
+   "titres": 2,
+   "jours": 1,
+   "premier_jour": "2026-10-14",
+   "dernier_jour": "2026-10-14",
+   "concerne": [
+    "Q-EV-28"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-13",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "budget-2027-fragilite-gouvernement": {
+   "sources_distinctes": 4,
+   "sources": [
+    "LCP",
+    "Le Monde",
+    "Libération",
+    "Mediapart"
+   ],
+   "sources_7_premiers_jours": 4,
+   "sources_7_derniers_jours": 4,
+   "titres": 6,
+   "jours": 2,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-14",
+   "concerne": [
+    "Q-EV-02",
+    "Q-EV-15"
+   ],
+   "peut_resoudre": [
+    "Q-EV-15"
+   ],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-12",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "candidature-declaree-presidentielle": {
+   "sources_distinctes": 3,
+   "sources": [
+    "LCP",
+    "Le Monde",
+    "Libération"
+   ],
+   "sources_7_premiers_jours": 3,
+   "sources_7_derniers_jours": 3,
+   "titres": 3,
+   "jours": 1,
+   "premier_jour": "2026-10-14",
+   "dernier_jour": "2026-10-14",
+   "concerne": [
+    "Q-EV-05"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-13",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "budget-france-bruxelles": {
+   "sources_distinctes": 1,
+   "sources": [
+    "franceinfo"
+   ],
+   "sources_7_premiers_jours": 1,
+   "sources_7_derniers_jours": 1,
+   "titres": 1,
+   "jours": 1,
+   "premier_jour": "2026-10-14",
+   "dernier_jour": "2026-10-14",
+   "concerne": [
+    "Q-EV-01",
+    "Q-EV-04"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-13",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "campagne-candidat-rn-programme": {
+   "sources_distinctes": 3,
+   "sources": [
+    "Le Monde",
+    "Libération",
+    "franceinfo"
+   ],
+   "sources_7_premiers_jours": 3,
+   "sources_7_derniers_jours": 3,
+   "titres": 4,
+   "jours": 2,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-14",
+   "concerne": [
+    "Q-EV-21",
+    "Q-EV-40a"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-12",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "ecologistes-strategie-presidentielle": {
+   "sources_distinctes": 1,
+   "sources": [
+    "Le Figaro"
+   ],
+   "sources_7_premiers_jours": 1,
+   "sources_7_derniers_jours": 1,
+   "titres": 1,
+   "jours": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "concerne": [
+    "Q-EV-18",
+    "Q-EV-19"
+   ],
+   "peut_resoudre": [
+    "Q-EV-18"
+   ],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-12",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "midterms-etats-unis-politique": {
+   "sources_distinctes": 3,
+   "sources": [
+    "Libération",
+    "Mediapart",
+    "Public Sénat"
+   ],
+   "sources_7_premiers_jours": 3,
+   "sources_7_derniers_jours": 3,
+   "titres": 5,
+   "jours": 2,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-13",
+   "concerne": [
+    "Q-EV-30"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-11",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "primaire-gauche-suites-union": {
+   "sources_distinctes": 5,
+   "sources": [
+    "LCP",
+    "Le Monde",
+    "Libération",
+    "Public Sénat",
+    "franceinfo"
+   ],
+   "sources_7_premiers_jours": 5,
+   "sources_7_derniers_jours": 5,
+   "titres": 15,
+   "jours": 3,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
+   "concerne": [
+    "Q-EV-19",
+    "Q-EV-40f"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-11",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "enquete-pnf-cite-numerique-plainte": {
+   "sources_distinctes": 1,
+   "sources": [
+    "Le Monde"
+   ],
+   "sources_7_premiers_jours": 1,
+   "sources_7_derniers_jours": 1,
+   "titres": 1,
+   "jours": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "concerne": [
+    "Q-EV-40b",
+    "Q-EV-41"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-12",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "budget-securite-sociale-2027": {
+   "sources_distinctes": 3,
+   "sources": [
+    "LCP",
+    "Le Monde",
+    "Public Sénat"
+   ],
+   "sources_7_premiers_jours": 3,
+   "sources_7_derniers_jours": 3,
+   "titres": 4,
+   "jours": 2,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-14",
+   "concerne": [
+    "Q-EV-02"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-12",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "campagne-candidat-droite-economies": {
+   "sources_distinctes": 3,
+   "sources": [
+    "LCP",
+    "Le Monde",
+    "Public Sénat"
+   ],
+   "sources_7_premiers_jours": 3,
+   "sources_7_derniers_jours": 3,
+   "titres": 3,
+   "jours": 3,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
+   "concerne": [
+    "Q-EV-40g"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-11",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "campagne-candidat-horizons-budget": {
+   "sources_distinctes": 1,
+   "sources": [
+    "franceinfo"
+   ],
+   "sources_7_premiers_jours": 1,
+   "sources_7_derniers_jours": 1,
+   "titres": 1,
+   "jours": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "concerne": [
+    "Q-EV-40b"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-12",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "budget-2027-loi-speciale": {
+   "sources_distinctes": 1,
+   "sources": [
+    "Le Monde"
+   ],
+   "sources_7_premiers_jours": 1,
+   "sources_7_derniers_jours": 1,
+   "titres": 1,
+   "jours": 1,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-12",
+   "concerne": [
+    "Q-EV-02"
+   ],
+   "peut_resoudre": [
+    "Q-EV-02"
+   ],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-11",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "accord-diesel-russe-etats-unis": {
+   "sources_distinctes": 1,
+   "sources": [
+    "Public Sénat"
+   ],
+   "sources_7_premiers_jours": 1,
+   "sources_7_derniers_jours": 1,
+   "titres": 1,
+   "jours": 1,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-12",
+   "concerne": [
+    "Q-EV-28"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-11",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "candidature-lisnard-reseaux": {
+   "sources_distinctes": 1,
+   "sources": [
+    "LCP"
+   ],
+   "sources_7_premiers_jours": 1,
+   "sources_7_derniers_jours": 1,
+   "titres": 1,
+   "jours": 1,
+   "premier_jour": "2026-10-14",
+   "dernier_jour": "2026-10-14",
+   "concerne": [
+    "Q-EV-40d"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-11-13",
    "statut": "fait public non vérifié, en observation"
   }
  },
@@ -890,11 +1337,11 @@
    "emergence": false
   },
   "loi-integrale-violences-sexuelles": {
-   "titres": 27,
-   "titres_7_derniers_jours": 14,
-   "sources_distinctes": 5,
+   "titres": 45,
+   "titres_7_derniers_jours": 32,
+   "sources_distinctes": 6,
    "premier_jour": "2026-10-05",
-   "dernier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
    "emergence": false
   },
   "bresil-presidentielle": {
@@ -1771,7 +2218,7 @@
   },
   "incident-belfort-lyceen-policier": {
    "titres": 2,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-07",
@@ -1779,55 +2226,55 @@
   },
   "presidentielle-2027-campagne-candidats": {
    "titres": 5,
-   "titres_7_derniers_jours": 4,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-07",
    "emergence": false
   },
   "lycee-maintien-ordre-polemique": {
-   "titres": 57,
-   "titres_7_derniers_jours": 51,
+   "titres": 64,
+   "titres_7_derniers_jours": 21,
    "sources_distinctes": 6,
    "premier_jour": "2026-10-05",
-   "dernier_jour": "2026-10-12",
-   "emergence": true
+   "dernier_jour": "2026-10-14",
+   "emergence": false
   },
   "boissons-energisantes-moins-16-ans": {
    "titres": 3,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-07",
    "emergence": false
   },
   "lycee-revendications-batiments": {
-   "titres": 15,
-   "titres_7_derniers_jours": 13,
-   "sources_distinctes": 4,
+   "titres": 20,
+   "titres_7_derniers_jours": 5,
+   "sources_distinctes": 5,
    "premier_jour": "2026-10-05",
-   "dernier_jour": "2026-10-07",
+   "dernier_jour": "2026-10-14",
    "emergence": false
   },
   "nobel-2026": {
    "titres": 9,
-   "titres_7_derniers_jours": 9,
+   "titres_7_derniers_jours": 7,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-12",
    "emergence": false
   },
   "lycee-grenade-lens-blessure": {
-   "titres": 15,
-   "titres_7_derniers_jours": 13,
+   "titres": 17,
+   "titres_7_derniers_jours": 5,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-05",
-   "dernier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
    "emergence": false
   },
   "economie-entreprises-elliott-airliquide-airfrance": {
    "titres": 7,
-   "titres_7_derniers_jours": 6,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-07",
@@ -1835,31 +2282,31 @@
   },
   "quebec-victoire-independantistes": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-07",
    "emergence": false
   },
   "enquetes-igpn-maintien-ordre": {
-   "titres": 8,
-   "titres_7_derniers_jours": 8,
-   "sources_distinctes": 2,
+   "titres": 9,
+   "titres_7_derniers_jours": 4,
+   "sources_distinctes": 3,
    "premier_jour": "2026-10-06",
-   "dernier_jour": "2026-10-10",
+   "dernier_jour": "2026-10-13",
    "emergence": false
   },
   "lycee-reponse-gouvernement-consultation": {
-   "titres": 12,
-   "titres_7_derniers_jours": 10,
+   "titres": 19,
+   "titres_7_derniers_jours": 8,
    "sources_distinctes": 7,
    "premier_jour": "2026-10-05",
-   "dernier_jour": "2026-10-09",
+   "dernier_jour": "2026-10-14",
    "emergence": false
   },
   "programmes-audiovisuels-public-senat": {
    "titres": 43,
-   "titres_7_derniers_jours": 14,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-09",
@@ -1867,7 +2314,7 @@
   },
   "exposition-7-octobre-polemique": {
    "titres": 4,
-   "titres_7_derniers_jours": 4,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-07",
@@ -1875,7 +2322,7 @@
   },
   "inflation-pouvoir-achat-menages": {
    "titres": 11,
-   "titres_7_derniers_jours": 10,
+   "titres_7_derniers_jours": 3,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-12",
@@ -1883,7 +2330,7 @@
   },
   "kosovo-nouvelle-presidente": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-07",
@@ -1891,7 +2338,7 @@
   },
   "culture-cinema-spectacles": {
    "titres": 13,
-   "titres_7_derniers_jours": 13,
+   "titres_7_derniers_jours": 3,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-11",
@@ -1899,7 +2346,7 @@
   },
   "societe-sante-aidants-travail": {
    "titres": 9,
-   "titres_7_derniers_jours": 9,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-07",
@@ -1907,7 +2354,7 @@
   },
   "decisions-judiciaires-divers": {
    "titres": 8,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 2,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-09",
@@ -1915,7 +2362,7 @@
   },
   "proces-affaire-privee": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-07",
@@ -1923,7 +2370,7 @@
   },
   "contre-budget-rn": {
    "titres": 11,
-   "titres_7_derniers_jours": 9,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 6,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-07",
@@ -1931,7 +2378,7 @@
   },
   "commemoration-7-octobre": {
    "titres": 7,
-   "titres_7_derniers_jours": 6,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-07",
@@ -1939,7 +2386,7 @@
   },
   "loi-integrale-texte-societe": {
    "titres": 10,
-   "titres_7_derniers_jours": 10,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-11",
@@ -1947,7 +2394,7 @@
   },
   "sanctions-commerce-chine-ue": {
    "titres": 5,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-07",
@@ -1955,7 +2402,7 @@
   },
   "secheresse-elevage": {
    "titres": 3,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-07",
@@ -1963,7 +2410,7 @@
   },
   "etat-droit-reflexions-economie": {
    "titres": 10,
-   "titres_7_derniers_jours": 7,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-07",
@@ -1971,7 +2418,7 @@
   },
   "nutri-score-obligatoire": {
    "titres": 3,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-07",
@@ -1979,7 +2426,7 @@
   },
   "marche-immobilier-prix": {
    "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-07",
@@ -1987,7 +2434,7 @@
   },
   "pfas-oeufs-contamination": {
    "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-06",
@@ -1995,7 +2442,7 @@
   },
   "paramount-warner": {
    "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-06",
@@ -2003,7 +2450,7 @@
   },
   "vente-viande-prix-bas-achats-groupes": {
    "titres": 3,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-06",
@@ -2011,7 +2458,7 @@
   },
   "campagne-candidat-lfi-medias": {
    "titres": 8,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 4,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-11",
@@ -2019,7 +2466,7 @@
   },
   "golfe-petrole-exportations": {
    "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-06",
@@ -2027,7 +2474,7 @@
   },
   "senat-nouvelle-composition-groupes": {
    "titres": 8,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-06",
@@ -2035,7 +2482,7 @@
   },
   "polynesie-onu-discours": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-06",
@@ -2043,7 +2490,7 @@
   },
   "espagne-mandat-arret-leve": {
    "titres": 2,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-06",
@@ -2051,7 +2498,7 @@
   },
   "tir-missile-nucleaire-sous-marin": {
    "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-06",
@@ -2059,7 +2506,7 @@
   },
   "afd-saxe-anhalt": {
    "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-06",
@@ -2067,7 +2514,7 @@
   },
   "primaire-gauche-inscriptions": {
    "titres": 6,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-07",
@@ -2075,7 +2522,7 @@
   },
   "municipales-wittelsheim-annulation": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-06",
@@ -2083,7 +2530,7 @@
   },
   "loi-plein-emploi-bilan": {
    "titres": 3,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-06",
@@ -2091,7 +2538,7 @@
   },
   "emission-politique-candidat": {
    "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-06",
@@ -2099,7 +2546,7 @@
   },
   "schneider-acquisition": {
    "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-06",
@@ -2107,7 +2554,7 @@
   },
   "vigilance-meteo-gard-herault": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-10-06",
@@ -2123,7 +2570,7 @@
   },
   "canicule-2026-cout": {
    "titres": 2,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-07",
@@ -2147,23 +2594,23 @@
   },
   "gouvernement-compte-fact-checking": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-07",
    "emergence": false
   },
   "tickets-restaurant-courses": {
-   "titres": 4,
-   "titres_7_derniers_jours": 4,
-   "sources_distinctes": 2,
+   "titres": 6,
+   "titres_7_derniers_jours": 5,
+   "sources_distinctes": 3,
    "premier_jour": "2026-10-07",
-   "dernier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
    "emergence": false
   },
   "maintien-ordre-manifestations-lyceennes": {
    "titres": 24,
-   "titres_7_derniers_jours": 24,
+   "titres_7_derniers_jours": 18,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-09",
@@ -2179,7 +2626,7 @@
   },
   "pesticides-environnement": {
    "titres": 9,
-   "titres_7_derniers_jours": 9,
+   "titres_7_derniers_jours": 6,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-10",
@@ -2347,7 +2794,7 @@
   },
   "deces-personnalite-mexicaine": {
    "titres": 7,
-   "titres_7_derniers_jours": 7,
+   "titres_7_derniers_jours": 4,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-09",
@@ -2395,7 +2842,7 @@
   },
   "tensions-pouvoir-achat-carburants-greve": {
    "titres": 6,
-   "titres_7_derniers_jours": 6,
+   "titres_7_derniers_jours": 3,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-09",
@@ -2531,15 +2978,15 @@
   },
   "allocution-premier-ministre-7-octobre": {
    "titres": 18,
-   "titres_7_derniers_jours": 17,
+   "titres_7_derniers_jours": 9,
    "sources_distinctes": 7,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-10-09",
    "emergence": false
   },
   "annulation-municipales": {
-   "titres": 3,
-   "titres_7_derniers_jours": 3,
+   "titres": 4,
+   "titres_7_derniers_jours": 4,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-08",
    "dernier_jour": "2026-10-12",
@@ -2667,7 +3114,7 @@
   },
   "israel-7-octobre": {
    "titres": 5,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 2,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-08",
@@ -2715,7 +3162,7 @@
   },
   "actualite-diverse-229": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-07",
@@ -2723,7 +3170,7 @@
   },
   "actualite-diverse-238": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-07",
@@ -2731,7 +3178,7 @@
   },
   "actualite-diverse-239": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-07",
@@ -2739,7 +3186,7 @@
   },
   "actualite-diverse-242": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-07",
@@ -2747,7 +3194,7 @@
   },
   "actualite-diverse-245": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-07",
@@ -2755,7 +3202,7 @@
   },
   "actualite-diverse-248": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-07",
@@ -2763,7 +3210,7 @@
   },
   "ukraine-russie-actifs": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-07",
    "dernier_jour": "2026-10-07",
@@ -2794,19 +3241,19 @@
    "emergence": false
   },
   "tirs-college-aubagne": {
-   "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres": 8,
+   "titres_7_derniers_jours": 8,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-12",
-   "dernier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
    "emergence": false
   },
   "filiere-automobile-europeenne": {
-   "titres": 8,
-   "titres_7_derniers_jours": 8,
+   "titres": 18,
+   "titres_7_derniers_jours": 18,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-11",
-   "dernier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
    "emergence": false
   },
   "presidence-region-paca": {
@@ -2945,14 +3392,6 @@
    "dernier_jour": "2026-10-12",
    "emergence": false
   },
-  "accord-diesel-russe-etats-unis": {
-   "titres": 7,
-   "titres_7_derniers_jours": 7,
-   "sources_distinctes": 3,
-   "premier_jour": "2026-10-10",
-   "dernier_jour": "2026-10-12",
-   "emergence": false
-  },
   "hors-champ-067": {
    "titres": 1,
    "titres_7_derniers_jours": 1,
@@ -3034,11 +3473,11 @@
    "emergence": false
   },
   "dissolution-association-soral": {
-   "titres": 3,
-   "titres_7_derniers_jours": 3,
-   "sources_distinctes": 3,
+   "titres": 5,
+   "titres_7_derniers_jours": 5,
+   "sources_distinctes": 4,
    "premier_jour": "2026-10-11",
-   "dernier_jour": "2026-10-11",
+   "dernier_jour": "2026-10-13",
    "emergence": false
   },
   "hors-champ-110": {
@@ -3146,11 +3585,11 @@
    "emergence": false
   },
   "polemique-octobre-rose-panot": {
-   "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres": 3,
+   "titres_7_derniers_jours": 3,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-10",
-   "dernier_jour": "2026-10-11",
+   "dernier_jour": "2026-10-13",
    "emergence": false
   },
   "hors-champ-140": {
@@ -3768,26 +4207,337 @@
    "premier_jour": "2026-10-09",
    "dernier_jour": "2026-10-09",
    "emergence": false
+  },
+  "economie-entreprises": {
+   "titres": 7,
+   "titres_7_derniers_jours": 7,
+   "sources_distinctes": 3,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "ia-entreprises-nvidia": {
+   "titres": 5,
+   "titres_7_derniers_jours": 5,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "retraites-pensions-gel": {
+   "titres": 6,
+   "titres_7_derniers_jours": 6,
+   "sources_distinctes": 4,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "audiovisuel-public-impartialite": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-10-14",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "fonderie-bretagne-reprise": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "budget-2027-education-jeunesse": {
+   "titres": 4,
+   "titres_7_derniers_jours": 4,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "climat-environnement": {
+   "titres": 5,
+   "titres_7_derniers_jours": 5,
+   "sources_distinctes": 3,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "international-divers": {
+   "titres": 14,
+   "titres_7_derniers_jours": 14,
+   "sources_distinctes": 4,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "hotellerie-patronat-election": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "culture-medias": {
+   "titres": 7,
+   "titres_7_derniers_jours": 7,
+   "sources_distinctes": 5,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "deputes-rn-absenteisme": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-14",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "covoiturage-temoignages": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "societe-justice-faits-divers": {
+   "titres": 4,
+   "titres_7_derniers_jours": 4,
+   "sources_distinctes": 3,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "surendettement-hausse": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-14",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "presse-medias-divers": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "presidentielle-regulation-podcasts": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-14",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "mobilisation-lyceenne-soutiens": {
+   "titres": 4,
+   "titres_7_derniers_jours": 4,
+   "sources_distinctes": 4,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "justice-prisons-controle": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "aides-publiques-entreprises": {
+   "titres": 4,
+   "titres_7_derniers_jours": 4,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "vie-institutionnelle-hommages": {
+   "titres": 3,
+   "titres_7_derniers_jours": 3,
+   "sources_distinctes": 3,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
+  },
+  "senat-groupe-rn": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "corse-autonomie-senat": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "faits-divers-garde-a-vue-acteur": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "pouvoir-achat-reportage-electorat": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "lycee-politique-jeunes-partis": {
+   "titres": 4,
+   "titres_7_derniers_jours": 4,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "enquete-parquet-groupe-facebook-media": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "ordre-public-debat-medias": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "emissions-programmes-audiovisuels-public-senat": {
+   "titres": 27,
+   "titres_7_derniers_jours": 27,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "assurance-chomage-ponction": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "banlieues-langage": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "drogue-marseille-crack": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-13",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "loi-finances-fiscalite-epargne": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-13",
+   "emergence": false
+  },
+  "oxfam-recours-fiscal": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-12",
+   "emergence": false
+  },
+  "defenseur-droits-recrutement": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-12",
+   "emergence": false
+  },
+  "culture-pensee-livre": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-12",
+   "emergence": false
+  },
+  "prix-nobel-economie": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-12",
+   "emergence": false
+  },
+  "commerce-paris-tourisme": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-12",
+   "emergence": false
+  },
+  "rosanvallon-entretien": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-12",
+   "dernier_jour": "2026-10-12",
+   "emergence": false
+  },
+  "deputee-frais-avocats": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-10-14",
+   "dernier_jour": "2026-10-14",
+   "emergence": false
   }
  },
- "emergences": [
-  "lycee-maintien-ordre-polemique"
- ],
+ "emergences": [],
  "hypotheses": {
   "H-01": {
    "faits": [
     "revelations-presse-ecrits-rn"
    ],
-   "titres": 4,
-   "titres_7_derniers_jours": 4,
+   "titres": 7,
+   "titres_7_derniers_jours": 7,
    "stade_le_plus_haut": "allégation"
   },
   "H-02": {
    "faits": [
-    "campagne-candidat-horizons-difficultes"
+    "campagne-candidat-horizons-difficultes",
+    "enquete-pnf-cite-numerique-plainte"
    ],
-   "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
    "stade_le_plus_haut": "allégation"
   }
  }
