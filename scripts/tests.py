@@ -1189,6 +1189,79 @@ def test_organigramme():
     assert j26["classe"] == "tranche" and dict(zip(piv["PV-BLOC"]["issues"], j26["L"])) == attendu, j26
     html = organigramme.page()
     assert "/*__DONNEES__*/null" in html and "ORGJS" not in html and "function poids(" in html
+    # 16 octobre 2026 : seuil des risques rares, évolution, encart et repères dans la page.
+    assert d["seuil_rare"] == 3 and "tendance" in d
+    assert 'id="rares"' in html and "function evo(" in html and "const RARE" in html
+
+
+def test_controles_du_16_octobre():
+    """Revue de Nathan du 16 octobre 2026 : trois défauts lisibles dans les sorties n'étaient attrapés par aucun test.
+    (1) Dérive : toute version du réseau (structure, tables, calendrier) a un rapport de dérive consigné
+    (scripts/derive.py, modele/reseau/derives.jsonl) ; nombres aléatoires communs : deux calculs identiques donnent
+    les mêmes sorties, et changer un seul nœud ne déplace pas un pivot sans lien avec lui. (2) Vraisemblance
+    (scripts/controles.py) : persistance des variables état par état contre les séries observées, chemins annoncés
+    par les feuilles assumées, issues fourre-tout ; chaque défaut couvert par une dérogation déclarée, aucune
+    dérogation sans objet. (3) Organigramme : risques rares et évolution (instantanés). Contrôles par mutation : la
+    justification fausse de PV-GAUCHE, le retrait d'une dérogation, une dérogation inutile, une table modifiée sans
+    rapport, une sélection d'instantané sans recul, sont tous rejetés."""
+    import copy as cp
+    import controles, derive, organigramme, reseau
+    racine = Path(__file__).resolve().parent.parent
+    L = lambda f: json.loads((racine / f).read_text())
+    S, T = L("modele/reseau/structure_v0.json"), L("modele/reseau/tables_v0.json")
+    # (1) Rapport de dérive consigné pour la version courante ; une table modifiée change l'empreinte.
+    emp = derive.empreinte()
+    assert any(r["empreinte"] == emp for r in derive.consignees()), f"version {emp} du réseau sans rapport de dérive consigné"
+    t2 = cp.deepcopy(T)
+    t2["noeuds"]["PV-TPI"]["sigma"] = t2["noeuds"]["PV-TPI"].get("sigma", .3) + .1
+    cal = L("modele/reseau/calendrier.json")
+    assert derive.empreinte([S, t2, cal]) != emp
+    # Nombres aléatoires communs : mêmes entrées, mêmes sorties ; un changement de PV-TPI ne bouge pas PV-ECOLO.
+    qs = []
+    a = derive.sorties(S, T, cal, qs, 3, 40)
+    assert a == derive.sorties(S, T, cal, qs, 3, 40)
+    t3 = cp.deepcopy(T)
+    c = t3["noeuds"]["PV-TPI"]["cas"] if "cas" in t3["noeuds"]["PV-TPI"] else None
+    if c:
+        for k in c:
+            if not isinstance(c[k], dict):
+                c[k] = min(.95, c[k] * 3)
+    b = derive.sorties(S, t3, cal, qs, 3, 40)
+    assert a[("PV-ECOLO", "candidature autonome")] == b[("PV-ECOLO", "candidature autonome")], "bruit de simulation dans la dérive"
+    assert b[("PV-TPI", "oui")] > a[("PV-TPI", "oui")]
+    ch = derive.noeuds_changes((S, T, cal), (S, t3, cal))
+    assert ch == ["PV-TPI"], ch
+    assert derive.ecarts({("X", "oui"): 10.0}, {("X", "oui"): 16.0}, 5) == [(6.0, ("X", "oui"), 10.0, 16.0)]
+    # (2) Contrôles de vraisemblance : aucun défaut non couvert, aucune dérogation inutile.
+    pers = controles.persistance(S, T, tirages=3, trajectoires=120)
+    marg = controles.marges_courantes(S, T, 3, 120)
+    defauts = {"persistance": pers, "chemins": controles.chemins_annonces(S), "fourre_tout": controles.fourre_tout(S, marg)}
+    restants, inutiles = controles.appliquer_derogations(S, defauts)
+    assert not any(restants.values()), restants
+    assert not inutiles, inutiles
+    # Mutations : justification d'origine de PV-GAUCHE (effet « par VE-SOND », lien inexistant).
+    s2 = cp.deepcopy(S)
+    s2["feuilles_assumees"]["PV-GAUCHE"] = "lue par EV-19 ; l'effet du nombre de candidats de gauche sur le duel passe par les sondages (VE-SOND), pas par un lien direct"
+    assert controles.chemins_annonces(s2) == [("PV-GAUCHE", "VE-SOND")]
+    # Retrait de la dérogation sur PV-ECOLO : l'issue fourre-tout réapparaît ; dérogation sur VE-SOND retirée : défaut.
+    s3 = cp.deepcopy(S)
+    del s3["derogations_controles"]["fourre_tout"]["PV-ECOLO"]
+    r3, _ = controles.appliquer_derogations(s3, defauts)
+    assert [d[0] for d in r3["fourre_tout"]] == ["PV-ECOLO"], r3
+    s4 = cp.deepcopy(S)
+    del s4["derogations_controles"]["persistance"]["VE-SOND|centre"]
+    r4, _ = controles.appliquer_derogations(s4, defauts)
+    assert ("VE-SOND", "centre") in [(d[0], d[1]) for d in r4["persistance"]], r4
+    s5 = cp.deepcopy(S)
+    s5["derogations_controles"]["persistance"]["VE-POP|< 25 %"] = {"cause": "x", "levee_par": "y"}
+    _, i5 = controles.appliquer_derogations(s5, defauts)
+    assert ("persistance", "VE-POP|< 25 %") in i5, i5
+    assert controles.intervalle(0, 11)[1] > .25 and controles.intervalle(0, 11)[1] < .3
+    # (3) Instantané de référence : au moins 7 jours de recul, à défaut le plus ancien, jamais le jour même.
+    if (racine / organigramme.INSTANTANES / "2026-10-10.json").exists():
+        assert organigramme.reference("2026-10-16")["jour"] == "2026-10-10"
+        assert organigramme.reference("2026-10-18")["jour"] == "2026-10-11"
+        assert organigramme.reference("2026-10-10") is None
 
 
 def test_chocs():

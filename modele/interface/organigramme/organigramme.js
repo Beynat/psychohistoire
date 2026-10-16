@@ -82,17 +82,31 @@ function effets(i, m) {
 // --- Rendu -------------------------------------------------------------------------------------------------------
 // Écart affiché à partir de 2 points : en dessous, c'est l'ordre du bruit de la repondération.
 const delta = (a, b) => { const d = Math.round(b) - Math.round(a); return Math.abs(d) >= 2 ? `<span class="av ${d > 0 ? "up" : "down"}">avant ${pc(a)}</span>` : "" };
+// --- Évolution depuis l'instantané de référence (data/instantanes, au moins 7 jours) -------------------------
+// Écart total = aujourd'hui − référence ; part « modèle » = modèle courant aux faits de la référence − référence ;
+// part « faits » = aujourd'hui − ce contrefactuel. Affichée à partir de 2 points (bruit de simulation en dessous).
+const T = D.tendance, TP = (T && T.pivots) || {};
+const sg = x => { const r = Math.round(x); return r ? (r > 0 ? "+" : "−") + Math.abs(r) : "0" };
+const jfr = d => `${+d.slice(8, 10)} ${MOISL[+d.slice(5, 7) - 1]}`;
+function evo(i, k) {
+  const t = TP[P[i].id]; if (!t) return null;
+  const a = t.avant[k], cf = t.contrefactuel[k], b = BASE.MG[i][k], d = Math.round(b) - Math.round(a);
+  if (Math.abs(d) < 2) return {a, d: 0};
+  const pm = cf - a, pf = b - cf, cause = Math.abs(pf) < 2 ? "modèle" : Math.abs(pm) < 2 ? "faits" : "modèle et faits";
+  return {a, d, pm, pf, cause};
+}
+const repere = (i, k) => { const e = M === BASE && evo(i, k); return e && e.d ? `<em style="left:${e.a}%" title="${pc(e.a)} le ${jfr(T.reference)}"></em>` : "" };
+const fleche = (i, k) => { const e = M === BASE && evo(i, k); return e && e.d ? `<span class="tend ${e.d > 0 ? "up" : "down"}" title="${e.d > 0 ? "+" : "−"}${Math.abs(e.d)} points depuis le ${jfr(T.reference)} : ${e.cause}">${e.d > 0 ? "▲" : "▼"} ${Math.abs(e.d)}</span>` : "" };
 function tete(i) {
   const p = P[i], mg = M.MG[i], b = BASE.MG[i], h = M !== BASE;
-  if (p.k != null) return `<div class="gros"><b>${pc(mg[p.k])}</b><div class="barre"><i style="width:${mg[p.k]}%"></i></div></div>${h ? `<div class="reste">${delta(b[p.k], mg[p.k])}</div>` : ""}`;
+  if (p.k != null) return `<div class="gros"><b>${pc(mg[p.k])}</b><div class="barre">${repere(i, p.k)}<i style="width:${mg[p.k]}%"></i></div>${fleche(i, p.k)}</div>${h ? `<div class="reste">${delta(b[p.k], mg[p.k])}</div>` : ""}`;
   const ord = mg.map((v, k) => [k, v]).sort((u, v) => v[1] - u[1]), top = ord.filter(x => x[1] >= 3).slice(0, 3);
   const reste = 100 - top.reduce((s, x) => s + x[1], 0);
-  return `<div class="iss">${top.map(([k, v]) => `<span>${esc(p.libelles[k])}${h ? delta(b[k], v) : ""}</span><div class="barre"><i style="width:${v}%"></i></div><b>${pc(v)}</b>`).join("")}</div>${reste >= 1 ? `<div class="reste">autres : ${pc(reste)}</div>` : ""}`;
+  return `<div class="iss">${top.map(([k, v]) => `<span>${esc(p.libelles[k])}${h ? delta(b[k], v) : ""}</span><div class="barre">${repere(i, k)}<i style="width:${v}%"></i></div><b>${pc(v)}</b><span class="tc">${h ? "" : fleche(i, k)}</span>`).join("")}</div>`;
 }
 function carte(i) {
   const p = P[i], nj = J.filter(j => j.noeud === p.id).length, nf = p.parents.length;
-  return `<div class="c"><div class="quand">${esc(p.quand)}</div><div class="titre">${esc(p.titre)}</div>${tete(i)}
-  <div class="pied">${nf ? `${nf} facteur${nf > 1 ? "s" : ""}` : ""}${nf && nj ? " · " : ""}${nj ? `${nj} jalon${nj > 1 ? "s" : ""}` : ""}<span>détail ›</span></div></div>`;
+  return `<div class="c"><div class="quand">${esc(p.quand)}</div><div class="titre">${esc(p.titre)}</div>${tete(i)}</div>`;
 }
 const TV = [.28, .6, 1];
 function spark(j, w, h, axes, dist) {
@@ -101,12 +115,12 @@ function spark(j, w, h, axes, dist) {
   if (axes) [0, 3, 6, 9, 12, 15, 18, 21].forEach(m => { const [a, mm] = D.mois[m].split("-"); s += `<text x="${m * bw}" y="${h + 12}" font-size="10" fill="var(--muted)">${MOISL[+mm - 1]}${mm === "01" || m === 0 ? " " + a.slice(2) : ""}</text>` });
   return s + "</svg>";
 }
+const moisfr = m => `${MOISL[+m.slice(5, 7) - 1]} ${m.slice(0, 4)}`;
 const legende = j => `<div class="le">${V[j].etats.map((e, i) => `<span><i style="opacity:${TV[i]}"></i>${esc(e)}</span>`).join("")}</div>`;
 function carteVariable(j) {
   const v = V[j], o = v.observe;
-  return `<div class="c"><div class="quand">variable suivie chaque mois</div><div class="titre">${esc(v.titre)}</div>
-  <div class="obs1">${o ? `observé : <b>${esc(o[1])}</b> (${esc(o[0])})` : "non observé"}</div>${spark(j, 236, 30, false, M.VD[j])}${legende(j)}
-  <div class="pied">${v.questions.length ? `${v.questions.length} question${v.questions.length > 1 ? "s" : ""}` : ""}<span>détail ›</span></div></div>`;
+  return `<div class="c"><div class="titre">${esc(v.titre)}</div>
+  <div class="obs1">${o ? `<b>${esc(o[1])}</b> en ${esc(moisfr(o[0]))}` : "non observé"}</div>${spark(j, 236, 30, false, M.VD[j])}${legende(j)}</div>`;
 }
 const estSuppose = f => faits.some(x => x.type === f.type && x.id === f.id && (x.issue === f.issue) && (x.statut === f.statut));
 const bouton = (f, lib) => `<button class="suppose ${estSuppose(f) ? "actif" : ""}" data-f='${esc(JSON.stringify(f))}'>${estSuppose(f) ? "supposé" : lib}</button>`;
@@ -147,7 +161,9 @@ function corps(i) {
     return `<li><b>${esc(e.facteur)}</b>${e.cible ? ` (sur « ${esc(e.cible)} »)` : ""} : ${hi - lo < 3 ? "effet négligeable" : `de ${pc(lo)} (${esc(cmin.si.replace(/^Si /, "si "))}) à ${pc(hi)} (${esc(cmax.si.replace(/^Si /, "si "))})`}</li>` }).join("");
   const ctx = p.ctx.length ? `<li>Pris en compte sans chiffrage ici : ${esc(p.ctx.join(", "))}.</li>` : "";
   const js = J.filter(j => j.noeud === p.id).sort((a, b) => a.debut < b.debut ? -1 : 1);
-  return `${issues}<div class="sec"><div class="h">D'où vient ce chiffre</div>${dec}${autres || ctx ? `<div class="h" style="margin-top:12px">Autres facteurs</div><ul class="af">${autres}${ctx}</ul>` : ""}<p class="fia fia-${p.fiabilite}">Fiabilité des paramètres : ${FIA[p.fiabilite]}.</p></div>${js.length ? `<div class="sec js"><div class="h">Jalons à surveiller</div><ul>${js.map(jalonHtml).join("")}</ul></div>` : ""}`;
+  const ev = p.issues.map((_, k) => [k, evo(i, k)]).filter(([_, e]) => e && e.d);
+  const evol = !T ? "" : `<div class="sec"><div class="h">Évolution depuis le ${jfr(T.reference)}</div>${ev.length ? `<table class="iss2">${ev.map(([k, e]) => `<tr><td>${esc(p.libelles[k])}</td><td class="nb">${pc(e.a)} → ${pc(BASE.MG[i][k])}</td><td class="nb">${e.d > 0 ? "+" : "−"}${Math.abs(e.d)} pts</td><td class="nb muted">modèle ${sg(e.pm)}, faits ${sg(e.pf)}</td></tr>`).join("")}</table><p class="note">« Modèle » : changement des tables ou de la structure ; « faits » : nouvelles observations et jalons.</p>` : `<p class="note">Aucun écart de 2 points ou plus.</p>`}</div>`;
+  return `${issues}${evol}<div class="sec"><div class="h">D'où vient ce chiffre</div>${dec}${autres || ctx ? `<div class="h" style="margin-top:12px">Autres facteurs</div><ul class="af">${autres}${ctx}</ul>` : ""}<p class="fia fia-${p.fiabilite}">Fiabilité des paramètres : ${FIA[p.fiabilite]}.</p></div>${js.length ? `<div class="sec js"><div class="h">Jalons à surveiller</div><ul>${js.map(jalonHtml).join("")}</ul></div>` : ""}`;
 }
 function corpsVariable(j) {
   const v = V[j];
@@ -158,11 +174,15 @@ function corpsVariable(j) {
 
 // --- Organigramme ------------------------------------------------------------------------------------------------
 const org = document.getElementById("org");
-const ids = P.map(p => p.id).concat(V.map(v => v.id));
-org.innerHTML = P.map((p, i) => `<div class="n pv" id="${p.id}" style="--th:var(--t-${p.theme})" tabindex="0" role="button" aria-label="${esc(p.titre)} : détail">${carte(i)}</div>`).join("")
+// Risques rares : issue affichée sous D.seuil_rare % ; hors de l'organigramme, dans un encart, toujours dans « et si ».
+const RARE = new Set(P.map((_, i) => i).filter(i => P[i].k != null && BASE.MG[i][P[i].k] < D.seuil_rare));
+const RID = new Set([...RARE].map(i => P[i].id));
+const ids = P.filter(p => !RID.has(p.id)).map(p => p.id).concat(V.map(v => v.id));
+org.innerHTML = P.map((p, i) => RARE.has(i) ? "" : `<div class="n pv" id="${p.id}" style="--th:var(--t-${p.theme})" tabindex="0" role="button" aria-label="${esc(p.titre)} : détail">${carte(i)}</div>`).join("")
   + V.map((v, j) => `<div class="n pv va" id="${v.id}" style="--th:var(--t-variable)" tabindex="0" role="button" aria-label="${esc(v.titre)} : détail">${carteVariable(j)}</div>`).join("");
 const liens = [];
-P.forEach((p, c) => p.parents.forEach(x => {
+P.forEach((p, c) => !RID.has(p.id) && p.parents.forEach(x => {
+  if (RID.has(x.id)) return;
   if (x.id in IX) { const ef = effets(c, BASE).find(e => e.de === x.id); const vs = ef ? ef.cas.map(u => u.p) : []; const d = vs.length > 1 ? Math.max(...vs) - Math.min(...vs) : 0;
     liens.push({de: x.id, vers: p.id, fort: d >= 10}) }
   else if (x.id in VX) { const ef = effets(c, BASE).find(e => e.de === x.id); const vs = ef ? ef.cas.map(u => u.p) : [];
@@ -208,7 +228,7 @@ function rafraichir() {
   const b = document.getElementById("etsi");
   b.classList.toggle("on", faits.length > 0);
   b.innerHTML = faits.length ? `<span class="t">Et si :</span>${faits.map((f, k) => `<span class="f">${esc(libFait(f))}<button data-k="${k}" aria-label="Retirer">×</button></span>`).join("")}<button class="raz" id="raz">tout retirer</button><span class="ess">${Math.round(M.ess)} trajectoires effectives sur ${N}</span>${rare ? `<span class="rare">Combinaison trop rare pour être estimée : chiffres non fiables.</span>` : ""}` : "";
-  P.forEach((_, i) => { document.getElementById(P[i].id).innerHTML = carte(i) });
+  P.forEach((_, i) => { const e = document.getElementById(P[i].id); if (e) e.innerHTML = carte(i) });
   V.forEach((_, j) => { document.getElementById(V[j].id).innerHTML = carteVariable(j) });
   if (ouvert) ouvrir(ouvert);
 }
@@ -224,11 +244,15 @@ document.body.addEventListener("click", e => {
 });
 document.querySelectorAll(".n.pv").forEach(e => { e.onkeydown = k => { if (k.key === "Enter" || k.key === " ") { k.preventDefault(); ouvrir(e.id) } } });
 const bh = document.getElementById("hors");
-bh.textContent = `${D.hors.length} questions suivies hors réseau ›`;
+bh.textContent = `${D.hors.length} questions hors réseau`;
 bh.onclick = () => { ouvert = null; dc.innerHTML = `<div class="pv dl" style="--th:var(--muted)"><div class="c"><div class="titre">Questions suivies hors réseau</div><p class="note">Prévues par l'ensemble de prévisionnistes et notées, mais aucun pivot ni aucune variable du réseau ne les porte encore.</p></div><div class="sec"><ul class="hl">${D.hors.map(h => `<li><b>${esc(h.id)}</b> ${esc(h.nom)}</li>`).join("")}</ul></div></div>`; dlg.showModal() };
+const br = document.getElementById("rares");
+br.textContent = RARE.size ? `${RARE.size} risque${RARE.size > 1 ? "s" : ""} rare${RARE.size > 1 ? "s" : ""} (< ${D.seuil_rare} %)` : "";
+br.onclick = () => { ouvert = null; dc.innerHTML = `<div class="pv dl" style="--th:var(--muted)"><div class="c"><div class="titre">Risques rares</div><p class="note">Événements dont la probabilité reste sous ${D.seuil_rare} % : ils sont calculés par le moteur et peuvent être supposés dans « et si », mais ne figurent pas dans l'organigramme.</p></div><div class="sec rares">${[...RARE].map(i => `<div class="n pv" id="${P[i].id}" style="--th:var(--t-${P[i].theme})" tabindex="0" role="button">${carte(i)}</div>`).join("")}</div></div>`; dlg.showModal() };
 const bp = document.getElementById("hyp");
-bp.textContent = `${D.hypotheses.length} hypothèses porteuses ›`;
+bp.textContent = `${D.hypotheses.length} hypothèses`;
 bp.onclick = () => { ouvert = null; dc.innerHTML = `<div class="pv dl" style="--th:var(--muted)"><div class="c"><div class="titre">Hypothèses porteuses</div><p class="note">Ce que le réseau suppose sans le représenter, ou en partie. Probabilité de rupture tirée de précédents ; une alerte de la veille déclenche un examen, jamais un changement de probabilité.</p></div><div class="sec">${D.hypotheses.map(h => `<p><b>${esc(h.id)}</b> ${esc(h.enonce)} <span class="pill">rupture ${pc(100 * h.rupture)}</span></p><p class="note">${esc(h.traitement)}</p>`).join("")}</div></div>`; dlg.showModal() };
-document.getElementById("meta").textContent = `${N} trajectoires du moteur ; ${D.version_tables}. Calculé le ${D.etabli_le}.`;
+document.getElementById("meta").textContent = `Calculé le ${jfr(D.etabli_le)} ${D.etabli_le.slice(0, 4)}.`;
+if (T) document.getElementById("leg-evo").innerHTML = `<b class="tend up">▲</b><b class="tend down" style="margin-left:0">▼</b> évolution depuis le ${jfr(T.reference)}, trait : valeur d'alors`;
 document.body.dataset.pret = "1";
 })();

@@ -1,5 +1,5 @@
 {
- "version": "structure v0.10 (11 octobre 2026, étape 13 : sous-réseau mouvements et ordre public — VE-LYCEE décalé parent de VE-MOBIL, pivot PV-CASSEURS, satellites EV-48, EV-49, EV-03, EV-44, EV-23, EV-14b) ; structure v0.9 (10 octobre 2026, étape 10 : profils de risque élicités sur tranches de dates réelles pour huit pivots « à tout moment », départ immédiat du Premier ministre après censure) ; structure v0.8 (10 octobre 2026, étape 9 : points d'entrée des chocs, nœud rare PV-VACANCE) ; structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
+ "version": "structure v0.10.1 (16 octobre 2026, revue de Nathan : définition de l'hypothèse principale de VE-SOND et VE-RN écrite, justification fausse de la feuille PV-GAUCHE corrigée, dérogations déclarées aux contrôles de vraisemblance) ; structure v0.10 (11 octobre 2026, étape 13 : sous-réseau mouvements et ordre public — VE-LYCEE décalé parent de VE-MOBIL, pivot PV-CASSEURS, satellites EV-48, EV-49, EV-03, EV-44, EV-23, EV-14b) ; structure v0.9 (10 octobre 2026, étape 10 : profils de risque élicités sur tranches de dates réelles pour huit pivots « à tout moment », départ immédiat du Premier ministre après censure) ; structure v0.8 (10 octobre 2026, étape 9 : points d'entrée des chocs, nœud rare PV-VACANCE) ; structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
  "description": "Réseau bayésien dynamique v0, pas mensuel d'octobre 2026 à septembre 2028. Révisé après le pré-mortem du 10 octobre (scratchpad, rapport de 32 causes) : aucun cycle au sein d'un mois (liens au mois précédent marqués « decalage »: 1), au plus trois parents (exception : PV-CASSEURS, quatre parents dont trois pivots binaires, 24 cas élicités, étape 13), pivots électoraux par personnes, dette découpée en note, procédure de déficit excessif et TPI ouverts dès octobre 2026, dissolution et censure découpées avant et après la présidentielle, changement de gouvernement ajouté. Hors réseau (notés sur l'ensemble et les comparateurs) : EV-36, EV-06, international, climat, sécurité ; EV-03, EV-44, EV-23 et EV-14b raccordés par des tables de mesure à l'étape 13.",
  "codes_candidats": {
   "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate ; sinon Jordan Bardella, ou un autre candidat si PV-RNAUTRE = oui)",
@@ -124,7 +124,7 @@
     },
     "PV-BLOC"
    ],
-   "definition": "bloc du candidat classé deuxième dans la moyenne des sondages du mois (hypothèse principale)",
+   "definition": "bloc du candidat classé deuxième derrière le RN dans la moyenne des sondages du mois ; hypothèse principale : les hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc compté par son candidat le mieux placé (scripts/etat.py), sans correction de l'erreur historique",
    "source": "data/etat/sondages.jsonl"
   },
   {
@@ -143,7 +143,7 @@
     },
     "PV-LEPEN"
    ],
-   "definition": "moyenne des sondages du mois pour le candidat du RN (hypothèse principale)",
+   "definition": "moyenne des sondages du mois pour le candidat du RN ; hypothèse principale : les hypothèses de premier tour du mois qui testent Édouard Philippe (scripts/etat.py), sans correction de l'erreur historique",
    "source": "data/etat/sondages.jsonl"
   }
  ],
@@ -1737,7 +1737,7 @@
  "feuilles_assumees": {
   "PV-CENSURE2": "lue par EV-15c ; aucun effet élicité sur un autre pivot de l'horizon (fin du mandat de l'Assemblée hors fenêtre)",
   "PV-DISSOL2b": "lue par EV-16b et EV-17 ; la composition de l'Assemblée qui suivrait n'est pas modélisée (hors horizon des questions rattachées)",
-  "PV-GAUCHE": "lue par EV-19 ; l'effet du nombre de candidats de gauche sur le duel passe par les sondages (VE-SOND), pas par un lien direct",
+  "PV-GAUCHE": "lue par EV-19 ; aucun effet modélisé du nombre de candidats de gauche sur le duel (point ouvert du 16 octobre 2026 : la variable des sondages n'a pas ce nœud pour parent, contrairement à ce qu'affirmait la justification précédente ; le bénéficiaire du soutien écologiste doit porter l'effet)",
   "PV-RNAUTRE": "lue par EV-05 ; effets en aval non élicités, l'autre candidat RN est traité comme Bardella (hypothèse H-01, étape 9)",
   "PV-AUDIENCE": "sans mesure propre : parent de PV-POURVOI (date de l'arrêt), observable par le jalon J-020",
   "PV-VACANCE": "nœud rare (H-03) : probabilité affichée, effets non modélisés ; s'il survient, restructuration rapide",
@@ -1823,5 +1823,23 @@
    "definition": "vacance de la présidence rendue plus probable (santé, démission annoncée ; hypothèse H-03)",
    "absorption": "aucune"
   }
- ]
+ ],
+ "derogations_controles": {
+  "persistance": {
+   "VE-SOND|centre": {
+    "cause": "le modèle fait basculer la deuxième place 30 % des mois contre 0 sur 11 observés (borne haute 28 %) ; l'état à trois issues ne distingue pas une égalité (septembre 2026 : centre 17,0, gauche 16,4) d'une avance de 4 points, d'où une persistance basse appliquée à tous les mois",
+    "levee_par": "état « serré » de VE-SOND et réélicitation (tâche du 16 octobre 2026)"
+   },
+   "VE-ECART|< 120 pb": {
+    "cause": "en zone calme, le modèle fait basculer l'écart 8 % des mois contre 2 sur 326 observés depuis 1999 (borne haute 2,2 %) : la transition depuis « < 120 pb » est trop instable ; effet limité tant que l'écart reste en zone de tension (130 pb en octobre 2026)",
+    "levee_par": "réélicitation de la transition de VE-ECART depuis « < 120 pb » sur le taux de base de la série BCE (à programmer)"
+   }
+  },
+  "fourre_tout": {
+   "PV-ECOLO": {
+    "cause": "« soutien à un autre candidat » (44 %) regroupe un soutien au candidat issu de la primaire PS – Place publique et un soutien à Mélenchon, aux effets opposés sur le duel",
+    "levee_par": "nœud du bénéficiaire du soutien écologiste, après la proclamation de la primaire du 17 octobre 2026"
+   }
+  }
+ }
 }

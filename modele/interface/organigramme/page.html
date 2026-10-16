@@ -75,7 +75,7 @@ ul.af{margin:2px 0;padding-left:18px;font-size:12.5px}ul.af li{margin:3px 0}
 .pv .gros .barre{flex:1;margin:0}
 .barre{display:flex;height:8px;border-radius:4px;overflow:hidden;background:var(--soft)}
 .barre i{display:block;height:100%;background:var(--th)}
-.pv .iss{display:grid;grid-template-columns:1fr 56px 38px;gap:2px 6px;align-items:center;font-size:12.5px}
+.pv .iss{display:grid;grid-template-columns:1fr 48px 34px minmax(0,auto);gap:2px 6px;align-items:center;font-size:12.5px}
 .pv .iss b{text-align:right;color:var(--th)}
 .pv .reste{font-size:11.5px;color:var(--muted);margin-top:3px}
 .sec{border-top:1px solid var(--line);padding:7px 14px 9px}
@@ -112,6 +112,9 @@ ul.af{margin:2px 0;padding-left:18px;font-size:12.5px}ul.af li{margin:3px 0}
 .etsi.on{display:block}.etsi .t{font-weight:700;margin-right:8px}.etsi .f{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);border-radius:999px;padding:2px 10px;margin:3px 6px 3px 0}
 .etsi .f button,.etsi .raz{all:unset;cursor:pointer;color:var(--muted);font-weight:700}.etsi .raz{color:var(--accent);text-decoration:underline;margin-left:6px}
 .etsi .ess{color:var(--muted);margin-left:8px}.etsi .rare{color:var(--crit);font-weight:700;margin-left:8px}
+.barre{position:relative}.barre em{position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:var(--ink);opacity:.6;z-index:1}
+.tend{font-size:11.5px;font-weight:700;white-space:nowrap;margin-left:6px;color:var(--ink)}.tend small{font-weight:400;color:var(--muted);margin-left:3px;font-size:10.5px}.tend.up{color:var(--accent)}.tend.down{color:var(--ink)}.barre:has(em){overflow:visible}.pv .iss .tc .tend{margin-left:0}.barre:has(em) i{border-radius:4px}
+.sec.rares{display:grid;gap:10px}.sec.rares .n.pv{position:static}
 .av{font-size:12px;color:var(--muted);font-weight:400;margin-left:6px;white-space:nowrap}.av.up{color:var(--accent)}.av.down{color:var(--crit)}
 .suppose{all:unset;cursor:pointer;font-size:11.5px;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:0 8px;margin-left:6px;white-space:nowrap}
 .suppose.actif{background:var(--accent);color:var(--surface)}
@@ -122,16 +125,17 @@ table.iss2{width:100%;border-collapse:collapse;font-size:12.5px}table.iss2 td{pa
 <body>
 <div class="wrap">
   <h1>Organigramme des pivots</h1>
-  <p class="lede">De gauche à droite, des causes vers les conséquences. Chaque carte est un événement et sa probabilité ; un clic ouvre ce qui pèse dessus et les jalons à surveiller. « Et si » : dans le détail d'un pivot ou d'un jalon, « supposer » un fait recalcule tout l'organigramme, en aval comme en amont.</p>
+  <p class="lede">Des causes, à gauche, vers les conséquences, à droite. Une carte ouvre le détail du chiffre ; « supposer » un fait recalcule tout.</p>
   <div class="legende">
     <span><i class="pastille" style="background:var(--t-budget)"></i>budget et gouvernement</span>
     <span><i class="pastille" style="background:var(--t-candidatures)"></i>justice et candidatures</span>
     <span><i class="pastille" style="background:var(--t-election)"></i>présidentielle</span>
     <span><i class="pastille" style="background:var(--t-apres)"></i>après l'élection</span>
     <span><i class="pastille" style="background:var(--t-dette)"></i>dette et marchés</span>
-    <span><svg width="34" height="10"><line x1="1" y1="5" x2="33" y2="5" stroke="var(--accent)" stroke-width="2.6"/></svg>lien fort : la cause change la conséquence d'au moins 10 points</span>
-    <span><svg width="34" height="10"><line x1="1" y1="5" x2="33" y2="5" stroke="var(--line-strong)" stroke-width="1.4"/></svg>lien faible</span><span><svg width="34" height="10"><line x1="1" y1="5" x2="33" y2="5" stroke="var(--line-strong)" stroke-width="1.4" stroke-dasharray="5 4"/></svg>lien d'une variable suivie chaque mois</span><span><i class="pastille" style="background:var(--t-variable)"></i>variable suivie (mobilisation, popularité, taux, sondages)</span><button class="hors" id="hors"></button> <button class="hors" id="hyp"></button>
+    <span><svg width="34" height="10"><line x1="1" y1="5" x2="33" y2="5" stroke="var(--accent)" stroke-width="2.6"/></svg>lien fort</span>
+    <span><svg width="34" height="10"><line x1="1" y1="5" x2="33" y2="5" stroke="var(--line-strong)" stroke-width="1.4"/></svg>lien faible</span><span><i class="pastille" style="background:var(--t-variable)"></i>variable mensuelle</span><span id="leg-evo"></span>
   </div>
+  <div class="legende liens"><button class="hors" id="rares"></button><button class="hors" id="hyp"></button><button class="hors" id="hors"></button></div>
   <div class="etsi" id="etsi"></div>
   <p class="note" id="meta"></p>
   <div class="scroll"><div class="cadre" id="cadre"><div class="org" id="org"></div></div></div>

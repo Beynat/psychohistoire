@@ -1,6 +1,6 @@
 """Données de l'organigramme (feuille de route, étape 8) : écrit data/organigramme_v0.json, lu par reseau.html.
 
-Usage : python scripts/organigramme.py [--tirages N] [--trajectoires N] [--sortie FICHIER]
+Usage : python scripts/organigramme.py [--tirages N] [--trajectoires N] [--sortie FICHIER] [--sans-instantane]
         python scripts/organigramme.py --page SORTIE.html [--apercu]     page (données en ligne avec --apercu)
 
 La page recalcule elle-même toutes les probabilités à partir des trajectoires du moteur (scripts/reseau.py, mêmes
@@ -13,6 +13,13 @@ vers l'amont. Rien n'est écrit au registre : l'organigramme est une lecture du 
 Codage : « codes », une chaîne par trajectoire, un caractère par pivot (rang de l'issue dans « issues ») ;
 « variables », une chaîne par trajectoire, 24 caractères par variable dans l'ordre de « variables » (rang de
 l'état, un par mois d'octobre 2026 à septembre 2028).
+
+Évolution (16 octobre 2026, demande de Nathan) : chaque nuit, la loi des pivots et les faits du jour (observations,
+preuves notées) sont conservés dans data/instantanes/AAAA-MM-JJ.json. La page compare chaque probabilité à
+l'instantané le plus récent daté d'au moins 7 jours, et sépare l'écart en deux parts : « modèle » (le modèle courant
+appliqué aux faits de ce jour-là, moins la valeur de ce jour-là) et « faits » (aujourd'hui moins ce contrefactuel).
+Risques rares : un pivot dont l'issue affichée reste sous 3 % sort de l'organigramme pour un encart à part ; il reste
+dans le moteur et dans le mode « et si ».
 """
 import json
 import random
@@ -108,26 +115,110 @@ def phrase(p, k):
     return "Si " + (SI[pid][k] if pid in SI else PREFIXE[pid] + l)
 
 
-def construire(tirages=100, trajectoires=40, graine=20261010):
+INSTANTANES = "data/instantanes"
+SEUIL_RARE = 3      # pivot dont l'issue affichée reste sous 3 % : replié dans l'encart « risques rares »
+RECUL_JOURS = 7     # évolution affichée : par rapport à l'instantané le plus récent daté d'au moins 7 jours
+
+
+def simuler_lot(s, tables, obs, notees, tirages, trajectoires, graine):
+    """Trajectoires du moteur : issue de chaque pivot, états mensuels des variables, poids des preuves."""
+    # Nombres aléatoires communs : le contrefactuel de l'évolution (mêmes trajectoires, autres faits) et le jour
+    # suivant ne diffèrent que par ce qui a changé, pas par le bruit des tirages.
+    reseau.CRN = graine
+    try:
+        reseau.PRIORS = reseau.lois_a_priori(s, tables, obs)
+    finally:
+        reseau.CRN = None
+    reseau.CHOCS = reseau.chocs_retenus()
+    noeuds = reseau.noeuds_de(s)
+    piv, ve = s["pivots"], s["variables_etat"]
+    rng = random.Random(graine)
+    reseau.CRN = graine
+    codes, vcodes, poids = [], [], []
+    for jt in range(tirages):
+        params = reseau.perturber(tables, rng, reseau._rngs("p", jt))
+        for jj in range(trajectoires):
+            t = reseau.simuler(s, params, obs, rng, rngs=reseau._rngs("t", jt, jj))
+            codes.append("".join(str(p["issues"].index(pv.issue_noeud(t, p["id"], p))) for p in piv))
+            vcodes.append("".join(str(v["etats"].index(e)) for v in ve for e in t[v["id"]]))
+            poids.append(round(pv.poids(notees, t, noeuds), 6) if notees else 1)
+    reseau.CRN = None
+    return codes, vcodes, poids
+
+
+def marges(s, codes, poids):
+    """Loi de chaque pivot (%), pondérée, à partir des codes de trajectoires."""
+    W = sum(poids) or 1.0
+    out = {}
+    for i, p in enumerate(s["pivots"]):
+        a = [0.0] * len(p["issues"])
+        for c, w in zip(codes, poids):
+            a[int(c[i])] += w
+        out[p["id"]] = [round(100 * x / W, 1) for x in a]
+    return out
+
+
+def instantane(s, tables, jour, obs, notees, codes, poids, empreinte_):
+    """Ce qui est conservé chaque jour pour afficher l'évolution : lois des pivots, et les faits de ce jour
+    (observations et preuves) pour séparer ensuite l'effet du modèle de celui des faits."""
+    return {"jour": jour, "empreinte": empreinte_, "version_structure": s.get("version"),
+            "version_tables": tables.get("version"), "pivots": marges(s, codes, poids),
+            "observations": obs, "preuves": notees}
+
+
+def reference(jour, recul=RECUL_JOURS):
+    """Instantané le plus récent daté d'au moins RECUL jours avant JOUR ; à défaut, le plus ancien."""
+    d = RACINE / INSTANTANES
+    fs = sorted(d.glob("????-??-??.json")) if d.exists() else []
+    if not fs:
+        return None
+    from datetime import date as _d, timedelta
+    limite = (_d.fromisoformat(jour) - timedelta(days=recul)).isoformat()
+    avant = [f for f in fs if f.stem <= limite]
+    f = avant[-1] if avant else fs[0]
+    return None if f.stem >= jour else json.loads(f.read_text("utf-8"))
+
+
+def tendance(s, tables, ref, marg_now, tirages, trajectoires, graine):
+    """Évolution depuis l'instantané REF, séparée en deux parts : « modèle » (le modèle courant appliqué aux faits de
+    REF, moins REF) et « faits » (aujourd'hui moins ce contrefactuel). Une issue absente de REF (structure changée)
+    n'a pas d'évolution."""
+    noeuds = reseau.noeuds_de(s)
+    obs_ref = {n: d for n, d in (ref.get("observations") or {}).items() if n in noeuds}
+    codes, _, poids = simuler_lot(s, tables, obs_ref, ref.get("preuves") or [], tirages, trajectoires, graine)
+    cf = marges(s, codes, poids)
+    out = {}
+    for p in s["pivots"]:
+        avant = ref["pivots"].get(p["id"])
+        if avant is None or len(avant) != len(p["issues"]):
+            continue
+        out[p["id"]] = {"avant": avant, "contrefactuel": cf[p["id"]]}
+    return {"reference": ref["jour"], "modele_change": ref.get("empreinte") != empreinte_courante(),
+            "versions": [ref.get("version_tables"), tables.get("version")], "pivots": out}
+
+
+def empreinte_courante():
+    import derive
+    return derive.empreinte()
+
+
+def construire(tirages=100, trajectoires=40, graine=20261010, avec_tendance=True, ecrire_instantane=False):
     import carte
     s = lire_json("modele/reseau/structure_v0.json")
     tables = lire_json("modele/reseau/tables_v0.json")
     obs = reseau.observations(s)
-    reseau.PRIORS = reseau.lois_a_priori(s, tables, obs)
-    reseau.CHOCS = reseau.chocs_retenus()
     jour = date.today().isoformat()
     notees = pv.preuves_notees(jour)
     noeuds = reseau.noeuds_de(s)
     piv, ve = s["pivots"], s["variables_etat"]
-    rng = random.Random(graine)
-    codes, vcodes, poids = [], [], []
-    for _ in range(tirages):
-        params = reseau.perturber(tables, rng)
-        for _ in range(trajectoires):
-            t = reseau.simuler(s, params, obs, rng)
-            codes.append("".join(str(p["issues"].index(pv.issue_noeud(t, p["id"], p))) for p in piv))
-            vcodes.append("".join(str(v["etats"].index(e)) for v in ve for e in t[v["id"]]))
-            poids.append(round(pv.poids(notees, t, noeuds), 6) if notees else 1)
+    codes, vcodes, poids = simuler_lot(s, tables, obs, notees, tirages, trajectoires, graine)
+    marg_now = marges(s, codes, poids)
+    ref = reference(jour) if avec_tendance else None
+    tend = tendance(s, tables, ref, marg_now, tirages, trajectoires, graine) if ref else None
+    if ecrire_instantane:
+        (RACINE / INSTANTANES).mkdir(parents=True, exist_ok=True)
+        (RACINE / INSTANTANES / f"{jour}.json").write_text(
+            json.dumps(instantane(s, tables, jour, obs, notees, codes, poids, empreinte_courante()), ensure_ascii=False), "utf-8")
     ve_ids = {v["id"] for v in ve}
     pivots = []
     for p in piv:
@@ -180,7 +271,8 @@ def construire(tirages=100, trajectoires=40, graine=20261010):
             "mois": reseau.MOIS, "pivots": pivots, "variables": variables, "jalons": jal,
             "preuves_notees": [p["id"] for p in notees], "hypotheses": hyp,
             "hors": [{"id": e["id"], "nom": e["nom"]} for e in lire_json("modele/evenements.json")["evenements"] if e["id"] not in s["mesures"]],
-            "k": pv.K, "seuil_ess": reseau.SEUIL_ESS, "codes": codes, "variables_codes": vcodes, "poids": poids}
+            "k": pv.K, "seuil_ess": reseau.SEUIL_ESS, "seuil_rare": SEUIL_RARE, "tendance": tend,
+            "codes": codes, "variables_codes": vcodes, "poids": poids}
 
 
 def page(donnees=None):
@@ -195,8 +287,57 @@ def page(donnees=None):
     return html
 
 
+def reconstituer():
+    """Instantanés passés, reconstitués depuis git (une fois, 16 octobre 2026) : pour chaque jour, la dernière
+    version publiée de data/carte_v0.json (mêmes trajectoires du moteur), les observations de ce commit et les
+    preuves notées à cette date. Les jours sans nouvelle carte reprennent la précédente : rien n'a changé."""
+    import subprocess
+    import derive
+    log = subprocess.run(["git", "log", "--format=%h %cI", "--", "data/carte_v0.json"], cwd=RACINE,
+                         capture_output=True, text=True).stdout.split("\n")
+    par_jour = {}
+    for l in reversed([x for x in log if x.strip()]):
+        h, t = l.split()
+        from datetime import datetime
+        par_jour[datetime.fromisoformat(t).astimezone().date().isoformat()] = h
+    show = lambda h, f: json.loads(subprocess.run(["git", "show", f"{h}:{f}"], cwd=RACINE, capture_output=True,
+                                                  text=True).stdout or "null")
+    (RACINE / INSTANTANES).mkdir(parents=True, exist_ok=True)
+    faits = []
+    for jour, h in sorted(par_jour.items()):
+        c = show(h, "data/carte_v0.json")
+        s = show(h, "modele/reseau/structure_v0.json")
+        fich = [show(h, f) for f in reseau.FICHIERS_RESEAU]
+        piv = {}
+        c["poids"] = c.get("poids") or [1] * len(c["codes"])
+        W = sum(c["poids"]) or 1.0
+        for i, p in enumerate(c["pivots"]):
+            a = [0.0] * len(p["issues"])
+            for code, w in zip(c["codes"], c["poids"]):
+                x = code[i]
+                k = int(x, 36) if p["nature"] == "daté" else p["issues"].index("non" if x == "-" else "oui")
+                a[k] += w
+            piv[p["id"]] = [round(100 * v / W, 1) for v in a]
+        o = show(h, "modele/reseau/observations.json") or {}
+        courant = (o.get("etabli_le") or "")[:7]
+        maxima = {v["id"] for v in s["variables_etat"] if v.get("agregat") == "maximum"}
+        obs = {n: {m: ({"au_moins": e} if n in maxima and courant and m >= courant and isinstance(e, str) else e)
+                   for m, e in dd.items()} for n, dd in o.get("etats", {}).items()}   # même règle que reseau.observations
+        d = {"jour": jour, "empreinte": derive.empreinte(fich), "version_structure": s.get("version"),
+             "version_tables": c.get("version_tables"), "pivots": piv, "observations": obs,
+             "preuves": pv.preuves_notees(jour), "reconstitue": f"git {h}"}
+        f = RACINE / INSTANTANES / f"{jour}.json"
+        if not f.exists():
+            f.write_text(json.dumps(d, ensure_ascii=False), "utf-8")
+            faits.append(jour)
+    return faits
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
+    if "--reconstituer" in a:
+        print("instantanés reconstitués :", ", ".join(reconstituer()) or "aucun")
+        sys.exit(0)
     if "--page" in a:
         # Page seule (données lues à l'exécution) ; avec --apercu, données en ligne.
         cible = a[a.index("--page") + 1]
@@ -207,6 +348,7 @@ if __name__ == "__main__":
     nt = int(a[a.index("--tirages") + 1]) if "--tirages" in a else 100
     ntr = int(a[a.index("--trajectoires") + 1]) if "--trajectoires" in a else 40
     sortie = a[a.index("--sortie") + 1] if "--sortie" in a else "data/organigramme_v0.json"
-    d = construire(nt, ntr)
+    # L'instantané du jour n'est écrit que pour la sortie publiée (collecte nocturne), jamais pour un essai.
+    d = construire(nt, ntr, ecrire_instantane=sortie == "data/organigramme_v0.json" and "--sans-instantane" not in a)
     (RACINE / sortie).write_text(json.dumps(d, ensure_ascii=False, separators=(",", ":")), "utf-8")
     print(f"{sortie} : {len(d['codes'])} trajectoires, {len(d['pivots'])} pivots, {len(d['jalons'])} jalons")

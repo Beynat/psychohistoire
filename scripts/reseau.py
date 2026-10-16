@@ -138,11 +138,32 @@ def ordre(structure):
     return out, noeuds
 
 
-def perturber(tables, rng):
+CRN = None   # nombres aléatoires communs (scripts/derive.py) : graine de base, un générateur par nœud ; None : désactivé
+
+
+def _rngs(*cle):
+    """Un générateur par nœud, dérivé de la graine CRN et de CLE (tirage, trajectoire) : changer un nœud ne
+    déplace pas les tirages des autres (nombres aléatoires communs entre deux versions du réseau)."""
+    return _RngsNoeuds(cle)
+
+
+class _RngsNoeuds(dict):
+    def __init__(self, cle):
+        super().__init__()
+        self.cle = cle
+
+    def __missing__(self, nid):
+        r = self[nid] = random.Random(f"{CRN}-{'-'.join(map(str, self.cle))}-{nid}")
+        return r
+
+
+def perturber(tables, rng, rngs=None):
     """Un jeu de paramètres tiré autour des valeurs agrégées : bruit en log-cotes (lois, risques, transitions)
-    et en log (multiplicateurs), d'écart-type sigma du nœud (au moins 0,3, noyau section 4.4)."""
+    et en log (multiplicateurs), d'écart-type sigma du nœud (au moins 0,3, noyau section 4.4). rngs : un
+    générateur par nœud (nombres aléatoires communs), à défaut rng pour tous."""
     out = {}
     for nid, t in tables["noeuds"].items():
+        rng = rngs[nid] if rngs is not None else rng
         s = max(t.get("sigma", SIGMA_PLANCHER), SIGMA_PLANCHER)
         bruit = lambda d: normaliser({k: sig(logit(v) + rng.gauss(0, s)) if v > 0 else 0.0 for k, v in d.items()})
         u = dict(t)
@@ -314,7 +335,7 @@ def simuler(structure, params, obs, rng, priors=None, rngs=None):
     for k in range(len(MOIS)):
         for i in rangs:
             n, t = noeuds[i], params[i]
-            r = rngs[i] if rngs else rng
+            r = rngs[i] if rngs is not None else rng
             etats = {}
             for p in n.get("parents", []):
                 kk = k - dec(p)
@@ -455,11 +476,12 @@ def lois_a_priori(structure, tables, obs, n=1000, graine=7, passes=2):
     params = {i: dict(t) for i, t in tables["noeuds"].items()}
     datés = [p for p in structure["pivots"] if p["nature"] == "daté"]
     priors = {}
-    for _ in range(passes):
+    for passe in range(passes):
         rng = random.Random(graine)
         comptes = {p["id"]: {} for p in datés}
-        for _ in range(n):
-            traj = simuler(structure, params, obs, rng, priors=priors)
+        for j in range(n):
+            traj = simuler(structure, params, obs, rng, priors=priors,
+                           rngs=_rngs("a", passe, j) if CRN is not None else None)
             for p in datés:
                 v = traj[p["id"]][-1]
                 comptes[p["id"]][v] = comptes[p["id"]].get(v, 0) + 1
@@ -570,11 +592,11 @@ def _prevoir(structure, tables, obs, questions, tirages, trajectoires, graine, p
     par_tirage = {q["id"]: [] for q in questions}    # (moyenne pondérée, poids du tirage, variance de simulation)
     piv = {p["id"]: {} for p in structure["pivots"]}
     sw = sw2 = 0.0
-    for _ in range(tirages):
-        params = perturber(tables, rng)
+    for jt in range(tirages):
+        params = perturber(tables, rng, _rngs("p", jt) if CRN is not None else None)
         lignes = []
-        for _ in range(trajectoires):
-            traj = simuler(structure, params, obs, rng)
+        for jj in range(trajectoires):
+            traj = simuler(structure, params, obs, rng, rngs=_rngs("t", jt, jj) if CRN is not None else None)
             w = pv.poids(preuves, traj, noeuds) if preuves else 1.0
             sw, sw2 = sw + w, sw2 + w * w
             if w == 0:
