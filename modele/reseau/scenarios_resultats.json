@@ -188,6 +188,80 @@
    ],
    "tenu": true,
    "ess": 1.0
+  },
+  {
+   "id": "S-RT-2026-10-16-1",
+   "recit": "À l'automne 2027, la première grande réforme du nouveau président déclenche un mouvement social de type 1995 ou 2023 : plus de 500 000 manifestants chaque mois d'octobre à décembre 2027, en pleine session budgétaire.",
+   "exige": false,
+   "defauts": [],
+   "resultats": [
+    {
+     "question": "EV-15c",
+     "issue": "oui",
+     "sens": "+",
+     "avant": 23.1,
+     "apres": 23.1,
+     "tenu": false,
+     "obligatoire": false
+    },
+    {
+     "question": "EV-16b",
+     "issue": "oui",
+     "sens": "+",
+     "avant": 83.6,
+     "apres": 83.3,
+     "tenu": false,
+     "obligatoire": false
+    },
+    {
+     "question": "EV-44",
+     "issue": "pas de loi de finances publiée au 31 janvier 2028",
+     "sens": "+",
+     "avant": 28.3,
+     "apres": 28.3,
+     "tenu": false,
+     "obligatoire": false
+    }
+   ],
+   "tenu": true,
+   "ess": 1.0
+  },
+  {
+   "id": "S-RT-2026-10-16-2",
+   "recit": "En novembre 2026, le Premier ministre démissionne en pleine discussion du projet de loi de finances, à cause d'une affaire ou d'un blocage avec ses partenaires, sans motion de censure (sur le modèle de la démission d'octobre 2025) ; le gouvernement suivant hérite du texte.",
+   "exige": false,
+   "defauts": [],
+   "resultats": [
+    {
+     "question": "EV-02",
+     "issue": "oui",
+     "sens": "+",
+     "avant": 66.2,
+     "apres": 65.9,
+     "tenu": false,
+     "obligatoire": false
+    },
+    {
+     "question": "EV-16a",
+     "issue": "oui",
+     "sens": "+",
+     "avant": 4.2,
+     "apres": 4.1,
+     "tenu": false,
+     "obligatoire": false
+    },
+    {
+     "question": "EV-01",
+     "issue": "oui",
+     "sens": "+",
+     "avant": 80.0,
+     "apres": 80.2,
+     "tenu": false,
+     "obligatoire": false
+    }
+   ],
+   "tenu": true,
+   "ess": 1.0
   }
  ]
 }

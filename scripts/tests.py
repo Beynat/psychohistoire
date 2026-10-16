@@ -1048,13 +1048,18 @@ def test_hypotheses():
         l = {"lien": "http://x/1", "fait": "f", "decision": "non rattaché", "motif": "m", "hypotheses": ["H-99"]}
         r = subprocess.run([sys.executable, "scripts/tri.py", "ajouter"], cwd=tmp, env=env, capture_output=True, text=True, input=json.dumps(l) + chr(10))
         assert r.returncode != 0 and "H-99" in (r.stderr + r.stdout), r.stderr[-200:]
+        # Base : les faits déjà rattachés à H-01 par le tri réel (la copie emporte data/tri/) ; le fait ajouté s'y joint.
+        r = subprocess.run([sys.executable, "scripts/tri.py", "reprise"], cwd=tmp, env=env, capture_output=True, text=True)
+        assert r.returncode == 0, r.stderr[-300:]
+        base = json.loads((tmp / "data/reprise.json").read_text()).get("hypotheses", {}).get("H-01", {}).get("faits", [])
+        assert "f" not in base, base
         l["hypotheses"] = ["H-01"]
         r = subprocess.run([sys.executable, "scripts/tri.py", "ajouter"], cwd=tmp, env=env, capture_output=True, text=True, input=json.dumps(l) + chr(10))
         assert r.returncode == 0, r.stderr[-300:]
         r = subprocess.run([sys.executable, "scripts/tri.py", "reprise"], cwd=tmp, env=env, capture_output=True, text=True)
         assert r.returncode == 0, r.stderr[-300:]
         rep = json.loads((tmp / "data/reprise.json").read_text())
-        assert rep["hypotheses"]["H-01"]["faits"] == ["f"], rep.get("hypotheses")
+        assert sorted(rep["hypotheses"]["H-01"]["faits"]) == sorted(base + ["f"]), (base, rep.get("hypotheses"))
     finally:
         shutil.rmtree(tmp.parent)
 

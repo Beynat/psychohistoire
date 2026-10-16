@@ -9,7 +9,6 @@
    ],
    "noeuds": [
     "VE-LYCEE",
-    "VE-MOBIL",
     "VE-POP"
    ],
    "actif": false,
@@ -102,6 +101,23 @@
     "E25": 0,
     "E26": 0,
     "E27": 0
+   }
+  },
+  {
+   "evaluateurs": [
+    "E31",
+    "E32",
+    "E33"
+   ],
+   "noeuds": [
+    "PV-CASSEURS",
+    "VE-MOBIL"
+   ],
+   "actif": false,
+   "graines": {
+    "E31": 0,
+    "E32": 0,
+    "E33": 0
    }
   }
  ]
