@@ -1257,6 +1257,20 @@ def test_controles_du_16_octobre():
     _, i5 = controles.appliquer_derogations(s5, defauts)
     assert ("persistance", "VE-POP|< 25 %") in i5, i5
     assert controles.intervalle(0, 11)[1] > .25 and controles.intervalle(0, 11)[1] < .3
+    # Fil d'actualité : lignes conformes ; jalon inconnu, effet hors liste, titre trop long, fait sans jalon ni
+    # nœud, citation longue (résumé de plus de 600 caractères) : rejetés. Onglets présents dans la page.
+    import actualite
+    jal = {j["id"] for j in (json.loads(l) for l in (racine / "modele/jalons/definitions.jsonl").read_text().splitlines() if l.strip())}
+    N_ = set(reseau.noeuds_de(S))
+    for x in actualite.liste(3650, "2026-10-16"):
+        assert not actualite.verifier({k: v for k, v in x.items() if k not in ("id", "emise")}, jal, N_), x["id"]
+    ok = {"date": "2026-10-16", "titre": "t", "resume": "r", "sources": ["https://exemple.fr"], "jalons": [{"id": "J-026", "effet": "rapproche"}]}
+    assert not actualite.verifier(ok, jal, N_)
+    for mut in ({"jalons": [{"id": "J-999", "effet": "rapproche"}]}, {"jalons": [{"id": "J-026", "effet": "certain"}]},
+                {"titre": "x" * 91}, {"jalons": []}, {"resume": "x" * 601}, {"sources": ["http://exemple.fr"]}):
+        assert actualite.verifier({**ok, **mut}, jal, N_), mut
+    html = organigramme.page()
+    assert 'data-onglet="actualite"' in html and "function corpsActu(" in html and 'id="fil"' in html
     # (3) Instantané de référence : au moins 7 jours de recul, à défaut le plus ancien, jamais le jour même.
     if (racine / organigramme.INSTANTANES / "2026-10-10.json").exists():
         assert organigramme.reference("2026-10-16")["jour"] == "2026-10-10"

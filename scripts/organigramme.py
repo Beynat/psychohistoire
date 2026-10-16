@@ -27,6 +27,7 @@ import re
 import sys
 from datetime import date
 
+import actualite
 import preuves as pv
 import reseau
 from commun import RACINE, lire_json, lire_jsonl
@@ -272,6 +273,7 @@ def construire(tirages=100, trajectoires=40, graine=20261010, avec_tendance=True
             "preuves_notees": [p["id"] for p in notees], "hypotheses": hyp,
             "hors": [{"id": e["id"], "nom": e["nom"]} for e in lire_json("modele/evenements.json")["evenements"] if e["id"] not in s["mesures"]],
             "k": pv.K, "seuil_ess": reseau.SEUIL_ESS, "seuil_rare": SEUIL_RARE, "tendance": tend,
+            "actualite": actualite.liste(90, jour),
             "codes": codes, "variables_codes": vcodes, "poids": poids}
 
 

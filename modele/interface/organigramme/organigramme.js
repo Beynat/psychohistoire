@@ -227,13 +227,43 @@ async function montrer(v) {
   document.getElementById("liste").hidden = v !== "liste";
   document.querySelector(".scroll").hidden = v !== "graphe";
   document.querySelectorAll("#vues button").forEach(b => b.classList.toggle("on", b.dataset.vue === v));
-  if (v === "graphe" && !grapheFait) { grapheFait = true; await graphe() }
+  if (v === "graphe" && !grapheFait && !document.getElementById("o-organigramme").hidden) { grapheFait = true; await graphe() }
 }
 let vue0 = null;
 try { vue0 = localStorage.getItem("organigramme-vue") } catch (e) {}
 liste();
 await montrer(vue0 === "liste" || vue0 === "graphe" ? vue0 : matchMedia("(max-width: 720px)").matches ? "liste" : "graphe");
 document.querySelectorAll("#vues button").forEach(b => b.onclick = () => montrer(b.dataset.vue));
+
+// --- Actualité : un fait, son effet sur les jalons ; le détail donne le résumé, les jalons et les sources ----------
+const A = D.actualite || [], AX = Object.fromEntries(A.map(a => [a.id, a]));
+const SENS = {rapproche: ["▲", "up", "rapproche"], "observé": ["✓", "up", "observé"], "éloigne": ["▼", "down", "éloigne"], "manqué": ["✗", "down", "manqué"]};
+const jalonDe = id => J.find(j => j.id === id);
+const chip = x => { const j = jalonDe(x.id), [g, c] = SENS[x.effet]; return j ? `<span class="chip ${c}"><b>${g}</b>${esc(j.lib)}</span>` : "" };
+const dateLongue = d => `${jfr(d)} ${d.slice(0, 4)}`;
+function fil() {
+  const el = document.getElementById("fil");
+  if (!A.length) { el.innerHTML = `<p class="note">Aucun fait récent.</p>`; return }
+  let jour = null;
+  el.innerHTML = A.map(a => { const h = a.date !== jour ? `<div class="jour">${dateLongue(a.date)}</div>` : ""; jour = a.date;
+    return h + `<div class="n pv actu" data-actu="${a.id}" tabindex="0" role="button"><div class="c"><div class="titre">${esc(a.titre)}</div><div class="chips">${(a.jalons || []).map(chip).join("")}${(a.noeuds || []).map(n => P[IX[n.id]] ? `<span class="chip"><b>•</b>${esc(P[IX[n.id]].court)}</span>` : "").join("")}</div></div></div>` }).join("");
+}
+function corpsActu(a) {
+  const js = (a.jalons || []).map(x => { const j = jalonDe(x.id), [g, , mot] = SENS[x.effet]; return j ? `<p class="effet"><b>${g} ${mot}</b>${x.note ? ` · ${esc(x.note)}` : ""}</p><ul>${jalonHtml(j)}</ul>` : "" }).join("");
+  const ns = (a.noeuds || []).map(n => { const i = IX[n.id]; return i == null ? "" : `<p class="effet"><b>•</b> ${esc(P[i].titre)} · ${esc(n.note)}</p>${cartePivot(P[i], i, false)}` }).join("");
+  const src = a.sources.map(u => { let d = u; try { d = new URL(u).hostname.replace(/^www\./, "") } catch (e) {} return `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(d)}</a>` }).join(" · ");
+  return `<div class="pv dl" style="--th:var(--accent)"><div class="c"><div class="quand">${dateLongue(a.date)}</div><div class="titre">${esc(a.titre)}</div><p class="actu-resume">${esc(a.resume)}</p></div>${js ? `<div class="sec js"><div class="h">Jalons concernés</div>${js}</div>` : ""}${ns ? `<div class="sec"><div class="h">Pivots concernés</div>${ns}</div>` : ""}<div class="sec"><p class="sources">Sources : ${src}</p></div></div>`;
+}
+
+// --- Onglets -------------------------------------------------------------------------------------------------------
+async function onglet(o) {
+  document.querySelectorAll("#onglets button").forEach(b => b.classList.toggle("on", b.dataset.onglet === o));
+  document.getElementById("o-actualite").hidden = o !== "actualite";
+  document.getElementById("o-organigramme").hidden = o !== "organigramme";
+  try { localStorage.setItem("psychohistoire-onglet", o) } catch (e) {}
+  if (location.hash !== "#" + o) history.replaceState(null, "", "#" + o);
+  if (o === "organigramme" && vue === "graphe" && !grapheFait) await montrer("graphe");
+}
 
 // --- Interactions ------------------------------------------------------------------------------------------------
 const dlg = document.getElementById("dlg"), dc = document.getElementById("dc");
@@ -243,6 +273,7 @@ dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close() });
 dlg.addEventListener("close", () => { ouvert = null });
 function ouvrir(id) {
   ouvert = id;
+  if (id in AX) { dc.innerHTML = corpsActu(AX[id]); if (!dlg.open) { dlg.showModal(); dlg.scrollTop = 0 } return }
   if (id in IX) { const i = IX[id], p = P[i]; dc.innerHTML = `<div class="pv dl" style="--th:var(--t-${p.theme})"><div class="c"><div class="quand">${esc(p.quand)}</div><div class="titre">${esc(p.titre)}</div>${tete(i)}</div>${corps(i)}</div>` }
   else { const j = VX[id], v = V[j]; dc.innerHTML = `<div class="pv dl" style="--th:var(--t-variable)"><div class="c"><div class="quand">variable suivie chaque mois</div><div class="titre">${esc(v.titre)}</div><div class="obs1">${v.observe ? `observé : <b>${esc(v.observe[1])}</b> (${esc(v.observe[0])})` : ""}</div></div>${corpsVariable(j)}</div>` }
   if (!dlg.open) { dlg.showModal(); dlg.scrollTop = 0 }
@@ -269,9 +300,11 @@ document.body.addEventListener("click", e => {
     rafraichir(); return }
   const x = e.target.closest(".etsi .f button"); if (x) { faits.splice(+x.dataset.k, 1); rafraichir(); return }
   if (e.target.id === "raz") { faits = []; rafraichir(); return }
+  const ac = e.target.closest("[data-actu]"); if (ac && !ac.closest("dialog")) { ouvrir(ac.dataset.actu); return }
+  const ob = e.target.closest("#onglets button"); if (ob) { onglet(ob.dataset.onglet); return }
   const n = e.target.closest(".n.pv"); if (n && n.dataset.id) ouvrir(n.dataset.id);
 });
-document.body.addEventListener("keydown", k => { const e = k.target.closest && k.target.closest(".n.pv"); if (e && e.dataset.id && (k.key === "Enter" || k.key === " ")) { k.preventDefault(); ouvrir(e.dataset.id) } });
+document.body.addEventListener("keydown", k => { const e = k.target.closest && k.target.closest(".n.pv"); const id = e && (e.dataset.actu || e.dataset.id); if (id && (k.key === "Enter" || k.key === " ")) { k.preventDefault(); ouvrir(id) } });
 const bh = document.getElementById("hors");
 bh.textContent = `${D.hors.length} questions hors réseau`;
 bh.onclick = () => { ouvert = null; dc.innerHTML = `<div class="pv dl" style="--th:var(--muted)"><div class="c"><div class="titre">Questions suivies hors réseau</div><p class="note">Prévues par l'ensemble de prévisionnistes et notées, mais aucun pivot ni aucune variable du réseau ne les porte encore.</p></div><div class="sec"><ul class="hl">${D.hors.map(h => `<li><b>${esc(h.id)}</b> ${esc(h.nom)}</li>`).join("")}</ul></div></div>`; dlg.showModal() };
@@ -283,5 +316,9 @@ bp.textContent = `${D.hypotheses.length} hypothèses`;
 bp.onclick = () => { ouvert = null; dc.innerHTML = `<div class="pv dl" style="--th:var(--muted)"><div class="c"><div class="titre">Hypothèses porteuses</div><p class="note">Ce que le réseau suppose sans le représenter, ou en partie. Probabilité de rupture tirée de précédents ; une alerte de la veille déclenche un examen, jamais un changement de probabilité.</p></div><div class="sec">${D.hypotheses.map(h => `<p><b>${esc(h.id)}</b> ${esc(h.enonce)} <span class="pill">rupture ${pc(100 * h.rupture)}</span></p><p class="note">${esc(h.traitement)}</p>`).join("")}</div></div>`; dlg.showModal() };
 document.getElementById("meta").textContent = `Calculé le ${jfr(D.etabli_le)} ${D.etabli_le.slice(0, 4)}.`;
 if (T) document.getElementById("leg-evo").innerHTML = `<b class="tend up">▲</b><b class="tend down" style="margin-left:0">▼</b> évolution depuis le ${jfr(T.reference)}, trait : valeur d'alors`;
+fil();
+let o0 = location.hash.slice(1);
+if (!["organigramme", "actualite"].includes(o0)) { try { o0 = localStorage.getItem("psychohistoire-onglet") } catch (e) {} }
+await onglet(["organigramme", "actualite"].includes(o0) ? o0 : "organigramme");
 document.body.dataset.pret = "1";
 })();
