@@ -1801,11 +1801,12 @@
  "feuilles_assumees": {
   "PV-CENSURE2": "lue par EV-15c ; aucun effet élicité sur un autre pivot de l'horizon (fin du mandat de l'Assemblée hors fenêtre)",
   "PV-DISSOL2b": "lue par EV-16b et EV-17 ; la composition de l'Assemblée qui suivrait n'est pas modélisée (hors horizon des questions rattachées)",
-  "PV-GAUCHE": "lue par EV-19 ; l'effet de l'offre de gauche sur le duel est porté par PV-SOUTIEN (bénéficiaire du soutien écologiste) et par la variable des sondages, pas par le nombre de candidats",
+  "PV-GAUCHE": "lue par EV-19 ; l'effet de l'offre de gauche sur le duel passe par le bénéficiaire du soutien écologiste et par la variable des sondages, pas par le nombre de candidats",
   "PV-RNAUTRE": "lue par EV-05 ; effets en aval non élicités, l'autre candidat RN est traité comme Bardella (hypothèse H-01, étape 9)",
   "PV-AUDIENCE": "sans mesure propre : parent de PV-POURVOI (date de l'arrêt), observable par le jalon J-020",
   "PV-VACANCE": "nœud rare (H-03) : probabilité affichée, effets non modélisés ; s'il survient, restructuration rapide",
-  "PV-CASSEURS": "lue par EV-48 ; pas d'effet élicité de la loi sur un autre nœud de l'horizon"
+  "PV-CASSEURS": "lue par EV-48 ; pas d'effet élicité de la loi sur un autre nœud de l'horizon",
+  "PV-SOUTIEN": "sans mesure propre : parent de PV-DUEL et de VE-SOND ; aucune question de la banque ne porte sur le bénéficiaire (EV-18 lit le vote, PV-ECOLO)"
  },
  "ports": [
   {
@@ -1902,7 +1903,8 @@
    "soutien à un autre candidat": "le bénéficiaire est porté par PV-SOUTIEN (Glucksmann, Mélenchon, autre), qui seul agit sur le duel"
   },
   "PV-SOUTIEN": {
-   "autre ou non désigné": "soutien sans bénéficiaire nommé ou à un candidat mineur : effet sur le duel jugé comparable à l'absence de soutien"
+   "autre ou non désigné": "soutien sans bénéficiaire nommé ou à un candidat mineur : effet sur le duel jugé comparable à l'absence de soutien",
+   "pas de soutien": "issue simple : les Écologistes ne soutiennent personne (le mot « soutien » ne signale pas ici un regroupement)"
   }
  }
 }

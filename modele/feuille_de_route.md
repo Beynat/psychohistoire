@@ -2,7 +2,7 @@
 
 Établie après deux revues méthodologiques indépendantes (`modele/reseau/revues/2026-10-10_revue_1.md` et `_2.md`), validée par Nathan. Elle remplace, pour la suite, la feuille de route v0 (document Claude Docs « Psychohistoire — feuille de route v0 », terminée).
 
-**Avancement : 13 / 14 étapes (93 %).** Reste l'étape 8, en attente de la validation de la maquette par Nathan. Mis à jour à chaque étape terminée ; la progression est aussi donnée dans la conversation.
+**Avancement : 14 / 14 étapes (100 %).** Feuille de route terminée le 16 octobre 2026 ; la règle des trois cas s'applique désormais. Mis à jour à chaque étape terminée ; la progression est aussi donnée dans la conversation.
 
 Décisions de Nathan :
 - Toutes les étapes sont faites d'un seul tenant, dans l'ordre du tableau, y compris celles que les revues renvoyaient à plus tard. Aucune échéance de travail n'est fixée : les estimations de durée se sont révélées biaisées.
@@ -20,7 +20,7 @@ Décisions de Nathan :
 | 5 | Hypothèses porteuses | `modele/reseau/hypotheses.json` : ce que la structure suppose sans le représenter (candidat RN = Le Pen ou Bardella, Philippe disponible, pas de vacance de la présidence…), probabilité de rupture tirée de précédents, signaux d'alerte reliés à la veille (`tri.py`) ; issue « autre candidat RN ». | fait |
 | 6 | Processus et notation | Version du réseau gelée à la fin du bloc 1, notée à part (« réseau v0 gelé ») ; gel 48 heures avant chaque cycle ; comparaison avec le témoin fixée d'avance ; pool de questions rapides (jalons, état des variables le mois suivant) pour valider plus tôt que 40 questions ; dates des passes alignées. | fait (gel du témoin exécuté à la fin de l'étape 8) |
 | 7 | Tests automatiques | Batterie de tests avec contrôle par mutation, dont ceux qui auraient attrapé les erreurs du 10 octobre (base donnée pour la marginale, sens opposés, calendrier, parent non tranché, fait qui tranche). | fait |
-| 8 | Organigramme en ligne | Organigramme (maquette `modele/interface/organigramme/`) à la place de la frise de `reseau.html`, branché sur le moteur unique, avec le mode « et si » : cocher des faits et voir tout l'organigramme se recalculer. | prêt, en attente de validation de la maquette |
+| 8 | Organigramme en ligne | Organigramme (maquette `modele/interface/organigramme/`) à la place de la frise de `reseau.html`, branché sur le moteur unique, avec le mode « et si » : cocher des faits et voir tout l'organigramme se recalculer. | fait (application validée par Nathan le 16 octobre 2026 : `organigramme.html`, intégrée à `reseau.html`) |
 
 ## Bloc 2 : étendre et consolider
 
@@ -55,3 +55,4 @@ Décisions de Nathan :
 | 12 oct. 2026 | routine | Aucun jalon ouvert (première fenêtre le 20 octobre), registre fantôme sans ligne, aucune série nouvelle (pas de sondage de premier tour après le 29 septembre, popularité d'octobre non publiée, pas de journée chiffrée après le 8 octobre), tri sans émergence. |
 | 16 oct. 2026 | passe | Aucun défaut ni changement de tables, trois écarts connus (EV-05, EV-13, EV-51), aucun lot de Cooke actif, deux scénarios de red team sans effet inscrits aux points ouverts, aucune prévision émise. |
 | 16 oct. 2026 | revue | Revue de Nathan : rapport de dérive consigné par version, contrôles de vraisemblance (trois défauts déclarés, une justification fausse corrigée), organigramme allégé avec évolution sur 7 jours et risques rares en encart ; en attente : état « serré » de VE-SOND et nœud du bénéficiaire écologiste après la primaire du 17. |
+| 16 oct. 2026 | 8 | Application validée par Nathan (onglets Organigramme et Actualité, vue téléphone) et intégrée à `reseau.html` à la place de la frise ; J-048 invalidé ; structure et tables v0.11 (VE-SOND « serré », PV-SOUTIEN). Feuille de route terminée. |

@@ -1,4 +1,4 @@
-# Passation — état du projet au 16 octobre 2026
+# Passation — état du projet au 16 octobre 2026 (soir)
 
 Document de reprise pour une nouvelle session. Le dépôt fait foi ; ce fichier ne remplace ni `modele/protocole.md` ni `modele/journal.md`. **Feuille de route en cours : `modele/feuille_de_route.md`** (14 étapes, avancement en tête du fichier).
 
@@ -9,7 +9,7 @@ Prévisions datées et notées sur la France, d'octobre 2026 à septembre 2028. 
 ## Comment travailler avec Nathan
 
 - Français, clair, direct, synthétique, sans emoji, peu de mise en forme. Le challenger quand une faille est réelle.
-- **Progression suivie dans la conversation** : tenir la liste des tâches (une par étape de la feuille de route) et indiquer en tête de chaque message d'avancement « Avancement : n / 14 ». Mettre à jour `modele/feuille_de_route.md` (tableau et journal d'avancement) à chaque étape terminée, commit et push.
+- **Progression suivie dans la conversation** : tenir la liste des tâches pour tout travail en plusieurs étapes (la feuille de route v0 ajustée est terminée). Mettre à jour `modele/feuille_de_route.md` (tableau et journal d'avancement) à chaque étape terminée, commit et push.
 - Pas d'échéances ni d'estimations de durée dans les plans (Nathan les juge biaisées) : un ordre d'exécution et un avancement suffisent.
 - Autonomie : Nathan a délégué les décisions de la feuille de route ; ne revenir vers lui que pour une action irréversible sur les données, un arbitrage de structure ou une question qui change le résultat. Il valide les maquettes avant mise en ligne.
 - Il repère vite les incohérences en lisant les sorties : lui montrer des sorties lisibles (décomposition « d'où vient ce chiffre ») plutôt que des agrégats.
@@ -18,22 +18,19 @@ Prévisions datées et notées sur la France, d'octobre 2026 à septembre 2028. 
 ## Règles en vigueur
 
 - Protocole en retrait jusqu'à la v0 ajustée ; restent impératifs : registres en ajout seul, horodatage par script, contrôle à la poussée, tests avant chaque commit, contrôle par mutation pour chaque correction de code.
-- **Corrections au fil de l'eau tant que la feuille de route n'est pas terminée** (décision de Nathan : pas de file de tickets ni de quarantaine, trop d'erreurs à corriger) ; chaque correction est journalisée avec sa cause. Ensuite, règle des trois cas (erreur irréversible sur les données, cycle bloqué, effet de plus de 5 points ou issue indéterminable).
+- **Feuille de route terminée le 16 octobre 2026** : la règle des trois cas s'applique (erreur irréversible sur les données, cycle bloqué, effet de plus de 5 points ou issue indéterminable) ; chaque correction est journalisée avec sa cause et consignée dans le rapport de dérive.
 - Évaluateurs : toujours indépendants, sans accès aux registres (`registre/*`), aux cycles (`data/cycles/*`) ni, pour une élicitation, aux tables existantes. Ensemble : trois Opus et deux Sonnet ; évaluateurs de tables : Opus et Sonnet.
 - Une correction se déclenche sur un défaut identifié, pas sur un chiffre qui surprend ; ne jamais remplacer un avis élicité par une appréciation personnelle (leçon du 10 octobre : la correction × 0,4 de la candidature Le Pen a dû être annulée).
 
-## État au 16 octobre 2026
+## État au 16 octobre 2026 (soir)
 
 - **Statut** : `definitif: false`, `v0: true`. Premier cycle noté le 1er novembre 2026 sur `registre/v0.jsonl` (gel 48 heures avant : aucune modification du réseau à partir du 30 octobre).
-- **Feuille de route** : 13 étapes sur 14. Reste l'étape 8 : organigramme prêt, en attente de la validation de l'aperçu par Nathan (allégé le 16 octobre : risques rares en encart, flèches d'évolution sur 7 jours avec part « modèle » et part « faits », instantanés quotidiens dans `data/instantanes/`).
-- **Réseau** : structure v0.10.1, tables v0.10 ; 23 pivots, 6 variables d'état. Réseau témoin gelé le 10 octobre (`modele/reseau/gele/`).
-- **Nouveaux contrôles (revue du 16 octobre)** : rapport de dérive consigné pour chaque version (`scripts/derive.py`, `modele/reseau/derives.jsonl`, exigé par les tests ; nombres aléatoires communs) ; contrôles de vraisemblance (`scripts/controles.py` : persistance contre les séries, chemins des feuilles, issues fourre-tout), défauts non corrigés déclarés dans `derogations_controles` de la structure ; relecture de vraisemblance par un agent neuf à chaque passe.
-- **En attente de Nathan** : validation de l'état « serré » de VE-SOND (proposé le 16 octobre ; le quasi-égalité RN – Mélenchon / RN – Philippe est jugée cohérente avec l'écart de 0,6 point en septembre) ; cinq points de structure de l'étape 11 (le point 5, hypothèse principale de VE-SOND, est réglé) ; causes prioritaires du pré-mortem du 11 octobre.
-- **À faire après la proclamation de la primaire PS – Place publique (17 octobre)** : nœud du bénéficiaire du soutien écologiste, conditionnel à « soutien », relié au duel, élicité en deux rondes ; lève la dérogation « fourre-tout » de PV-ECOLO et porte l'effet de PV-GAUCHE.
-- **Autres dérogations ouvertes** : VE-SOND depuis « centre » (levée par l'état « serré »), VE-ECART depuis « < 120 pb » (transition trop instable, à rééliciter sur la série BCE).
-- **Écart principal** : EV-05 Le Pen, réseau 52,6 % contre 40,8 % pour la médiane des avis directs (pré-mortem du 11 octobre).
-- **Cooke** : graines enregistrées le 1er de chaque mois ; lots actifs à partir de 12 graines résolues (`scripts/cooke.py`).
-- **Scénarios de rupture et red team** : `modele/reseau/scenarios.json`, `scripts/scenarios.py`. Pré-mortems dans `modele/reseau/premortem/`.
+- **Feuille de route terminée** (14 / 14). La règle des trois cas s'applique désormais aux corrections (erreur irréversible sur les données, cycle bloqué, effet de plus de 5 points ou issue indéterminable) ; chaque correction reste journalisée avec sa cause et consignée dans le rapport de dérive.
+- **Application** : https://beynat.github.io/psychohistoire/organigramme.html (raccourci sur le téléphone de Nathan), onglets Organigramme (liste par thème sur téléphone, graphe sur ordinateur, flèches d'évolution sur 7 jours, risques rares en encart) et Actualité (`data/actualite.jsonl`, alimenté par le tri trois fois par semaine). Le mode « et si » est retiré de l'interface. Intégrée à `reseau.html` à la place de la frise.
+- **Réseau** : structure et tables v0.11 ; 24 pivots (nouveau : PV-SOUTIEN), 6 variables d'état (VE-SOND à quatre états, dont « serré »). Réseau témoin gelé le 10 octobre (`modele/reseau/gele/`). J-048 invalidé.
+- **Contrôles** : rapport de dérive consigné pour chaque version (`scripts/derive.py`, `derives.jsonl`, exigé par les tests) ; contrôles de vraisemblance (`scripts/controles.py`), dérogations dans la structure (reste : VE-ECART depuis « < 120 pb ») ; relecture de vraisemblance à chaque passe.
+- **Points ouverts** : `modele/reseau/procedure.md` (VE-ECART, poids des cas de VE-SOND) ; cinq points de structure de l'étape 11 (le 5 est réglé) ; causes du pré-mortem du 11 octobre ; écart EV-05 Le Pen (réseau 52,6 % contre 40,8 % d'avis directs).
+- **Tâches planifiées** : règle d'accès web ajoutée (WebFetch seulement sur des adresses rendues par une recherche) pour éviter les demandes d'autorisation.
 - **Tests** : `python scripts/tests.py` (contrôle par mutation de chaque correction) et `python scripts/controle_banque.py`.
 
 ## Tâches planifiées
