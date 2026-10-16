@@ -1,0 +1,224 @@
+{
+ "noeuds": [
+  {
+   "id": "VE-SOND",
+   "nom": "Deuxième place derrière le RN dans les intentions de vote (bloc et écart)",
+   "nature": "variable d'état",
+   "definition": "hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc (centre, gauche, droite) compté par son candidat le mieux placé, moyenne du mois sans correction de l'erreur historique (scripts/etat.py) : « serré » si les deux premiers blocs derrière le RN sont à 2 points ou moins l'un de l'autre ; sinon le bloc deuxième, devant le troisième de plus de 2 points",
+   "date": null,
+   "issues": [
+    "centre",
+    "serré",
+    "gauche",
+    "droite"
+   ],
+   "parents": [
+    {
+     "id": "VE-POP",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1
+    },
+    {
+     "id": "PV-BLOC",
+     "etats": [
+      "les deux",
+      "Philippe seul",
+      "Attal seul",
+      "aucun des deux"
+     ],
+     "decalage": 0
+    },
+    {
+     "id": "PV-SOUTIEN",
+     "etats": [
+      "pas de soutien",
+      "Glucksmann",
+      "Mélenchon",
+      "autre ou non désigné"
+     ],
+     "decalage": 0
+    }
+   ]
+  },
+  {
+   "id": "PV-ECOLO",
+   "nom": "Vote des adhérents des Écologistes",
+   "nature": "daté",
+   "definition": null,
+   "date": "2026-12-13",
+   "issues": [
+    "candidature autonome",
+    "soutien à un autre candidat",
+    "autre ou vote non tenu"
+   ],
+   "parents": [
+    {
+     "id": "VE-SOND",
+     "etats": [
+      "centre",
+      "serré",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1
+    }
+   ]
+  },
+  {
+   "id": "PV-BLOC",
+   "nom": "Candidatures du bloc central",
+   "nature": "daté",
+   "definition": null,
+   "date": "2027-03-26",
+   "issues": [
+    "les deux",
+    "Philippe seul",
+    "Attal seul",
+    "aucun des deux"
+   ],
+   "parents": [
+    {
+     "id": "VE-SOND",
+     "etats": [
+      "centre",
+      "serré",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1
+    }
+   ]
+  },
+  {
+   "id": "PV-GAUCHE",
+   "nom": "Nombre de candidats de gauche",
+   "nature": "daté",
+   "definition": null,
+   "date": "2027-03-26",
+   "issues": [
+    "3 ou moins",
+    "4",
+    "5",
+    "6 ou plus"
+   ],
+   "parents": [
+    {
+     "id": "PV-ECOLO",
+     "etats": [
+      "candidature autonome",
+      "soutien à un autre candidat",
+      "autre ou vote non tenu"
+     ],
+     "decalage": 0
+    },
+    {
+     "id": "VE-SOND",
+     "etats": [
+      "centre",
+      "serré",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1
+    }
+   ]
+  },
+  {
+   "id": "PV-SOUTIEN",
+   "nom": "Bénéficiaire du soutien des Écologistes à la présidentielle",
+   "nature": "daté",
+   "definition": "personne soutenue par les Écologistes, d'après leur vote du 10 au 13 décembre 2026 ou la première annonce officielle de leurs instances au plus tard le 31 janvier 2027 ; « pas de soutien » si le vote retient la candidature autonome ou n'a pas lieu ; « autre ou non désigné » si le soutien est voté sans bénéficiaire nommé au 31 janvier",
+   "date": "2027-01-31",
+   "issues": [
+    "pas de soutien",
+    "Glucksmann",
+    "Mélenchon",
+    "autre ou non désigné"
+   ],
+   "parents": [
+    {
+     "id": "PV-ECOLO",
+     "etats": [
+      "candidature autonome",
+      "soutien à un autre candidat",
+      "autre ou vote non tenu"
+     ],
+     "decalage": 0
+    },
+    {
+     "id": "VE-SOND",
+     "etats": [
+      "centre",
+      "serré",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1
+    }
+   ]
+  },
+  {
+   "id": "PV-DUEL",
+   "nom": "Duel de second tour",
+   "nature": "daté",
+   "definition": null,
+   "date": "2027-04-18",
+   "issues": [
+    "RN-PHI",
+    "RN-ATT",
+    "RN-MEL",
+    "RN-GLU",
+    "RN-RET",
+    "RN-LIS",
+    "RN-AUT",
+    "PHI-MEL",
+    "PHI-GLU",
+    "AUTRE"
+   ],
+   "parents": [
+    {
+     "id": "PV-BLOC",
+     "etats": [
+      "les deux",
+      "Philippe seul",
+      "Attal seul",
+      "aucun des deux"
+     ],
+     "decalage": 0
+    },
+    {
+     "id": "VE-SOND",
+     "etats": [
+      "centre",
+      "serré",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 0
+    },
+    {
+     "id": "PV-LEPEN",
+     "etats": [
+      "candidate",
+      "non candidate"
+     ],
+     "decalage": 0
+    },
+    {
+     "id": "PV-SOUTIEN",
+     "etats": [
+      "pas de soutien",
+      "Glucksmann",
+      "Mélenchon",
+      "autre ou non désigné"
+     ],
+     "decalage": 0
+    }
+   ]
+  }
+ ]
+}

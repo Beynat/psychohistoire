@@ -1125,9 +1125,10 @@ def test_semantique_reseau():
     L = lambda f: json.loads((racine / f).read_text())
     S, T = L("modele/reseau/structure_v0.json"), L("modele/reseau/tables_v0.json")
     N = reseau.noeuds_de(S)
-    # Au plus trois parents par nœud (règle de la structure), exception déclarée : PV-CASSEURS (étape 13).
+    # Au plus trois parents par nœud (règle de la structure), exceptions déclarées : PV-CASSEURS (étape 13) et PV-DUEL
+    # (bénéficiaire du soutien écologiste, décision de Nathan du 16 octobre 2026).
     for i, n in N.items():
-        assert len(n.get("parents", [])) <= 3 or i in {"PV-CASSEURS"}, (i, n.get("parents"))
+        assert len(n.get("parents", [])) <= 3 or i in {"PV-CASSEURS", "PV-DUEL"}, (i, n.get("parents"))
     anciens = S.get("anciens_identifiants", {})
     ref = lambda i: anciens.get(i, i)
     cites = {l["noeud"] for v in S["indicateurs"]["liens"].values() for l in v["liens"]}
@@ -1232,6 +1233,12 @@ def test_controles_du_16_octobre():
     ch = derive.noeuds_changes((S, T, cal), (S, t3, cal))
     assert ch == ["PV-TPI"], ch
     assert derive.ecarts({("X", "oui"): 10.0}, {("X", "oui"): 16.0}, 5) == [(6.0, ("X", "oui"), 10.0, 16.0)]
+    # Une version de référence aux états différents garde ses observations compatibles (VE-SOND « serré » absent de
+    # la structure v0.10.1) ; sans ce filtre, le rapport de dérive contre main échouait (mutation : filtre retiré).
+    s_old = cp.deepcopy(S)
+    next(v for v in s_old["variables_etat"] if v["id"] == "VE-SOND")["etats"] = ["centre", "gauche", "droite"]
+    o = derive.obs_compatibles(s_old, {"etats": {"VE-SOND": {"2026-09": "centre", "2026-10": "serré"}}})
+    assert o["etats"]["VE-SOND"] == {"2026-09": "centre"}, o
     # (2) Contrôles de vraisemblance : aucun défaut non couvert, aucune dérogation inutile.
     pers = controles.persistance(S, T, tirages=3, trajectoires=120)
     marg = controles.marges_courantes(S, T, 3, 120)
@@ -1243,15 +1250,15 @@ def test_controles_du_16_octobre():
     s2 = cp.deepcopy(S)
     s2["feuilles_assumees"]["PV-GAUCHE"] = "lue par EV-19 ; l'effet du nombre de candidats de gauche sur le duel passe par les sondages (VE-SOND), pas par un lien direct"
     assert controles.chemins_annonces(s2) == [("PV-GAUCHE", "VE-SOND")]
-    # Retrait de la dérogation sur PV-ECOLO : l'issue fourre-tout réapparaît ; dérogation sur VE-SOND retirée : défaut.
+    # Mutations (structure v0.11) : sans la déclaration d'issue résiduelle de PV-ECOLO, l'issue « soutien à un autre
+    # candidat » redevient fourre-tout ; sans la dérogation sur VE-ECART, le défaut de persistance réapparaît.
     s3 = cp.deepcopy(S)
-    del s3["derogations_controles"]["fourre_tout"]["PV-ECOLO"]
-    r3, _ = controles.appliquer_derogations(s3, defauts)
-    assert [d[0] for d in r3["fourre_tout"]] == ["PV-ECOLO"], r3
+    del s3["issues_residuelles"]["PV-ECOLO"]
+    assert "PV-ECOLO" in [d[0] for d in controles.fourre_tout(s3, marg)], controles.fourre_tout(s3, marg)
     s4 = cp.deepcopy(S)
-    del s4["derogations_controles"]["persistance"]["VE-SOND|centre"]
+    del s4["derogations_controles"]["persistance"]["VE-ECART|< 120 pb"]
     r4, _ = controles.appliquer_derogations(s4, defauts)
-    assert ("VE-SOND", "centre") in [(d[0], d[1]) for d in r4["persistance"]], r4
+    assert ("VE-ECART", "< 120 pb") in [(d[0], d[1]) for d in r4["persistance"]], r4
     s5 = cp.deepcopy(S)
     s5["derogations_controles"]["persistance"]["VE-POP|< 25 %"] = {"cause": "x", "levee_par": "y"}
     _, i5 = controles.appliquer_derogations(s5, defauts)

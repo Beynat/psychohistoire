@@ -51,8 +51,19 @@ def version(ref, chemin):
     return json.loads(r.stdout)
 
 
-def sorties(structure, tables, calendrier, qs, nt, ntr):
-    """Toutes les sorties comparables, à plat : {(objet, issue): %}."""
+def observations_de(structure, o):
+    """Observations au format du moteur (même règle que reseau.observations), à partir d'un observations.json."""
+    o = o or {}
+    courant = (o.get("etabli_le") or "")[:7]
+    maxima = {v["id"] for v in structure["variables_etat"] if v.get("agregat") == "maximum"}
+    return {n: {m: ({"au_moins": e} if n in maxima and courant and m >= courant and isinstance(e, str) else e)
+                for m, e in d.items()} for n, d in o.get("etats", {}).items()}
+
+
+def sorties(structure, tables, calendrier, qs, nt, ntr, obs_json=None):
+    """Toutes les sorties comparables, à plat : {(objet, issue): %}. obs_json : observations.json à utiliser (à
+    défaut, le fichier courant) ; une version de référence garde ses propres observations quand le format des états
+    a changé (16 octobre 2026 : état « serré » de VE-SOND)."""
     with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8") as f:
         json.dump(calendrier, f, ensure_ascii=False)
     reseau.CHEMIN_CALENDRIER, ancien = f.name, reseau.CHEMIN_CALENDRIER
@@ -61,7 +72,8 @@ def sorties(structure, tables, calendrier, qs, nt, ntr):
     try:
         ids = {m for m in structure["mesures"]}
         q2 = [q for q in qs if q.get("evenement") in ids or ("composantes" in q and all(c[2:] in ids for c in q["composantes"]))]
-        p = reseau.prevoir(structure, tables, reseau.observations(structure), q2, nt, ntr,
+        obs = observations_de(structure, obs_json) if obs_json is not None else reseau.observations(structure)
+        p = reseau.prevoir(structure, tables, obs, q2, nt, ntr,
                            preuves=pv.preuves_notees(date.today().isoformat()))
     finally:
         reseau.CRN = None
@@ -103,6 +115,16 @@ def noeuds_changes(ref_fichiers, fichiers):
     return out
 
 
+def obs_compatibles(structure, o):
+    """Observations de O dont l'état existe dans STRUCTURE (les autres sont retirées)."""
+    N = reseau.noeuds_de(structure)
+    out = {"etabli_le": (o or {}).get("etabli_le"), "etats": {}}
+    for n, d in (o or {}).get("etats", {}).items():
+        ok = N.get(n, {}).get("etats") or N.get(n, {}).get("issues") or ["oui", "non"]
+        out["etats"][n] = {m: e for m, e in d.items() if (e if isinstance(e, str) else e.get("au_moins")) in ok}
+    return out
+
+
 def avec_changement(ref_fichiers, fichiers, i):
     """Référence où seul le nœud i (ou les mesures, ou le calendrier) prend sa version de la copie de travail."""
     (sa, ta, ca), (sb, tb, cb) = ref_fichiers, fichiers
@@ -131,7 +153,8 @@ def rapport(ref="HEAD", nt=100, ntr=100, seuil=SEUIL, decomposer=False):
     refs = tuple(version(ref, f) for f in reseau.FICHIERS_RESEAU)
     cour = tuple(lire_json(f) for f in reseau.FICHIERS_RESEAU)
     qs = reseau.questions_banque(cour[0], lire_json("modele/evenements.json")["evenements"])
-    a = sorties(*refs, qs, nt, ntr)
+    o_ref = obs_compatibles(refs[0], version(ref, "modele/reseau/observations.json") if ref != "gele" else lire_json("modele/reseau/observations.json"))
+    a = sorties(*refs, qs, nt, ntr, o_ref)
     b = sorties(*cour, qs, nt, ntr)
     e = ecarts(a, b, seuil)
     out = {"reference": ref, "empreinte_reference": empreinte(refs), "empreinte": empreinte(cour),
@@ -142,7 +165,8 @@ def rapport(ref="HEAD", nt=100, ntr=100, seuil=SEUIL, decomposer=False):
         part = {}
         for i in out["noeuds_changes"]:
             try:
-                c = sorties(*avec_changement(refs, cour, i), qs, nt, ntr)
+                sc = avec_changement(refs, cour, i)
+                c = sorties(*sc, qs, nt, ntr, obs_compatibles(sc[0], lire_json("modele/reseau/observations.json")))
             except Exception as err:     # changement non séparable (issues ou parents modifiés ensemble)
                 part[i] = f"non séparable ({type(err).__name__})"
                 continue
