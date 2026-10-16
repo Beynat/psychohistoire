@@ -178,8 +178,21 @@ const org = document.getElementById("org");
 const RARE = new Set(P.map((_, i) => i).filter(i => P[i].k != null && BASE.MG[i][P[i].k] < D.seuil_rare));
 const RID = new Set([...RARE].map(i => P[i].id));
 const ids = P.filter(p => !RID.has(p.id)).map(p => p.id).concat(V.map(v => v.id));
-org.innerHTML = P.map((p, i) => RARE.has(i) ? "" : `<div class="n pv" id="${p.id}" style="--th:var(--t-${p.theme})" tabindex="0" role="button" aria-label="${esc(p.titre)} : détail">${carte(i)}</div>`).join("")
-  + V.map((v, j) => `<div class="n pv va" id="${v.id}" style="--th:var(--t-variable)" tabindex="0" role="button" aria-label="${esc(v.titre)} : détail">${carteVariable(j)}</div>`).join("");
+// Une carte : data-id pour les deux vues ; l'identifiant HTML seulement dans le graphe (tailles pour ELK).
+const cartePivot = (p, i, avecId) => `<div class="n pv" data-id="${p.id}"${avecId ? ` id="${p.id}"` : ""} style="--th:var(--t-${p.theme})" tabindex="0" role="button" aria-label="${esc(p.titre)} : détail">${carte(i)}</div>`;
+const carteVar = (v, j, avecId) => `<div class="n pv va" data-id="${v.id}"${avecId ? ` id="${v.id}"` : ""} style="--th:var(--t-variable)" tabindex="0" role="button" aria-label="${esc(v.titre)} : détail">${carteVariable(j)}</div>`;
+
+// Vue liste (téléphone) : cartes pleine largeur, par thème, dans l'ordre du calendrier.
+const THEMES = [["budget", "Budget et gouvernement"], ["candidatures", "Justice et candidatures"], ["election", "Présidentielle"], ["apres", "Après l'élection"], ["dette", "Dette et marchés"]];
+function liste() {
+  const el = document.getElementById("liste");
+  el.innerHTML = THEMES.map(([t, nom]) => { const ps = P.map((p, i) => [p, i]).filter(([p, i]) => p.theme === t && !RARE.has(i)).sort((a, b) => a[0].mois - b[0].mois);
+    return ps.length ? `<h2 style="--th:var(--t-${t})">${nom}</h2>${ps.map(([p, i]) => cartePivot(p, i, false)).join("")}` : "" }).join("")
+    + `<h2 style="--th:var(--t-variable)">Suivi mensuel</h2>${V.map((v, j) => carteVar(v, j, false)).join("")}`;
+}
+
+async function graphe() {
+org.innerHTML = P.map((p, i) => RARE.has(i) ? "" : cartePivot(p, i, true)).join("") + V.map((v, j) => carteVar(v, j, true)).join("");
 const liens = [];
 P.forEach((p, c) => !RID.has(p.id) && p.parents.forEach(x => {
   if (RID.has(x.id)) return;
@@ -205,6 +218,22 @@ let svg = `<svg width="${r.width}" height="${r.height}"><defs>${["f", "fa"].map(
 r.edges.forEach((e, k) => { const l = liens[k]; (e.sections || []).forEach(sec => { const pts = [sec.startPoint, ...(sec.bendPoints || []), sec.endPoint];
   svg += `<path d="M${pts.map(p => p.x + " " + p.y).join(" L")}" fill="none" stroke="${l.fort ? "var(--accent)" : "var(--line-strong)"}" stroke-width="${l.fort ? 2.4 : 1.4}" stroke-linejoin="round" ${l.variable ? 'stroke-dasharray="5 4" opacity=".75"' : ""} marker-end="url(#${l.fort ? "fa" : "f"})"/>` }) });
 org.insertAdjacentHTML("afterbegin", svg + "</svg>");
+}
+let vue = null, grapheFait = false;
+async function montrer(v) {
+  vue = v;
+  document.body.dataset.vue = v;
+  try { localStorage.setItem("organigramme-vue", v) } catch (e) {}
+  document.getElementById("liste").hidden = v !== "liste";
+  document.querySelector(".scroll").hidden = v !== "graphe";
+  document.querySelectorAll("#vues button").forEach(b => b.classList.toggle("on", b.dataset.vue === v));
+  if (v === "graphe" && !grapheFait) { grapheFait = true; await graphe() }
+}
+let vue0 = null;
+try { vue0 = localStorage.getItem("organigramme-vue") } catch (e) {}
+liste();
+await montrer(vue0 === "liste" || vue0 === "graphe" ? vue0 : matchMedia("(max-width: 720px)").matches ? "liste" : "graphe");
+document.querySelectorAll("#vues button").forEach(b => b.onclick = () => montrer(b.dataset.vue));
 
 // --- Interactions ------------------------------------------------------------------------------------------------
 const dlg = document.getElementById("dlg"), dc = document.getElementById("dc");
@@ -228,8 +257,8 @@ function rafraichir() {
   const b = document.getElementById("etsi");
   b.classList.toggle("on", faits.length > 0);
   b.innerHTML = faits.length ? `<span class="t">Et si :</span>${faits.map((f, k) => `<span class="f">${esc(libFait(f))}<button data-k="${k}" aria-label="Retirer">×</button></span>`).join("")}<button class="raz" id="raz">tout retirer</button><span class="ess">${Math.round(M.ess)} trajectoires effectives sur ${N}</span>${rare ? `<span class="rare">Combinaison trop rare pour être estimée : chiffres non fiables.</span>` : ""}` : "";
-  P.forEach((_, i) => { const e = document.getElementById(P[i].id); if (e) e.innerHTML = carte(i) });
-  V.forEach((_, j) => { document.getElementById(V[j].id).innerHTML = carteVariable(j) });
+  P.forEach((_, i) => document.querySelectorAll(`[data-id="${P[i].id}"]`).forEach(e => { e.innerHTML = carte(i) }));
+  V.forEach((_, j) => document.querySelectorAll(`[data-id="${V[j].id}"]`).forEach(e => { e.innerHTML = carteVariable(j) }));
   if (ouvert) ouvrir(ouvert);
 }
 document.body.addEventListener("click", e => {
@@ -240,15 +269,15 @@ document.body.addEventListener("click", e => {
     rafraichir(); return }
   const x = e.target.closest(".etsi .f button"); if (x) { faits.splice(+x.dataset.k, 1); rafraichir(); return }
   if (e.target.id === "raz") { faits = []; rafraichir(); return }
-  const n = e.target.closest(".n.pv"); if (n) ouvrir(n.id);
+  const n = e.target.closest(".n.pv"); if (n && n.dataset.id) ouvrir(n.dataset.id);
 });
-document.querySelectorAll(".n.pv").forEach(e => { e.onkeydown = k => { if (k.key === "Enter" || k.key === " ") { k.preventDefault(); ouvrir(e.id) } } });
+document.body.addEventListener("keydown", k => { const e = k.target.closest && k.target.closest(".n.pv"); if (e && e.dataset.id && (k.key === "Enter" || k.key === " ")) { k.preventDefault(); ouvrir(e.dataset.id) } });
 const bh = document.getElementById("hors");
 bh.textContent = `${D.hors.length} questions hors réseau`;
 bh.onclick = () => { ouvert = null; dc.innerHTML = `<div class="pv dl" style="--th:var(--muted)"><div class="c"><div class="titre">Questions suivies hors réseau</div><p class="note">Prévues par l'ensemble de prévisionnistes et notées, mais aucun pivot ni aucune variable du réseau ne les porte encore.</p></div><div class="sec"><ul class="hl">${D.hors.map(h => `<li><b>${esc(h.id)}</b> ${esc(h.nom)}</li>`).join("")}</ul></div></div>`; dlg.showModal() };
 const br = document.getElementById("rares");
 br.textContent = RARE.size ? `${RARE.size} risque${RARE.size > 1 ? "s" : ""} rare${RARE.size > 1 ? "s" : ""} (< ${D.seuil_rare} %)` : "";
-br.onclick = () => { ouvert = null; dc.innerHTML = `<div class="pv dl" style="--th:var(--muted)"><div class="c"><div class="titre">Risques rares</div><p class="note">Événements dont la probabilité reste sous ${D.seuil_rare} % : ils sont calculés par le moteur et peuvent être supposés dans « et si », mais ne figurent pas dans l'organigramme.</p></div><div class="sec rares">${[...RARE].map(i => `<div class="n pv" id="${P[i].id}" style="--th:var(--t-${P[i].theme})" tabindex="0" role="button">${carte(i)}</div>`).join("")}</div></div>`; dlg.showModal() };
+br.onclick = () => { ouvert = null; dc.innerHTML = `<div class="pv dl" style="--th:var(--muted)"><div class="c"><div class="titre">Risques rares</div><p class="note">Événements dont la probabilité reste sous ${D.seuil_rare} % : ils sont calculés par le moteur et peuvent être supposés dans « et si », mais ne figurent pas dans l'organigramme.</p></div><div class="sec rares">${[...RARE].map(i => cartePivot(P[i], i, false)).join("")}</div></div>`; dlg.showModal() };
 const bp = document.getElementById("hyp");
 bp.textContent = `${D.hypotheses.length} hypothèses`;
 bp.onclick = () => { ouvert = null; dc.innerHTML = `<div class="pv dl" style="--th:var(--muted)"><div class="c"><div class="titre">Hypothèses porteuses</div><p class="note">Ce que le réseau suppose sans le représenter, ou en partie. Probabilité de rupture tirée de précédents ; une alerte de la veille déclenche un examen, jamais un changement de probabilité.</p></div><div class="sec">${D.hypotheses.map(h => `<p><b>${esc(h.id)}</b> ${esc(h.enonce)} <span class="pill">rupture ${pc(100 * h.rupture)}</span></p><p class="note">${esc(h.traitement)}</p>`).join("")}</div></div>`; dlg.showModal() };
