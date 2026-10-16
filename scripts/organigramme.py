@@ -100,6 +100,10 @@ THEME["PV-RNAUTRE"] = "candidatures"
 TETE["PV-VACANCE"] = ("Vacance de la présidence avant mai 2027", 0, "vacance de la présidence")
 SI["PV-VACANCE"] = ["la présidence devient vacante", "pas de vacance de la présidence"]
 THEME["PV-VACANCE"] = "budget"
+TETE["PV-SOUTIEN"] = ("Soutien des Écologistes à la présidentielle", None, "soutien des écologistes")
+CAS["PV-SOUTIEN"] = {"pas de soutien": "les écologistes ne soutiennent personne", "Glucksmann": "les écologistes soutiennent Glucksmann",
+                     "Mélenchon": "les écologistes soutiennent Mélenchon", "autre ou non désigné": "le soutien écologiste va à un autre ou reste sans nom"}
+THEME["PV-SOUTIEN"] = "candidatures"
 TETE["PV-CASSEURS"] = ("Loi « casseurs-payeurs » publiée avant avril 2027", 0, "loi casseurs-payeurs")
 SI["PV-CASSEURS"] = ["la loi « casseurs-payeurs » est publiée", "la loi « casseurs-payeurs » n'est pas publiée"]
 THEME["PV-CASSEURS"] = "budget"

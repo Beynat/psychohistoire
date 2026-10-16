@@ -24,6 +24,17 @@ BLOCS = {"Le Pen": "RN", "Bardella": "RN", "Philippe": "centre", "Attal": "centr
          "Retailleau": "droite", "Lisnard": "droite", "Wauquiez": "droite", "Bertrand": "droite"}
 
 
+SEUIL_SERRE = 2.0   # VE-SOND « serré » : deux premiers blocs derrière le RN à 2 points ou moins (16 octobre 2026)
+
+
+def etat_sond(moy):
+    """État de VE-SOND à partir de la moyenne du mois par bloc (centre, gauche, droite)."""
+    o = sorted(moy, key=moy.get, reverse=True)
+    if len(o) > 1 and moy[o[0]] - moy[o[1]] <= SEUIL_SERRE:
+        return "serré"
+    return o[0]
+
+
 def bloc(nom):
     return next((b for k, b in BLOCS.items() if k in nom), None)
 
@@ -50,7 +61,7 @@ def etats():
                     meilleur.setdefault(b, []).append(max(vals) + CORRECTION[b])
         moy = {b: statistics.mean(v) for b, v in meilleur.items()}
         if moy:
-            out.setdefault("VE-SOND", {})[m] = max(moy, key=moy.get)
+            out.setdefault("VE-SOND", {})[m] = etat_sond(moy)
             corr = {b: round(v + HISTORIQUE.get(b, 0), 1) for b, v in moy.items()}
             out.setdefault("_corrigee", {})[m] = {"RN": round(rn + HISTORIQUE.get("RN", 0), 1), **corr}
     for j in lire_jsonl("data/etat/mobilisation.jsonl"):
