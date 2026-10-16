@@ -154,8 +154,9 @@ body[data-vue="liste"] .lg{display:none}
   .lede{font-size:14px}
   .legende{font-size:12px;gap:4px 12px}
   dialog{width:100%;max-width:none;height:100dvh;max-height:none;margin:0;border-radius:0;inset:0}
-  dialog .fermer{position:fixed;top:8px;right:10px;background:var(--surface);border:1px solid var(--line);border-radius:999px;width:36px;height:36px;text-align:center;line-height:34px;padding:0;box-shadow:0 2px 8px rgba(0,0,0,.12)}
-  dialog .pv.dl .c{padding-right:52px}
+  .dlg-haut{position:sticky;top:0;z-index:3;display:flex;justify-content:flex-end;padding:6px 10px;background:var(--surface);border-bottom:1px solid var(--line)}
+  dialog .fermer{position:static;background:var(--surface);border:1px solid var(--line);border-radius:999px;width:36px;height:36px;text-align:center;line-height:34px;padding:0;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+  dialog .pv.dl .c{padding-right:12px}
   .jt{flex-wrap:wrap;gap:4px 8px}
   .pills{flex-wrap:wrap}
   .quand2{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
@@ -170,6 +171,26 @@ body[data-vue="liste"] .lg{display:none}
   table.iss2{font-size:12px}
   table.iss2 td{padding:4px 3px}
 }
+.ell{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.oh,.or{grid-template-columns:minmax(0,1fr) auto 34px!important;gap:8px!important}
+.oh{display:block!important}
+.or .ab{color:var(--muted);white-space:nowrap;text-align:right}.or .ab b{color:var(--ink)}
+.jt{flex-wrap:nowrap!important}.jt b.ell{flex:1}.jt .pp{font-weight:700;color:var(--accent);white-space:nowrap}
+.pv .iss>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.chip{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.cap{font-size:12px;color:var(--muted);margin:0 0 4px}
+#meta{margin:4px 0 8px}
+@media (max-width:720px){
+  .legende:not(.liens){display:none}
+  .legende.liens{flex-wrap:nowrap;overflow-x:auto;font-size:13px}
+  .legende.liens .hors{white-space:nowrap}
+  .tete{flex-wrap:nowrap}.tete h1{font-size:19px}
+  .onglets button{padding:6px 12px;font-size:13.5px}
+  .oh>span:first-child,.or>span:first-child{grid-column:auto!important}
+  .or>span:first-child{font-weight:400!important;margin-top:0!important}
+  table.dec th:nth-child(2),table.dec td:nth-child(2){display:none}
+  table.dec .mb{display:none}
+}
 </style>
 </head>
 <body>
@@ -178,7 +199,7 @@ body[data-vue="liste"] .lg{display:none}
   <div class="etsi" id="etsi"></div>
   <section id="o-actualite" hidden><div class="fil" id="fil"></div></section>
   <section id="o-organigramme">
-  <p class="lede">Chaque carte est un événement et sa probabilité. Un clic ouvre le détail ; « supposer » un fait recalcule tout.</p>
+  
   <div class="legende">
     <span><i class="pastille" style="background:var(--t-budget)"></i>budget et gouvernement</span>
     <span><i class="pastille" style="background:var(--t-candidatures)"></i>justice et candidatures</span>
@@ -186,7 +207,7 @@ body[data-vue="liste"] .lg{display:none}
     <span><i class="pastille" style="background:var(--t-apres)"></i>après l'élection</span>
     <span><i class="pastille" style="background:var(--t-dette)"></i>dette et marchés</span>
     <span class="lg"><svg width="34" height="10"><line x1="1" y1="5" x2="33" y2="5" stroke="var(--accent)" stroke-width="2.6"/></svg>lien fort</span>
-    <span class="lg"><svg width="34" height="10"><line x1="1" y1="5" x2="33" y2="5" stroke="var(--line-strong)" stroke-width="1.4"/></svg>lien faible</span><span><i class="pastille" style="background:var(--t-variable)"></i>variable mensuelle</span><span id="leg-evo"></span>
+    <span class="lg"><svg width="34" height="10"><line x1="1" y1="5" x2="33" y2="5" stroke="var(--line-strong)" stroke-width="1.4"/></svg>lien faible</span><span><i class="pastille" style="background:var(--t-variable)"></i>variable mensuelle</span>
   </div>
   <div class="legende liens"><button class="hors" id="rares"></button><button class="hors" id="hyp"></button><button class="hors" id="hors"></button></div>
   <p class="note" id="meta"></p>
@@ -194,7 +215,7 @@ body[data-vue="liste"] .lg{display:none}
   <div class="liste" id="liste" hidden></div>
   <div class="scroll" hidden><div class="cadre" id="cadre"><div class="org" id="org"></div></div></div>
   </section>
-  <dialog id="dlg"><button class="fermer" id="x" aria-label="Fermer">×</button><div id="dc"></div></dialog>
+  <dialog id="dlg"><div class="dlg-haut"><button class="fermer" id="x" aria-label="Fermer">×</button></div><div id="dc"></div></dialog>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/elkjs@0.9.3/lib/elk.bundled.js"></script>
 <script>window.__DONNEES__=/*__DONNEES__*/null;</script>

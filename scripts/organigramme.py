@@ -44,13 +44,13 @@ TETE = {
  "PV-GOUV": ("Départ du Premier ministre avant le 2 mai 2027", 0, "départ du Premier ministre"),
  "PV-DISSOL1": ("Dissolution avant la présidentielle", 0, "dissolution avant l'élection"),
  "PV-AUDIENCE": ("Audience de cassation avant fin février 2027", 0, "audience tenue"),
- "PV-POURVOI": ("Arrêt de cassation sur le pourvoi de Marine Le Pen, au 12 mars 2027", None, "arrêt de cassation"),
- "PV-ECOLO": ("Choix des écologistes pour 2027", None, "choix des écologistes"),
- "PV-BLOC": ("Candidatures au centre (Philippe, Attal)", None, "candidatures au centre"),
- "PV-GAUCHE": ("Nombre de candidats de gauche", None, "candidats de gauche"),
+ "PV-POURVOI": ("Arrêt de cassation sur le pourvoi de Marine Le Pen, au 12 mars 2027", None, "cassation"),
+ "PV-ECOLO": ("Choix des écologistes pour 2027", None, "écologistes"),
+ "PV-BLOC": ("Candidatures au centre (Philippe, Attal)", None, "centre"),
+ "PV-GAUCHE": ("Nombre de candidats de gauche", None, "gauche"),
  "PV-LEPEN": ("Marine Le Pen sur la liste des candidats", 0, "Le Pen candidate"),
- "PV-DUEL": ("Duel du second tour", None, "duel du second tour"),
- "PV-VAINQ": ("Président élu", None, "président élu"),
+ "PV-DUEL": ("Duel du second tour", None, "2d tour"),
+ "PV-VAINQ": ("Président élu", None, "élu"),
  "PV-DISSOL2a": ("Dissolution dans les deux mois suivant l'élection", 0, "dissolution en mai-juin 2027"),
  "PV-DISSOL2b": ("Dissolution de juillet 2027 à septembre 2028", 0, "dissolution plus tardive"),
  "PV-MAJOR": ("Majorité absolue pour le camp présidentiel", 0, "majorité absolue"),
@@ -86,8 +86,8 @@ CAS = {
 }
 VNOM = {"VE-POP": "Popularité du président", "VE-MOBIL": "Mobilisation sociale", "VE-ECART": "Écart de taux France-Allemagne",
         "VE-SOND": "Deuxième bloc dans les sondages", "VE-RN": "Intentions de vote RN", "VE-LYCEE": "Mobilisation lycéenne"}
-VSI = {"VE-POP": "la popularité du président est ", "VE-MOBIL": "la mobilisation sociale est ", "VE-ECART": "l'écart de taux est ",
-       "VE-SOND": "le 2e bloc dans les sondages est ", "VE-RN": "le RN est à ", "VE-LYCEE": "la mobilisation lycéenne est "}
+VSI = {"VE-POP": "popularité ", "VE-MOBIL": "mobilisation ", "VE-ECART": "écart de taux ",
+       "VE-SOND": "2e bloc : ", "VE-RN": "RN à ", "VE-LYCEE": "lycées : "}
 THEME = {}
 for th, ids in {"budget": ["PV-CENSURE1a", "PV-BUDGET", "PV-CENSURE1b", "PV-GOUV", "PV-DISSOL1"],
                 "candidatures": ["PV-AUDIENCE", "PV-POURVOI", "PV-LEPEN", "PV-ECOLO", "PV-GAUCHE", "PV-BLOC"],

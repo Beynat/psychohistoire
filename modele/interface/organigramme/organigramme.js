@@ -123,7 +123,8 @@ function carteVariable(j) {
   <div class="obs1">${o ? `<b>${esc(o[1])}</b> en ${esc(moisfr(o[0]))}` : "non observé"}</div>${spark(j, 236, 30, false, M.VD[j])}${legende(j)}</div>`;
 }
 const estSuppose = f => faits.some(x => x.type === f.type && x.id === f.id && (x.issue === f.issue) && (x.statut === f.statut));
-const bouton = (f, lib) => `<button class="suppose ${estSuppose(f) ? "actif" : ""}" data-f='${esc(JSON.stringify(f))}'>${estSuppose(f) ? "supposé" : lib}</button>`;
+const bouton = () => "";   // mode « et si » retiré de l'interface (demande de Nathan du 16 octobre 2026)
+const court2 = q => String(q).replace(/ 20(\d\d)/g, " $1");
 function jalonHtml(j) {
   const i = IX[j.noeud], mg = M.MG[i], pobs = mg.reduce((s, x, k) => s + x * j.L[k], 0);
   const w2 = poids([...faits.filter(f => !(f.type === "jalon" && f.id === j.id)), {type: "jalon", id: j.id, statut: "observé"}]), e2 = ess(w2);
@@ -132,38 +133,39 @@ function jalonHtml(j) {
     const MG2 = P.map((_, c) => marg(c, w2)), lignes = [];
     P.forEach((p, c) => {
       const ks = p.k != null ? [p.k] : M.MG[c].map((v, k) => [k, v]).sort((u, v) => v[1] - u[1]).slice(0, 3).map(x => x[0]);
-      ks.forEach(k => { const a = M.MG[c][k], b = MG2[c][k]; if (Math.abs(b - a) >= 3) lignes.push([c === i ? 0 : 1, p.court + (p.k != null ? "" : " : " + p.libelles[k]), a, b]) });
+      ks.forEach(k => { const a = M.MG[c][k], b = MG2[c][k]; if (Math.abs(b - a) >= 3) lignes.push([c === i ? 0 : 1, c === i && p.k == null ? p.libelles[k] : p.court + (p.k != null ? "" : " : " + p.libelles[k]), a, b]) });
     });
     lignes.sort((u, v) => u[0] - v[0] || Math.abs(v[3] - v[2]) - Math.abs(u[3] - u[2]));
-    const row = ([_, l, a, b]) => { const d = Math.round(b) - Math.round(a); return `<div class="or"><span>${esc(l)}</span><span>${pc(a)}</span><span class="b2"><i style="width:${b}%"></i><b>${pc(b)}</b></span><span class="dd ${d ? "up" : ""}">${d > 0 ? "+" : d < 0 ? "−" : ""}${d ? Math.abs(d) + " pts" : "="}</span></div>` };
+    const row = ([_, l, a, b]) => { const d = Math.round(b) - Math.round(a); return `<div class="or"><span class="ell">${esc(l)}</span><span class="ab">${pc(a)} → <b>${pc(b)}</b></span><span class="dd ${d ? "up" : ""}">${d > 0 ? "+" : d < 0 ? "−" : ""}${d ? Math.abs(d) : "="}</span></div>` };
     const ici = lignes.filter(x => x[0] === 0), aval = lignes.filter(x => x[0] === 1).slice(0, 8);
-    if (ici.length) opts = `<div class="opt"><div class="oh"><span>s'il survient</span><span>aujourd'hui</span><span>après</span><span></span></div>${ici.map(row).join("")}</div>`;
-    if (aval.length) cons = `<div class="opt"><div class="oh"><span>et dans tout le réseau</span><span>aujourd'hui</span><span>après</span><span></span></div>${aval.map(row).join("")}</div>`;
+    if (ici.length) opts = `<div class="opt"><div class="oh">S'il est observé</div>${ici.map(row).join("")}</div>`;
+    if (aval.length) cons = `<div class="opt"><div class="oh">Ailleurs dans le réseau</div>${aval.map(row).join("")}</div>`;
   } else opts = `<p class="note">Combinaison trop rare pour être chiffrée avec les faits déjà supposés.</p>`;
   const eq = j.etat_reseau != null ? `<p class="eq">Ce fait équivaut à « ${esc(P[i].libelles[j.etat_reseau])} » dans le réseau.</p>` : "";
-  return `<li><i class="pt ${j.niveau === 2 ? "n2" : ""} ${esc(j.statut)}"></i><div><div class="jt"><b>${esc(j.lib)}<span class="classe">${j.classe === "tranche" ? "tranche" : "indice"}</span></b><span class="pills"><span class="pill">probable à ${pc(pobs)}</span></span></div><p class="quand2">${esc(j.quand)} ${bouton({type: "jalon", id: j.id, statut: "observé"}, "supposer observé")}${bouton({type: "jalon", id: j.id, statut: "manqué"}, "supposer manqué")}</p>${eq}${opts}${cons}<p class="obs">${esc(j.observable)}</p></div></li>`;
+  return `<li><i class="pt ${j.niveau === 2 ? "n2" : ""} ${esc(j.statut)}"></i><div><div class="jt"><b class="ell">${esc(j.lib)}</b><span class="pp">${pc(pobs)}</span></div><p class="quand2">${esc(court2(j.quand))}</p>${eq}${opts}${cons}<p class="obs">${esc(j.observable)}</p></div></li>`;
 }
 function corps(i) {
   const p = P[i], mg = M.MG[i];
-  const issues = `<div class="sec"><div class="h">Issues</div><table class="iss2">${p.issues.map((_, k) => `<tr><td>${esc(p.libelles[k])}</td><td class="nb">${pc(mg[k])}${M !== BASE ? delta(BASE.MG[i][k], mg[k]) : ""}</td><td class="nb">${bouton({type: "pivot", id: p.id, issue: k}, "supposer")}</td></tr>`).join("")}</table></div>`;
+  const nTete = p.k != null ? 1 : mg.filter(x => x >= 3).slice(0, 3).length;
+  const issues = p.issues.length <= nTete ? "" : `<div class="sec"><div class="h">Issues</div><table class="iss2">${p.issues.map((_, k) => `<tr><td>${esc(p.libelles[k])}</td><td class="nb">${pc(mg[k])}</td></tr>`).join("")}</table></div>`;
   const effs = effets(i, M).sort((u, v) => v.ecart - u.ecart), e0 = effs[0];
-  const FIA = {bon: "bon : les évaluateurs donnaient des valeurs proches", moyen: "moyen : les évaluateurs divergeaient sensiblement", faible: "faible : les évaluateurs donnaient des valeurs très différentes"};
+  const FIA = {bon: "bonne (évaluateurs proches)", moyen: "moyenne (évaluateurs partagés)", faible: "faible (évaluateurs très partagés)"};
   let dec = "";
   if (!e0) dec = `<p>Aucune cause chiffrable dans le réseau : la probabilité vient directement des tables des évaluateurs.</p>`;
   else {
     const cible = p.k != null ? p.k : affiche(i, mg), tot0 = mg[cible];
     let tot = 0;
-    const rows = e0.cas.map(c => { const ct = c.pr * c.p / 100; tot += ct; return `<tr><td>${esc(c.si)}</td><td class="nb">${pc(c.pr)}</td><td class="nb"><span class="mb"><i style="width:${c.p}%"></i></span>${pc(c.p)}</td><td class="nb">${Math.round(ct)} pts</td></tr>` }).join("");
+    const rows = e0.cas.map(c => { const ct = c.pr * c.p / 100; tot += ct; return `<tr><td>${esc(c.si.replace(/^Si /, ""))}</td><td class="nb">${pc(c.pr)}</td><td class="nb"><span class="mb"><i style="width:${c.p}%"></i></span>${pc(c.p)}</td><td class="nb">${Math.round(ct)} pts</td></tr>` }).join("");
     const reste = 100 - e0.couvert;
-    dec = `<table class="dec"><thead><tr><th>Cas : ${esc(e0.facteur)}</th><th>Proba. du cas</th><th>« ${esc(p.k != null ? p.court : p.libelles[cible])} » dans ce cas</th><th>Contribution</th></tr></thead><tbody>${rows}${reste >= 1 ? `<tr class="muted"><td>Autres cas, trop rares pour être chiffrés</td><td class="nb">${pc(reste)}</td><td></td><td class="nb">${Math.round(tot0 - tot)} pts</td></tr>` : ""}<tr class="tot"><td colspan="3">Total : probabilité de « ${esc(p.k != null ? p.court : p.libelles[cible])} »</td><td class="nb">${pc(tot0)}</td></tr></tbody></table>`;
+    dec = `<p class="cap">« ${esc(p.k != null ? p.court : p.libelles[cible])} » selon : ${esc(e0.facteur)}</p><table class="dec"><thead><tr><th>Cas</th><th>Poids</th><th>Si oui</th><th>Apport</th></tr></thead><tbody>${rows}${reste >= 1 ? `<tr class="muted"><td>Autres cas</td><td class="nb">${pc(reste)}</td><td></td><td class="nb">${Math.round(tot0 - tot)} pts</td></tr>` : ""}<tr class="tot"><td colspan="3">Total</td><td class="nb">${pc(tot0)}</td></tr></tbody></table>`;
   }
   const autres = effs.slice(1).map(e => { const vs = e.cas.map(c => c.p), lo = Math.min(...vs), hi = Math.max(...vs), cmin = e.cas.find(c => c.p === lo), cmax = e.cas.find(c => c.p === hi);
     return `<li><b>${esc(e.facteur)}</b>${e.cible ? ` (sur « ${esc(e.cible)} »)` : ""} : ${hi - lo < 3 ? "effet négligeable" : `de ${pc(lo)} (${esc(cmin.si.replace(/^Si /, "si "))}) à ${pc(hi)} (${esc(cmax.si.replace(/^Si /, "si "))})`}</li>` }).join("");
   const ctx = p.ctx.length ? `<li>Pris en compte sans chiffrage ici : ${esc(p.ctx.join(", "))}.</li>` : "";
   const js = J.filter(j => j.noeud === p.id && j.statut !== "invalidé").sort((a, b) => a.debut < b.debut ? -1 : 1);
   const ev = p.issues.map((_, k) => [k, evo(i, k)]).filter(([_, e]) => e && e.d);
-  const evol = !T ? "" : `<div class="sec"><div class="h">Évolution depuis le ${jfr(T.reference)}</div>${ev.length ? `<table class="iss2">${ev.map(([k, e]) => `<tr><td>${esc(p.libelles[k])}</td><td class="nb">${pc(e.a)} → ${pc(BASE.MG[i][k])}</td><td class="nb">${e.d > 0 ? "+" : "−"}${Math.abs(e.d)} pts</td><td class="nb muted">modèle ${sg(e.pm)}, faits ${sg(e.pf)}</td></tr>`).join("")}</table><p class="note">« Modèle » : changement des tables ou de la structure ; « faits » : nouvelles observations et jalons.</p>` : `<p class="note">Aucun écart de 2 points ou plus.</p>`}</div>`;
-  return `${issues}${evol}<div class="sec"><div class="h">D'où vient ce chiffre</div>${dec}${autres || ctx ? `<div class="h" style="margin-top:12px">Autres facteurs</div><ul class="af">${autres}${ctx}</ul>` : ""}<p class="fia fia-${p.fiabilite}">Fiabilité des paramètres : ${FIA[p.fiabilite]}.</p></div>${js.length ? `<div class="sec js"><div class="h">Jalons à surveiller</div><ul>${js.map(jalonHtml).join("")}</ul></div>` : ""}`;
+  const evol = !T ? "" : `<div class="sec"><div class="h">Évolution depuis le ${jfr(T.reference)}</div>${ev.length ? `<table class="iss2">${ev.map(([k, e]) => `<tr><td>${esc(p.libelles[k])}</td><td class="nb">${pc(e.a)} → ${pc(BASE.MG[i][k])}</td><td class="nb">${e.d > 0 ? "+" : "−"}${Math.abs(e.d)}</td><td class="nb muted">${Math.round(e.pf) === 0 ? "modèle" : Math.round(e.pm) === 0 ? "faits" : `modèle ${sg(e.pm)}, faits ${sg(e.pf)}`}</td></tr>`).join("")}</table>` : `<p class="note">Aucun écart de 2 points ou plus.</p>`}</div>`;
+  return `${issues}${evol}<div class="sec"><div class="h">D'où vient ce chiffre</div>${dec}${autres || ctx ? `<div class="h" style="margin-top:12px">Autres facteurs</div><ul class="af">${autres}${ctx}</ul>` : ""}<p class="fia fia-${p.fiabilite}">Fiabilité : ${FIA[p.fiabilite]}.</p></div>${js.length ? `<div class="sec js"><div class="h">Jalons à surveiller</div><ul>${js.map(jalonHtml).join("")}</ul></div>` : ""}`;
 }
 function corpsVariable(j) {
   const v = V[j];
@@ -314,8 +316,7 @@ br.onclick = () => { ouvert = null; dc.innerHTML = `<div class="pv dl" style="--
 const bp = document.getElementById("hyp");
 bp.textContent = `${D.hypotheses.length} hypothèses`;
 bp.onclick = () => { ouvert = null; dc.innerHTML = `<div class="pv dl" style="--th:var(--muted)"><div class="c"><div class="titre">Hypothèses porteuses</div><p class="note">Ce que le réseau suppose sans le représenter, ou en partie. Probabilité de rupture tirée de précédents ; une alerte de la veille déclenche un examen, jamais un changement de probabilité.</p></div><div class="sec">${D.hypotheses.map(h => `<p><b>${esc(h.id)}</b> ${esc(h.enonce)} <span class="pill">rupture ${pc(100 * h.rupture)}</span></p><p class="note">${esc(h.traitement)}</p>`).join("")}</div></div>`; dlg.showModal() };
-document.getElementById("meta").textContent = `Calculé le ${jfr(D.etabli_le)} ${D.etabli_le.slice(0, 4)}.`;
-if (T) document.getElementById("leg-evo").innerHTML = `<b class="tend up">▲</b><b class="tend down" style="margin-left:0">▼</b> évolution depuis le ${jfr(T.reference)}, trait : valeur d'alors`;
+document.getElementById("meta").innerHTML = `Calculé le ${jfr(D.etabli_le)}` + (T ? ` · <b class="tend up">▲</b><b class="tend down" style="margin-left:2px">▼</b> depuis le ${jfr(T.reference)}` : "");
 fil();
 let o0 = location.hash.slice(1);
 if (!["organigramme", "actualite"].includes(o0)) { try { o0 = localStorage.getItem("psychohistoire-onglet") } catch (e) {} }
