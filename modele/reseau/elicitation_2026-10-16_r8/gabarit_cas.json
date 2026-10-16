@@ -1,0 +1,4686 @@
+{
+ "evaluateur": null,
+ "date": null,
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités. Note du 16 octobre 2026 : l'état « serré » de VE-SOND et le nœud PV-SOUTIEN sont nouveaux ; les « poids_reseau » sont calculés avec des lois provisoires neutres (VE-SOND : 70 % de maintien, le reste réparti également ; PV-SOUTIEN : issues permises également probables), pas avec un avis : ils indiquent seulement quels cas existent et comptent.",
+ "noeuds": {
+  "VE-SOND": {
+   "nom": "Deuxième place derrière le RN dans les intentions de vote (bloc et écart)",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "PV-BLOC",
+     "nom": "Candidatures du bloc central",
+     "etats": [
+      "les deux",
+      "Philippe seul",
+      "Attal seul",
+      "aucun des deux"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    },
+    {
+     "id": "PV-SOUTIEN",
+     "nom": "Bénéficiaire du soutien des Écologistes à la présidentielle",
+     "etats": [
+      "pas de soutien",
+      "Glucksmann",
+      "Mélenchon",
+      "autre ou non désigné"
+     ],
+     "decalage": 0,
+     "definition": "personne soutenue par les Écologistes, d'après leur vote du 10 au 13 décembre 2026 ou la première annonce officielle de leurs instances au plus tard le 31 janvier 2027 ; « pas de soutien » si le vote retient la candidature autonome ou n'a pas lieu ; « autre ou non désigné » si le soutien est voté sans bénéficiaire nommé au 31 janvier"
+    }
+   ],
+   "definition": "hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc (centre, gauche, droite) compté par son candidat le mieux placé, moyenne du mois sans correction de l'erreur historique (scripts/etat.py) : « serré » si les deux premiers blocs derrière le RN sont à 2 points ou moins l'un de l'autre ; sinon le bloc deuxième, devant le troisième de plus de 2 points",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "centre",
+    "serré",
+    "gauche",
+    "droite"
+   ],
+   "cas": {
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0342,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0085,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0085,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0062,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0522,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0157,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.013,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0117,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0141,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0051,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0048,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0036,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0072,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0017,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0072,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0106,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0028,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0029,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0028,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0041,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.007,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0018,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0015,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0394,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0107,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0091,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0098,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0667,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0195,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0175,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0184,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0195,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0048,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0057,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0041,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.01,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0032,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0028,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0054,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0016,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0015,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0116,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0034,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0031,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0021,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0035,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0083,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0024,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0021,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0243,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.007,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0065,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0066,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0445,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0126,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0105,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0108,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0127,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0029,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0031,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0081,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0017,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0056,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0017,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0015,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.012,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0026,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0025,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0032,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.003,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0034,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0079,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0017,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0018,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0228,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0051,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0056,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0426,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0123,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0111,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.01,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0126,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0032,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0032,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.003,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0074,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0024,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0056,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0015,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0117,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0031,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0026,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0039,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0038,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0075,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": null,
+      "serré": null,
+      "gauche": null,
+      "droite": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "PV-ECOLO": {
+   "nom": "Vote des adhérents des Écologistes",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième place derrière le RN dans les intentions de vote (bloc et écart)",
+     "etats": [
+      "centre",
+      "serré",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1,
+     "definition": "hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc (centre, gauche, droite) compté par son candidat le mieux placé, moyenne du mois sans correction de l'erreur historique (scripts/etat.py) : « serré » si les deux premiers blocs derrière le RN sont à 2 points ou moins l'un de l'autre ; sinon le bloc deuxième, devant le troisième de plus de 2 points"
+    }
+   ],
+   "definition": null,
+   "date": "2026-12-13",
+   "fenetre": null,
+   "issues": [
+    "candidature autonome",
+    "soutien à un autre candidat",
+    "autre ou vote non tenu"
+   ],
+   "cas": {
+    "VE-SOND=centre": {
+     "poids_reseau": 0.108,
+     "loi": {
+      "candidature autonome": null,
+      "soutien à un autre candidat": null,
+      "autre ou vote non tenu": null
+     },
+     "justification": null
+    },
+    "VE-SOND=serré": {
+     "poids_reseau": 0.7,
+     "loi": {
+      "candidature autonome": null,
+      "soutien à un autre candidat": null,
+      "autre ou vote non tenu": null
+     },
+     "justification": null
+    },
+    "VE-SOND=gauche": {
+     "poids_reseau": 0.108,
+     "loi": {
+      "candidature autonome": null,
+      "soutien à un autre candidat": null,
+      "autre ou vote non tenu": null
+     },
+     "justification": null
+    },
+    "VE-SOND=droite": {
+     "poids_reseau": 0.084,
+     "loi": {
+      "candidature autonome": null,
+      "soutien à un autre candidat": null,
+      "autre ou vote non tenu": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "PV-BLOC": {
+   "nom": "Candidatures du bloc central",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième place derrière le RN dans les intentions de vote (bloc et écart)",
+     "etats": [
+      "centre",
+      "serré",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1,
+     "definition": "hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc (centre, gauche, droite) compté par son candidat le mieux placé, moyenne du mois sans correction de l'erreur historique (scripts/etat.py) : « serré » si les deux premiers blocs derrière le RN sont à 2 points ou moins l'un de l'autre ; sinon le bloc deuxième, devant le troisième de plus de 2 points"
+    }
+   ],
+   "definition": null,
+   "date": "2027-03-26",
+   "fenetre": null,
+   "issues": [
+    "les deux",
+    "Philippe seul",
+    "Attal seul",
+    "aucun des deux"
+   ],
+   "cas": {
+    "VE-SOND=centre": {
+     "poids_reseau": 0.2013,
+     "loi": {
+      "les deux": null,
+      "Philippe seul": null,
+      "Attal seul": null,
+      "aucun des deux": null
+     },
+     "justification": null
+    },
+    "VE-SOND=serré": {
+     "poids_reseau": 0.3373,
+     "loi": {
+      "les deux": null,
+      "Philippe seul": null,
+      "Attal seul": null,
+      "aucun des deux": null
+     },
+     "justification": null
+    },
+    "VE-SOND=gauche": {
+     "poids_reseau": 0.2367,
+     "loi": {
+      "les deux": null,
+      "Philippe seul": null,
+      "Attal seul": null,
+      "aucun des deux": null
+     },
+     "justification": null
+    },
+    "VE-SOND=droite": {
+     "poids_reseau": 0.2247,
+     "loi": {
+      "les deux": null,
+      "Philippe seul": null,
+      "Attal seul": null,
+      "aucun des deux": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "PV-GAUCHE": {
+   "nom": "Nombre de candidats de gauche",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-ECOLO",
+     "nom": "Vote des adhérents des Écologistes",
+     "etats": [
+      "candidature autonome",
+      "soutien à un autre candidat",
+      "autre ou vote non tenu"
+     ],
+     "decalage": 0,
+     "definition": "2026-12-13"
+    },
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième place derrière le RN dans les intentions de vote (bloc et écart)",
+     "etats": [
+      "centre",
+      "serré",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1,
+     "definition": "hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc (centre, gauche, droite) compté par son candidat le mieux placé, moyenne du mois sans correction de l'erreur historique (scripts/etat.py) : « serré » si les deux premiers blocs derrière le RN sont à 2 points ou moins l'un de l'autre ; sinon le bloc deuxième, devant le troisième de plus de 2 points"
+    }
+   ],
+   "definition": null,
+   "date": "2027-03-26",
+   "fenetre": null,
+   "issues": [
+    "3 ou moins",
+    "4",
+    "5",
+    "6 ou plus"
+   ],
+   "cas": {
+    "PV-ECOLO=candidature autonome|VE-SOND=centre": {
+     "poids_reseau": 0.0973,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=candidature autonome|VE-SOND=serré": {
+     "poids_reseau": 0.16,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=candidature autonome|VE-SOND=gauche": {
+     "poids_reseau": 0.1047,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=candidature autonome|VE-SOND=droite": {
+     "poids_reseau": 0.1067,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=centre": {
+     "poids_reseau": 0.0833,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=serré": {
+     "poids_reseau": 0.144,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=gauche": {
+     "poids_reseau": 0.104,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=droite": {
+     "poids_reseau": 0.0973,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=centre": {
+     "poids_reseau": 0.0207,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=serré": {
+     "poids_reseau": 0.0333,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=gauche": {
+     "poids_reseau": 0.028,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=droite": {
+     "poids_reseau": 0.0207,
+     "loi": {
+      "3 ou moins": null,
+      "4": null,
+      "5": null,
+      "6 ou plus": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "PV-SOUTIEN": {
+   "nom": "Bénéficiaire du soutien des Écologistes à la présidentielle",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-ECOLO",
+     "nom": "Vote des adhérents des Écologistes",
+     "etats": [
+      "candidature autonome",
+      "soutien à un autre candidat",
+      "autre ou vote non tenu"
+     ],
+     "decalage": 0,
+     "definition": "2026-12-13"
+    },
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième place derrière le RN dans les intentions de vote (bloc et écart)",
+     "etats": [
+      "centre",
+      "serré",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 1,
+     "definition": "hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc (centre, gauche, droite) compté par son candidat le mieux placé, moyenne du mois sans correction de l'erreur historique (scripts/etat.py) : « serré » si les deux premiers blocs derrière le RN sont à 2 points ou moins l'un de l'autre ; sinon le bloc deuxième, devant le troisième de plus de 2 points"
+    }
+   ],
+   "definition": "personne soutenue par les Écologistes, d'après leur vote du 10 au 13 décembre 2026 ou la première annonce officielle de leurs instances au plus tard le 31 janvier 2027 ; « pas de soutien » si le vote retient la candidature autonome ou n'a pas lieu ; « autre ou non désigné » si le soutien est voté sans bénéficiaire nommé au 31 janvier",
+   "date": "2027-01-31",
+   "fenetre": null,
+   "issues": [
+    "pas de soutien",
+    "Glucksmann",
+    "Mélenchon",
+    "autre ou non désigné"
+   ],
+   "cas": {
+    "PV-ECOLO=candidature autonome|VE-SOND=centre": {
+     "poids_reseau": 0.0733,
+     "loi": {
+      "pas de soutien": null,
+      "Glucksmann": null,
+      "Mélenchon": null,
+      "autre ou non désigné": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=candidature autonome|VE-SOND=serré": {
+     "poids_reseau": 0.244,
+     "loi": {
+      "pas de soutien": null,
+      "Glucksmann": null,
+      "Mélenchon": null,
+      "autre ou non désigné": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=candidature autonome|VE-SOND=gauche": {
+     "poids_reseau": 0.07,
+     "loi": {
+      "pas de soutien": null,
+      "Glucksmann": null,
+      "Mélenchon": null,
+      "autre ou non désigné": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=candidature autonome|VE-SOND=droite": {
+     "poids_reseau": 0.0813,
+     "loi": {
+      "pas de soutien": null,
+      "Glucksmann": null,
+      "Mélenchon": null,
+      "autre ou non désigné": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=centre": {
+     "poids_reseau": 0.066,
+     "loi": {
+      "pas de soutien": null,
+      "Glucksmann": null,
+      "Mélenchon": null,
+      "autre ou non désigné": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=serré": {
+     "poids_reseau": 0.2373,
+     "loi": {
+      "pas de soutien": null,
+      "Glucksmann": null,
+      "Mélenchon": null,
+      "autre ou non désigné": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=gauche": {
+     "poids_reseau": 0.0633,
+     "loi": {
+      "pas de soutien": null,
+      "Glucksmann": null,
+      "Mélenchon": null,
+      "autre ou non désigné": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=soutien à un autre candidat|VE-SOND=droite": {
+     "poids_reseau": 0.062,
+     "loi": {
+      "pas de soutien": null,
+      "Glucksmann": null,
+      "Mélenchon": null,
+      "autre ou non désigné": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=centre": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "pas de soutien": null,
+      "Glucksmann": null,
+      "Mélenchon": null,
+      "autre ou non désigné": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=serré": {
+     "poids_reseau": 0.0493,
+     "loi": {
+      "pas de soutien": null,
+      "Glucksmann": null,
+      "Mélenchon": null,
+      "autre ou non désigné": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=gauche": {
+     "poids_reseau": 0.0173,
+     "loi": {
+      "pas de soutien": null,
+      "Glucksmann": null,
+      "Mélenchon": null,
+      "autre ou non désigné": null
+     },
+     "justification": null
+    },
+    "PV-ECOLO=autre ou vote non tenu|VE-SOND=droite": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "pas de soutien": null,
+      "Glucksmann": null,
+      "Mélenchon": null,
+      "autre ou non désigné": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  },
+  "PV-DUEL": {
+   "nom": "Duel de second tour",
+   "nature": "daté",
+   "parents": [
+    {
+     "id": "PV-BLOC",
+     "nom": "Candidatures du bloc central",
+     "etats": [
+      "les deux",
+      "Philippe seul",
+      "Attal seul",
+      "aucun des deux"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    },
+    {
+     "id": "VE-SOND",
+     "nom": "Deuxième place derrière le RN dans les intentions de vote (bloc et écart)",
+     "etats": [
+      "centre",
+      "serré",
+      "gauche",
+      "droite"
+     ],
+     "decalage": 0,
+     "definition": "hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc (centre, gauche, droite) compté par son candidat le mieux placé, moyenne du mois sans correction de l'erreur historique (scripts/etat.py) : « serré » si les deux premiers blocs derrière le RN sont à 2 points ou moins l'un de l'autre ; sinon le bloc deuxième, devant le troisième de plus de 2 points"
+    },
+    {
+     "id": "PV-LEPEN",
+     "nom": "Candidature de Marine Le Pen",
+     "etats": [
+      "candidate",
+      "non candidate"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    },
+    {
+     "id": "PV-SOUTIEN",
+     "nom": "Bénéficiaire du soutien des Écologistes à la présidentielle",
+     "etats": [
+      "pas de soutien",
+      "Glucksmann",
+      "Mélenchon",
+      "autre ou non désigné"
+     ],
+     "decalage": 0,
+     "definition": "personne soutenue par les Écologistes, d'après leur vote du 10 au 13 décembre 2026 ou la première annonce officielle de leurs instances au plus tard le 31 janvier 2027 ; « pas de soutien » si le vote retient la candidature autonome ou n'a pas lieu ; « autre ou non désigné » si le soutien est voté sans bénéficiaire nommé au 31 janvier"
+    }
+   ],
+   "definition": null,
+   "date": "2027-04-18",
+   "fenetre": null,
+   "issues": [
+    "RN-PHI",
+    "RN-ATT",
+    "RN-MEL",
+    "RN-GLU",
+    "RN-RET",
+    "RN-LIS",
+    "RN-AUT",
+    "PHI-MEL",
+    "PHI-GLU",
+    "AUTRE"
+   ],
+   "cas": {
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.04,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.01,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.032,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0127,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0087,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0113,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0353,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0107,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0093,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.008,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.008,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0307,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.006,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0113,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=les deux|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.058,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.016,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.014,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.014,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0747,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.022,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0153,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0133,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.01,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0627,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0187,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.018,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.01,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.054,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0087,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0167,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0127,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.012,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Philippe seul|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0167,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0067,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0233,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0067,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.014,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0067,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0067,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.02,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.006,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.004,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=Attal seul|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0087,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=centre|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0087,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=serré|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0047,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=serré|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.014,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0027,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=gauche|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.01,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.006,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    },
+    "PV-BLOC=aucun des deux|VE-SOND=droite|PV-LEPEN=non candidate|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "RN-PHI": null,
+      "RN-ATT": null,
+      "RN-MEL": null,
+      "RN-GLU": null,
+      "RN-RET": null,
+      "RN-LIS": null,
+      "RN-AUT": null,
+      "PHI-MEL": null,
+      "PHI-GLU": null,
+      "AUTRE": null
+     },
+     "justification": null
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-18": {
+   "critere": "Résultat du vote des adhérents des Écologistes sur la stratégie présidentielle, publié avant le 31 décembre 2026. Issues : candidature autonome d'un membre du parti ; soutien à un candidat d'une autre formation ; autre résultat, ou vote non tenu.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2026-12-31"
+   },
+   "probabilite": {
+    "candidature autonome": null,
+    "soutien à un autre candidat": null,
+    "autre ou vote non tenu": null
+   }
+  },
+  "EV-41": {
+   "critere": "Présence d'Édouard Philippe et de Gabriel Attal sur la liste des candidats au premier tour de 2027 arrêtée par le Conseil constitutionnel.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": {
+    "les deux": null,
+    "Philippe seul": null,
+    "Attal seul": null,
+    "aucun des deux": null
+   }
+  },
+  "EV-23": {
+   "critere": "Taux de participation au premier tour de l'élection présidentielle de 2027, France entière, proclamé par le Conseil constitutionnel.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": {
+    "moins de 70 %": null,
+    "70 à moins de 75 %": null,
+    "75 à moins de 80 %": null,
+    "80 % ou plus": null
+   }
+  },
+  "EV-19": {
+   "critere": "Nombre de candidats figurant sur la liste arrêtée par le Conseil constitutionnel pour le premier tour de 2027 qui sont investis ou soutenus, par une décision publiée, par La France insoumise, le Parti socialiste, Place publique, Les Écologistes, le Parti communiste français, Debout !, Lutte ouvrière ou le Nouveau Parti anticapitaliste (l'une ou l'autre des deux organisations issues de la scission de 2022, NPA-l'Anticapitaliste et NPA-Révolutionnaires).",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": {
+    "3 ou moins": null,
+    "4": null,
+    "5": null,
+    "6 ou plus": null
+   }
+  },
+  "EV-40a": {
+   "critere": "Marine Le Pen figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  },
+  "EV-40b": {
+   "critere": "Édouard Philippe figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  },
+  "EV-40c": {
+   "critere": "Jean-Luc Mélenchon figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  },
+  "EV-40d": {
+   "critere": "David Lisnard figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  },
+  "EV-40e": {
+   "critere": "Gabriel Attal figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  },
+  "EV-40f": {
+   "critere": "Raphaël Glucksmann figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  },
+  "EV-40g": {
+   "critere": "Bruno Retailleau figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": null
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "modérée"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "serré"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-10-16"
+}
