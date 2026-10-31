@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-10-30",
+ "genere_le": "2026-10-31",
  "registre": "registre/essai_v0.jsonl",
  "cycle": "2026-10-v0",
  "version_structure": "structure v0.11 (16 octobre 2026, décisions de Nathan : état « serré » de VE-SOND, pivot PV-SOUTIEN relié au duel et aux sondages) ; structure v0.10.1 (16 octobre 2026, revue de Nathan : définition de l'hypothèse principale de VE-SOND et VE-RN écrite, justification fausse de la feuille PV-GAUCHE corrigée, dérogations déclarées aux contrôles de vraisemblance) ; structure v0.10 (11 octobre 2026, étape 13 : sous-réseau mouvements et ordre public — VE-LYCEE décalé parent de VE-MOBIL, pivot PV-CASSEURS, satellites EV-48, EV-49, EV-03, EV-44, EV-23, EV-14b) ; structure v0.9 (10 octobre 2026, étape 10 : profils de risque élicités sur tranches de dates réelles pour huit pivots « à tout moment », départ immédiat du Premier ministre après censure) ; structure v0.8 (10 octobre 2026, étape 9 : points d'entrée des chocs, nœud rare PV-VACANCE) ; structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
@@ -5610,8 +5610,8 @@
    {
     "fait": "reponse-gouvernement-mouvement-lyceen",
     "premier_jour": "2026-10-14",
-    "dernier_jour": "2026-10-28",
-    "titres": 28,
+    "dernier_jour": "2026-10-30",
+    "titres": 31,
     "sources": 7,
     "concerne": [
      "Q-EV-10",
@@ -5625,6 +5625,289 @@
     "type": "fait public",
     "allegation": false,
     "vigilance": "élevé"
+   },
+   {
+    "fait": "baisse-prix-gazole-stocks-strategiques",
+    "premier_jour": "2026-10-07",
+    "dernier_jour": "2026-10-30",
+    "titres": 20,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-42"
+    ],
+    "stade": null,
+    "statut": "fait établi",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "mobilisation-31-octobre",
+    "premier_jour": "2026-10-24",
+    "dernier_jour": "2026-10-30",
+    "titres": 18,
+    "sources": 4,
+    "concerne": [
+     "Q-EV-39",
+     "Q-EV-51",
+     "Q-EV-52"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "élevé"
+   },
+   {
+    "fait": "midterms-etats-unis-politique",
+    "premier_jour": "2026-10-12",
+    "dernier_jour": "2026-10-30",
+    "titres": 13,
+    "sources": 4,
+    "concerne": [
+     "Q-EV-30"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "primaire-bloc-central",
+    "premier_jour": "2026-10-15",
+    "dernier_jour": "2026-10-30",
+    "titres": 12,
+    "sources": 5,
+    "concerne": [
+     "Q-EV-40b",
+     "Q-EV-40e",
+     "Q-EV-40g",
+     "Q-EV-41"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "élevé"
+   },
+   {
+    "fait": "budget-2027-censure-49-3",
+    "premier_jour": "2026-09-30",
+    "dernier_jour": "2026-10-30",
+    "titres": 9,
+    "sources": 5,
+    "concerne": [
+     "Q-EV-02",
+     "Q-EV-15"
+    ],
+    "stade": null,
+    "statut": "retombé",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "debat-dette-crise-financiere",
+    "premier_jour": "2026-10-10",
+    "dernier_jour": "2026-10-30",
+    "titres": 9,
+    "sources": 4,
+    "concerne": [
+     "Q-EV-01",
+     "Q-EV-46"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "depart-presidente-bce",
+    "premier_jour": "2026-10-29",
+    "dernier_jour": "2026-10-30",
+    "titres": 5,
+    "sources": 4,
+    "concerne": [
+     "Q-EV-01",
+     "Q-EV-46"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "enquete-pnf-cite-numerique-temoin-assiste",
+    "premier_jour": "2026-10-29",
+    "dernier_jour": "2026-10-30",
+    "titres": 5,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-40b",
+     "Q-EV-41"
+    ],
+    "stade": "allégation",
+    "statut": "en observation",
+    "type": "mise en cause",
+    "allegation": true,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "calendrier-presidentielle-question",
+    "premier_jour": "2026-10-19",
+    "dernier_jour": "2026-10-30",
+    "titres": 4,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-05"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "pib-t3-2026-recul",
+    "premier_jour": "2026-10-30",
+    "dernier_jour": "2026-10-30",
+    "titres": 4,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-01",
+     "Q-EV-06"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "campagne-candidat-horizons-difficultes",
+    "premier_jour": "2026-10-10",
+    "dernier_jour": "2026-10-30",
+    "titres": 3,
+    "sources": 2,
+    "concerne": [
+     "Q-EV-40b",
+     "Q-EV-41"
+    ],
+    "stade": "allégation",
+    "statut": "en observation",
+    "type": "mise en cause",
+    "allegation": true,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "campagne-candidat-lfi",
+    "premier_jour": "2026-10-14",
+    "dernier_jour": "2026-10-30",
+    "titres": 3,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-40c"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "maires-menace-organisation-scrutin",
+    "premier_jour": "2026-10-30",
+    "dernier_jour": "2026-10-30",
+    "titres": 1,
+    "sources": 1,
+    "concerne": [
+     "Q-EV-05"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "resultats-totalenergies-t3",
+    "premier_jour": "2026-10-29",
+    "dernier_jour": "2026-10-29",
+    "titres": 6,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-42"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "prix-energie-hiver-ue",
+    "premier_jour": "2026-09-30",
+    "dernier_jour": "2026-10-29",
+    "titres": 5,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-38"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, prolongé",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "ingerences-numeriques-campagne-presidentielle",
+    "premier_jour": "2026-10-20",
+    "dernier_jour": "2026-10-29",
+    "titres": 3,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-08"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "candidat-gauche-militants-lfi-campagne",
+    "premier_jour": "2026-10-27",
+    "dernier_jour": "2026-10-29",
+    "titres": 2,
+    "sources": 1,
+    "concerne": [
+     "Q-EV-19",
+     "Q-EV-40f"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "revelations-presse-societe-famille-le-pen",
+    "premier_jour": "2026-10-29",
+    "dernier_jour": "2026-10-29",
+    "titres": 1,
+    "sources": 1,
+    "concerne": [
+     "Q-EV-05",
+     "Q-EV-40a"
+    ],
+    "stade": "allégation",
+    "statut": "en observation",
+    "type": "mise en cause",
+    "allegation": true,
+    "vigilance": "modéré"
    },
    {
     "fait": "budget-2027-debat-assemblee",
@@ -5646,7 +5929,7 @@
     "fait": "loi-casseurs-payeurs",
     "premier_jour": "2026-10-12",
     "dernier_jour": "2026-10-28",
-    "titres": 19,
+    "titres": 20,
     "sources": 6,
     "concerne": [
      "Q-EV-48"
@@ -5685,7 +5968,7 @@
      "Q-EV-21"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -5698,23 +5981,6 @@
     "sources": 4,
     "concerne": [
      "Q-EV-30"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "mobilisation-31-octobre",
-    "premier_jour": "2026-10-24",
-    "dernier_jour": "2026-10-28",
-    "titres": 7,
-    "sources": 4,
-    "concerne": [
-     "Q-EV-39",
-     "Q-EV-51",
-     "Q-EV-52"
     ],
     "stade": null,
     "statut": "fait public non vérifié, en observation",
@@ -5740,16 +6006,13 @@
     "vigilance": "modéré"
    },
    {
-    "fait": "primaire-bloc-central",
-    "premier_jour": "2026-10-15",
+    "fait": "candidature-lisnard-reseaux",
+    "premier_jour": "2026-10-14",
     "dernier_jour": "2026-10-28",
-    "titres": 4,
+    "titres": 5,
     "sources": 4,
     "concerne": [
-     "Q-EV-40b",
-     "Q-EV-40e",
-     "Q-EV-40g",
-     "Q-EV-41"
+     "Q-EV-40d"
     ],
     "stade": null,
     "statut": "fait public non vérifié, en observation",
@@ -5758,13 +6021,13 @@
     "vigilance": "modéré"
    },
    {
-    "fait": "calendrier-presidentielle-question",
+    "fait": "fonction-publique-reforme-scenarios",
     "premier_jour": "2026-10-19",
     "dernier_jour": "2026-10-28",
-    "titres": 3,
-    "sources": 3,
+    "titres": 2,
+    "sources": 1,
     "concerne": [
-     "Q-EV-05"
+     "Q-EV-13"
     ],
     "stade": null,
     "statut": "fait public non vérifié, en observation",
@@ -5780,36 +6043,6 @@
     "sources": 1,
     "concerne": [
      "Q-EV-42"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "baisse-prix-gazole-stocks-strategiques",
-    "premier_jour": "2026-10-07",
-    "dernier_jour": "2026-10-27",
-    "titres": 17,
-    "sources": 3,
-    "concerne": [
-     "Q-EV-42"
-    ],
-    "stade": null,
-    "statut": "fait établi",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "midterms-etats-unis-politique",
-    "premier_jour": "2026-10-12",
-    "dernier_jour": "2026-10-27",
-    "titres": 12,
-    "sources": 4,
-    "concerne": [
-     "Q-EV-30"
     ],
     "stade": null,
     "statut": "fait public non vérifié, en observation",
@@ -5880,22 +6113,6 @@
     "vigilance": "modéré"
    },
    {
-    "fait": "candidat-gauche-militants-lfi-campagne",
-    "premier_jour": "2026-10-27",
-    "dernier_jour": "2026-10-27",
-    "titres": 1,
-    "sources": 1,
-    "concerne": [
-     "Q-EV-19",
-     "Q-EV-40f"
-    ],
-    "stade": "allégation",
-    "statut": "en observation",
-    "type": "mise en cause",
-    "allegation": true,
-    "vigilance": "modéré"
-   },
-   {
     "fait": "sondage-popularite-candidats-gauche-droite",
     "premier_jour": "2026-10-27",
     "dernier_jour": "2026-10-27",
@@ -5956,38 +6173,6 @@
     ],
     "stade": null,
     "statut": "fait établi",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "budget-2027-censure-49-3",
-    "premier_jour": "2026-09-30",
-    "dernier_jour": "2026-10-26",
-    "titres": 8,
-    "sources": 4,
-    "concerne": [
-     "Q-EV-02",
-     "Q-EV-15"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "debat-dette-crise-financiere",
-    "premier_jour": "2026-10-10",
-    "dernier_jour": "2026-10-26",
-    "titres": 7,
-    "sources": 3,
-    "concerne": [
-     "Q-EV-01",
-     "Q-EV-46"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -6238,21 +6423,6 @@
     "vigilance": "modéré"
    },
    {
-    "fait": "ingerences-numeriques-campagne-presidentielle",
-    "premier_jour": "2026-10-20",
-    "dernier_jour": "2026-10-21",
-    "titres": 2,
-    "sources": 2,
-    "concerne": [
-     "Q-EV-08"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
     "fait": "lfi-accuse-renseignement-detourne",
     "premier_jour": "2026-10-21",
     "dernier_jour": "2026-10-21",
@@ -6329,21 +6499,6 @@
     "vigilance": "modéré"
    },
    {
-    "fait": "fonction-publique-reforme-scenarios",
-    "premier_jour": "2026-10-19",
-    "dernier_jour": "2026-10-19",
-    "titres": 1,
-    "sources": 1,
-    "concerne": [
-     "Q-EV-13"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
     "fait": "mouvement-lyceen-blocages",
     "premier_jour": "2026-10-09",
     "dernier_jour": "2026-10-17",
@@ -6373,7 +6528,7 @@
      "Q-EV-52"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "élevé"
@@ -6441,21 +6596,6 @@
     "vigilance": "modéré"
    },
    {
-    "fait": "candidature-lisnard-reseaux",
-    "premier_jour": "2026-10-14",
-    "dernier_jour": "2026-10-17",
-    "titres": 3,
-    "sources": 3,
-    "concerne": [
-     "Q-EV-40d"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
     "fait": "budget-2027-fragilite-gouvernement",
     "premier_jour": "2026-10-13",
     "dernier_jour": "2026-10-16",
@@ -6483,21 +6623,6 @@
     ],
     "stade": null,
     "statut": "retombé",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "prix-energie-hiver-ue",
-    "premier_jour": "2026-09-30",
-    "dernier_jour": "2026-10-16",
-    "titres": 3,
-    "sources": 3,
-    "concerne": [
-     "Q-EV-38"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -6618,21 +6743,6 @@
     "sources": 2,
     "concerne": [
      "Q-EV-40b",
-     "Q-EV-40c"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "campagne-candidat-lfi",
-    "premier_jour": "2026-10-14",
-    "dernier_jour": "2026-10-14",
-    "titres": 2,
-    "sources": 2,
-    "concerne": [
      "Q-EV-40c"
     ],
     "stade": null,
@@ -6855,22 +6965,6 @@
     "vigilance": "modéré"
    },
    {
-    "fait": "campagne-candidat-horizons-difficultes",
-    "premier_jour": "2026-10-10",
-    "dernier_jour": "2026-10-10",
-    "titres": 1,
-    "sources": 1,
-    "concerne": [
-     "Q-EV-40b",
-     "Q-EV-41"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
     "fait": "budget-2027-presentation",
     "premier_jour": "2026-09-30",
     "dernier_jour": "2026-10-09",
@@ -7025,93 +7119,84 @@
   ],
   "sans_question": [
    {
+    "fait": "reactions-politiques-attentat-trappes",
+    "titres": 40,
+    "titres_7_derniers_jours": 40,
+    "sources_distinctes": 7,
+    "premier_jour": "2026-10-24",
+    "dernier_jour": "2026-10-30",
+    "emergence": false
+   },
+   {
     "fait": "emissions-programmes-audiovisuels-public-senat",
-    "titres": 59,
-    "titres_7_derniers_jours": 32,
+    "titres": 66,
+    "titres_7_derniers_jours": 39,
     "sources_distinctes": 1,
     "premier_jour": "2026-10-12",
-    "dernier_jour": "2026-10-27",
-    "emergence": false
-   },
-   {
-    "fait": "reactions-politiques-attentat-trappes",
-    "titres": 30,
-    "titres_7_derniers_jours": 30,
-    "sources_distinctes": 6,
-    "premier_jour": "2026-10-24",
-    "dernier_jour": "2026-10-28",
-    "emergence": false
-   },
-   {
-    "fait": "culture-cinema-spectacles",
-    "titres": 55,
-    "titres_7_derniers_jours": 27,
-    "sources_distinctes": 5,
-    "premier_jour": "2026-10-06",
-    "dernier_jour": "2026-10-28",
-    "emergence": false
-   },
-   {
-    "fait": "interdictions-manifester-24-octobre",
-    "titres": 26,
-    "titres_7_derniers_jours": 26,
-    "sources_distinctes": 6,
-    "premier_jour": "2026-10-22",
-    "dernier_jour": "2026-10-26",
+    "dernier_jour": "2026-10-29",
     "emergence": false
    },
    {
     "fait": "societe-divers",
-    "titres": 31,
-    "titres_7_derniers_jours": 24,
+    "titres": 32,
+    "titres_7_derniers_jours": 22,
     "sources_distinctes": 4,
     "premier_jour": "2026-10-15",
-    "dernier_jour": "2026-10-28",
+    "dernier_jour": "2026-10-29",
     "emergence": false
    },
    {
     "fait": "deroulement-24-octobre",
     "titres": 22,
-    "titres_7_derniers_jours": 22,
+    "titres_7_derniers_jours": 21,
     "sources_distinctes": 4,
     "premier_jour": "2026-10-22",
     "dernier_jour": "2026-10-25",
     "emergence": false
    },
    {
+    "fait": "culture-cinema-spectacles",
+    "titres": 55,
+    "titres_7_derniers_jours": 20,
+    "sources_distinctes": 5,
+    "premier_jour": "2026-10-06",
+    "dernier_jour": "2026-10-28",
+    "emergence": false
+   },
+   {
     "fait": "manifestation-contre-congres-rn-orleans",
     "titres": 22,
-    "titres_7_derniers_jours": 20,
+    "titres_7_derniers_jours": 14,
     "sources_distinctes": 6,
     "premier_jour": "2026-10-21",
     "dernier_jour": "2026-10-26",
     "emergence": false
    },
    {
+    "fait": "hommages-trappes",
+    "titres": 14,
+    "titres_7_derniers_jours": 14,
+    "sources_distinctes": 6,
+    "premier_jour": "2026-10-26",
+    "dernier_jour": "2026-10-30",
+    "emergence": false
+   },
+   {
+    "fait": "ultradroite-manifestations-lyon-rouen",
+    "titres": 15,
+    "titres_7_derniers_jours": 13,
+    "sources_distinctes": 4,
+    "premier_jour": "2026-10-20",
+    "dernier_jour": "2026-10-30",
+    "emergence": false
+   },
+   {
     "fait": "economie-entreprises-divers",
-    "titres": 21,
-    "titres_7_derniers_jours": 20,
+    "titres": 27,
+    "titres_7_derniers_jours": 13,
     "sources_distinctes": 3,
     "premier_jour": "2026-10-21",
-    "dernier_jour": "2026-10-28",
-    "emergence": false
-   },
-   {
-    "fait": "programmes-audiovisuels-public-senat",
-    "titres": 92,
-    "titres_7_derniers_jours": 14,
-    "sources_distinctes": 2,
-    "premier_jour": "2026-10-05",
-    "dernier_jour": "2026-10-24",
-    "emergence": false
-   },
-   {
-    "fait": "mobilisation-sociale-perspectives-automne",
-    "titres": 12,
-    "titres_7_derniers_jours": 12,
-    "sources_distinctes": 3,
-    "premier_jour": "2026-10-22",
-    "dernier_jour": "2026-10-27",
+    "dernier_jour": "2026-10-30",
     "emergence": false
    },
    {
@@ -7124,39 +7209,48 @@
     "emergence": false
    },
    {
-    "fait": "ia-impact-economie-emploi",
-    "titres": 12,
-    "titres_7_derniers_jours": 11,
-    "sources_distinctes": 3,
-    "premier_jour": "2026-10-21",
-    "dernier_jour": "2026-10-28",
+    "fait": "enquetes-igpn-maintien-ordre",
+    "titres": 24,
+    "titres_7_derniers_jours": 10,
+    "sources_distinctes": 5,
+    "premier_jour": "2026-10-06",
+    "dernier_jour": "2026-10-30",
     "emergence": false
    },
    {
-    "fait": "recits-bilans-mouvement-social",
+    "fait": "legislatives-israel",
     "titres": 11,
-    "titres_7_derniers_jours": 11,
-    "sources_distinctes": 4,
-    "premier_jour": "2026-10-22",
-    "dernier_jour": "2026-10-25",
-    "emergence": false
-   },
-   {
-    "fait": "ultradroite-manifestations-lyon-rouen",
-    "titres": 12,
     "titres_7_derniers_jours": 10,
     "sources_distinctes": 3,
-    "premier_jour": "2026-10-20",
-    "dernier_jour": "2026-10-26",
+    "premier_jour": "2026-10-22",
+    "dernier_jour": "2026-10-30",
     "emergence": false
    },
    {
-    "fait": "bresil-presidentielle",
-    "titres": 18,
-    "titres_7_derniers_jours": 9,
+    "fait": "parcoursup-debat-assemblee",
+    "titres": 10,
+    "titres_7_derniers_jours": 10,
     "sources_distinctes": 4,
-    "premier_jour": "2026-10-04",
-    "dernier_jour": "2026-10-26",
+    "premier_jour": "2026-10-28",
+    "dernier_jour": "2026-10-30",
+    "emergence": false
+   },
+   {
+    "fait": "collision-ferroviaire-espagne",
+    "titres": 10,
+    "titres_7_derniers_jours": 10,
+    "sources_distinctes": 3,
+    "premier_jour": "2026-10-28",
+    "dernier_jour": "2026-10-30",
+    "emergence": false
+   },
+   {
+    "fait": "incidents-congres-rn-orleans",
+    "titres": 9,
+    "titres_7_derniers_jours": 9,
+    "sources_distinctes": 5,
+    "premier_jour": "2026-10-24",
+    "dernier_jour": "2026-10-27",
     "emergence": false
    }
   ],
