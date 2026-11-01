@@ -3105,6 +3105,409 @@
     ],
     "critere": "« Oui » si et seulement si les deux questions sont résolues « oui ». (1) Reprise du mouvement lycéen après la Toussaint : Pour au moins une journée de la fenêtre, le ministère de l'Éducation nationale chiffre à au moins 300 le nombre d'établissements scolaires où les cours sont suspendus ou perturbés, totalement ou partiellement, pour une même journée, quelle qu'en soit la cause déclarée (blocage, filtrage, intrusion, fermeture préventive ou administrative). Si le ministère donne pour une même journée plusieurs catégories disjointes (par exemple « perturbés » et « cours suspendus », ou « fermés » et « perturbés »), leur somme est retenue. S'il donne plusieurs chiffres successifs pour la même journée (matin, mi-journée, fin de journée, décompte cumulé), le plus élevé est retenu. Une fourchette vaut sa borne basse ; un chiffre « au moins » ou « plus de » N vaut N ; un pourcentage d'établissements ouverts n'est pas converti en nombre. Le chiffre retenu est celui que le ministère publie (site, communiqué, compte officiel, déclaration d'un ministre) ou que l'AFP, Reuters ou AP rapporte en l'attribuant à ce ministère ; une seule dépêche suffit. À défaut de chiffre de ce ministère pour cette journée, celui du ministère de l'Intérieur, sous les mêmes règles. Les comptages des syndicats lycéens, des organisateurs ou des médias ne comptent pas. (fenêtre du 2026-11-02 au 2026-12-18). (2) Fin des fonctions du Premier ministre : Pendant la fenêtre, Sébastien Lecornu, Premier ministre au 10 octobre 2026, cesse de l'être : un décret publié au Journal officiel nomme une autre personne Premier ministre, ou met fin à ses fonctions, quelle qu'en soit la cause (démission, censure, démission du Gouvernement). Si un décret met fin à ses fonctions et qu'un décret publié au plus tard le dernier jour de la fenêtre le nomme de nouveau Premier ministre, la réponse est « non » ; s'il n'est pas renommé au dernier jour de la fenêtre, y compris s'il expédie les affaires courantes, la réponse est « oui », et la date du fait est celle du décret qui a mis fin à ses fonctions. (fenêtre du 2026-11-01 au 2027-05-02)."
    }
+  },
+  {
+   "id": "Q-2026-11-J-001",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-CENSURE1a",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-23 ? Le Gouvernement engage sa responsabilité (article 49, alinéa 3) sur tout ou partie du projet de loi de finances pour 2027 devant l'Assemblée nationale.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-23",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-001",
+    "noeud": "PV-CENSURE1a",
+    "critere": "Le Gouvernement engage sa responsabilité (article 49, alinéa 3) sur tout ou partie du projet de loi de finances pour 2027 devant l'Assemblée nationale. Source : Assemblée nationale, comptes rendus de séance et dossier législatif PLF 2027. Fenêtre : du 2026-10-20 au 2026-12-23."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-002",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-CENSURE1a",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-31 ? Une motion de censure déposée à l'Assemblée nationale compte parmi ses signataires le président du groupe Socialistes et apparentés.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-002",
+    "noeud": "PV-CENSURE1a",
+    "critere": "Une motion de censure déposée à l'Assemblée nationale compte parmi ses signataires le président du groupe Socialistes et apparentés. Source : Assemblée nationale, textes des motions de censure et liste des signataires. Fenêtre : du 2026-10-20 au 2026-12-31."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-003",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-BUDGET",
+   "texte": "Le fait suivant est-il observé entre le 2026-11-16 et le 2026-11-20 ? L'Assemblée nationale rejette l'ensemble du projet de loi de finances pour 2027 lors du vote solennel de première lecture.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-20",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-003",
+    "noeud": "PV-BUDGET",
+    "critere": "L'Assemblée nationale rejette l'ensemble du projet de loi de finances pour 2027 lors du vote solennel de première lecture. Source : Assemblée nationale, scrutins publics. Fenêtre : du 2026-11-16 au 2026-11-20."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-004",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-BUDGET",
+   "texte": "Le fait suivant est-il observé entre le 2026-11-25 et le 2026-12-20 ? La commission mixte paritaire sur le projet de loi de finances pour 2027 aboutit à un texte commun.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-20",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-004",
+    "noeud": "PV-BUDGET",
+    "critere": "La commission mixte paritaire sur le projet de loi de finances pour 2027 aboutit à un texte commun. Source : Assemblée nationale et Sénat, dossier législatif PLF 2027 (rapport de CMP). Fenêtre : du 2026-11-25 au 2026-12-20."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-005",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-BUDGET",
+   "texte": "Le fait suivant est-il observé entre le 2026-12-08 et le 2026-12-20 ? Le délai de 70 jours de l'article 47 de la Constitution expire sans adoption définitive du projet de loi de finances pour 2027 par le Parlement.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-20",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-005",
+    "noeud": "PV-BUDGET",
+    "critere": "Le délai de 70 jours de l'article 47 de la Constitution expire sans adoption définitive du projet de loi de finances pour 2027 par le Parlement. Source : Assemblée nationale et Sénat, dossier législatif PLF 2027 ; Journal officiel. Fenêtre : du 2026-12-08 au 2026-12-20."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-006",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-BUDGET",
+   "texte": "Le fait suivant est-il observé entre le 2026-12-01 et le 2026-12-31 ? Le Gouvernement dépose au Parlement un projet de loi spéciale autorisant la perception des impôts existants (article 45 de la LOLF).",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-006",
+    "noeud": "PV-BUDGET",
+    "critere": "Le Gouvernement dépose au Parlement un projet de loi spéciale autorisant la perception des impôts existants (article 45 de la LOLF). Source : Assemblée nationale, documents déposés ; Journal officiel. Fenêtre : du 2026-12-01 au 2026-12-31."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-007",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-CENSURE1a",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-15 ? Le Gouvernement engage sa responsabilité (article 49, alinéa 3) sur le projet de loi de financement de la sécurité sociale pour 2027 devant l'Assemblée nationale.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-15",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-007",
+    "noeud": "PV-CENSURE1a",
+    "critere": "Le Gouvernement engage sa responsabilité (article 49, alinéa 3) sur le projet de loi de financement de la sécurité sociale pour 2027 devant l'Assemblée nationale. Source : Assemblée nationale, comptes rendus de séance et dossier législatif PLFSS 2027. Fenêtre : du 2026-10-20 au 2026-12-15."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-010",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-CENSURE1a",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-31 ? Le ministère de l'Intérieur chiffre à au moins 300 000 le nombre de manifestants en France pour une même journée.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-010",
+    "noeud": "PV-CENSURE1a",
+    "critere": "Le ministère de l'Intérieur chiffre à au moins 300 000 le nombre de manifestants en France pour une même journée. Source : Ministère de l'Intérieur, directement ou rapporté par deux agences de presse (AFP, Reuters, AP). Fenêtre : du 2026-10-20 au 2026-12-31."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-012",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-CENSURE1a",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-31 ? Une motion de censure est déposée à l'Assemblée nationale dans les 7 jours suivant une journée chiffrée par le ministère de l'Intérieur à au moins 200 000 manifestants.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-012",
+    "noeud": "PV-CENSURE1a",
+    "critere": "Une motion de censure est déposée à l'Assemblée nationale dans les 7 jours suivant une journée chiffrée par le ministère de l'Intérieur à au moins 200 000 manifestants. Source : Assemblée nationale, motions de censure ; ministère de l'Intérieur. Fenêtre : du 2026-10-20 au 2026-12-31."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-014",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-BUDGET",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-27 et le 2026-12-10 ? Le Gouvernement dépose un amendement au projet de loi de finances pour 2027 qui augmente d'au moins 500 millions d'euros les crédits de la mission « Enseignement scolaire ».",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-10",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-014",
+    "noeud": "PV-BUDGET",
+    "critere": "Le Gouvernement dépose un amendement au projet de loi de finances pour 2027 qui augmente d'au moins 500 millions d'euros les crédits de la mission « Enseignement scolaire ». Source : Assemblée nationale ou Sénat, amendements publiés sur le PLF 2027. Fenêtre : du 2026-10-27 au 2026-12-10."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-016",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-CENSURE1a",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-31 ? Une motion de censure recueille entre 260 et 288 voix à l'Assemblée nationale.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-016",
+    "noeud": "PV-CENSURE1a",
+    "critere": "Une motion de censure recueille entre 260 et 288 voix à l'Assemblée nationale. Source : Assemblée nationale, résultats des scrutins sur les motions de censure. Fenêtre : du 2026-10-20 au 2026-12-31."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-019",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-CENSURE1a",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-31 ? Au moins 10 députés du groupe Droite républicaine votent pour une même motion de censure.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-019",
+    "noeud": "PV-CENSURE1a",
+    "critere": "Au moins 10 députés du groupe Droite républicaine votent pour une même motion de censure. Source : Assemblée nationale, analyse des scrutins (votes nominatifs). Fenêtre : du 2026-10-20 au 2026-12-31."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-030",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-ECOLO",
+   "texte": "Le fait suivant est-il observé entre le 2026-11-14 et le 2026-12-09 ? Le texte soumis au vote des adhérents des Écologistes comporte une option de soutien à une personne nommément désignée, issue d'une autre formation.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-09",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-030",
+    "noeud": "PV-ECOLO",
+    "critere": "Le texte soumis au vote des adhérents des Écologistes comporte une option de soutien à une personne nommément désignée, issue d'une autre formation. Source : Les Écologistes, texte officiel des options du vote (publication du parti) ; AFP. Fenêtre : du 2026-11-14 au 2026-12-09."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-031",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-ECOLO",
+   "texte": "Le fait suivant est-il observé entre le 2026-11-14 et le 2026-12-09 ? La direction des Écologistes (bureau exécutif ou conseil fédéral) appelle à voter pour l'option de candidature autonome.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-09",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-031",
+    "noeud": "PV-ECOLO",
+    "critere": "La direction des Écologistes (bureau exécutif ou conseil fédéral) appelle à voter pour l'option de candidature autonome. Source : Les Écologistes, communiqué officiel ; rapporté par deux agences de presse. Fenêtre : du 2026-11-14 au 2026-12-09."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-043",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-NOTE",
+   "texte": "Le fait suivant est-il observé entre le 2026-11-20 et le 2026-12-05 ? S&P Global Ratings, lors de sa revue de la France de fin 2026, assortit la note d'une perspective négative ou la place sous surveillance négative, sans l'abaisser.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-05",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-043",
+    "noeud": "PV-NOTE",
+    "critere": "S&P Global Ratings, lors de sa revue de la France de fin 2026, assortit la note d'une perspective négative ou la place sous surveillance négative, sans l'abaisser. Source : Communiqué de S&P Global Ratings ; Agence France Trésor, page des notations. Fenêtre : du 2026-11-20 au 2026-12-05."
+   }
+  },
+  {
+   "id": "Q-2026-11-J-049",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-PV-PDE",
+   "texte": "Le fait suivant est-il observé entre le 2026-11-15 et le 2026-12-15 ? La Commission européenne, dans son avis sur le projet de plan budgétaire 2027 de la France, juge celui-ci « non conforme » ou « présentant un risque de non-conformité » avec la recommandation au titre de la procédure de déficit excessif.",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-15",
+   "details": {
+    "rapide": "jalon",
+    "jalon": "J-049",
+    "noeud": "PV-PDE",
+    "critere": "La Commission européenne, dans son avis sur le projet de plan budgétaire 2027 de la France, juge celui-ci « non conforme » ou « présentant un risque de non-conformité » avec la recommandation au titre de la procédure de déficit excessif. Source : Commission européenne, paquet d'automne du Semestre européen (avis sur les projets de plans budgétaires). Fenêtre : du 2026-11-15 au 2026-12-15."
+   }
+  },
+  {
+   "id": "Q-2026-11-VE-ECART-2026-11",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-VE-ECART",
+   "texte": "Écart OAT-Bund 10 ans (moyenne du mois) : état pour le mois 2026-11 (moyenne mensuelle de l'écart (série BCE collectée)).",
+   "issues": [
+    "< 120 pb",
+    "120-160 pb",
+    "> 160 pb"
+   ],
+   "echeance": "2026-12-15",
+   "details": {
+    "rapide": "variable",
+    "noeud": "VE-ECART",
+    "mois": "2026-11",
+    "critere": "État de « Écart OAT-Bund 10 ans (moyenne du mois) » pour 2026-11 : moyenne mensuelle de l'écart (série BCE collectée). Issues : < 120 pb, 120-160 pb, > 160 pb."
+   }
+  },
+  {
+   "id": "Q-2026-11-VE-POP-2026-11",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-VE-POP",
+   "texte": "Popularité du président de la République : état pour le mois 2026-11 (part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)).",
+   "issues": [
+    "< 25 %",
+    "25-35 %",
+    "> 35 %"
+   ],
+   "echeance": "2026-12-15",
+   "details": {
+    "rapide": "variable",
+    "noeud": "VE-POP",
+    "mois": "2026-11",
+    "critere": "État de « Popularité du président de la République » pour 2026-11 : part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl). Issues : < 25 %, 25-35 %, > 35 %."
+   }
+  },
+  {
+   "id": "Q-2026-11-VE-MOBIL-2026-11",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-VE-MOBIL",
+   "texte": "Mobilisation sociale (manifestants) : état pour le mois 2026-11 (plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000).",
+   "issues": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "echeance": "2026-12-15",
+   "details": {
+    "rapide": "variable",
+    "noeud": "VE-MOBIL",
+    "mois": "2026-11",
+    "critere": "État de « Mobilisation sociale (manifestants) » pour 2026-11 : plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000. Issues : calme, modérée, forte."
+   }
+  },
+  {
+   "id": "Q-2026-11-VE-LYCEE-2026-11",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-VE-LYCEE",
+   "texte": "Mobilisation lycéenne : état pour le mois 2026-11 (plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000).",
+   "issues": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "echeance": "2026-12-15",
+   "details": {
+    "rapide": "variable",
+    "noeud": "VE-LYCEE",
+    "mois": "2026-11",
+    "critere": "État de « Mobilisation lycéenne » pour 2026-11 : plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000. Issues : calme, modérée, forte."
+   }
+  },
+  {
+   "id": "Q-2026-11-VE-SOND-2026-11",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-VE-SOND",
+   "texte": "Deuxième place derrière le RN dans les intentions de vote (bloc et écart) : état pour le mois 2026-11 (hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc (centre, gauche, droite) compté par son candidat le mieux placé, moyenne du mois sans correction de l'erreur historique (scripts/etat.py) : « serré » si les deux premiers blocs derrière le RN sont à 2 points ou moins l'un de l'autre ; sinon le bloc deuxième, devant le troisième de plus de 2 points).",
+   "issues": [
+    "centre",
+    "serré",
+    "gauche",
+    "droite"
+   ],
+   "echeance": "2026-12-15",
+   "details": {
+    "rapide": "variable",
+    "noeud": "VE-SOND",
+    "mois": "2026-11",
+    "critere": "État de « Deuxième place derrière le RN dans les intentions de vote (bloc et écart) » pour 2026-11 : hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc (centre, gauche, droite) compté par son candidat le mieux placé, moyenne du mois sans correction de l'erreur historique (scripts/etat.py) : « serré » si les deux premiers blocs derrière le RN sont à 2 points ou moins l'un de l'autre ; sinon le bloc deuxième, devant le troisième de plus de 2 points. Issues : centre, serré, gauche, droite."
+   }
+  },
+  {
+   "id": "Q-2026-11-VE-RN-2026-11",
+   "type": "rapide",
+   "pool": "PR",
+   "grappe": "PR-VE-RN",
+   "texte": "Intentions de vote du candidat RN au premier tour : état pour le mois 2026-11 (moyenne des sondages du mois pour le candidat du RN ; hypothèse principale : les hypothèses de premier tour du mois qui testent Édouard Philippe (scripts/etat.py), sans correction de l'erreur historique).",
+   "issues": [
+    "< 30 %",
+    "30-35 %",
+    "> 35 %"
+   ],
+   "echeance": "2026-12-15",
+   "details": {
+    "rapide": "variable",
+    "noeud": "VE-RN",
+    "mois": "2026-11",
+    "critere": "État de « Intentions de vote du candidat RN au premier tour » pour 2026-11 : moyenne des sondages du mois pour le candidat du RN ; hypothèse principale : les hypothèses de premier tour du mois qui testent Édouard Philippe (scripts/etat.py), sans correction de l'erreur historique. Issues : < 30 %, 30-35 %, > 35 %."
+   }
   }
  ],
  "ecartees": [
