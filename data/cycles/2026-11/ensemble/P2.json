@@ -1,0 +1,1119 @@
+{
+ "previsionniste": "P2",
+ "modele": "claude-opus-5-5",
+ "gel": "2026-11-01",
+ "recherches": 23,
+ "adresses": [
+  "https://lcp.fr/dossiers/budget-2027-440523",
+  "https://blog.avocats.deloitte.fr/plf-et-plfss-2027-point-detape/",
+  "https://beninwebtv.bj/france-melenchon-promet-de-censurer-le-gouvernement-sur-le-budget-2027/",
+  "https://lcp.fr/actualites/pourvoi-en-cassation-de-marine-le-pen-les-cles-pour-comprendre-les-consequences-de-cette",
+  "https://fr.euronews.com/2026/10/06/mobilisation-lyceenne-acte-iii-891-lycees-perturbes-annonce-le-ministere-de-linterieur",
+  "https://lcp.fr/actualites/candidature-a-la-presidentielle-pas-de-choix-definitif-des-ecologistes-avant-la-mi",
+  "https://tradingeconomics.com/commodity/brent-crude-oil/news/546205",
+  "https://www.sudradio.fr/societe/avant-les-vacances-scolaires-cinq-questions-sur-le-mouvement-lyceen",
+  "https://fr.euronews.com/2026/10/21/france-decus-apres-la-reunion-avec-le-gouvernement-les-syndicats-appellent-a-une-mobilisat",
+  "https://lebonbon.fr/paris/news/apres-17-octobre-deux-nouvelles-manifestations-24-31-octobre/",
+  "https://www.connexionfrance.com/news/october-24-protest-turnout-falls-by-almost-half-as-france-appears-calm/823815",
+  "https://acteurspublics.fr/articles/greve-dans-la-fonction-publique-la-mobilisation-portee-par-leducation-et-les-finances-publiques",
+  "https://www.mining-technology.com/news/china-rare-earth-export-pause-nears-expiry-amid-persistent-supply-concentration/",
+  "https://selectra.info/finance/actualites/marche/moody-note-france-23-octobre-credit-immobilier",
+  "https://www.journaldunet.com/business/action-publique/1551933-jordan-bardella-atteint-entre-35-et-37-d-intentions-de-vote-au-premier-tour-de-la-presidentielle-2027-selon-un-sondage-ifop-fiducial-pour-le-figaro-lci-et-sud-radio/",
+  "https://www.sudradio.fr/politique/exclu-presidentielle-2027-apres-les-violences-du-17-octobre-marine-le-pen-senvole",
+  "https://www.leclubdesjuristes.com/en-bref/condamnation-de-marine-le-pen-la-cour-de-cassation-pourrait-statuer-sur-son-pourvoi-au-plus-tard-debut-avril-2027-16873/",
+  "https://www.leclubdesjuristes.com/justice/marine-le-pen-qui-maitrise-le-calendrier-devant-la-cour-de-cassation-16888/",
+  "https://www.sudradio.fr/societe/budget-lecornu-tend-la-main-aux-socialistes-tentes-par-la-censure"
+ ],
+ "previsions": {
+  "Q001": {
+   "probabilites": {
+    "moins de 70 %": 12,
+    "70 à moins de 75 %": 45,
+    "75 à moins de 80 %": 35,
+    "80 % ou plus": 8
+   },
+   "motif": "Participation 2022 à 73,7 %, 2017 à 77,8 % ; enjeu fort (RN favori) mais défiance élevée : la tranche 70-75 % reste la plus probable."
+  },
+  "Q002": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Retailleau entre 5,5 et 7,5 % dans le baromètre Ifop du 17-19 octobre 2026, loin derrière Le Pen (36 %) et le trio Mélenchon-Glucksmann-Philippe."
+  },
+  "Q003": {
+   "probabilites": {
+    "oui": 85,
+    "non": 15
+   },
+   "motif": "Seuil 17,9 % sous la dernière valeur (21,1 % en septembre) ; Brent à 123 $ fin octobre contre environ 62 $ en décembre 2025, l'effet de base pousse l'énergie à la hausse."
+  },
+  "Q004": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "IPCH 3,4 % en septembre et énergie en accélération ; janvier 2027 sous 2,9 % exigerait un net repli du pétrole d'ici là."
+  },
+  "Q005": {
+   "probabilites": {
+    "oui": 33,
+    "non": 67
+   },
+   "motif": "Lecornu fragile : PLFSS rejeté par les députés fin octobre, crise sociale (550 000 manifestants le 17 octobre), mais il a survécu à toutes les censures depuis 2025 ; risque cumulé jusqu'au 2 mai 2027."
+  },
+  "Q006": {
+   "probabilites": {
+    "oui": 48,
+    "non": 52
+   },
+   "motif": "Seuil 162 pb égal au niveau récent estimé (série quotidienne 153 pb le 30 octobre, environ +9 pb pour la série BCE) ; légère réversion possible si un budget passe."
+  },
+  "Q007": {
+   "probabilites": {
+    "oui": 14,
+    "non": 86
+   },
+   "motif": "Une intervention notifiée au titre de l'article 35 suppose d'abord un cessez-le-feu et une force de réassurance ; pourparlers sans percée en octobre 2026."
+  },
+  "Q008": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Moody's Aa3 perspective négative maintenue le 23 octobre 2026, S&P et Fitch à A+ ; récession, écart OAT-Bund vers 160 pb et deux ans de fenêtre rendent une dégradation très probable."
+  },
+  "Q009": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Lois spéciales déposées en décembre 2024 et décembre 2025 ; PLF 2027 très retardé (vote de la première partie reporté), mais un 49.3 pourrait l'éviter."
+  },
+  "Q010": {
+   "probabilites": {
+    "oui": 35,
+    "non": 65
+   },
+   "motif": "Seuil 126,8 $ au-dessus du Brent quotidien de 123,1 $ le 27 octobre ; il faudrait une nouvelle escalade autour d'Ormuz en novembre."
+  },
+  "Q011": {
+   "probabilites": {
+    "candidature autonome": 50,
+    "soutien à un autre candidat": 38,
+    "autre ou vote non tenu": 12
+   },
+   "motif": "Référendum interne du 10 au 13 décembre 2026 entre Tondelier et le soutien à un candidat extérieur ; motion « pour l'Union » adoptée à 69 % le 21 septembre, mais Tondelier reste candidate officielle."
+  },
+  "Q012": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Le TPI n'a jamais été activé ; écart d'environ 160 pb sans contagion italienne (89 pb en septembre), et la conditionnalité budgétaire bloque un usage pour la France en novembre."
+  },
+  "Q013": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Cible de déficit 2027 vers 4,9 % au-dessus de la trajectoire de la procédure pour déficit excessif ; avis de la Commission attendu fin novembre, publication possiblement décalée."
+  },
+  "Q014": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Suspension chinoise des contrôles d'octobre 2025 expirant le 10 novembre 2026 ; une prolongation est probable dans la trêve sino-américaine, mais une réactivation d'ici juin 2027 reste plausible."
+  },
+  "Q015": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Après 2027, Assemblée probablement encore fragmentée ou nouvelle dissolution ; censures adoptées en 2024 et 2025, taux de base élevé dans un parlement sans majorité."
+  },
+  "Q016": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Journée intersyndicale du 5 novembre appelée par la quasi-totalité des syndicats ; le 17 octobre, environ 550 000 manifestants selon l'Intérieur, mais affaiblissement le 24 octobre."
+  },
+  "Q017": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Le texte des options doit être présenté dans la seconde moitié de novembre ; l'option de soutien pourrait viser un candidat non encore désigné (Glucksmann ? Hollande ?), d'où l'incertitude sur une personne nommée."
+  },
+  "Q018": {
+   "probabilites": {
+    "oui": 95,
+    "non": 5
+   },
+   "motif": "Déjà 256 000 manifestants le 6 octobre et 891 lycées perturbés ; sur une fenêtre jusqu'en 2028, une nouvelle journée à 200 000 est quasi certaine."
+  },
+  "Q019": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Aucune cyberattaque n'a coupé un service essentiel plus de 24 h en France à ce jour ; risque accru mais taux de base très faible même sur deux ans."
+  },
+  "Q020": {
+   "probabilites": {
+    "< 30 %": 3,
+    "30-35 %": 37,
+    "> 35 %": 60
+   },
+   "motif": "Le Pen à 36 % dans le baromètre Ifop d'octobre (hausse après les violences du 17 octobre), Bardella 35-37 % en juin : la moyenne de novembre devrait dépasser 35 %."
+  },
+  "Q021": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "RN+UDR et toute la gauche hors PS totalisent environ 264 voix : une motion déposée après un 49.3 tomberait dans la fourchette 260-288, si le 49.3 est utilisé."
+  },
+  "Q022": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "PLFSS 2027 rejeté par l'Assemblée du 20 au 23 octobre, transmis au Sénat le 9 novembre ; un 49.3 en nouvelle lecture d'ici le 15 décembre est possible, mais le PLFSS 2026 avait été voté sans."
+  },
+  "Q023": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "CMP sur le PLF échouées en décembre 2025 (et pas de texte avant fin 2024) dans cette Assemblée sans majorité ; peu de chances de texte commun avant le 20 décembre."
+  },
+  "Q024": {
+   "probabilites": {
+    "oui": 17,
+    "non": 83
+   },
+   "motif": "Glucksmann à 13,5 % (hypothèse générale Ifop d'octobre), au coude-à-coude avec Mélenchon et Philippe pour la seconde place."
+  },
+  "Q025": {
+   "probabilites": {
+    "oui": 60,
+    "non": 40
+   },
+   "motif": "Aucune loi de finances publiée au 31 décembre en 2024 ni en 2025 ; PLF 2027 rejeté en commission, première partie non votée fin octobre."
+  },
+  "Q026": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Chômage Eurostat 8,5 % en septembre (8,3 % en août), PIB en recul au T3 ; 8,6 % en novembre demande encore une hausse d'un dixième."
+  },
+  "Q027": {
+   "probabilites": {
+    "4,5 % du PIB ou moins": 40,
+    "plus de 4,5 % du PIB": 35,
+    "pas de loi de finances publiée au 31 janvier 2028": 25
+   },
+   "motif": "Déficit visé autour de 4,9 % pour 2027 ; un nouveau président afficherait probablement une cible 2028 vers 4,5 %, mais une loi de finances en retard (2025, 2026) reste un risque réel."
+  },
+  "Q028": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Le PS n'a pas déposé de motion propre contre Lecornu ; Vallaud menace mais dit ne pas être « dans la menace pour la menace » (septembre 2026)."
+  },
+  "Q029": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "État d'urgence en Nouvelle-Calédonie en mai 2024 et couvre-feux répétés outre-mer ; sur près de deux ans, risque substantiel."
+  },
+  "Q030": {
+   "probabilites": {
+    "oui": 85,
+    "non": 15
+   },
+   "motif": "Seuil 3,1 % sous l'IPCH de septembre (3,4 %) alors que le Brent est passé de 114 $ (moyenne de septembre) à environ 123 $ fin octobre."
+  },
+  "Q031": {
+   "probabilites": {
+    "oui": 60,
+    "non": 40
+   },
+   "motif": "VIGINUM publie régulièrement des attributions (Storm-1516, Doppelgänger) ; une campagne visant expressément la présidentielle de 2027 est probable d'ici 2028, mais le critère est exigeant."
+  },
+  "Q032": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Pic connu de 891 établissements perturbés le 6 octobre (acte III) ; le mouvement s'essoufflait avant la Toussaint, et le ministère avait cessé de publier ses comptages."
+  },
+  "Q033": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Seuil 170 pb au-dessus du niveau récent de 162 pb ; il faudrait une aggravation (censure, absence de budget) d'ici janvier."
+  },
+  "Q034": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "Confiance des ménages tombée à 80 en octobre (85 en septembre) ; remonter à 83 en janvier suppose une détente rapide du pétrole et du climat social."
+  },
+  "Q035": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Appel des Lycéens! à reprendre le 2 novembre et à rejoindre la grève du 5 novembre ; le mouvement s'essoufflait avant les vacances et le ministère ne publiait plus de chiffres."
+  },
+  "Q036": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Les démocrates mènent le vote générique depuis le printemps 2026 et les modèles les donnent favoris pour reprendre la Chambre le 3 novembre."
+  },
+  "Q037": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Seuil 115 $ sous le Brent actuel (123 $) mais proche de la moyenne de septembre ; trois mois de conflit autour d'Ormuz à traverser."
+  },
+  "Q038": {
+   "probabilites": {
+    "< 120 pb": 4,
+    "120-160 pb": 48,
+    "> 160 pb": 48
+   },
+   "motif": "L'écart quotidien de 153 pb le 30 octobre correspond à environ 162 pb en série BCE : novembre se situe à la frontière des 160 pb."
+  },
+  "Q039": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Seuil 3,8 % : l'énergie pourrait dépasser 24 % sur un an en décembre (base 2025 vers 62 $), ce qui ajoute environ 0,4 point à l'IPCH de 3,4 %."
+  },
+  "Q040": {
+   "probabilites": {
+    "oui": 72,
+    "non": 28
+   },
+   "motif": "Seuil 77 sous le niveau d'octobre (80) ; une nouvelle chute de 3 points est possible avec la récession, mais moins probable qu'improbable."
+  },
+  "Q041": {
+   "probabilites": {
+    "oui": 65,
+    "non": 35
+   },
+   "motif": "Délai de 70 jours expiré sans adoption en décembre 2025 ; PLF 2027 déposé vers le 1er octobre, donc échéance autour du 10 décembre, avec des débats très en retard."
+  },
+  "Q042": {
+   "probabilites": {
+    "oui": 65,
+    "non": 35
+   },
+   "motif": "Vigilance rouge canicule en 2019, 2020, 2022, 2023 et 2025 : environ deux étés sur trois récemment."
+  },
+  "Q043": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "PIB de -0,1 % au T3 2026 après 0,0 % au T2 ; avec le choc pétrolier, un T4 négatif suffirait, et la fenêtre court jusqu'en 2028."
+  },
+  "Q044": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "1 314 interpellations le samedi 24 octobre et environ 1 200 le 17 octobre selon l'Intérieur ; mobilisations des gilets jaunes et des lycéens en cours."
+  },
+  "Q045": {
+   "probabilites": {
+    "oui": 58,
+    "non": 42
+   },
+   "motif": "Seuil 116,4 $ sous le Brent du 27 octobre (123,1 $) ; il faudrait un repli de 6 % en moyenne sur décembre pour passer dessous."
+  },
+  "Q046": {
+   "probabilites": {
+    "oui": 38,
+    "non": 62
+   },
+   "motif": "Seuil 8,7 % : +0,2 point en trois mois depuis 8,5 % en septembre, cohérent avec la récession mais pas acquis."
+  },
+  "Q047": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "Les émissaires ne signalent aucune percée fin octobre 2026 et l'offensive russe se poursuit ; un cessez-le-feu général en novembre est improbable."
+  },
+  "Q048": {
+   "probabilites": {
+    "oui": 49,
+    "non": 51
+   },
+   "motif": "Seuil 163 pb quasi égal au niveau récent estimé (162 pb) : pile ou face pour janvier."
+  },
+  "Q049": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Un passage aux paragraphes 8 ou 9 de l'article 126 est sans précédent pour la France et ne pourrait intervenir qu'après l'évaluation d'automne."
+  },
+  "Q050": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Confiance à 80 en octobre après -5 points ; la dynamique sociale et pétrolière penche plutôt vers une stagnation ou une baisse en décembre."
+  },
+  "Q051": {
+   "probabilites": {
+    "oui": 83,
+    "non": 17
+   },
+   "motif": "Seuil 3,0 % nettement sous l'IPCH de septembre (3,4 %), alors que l'effet de base énergétique s'amplifie en fin d'année."
+  },
+  "Q052": {
+   "probabilites": {
+    "oui": 90,
+    "non": 10
+   },
+   "motif": "Seuil 8,2 % sous le chômage de septembre (8,5 %) ; un recul de 0,3 point en récession est très improbable."
+  },
+  "Q053": {
+   "probabilites": {
+    "oui": 65,
+    "non": 35
+   },
+   "motif": "Vigilances rouges canicule en 2019, 2020, 2022, 2023 et 2025 ; fréquence récente d'environ deux étés sur trois pour 2027."
+  },
+  "Q054": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Brent à 123 $ et manifestations contre la vie chère (17 octobre), mais un budget sous contrainte (54 milliards d'économies) limite une remise générale comme celle de 2022."
+  },
+  "Q055": {
+   "probabilites": {
+    "oui": 57,
+    "non": 43
+   },
+   "motif": "Seuil 156 pb un peu sous le niveau récent estimé de 162 pb pour la série BCE."
+  },
+  "Q056": {
+   "probabilites": {
+    "oui": 47,
+    "non": 53
+   },
+   "motif": "Seuil 80 égal au niveau d'octobre 2026 ; tendance baissière depuis 90 il y a un an."
+  },
+  "Q057": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Pendant la campagne présidentielle (janvier-mai 2027), une censure apporte peu aux oppositions ; risque résiduel si le budget n'est pas adopté."
+  },
+  "Q058": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Seuil 168 pb au-dessus du niveau récent de 162 pb pour décembre."
+  },
+  "Q059": {
+   "probabilites": {
+    "oui": 6,
+    "non": 94
+   },
+   "motif": "Une dissolution avant la présidentielle serait contre-productive pour Macron ; seule une crise de régime après une censure la rendrait plausible."
+  },
+  "Q060": {
+   "probabilites": {
+    "oui": 68,
+    "non": 32
+   },
+   "motif": "Seuil 3,4 % égal à la valeur de septembre ; l'énergie continue d'accélérer avec un Brent passé de 114 à 123 $, ce qui penche vers le dépassement."
+  },
+  "Q061": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Seuil 123,6 $ légèrement au-dessus du Brent du 27 octobre ; un plafonnement ou un repli après le pic du 23 octobre est un peu plus probable."
+  },
+  "Q062": {
+   "probabilites": {
+    "calme": 50,
+    "modérée": 38,
+    "forte": 12
+   },
+   "motif": "Avant la Toussaint, le gouvernement voyait le mouvement s'essouffler (environ 4 % d'établissements fermés) et le ministère ne publiait plus ses chiffres : un mois de novembre « calme » au sens du comptage est le plus probable."
+  },
+  "Q063": {
+   "probabilites": {
+    "oui": 7,
+    "non": 93
+   },
+   "motif": "Les accords sur le cadre financier interviennent tard (février 2013, juillet 2020) ; un accord unanime dès décembre 2026 sur 2028-2034 serait exceptionnel."
+  },
+  "Q064": {
+   "probabilites": {
+    "oui": 35,
+    "non": 65
+   },
+   "motif": "Revue S&P prévue le 27 novembre 2026 (A+ stable depuis mai) ; récession et absence de budget pourraient justifier une perspective négative plutôt qu'une baisse directe."
+  },
+  "Q065": {
+   "probabilites": {
+    "oui": 65,
+    "non": 35
+   },
+   "motif": "Seuil 78 sous le niveau d'octobre (80) ; une perte de 2 points de plus d'ici décembre est possible mais pas centrale."
+  },
+  "Q066": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Projet déposé au Sénat le 16 septembre 2026 ; le calendrier est saturé par le budget et les travaux s'interrompent avant la présidentielle, ce qui rend une promulgation d'ici fin mars incertaine."
+  },
+  "Q067": {
+   "probabilites": {
+    "oui": 35,
+    "non": 65
+   },
+   "motif": "Seuil 4,0 % : il faudrait une énergie au-dessus de 25 % sur un an en janvier et des effets de second tour, plausible seulement si le Brent reste vers 125 $."
+  },
+  "Q068": {
+   "probabilites": {
+    "oui": 35,
+    "non": 65
+   },
+   "motif": "Lecornu a fini par recourir au 49.3 sur le PLF 2026 en janvier 2026 après y avoir renoncé ; en 2026, l'adoption pourrait glisser au-delà du 23 décembre."
+  },
+  "Q069": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Geffray exposé par la crise lycéenne d'octobre ; son départ d'ici fin 2026 dépend surtout d'une censure ou d'un remaniement."
+  },
+  "Q070": {
+   "probabilites": {
+    "avis rendu, compatible": 68,
+    "avis rendu, incompatible": 15,
+    "pas d'avis": 17
+   },
+   "motif": "Demande d'avis du Parlement européen de janvier 2026 ; les avis de la CJUE prennent 16 à 24 mois, donc un avis avant septembre 2028 est probable, le plus souvent favorable."
+  },
+  "Q071": {
+   "probabilites": {
+    "oui": 17,
+    "non": 83
+   },
+   "motif": "Conjonction : une censure d'ici fin 2026 (environ 22 %) emporterait presque sûrement le départ de Geffray d'ici le 31 décembre."
+  },
+  "Q072": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "Les députés Droite républicaine n'ont jamais voté en nombre une censure contre les gouvernements Barnier, Bayrou ou Lecornu."
+  },
+  "Q073": {
+   "probabilites": {
+    "oui": 62,
+    "non": 38
+   },
+   "motif": "Seuil 20,8 % légèrement sous la valeur de septembre (21,1 %) ; Brent en janvier 2026 vers 65 $, donc l'effet de base reste fort si le prix tient."
+  },
+  "Q074": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Seuil 80 égal à la dernière valeur (octobre) ; la crise sociale et les prix de l'énergie pèsent sur le moral de novembre."
+  },
+  "Q075": {
+   "probabilites": {
+    "oui": 78,
+    "non": 22
+   },
+   "motif": "Seuil 17,3 % nettement sous les 21,1 % de septembre ; seul un effondrement du Brent ferait passer dessous en janvier."
+  },
+  "Q076": {
+   "probabilites": {
+    "oui": 68,
+    "non": 32
+   },
+   "motif": "Seuil 8,5 % égal à la valeur de septembre, avec une tendance haussière (7,9 % un an plus tôt) et un PIB en recul."
+  },
+  "Q077": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "Seule une annonce nouvelle entre octobre 2027 et septembre 2028 compte ; elle dépend de l'absence d'accord avant, et le conflit n'a pas trouvé d'issue diplomatique en 2026."
+  },
+  "Q078": {
+   "probabilites": {
+    "oui": 4,
+    "non": 96
+   },
+   "motif": "Attal à 5 % quand Philippe est candidat et 13 % comme seul centriste (Ifop, octobre 2026)."
+  },
+  "Q079": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "La journée du 5 novembre pourrait dépasser 200 000 ; une motion dans les sept jours suppose un 49.3 ou une initiative LFI, ce qui n'est pas acquis."
+  },
+  "Q080": {
+   "probabilites": {
+    "oui": 15,
+    "non": 85
+   },
+   "motif": "En 2024 et 2025, la première partie a été rejetée, empêchant tout vote sur l'ensemble ; en 2026, le délai de 40 jours expire le 17 novembre et le texte pourrait partir au Sénat sans vote."
+  },
+  "Q081": {
+   "probabilites": {
+    "oui": 75,
+    "non": 25
+   },
+   "motif": "Aucun groupe présidentiel n'a eu 289 sièges depuis 2022 ; même une victoire du RN suivie d'une dissolution ne garantit pas la majorité absolue au groupe seul."
+  },
+  "Q082": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "Pourparlers américains « constructifs » mais sans percée fin octobre 2026 ; probabilité d'un cessez-le-feu général d'ici septembre 2027 modérée."
+  },
+  "Q083": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "La suspension partielle de l'accord UE-Israël ne réunit pas la majorité qualifiée depuis 2025 ; la trêve à Gaza a réduit la pression."
+  },
+  "Q084": {
+   "probabilites": {
+    "oui": 57,
+    "non": 43
+   },
+   "motif": "Seuil 158 pb un peu sous le niveau récent estimé (162 pb) pour la moyenne de novembre."
+  },
+  "Q085": {
+   "probabilites": {
+    "oui": 48,
+    "non": 52
+   },
+   "motif": "Seuil 162 pb égal au niveau récent estimé ; Moody's a maintenu la note le 23 octobre, ce qui limite la dérive."
+  },
+  "Q086": {
+   "probabilites": {
+    "oui": 88,
+    "non": 12
+   },
+   "motif": "Seuil 8,3 % sous la dernière valeur (8,5 %) en pleine récession ; une baisse de 0,2 point est peu probable."
+  },
+  "Q087": {
+   "probabilites": {
+    "oui": 18,
+    "non": 82
+   },
+   "motif": "Conjonction d'une reprise lycéenne à 300 établissements (environ une chance sur deux) et d'un départ de Lecornu d'ici mai 2027 (environ un tiers), légèrement corrélés."
+  },
+  "Q088": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "Seuil 82 : il faudrait regagner 2 points dès novembre après la chute d'octobre, sans détente visible du pétrole."
+  },
+  "Q089": {
+   "probabilites": {
+    "3 ou moins": 7,
+    "4": 20,
+    "5": 35,
+    "6 ou plus": 38
+   },
+   "motif": "Six candidats de gauche en 2022 (LFI, PS, EELV, PCF, LO, NPA) ; en 2027, la candidature écologiste est incertaine et les deux NPA peinent à obtenir les parrainages."
+  },
+  "Q090": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "La direction a porté une motion « pour l'Union » et négocie avec les autres forces ; un appel officiel à la candidature autonome est moins probable qu'une neutralité ou un soutien."
+  },
+  "Q091": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Aucune interruption de service essentiel de plus de 24 h attribuée à une cyberattaque en France ; probabilité mensuelle très faible."
+  },
+  "Q092": {
+   "probabilites": {
+    "oui": 28,
+    "non": 72
+   },
+   "motif": "Seuil 129,8 $ au-dessus du record récent (environ 123 $) pour la moyenne de décembre."
+  },
+  "Q093": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Seuil 123,3 $ quasi égal au Brent du 27 octobre ; un recul après le sommet du 23 octobre et les déstockages européens penche légèrement vers le dessous."
+  },
+  "Q094": {
+   "probabilites": {
+    "Marine Le Pen": 35,
+    "Jordan Bardella": 24,
+    "Édouard Philippe": 14,
+    "Gabriel Attal": 5,
+    "Jean-Luc Mélenchon": 4,
+    "David Lisnard": 1,
+    "Bruno Retailleau": 1,
+    "Raphaël Glucksmann": 8,
+    "François Hollande": 2,
+    "autre": 6
+   },
+   "motif": "Le Pen gagne tous les seconds tours testés par Ifop en octobre 2026 (56 % face à Philippe) ; la répartition Le Pen/Bardella dépend de l'arrêt de cassation attendu « au plus tard début avril 2027 »."
+  },
+  "Q095": {
+   "probabilites": {
+    "< 25 %": 75,
+    "25-35 %": 23,
+    "> 35 %": 2
+   },
+   "motif": "Fin de second mandat, crise sociale et économique d'octobre 2026 : la popularité de Macron reste sous les 25 % dans les baromètres depuis 2025."
+  },
+  "Q096": {
+   "probabilites": {
+    "oui": 40,
+    "non": 60
+   },
+   "motif": "Seuil 123,1 $ égal au Brent du 27 octobre ; trois mois d'incertitude, avec une réversion habituelle après les pics."
+  },
+  "Q097": {
+   "probabilites": {
+    "oui": 62,
+    "non": 38
+   },
+   "motif": "Seuil 3,4 % égal à septembre ; l'énergie reste en forte hausse sur un an en janvier, mais les soldes et les tarifs réglementés de février introduisent du bruit."
+  },
+  "Q098": {
+   "probabilites": {
+    "oui": 18,
+    "non": 82
+   },
+   "motif": "Expiration le 10 novembre 2026 de la suspension d'un an des contrôles chinois ; une prolongation est l'issue la plus probable compte tenu de la trêve avec Washington."
+  },
+  "Q099": {
+   "probabilites": {
+    "oui": 26,
+    "non": 74
+   },
+   "motif": "Seuil 132 $ bien au-dessus du niveau actuel (123 $) pour janvier."
+  },
+  "Q100": {
+   "probabilites": {
+    "oui": 33,
+    "non": 67
+   },
+   "motif": "Mélenchon à 16,5 % (Ifop, octobre 2026), en tête des poursuivants mais talonné par Glucksmann et Philippe."
+  },
+  "Q101": {
+   "probabilites": {
+    "oui": 62,
+    "non": 38
+   },
+   "motif": "Seuil 119,2 $ sous le Brent du 27 octobre (123,1 $) ; il faudrait un repli de plus de 3 % sur la moyenne de novembre."
+  },
+  "Q102": {
+   "probabilites": {
+    "oui": 72,
+    "non": 28
+   },
+   "motif": "Seuil 3,4 % égal à septembre, alors que le Brent d'octobre-novembre dépasse nettement la moyenne de septembre (114 $)."
+  },
+  "Q103": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Seuil 23,8 % : avec un Brent vers 120 $ contre 63 $ en novembre 2025, l'énergie devrait passer de 21 % à environ 24-25 % sur un an."
+  },
+  "Q104": {
+   "probabilites": {
+    "centre": 12,
+    "serré": 37,
+    "gauche": 50,
+    "droite": 1
+   },
+   "motif": "Ifop octobre : Mélenchon 16,5 % et Glucksmann 13,5 % contre Philippe 12 % (15 % seul centriste) et Lisnard 5,5-7 % : la gauche est deuxième, souvent de plus de 2 points."
+  },
+  "Q105": {
+   "probabilites": {
+    "oui": 70,
+    "non": 30
+   },
+   "motif": "Seuil 8,5 % égal à septembre ; récession (PIB -0,1 % au T3) et défaillances en hausse orientent le chômage à la hausse."
+  },
+  "Q106": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Pas de majorité qualifiée pour suspendre le volet commercial depuis la proposition de 2025 ; probabilité faible d'ici juin 2027."
+  },
+  "Q107": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Une censure d'ici fin 2026 (environ 22 %) entraînerait très probablement le remplacement de Lecornu avant mai 2027."
+  },
+  "Q108": {
+   "probabilites": {
+    "oui": 22,
+    "non": 78
+   },
+   "motif": "PS tenté par la censure mais divisé, Le Pen jugeant un budget nécessaire « même imparfait » ; Lecornu a survécu à toutes les motions depuis 2025."
+  },
+  "Q109": {
+   "probabilites": {
+    "rejet ou non-admission": 43,
+    "cassation totale ou partielle": 10,
+    "désistement": 2,
+    "pas d'arrêt au 31 mars 2027": 45
+   },
+   "motif": "La Cour de cassation vise une décision « au plus tard début avril 2027 » (juillet 2026) : arrêt avant le 31 mars à peine plus probable que non, le rejet dominant comme en matière pénale."
+  },
+  "Q110": {
+   "probabilites": {
+    "oui": 70,
+    "non": 30
+   },
+   "motif": "Un président élu sans majorité (Le Pen a promis de dissoudre) dissout presque toujours dans la foulée (1981, 1988) ; l'Assemblée de 2024 est sans majorité."
+  },
+  "Q111": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Abaisser l'âge légal sous 64 ans pour la génération 1970 suppose une loi votée et en vigueur d'ici septembre 2028 ; promesse du RN mais coût élevé et majorité incertaine."
+  },
+  "Q112": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Les mobilisations agricoles d'hiver (janvier 2024, décembre 2025) ont dépassé une centaine d'actions par jour ; nouvel épisode plausible avec le Mercosur et le coût du gazole."
+  },
+  "Q113": {
+   "probabilites": {
+    "oui": 20,
+    "non": 80
+   },
+   "motif": "Un durcissement au titre de l'article 126(8) suppose une absence d'action suivie ; jamais appliqué à la France, mais dérive budgétaire et récession sur deux ans."
+  },
+  "Q114": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "VIGINUM publie quelques rapports par an ; une attribution visant expressément la présidentielle en novembre 2026 est peu probable."
+  },
+  "Q115": {
+   "probabilites": {
+    "oui": 68,
+    "non": 32
+   },
+   "motif": "Seuil 78 sous le niveau d'octobre (80) ; nouvelle baisse possible après -5 points, mais une chute de 2 points de plus reste minoritaire."
+  },
+  "Q116": {
+   "probabilites": {
+    "oui": 35,
+    "non": 65
+   },
+   "motif": "Le gouvernement a lancé « cinq chantiers prioritaires » face au mouvement lycéen ; un amendement de 500 M€ sur l'enseignement scolaire est envisageable malgré 54 milliards d'économies."
+  },
+  "Q117": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Aucune remise générale sur les carburants annoncée fin octobre ; publication d'un texte dès novembre peu probable."
+  },
+  "Q118": {
+   "probabilites": {
+    "oui": 45,
+    "non": 55
+   },
+   "motif": "Seuil 24,8 % : l'énergie sur un an atteindrait cette zone en décembre si le Brent reste vers 120 $ (base de décembre 2025 vers 62 $)."
+  },
+  "Q119": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Le TPI exige le respect des règles budgétaires, ce que la France ne remplit pas ; l'activation n'est envisageable qu'en cas de crise de marché aiguë d'ici 2028."
+  },
+  "Q120": {
+   "probabilites": {
+    "oui": 65,
+    "non": 35
+   },
+   "motif": "Seuil 8,5 % égal à septembre, alors que le chômage monte depuis 7,9 % il y a un an."
+  },
+  "Q121": {
+   "probabilites": {
+    "oui": 70,
+    "non": 30
+   },
+   "motif": "Grève interprofessionnelle du 5 novembre appelée par la quasi-totalité des syndicats, après environ 550 000 manifestants le 17 octobre et 256 000 le 6 octobre."
+  },
+  "Q122": {
+   "probabilites": {
+    "oui": 80,
+    "non": 20
+   },
+   "motif": "Seuil 8,4 % sous la valeur de septembre (8,5 %) ; seul un recul d'au moins 0,2 point le ferait échouer."
+  },
+  "Q123": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "326 actes antimusulmans en 2025, en forte hausse ; le contexte de 2026 laisse attendre une stabilité ou une hausse, mais le seuil est élevé."
+  },
+  "Q124": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Une cohabitation ou une coalition avec un parti concurrent au premier tour est possible si le président n'obtient pas de majorité, mais une victoire RN suivie d'une dissolution le rendrait improbable."
+  },
+  "Q125": {
+   "probabilites": {
+    "oui": 58,
+    "non": 42
+   },
+   "motif": "Seuil 155 pb sous le niveau récent estimé (162 pb) pour janvier, avec une incertitude large."
+  },
+  "Q126": {
+   "probabilites": {
+    "oui": 1,
+    "non": 99
+   },
+   "motif": "Pas de cessez-le-feu ni de force de réassurance déployée : une notification au titre de l'article 35 en novembre 2026 est quasi exclue."
+  },
+  "Q127": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Aucune dissolution annoncée ; Macron l'écarte en pleine discussion budgétaire, à six mois de la présidentielle."
+  },
+  "Q128": {
+   "probabilites": {
+    "oui": 30,
+    "non": 70
+   },
+   "motif": "Philippe à 12 % avec Attal dans la course, 15 % seul centriste : il a perdu sa place de challenger évident face à Mélenchon (16,5 %)."
+  },
+  "Q129": {
+   "probabilites": {
+    "oui": 27,
+    "non": 73
+   },
+   "motif": "Seuil 82 en décembre : il faudrait regagner 2 points après la chute d'octobre, sans amélioration visible."
+  },
+  "Q130": {
+   "probabilites": {
+    "calme": 15,
+    "modérée": 45,
+    "forte": 40
+   },
+   "motif": "Journée intersyndicale du 5 novembre : 200 000 manifestants sont probables, plus de 500 000 possibles (550 000 le 17 octobre)."
+  },
+  "Q131": {
+   "probabilites": {
+    "oui": 42,
+    "non": 58
+   },
+   "motif": "Seuil 8,7 % : +0,2 point en quatre mois depuis 8,5 %, cohérent avec la récession."
+  },
+  "Q132": {
+   "probabilites": {
+    "oui": 60,
+    "non": 40
+   },
+   "motif": "Cible 2027 vers 4,9 % construite avant la récession (PIB -0,1 % au T3) et sans budget adopté ; dépassements récurrents depuis 2023."
+  },
+  "Q133": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "Conjonction d'une absence de loi de finances (environ 60 %) et d'une dissolution avant mai 2027 (environ 6 %)."
+  },
+  "Q134": {
+   "probabilites": {
+    "oui": 55,
+    "non": 45
+   },
+   "motif": "Les annuités de la LPM ont été respectées dans les PLF depuis 2019 ; le PLF 2028 sera préparé par un nouveau gouvernement sous forte contrainte budgétaire."
+  },
+  "Q135": {
+   "probabilites": {
+    "oui": 2,
+    "non": 98
+   },
+   "motif": "Lisnard entre 5,5 et 7 % dans le baromètre Ifop d'octobre 2026."
+  },
+  "Q136": {
+   "probabilites": {
+    "oui": 25,
+    "non": 75
+   },
+   "motif": "Les stocks européens de gaz au 1er février tournent autour de 40-55 % ; les perturbations du GNL qatari via Ormuz font peser un risque de remplissage bas."
+  },
+  "Q137": {
+   "probabilites": {
+    "oui": 92,
+    "non": 8
+   },
+   "motif": "Le cadre 2028-2034 doit être adopté avant son entrée en vigueur ; un accord d'ici septembre 2028 est quasi certain."
+  },
+  "Q138": {
+   "probabilites": {
+    "oui": 70,
+    "non": 30
+   },
+   "motif": "Seuil 21,2 % quasi égal à septembre, avec un effet de base énergétique croissant en décembre."
+  },
+  "Q139": {
+   "probabilites": {
+    "oui": 50,
+    "non": 50
+   },
+   "motif": "Grève interprofessionnelle du 5 novembre avec l'enseignement public et privé ; 18,6 % de grévistes dans la fonction publique d'État le 5 décembre 2024."
+  },
+  "Q140": {
+   "probabilites": {
+    "oui": 75,
+    "non": 25
+   },
+   "motif": "Seuil 21,0 % sous la valeur de septembre (21,1 %), alors que le Brent de novembre dépasse celui de septembre et que la base 2025 baisse."
+  },
+  "Q141": {
+   "probabilites": {
+    "oui": 3,
+    "non": 97
+   },
+   "motif": "Aucune crise ouverte outre-mer signalée fin octobre 2026 ; un état d'urgence ou un couvre-feu de 7 jours dès novembre est rare."
+  },
+  "Q142": {
+   "probabilites": {
+    "oui": 10,
+    "non": 90
+   },
+   "motif": "Il faudrait une nouvelle décision de suspension entre juillet 2027 et septembre 2028 ; l'unanimité ou la majorité qualifiée manquent depuis 2025."
+  },
+  "Q143": {
+   "probabilites": {
+    "oui": 88,
+    "non": 12
+   },
+   "motif": "Seuil 18,7 % bien sous la valeur de septembre (21,1 %), avec un Brent plus haut en novembre."
+  },
+  "Q144": {
+   "probabilites": {
+    "oui": 75,
+    "non": 25
+   },
+   "motif": "Fenêtre de près de deux ans dans une crise sociale (550 000 le 17 octobre, avant la fenêtre) ; une journée au-delà de 500 000 est probable, dès le 5 novembre ou en 2027-2028."
+  },
+  "Q145": {
+   "probabilites": {
+    "oui": 8,
+    "non": 92
+   },
+   "motif": "Lecornu tient malgré le rejet du PLFSS ; une chute en novembre exigerait un 49.3 suivi d'une censure dès ce mois-ci."
+  },
+  "Q146": {
+   "probabilites": {
+    "oui": 35,
+    "non": 65
+   },
+   "motif": "Seuil 25,3 % pour janvier : il faudrait un Brent durablement au-dessus de 120 $ et une hausse du gaz."
+  },
+  "Q147": {
+   "probabilites": {
+    "oui": 41,
+    "non": 59
+   },
+   "motif": "Seuil 166 pb au-dessus du niveau récent estimé de 162 pb pour novembre."
+  },
+  "Q148": {
+   "probabilites": {
+    "oui": 52,
+    "non": 48
+   },
+   "motif": "Seuil 3,7 % : l'énergie vers 24-25 % sur un an en novembre ajouterait environ 0,3-0,4 point à l'IPCH de 3,4 %."
+  },
+  "Q149": {
+   "probabilites": {
+    "oui": 12,
+    "non": 88
+   },
+   "motif": "S&P (A+ stable) revoit la France le 27 novembre ; une baisse directe depuis une perspective stable est rare, mais S&P avait abaissé hors calendrier en octobre 2025."
+  },
+  "Q150": {
+   "probabilites": {
+    "les deux": 30,
+    "Philippe seul": 50,
+    "Attal seul": 12,
+    "aucun des deux": 8
+   },
+   "motif": "Ifop teste Philippe et Attal ensemble (12 % et 5 %) ; la division pénalise le bloc central et pousse au retrait de l'un des deux, plus probablement Attal."
+  },
+  "Q151": {
+   "probabilites": {
+    "oui": 60,
+    "non": 40
+   },
+   "motif": "Le Pen candidate depuis le 7 juillet 2026 ; un rejet du pourvoi avant l'établissement de la liste (mars 2027) la rendrait inéligible, or la Cour de cassation vise « au plus tard début avril »."
+  },
+  "Q152": {
+   "probabilites": {
+    "oui": 56,
+    "non": 44
+   },
+   "motif": "Le Pen à 36 % au premier tour (Ifop, octobre 2026) : qualification quasi sûre si elle est candidate (probabilité environ 60 %)."
+  }
+ }
+}
