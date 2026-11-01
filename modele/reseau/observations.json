@@ -1,12 +1,12 @@
 {
- "description": "États observés des variables du réseau, par mois (le moteur ne tire pas un état observé). Mis à jour à chaque passe et avant chaque cycle. Sources : écart OAT-Bund, collecte nocturne ; mobilisation et lycées, chiffres des ministères repris par l'AFP (1 207 établissements le 1er octobre, 891 le 6 ; 256 000 manifestants le 6 octobre selon l'Intérieur) ; popularité, baromètres de septembre (sous 25 %) ; sondages de fin septembre et début octobre (RN 30 à 36 %, Philippe deuxième). Séries sourcées dans data/etat/ (collecte du 10 octobre 2026). Sondages depuis septembre, hypothèses avec Édouard Philippe (41) : RN 33,9 % en moyenne, Philippe 17,0 %, Mélenchon 16,4 % ; Mélenchon deuxième dans 25 hypothèses sur 41, Philippe en moyenne : VE-SOND = centre, à la limite. Popularité Ifop de septembre 2026 : 17 %. Le 16 octobre 2026 : VE-SOND recalculé avec l'état « serré » (structure v0.11) sur 9 hypothèses d'octobre testant Philippe (Odoxa, Toluna-Harris, Ifop, OpinionWay ; data/etat/sondages.jsonl) : gauche 16,6, centre 15,1, écart de 1,5 point.",
- "etabli_le": "2026-10-10",
+ "description": "États observés des variables du réseau, par mois (le moteur ne tire pas un état observé). Mis à jour à chaque passe et avant chaque cycle. Sources : écart OAT-Bund, collecte nocturne ; mobilisation et lycées, chiffres des ministères repris par l'AFP (1 207 établissements le 1er octobre, 891 le 6 ; 256 000 manifestants le 6 octobre selon l'Intérieur) ; popularité, baromètres de septembre (sous 25 %) ; sondages de fin septembre et début octobre (RN 30 à 36 %, Philippe deuxième). Séries sourcées dans data/etat/ (collecte du 10 octobre 2026). Sondages depuis septembre, hypothèses avec Édouard Philippe (41) : RN 33,9 % en moyenne, Philippe 17,0 %, Mélenchon 16,4 % ; Mélenchon deuxième dans 25 hypothèses sur 41, Philippe en moyenne : VE-SOND = centre, à la limite. Popularité Ifop de septembre 2026 : 17 %. Le 16 octobre 2026 : VE-SOND recalculé avec l'état « serré » (structure v0.11) sur 9 hypothèses d'octobre testant Philippe (Odoxa, Toluna-Harris, Ifop, OpinionWay ; data/etat/sondages.jsonl) : gauche 16,6, centre 15,1, écart de 1,5 point. Le 1er novembre 2026 (cycle 2026-11, mois d'octobre complet) : VE-MOBIL octobre = forte (550 000 manifestants le 17 octobre selon l'Intérieur, data/etat/mobilisation.jsonl) ; VE-RN octobre = > 35 % (13 hypothèses d'octobre testant Philippe, moyenne RN 35,3 %, scripts/etat.py) ; VE-POP octobre = < 25 % (Ifop-Endrix pour L'Opinion, 17 % de satisfaits, terrain 7-16 oct.) ; VE-ECART octobre = 120-160 pb (moyenne des 22 cotations journalières : 140 pb) ; VE-SOND octobre = serré (inchangé) ; VE-LYCEE octobre maintenu à forte (1 207 établissements le 1er octobre, AFP ; cette journée manque dans data/etat/mobilisation.jsonl, où etat.py lit modérée).",
+ "etabli_le": "2026-11-01",
  "etats": {
   "VE-ECART": {
    "2026-10": "120-160 pb"
   },
   "VE-MOBIL": {
-   "2026-10": "modérée"
+   "2026-10": "forte"
   },
   "VE-LYCEE": {
    "2026-10": "forte"
@@ -18,7 +18,7 @@
    "2026-10": "serré"
   },
   "VE-RN": {
-   "2026-10": "30-35 %"
+   "2026-10": "> 35 %"
   }
  }
 }

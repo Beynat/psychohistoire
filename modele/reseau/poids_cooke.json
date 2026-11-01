@@ -54,8 +54,7 @@
     "PV-POURVOI",
     "PV-RNAUTRE",
     "PV-VACANCE",
-    "VE-RN",
-    "VE-SOND"
+    "VE-RN"
    ],
    "actif": false,
    "graines": {
@@ -71,10 +70,6 @@
     "E24"
    ],
    "noeuds": [
-    "PV-BLOC",
-    "PV-DUEL",
-    "PV-ECOLO",
-    "PV-GAUCHE",
     "PV-VAINQ"
    ],
    "actif": false,
@@ -118,6 +113,27 @@
     "E31": 0,
     "E32": 0,
     "E33": 0
+   }
+  },
+  {
+   "evaluateurs": [
+    "E34",
+    "E35",
+    "E36"
+   ],
+   "noeuds": [
+    "PV-BLOC",
+    "PV-DUEL",
+    "PV-ECOLO",
+    "PV-GAUCHE",
+    "PV-SOUTIEN",
+    "VE-SOND"
+   ],
+   "actif": false,
+   "graines": {
+    "E34": 0,
+    "E35": 0,
+    "E36": 0
    }
   }
  ]
