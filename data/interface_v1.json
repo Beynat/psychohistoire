@@ -1,7 +1,7 @@
 {
- "genere_le": "2026-10-31",
- "registre": "registre/essai_v0.jsonl",
- "cycle": "2026-10-v0",
+ "genere_le": "2026-11-01",
+ "registre": "registre/v0.jsonl",
+ "cycle": "2026-11",
  "version_structure": "structure v0.11 (16 octobre 2026, décisions de Nathan : état « serré » de VE-SOND, pivot PV-SOUTIEN relié au duel et aux sondages) ; structure v0.10.1 (16 octobre 2026, revue de Nathan : définition de l'hypothèse principale de VE-SOND et VE-RN écrite, justification fausse de la feuille PV-GAUCHE corrigée, dérogations déclarées aux contrôles de vraisemblance) ; structure v0.10 (11 octobre 2026, étape 13 : sous-réseau mouvements et ordre public — VE-LYCEE décalé parent de VE-MOBIL, pivot PV-CASSEURS, satellites EV-48, EV-49, EV-03, EV-44, EV-23, EV-14b) ; structure v0.9 (10 octobre 2026, étape 10 : profils de risque élicités sur tranches de dates réelles pour huit pivots « à tout moment », départ immédiat du Premier ministre après censure) ; structure v0.8 (10 octobre 2026, étape 9 : points d'entrée des chocs, nœud rare PV-VACANCE) ; structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
  "version_tables": "tables v0.11 (16 octobre 2026, décisions de Nathan, lot L8 : VE-SOND avec l'état « serré », PV-SOUTIEN, PV-ECOLO, PV-BLOC, PV-GAUCHE et PV-DUEL réélicités sur dossier sourcé, E34 et E35 Opus, E36 Sonnet, deux rondes IDEA)",
  "codes_candidats": {
@@ -500,7 +500,7 @@
    ],
    "definition": "plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000",
    "observe": {
-    "2026-10": "modérée"
+    "2026-10": "forte"
    },
    "questions": [
     "EV-13",
@@ -555,7 +555,7 @@
    ],
    "definition": "moyenne des sondages du mois pour le candidat du RN ; hypothèse principale : les hypothèses de premier tour du mois qui testent Édouard Philippe (scripts/etat.py), sans correction de l'erreur historique",
    "observe": {
-    "2026-10": "30-35 %"
+    "2026-10": "> 35 %"
    },
    "questions": []
   }
@@ -1367,7 +1367,7 @@
    },
    "niveau": 2,
    "type": "aval",
-   "statut": "en cours",
+   "statut": "à constater",
    "a": 0.216,
    "b": 0.252,
    "rapport": 0.86,
@@ -2412,565 +2412,42 @@
  ],
  "questions": [
   {
-   "id": "Q-EV-10b",
-   "texte": "Mouvement lycéen avant la Toussaint : le critère est-il rempli ? (fenêtre du 2026-10-12 au 2026-10-16)",
-   "pool": "P2b",
+   "id": "Q-2026-11-J-003",
+   "texte": "Le fait suivant est-il observé entre le 2026-11-16 et le 2026-11-20 ? L'Assemblée nationale rejette l'ensemble du projet de loi de finances pour 2027 lors du vote solennel de première lecture.",
+   "pool": "PR",
    "issues": [
     "oui",
     "non"
    ],
-   "echeance": "2026-10-16",
+   "echeance": "2026-11-20",
    "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 40.0,
-      "non": 60.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
     "comparateur : 50 %": {
      "p": {
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 58.0,
-      "non": 42.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    }
-   },
-   "resolution": {
-    "issue": "non",
-    "date_fait": "2026-10-16"
-   },
-   "brier": {
-    "comparateur : taux de base": 0.32,
-    "comparateur : 50 %": 0.5,
-    "ensemble direct": 0.6728
-   }
-  },
-  {
-   "id": "Q-EV-01-2026-10-v0",
-   "texte": "Dégradation de la note souveraine : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2b",
-   "issues": [
-    "oui",
-    "non"
-   ],
-   "echeance": "2026-10-31",
-   "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 0.9,
-      "non": 99.1
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "comparateur : 50 %": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 18.0,
-      "non": 82.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 4.9,
-      "non": 95.1
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      1.2,
-      10.0
-     ]
-    }
-   },
-   "resolution": null
-  },
-  {
-   "id": "Q-EV-04-2026-10-v0",
-   "texte": "Durcissement de la procédure de déficit excessif : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2b",
-   "issues": [
-    "oui",
-    "non"
-   ],
-   "echeance": "2026-10-31",
-   "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 0.4,
-      "non": 99.6
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "comparateur : 50 %": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 1.0,
-      "non": 99.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 1.0,
-      "non": 99.0
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      0.0,
-      2.5
-     ]
-    }
-   },
-   "resolution": null
-  },
-  {
-   "id": "Q-EV-07-2026-10-v0",
-   "texte": "Cyberattaque majeure contre un service essentiel : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2b",
-   "issues": [
-    "oui",
-    "non"
-   ],
-   "echeance": "2026-10-31",
-   "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 0.1,
-      "non": 99.9
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "comparateur : 50 %": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 1.0,
-      "non": 99.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
    "resolution": null
   },
   {
-   "id": "Q-EV-08-2026-10-v0",
-   "texte": "Ingérence étrangère visant la présidentielle : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
+   "id": "Q-EV-01-2026-11",
+   "texte": "Dégradation de la note souveraine : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
    "pool": "P2b",
    "issues": [
     "oui",
     "non"
    ],
-   "echeance": "2026-10-31",
-   "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 2.6,
-      "non": 97.4
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "comparateur : 50 %": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 6.0,
-      "non": 94.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    }
-   },
-   "resolution": null
-  },
-  {
-   "id": "Q-EV-48-2026-10-v0",
-   "texte": "Promulgation de la loi « casseurs-payeurs » : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2b",
-   "issues": [
-    "oui",
-    "non"
-   ],
-   "echeance": "2026-10-31",
-   "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 5.7,
-      "non": 94.3
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "comparateur : 50 %": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 1.0,
-      "non": 99.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    }
-   },
-   "resolution": null
-  },
-  {
-   "id": "Q-EV-16a-2026-10-v0",
-   "texte": "Dissolution avant le second tour : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2b",
-   "issues": [
-    "oui",
-    "non"
-   ],
-   "echeance": "2026-10-31",
-   "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 0.5,
-      "non": 99.5
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "comparateur : 50 %": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 1.0,
-      "non": 99.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 1.0,
-      "non": 99.0
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      0.0,
-      2.5
-     ]
-    }
-   },
-   "resolution": null
-  },
-  {
-   "id": "Q-EV-C1-2026-10-v0",
-   "texte": "Attentat terroriste meurtrier : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2b",
-   "issues": [
-    "oui",
-    "non"
-   ],
-   "echeance": "2026-10-31",
-   "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 4.5,
-      "non": 95.5
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "comparateur : 50 %": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 7.0,
-      "non": 93.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    }
-   },
-   "resolution": null
-  },
-  {
-   "id": "Q-EV-C2-2026-10-v0",
-   "texte": "Crise d'ordre public grave outre-mer : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2b",
-   "issues": [
-    "oui",
-    "non"
-   ],
-   "echeance": "2026-10-31",
-   "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 0.7,
-      "non": 99.3
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "comparateur : 50 %": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 3.0,
-      "non": 97.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    }
-   },
-   "resolution": null
-  },
-  {
-   "id": "Q-EV-39-2026-10-v0",
-   "texte": "Journée de mobilisation à plus de 500 000 manifestants : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2b",
-   "issues": [
-    "oui",
-    "non"
-   ],
-   "echeance": "2026-10-31",
-   "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 2.2,
-      "non": 97.8
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "comparateur : 50 %": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 6.0,
-      "non": 94.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 0.0,
-      "non": 100.0
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      0.0,
-      0.0
-     ]
-    }
-   },
-   "resolution": null
-  },
-  {
-   "id": "Q-EV-42-2026-10-v0",
-   "texte": "Baisse générale du prix des carburants : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2b",
-   "issues": [
-    "oui",
-    "non"
-   ],
-   "echeance": "2026-10-31",
-   "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 1.9,
-      "non": 98.1
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "comparateur : 50 %": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 4.0,
-      "non": 96.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    }
-   },
-   "resolution": null
-  },
-  {
-   "id": "Q-EV-29-2026-10-v0",
-   "texte": "Militaires français en Ukraine : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2b",
-   "issues": [
-    "oui",
-    "non"
-   ],
-   "echeance": "2026-10-31",
-   "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 0.5,
-      "non": 99.5
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "comparateur : 50 %": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 1.0,
-      "non": 99.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    }
-   },
-   "resolution": null
-  },
-  {
-   "id": "Q-EV-46-2026-10-v0",
-   "texte": "Achats ciblés de la BCE (TPI ou OMT) pour la France : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2b",
-   "issues": [
-    "oui",
-    "non"
-   ],
-   "echeance": "2026-10-31",
-   "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 0.1,
-      "non": 99.9
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "comparateur : 50 %": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 1.0,
-      "non": 99.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 0.2,
-      "non": 99.9
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      0.0,
-      1.2
-     ]
-    }
-   },
-   "resolution": null
-  },
-  {
-   "id": "Q-EV-28-2026-10-v0",
-   "texte": "Cessez-le-feu en Ukraine : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2e",
-   "issues": [
-    "oui",
-    "non"
-   ],
-   "echeance": "2026-10-31",
+   "echeance": "2026-11-30",
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
       "oui": 1.3,
       "non": 98.7
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -2978,36 +2455,28 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 1.5,
-      "non": 98.5
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
    "resolution": null
   },
   {
-   "id": "Q-EV-32-2026-10-v0",
-   "texte": "Restrictions chinoises sur les terres rares visant l'UE : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2e",
+   "id": "Q-EV-04-2026-11",
+   "texte": "Durcissement de la procédure de déficit excessif : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
+   "pool": "P2b",
    "issues": [
     "oui",
     "non"
    ],
-   "echeance": "2026-10-31",
+   "echeance": "2026-11-30",
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 3.1,
-      "non": 96.9
+      "oui": 0.6,
+      "non": 99.4
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3015,36 +2484,28 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 4.0,
-      "non": 96.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
    "resolution": null
   },
   {
-   "id": "Q-EV-33-2026-10-v0",
-   "texte": "Suspension de l'accord UE-Israël : le critère est-il rempli entre le 2026-10-10 et le 2026-10-31 ?",
-   "pool": "P2e",
+   "id": "Q-EV-07-2026-11",
+   "texte": "Cyberattaque majeure contre un service essentiel : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
+   "pool": "P2b",
    "issues": [
     "oui",
     "non"
    ],
-   "echeance": "2026-10-31",
+   "echeance": "2026-11-30",
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
       "oui": 0.1,
       "non": 99.9
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3052,15 +2513,592 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-08-2026-11",
+   "texte": "Ingérence étrangère visant la présidentielle : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
+   "pool": "P2b",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 3.6,
+      "non": 96.4
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
-    "ensemble direct": {
+    "comparateur : 50 %": {
      "p": {
-      "oui": 1.0,
-      "non": 99.0
+      "oui": 50.0,
+      "non": 50.0
      },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-16a-2026-11",
+   "texte": "Dissolution avant le second tour : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
+   "pool": "P2b",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 0.7,
+      "non": 99.3
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    },
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-C2-2026-11",
+   "texte": "Crise d'ordre public grave outre-mer : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
+   "pool": "P2b",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 0.9,
+      "non": 99.1
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    },
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-39-2026-11",
+   "texte": "Journée de mobilisation à plus de 500 000 manifestants : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
+   "pool": "P2b",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 3.0,
+      "non": 97.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    },
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-42-2026-11",
+   "texte": "Baisse générale du prix des carburants : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
+   "pool": "P2b",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 2.7,
+      "non": 97.3
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    },
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-29-2026-11",
+   "texte": "Militaires français en Ukraine : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
+   "pool": "P2b",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 0.7,
+      "non": 99.3
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    },
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-46-2026-11",
+   "texte": "Achats ciblés de la BCE (TPI ou OMT) pour la France : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
+   "pool": "P2b",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 0.2,
+      "non": 99.8
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    },
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-28-2026-11",
+   "texte": "Cessez-le-feu en Ukraine : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
+   "pool": "P2e",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 1.8,
+      "non": 98.2
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    },
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-32-2026-11",
+   "texte": "Restrictions chinoises sur les terres rares visant l'UE : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
+   "pool": "P2e",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 4.3,
+      "non": 95.7
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    },
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-33-2026-11",
+   "texte": "Suspension de l'accord UE-Israël : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
+   "pool": "P2e",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 0.2,
+      "non": 99.8
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    },
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-50-2026-11",
+   "texte": "Fin des fonctions du Premier ministre : le critère est-il rempli entre le 2026-11-01 et le 2026-11-30 ?",
+   "pool": "P2b",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-11-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 3.5,
+      "non": 96.5
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    },
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-043",
+   "texte": "Le fait suivant est-il observé entre le 2026-11-20 et le 2026-12-05 ? S&P Global Ratings, lors de sa revue de la France de fin 2026, assortit la note d'une perspective négative ou la place sous surveillance négative, sans l'abaisser.",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-05",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-030",
+   "texte": "Le fait suivant est-il observé entre le 2026-11-14 et le 2026-12-09 ? Le texte soumis au vote des adhérents des Écologistes comporte une option de soutien à une personne nommément désignée, issue d'une autre formation.",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-09",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-031",
+   "texte": "Le fait suivant est-il observé entre le 2026-11-14 et le 2026-12-09 ? La direction des Écologistes (bureau exécutif ou conseil fédéral) appelle à voter pour l'option de candidature autonome.",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-09",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-014",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-27 et le 2026-12-10 ? Le Gouvernement dépose un amendement au projet de loi de finances pour 2027 qui augmente d'au moins 500 millions d'euros les crédits de la mission « Enseignement scolaire ».",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-10",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-007",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-15 ? Le Gouvernement engage sa responsabilité (article 49, alinéa 3) sur le projet de loi de financement de la sécurité sociale pour 2027 devant l'Assemblée nationale.",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-15",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-049",
+   "texte": "Le fait suivant est-il observé entre le 2026-11-15 et le 2026-12-15 ? La Commission européenne, dans son avis sur le projet de plan budgétaire 2027 de la France, juge celui-ci « non conforme » ou « présentant un risque de non-conformité » avec la recommandation au titre de la procédure de déficit excessif.",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-15",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-VE-ECART-2026-11",
+   "texte": "Écart OAT-Bund 10 ans (moyenne du mois) : état pour le mois 2026-11 (moyenne mensuelle de l'écart (série BCE collectée)).",
+   "pool": "PR",
+   "issues": [
+    "< 120 pb",
+    "120-160 pb",
+    "> 160 pb"
+   ],
+   "echeance": "2026-12-15",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "< 120 pb": 33.3,
+      "120-160 pb": 33.3,
+      "> 160 pb": 33.3
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-VE-POP-2026-11",
+   "texte": "Popularité du président de la République : état pour le mois 2026-11 (part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)).",
+   "pool": "PR",
+   "issues": [
+    "< 25 %",
+    "25-35 %",
+    "> 35 %"
+   ],
+   "echeance": "2026-12-15",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "< 25 %": 33.3,
+      "25-35 %": 33.3,
+      "> 35 %": 33.3
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-VE-MOBIL-2026-11",
+   "texte": "Mobilisation sociale (manifestants) : état pour le mois 2026-11 (plus haut chiffre du ministère de l'Intérieur pour une journée du mois : calme sous 200 000, modérée de 200 000 à 500 000, forte au-delà de 500 000).",
+   "pool": "PR",
+   "issues": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "echeance": "2026-12-15",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "calme": 33.3,
+      "modérée": 33.3,
+      "forte": 33.3
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-VE-LYCEE-2026-11",
+   "texte": "Mobilisation lycéenne : état pour le mois 2026-11 (plus haut nombre d'établissements perturbés selon l'Éducation nationale pour une journée du mois (règles d'EV-10) : calme sous 300, modérée de 300 à 999, forte à partir de 1 000).",
+   "pool": "PR",
+   "issues": [
+    "calme",
+    "modérée",
+    "forte"
+   ],
+   "echeance": "2026-12-15",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "calme": 33.3,
+      "modérée": 33.3,
+      "forte": 33.3
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-VE-SOND-2026-11",
+   "texte": "Deuxième place derrière le RN dans les intentions de vote (bloc et écart) : état pour le mois 2026-11 (hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc (centre, gauche, droite) compté par son candidat le mieux placé, moyenne du mois sans correction de l'erreur historique (scripts/etat.py) : « serré » si les deux premiers blocs derrière le RN sont à 2 points ou moins l'un de l'autre ; sinon le bloc deuxième, devant le troisième de plus de 2 points).",
+   "pool": "PR",
+   "issues": [
+    "centre",
+    "serré",
+    "gauche",
+    "droite"
+   ],
+   "echeance": "2026-12-15",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "centre": 25.0,
+      "serré": 25.0,
+      "gauche": 25.0,
+      "droite": 25.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-VE-RN-2026-11",
+   "texte": "Intentions de vote du candidat RN au premier tour : état pour le mois 2026-11 (moyenne des sondages du mois pour le candidat du RN ; hypothèse principale : les hypothèses de premier tour du mois qui testent Édouard Philippe (scripts/etat.py), sans correction de l'erreur historique).",
+   "pool": "PR",
+   "issues": [
+    "< 30 %",
+    "30-35 %",
+    "> 35 %"
+   ],
+   "echeance": "2026-12-15",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "< 30 %": 33.3,
+      "30-35 %": 33.3,
+      "> 35 %": 33.3
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -3081,7 +3119,7 @@
       "oui": 25.0,
       "non": 75.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3089,34 +3127,78 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-004",
+   "texte": "Le fait suivant est-il observé entre le 2026-11-25 et le 2026-12-20 ? La commission mixte paritaire sur le projet de loi de finances pour 2027 aboutit à un texte commun.",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-20",
+   "auteurs": {
+    "comparateur : 50 %": {
      "p": {
-      "oui": 35.0,
-      "non": 65.0
+      "oui": 50.0,
+      "non": 50.0
      },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "réseau v0": {
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-005",
+   "texte": "Le fait suivant est-il observé entre le 2026-12-08 et le 2026-12-20 ? Le délai de 70 jours de l'article 47 de la Constitution expire sans adoption définitive du projet de loi de finances pour 2027 par le Parlement.",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-20",
+   "auteurs": {
+    "comparateur : 50 %": {
      "p": {
-      "oui": 40.2,
-      "non": 59.8
+      "oui": 50.0,
+      "non": 50.0
      },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      28.7,
-      51.2
-     ]
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-001",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-23 ? Le Gouvernement engage sa responsabilité (article 49, alinéa 3) sur tout ou partie du projet de loi de finances pour 2027 devant l'Assemblée nationale.",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-23",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-02",
-   "texte": "Pas de loi de finances pour 2027 au 31 décembre 2026 : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2026-12-31)",
+   "texte": "Pas de loi de finances pour 2027 au 31 décembre 2026 : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2026-12-31)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3129,7 +3211,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3137,34 +3219,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 58.0,
-      "non": 42.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 67.0,
-      "non": 33.0
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      56.2,
-      76.2
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-49",
-   "texte": "Départ du ministre de l'Éducation nationale : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2026-12-31)",
+   "texte": "Départ du ministre de l'Éducation nationale : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2026-12-31)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3174,10 +3237,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 21.0,
-      "non": 79.0
+      "oui": 15.8,
+      "non": 84.2
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3185,34 +3248,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 17.0,
-      "non": 83.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 23.2,
-      "non": 76.8
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      18.3,
-      29.5
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-13",
-   "texte": "Grève massive dans la fonction publique : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2026-12-31)",
+   "texte": "Grève massive dans la fonction publique : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2026-12-31)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3222,10 +3266,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 17.5,
-      "non": 82.5
+      "oui": 13.1,
+      "non": 86.9
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3233,34 +3277,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 8.0,
-      "non": 92.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 16.6,
-      "non": 83.4
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      14.6,
-      19.6
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-15",
-   "texte": "Censure du gouvernement avant fin 2026 : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2026-12-31)",
+   "texte": "Censure du gouvernement avant fin 2026 : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2026-12-31)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3270,10 +3295,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 23.3,
-      "non": 76.7
+      "oui": 17.6,
+      "non": 82.4
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3281,34 +3306,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 20.0,
-      "non": 80.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 25.8,
-      "non": 74.2
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      17.5,
-      35.0
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-C3a",
-   "texte": "Accord sur le cadre financier européen avant fin 2026 : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2026-12-31)",
+   "texte": "Accord sur le cadre financier européen avant fin 2026 : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2026-12-31)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3318,10 +3324,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 31.1,
-      "non": 68.9
+      "oui": 23.9,
+      "non": 76.1
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3329,15 +3335,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 12.0,
-      "non": 88.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -3360,7 +3358,7 @@
       "soutien à un autre candidat": 20.0,
       "autre ou vote non tenu": 10.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3369,36 +3367,15 @@
       "soutien à un autre candidat": 33.3,
       "autre ou vote non tenu": 33.3
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "candidature autonome": 53.9,
-      "soutien à un autre candidat": 37.3,
-      "autre ou vote non tenu": 8.8
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "candidature autonome": 50.7,
-      "soutien à un autre candidat": 38.8,
-      "autre ou vote non tenu": 10.5
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      40.0,
-      60.0
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-30",
-   "texte": "Chambre des représentants aux démocrates : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2026-12-31)",
+   "texte": "Chambre des représentants aux démocrates : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2026-12-31)",
    "pool": "P2e",
    "issues": [
     "oui",
@@ -3411,7 +3388,7 @@
       "oui": 58.3,
       "non": 41.7
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3419,15 +3396,162 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-002",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-31 ? Une motion de censure déposée à l'Assemblée nationale compte parmi ses signataires le président du groupe Socialistes et apparentés.",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-006",
+   "texte": "Le fait suivant est-il observé entre le 2026-12-01 et le 2026-12-31 ? Le Gouvernement dépose au Parlement un projet de loi spéciale autorisant la perception des impôts existants (article 45 de la LOLF).",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-010",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-31 ? Le ministère de l'Intérieur chiffre à au moins 300 000 le nombre de manifestants en France pour une même journée.",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-012",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-31 ? Une motion de censure est déposée à l'Assemblée nationale dans les 7 jours suivant une journée chiffrée par le ministère de l'Intérieur à au moins 200 000 manifestants.",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-016",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-31 ? Une motion de censure recueille entre 260 et 288 voix à l'Assemblée nationale.",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-2026-11-J-019",
+   "texte": "Le fait suivant est-il observé entre le 2026-10-20 et le 2026-12-31 ? Au moins 10 députés du groupe Droite républicaine votent pour une même motion de censure.",
+   "pool": "PR",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "auteurs": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-CJ-03",
+   "texte": "Censure avant fin 2026 et départ du ministre de l'Éducation nationale : les deux critères sont-ils remplis, chacun dans sa fenêtre ? (Censure du gouvernement avant fin 2026, du 2026-11-01 au 2026-12-31 ; Départ du ministre de l'Éducation nationale, du 2026-11-01 au 2026-12-31)",
+   "pool": "P2c",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2026-12-31",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 2.8,
+      "non": 97.2
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
-    "ensemble direct": {
+    "comparateur : 50 %": {
      "p": {
-      "oui": 80.0,
-      "non": 20.0
+      "oui": 50.0,
+      "non": 50.0
      },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -3435,7 +3559,7 @@
   },
   {
    "id": "Q-EV-38",
-   "texte": "Stocks de gaz bas à la sortie de l'hiver : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-02-01)",
+   "texte": "Stocks de gaz bas à la sortie de l'hiver : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-02-01)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3448,7 +3572,7 @@
       "oui": 5.9,
       "non": 94.1
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3456,15 +3580,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -3472,7 +3588,7 @@
   },
   {
    "id": "Q-EV-48",
-   "texte": "Promulgation de la loi « casseurs-payeurs » : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-03-31)",
+   "texte": "Promulgation de la loi « casseurs-payeurs » : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-03-31)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3482,10 +3598,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 38.0,
-      "non": 62.0
+      "oui": 34.1,
+      "non": 65.9
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3493,15 +3609,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 45.0,
-      "non": 55.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -3526,7 +3634,7 @@
       "désistement": 3.0,
       "pas d'arrêt au 31 mars 2027": 78.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3536,38 +3644,15 @@
       "désistement": 25.0,
       "pas d'arrêt au 31 mars 2027": 25.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "rejet ou non-admission": 53.8,
-      "cassation totale ou partielle": 16.1,
-      "désistement": 2.2,
-      "pas d'arrêt au 31 mars 2027": 28.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "rejet ou non-admission": 44.8,
-      "cassation totale ou partielle": 14.3,
-      "désistement": 2.1,
-      "pas d'arrêt au 31 mars 2027": 38.8
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      37.9,
-      52.1
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-35",
-   "texte": "Hausse des actes antimusulmans en 2026 : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-03-31)",
+   "texte": "Hausse des actes antimusulmans en 2026 : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-03-31)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3580,7 +3665,7 @@
       "oui": 33.3,
       "non": 66.7
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3588,15 +3673,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -3621,7 +3698,7 @@
       "5": 40.0,
       "6 ou plus": 20.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3631,38 +3708,15 @@
       "5": 25.0,
       "6 ou plus": 25.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "3 ou moins": 12.1,
-      "4": 27.3,
-      "5": 30.3,
-      "6 ou plus": 30.3
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "3 ou moins": 8.8,
-      "4": 25.4,
-      "5": 36.2,
-      "6 ou plus": 29.7
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      5.0,
-      13.8
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-21",
-   "texte": "Marine Le Pen candidate : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "texte": "Marine Le Pen candidate : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-04-18)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3675,7 +3729,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3683,27 +3737,8 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 86.0,
-      "non": 14.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 83.9,
-      "non": 16.1
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      70.0,
-      93.8
-     ]
     }
    },
    "resolution": null
@@ -3727,7 +3762,7 @@
       "75 à moins de 80 %": 40.0,
       "80 % ou plus": 20.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3737,17 +3772,7 @@
       "75 à moins de 80 %": 25.0,
       "80 % ou plus": 25.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "moins de 70 %": 10.0,
-      "70 à moins de 75 %": 40.0,
-      "75 à moins de 80 %": 40.0,
-      "80 % ou plus": 10.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -3755,7 +3780,7 @@
   },
   {
    "id": "Q-EV-40a",
-   "texte": "Qualification de Marine Le Pen au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "texte": "Qualification de Marine Le Pen au second tour : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-04-18)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3765,10 +3790,10 @@
    "auteurs": {
     "comparateur : référence externe Polymarket (non fiable)": {
      "p": {
-      "oui": 91.0,
-      "non": 9.0
+      "oui": 87.5,
+      "non": 12.5
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : taux de base": {
@@ -3776,7 +3801,7 @@
       "oui": 30.0,
       "non": 70.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3784,34 +3809,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 72.0,
-      "non": 28.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 75.9,
-      "non": 24.1
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      62.5,
-      87.5
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-40b",
-   "texte": "Qualification de Édouard Philippe au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "texte": "Qualification de Édouard Philippe au second tour : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-04-18)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3821,10 +3827,10 @@
    "auteurs": {
     "comparateur : référence externe Polymarket (non fiable)": {
      "p": {
-      "oui": 45.5,
-      "non": 54.5
+      "oui": 33.0,
+      "non": 67.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : taux de base": {
@@ -3832,7 +3838,7 @@
       "oui": 23.1,
       "non": 76.9
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3840,34 +3846,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 45.0,
-      "non": 55.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 43.2,
-      "non": 56.8
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      33.8,
-      51.2
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-40c",
-   "texte": "Qualification de Jean-Luc Mélenchon au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "texte": "Qualification de Jean-Luc Mélenchon au second tour : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-04-18)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3877,10 +3864,10 @@
    "auteurs": {
     "comparateur : référence externe Polymarket (non fiable)": {
      "p": {
-      "oui": 41.0,
-      "non": 59.0
+      "oui": 43.5,
+      "non": 56.5
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : taux de base": {
@@ -3888,7 +3875,7 @@
       "oui": 21.4,
       "non": 78.6
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3896,34 +3883,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 17.0,
-      "non": 83.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 25.2,
-      "non": 74.8
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      17.5,
-      33.8
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-40d",
-   "texte": "Qualification de David Lisnard au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "texte": "Qualification de David Lisnard au second tour : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-04-18)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3933,10 +3901,10 @@
    "auteurs": {
     "comparateur : référence externe Polymarket": {
      "p": {
-      "oui": 13.6,
-      "non": 86.4
+      "oui": 20.0,
+      "non": 80.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : taux de base": {
@@ -3944,7 +3912,7 @@
       "oui": 2.4,
       "non": 97.6
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -3952,34 +3920,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 2.0,
-      "non": 98.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 1.0,
-      "non": 99.0
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      0.0,
-      2.5
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-40e",
-   "texte": "Qualification de Gabriel Attal au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "texte": "Qualification de Gabriel Attal au second tour : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-04-18)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -3989,10 +3938,10 @@
    "auteurs": {
     "comparateur : référence externe Polymarket (non fiable)": {
      "p": {
-      "oui": 6.6,
-      "non": 93.4
+      "oui": 7.4,
+      "non": 92.6
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : taux de base": {
@@ -4000,7 +3949,7 @@
       "oui": 17.4,
       "non": 82.6
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4008,34 +3957,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 8.0,
-      "non": 92.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 5.3,
-      "non": 94.7
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      1.2,
-      10.0
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-40f",
-   "texte": "Qualification de Raphaël Glucksmann au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "texte": "Qualification de Raphaël Glucksmann au second tour : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-04-18)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -4045,10 +3975,10 @@
    "auteurs": {
     "comparateur : référence externe Polymarket (non fiable)": {
      "p": {
-      "oui": 7.0,
-      "non": 93.0
+      "oui": 9.8,
+      "non": 90.1
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : taux de base": {
@@ -4056,7 +3986,7 @@
       "oui": 5.6,
       "non": 94.4
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4064,34 +3994,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 15.0,
-      "non": 85.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 13.4,
-      "non": 86.6
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      7.5,
-      20.0
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-40g",
-   "texte": "Qualification de Bruno Retailleau au second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "texte": "Qualification de Bruno Retailleau au second tour : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-04-18)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -4101,10 +4012,10 @@
    "auteurs": {
     "comparateur : référence externe Polymarket (non fiable)": {
      "p": {
-      "oui": 6.5,
-      "non": 93.5
+      "oui": 5.8,
+      "non": 94.2
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : taux de base": {
@@ -4112,7 +4023,7 @@
       "oui": 33.3,
       "non": 66.7
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4120,27 +4031,8 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 6.0,
-      "non": 94.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 6.2,
-      "non": 93.8
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      2.5,
-      10.0
-     ]
     }
    },
    "resolution": null
@@ -4159,12 +4051,12 @@
    "auteurs": {
     "comparateur : référence externe Polymarket (non fiable)": {
      "p": {
-      "les deux": 5.9,
-      "Philippe seul": 77.8,
-      "Attal seul": 13.2,
-      "aucun des deux": 3.1
+      "les deux": 9.8,
+      "Philippe seul": 61.4,
+      "Attal seul": 19.5,
+      "aucun des deux": 9.3
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : taux de base": {
@@ -4174,7 +4066,7 @@
       "Attal seul": 17.5,
       "aucun des deux": 12.5
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4184,38 +4076,15 @@
       "Attal seul": 25.0,
       "aucun des deux": 25.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "les deux": 29.8,
-      "Philippe seul": 55.3,
-      "Attal seul": 4.3,
-      "aucun des deux": 10.6
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "les deux": 37.7,
-      "Philippe seul": 47.6,
-      "Attal seul": 8.5,
-      "aucun des deux": 6.2
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      26.2,
-      48.8
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-42",
-   "texte": "Baisse générale du prix des carburants : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-04-18)",
+   "texte": "Baisse générale du prix des carburants : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-04-18)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -4225,10 +4094,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 16.2,
-      "non": 83.8
+      "oui": 14.4,
+      "non": 85.6
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4236,15 +4105,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 18.0,
-      "non": 82.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -4270,18 +4131,18 @@
    "auteurs": {
     "comparateur : référence externe Polymarket": {
      "p": {
-      "Marine Le Pen": 41.0,
-      "Jordan Bardella": 0.7,
-      "Édouard Philippe": 23.5,
-      "Gabriel Attal": 1.9,
-      "Jean-Luc Mélenchon": 12.5,
-      "David Lisnard": 13.1,
-      "Bruno Retailleau": 1.1,
-      "Raphaël Glucksmann": 1.1,
-      "François Hollande": 2.8,
-      "autre": 2.4
+      "Marine Le Pen": 41.3,
+      "Jordan Bardella": 3.3,
+      "Édouard Philippe": 12.0,
+      "Gabriel Attal": 1.0,
+      "Jean-Luc Mélenchon": 11.5,
+      "David Lisnard": 18.6,
+      "Bruno Retailleau": 0.7,
+      "Raphaël Glucksmann": 2.3,
+      "François Hollande": 1.8,
+      "autre": 7.6
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : taux de base": {
@@ -4297,7 +4158,7 @@
       "François Hollande": 10.0,
       "autre": 10.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4313,43 +4174,8 @@
       "François Hollande": 10.0,
       "autre": 10.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "Marine Le Pen": 37.4,
-      "Jordan Bardella": 8.9,
-      "Édouard Philippe": 24.6,
-      "Gabriel Attal": 3.9,
-      "Jean-Luc Mélenchon": 3.0,
-      "David Lisnard": 1.0,
-      "Bruno Retailleau": 3.0,
-      "Raphaël Glucksmann": 5.9,
-      "François Hollande": 2.0,
-      "autre": 10.3
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "Marine Le Pen": 44.2,
-      "Jordan Bardella": 8.2,
-      "Édouard Philippe": 25.7,
-      "Gabriel Attal": 2.3,
-      "Jean-Luc Mélenchon": 4.1,
-      "David Lisnard": 0.3,
-      "Bruno Retailleau": 2.7,
-      "Raphaël Glucksmann": 5.2,
-      "François Hollande": 1.7,
-      "autre": 5.5
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      35.0,
-      51.2
-     ]
     }
    },
    "resolution": null
@@ -4369,7 +4195,7 @@
       "oui": 7.4,
       "non": 92.6
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4377,34 +4203,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 12.0,
-      "non": 88.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 9.4,
-      "non": 90.6
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      3.8,
-      15.0
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-16a",
-   "texte": "Dissolution avant le second tour : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-05-02)",
+   "texte": "Dissolution avant le second tour : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-05-02)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -4414,10 +4221,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 4.8,
-      "non": 95.2
+      "oui": 4.3,
+      "non": 95.7
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4425,27 +4232,124 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-50",
+   "texte": "Fin des fonctions du Premier ministre : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-05-02)",
+   "pool": "P2b",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-05-02",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 19.9,
+      "non": 80.1
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
-    "ensemble direct": {
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-CJ-01",
+   "texte": "Censure avant fin 2026 et départ du Premier ministre avant le 2 mai 2027 : les deux critères sont-ils remplis, chacun dans sa fenêtre ? (Censure du gouvernement avant fin 2026, du 2026-11-01 au 2026-12-31 ; Fin des fonctions du Premier ministre, du 2026-11-01 au 2027-05-02)",
+   "pool": "P2c",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-05-02",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 3.5,
+      "non": 96.5
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    },
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-CJ-02",
+   "texte": "Pas de loi de finances au 31 décembre 2026 et dissolution avant le second tour : les deux critères sont-ils remplis, chacun dans sa fenêtre ? (Pas de loi de finances pour 2027 au 31 décembre 2026, du 2026-11-01 au 2026-12-31 ; Dissolution avant le second tour, du 2026-11-01 au 2027-05-02)",
+   "pool": "P2c",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-05-02",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 2.2,
+      "non": 97.8
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    },
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-CJ-04",
+   "texte": "Reprise du mouvement lycéen après la Toussaint et départ du Premier ministre avant le 2 mai 2027 : les deux critères sont-ils remplis, chacun dans sa fenêtre ? (Reprise du mouvement lycéen après la Toussaint, du 2026-11-02 au 2026-12-18 ; Fin des fonctions du Premier ministre, du 2026-11-01 au 2027-05-02)",
+   "pool": "P2c",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-05-02",
+   "auteurs": {
+    "comparateur : taux de base": {
      "p": {
       "oui": 5.0,
       "non": 95.0
      },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
-    "réseau v0": {
+    "comparateur : 50 %": {
      "p": {
-      "oui": 12.4,
-      "non": 87.6
+      "oui": 50.0,
+      "non": 50.0
      },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      6.2,
-      18.8
-     ]
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
     }
    },
    "resolution": null
@@ -4465,7 +4369,7 @@
       "oui": 9.0,
       "non": 91.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4473,34 +4377,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 25.0,
-      "non": 75.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 25.0,
-      "non": 75.0
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      12.5,
-      36.2
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-32",
-   "texte": "Restrictions chinoises sur les terres rares visant l'UE : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-06-30)",
+   "texte": "Restrictions chinoises sur les terres rares visant l'UE : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-06-30)",
    "pool": "P2e",
    "issues": [
     "oui",
@@ -4510,10 +4395,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 32.6,
-      "non": 67.4
+      "oui": 30.3,
+      "non": 69.7
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4521,15 +4406,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 28.0,
-      "non": 72.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -4537,7 +4414,7 @@
   },
   {
    "id": "Q-EV-33",
-   "texte": "Suspension de l'accord UE-Israël : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-06-30)",
+   "texte": "Suspension de l'accord UE-Israël : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-06-30)",
    "pool": "P2e",
    "issues": [
     "oui",
@@ -4547,10 +4424,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 1.8,
-      "non": 98.2
+      "oui": 1.6,
+      "non": 98.4
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4558,15 +4435,65 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-51",
+   "texte": "Journée ou nuit à plus de 1 000 interpellations : le critère est-il rempli ? (fenêtre du 2026-11-02 au 2027-06-30)",
+   "pool": "P2b",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-06-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 6.0,
+      "non": 94.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
-    "ensemble direct": {
+    "comparateur : 50 %": {
      "p": {
-      "oui": 8.0,
-      "non": 92.0
+      "oui": 50.0,
+      "non": 50.0
      },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-14b",
+   "texte": "Mobilisation agricole d'ampleur : le critère est-il rempli ? (fenêtre du 2026-11-02 au 2027-06-30)",
+   "pool": "P2b",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2027-06-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 25.0,
+      "non": 75.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    },
+    "comparateur : 50 %": {
+     "p": {
+      "oui": 50.0,
+      "non": 50.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -4587,7 +4514,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4595,15 +4522,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 45.0,
-      "non": 55.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -4611,7 +4530,7 @@
   },
   {
    "id": "Q-EV-28",
-   "texte": "Cessez-le-feu en Ukraine : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-09-30)",
+   "texte": "Cessez-le-feu en Ukraine : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-09-30)",
    "pool": "P2e",
    "issues": [
     "oui",
@@ -4621,10 +4540,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 20.0,
-      "non": 80.0
+      "oui": 18.9,
+      "non": 81.1
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4632,15 +4551,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 9.0,
-      "non": 91.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -4648,7 +4559,7 @@
   },
   {
    "id": "Q-EV-36",
-   "texte": "Crédits de défense 2028 conformes à la programmation : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2027-10-31)",
+   "texte": "Crédits de défense 2028 conformes à la programmation : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2027-10-31)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -4661,7 +4572,7 @@
       "oui": 73.3,
       "non": 26.7
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4669,15 +4580,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 55.0,
-      "non": 45.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -4700,7 +4603,7 @@
       "plus de 4,5 % du PIB": 50.0,
       "pas de loi de finances publiée au 31 janvier 2028": 33.3
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4709,16 +4612,7 @@
       "plus de 4,5 % du PIB": 33.3,
       "pas de loi de finances publiée au 31 janvier 2028": 33.3
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "4,5 % du PIB ou moins": 32.3,
-      "plus de 4,5 % du PIB": 40.9,
-      "pas de loi de finances publiée au 31 janvier 2028": 26.9
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -4739,7 +4633,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4747,15 +4641,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 62.0,
-      "non": 38.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -4763,7 +4649,7 @@
   },
   {
    "id": "Q-EV-06",
-   "texte": "Récession technique : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-08-15)",
+   "texte": "Récession technique : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2028-08-15)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -4773,10 +4659,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 19.5,
-      "non": 80.5
+      "oui": 18.9,
+      "non": 81.1
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4784,15 +4670,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 33.0,
-      "non": 67.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -4813,7 +4691,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4821,15 +4699,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 45.0,
-      "non": 55.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -4837,7 +4707,7 @@
   },
   {
    "id": "Q-EV-01",
-   "texte": "Dégradation de la note souveraine : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "texte": "Dégradation de la note souveraine : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2028-09-30)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -4847,10 +4717,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 27.6,
-      "non": 72.4
+      "oui": 26.9,
+      "non": 73.1
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4858,34 +4728,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 70.0,
-      "non": 30.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 69.5,
-      "non": 30.5
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      48.8,
-      87.5
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-04",
-   "texte": "Durcissement de la procédure de déficit excessif : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "texte": "Durcissement de la procédure de déficit excessif : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2028-09-30)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -4895,10 +4746,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 14.2,
-      "non": 85.8
+      "oui": 13.8,
+      "non": 86.2
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4906,34 +4757,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 14.0,
-      "non": 86.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 23.3,
-      "non": 76.7
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      6.2,
-      41.2
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-07",
-   "texte": "Cyberattaque majeure contre un service essentiel : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "texte": "Cyberattaque majeure contre un service essentiel : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2028-09-30)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -4943,10 +4775,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 2.3,
-      "non": 97.7
+      "oui": 2.2,
+      "non": 97.8
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4954,15 +4786,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 7.0,
-      "non": 93.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -4970,7 +4794,7 @@
   },
   {
    "id": "Q-EV-08",
-   "texte": "Ingérence étrangère visant la présidentielle : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "texte": "Ingérence étrangère visant la présidentielle : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2028-09-30)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -4980,10 +4804,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 59.6,
-      "non": 40.4
+      "oui": 58.5,
+      "non": 41.5
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -4991,15 +4815,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 55.0,
-      "non": 45.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -5020,7 +4836,7 @@
       "oui": 14.7,
       "non": 85.3
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -5028,27 +4844,8 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 25.0,
-      "non": 75.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 32.4,
-      "non": 67.6
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      15.0,
-      46.2
-     ]
     }
    },
    "resolution": null
@@ -5068,7 +4865,7 @@
       "oui": 18.2,
       "non": 81.8
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -5076,34 +4873,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 55.0,
-      "non": 45.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 82.0,
-      "non": 17.9
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      73.8,
-      91.2
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-17",
-   "texte": "Président élu sans majorité de son groupe : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "texte": "Président élu sans majorité de son groupe : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2028-09-30)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -5116,7 +4894,7 @@
       "oui": 66.7,
       "non": 33.3
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -5124,63 +4902,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 72.0,
-      "non": 28.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 77.5,
-      "non": 22.5
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      75.2,
-      79.3
-     ]
-    }
-   },
-   "resolution": null
-  },
-  {
-   "id": "Q-EV-C1",
-   "texte": "Attentat terroriste meurtrier : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
-   "pool": "P2b",
-   "issues": [
-    "oui",
-    "non"
-   ],
-   "echeance": "2028-09-30",
-   "auteurs": {
-    "comparateur : taux de base": {
-     "p": {
-      "oui": 79.4,
-      "non": 20.6
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "comparateur : 50 %": {
-     "p": {
-      "oui": 50.0,
-      "non": 50.0
-     },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 78.0,
-      "non": 22.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -5188,7 +4910,7 @@
   },
   {
    "id": "Q-EV-C2",
-   "texte": "Crise d'ordre public grave outre-mer : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "texte": "Crise d'ordre public grave outre-mer : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2028-09-30)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -5198,10 +4920,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 20.3,
-      "non": 79.7
+      "oui": 19.8,
+      "non": 80.2
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -5209,15 +4931,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 25.0,
-      "non": 75.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -5225,7 +4939,7 @@
   },
   {
    "id": "Q-EV-C3b",
-   "texte": "Accord sur le cadre financier européen avant fin septembre 2028 : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "texte": "Accord sur le cadre financier européen avant fin septembre 2028 : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2028-09-30)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -5235,10 +4949,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 92.7,
-      "non": 7.3
+      "oui": 92.1,
+      "non": 7.9
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -5246,15 +4960,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 72.0,
-      "non": 28.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -5277,7 +4983,7 @@
       "avis rendu, incompatible": 46.5,
       "pas d'avis": 7.1
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -5286,16 +4992,7 @@
       "avis rendu, incompatible": 33.3,
       "pas d'avis": 33.3
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "avis rendu, compatible": 58.0,
-      "avis rendu, incompatible": 28.0,
-      "pas d'avis": 14.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -5303,7 +5000,7 @@
   },
   {
    "id": "Q-EV-39",
-   "texte": "Journée de mobilisation à plus de 500 000 manifestants : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "texte": "Journée de mobilisation à plus de 500 000 manifestants : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2028-09-30)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -5313,10 +5010,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 53.0,
-      "non": 47.0
+      "oui": 51.9,
+      "non": 48.1
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -5324,34 +5021,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 30.0,
-      "non": 70.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 44.3,
-      "non": 55.7
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      31.2,
-      57.5
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-29",
-   "texte": "Militaires français en Ukraine : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "texte": "Militaires français en Ukraine : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2028-09-30)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -5361,10 +5039,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 16.4,
-      "non": 83.6
+      "oui": 15.9,
+      "non": 84.1
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -5372,15 +5050,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 8.0,
-      "non": 92.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -5401,7 +5071,7 @@
       "oui": 16.7,
       "non": 83.3
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -5409,27 +5079,8 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 35.0,
-      "non": 65.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 48.3,
-      "non": 51.7
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      46.2,
-      50.3
-     ]
     }
    },
    "resolution": null
@@ -5449,7 +5100,7 @@
       "oui": 12.5,
       "non": 87.5
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -5457,34 +5108,15 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 10.0,
-      "non": 90.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 9.9,
-      "non": 90.1
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      8.1,
-      11.4
-     ]
     }
    },
    "resolution": null
   },
   {
    "id": "Q-EV-46",
-   "texte": "Achats ciblés de la BCE (TPI ou OMT) pour la France : le critère est-il rempli ? (fenêtre du 2026-10-10 au 2028-09-30)",
+   "texte": "Achats ciblés de la BCE (TPI ou OMT) pour la France : le critère est-il rempli ? (fenêtre du 2026-11-01 au 2028-09-30)",
    "pool": "P2b",
    "issues": [
     "oui",
@@ -5494,10 +5126,10 @@
    "auteurs": {
     "comparateur : taux de base": {
      "p": {
-      "oui": 4.7,
-      "non": 95.3
+      "oui": 4.5,
+      "non": 95.5
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -5505,27 +5137,8 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 7.0,
-      "non": 93.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
-     "i80": null
-    },
-    "réseau v0": {
-     "p": {
-      "oui": 6.0,
-      "non": 94.0
-     },
-     "emise": "2026-10-10T11:20:39+02:00",
-     "i80": [
-      1.2,
-      12.5
-     ]
     }
    },
    "resolution": null
@@ -5545,7 +5158,7 @@
       "oui": 20.5,
       "non": 79.5
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -5553,15 +5166,7 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
-     "i80": null
-    },
-    "ensemble direct": {
-     "p": {
-      "oui": 15.0,
-      "non": 85.0
-     },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
@@ -5582,7 +5187,7 @@
       "oui": 3.0,
       "non": 97.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
     "comparateur : 50 %": {
@@ -5590,15 +5195,36 @@
       "oui": 50.0,
       "non": 50.0
      },
-     "emise": "2026-10-10T08:39:57+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
+     "i80": null
+    }
+   },
+   "resolution": null
+  },
+  {
+   "id": "Q-EV-52",
+   "texte": "Journée de mobilisation significative (horizon 30 jours) : le critère est-il rempli ? (fenêtre du 2026-11-02 au 2028-09-30)",
+   "pool": "P2b",
+   "issues": [
+    "oui",
+    "non"
+   ],
+   "echeance": "2028-09-30",
+   "auteurs": {
+    "comparateur : taux de base": {
+     "p": {
+      "oui": 80.0,
+      "non": 20.0
+     },
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     },
-    "ensemble direct": {
+    "comparateur : 50 %": {
      "p": {
-      "oui": 10.0,
-      "non": 90.0
+      "oui": 50.0,
+      "non": 50.0
      },
-     "emise": "2026-10-10T08:55:28+02:00",
+     "emise": "2026-11-01T08:01:01+01:00",
      "i80": null
     }
    },
