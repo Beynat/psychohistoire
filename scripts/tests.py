@@ -96,6 +96,9 @@ def test_bout_en_bout():
     racine = Path(__file__).resolve().parent.parent
     tmp = Path(tempfile.mkdtemp()) / "depot"
     shutil.copytree(racine, tmp, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+    # Les essais rejouent le cycle 2026-11 : le vrai gel et ses lignes de registre sont retirés de la copie.
+    shutil.rmtree(tmp / "data/cycles/2026-11", ignore_errors=True)
+    (tmp / "registre/v0.jsonl").write_text("")
     # Les essais gèlent au 1er novembre 2026 : les séries sont réputées collectées la veille (relecture 15, S6).
     etat = tmp / "data/historique/_collecte.json"
     etat.write_text(json.dumps({k: "2026-10-31" for k in json.loads(etat.read_text())}))
@@ -155,6 +158,9 @@ def _copie():
     racine = Path(__file__).resolve().parent.parent
     tmp = Path(tempfile.mkdtemp()) / "depot"
     shutil.copytree(racine, tmp, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+    # Les essais rejouent le cycle 2026-11 : le vrai gel et ses lignes de registre sont retirés de la copie.
+    shutil.rmtree(tmp / "data/cycles/2026-11", ignore_errors=True)
+    (tmp / "registre/v0.jsonl").write_text("")
     # Les essais gèlent au 1er novembre 2026 : les séries sont réputées collectées la veille (relecture 15, S6).
     etat = tmp / "data/historique/_collecte.json"
     etat.write_text(json.dumps({k: "2026-10-31" for k in json.loads(etat.read_text())}))
@@ -1751,6 +1757,9 @@ def test_rattrapage():
     racine = Path(__file__).resolve().parent.parent
     tmp = Path(tempfile.mkdtemp()) / "depot"
     shutil.copytree(racine, tmp, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+    # Les essais rejouent le cycle 2026-11 : le vrai gel et ses lignes de registre sont retirés de la copie.
+    shutil.rmtree(tmp / "data/cycles/2026-11", ignore_errors=True)
+    (tmp / "registre/v0.jsonl").write_text("")
     etat = tmp / "data/historique/_collecte.json"
     etat.write_text(json.dumps({k: "2026-10-31" for k in json.loads(etat.read_text())}))
     try:

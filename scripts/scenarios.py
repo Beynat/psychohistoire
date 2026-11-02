@@ -60,7 +60,10 @@ def evaluer(tirages=200, trajectoires=100, ids=None):
     sc_all = lire_json("modele/reseau/scenarios.json")
     seuil = sc_all.get("seuil_points", 2)
     obs = reseau.observations(s)
-    qs = reseau.questions_banque(s, lire_json("modele/evenements.json")["evenements"])
+    # Fenêtres ouvertes au premier jour du mois des observations (bogue relevé le 2 novembre 2026) : un fait déjà
+    # survenu (550 000 manifestants le 17 octobre) saturait EV-39 à 100 % et rendait l'attendu d'un scénario impossible.
+    debut = (lire_json("modele/reseau/observations.json").get("etabli_le") or "2026-10-10")[:7] + "-01"
+    qs = reseau.questions_banque(s, lire_json("modele/evenements.json")["evenements"], debut)
     chocs_reels = reseau.chocs_retenus()
     reseau.CHOCS = chocs_reels
     base = reseau.prevoir(s, t, obs, qs, tirages, trajectoires)
