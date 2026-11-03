@@ -1,12 +1,12 @@
 {
- "execution": "2026-11-02T12:23:29Z",
+ "execution": "2026-11-03T11:55:04Z",
  "series": {
   "dette_trimestrielle_FR": {
    "nom": "Dette publique, % du PIB (trimestrielle)",
    "lie": "SI-01-01",
    "source": "Eurostat gov_10q_ggdebt",
    "statut": "ok",
-   "maj": "2026-11-02T12:23:29Z",
+   "maj": "2026-11-03T11:55:04Z",
    "donnees": [
     [
      "2024-Q3",
@@ -46,7 +46,8 @@
    "nom": "Taux à long terme France (mensuel, critère de Maastricht)",
    "lie": "SI-01-05",
    "source": "BCE IRS.M.FR.L.L40.CI.0000.EUR.N.Z",
-   "statut": "ok",
+   "statut": "echec",
+   "erreur": "TimeoutError: The read operation timed out",
    "maj": "2026-11-02T12:23:29Z",
    "donnees": [
     [
@@ -151,7 +152,8 @@
    "nom": "Taux à long terme Allemagne (mensuel)",
    "lie": "SI-01-04",
    "source": "BCE IRS.M.DE.L.L40.CI.0000.EUR.N.Z",
-   "statut": "ok",
+   "statut": "echec",
+   "erreur": "TimeoutError: The read operation timed out",
    "maj": "2026-11-02T12:23:29Z",
    "donnees": [
     [
@@ -257,7 +259,7 @@
    "lie": null,
    "source": "Eurostat HICP (jeu le plus récent disponible)",
    "statut": "ok",
-   "maj": "2026-11-02T12:23:29Z",
+   "maj": "2026-11-03T11:55:04Z",
    "donnees": [
     [
      "2025-10",
@@ -314,12 +316,8 @@
    "lie": null,
    "source": "BCE FM.D.U2.EUR.4F.KR.DFR.LEV",
    "statut": "ok",
-   "maj": "2026-11-02T12:23:29Z",
+   "maj": "2026-11-03T11:55:04Z",
    "donnees": [
-    [
-     "2026-10-29",
-     2.5
-    ],
     [
      "2026-10-30",
      2.5
@@ -335,6 +333,10 @@
     [
      "2026-11-02",
      2.5
+    ],
+    [
+     "2026-11-03",
+     2.5
     ]
    ]
   },
@@ -343,23 +345,23 @@
    "lie": "Q-PV02-A",
    "source": "Polymarket (API publique)",
    "statut": "ok",
-   "maj": "2026-11-02T12:23:29Z",
+   "maj": "2026-11-03T11:55:04Z",
    "donnees": [
     {
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Marine Le Pen be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 86.5,
-      "No": 13.5
+      "Yes": 87.5,
+      "No": 12.5
      },
-     "volume": "39236.446321999996",
+     "volume": "39359.256321999994",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Jordan Bardella be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 13.0,
+      "Yes": 13.1,
       "No": 87.0
      },
      "volume": "34576.184155999996",
@@ -369,10 +371,10 @@
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Éric Zemmour be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 73.0,
-      "No": 27.0
+      "Yes": 74.5,
+      "No": 25.5
      },
-     "volume": "21331.535133999994",
+     "volume": "21331.535133999998",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
@@ -382,15 +384,15 @@
       "Yes": 80.5,
       "No": 19.5
      },
-     "volume": "22853.72053",
+     "volume": "23401.070529999997",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will David Lisnard be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 76.5,
-      "No": 23.5
+      "Yes": 77.0,
+      "No": 23.0
      },
      "volume": "31848.674719",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
@@ -399,10 +401,10 @@
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Xavier Bertrand be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 5.1,
-      "No": 94.9
+      "Yes": 8.2,
+      "No": 91.8
      },
-     "volume": "14263.433671999997",
+     "volume": "15290.573671999999",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
@@ -429,18 +431,18 @@
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Gabriel Attal be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 22.0,
-      "No": 78.0
+      "Yes": 21.0,
+      "No": 79.0
      },
-     "volume": "19925.624485",
+     "volume": "19935.624484999993",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Bruno Retailleau be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 40.0,
-      "No": 60.0
+      "Yes": 38.5,
+      "No": 61.5
      },
      "volume": "20985.592634999997",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
@@ -449,8 +451,8 @@
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will François Hollande be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 32.5,
-      "No": 67.5
+      "Yes": 29.5,
+      "No": 70.5
      },
      "volume": "46170.60552799999",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
@@ -459,20 +461,20 @@
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Raphaël Glucksmann be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 83.5,
-      "No": 16.5
+      "Yes": 83.0,
+      "No": 17.0
      },
-     "volume": "30963.116972999997",
+     "volume": "31114.736973000003",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Jean-Luc Mélenchon be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 92.6,
-      "No": 7.4
+      "Yes": 92.7,
+      "No": 7.3
      },
-     "volume": "28412.947853000005",
+     "volume": "28412.947852999998",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     },
     {
@@ -489,10 +491,10 @@
      "evenement": "2027 French Presidential Election: who will be on the ballot?",
      "marche": "Will Fabien Roussel be on the ballot for the 2027 French presidential election?",
      "issues": {
-      "Yes": 78.5,
-      "No": 21.5
+      "Yes": 77.5,
+      "No": 22.5
      },
-     "volume": "5114.629806",
+     "volume": "5114.629806000001",
      "url": "https://polymarket.com/event/2027-french-presidential-election-who-will-be-on-the-ballot"
     }
    ]
@@ -502,7 +504,7 @@
    "lie": "SI-01-04",
    "source": "Calcul à partir des séries BCE",
    "statut": "ok",
-   "maj": "2026-11-02T12:23:29Z",
+   "maj": "2026-11-03T11:55:04Z",
    "donnees": [
     [
      "2024-10",
