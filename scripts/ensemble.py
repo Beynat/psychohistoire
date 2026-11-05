@@ -4,7 +4,8 @@ Usage : python scripts/ensemble.py AAAA-MM [registre/<fichier>.jsonl]
 Lit data/cycles/<AAAA-MM>/ensemble/*.json (un fichier par prévisionniste, format de
 modele/consigne_ensemble.md). Écrit au registre chaque prévision individuelle (auteur
 « ensemble : <identifiant> ») puis l'agrégat (auteur « ensemble direct ») : médiane par issue,
-renormalisée, non extrémisée. Exige au moins cinq prévisionnistes et trois modèles (section 6.1),
+renormalisée, non extrémisée. Exige au moins cinq prévisionnistes et trois modèles (section 6.1 ;
+deux pendant la v0, décision de Nathan du 10 octobre 2026, confirmée le 5 novembre 2026),
 une réponse à chaque question de la banque et au moins 10 recherches web déclarées par
 prévisionniste (consigne v1.1).
 """
@@ -24,6 +25,11 @@ def normaliser(d):
     return {k: round(v * 100 / s, 1) for k, v in b.items()}
 
 
+def modeles_minimum(statut):
+    """Trois modèles (section 6.1) ; deux seulement en v0, jamais pour le décompte définitif."""
+    return 2 if statut.get("v0") is True and statut.get("definitif") is not True else 3
+
+
 def agreger(cycle, exiger_recherches=True):
     banque = lire_json(f"data/cycles/{cycle}/questions.json")
     fichiers = sorted((RACINE / "data" / "cycles" / cycle / "ensemble").glob("*.json"))
@@ -32,8 +38,9 @@ def agreger(cycle, exiger_recherches=True):
     anon = (lire_json(f"data/cycles/{cycle}/anonymisation.json") or {}).get("correspondance", {})
     for p in prev:
         p["previsions"] = {anon.get(k, k): v for k, v in p["previsions"].items()}
-    if len(prev) < 5 or len({p["modele"] for p in prev}) < 3:
-        raise SystemExit(f"Ensemble incomplet : {len(prev)} prévisionnistes, {len({p['modele'] for p in prev})} modèles (minimum 5 et 3).")
+    minimum = modeles_minimum(lire_json("modele/statut.json") or {})
+    if len(prev) < 5 or len({p["modele"] for p in prev}) < minimum:
+        raise SystemExit(f"Ensemble incomplet : {len(prev)} prévisionnistes, {len({p['modele'] for p in prev})} modèles (minimum 5 et {minimum}).")
     faibles = [p["previsionniste"] for p in prev if p.get("recherches", 0) < 10]
     if faibles and exiger_recherches:
         raise SystemExit(f"Recherche insuffisante (moins de 10 recherches déclarées) : {faibles}. Relancer ces prévisionnistes une fois (consigne v1.1).")

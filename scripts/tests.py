@@ -1804,6 +1804,16 @@ def test_rattrapage():
         shutil.rmtree(tmp.parent)
 
 
+def test_ensemble_modeles_minimum():
+    """Deux modèles admis en v0 seulement (décision du 10 octobre 2026) ; trois dès que le protocole est définitif."""
+    from ensemble import modeles_minimum
+    assert modeles_minimum({"definitif": False, "v0": True}) == 2
+    assert modeles_minimum({"definitif": True, "v0": True}) == 3
+    assert modeles_minimum({"definitif": True, "v0": False}) == 3
+    assert modeles_minimum({"definitif": False, "v0": False}) == 3
+    assert modeles_minimum({}) == 3
+
+
 if __name__ == "__main__":
     for nom, f in list(globals().items()):
         if nom.startswith("test_"):
