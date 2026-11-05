@@ -1,18 +1,738 @@
 {
- "execution": "2026-11-04T12:07:18Z",
+ "execution": "2026-11-05T12:20:01Z",
  "flux": {
-  "franceinfo · politique": "ok (15 nouveaux)",
-  "franceinfo · économie": "ok (18 nouveaux)",
-  "franceinfo · société": "ok (10 nouveaux)",
+  "franceinfo · politique": "ok (18 nouveaux)",
+  "franceinfo · économie": "ok (16 nouveaux)",
+  "franceinfo · société": "ok (8 nouveaux)",
   "Le Monde · politique": "ok (20 nouveaux)",
   "Le Monde · économie": "ok (17 nouveaux)",
-  "LCP · Assemblée nationale": "ok (14 nouveaux)",
+  "LCP · Assemblée nationale": "ok (8 nouveaux)",
   "Public Sénat": "ok (14 nouveaux)",
-  "Le Figaro · politique": "ok (3 nouveaux)",
+  "Le Figaro · politique": "ok (2 nouveaux)",
   "Libération": "ok (20 nouveaux)",
   "Mediapart": "ok (10 nouveaux)"
  },
  "items": [
+  {
+   "source": "franceinfo · économie",
+   "titre": "DIRECT. Manifestations du 5 novembre : 33% des établissements d'enseignement supérieur perturbés, selon le ministère de l'Enseignement supérieur",
+   "lien": "https://www.franceinfo.fr/societe/manifestations/direct-greve-du-5-novembre-plus-de-250-actions-annoncees-dans-toute-la-france-selon-une-carte-de-la-ggt_8268827.html",
+   "date": "2026-11-05T12:18Z"
+  },
+  {
+   "source": "franceinfo · société",
+   "titre": "Ces lycéens bloquent mais s'organisent quand même pour réviser",
+   "lien": "https://www.franceinfo.fr/l-actu-pour-les-jeunes/ces-lyceens-bloquent-mais-s-organisent-quand-meme-pour-reviser_8269292.html",
+   "date": "2026-11-05T12:18Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "ÉDITO. Le mouvement lycéen doit-il s'arrêter ?",
+   "lien": "https://www.franceinfo.fr/societe/education/blocage-des-lycees/edito-le-mouvement-lyceen-doit-il-s-arreter_8269289.html",
+   "date": "2026-11-05T12:16Z"
+  },
+  {
+   "source": "franceinfo · société",
+   "titre": "Un lycée de Tournefeuille, près de Toulouse, touché par un incendie après l'irruption d'individus munis de mortiers d'artifice",
+   "lien": "https://www.franceinfo.fr/societe/education/blocage-des-lycees/un-lycee-de-tournefeuille-pres-de-toulouse-touche-par-un-incendie-apres-l-irruption-d-individus-munis-de-mortiers-d-artifice_8269217.html",
+   "date": "2026-11-05T12:16Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "Les jeunes, laissés-pour-compte du marché de l’emploi néo-zélandais",
+   "lien": "https://www.lemonde.fr/economie/article/2026/11/05/les-jeunes-laisses-pour-compte-du-marche-de-l-emploi-neo-zelandais_6806859_3234.html",
+   "date": "2026-11-05T12:00Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "EN DIRECT – Grève du 5 novembre : à part manifester, «qu’est-ce qu’il nous reste ?»",
+   "lien": "https://www.liberation.fr/societe/en-direct-greve-du-5-novembre-entre-500-000-et-700-000-manifestants-attendus-en-france-ce-jeudi-hors-paris-20261105_AWBY5H2M7RH6ZK55KSXPMVIZ2I/",
+   "date": "2026-11-05T11:58Z"
+  },
+  {
+   "source": "Mediapart",
+   "titre": "Biche torturée et injure raciste: une vidéo sordide secoue la région de Gap",
+   "lien": "https://www.mediapart.fr/journal/france/051126/biche-torturee-et-injure-raciste-une-video-sordide-secoue-la-region-de-gap",
+   "date": "2026-11-05T11:49Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "En Ile-de-France, le nombre de locations Airbnb « à l’année » a atteint un record en 2025",
+   "lien": "https://www.lemonde.fr/economie/article/2026/11/05/en-ile-de-france-le-nombre-de-locations-airbnb-a-l-annee-a-atteint-un-record-en-2025_6806858_3234.html",
+   "date": "2026-11-05T11:35Z"
+  },
+  {
+   "source": "franceinfo · société",
+   "titre": "La génération TikTok redécouvre l'art du discours avec les manifestations",
+   "lien": "https://www.franceinfo.fr/replay-radio/le-monde-et-vous/la-generation-tiktok-redecouvre-l-art-du-discours-avec-les-manifestations_8248138.html",
+   "date": "2026-11-05T11:33Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "VRAI OU FAUX. La liberté de manifester est-elle une \"liberté constitutionnelle\" ?",
+   "lien": "https://www.franceinfo.fr/replay-radio/le-vrai-du-faux/vrai-ou-faux-la-liberte-de-manifester-est-elle-une-liberte-constitutionnelle_8248123.html",
+   "date": "2026-11-05T11:31Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Défaite de Trump : méfions-nous du «canard boiteux»",
+   "lien": "https://www.liberation.fr/idees-et-debats/tribunes/defaite-de-trump-mefions-nous-du-canard-boiteux-20261105_RRC5IQ6BFFDLLJRPMHP4TO7ADY/",
+   "date": "2026-11-05T11:29Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Alertes à la bombe : au moins quatorze avions à nouveau ciblés ce jeudi en France et dans plusieurs pays d’Europe",
+   "lien": "https://www.liberation.fr/societe/un-vol-dublin-rome-deroute-vers-evreux-en-raison-dune-alerte-a-la-bombe-selon-matignon-20261105_HHBM4QKLLZHTLMNIDSPFIUDRFE/",
+   "date": "2026-11-05T11:27Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Aléxis Tsípras : «La France a toujours été un laboratoire social et politique pour l’Europe»",
+   "lien": "https://www.liberation.fr/politique/alexis-tsipras-la-france-a-toujours-ete-un-laboratoire-social-et-politique-pour-leurope-20261105_AW7GOKKIEZAKTOEMHIRBD74HCA/",
+   "date": "2026-11-05T11:16Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "Bâtiments vétustes, toilettes insalubres, chauffage défectueux... Découvrez les 200 lycées prioritaires pour être rénovés dans notre moteur de recherche",
+   "lien": "https://www.franceinfo.fr/societe/education/blocage-des-lycees/batiments-vetustes-toilettes-insalubres-chauffage-defectueux-decouvrez-les-200-lycees-prioritaires-pour-etre-renoves-dans-notre-moteur-de-recherche_8268914.html",
+   "date": "2026-11-05T11:14Z"
+  },
+  {
+   "source": "franceinfo · société",
+   "titre": "\"20h30 le vendredi\". Thierry, passeur de mémoire",
+   "lien": "https://www.franceinfo.fr/replay-magazine/france-2/20h30-le-vendredi/20h30-le-vendredi-thierry-passeur-de-memoire_8241160.html",
+   "date": "2026-11-05T11:11Z"
+  },
+  {
+   "source": "franceinfo · société",
+   "titre": "Assignés à résidence, des militants empêchés de manifester",
+   "lien": "https://www.franceinfo.fr/societe/manifestations/assignes-a-residence-des-militants-empeches-de-manifester_8269103.html",
+   "date": "2026-11-05T11:00Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "Des personnes cagoulées mettent le feu à la vie scolaire d'un lycée près de Toulouse",
+   "lien": "https://www.franceinfo.fr/economie/greve/greve/des-personnes-cagoulees-mettent-le-feu-a-la-vie-scolaire-d-un-lycee-pres-de-toulouse_8269196.html",
+   "date": "2026-11-05T10:59Z"
+  },
+  {
+   "source": "Mediapart",
+   "titre": "Grégory Doucet, maire de Lyon: «Je ne reconnais pas mon pays»",
+   "lien": "https://www.mediapart.fr/journal/politique/051126/gregory-doucet-maire-de-lyon-je-ne-reconnais-pas-mon-pays",
+   "date": "2026-11-05T10:58Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "Des morilles séchées de la marque ChampiBon rappelées après la mort suspecte d'une jeune femme à Montpellier",
+   "lien": "https://www.franceinfo.fr/economie/des-morilles-sechees-de-la-marque-champibon-rappelees-apres-la-mort-suspecte-d-une-jeune-femme-a-montpellier_8269157.html",
+   "date": "2026-11-05T10:45Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Débat budgétaire : un jeu de rôles dont tout le monde sort perdant",
+   "lien": "https://www.liberation.fr/politique/debat-budgetaire-un-jeu-de-roles-dont-tout-le-monde-sort-perdant-20261105_ESRKPZGJKRALVNN3CM273ZNMVQ/",
+   "date": "2026-11-05T10:28Z"
+  },
+  {
+   "source": "franceinfo · société",
+   "titre": "Les violences conjugales en hausse de 5% sur un an, avec 285 000 victimes enregistrées en 2025, selon le ministère de l'Intérieur",
+   "lien": "https://www.franceinfo.fr/societe/violences-faites-aux-femmes/les-violences-conjugales-en-hausse-de-5-sur-un-an-avec-285-000-victimes-enregistrees-en-2025-selon-le-ministere-de-l-interieur_8269115.html",
+   "date": "2026-11-05T10:20Z"
+  },
+  {
+   "source": "Mediapart",
+   "titre": "Après l’attentat de Trappes, les colporteurs du «grand remplacement» refusent tout examen de conscience",
+   "lien": "https://www.mediapart.fr/journal/politique/051126/apres-l-attentat-de-trappes-les-colporteurs-du-grand-remplacement-refusent-tout-examen-de-conscience",
+   "date": "2026-11-05T10:11Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Incendie de la mairie de Limoges : un suspect maintenu en détention, l’autre remis en liberté sous contrôle judiciaire",
+   "lien": "https://www.lemonde.fr/societe/article/2026/11/05/incendie-de-la-mairie-de-limoges-un-suspect-maintenu-en-detention-l-autre-remis-en-liberte-sous-controle-judiciaire_6806847_3224.html",
+   "date": "2026-11-05T10:05Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "« En brandissant le drapeau tricolore, les jeunes manifestants reprennent les symboles de la Révolution française à leurs adversaires »",
+   "lien": "https://www.lemonde.fr/politique/article/2026/11/05/en-brandissant-le-drapeau-tricolore-les-jeunes-manifestants-reprennent-les-symboles-de-la-revolution-francaise-a-leurs-adversaires_6806844_823448.html",
+   "date": "2026-11-05T09:59Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "Lycéens, salariés, retraités… Les manifestants se préparent à la mobilisation du 5 novembre",
+   "lien": "https://www.franceinfo.fr/economie/greve/greve/lyceens-salaries-retraites-les-manifestants-se-preparent-a-la-mobilisation-du-5-novembre_8269082.html",
+   "date": "2026-11-05T09:56Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "Nouvelles recettes chez Kellogg’s : « Le changement climatique s’invite dans la composition et le goût de nos aliments familiers »",
+   "lien": "https://www.lemonde.fr/economie/article/2026/11/05/nouvelles-recettes-chez-kellogg-s-le-changement-climatique-s-invite-dans-la-composition-et-le-gout-de-nos-aliments-familiers_6806843_3234.html",
+   "date": "2026-11-05T09:41Z"
+  },
+  {
+   "source": "franceinfo · société",
+   "titre": "Près d'un jeune sur deux déclare avoir déjà été victime de harcèlement scolaire, d'après un sondage",
+   "lien": "https://www.franceinfo.fr/societe/harcelement/pres-d-un-jeune-sur-deux-declare-avoir-deja-ete-victime-de-harcelement-scolaire-d-apres-un-sondage_8269034.html",
+   "date": "2026-11-05T09:29Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "Des militants contre l'antisémitisme perturbent la soirée de lancement du livre de Jordan Bardella",
+   "lien": "https://www.franceinfo.fr/politique/jordan-bardella/des-militants-contre-l-antisemitisme-perturbent-la-soiree-de-lancement-du-livre-de-jordan-bardella_8269049.html",
+   "date": "2026-11-05T09:27Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "\"Tout ce qui se passe actuellement nourrit la radicalité et l'extrémisme politique\", analyse le sociologue Michel Wieviorka",
+   "lien": "https://www.franceinfo.fr/economie/greve/greve/tout-ce-qui-se-passe-actuellement-nourrit-la-radicalite-et-l-extremisme-politique-analyse-le-sociologue-michel-wieviorka_8268992.html",
+   "date": "2026-11-05T09:21Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "Bruno Retailleau appelle à \"ne pas bloquer\" les lycées et dénonce \"la violence d'une minorité bruyante\"",
+   "lien": "https://www.franceinfo.fr/politique/bruno-retailleau/bruno-retailleau-appelle-a-ne-pas-bloquer-les-lycees-et-denonce-la-violence-d-une-minorite-bruyante_8268953.html",
+   "date": "2026-11-05T09:15Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "Bruno Retailleau appelle la droite à \"se réveiller\" pour la présidentielle et défend son idée de débats, avant une éventuelle primaire",
+   "lien": "https://www.franceinfo.fr/politique/bruno-retailleau/bruno-retailleau-appelle-la-droite-a-se-reveiller-pour-la-presidentielle-et-defend-son-idee-de-debats-avant-une-eventuelle-primaire_8269013.html",
+   "date": "2026-11-05T09:12Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "EN DIRECT, grève du 5 novembre : « Les jeunes nous ont réveillés avec leurs revendications », estime Mireille, 77 ans",
+   "lien": "https://www.lemonde.fr/politique/live/2026/11/05/en-direct-greve-du-5-novembre-qui-manifeste-quelles-sont-les-revendications-suivez-la-journee-de-mobilisation-avec-nos-journalistes_6806775_823448.html",
+   "date": "2026-11-05T09:11Z"
+  },
+  {
+   "source": "franceinfo · société",
+   "titre": "La justice autorise l'administration Trump à s'associer aux poursuites contre un programme qui cherche à réparer des discriminations raciales",
+   "lien": "https://www.franceinfo.fr/replay-radio/bientot-chez-vous/la-justice-autorise-l-administration-trump-a-s-associer-aux-poursuites-contre-un-programme-qui-cherche-a-reparer-des-discriminations-raciales_8248099.html",
+   "date": "2026-11-05T09:09Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Ma plus belle grève : «On arrive avec nos sacs de couchage en cours de grec, la prof nous accueille avec des chouquettes»",
+   "lien": "https://www.liberation.fr/lifestyle/argent-boulot/ma-plus-belle-greve-on-arrive-avec-nos-sacs-de-couchage-en-cours-de-grec-la-prof-nous-accueille-avec-des-chouquettes-20261105_CMHRMUYJ6JD3NJNUBALWHA5PKQ/",
+   "date": "2026-11-05T09:00Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Grève du 5 novembre : transports, éducation, santé…, quels secteurs seront touchés jeudi ?",
+   "lien": "https://www.lemonde.fr/societe/article/2026/11/05/greve-du-5-novembre-transports-education-sante-quels-secteurs-seront-touches-jeudi_6806839_3224.html",
+   "date": "2026-11-05T08:47Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "REPORTAGE. \"Où est-ce qu'on va ?\" : la mobilisation des lycéens divise les parents",
+   "lien": "https://www.franceinfo.fr/societe/education/blocage-des-lycees/reportage-ou-est-ce-qu-on-va-la-mobilisation-des-lyceens-divise-les-parents_8268224.html",
+   "date": "2026-11-05T08:44Z"
+  },
+  {
+   "source": "Public Sénat",
+   "titre": "Mobilisation du 5 novembre : « Emmanuel Macron finit son mandat comme il a gouverné, c’est-à-dire seul contre tous », estime Marine Tondelier",
+   "lien": "https://www.publicsenat.fr/actualites/politique/mobilisation-du-5-novembre-emmanuel-macron-finit-son-mandat-comme-il-a-gouverne-cest-a-dire-seul-contre-tous-estime-marine-tondelier",
+   "date": "2026-11-05T08:23Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "Face aux attaques \"du grand patronat et du gouvernement, notre seul moyen de défense, c'est la mobilisation et la grève\", affirme Nathalie Arthaud",
+   "lien": "https://www.franceinfo.fr/societe/manifestations/face-aux-attaques-du-grand-patronat-et-du-gouvernement-notre-seul-moyen-de-defense-c-est-la-mobilisation-et-la-greve-affirme-nathalie-arthaud_8268950.html",
+   "date": "2026-11-05T08:17Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "EDITO. Le mouvement lycéen doit-il s'arrêter ?",
+   "lien": "https://www.franceinfo.fr/replay-radio/l-edito-politique/edito-le-mouvement-lyceen-doit-il-s-arreter_8248117.html",
+   "date": "2026-11-05T08:14Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Au procès de la rue de Trévise, une bataille d’experts pour remonter le fil des causes de l’explosion",
+   "lien": "https://www.lemonde.fr/societe/article/2026/11/05/au-proces-de-la-rue-de-trevise-une-bataille-d-experts-pour-remonter-le-fil-des-causes-de-l-explosion_6806836_3224.html",
+   "date": "2026-11-05T08:06Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "Grève générale, pouvoir d'achat, blocage des lycées... \"Le 8h30 franceinfo\" de Bruno Retailleau",
+   "lien": "https://www.franceinfo.fr/replay-radio/8h30-fauvelle-dely/greve-generale-pouvoir-d-achat-blocage-des-lycees-le-8h30-franceinfo-de-bruno-retailleau_8248147.html",
+   "date": "2026-11-05T08:03Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Mobilisations sociales : le complexe parallèle avec Mai 68",
+   "lien": "https://www.lemonde.fr/idees/article/2026/11/05/mobilisations-sociales-le-complexe-parallele-avec-mai-68_6806832_3232.html",
+   "date": "2026-11-05T08:00Z"
+  },
+  {
+   "source": "Mediapart",
+   "titre": "Grève interprofessionnelle du 5 novembre: suivez la journée en direct",
+   "lien": "https://www.mediapart.fr/journal/economie-et-social/051126/greve-interprofessionnelle-du-5-novembre-suivez-la-journee-en-direct",
+   "date": "2026-11-05T08:00Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "\"Les propos qu'il tient sont une incitation au racisme\", assure Dominique de Villepin après les paroles d'Édouard Philippe sur les \"Français issus de l'immigration\"",
+   "lien": "https://www.franceinfo.fr/politique/les-propos-qu-il-tient-sont-une-incitation-au-racisme-assure-dominique-de-villepin-apres-les-paroles-d-edouard-philippe-sur-les-francais-issus-de-l-immigration_8268926.html",
+   "date": "2026-11-05T07:59Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Grève du 5 novembre à Paris : le parcours de la manifestation proposé par la Préfecture entre République et Nation validé par le tribunal administratif",
+   "lien": "https://www.lemonde.fr/politique/article/2026/11/05/manifestation-du-5-novembre-a-paris-le-parcours-propose-par-la-prefecture-entre-republique-et-nation-valide-par-le-tribunal-administratif_6806362_823449.html",
+   "date": "2026-11-05T07:57Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Ligue des champions : après le fiasco historique lensois, les clubs français dans la nuit",
+   "lien": "https://www.liberation.fr/sports/football/ligue-des-champions-apres-le-fiasco-historique-lensois-les-clubs-francais-dans-la-nuit-20261105_33COSM2NKBAWLPSZDDQGZE4ZCY/",
+   "date": "2026-11-05T07:56Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "En raison d'un mouvement de grève, les antennes de franceinfo peuvent être perturbées. Nous vous prions de nous en excuser",
+   "lien": "https://www.franceinfo.fr/economie/greve/greve/en-raison-d-un-mouvement-de-greve-les-antennes-de-franceinfo-peuvent-etre-perturbees-nous-vous-prions-de-nous-en-excuser_8268035.html",
+   "date": "2026-11-05T07:48Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "\"On n'a ni argent ni majorité\" : le gouvernement Lecornu a-t-il encore des marges de manœuvre pour répondre à la crise sociale ?",
+   "lien": "https://www.franceinfo.fr/economie/greve/greve/on-n-a-ni-argent-ni-majorite-le-gouvernement-lecornu-a-t-il-encore-des-marges-de-man-uvre-pour-repondre-a-la-crise-sociale_8265512.html",
+   "date": "2026-11-05T07:41Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Mobilisations sociales : « Nous, commerçants et commerçantes, sommes pleinement solidaires du mouvement populaire en cours en France »",
+   "lien": "https://www.lemonde.fr/idees/article/2026/11/05/mobilisations-sociales-nous-commercants-et-commercantes-sommes-pleinement-solidaires-du-mouvement-populaire-en-cours-en-france_6806830_3232.html",
+   "date": "2026-11-05T07:30Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "Comment la pauvreté progresse dans la population française",
+   "lien": "https://www.lemonde.fr/les-decodeurs/article/2026/11/05/comment-la-pauvrete-progresse-dans-la-population-francaise_6806829_4355770.html",
+   "date": "2026-11-05T07:30Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "Des journalistes quittent la soirée de lancement du livre de Jordan Bardella, après que le RN a notamment refusé l'accès à Mediapart",
+   "lien": "https://www.franceinfo.fr/politique/front-national/des-journalistes-quittent-la-soiree-de-lancement-du-livre-de-jordan-bardella-apres-que-le-rn-a-refuse-l-acces-a-mediapart_8268878.html",
+   "date": "2026-11-05T07:19Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Hongkong : la peine de Joshua Wong, l’un des principaux opposants, alourdie de dix ans",
+   "lien": "https://www.liberation.fr/international/asie-pacifique/hongkong-la-peine-de-joshua-wong-lun-des-principaux-opposants-alourdie-de-dix-ans-20261105_T3JKF22LMNCPXKKKGT5DGFLPCM/",
+   "date": "2026-11-05T06:59Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Jordan Bardella rattrapé par ses propos antisémites à l’occasion du lancement de son nouveau livre",
+   "lien": "https://www.lemonde.fr/politique/article/2026/11/05/jordan-bardella-rattrape-par-ses-propos-antisemites-au-lancement-de-son-nouveau-livre_6806827_823448.html",
+   "date": "2026-11-05T06:51Z"
+  },
+  {
+   "source": "Mediapart",
+   "titre": "À Marseille, une fête d’Halloween hantée par les violences policières",
+   "lien": "https://www.mediapart.fr/journal/france/051126/marseille-une-fete-d-halloween-hantee-par-les-violences-policieres",
+   "date": "2026-11-05T06:36Z"
+  },
+  {
+   "source": "Mediapart",
+   "titre": "Enzo Traverso: «La révolte de la jeunesse possède une dimension politique évidente»",
+   "lien": "https://www.mediapart.fr/journal/france/051126/enzo-traverso-la-revolte-de-la-jeunesse-possede-une-dimension-politique-evidente",
+   "date": "2026-11-05T06:31Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Au procès de l’assassinat du frère d’Amine Kessaci : «J’ai toujours eu ma bouche fermée mais aujourd’hui je vais l’ouvrir»",
+   "lien": "https://www.liberation.fr/societe/police-justice/au-proces-de-lassassinat-du-frere-damine-kessaci-jai-toujours-eu-ma-bouche-fermee-mais-aujourdhui-je-vais-louvrir-20261105_FOFNDGVQ3NFVJEYUUGKU7GLQCY/",
+   "date": "2026-11-05T06:29Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "A suivre Alban Mikoczy : Prix du gaz, de nouvelles hausses à redouter ?",
+   "lien": "https://www.franceinfo.fr/environnement/energie/a-suivre-alban-mikoczy-prix-du-gaz-de-nouvelles-hausses-a-redouter_8268875.html",
+   "date": "2026-11-05T06:21Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Trump, Macron, Musk… Sur scène, satire de tous les côtés",
+   "lien": "https://www.liberation.fr/culture/scenes/trump-macron-musk-sur-scene-satire-de-tous-les-cotes-20261105_RW2UU4CCBJC6HCOB4FFAZUHEEQ/",
+   "date": "2026-11-05T06:12Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "A suivre Alban Mikoczy : Mobilisation sociale, l'exécutif au pied du mur",
+   "lien": "https://www.franceinfo.fr/economie/greve/greve/a-suivre-alban-mikoczy-mobilisation-sociale-l-executif-au-pied-du-mur_8268830.html",
+   "date": "2026-11-05T05:44Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Tristan Garcia, philosophe : « Les mouvements de contestation actuels ne doivent pas être assimilés à une crise de l’autorité ou de l’Etat »",
+   "lien": "https://www.lemonde.fr/idees/article/2026/11/05/tristan-garcia-philosophe-les-mouvements-de-contestation-actuels-ne-doivent-pas-etre-assimiles-a-une-crise-de-l-autorite-ou-de-l-etat_6806822_3232.html",
+   "date": "2026-11-05T05:30Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "C’est le bon moment pour augmenter les salaires",
+   "lien": "https://www.liberation.fr/idees-et-debats/tribunes/cest-le-bon-moment-pour-augmenter-les-salaires-20261105_6JVT3I4GUFEWRMUZB5UCCAN5C4/",
+   "date": "2026-11-05T05:25Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "\"On dénonce ces outils de lutte contre le terrorisme\" : pourquoi les assignations à résidence prononcées contre des manifestants font polémique",
+   "lien": "https://www.franceinfo.fr/economie/greve/on-denonce-ces-outils-de-lutte-contre-le-terrorisme-pourquoi-les-assignations-a-residence-prononcees-contre-des-manifestants-font-polemique_8266007.html",
+   "date": "2026-11-05T05:06Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Outils d’IA en médecine : «Il y a le fantasme de remplir des objectifs jusque-là hors de portée»",
+   "lien": "https://www.liberation.fr/societe/sante/outils-dia-en-medecine-il-y-a-le-fantasme-de-remplir-des-objectifs-jusque-la-hors-de-portee-20261105_PYJGRVHRWJCBDJY3HY3M2HOJNE/",
+   "date": "2026-11-05T05:06Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "\"The Legend of Zelda : Ocarina of Time\", \"World of Warcraft : Forever\"… Pourquoi l'industrie du jeu vidéo mise-t-elle autant sur ses succès du passé ?",
+   "lien": "https://www.franceinfo.fr/culture/jeux-video/the-legend-of-zelda-ocarina-of-time-world-of-warcraft-forever-pourquoi-l-industrie-du-jeu-video-mise-t-elle-autant-sur-ses-succes-du-passe_8267486.html",
+   "date": "2026-11-05T05:04Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "« Une histoire du rapport au travail en France des années 50 à nos jours » : la perte progressive d’un « sens partagé »",
+   "lien": "https://www.lemonde.fr/vie-au-travail/article/2026/11/05/une-histoire-du-rapport-au-travail-en-france-des-annees-50-a-nos-jours-la-perte-progressive-d-un-sens-partage_6806821_6768900.html",
+   "date": "2026-11-05T05:01Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "Mariage sous le régime de la communauté : les loyers du bien propre d’un époux sont communs aux deux",
+   "lien": "https://www.lemonde.fr/argent/article/2026/11/05/mariage-sous-le-regime-de-la-communaute-les-loyers-du-bien-propre-d-un-epoux-sont-communs-aux-deux_6806818_1657007.html",
+   "date": "2026-11-05T05:01Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "« On assiste à des phénomènes d’emballement, voire de harcèlement contre des journalistes » : les médias alertent sur les violences à leur encontre à l’approche de la présidentielle",
+   "lien": "https://www.lemonde.fr/economie/article/2026/11/05/on-assiste-a-des-phenomenes-d-emballement-voire-de-harcelement-contre-des-journalistes-les-medias-alertent-sur-les-violences-a-leur-encontre-a-l-approche-de-la-presidentielle_6806776_3234.html",
+   "date": "2026-11-05T05:00Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "François Sureau, écrivain et avocat : « La crise actuelle est alimentée par la propension du personnel politique à ruser avec la volonté populaire »",
+   "lien": "https://www.lemonde.fr/politique/article/2026/11/05/francois-sureau-ecrivain-et-avocat-la-crise-actuelle-est-alimentee-par-la-propension-du-personnel-politique-a-ruser-avec-la-volonte-populaire_6806777_823448.html",
+   "date": "2026-11-05T05:00Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Actions Hermès, compte «Bibendum» et accords secrets : les révélations de l’enquête pénale qui menacent Bernard Arnault et LVMH",
+   "lien": "https://www.liberation.fr/societe/police-justice/actions-hermes-compte-bibendum-et-accords-secrets-les-revelations-de-lenquete-penale-qui-menacent-bernard-arnault-et-lvmh-20261105_O5DX4JD7GZHW3MBTO3VBD44ADY/",
+   "date": "2026-11-05T05:00Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Grève du 5 novembre : entre lycéens, étudiants, syndicats de salariés et « gilets jaunes », le pari d’une convergence des mobilisations",
+   "lien": "https://www.lemonde.fr/politique/article/2026/11/05/greve-du-5-novembre-entre-lyceens-etudiants-syndicats-de-salaries-et-gilets-jaunes-le-pari-d-une-convergence-des-mobilisations_6806706_823448.html",
+   "date": "2026-11-05T04:28Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "La rémunération des cadres décline pour la première fois depuis 2010",
+   "lien": "https://www.lemonde.fr/economie/article/2026/11/05/la-remuneration-des-cadres-decline-pour-la-premiere-fois-depuis-2010_6806671_3234.html",
+   "date": "2026-11-05T04:00Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "Midterms 2026 : Wall Street salue la vague démocrate au Congrès et ses promesses de stabilité et de statu quo",
+   "lien": "https://www.lemonde.fr/economie/article/2026/11/05/midterms-2026-wall-street-salue-la-vague-democrate-au-congres-et-ses-promesses-de-certitudes-et-de-statu-quo_6806670_3234.html",
+   "date": "2026-11-05T04:00Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Présidentielle 2027 : pour battre Marine Le Pen et Jean-Luc Mélenchon, Emmanuel Macron préconise une large alliance au sein de l’espace central",
+   "lien": "https://www.lemonde.fr/politique/article/2026/11/04/presidentielle-2027-emmanuel-macron-preconise-une-coalition-de-glucksmann-a-lisnard_6806470_823448.html",
+   "date": "2026-11-04T22:58Z"
+  },
+  {
+   "source": "franceinfo · économie",
+   "titre": "L'Assemblée nationale rejette à l'unanimité le budget de l'Etat 2027 en première lecture",
+   "lien": "https://www.franceinfo.fr/economie/budget/l-assemblee-nationale-rejette-a-l-unanimite-le-budget-de-l-etat-2027-en-premiere-lecture_8268527.html",
+   "date": "2026-11-04T22:54Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Budget 2027 : l’Assemblée nationale rejette en première lecture, à l’unanimité, le projet de loi de finances",
+   "lien": "https://www.lemonde.fr/politique/article/2026/11/04/budget-2027-l-assemblee-nationale-rejette-en-premiere-lecture-a-l-unanimite-le-projet-de-loi-de-finances_6806468_823448.html",
+   "date": "2026-11-04T22:53Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Budget 2027 : l’Assemblée nationale rejette à l’unanimité une copie budgétaire distordue et périmée",
+   "lien": "https://www.liberation.fr/economie/budget-2027-a-lassemblee-nationale-le-rejet-attendu-dune-copie-budgetaire-distordue-et-perimee-20261104_D42ACMWWHBBZ5C45PUSPCKO6LI/",
+   "date": "2026-11-04T22:29Z"
+  },
+  {
+   "source": "Le Figaro · politique",
+   "titre": "«Je suis convaincu qu’on va faire campagne ensemble» : à Saint-Ouen, Glucksmann tend la main à Bouamrane",
+   "lien": "https://www.lefigaro.fr/politique/je-suis-convaincu-qu-on-va-faire-campagne-ensemble-a-saint-ouen-glucksmann-tend-la-main-a-bouamrane-20261104",
+   "date": "2026-11-04T21:49Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "\"Petit à petit, on vous colle une espèce d'étiquette\" : rencontre avec des militants assignés à résidence",
+   "lien": "https://www.franceinfo.fr/societe/justice/petit-a-petit-on-vous-colle-une-espece-d-etiquette-rencontre-avec-des-militants-assignes-a-residence_8268470.html",
+   "date": "2026-11-04T21:41Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Procès de la «petite inconnue de l’A10» : dans la cour d’assises du Loir-et-Cher, au bout des images, le vertige",
+   "lien": "https://www.liberation.fr/societe/proces-de-la-petite-inconnue-de-la10-dans-la-cour-dassises-du-loir-et-cher-au-bout-des-images-le-vertige-20261104_5SX5A65MCFDVRHVF6R2IZYGDMQ/",
+   "date": "2026-11-04T21:05Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Tours : enquête ouverte après la blessure à l’œil d’un tiktokeur lors d’une manifestation",
+   "lien": "https://www.lemonde.fr/societe/article/2026/11/04/tours-enquete-ouverte-apres-la-blessure-a-l-il-d-un-tiktokeur-lors-d-une-manifestation_6806430_3224.html",
+   "date": "2026-11-04T21:01Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "Cyberattaque au Crédit mutuel Arkéa : une enquête ouverte après un détournement estimé à près de 100 millions d’euros",
+   "lien": "https://www.lemonde.fr/pixels/article/2026/11/04/cyberattaque-au-credit-mutuel-arkea-une-enquete-ouverte-apres-un-detournement-estime-a-pres-de-100-millions-d-euros_6806141_4408997.html",
+   "date": "2026-11-04T20:47Z"
+  },
+  {
+   "source": "Mediapart",
+   "titre": "Après l’attentat de Trappes, le service minimum du gouvernement",
+   "lien": "https://www.mediapart.fr/journal/france/041126/apres-l-attentat-de-trappes-le-service-minimum-du-gouvernement",
+   "date": "2026-11-04T20:04Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Trump, premier artisan de sa déroute électorale aux midterms",
+   "lien": "https://www.liberation.fr/international/amerique/midterms-trump-premier-artisan-de-sa-deroute-electorale-20261104_EKRXRJRBTVFZZJOD3WP3ENTGWQ/",
+   "date": "2026-11-04T19:55Z"
+  },
+  {
+   "source": "Public Sénat",
+   "titre": "« Le premier comité de réforme de Parcoursup se réunira dès lundi prochain, associant lycéens et enseignants autour des ministres », annonce Sébastien Lecornu au Sénat",
+   "lien": "https://www.publicsenat.fr/actualites/education/suppression-de-parcoursup-et-apres-le-retour-du-debat-sur-la-selection-a-luniversite",
+   "date": "2026-11-04T19:29Z"
+  },
+  {
+   "source": "Mediapart",
+   "titre": "Prix littéraires: le vieux monde s’accroche et ça se voit",
+   "lien": "https://www.mediapart.fr/journal/culture-et-idees/041126/prix-litteraires-le-vieux-monde-s-accroche-et-ca-se-voit",
+   "date": "2026-11-04T19:18Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "Grève du 5 novembre : \"Les remontées sont très fortes, parce que la grève va être très forte demain\", assure Thomas Vacheron, secrétaire confédéral de la CGT",
+   "lien": "https://www.franceinfo.fr/economie/greve/greve/greve-du-5-novembre-les-remontees-sont-tres-fortes-parce-que-la-greve-va-etre-tres-forte-demain-assure-thomas-vacheron-secretaire-confederal-de-la-cgt_8268338.html",
+   "date": "2026-11-04T19:17Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Soirées pizza 2027 : «La jeunesse d’aujourd’hui est une locomotive, et c’est une vraie bouffée d’oxygène»",
+   "lien": "https://www.liberation.fr/politique/elections/soirees-pizza-2027-la-jeunesse-daujourdhui-est-une-locomotive-et-cest-une-vraie-bouffee-doxygene-20261104_6L6KN5NLDBEL3IBJJQBULHEGEI/",
+   "date": "2026-11-04T19:01Z"
+  },
+  {
+   "source": "Mediapart",
+   "titre": "Midterms: un coup d’arrêt partiel à la transformation autoritaire des États-Unis",
+   "lien": "https://www.mediapart.fr/journal/international/041126/midterms-un-coup-d-arret-partiel-la-transformation-autoritaire-des-etats-unis",
+   "date": "2026-11-04T18:40Z"
+  },
+  {
+   "source": "Mediapart",
+   "titre": "Liberté de manifester: syndicats et associations saisissent la justice face aux mesures répressives du gouvernement",
+   "lien": "https://www.mediapart.fr/journal/france/041126/liberte-de-manifester-syndicats-et-associations-saisissent-la-justice-face-aux-mesures-repressives-du-gouv",
+   "date": "2026-11-04T18:39Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Parcoursup : Sébastien Lecornu annonce une première réunion lundi pour réformer la plateforme d’orientation, sur fond de mobilisation lycéenne",
+   "lien": "https://www.lemonde.fr/politique/article/2026/11/04/parcoursup-sebastien-lecornu-annonce-une-premiere-reunion-lundi-pour-reformer-la-plateforme-d-orientation-sur-fond-de-mobilisation-lyceenne_6806420_823448.html",
+   "date": "2026-11-04T18:17Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Les hommes ne lisent plus, mais ils raflent les grands prix littéraires",
+   "lien": "https://www.liberation.fr/culture/livres/les-hommes-ne-lisent-plus-mais-ils-raflent-les-grands-prix-litteraires-20261104_PKPTFRPRWFCG7HQASZ3NESRO44/",
+   "date": "2026-11-04T18:15Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Manifestations du 17 octobre : devant la commission d’enquête parlementaire, les commerçants disent avoir été « totalement abandonnés et sacrifiés »",
+   "lien": "https://www.lemonde.fr/societe/article/2026/11/04/manifestations-du-17-octobre-devant-la-commission-d-enquete-parlementaire-les-commercants-disent-avoir-ete-totalement-abandonnes-et-sacrifies_6806418_3224.html",
+   "date": "2026-11-04T18:06Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "« Anatomie politique des outre-mer », un ouvrage qui éclaire la montée du RN dans ces territoires périphériques",
+   "lien": "https://www.lemonde.fr/idees/article/2026/11/04/anatomie-politique-des-outre-mer-un-ouvrage-qui-eclaire-la-montee-du-rn-dans-ces-territoires-peripheriques_6806416_3232.html",
+   "date": "2026-11-04T18:00Z"
+  },
+  {
+   "source": "Le Monde · politique",
+   "titre": "Manifestation du 5 novembre : Laurent Nuñez annonce 70 000 policiers et gendarmes déployés et prévient qu’aucun « débordement ne sera toléré »",
+   "lien": "https://www.lemonde.fr/politique/article/2026/11/04/manifestation-du-5-novembre-laurent-nunez-annonce-70-000-policiers-et-gendarmes-deployes-et-previent-qu-aucun-debordement-ne-sera-tolere_6806412_823448.html",
+   "date": "2026-11-04T17:58Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "«Ils n’ont rien vu venir» : l’Elysée embarrassé par les confidences d’Emmanuel Macron dans un livre",
+   "lien": "https://www.liberation.fr/politique/ils-nont-rien-vu-venir-lelysee-embarrassee-par-les-confidences-demmanuel-macron-dans-un-livre-20261104_KPHX5OD2HNHFJD4YSOWLHU2LJU/",
+   "date": "2026-11-04T17:49Z"
+  },
+  {
+   "source": "Le Figaro · politique",
+   "titre": "Présidentielle 2027 : plutôt qu’une primaire, Macron veut une coalition allant de Glucksmann à Lisnard pour déjouer le duel Le Pen-Mélenchon",
+   "lien": "https://www.lefigaro.fr/elections/presidentielles/candidats/presidentielle-2027-plutot-qu-une-primaire-macron-veut-une-coalition-allant-de-glucksmann-a-lisnard-pour-dejouer-le-duel-le-pen-melenchon-20261104",
+   "date": "2026-11-04T17:34Z"
+  },
+  {
+   "source": "Libération",
+   "titre": "Mobilisation du 5 novembre : «Il y a une grande précarité salariale qui augmente le coût perçu à se mettre en grève»",
+   "lien": "https://www.liberation.fr/economie/social/baptiste-giraud-il-y-a-une-grande-precarite-salariale-qui-augmente-le-cout-percu-a-se-mettre-en-greve-20261104_CVFJQZ2KLBGHNAASK4UY4XIV6A/",
+   "date": "2026-11-04T17:16Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "Grèves du 5 novembre : perturbations sur les réseaux ferroviaires régionaux, trafic quasi normal sur les TGV et dans le métro parisien",
+   "lien": "https://www.lemonde.fr/economie/article/2026/11/04/greves-du-5-novembre-perturbations-sur-les-reseaux-ferroviaires-regionaux-trafic-quasi-normal-sur-les-tgv-et-dans-le-metro-parisien_6806372_3234.html",
+   "date": "2026-11-04T17:04Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "« La politique budgétaire française n’est pas particulièrement efficace pour soutenir durablement l’activité »",
+   "lien": "https://www.lemonde.fr/idees/article/2026/11/04/la-politique-budgetaire-francaise-n-est-pas-particulierement-efficace-pour-soutenir-durablement-l-activite_6806371_3232.html",
+   "date": "2026-11-04T17:00Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "\"La menace ne paraît pas si lointaine\", confie Charlotte Gainsbourg, qui incarne Gisèle Halimi dans “L'affaire Marie-Claire”",
+   "lien": "https://www.franceinfo.fr/culture/cinema/la-menace-ne-parait-pas-si-lointaine-confie-charlotte-gainsbourg-qui-incarne-gisele-halimi-dans-l-affaire-marie-claire_8267930.html",
+   "date": "2026-11-04T16:57Z"
+  },
+  {
+   "source": "Public Sénat",
+   "titre": "Mouvement lycéen : « Manifester est légitime mais bloquer un lycée est illégal et porte préjudice aux élèves », assure le ministre de l’Éducation",
+   "lien": "https://www.publicsenat.fr/actualites/education/mouvement-lyceen-manifester-est-legitime-mais-bloquer-un-lycee-est-illegal-et-porte-prejudice-aux-eleves-assure-le-ministre-de-leducation",
+   "date": "2026-11-04T16:54Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "\"Vous êtes tous trop durs avec moi\" : les confidences d'Emmanuel Macron dévoilées dans un livre choc de l'éditorialiste de gauche Françoise Degois",
+   "lien": "https://www.franceinfo.fr/politique/emmanuel-macron/vous-etes-tous-trop-durs-avec-moi-les-confidences-d-emmanuel-macron-devoilees-dans-un-livre-choc-de-l-editorialiste-de-gauche-francoise-degois_8267477.html",
+   "date": "2026-11-04T16:52Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "Avec la cyberattaque au Crédit mutuel Arkéa, les banques européennes prennent conscience de l’ampleur de leur vulnérabilité",
+   "lien": "https://www.lemonde.fr/economie/article/2026/11/04/avec-la-cyberattaque-au-credit-mutuel-arkea-les-banques-europeennes-prennent-conscience-de-l-ampleur-de-leur-vulnerabilite_6806367_3234.html",
+   "date": "2026-11-04T16:51Z"
+  },
+  {
+   "source": "Public Sénat",
+   "titre": "Tensions à l’Association des maires de France : David Lisnard assure ne pas « faire entrer la présidentielle dans l’AMF, ceux qui me le reprochent le font »",
+   "lien": "https://www.publicsenat.fr/actualites/politique/tensions-a-lassociation-des-maires-de-france-david-lisnard-assure-ne-pas-faire-entrer-la-presidentielle-dans-lamf-ceux-qui-me-le-reprochent-le-font",
+   "date": "2026-11-04T16:34Z"
+  },
+  {
+   "source": "Public Sénat",
+   "titre": "Budget 2027 de la Sécurité sociale : les sénateurs proposent de revaloriser sur l’inflation les pensions de retraite allant jusqu’à 1500 euros",
+   "lien": "https://www.publicsenat.fr/actualites/sante/budget-2027-de-la-securite-sociale-les-senateurs-proposent-de-revaloriser-sur-linflation-les-pensions-allant-jusqua-1500-euros",
+   "date": "2026-11-04T16:31Z"
+  },
+  {
+   "source": "Public Sénat",
+   "titre": "Défaite de Trump aux midterms : « Le crédit des Américains mettra des années à revenir », note Claude Malhuret",
+   "lien": "https://www.publicsenat.fr/actualites/politique/defaite-de-trump-aux-midterms-le-credit-des-americains-mettra-des-annees-a-revenir-note-claude-malhuret",
+   "date": "2026-11-04T16:08Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "Christel Heydemann, directrice générale d’Orange : « La dépendance de l’Europe est majeure dans de multiples domaines technologiques »",
+   "lien": "https://www.lemonde.fr/economie/video/2026/11/04/christel-heydemann-directrice-generale-d-orange-la-dependance-de-l-europe-est-majeure-dans-de-multiples-domaines-technologiques_6806325_3234.html",
+   "date": "2026-11-04T16:00Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "Transition énergétique : le gouvernement suspend le fonds chaleur, suscitant une vive réaction des collectivités locales",
+   "lien": "https://www.franceinfo.fr/environnement/actions-ecologiques/transition-ecologique-du-batiment/transition-energetique-le-gouvernement-suspend-le-fonds-chaleur-suscitant-une-vive-reaction-des-collectivites-locales_8267876.html",
+   "date": "2026-11-04T15:47Z"
+  },
+  {
+   "source": "Public Sénat",
+   "titre": "Cumul emploi – retraite : le sénateur Xavier Iacovelli demande au gouvernement de retirer son décret",
+   "lien": "https://www.publicsenat.fr/actualites/politique/cumul-emploi-retraite-le-senateur-xavier-iacovelli-demande-au-gouvernement-de-retirer-son-decret",
+   "date": "2026-11-04T15:18Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "\"On est dans des contextes très différents\" : pour le président du RN, il n'y a aucun \"rapport\" entre les midterms aux États-Unis et la France",
+   "lien": "https://www.franceinfo.fr/monde/usa/midterms-2018/on-est-dans-des-contextes-tres-differents-pour-le-president-du-rn-il-n-y-a-aucun-rapport-entre-les-midterms-aux-etats-unis-et-la-france_8267780.html",
+   "date": "2026-11-04T14:56Z"
+  },
+  {
+   "source": "Public Sénat",
+   "titre": "Pétition contre CNews : « Le racisme à toutes les sauces », dénonce la sénatrice écologiste Antoinette Guhl",
+   "lien": "https://www.publicsenat.fr/actualites/politique/petition-contre-cnews-le-racisme-a-toutes-les-sauces-denonce-la-senatrice-ecologiste-antoinette-guhl",
+   "date": "2026-11-04T14:55Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "Etat, épargnants, banques… A qui profite (vraiment) le relèvement du plafond du livret A ?",
+   "lien": "https://www.franceinfo.fr/economie/votre-argent/livret-a/etat-epargnants-banques-a-qui-profite-vraiment-le-relevement-du-plafond-du-livret-a_8267444.html",
+   "date": "2026-11-04T14:53Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "Une croissance de 0,5 % en 2026 est « difficilement atteignable », selon le Haut Conseil des finances publiques",
+   "lien": "https://www.lemonde.fr/economie/article/2026/11/04/une-croissance-de-0-5-en-2026-est-difficilement-atteignable-selon-le-haut-conseil-des-finances-publiques_6806233_3234.html",
+   "date": "2026-11-04T13:42Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "\"Oui, il y a un problème d'intégration en France\", estime Edouard Philippe, qui propose à Jean-Luc Mélenchon un débat sur l'immigration",
+   "lien": "https://www.franceinfo.fr/elections/presidentielle/oui-il-y-a-un-probleme-d-integration-en-france-edouard-philippe-propose-a-jean-luc-melenchon-un-debat-sur-l-immigration_8267711.html",
+   "date": "2026-11-04T13:37Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "Les opérateurs de télécoms augmentent leurs tarifs en plein rachat de SFR",
+   "lien": "https://www.lemonde.fr/economie-francaise/article/2026/11/04/les-operateurs-de-telecoms-augmentent-leurs-tarifs-en-plein-rachat-de-sfr_6806231_1656968.html",
+   "date": "2026-11-04T13:35Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "« La taxe carbone, principale recommandation de William Nordhaus, est devenue la martingale des économistes contre le réchauffement climatique »",
+   "lien": "https://www.lemonde.fr/idees/article/2026/11/04/la-taxe-carbone-principale-recommandation-de-william-nordhaus-est-devenue-la-martingale-des-economistes-contre-le-rechauffement-climatique_6806230_3232.html",
+   "date": "2026-11-04T13:33Z"
+  },
+  {
+   "source": "Le Monde · économie",
+   "titre": "Le dérapage du déficit public français à 5,4 % du PIB en 2026 officialisé",
+   "lien": "https://www.lemonde.fr/politique/article/2026/11/04/finances-publiques-le-derapage-du-deficit-en-2026-officialise_6806225_823448.html",
+   "date": "2026-11-04T13:09Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "EDITO. Pourquoi Donald Trump est l'épouvantail de la campagne présidentielle en France ?",
+   "lien": "https://www.franceinfo.fr/monde/usa/presidentielle/donald-trump/edito-pourquoi-donald-trump-est-l-epouvantail-de-la-campagne-presidentielle-en-france_8267753.html",
+   "date": "2026-11-04T13:08Z"
+  },
+  {
+   "source": "franceinfo · politique",
+   "titre": "La Ciivise saisit la présidente de l'Assemblée nationale après des \"attaques inacceptables\" du député RN Julien Odoul",
+   "lien": "https://www.franceinfo.fr/politique/la-ciivise-saisit-la-presidente-de-l-assemblee-nationale-apres-des-attaques-inacceptables-du-depute-rn-julien-odoul_8267735.html",
+   "date": "2026-11-04T13:05Z"
+  },
+  {
+   "source": "Public Sénat",
+   "titre": "Midterms : tout savoir sur le « droit de véto » que Trump menace d’utiliser après la victoire démocrate",
+   "lien": "https://www.publicsenat.fr/actualites/international/midterms-tout-savoir-sur-le-droit-de-veto-que-trump-menace-dutiliser-apres-la-victoire-democrate",
+   "date": "2026-11-04T12:33Z"
+  },
   {
    "source": "franceinfo · économie",
    "titre": "DIRECT. Mobilisation du 5 novembre : le ministère de l'Education nationale estime à 17,54% le taux de grévistes dans le premier degré public jeudi",
@@ -30,6 +750,12 @@
    "titre": "Grève du 5 novembre : l'intersyndicale dépose un recours à Lyon devant le tribunal administratif après l'interdiction du parcours syndical",
    "lien": "https://www.franceinfo.fr/economie/greve/greve-du-5-novembre-l-intersyndicale-depose-un-recours-a-lyon-devant-le-tribunal-administratif-apres-l-interdiction-du-parcours-syndical_8267624.html",
    "date": "2026-11-04T11:53Z"
+  },
+  {
+   "source": "Public Sénat",
+   "titre": "« Une récession n’est pas à exclure » : la rapporteure générale du budget au Sénat tire à boulets rouges sur le scénario du gouvernement",
+   "lien": "https://www.publicsenat.fr/actualites/politique/une-recession-nest-pas-a-exclure-la-rapporteure-generale-du-budget-au-senat-tire-a-boulets-rouges-sur-le-scenario-du-gouvernement",
+   "date": "2026-11-04T11:42Z"
   },
   {
    "source": "franceinfo · économie",
@@ -68,10 +794,22 @@
    "date": "2026-11-04T11:30Z"
   },
   {
+   "source": "Public Sénat",
+   "titre": "Présomption de légitime défense pour les forces de l’ordre : doublé par le gouvernement, le groupe RN « ne se laissera pas déstabiliser par les mesquineries d’un exécutif crépusculaire »",
+   "lien": "https://www.publicsenat.fr/actualites/politique/presomption-de-legitime-defense-pour-les-forces-de-lordre-double-par-le-gouvernement-le-groupe-rn-ne-se-laissera-pas-destabiliser-par-les-mesquineries-dun-executif-cre",
+   "date": "2026-11-04T11:24Z"
+  },
+  {
    "source": "franceinfo · société",
    "titre": "Mobilisation des lycéens : les absences des élèves peuvent-elles pénaliser leur dossier Parcoursup ?",
    "lien": "https://www.franceinfo.fr/societe/education/blocage-des-lycees/mobilisation-des-lyceens-les-absences-des-eleves-peuvent-elles-penaliser-leur-dossier-parcoursup_8266520.html",
    "date": "2026-11-04T11:22Z"
+  },
+  {
+   "source": "Public Sénat",
+   "titre": "Midterms 2026 : « Pendant ces deux ans, Trump ne se comportera pas comme un président boiteux, sur l’international il va s’en donner à cœur joie », estime Romuald Sciora",
+   "lien": "https://www.publicsenat.fr/actualites/international/midterms-2026-pendant-ces-deux-ans-trump-ne-se-comportera-pas-comme-un-president-boiteux-sur-linternational-il-va-sen-donner-a-coeur-joie-estime-romuald-sciora",
+   "date": "2026-11-04T11:18Z"
   },
   {
    "source": "franceinfo · économie",
@@ -96,6 +834,12 @@
    "titre": "Bruno Retailleau estime qu'il \"faudra une primaire\" pour départager les quatre principaux candidats de la droite et du centre à l'élection présidentielle",
    "lien": "https://www.franceinfo.fr/elections/presidentielle/pour-departager-les-quatre-principaux-candidats-de-la-droite-et-du-centre-a-l-election-presidentielle-bruno-retailleau-estime-qu-il-faudra-une-primaire_8267411.html",
    "date": "2026-11-04T10:55Z"
+  },
+  {
+   "source": "Public Sénat",
+   "titre": "Sondage présidentielle 2027 : Un second tour Le Pen – Mélenchon assuré, la droite et le bloc central peinent à remonter, Lisnard confirme sa percée",
+   "lien": "https://www.publicsenat.fr/actualites/politique/sondage-presidentielle-2027-un-second-tour-le-pen-melenchon-assure-la-droite-et-le-bloc-central-peine-a-remonter-lisnard-confirme-sa-percee",
+   "date": "2026-11-04T10:53Z"
   },
   {
    "source": "franceinfo · politique",
@@ -186,6 +930,12 @@
    "titre": "Dans le Michigan, Abdul el-Sayed ouvre une nouvelle voie aux progressistes",
    "lien": "https://www.mediapart.fr/journal/international/041126/dans-le-michigan-abdul-el-sayed-ouvre-une-nouvelle-voie-aux-progressistes",
    "date": "2026-11-04T09:51Z"
+  },
+  {
+   "source": "Public Sénat",
+   "titre": "Midterms 2026: « C’est un plébiscite contre Donald Trump », affirme Frédérique Sandretto",
+   "lien": "https://www.publicsenat.fr/actualites/international/midterms-2026-cest-un-plebiscite-contre-donald-trump-affirme-frederique-sandretto",
+   "date": "2026-11-04T09:19Z"
   },
   {
    "source": "franceinfo · société",
@@ -6794,750 +7544,6 @@
    "date": "2026-10-26T12:30Z"
   },
   {
-   "source": "Le Monde · économie",
-   "titre": "Huit grandes entreprises publiques et privées créent un fonds de dotation pour faire avancer les questions de souveraineté",
-   "lien": "https://www.lemonde.fr/economie/article/2026/10/26/huit-grandes-entreprises-publiques-et-privees-creent-un-fonds-de-dotation-pour-faire-avancer-les-questions-de-souverainete_6800780_3234.html",
-   "date": "2026-10-26T12:00Z"
-  },
-  {
-   "source": "Le Monde · économie",
-   "titre": "Hausse des taux d’intérêt : « Sans accalmie sur les marchés financiers, la France pourrait bien avoir besoin d’une aide de la BCE rapidement »",
-   "lien": "https://www.lemonde.fr/idees/article/2026/10/26/hausse-des-taux-d-interet-sans-accalmie-sur-les-marches-financiers-la-france-pourrait-bien-avoir-besoin-d-une-aide-de-la-bce-rapidement_6800743_3232.html",
-   "date": "2026-10-26T11:00Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Sport, etc. — Sport, etc.",
-   "lien": "https://www.publicsenat.fr/emission/sport-etc/sport-etc-e3",
-   "date": "2026-10-26T10:43Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Exclu. Plafonnement des prix à la pompe : la facture s’élève environ « à 500 millions d’euros » pour TotalEnergies, révèle Patrick Pouyanné",
-   "lien": "https://www.publicsenat.fr/actualites/economie/exclu-plafonnement-des-prix-a-la-pompe-la-facture-seleve-environ-a-500-millions-deuros-pour-totalenergies-revele-patrick-pouyanne-sur-public-senat",
-   "date": "2026-10-26T10:02Z"
-  },
-  {
-   "source": "Le Monde · économie",
-   "titre": "Dette française : « Le seul signal donné par Moody’s, c’est que le moment est trop inflammable pour craquer une allumette »",
-   "lien": "https://www.lemonde.fr/economie/article/2026/10/26/dette-francaise-le-seul-signal-donne-par-moody-s-c-est-que-le-moment-est-trop-inflammable-pour-craquer-une-allumette_6800674_3234.html",
-   "date": "2026-10-26T10:00Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "Le Conseil constitutionnel écarte la demande de démission de son président formulée par le RN et l'UDR",
-   "lien": "https://www.franceinfo.fr/politique/front-national/le-conseil-constitutionnel-ecarte-la-demande-de-demission-de-son-president-formulee-par-le-rn-et-l-udr_8254027.html",
-   "date": "2026-10-26T09:46Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "Législatives en Serbie : victoire historique du mouvement étudiant face au nationaliste Aleksandar Vucic",
-   "lien": "https://www.liberation.fr/international/europe/en-serbie-aleksandar-vucic-reconnait-sa-defaite-face-au-mouvement-etudiant-20261025_PW5PWL47JBB7ZH2SLXRIVPZDEQ/",
-   "date": "2026-10-26T09:46Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "Rouen, Clermont-Ferrand, Nice... Des groupuscules d'extrême droite signalés en marge des manifestations",
-   "lien": "https://www.franceinfo.fr/societe/manifestations/rouen-clermont-ferrand-nice-des-groupuscules-d-extreme-droite-signales-en-marge-des-manifestations_8253973.html",
-   "date": "2026-10-26T09:40Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "Manifestations du 24 octobre : 267 membres des forces de l'ordre et 150 manifestants ont été blessés, dont trois gravement, annonce Laurent Nuñez",
-   "lien": "https://www.franceinfo.fr/societe/manifestations/manifestations-du-24-octobre-267-membres-des-forces-de-l-ordre-et-150-manifestants-ont-ete-blesses-dont-trois-gravement-annonce-laurent-nunez_8253910.html",
-   "date": "2026-10-26T09:38Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "A l’Assemblée nationale, la commission d’enquête sur le 17 octobre en crise avant même d’avoir commencé ses travaux",
-   "lien": "https://www.lemonde.fr/politique/article/2026/10/26/a-l-assemblee-nationale-la-commission-d-enquete-sur-le-17-octobre-en-crise-avant-meme-d-avoir-commence-ses-travaux_6800607_823448.html",
-   "date": "2026-10-26T09:30Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "La dérive autoritaire et sécuritaire est aussi celle des chaînes d’information",
-   "lien": "https://www.liberation.fr/politique/la-derive-autoritaire-et-securitaire-est-aussi-celle-des-chaines-dinformation-20261026_A57LF3D2SBCLROTTHHW7Y3VZDI/",
-   "date": "2026-10-26T09:30Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "Emmanuel Macron attendu lundi à Marseille pour une visite surprise sur le \"retour de l'ordre\" après les violences du 17 octobre",
-   "lien": "https://www.franceinfo.fr/societe/mobilisation-du-17-octobre/emmanuel-macron-attendu-lundi-a-marseille-pour-une-visite-surprise-sur-le-retour-de-l-ordre-apres-les-violences-du-17-octobre_8253937.html",
-   "date": "2026-10-26T09:23Z"
-  },
-  {
-   "source": "franceinfo · économie",
-   "titre": "Pour faire un tube, suffit-il parfois comme Kopp Johnson, l'artiste star des gilets jaunes, de surfer sur l’actualité ?",
-   "lien": "https://www.franceinfo.fr/replay-radio/l-il-de-constance/pour-faire-un-tube-suffit-il-parfois-comme-kopp-johnson-l-artiste-star-des-gilets-jaunes-de-surfer-sur-l-actualite_8233138.html",
-   "date": "2026-10-26T09:22Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "Raphaël Glucksmann dit être victime d'une \"campagne de harcèlement\" de LFI",
-   "lien": "https://www.franceinfo.fr/elections/presidentielle/raphael-glucksmann-dit-etre-victime-d-une-campagne-de-harcelement-de-lfi_8253889.html",
-   "date": "2026-10-26T09:17Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "Mobilisations du 24 octobre : un total de 1 435 interpellations et plus de 400 blessés, selon Laurent Nuñez",
-   "lien": "https://www.liberation.fr/societe/police-justice/mobilisations-du-24-octobre-un-total-de-1-435-interpellations-et-plus-de-400-blesses-selon-laurent-nunez-20261026_3GHGFCMGRBHADAKH7THHK4TTGU/",
-   "date": "2026-10-26T09:16Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "EN DIRECT, mobilisations sociales : Emmanuel Macron en déplacement à Marseille ; le gouvernement doit présenter ses réponses au mouvement lycéen",
-   "lien": "https://www.lemonde.fr/politique/live/2026/10/26/en-direct-mobilisations-sociales-emmanuel-macron-en-deplacement-a-marseille-le-gouvernement-doit-presenter-ses-reponses-au-mouvement-lyceen_6800604_823448.html",
-   "date": "2026-10-26T09:15Z"
-  },
-  {
-   "source": "Mediapart",
-   "titre": "COP Biodiversité: à mi-parcours, les négociations bloquent sur le financement",
-   "lien": "https://www.mediapart.fr/journal/international/261026/cop-biodiversite-mi-parcours-les-negociations-bloquent-sur-le-financement",
-   "date": "2026-10-26T09:14Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "DIRECT. Mobilisation des lycéens : le gouvernement reçoit les organisations dans l'après-midi et promet \"des réponses très concrètes\"",
-   "lien": "https://www.franceinfo.fr/societe/education/blocage-des-lycees/direct-mobilisation-des-lyceens-le-gouvernement-recoit-les-organisations-dans-l-apres-midi-et-promet-des-reponses-tres-concretes_8253718.html",
-   "date": "2026-10-26T09:13Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "Mobilisations lycéennes :  le gouvernement va recevoir les organisations lycéennes",
-   "lien": "https://www.franceinfo.fr/societe/education/blocage-des-lycees/mobilisations-lyceennes-le-gouvernement-va-recevoir-les-organisations-lyceennes_8253955.html",
-   "date": "2026-10-26T09:05Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "\"On ne fera aucun compromis\" : les organisations lycéennes et syndicats d'enseignants attendent des mesures fortes de la part du gouvernement",
-   "lien": "https://www.franceinfo.fr/societe/education/blocage-des-lycees/on-ne-fera-aucun-compromis-les-organisations-lyceennes-et-syndicats-d-enseignants-attendent-des-mesures-fortes-de-la-part-du-gouvernement_8253913.html",
-   "date": "2026-10-26T09:03Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "Jonas Haddad, le porte-parole de Bruno Retailleau qui veut défendre les jeunes actifs écrasés par « le système »",
-   "lien": "https://www.lemonde.fr/politique/article/2026/10/26/jonas-haddad-le-porte-parole-de-bruno-retailleau-qui-veut-defendre-les-jeunes-actifs-ecrases-par-le-systeme_6800601_823448.html",
-   "date": "2026-10-26T09:00Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "Anne Cordier, chercheuse : « Les lycéens et étudiants abreuvent les réseaux sociaux de scènes de joie, d’espoir et de solidarité »",
-   "lien": "https://www.lemonde.fr/idees/article/2026/10/26/anne-cordier-chercheuse-les-lyceens-et-etudiants-abreuvent-les-reseaux-sociaux-de-scenes-de-joie-d-espoir-et-de-solidarite_6800600_3232.html",
-   "date": "2026-10-26T09:00Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "Parcoursup, manque de moyens : les lycéens maintiennent la pression sur le gouvernement",
-   "lien": "https://www.franceinfo.fr/societe/education/blocage-des-lycees/parcoursup-manque-de-moyens-les-lyceens-maintiennent-la-pression-sur-le-gouvernement_8253946.html",
-   "date": "2026-10-26T08:59Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "Thomas Ménagé dénonce \"un coup monté\" de Mediapart et de l'UEJF, après l'interruption du meeting du RN par des militants",
-   "lien": "https://www.franceinfo.fr/politique/front-national/thomas-menage-denonce-un-coup-monte-de-mediapart-et-de-l-uejf-apres-l-interruption-du-meeting-du-rn-par-des-militants_8253949.html",
-   "date": "2026-10-26T08:46Z"
-  },
-  {
-   "source": "franceinfo · économie",
-   "titre": "Le secteur bancaire directement touché par l’intelligence artificielle",
-   "lien": "https://www.franceinfo.fr/replay-radio/le-brief-eco/le-secteur-bancaire-directement-touche-par-l-intelligence-artificielle_8233156.html",
-   "date": "2026-10-26T08:42Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "\"Il y a une certaine impunité envers les mouvements d'extrême droite qui ne peut plus durer\", déclare Marine Tondelier",
-   "lien": "https://www.franceinfo.fr/politique/je-pense-qu-il-y-a-quand-meme-une-certaine-impunite-envers-les-mouvements-d-extreme-droite-qui-ne-peut-plus-durer-declare-marine-tondelier-secretaire-nationale-des-ecologistes-et-candidate-a-l-election-presidentielle_8253919.html",
-   "date": "2026-10-26T08:36Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "Attentat raciste à Trappes : Thomas Ménagé \"regrette que la gauche saute sur un fait aussi abject pour faire de la politique politicienne\"",
-   "lien": "https://www.franceinfo.fr/faits-divers/terrorisme/attentat-raciste-a-trappes/attentat-raciste-a-trappes-thomas-menage-regrette-que-la-gauche-saute-sur-un-fait-aussi-abject-pour-faire-de-la-politique-politicienne_8253934.html",
-   "date": "2026-10-26T08:34Z"
-  },
-  {
-   "source": "Mediapart",
-   "titre": "En Serbie, la Liste étudiante chasse du pouvoir l’autocrate Vučić",
-   "lien": "https://www.mediapart.fr/journal/international/261026/en-serbie-la-liste-etudiante-chasse-du-pouvoir-l-autocrate-vucic",
-   "date": "2026-10-26T08:34Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "Attentat à Trappes, manifestations, congrès du RN...  Le \"8h30 franceinfo\" de Thomas Ménagé",
-   "lien": "https://www.franceinfo.fr/replay-radio/8h30-fauvelle-dely/attentat-a-trappes-manifestations-congres-du-rn-le-8h30-franceinfo-de-thomas-menage_8233141.html",
-   "date": "2026-10-26T08:32Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "Présidentielle : si le Rassemblement national accède au pouvoir, la CGT n'aura plus de subventions, assure Sébastien Chenu",
-   "lien": "https://www.franceinfo.fr/politique/front-national/presidentielle-si-le-rassemblement-national-accede-au-pouvoir-la-cgt-n-aura-plus-de-subventions-assure-sebastien-chenu_8253898.html",
-   "date": "2026-10-26T08:08Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "Face à la fatigue des policiers, le syndicat UN1TÉ appelle les politiques à \"prendre leurs responsabilités\"",
-   "lien": "https://www.franceinfo.fr/faits-divers/police/face-a-la-fatigue-des-policiers-le-syndicat-un1te-appelle-les-politiques-a-prendre-leurs-responsabilites_8253907.html",
-   "date": "2026-10-26T08:04Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "PODCAST. Un attentat traumatisant à Trappes, Lula réélu et des jeux fusionnés entre eux : ça dit quoi ce 26 octobre ?",
-   "lien": "https://www.franceinfo.fr/replay-radio/ca-dit-quoi/podcast-un-attentat-traumatisant-a-trappes-lula-reelu-et-des-jeux-fusionnes-entre-eux-ca-dit-quoi-ce-26-octobre_8244658.html",
-   "date": "2026-10-26T07:53Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "Attentat raciste à Trappes : Sébastien Chenu rejette toute responsabilité du RN et dénonce une \"récupération politique indigne\" de LFI",
-   "lien": "https://www.franceinfo.fr/politique/front-national/attentat-raciste-dans-les-yvelines-sebastien-chenu-rejette-toute-responsabilite-du-rn-et-denonce-une-recuperation-politique-indigne-de-lfi_8253883.html",
-   "date": "2026-10-26T07:52Z"
-  },
-  {
-   "source": "franceinfo · économie",
-   "titre": "Négociations annuelles sur la fixation des prix : une réunion de préparation à Bercy avec la grande distribution s'annonce houleuse",
-   "lien": "https://www.franceinfo.fr/replay-radio/le-decryptage-eco/negociations-annuelles-sur-la-fixation-des-prix-une-reunion-de-preparation-a-bercy-avec-la-grande-distribution-s-annonce-houleuse_8233159.html",
-   "date": "2026-10-26T07:52Z"
-  },
-  {
-   "source": "Mediapart",
-   "titre": "Le dernier triomphe de Lula",
-   "lien": "https://www.mediapart.fr/journal/international/261026/le-dernier-triomphe-de-lula",
-   "date": "2026-10-26T07:47Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "Présidentielle 2027 : depuis Orléans, Marine Le Pen lance sa campagne",
-   "lien": "https://www.franceinfo.fr/replay-jt/franceinfo/21h-minuit/23-heures/presidentielle-2027-depuis-orleans-marine-le-pen-lance-sa-campagne_8253877.html",
-   "date": "2026-10-26T07:39Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "Attentat raciste à Trappes : \"C'est une contrevérité grave\" d'affirmer que les auteurs d'attentats d'extrême droite sont traités différemment, réagit l'ancien procureur antiterroriste",
-   "lien": "https://www.franceinfo.fr/faits-divers/terrorisme/attentat-raciste-a-trappes/attentat-raciste-a-trappes-c-est-une-contreverite-grave-d-affirmer-que-les-auteurs-d-attentats-d-extreme-droite-sont-traites-differemment-reagit-l-ancien-procureur-antiterroriste_8253886.html",
-   "date": "2026-10-26T07:22Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "Quelles sont les pistes étudiées par le gouvernement pour améliorer Parcoursup, dont le mouvement lycéen demande la suppression ?",
-   "lien": "https://www.franceinfo.fr/societe/education/parcoursup/parcoursup/quelles-sont-les-pistes-etudiees-par-le-gouvernement-pour-ameliorer-parcoursup-dont-le-mouvement-lyceen-demande-la-suppression_8252857.html",
-   "date": "2026-10-26T07:22Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "Présidentielle au Brésil : réélu contre toute attente, Lula parvient finalement à maintenir le pays à gauche",
-   "lien": "https://www.liberation.fr/international/amerique/presidentielle-au-bresil-reelu-contre-toute-attente-lula-parvient-finalement-a-maintenir-le-pays-a-gauche-20261026_DY3X3XUACVH73FKRK3YHUE7XTA/",
-   "date": "2026-10-26T07:17Z"
-  },
-  {
-   "source": "franceinfo · économie",
-   "titre": "Sur les réseaux sociaux, des vidéos trompeuses des manifestations de la jeunesse et contre la vie chère en Europe",
-   "lien": "https://www.franceinfo.fr/replay-radio/le-vrai-du-faux/sur-les-reseaux-sociaux-des-videos-trompeuses-des-manifestations-de-la-jeunesse-et-contre-la-vie-chere-en-europe_8233165.html",
-   "date": "2026-10-26T07:16Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Un monde, un regard — Un monde, un regard",
-   "lien": "https://www.publicsenat.fr/emission/un-monde-un-regard/un-monde-un-regard-e11",
-   "date": "2026-10-26T07:13Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Un monde en doc — Un monde en doc",
-   "lien": "https://www.publicsenat.fr/emission/un-monde-en-doc/un-monde-en-doc-e12",
-   "date": "2026-10-26T07:13Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Sens Public — Sens Public",
-   "lien": "https://www.publicsenat.fr/emission/sens-public/sens-public-e63",
-   "date": "2026-10-26T07:13Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Sens Public — Sens Public",
-   "lien": "https://www.publicsenat.fr/emission/sens-public/sens-public-e62",
-   "date": "2026-10-26T07:13Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Sens Public — Sens Public",
-   "lien": "https://www.publicsenat.fr/emission/sens-public/sens-public-e61",
-   "date": "2026-10-26T07:13Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Sens Public — Sens Public",
-   "lien": "https://www.publicsenat.fr/emission/sens-public/sens-public-e60",
-   "date": "2026-10-26T07:12Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Questions au Gouvernement — Questions au Gouvernement",
-   "lien": "https://www.publicsenat.fr/emission/questions-au-gouvernement/questions-au-gouvernement-e6",
-   "date": "2026-10-26T07:12Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Parlement hebdo — Parlement hebdo",
-   "lien": "https://www.publicsenat.fr/emission/parlement-hebdo/parlement-hebdo-e8",
-   "date": "2026-10-26T07:12Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Ici l'Europe — Ici l’Europe",
-   "lien": "https://www.publicsenat.fr/emission/ici-leurope/ici-leurope-e13-1",
-   "date": "2026-10-26T07:12Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "En direct du Sénat — En direct du Sénat",
-   "lien": "https://www.publicsenat.fr/emission/en-direct-du-senat/en-direct-du-senat-e8-1",
-   "date": "2026-10-26T07:11Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Bonjour chez vous ! — Bonjour chez vous !",
-   "lien": "https://www.publicsenat.fr/emission/bonjour-chez-vous/bonjour-chez-vous-e47",
-   "date": "2026-10-26T07:11Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Bonjour chez vous ! — Bonjour chez vous !",
-   "lien": "https://www.publicsenat.fr/emission/bonjour-chez-vous/bonjour-chez-vous-e46",
-   "date": "2026-10-26T07:11Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Bonjour chez vous ! — Bonjour chez vous !",
-   "lien": "https://www.publicsenat.fr/emission/bonjour-chez-vous/bonjour-chez-vous-e45",
-   "date": "2026-10-26T07:11Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Bonjour chez vous ! — Bonjour chez vous !",
-   "lien": "https://www.publicsenat.fr/emission/bonjour-chez-vous/bonjour-chez-vous-e44",
-   "date": "2026-10-26T07:11Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "100% Sénat — 100% Sénat",
-   "lien": "https://www.publicsenat.fr/emission/100-senat/100-senat-e50",
-   "date": "2026-10-26T07:10Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "100% Sénat — 100% Sénat",
-   "lien": "https://www.publicsenat.fr/emission/100-senat/100-senat-e48-2",
-   "date": "2026-10-26T07:10Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "100% Sénat — 100% Sénat",
-   "lien": "https://www.publicsenat.fr/emission/100-senat/100-senat-e49",
-   "date": "2026-10-26T07:10Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "100% Sénat — 100% Sénat",
-   "lien": "https://www.publicsenat.fr/emission/100-senat/100-senat-e47-1",
-   "date": "2026-10-26T07:10Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "100% Sénat — 100% Sénat",
-   "lien": "https://www.publicsenat.fr/emission/100-senat/100-senat-e45-1",
-   "date": "2026-10-26T07:10Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "100% Sénat — 100% Sénat",
-   "lien": "https://www.publicsenat.fr/emission/100-senat/100-senat-e46",
-   "date": "2026-10-26T07:10Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "Mobilisation lycéenne : l'organisation \"Les Lycéens !\" promet d'appeler à continuer le mouvement \"si les annonces ne sont pas à la hauteur\"",
-   "lien": "https://www.franceinfo.fr/societe/education/blocage-des-lycees/mobilisation-lyceenne-l-organisation-les-lyceens-promet-d-appeler-a-continuer-le-mouvement-si-les-annonces-ne-sont-pas-a-la-hauteur_8253850.html",
-   "date": "2026-10-26T07:03Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Les échos de l'histoire — Ben Gourion, un Etat coûte que coûte",
-   "lien": "https://www.publicsenat.fr/emission/les-echos-de-lhistoire/ben-gourion-un-etat-coute-que-coute-e8",
-   "date": "2026-10-26T07:03Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "EDITO. Les mots et la violence du débat politique actuel engendrent-ils la violence raciste ?",
-   "lien": "https://www.franceinfo.fr/replay-radio/l-edito-politique/edito-les-mots-et-la-violence-du-debat-politique-actuel-engendrent-ils-la-violence-raciste_8233150.html",
-   "date": "2026-10-26T06:59Z"
-  },
-  {
-   "source": "franceinfo · économie",
-   "titre": "Des passagers d'un Ouigo Rennes-Paris bloqués une nuit dans le train, après deux incidents successifs ayant entraîné six heures de retard",
-   "lien": "https://www.franceinfo.fr/economie/transports/sncf/des-passagers-d-un-ouigo-rennes-paris-bloques-une-nuit-dans-le-train-apres-deux-incidents-successifs-ayant-entraine-6h-de-retard_8253847.html",
-   "date": "2026-10-26T06:18Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "Ghosting : «Le soir, pendant mon retour dans le train, je ne fais que pleurer, je suis détruite»",
-   "lien": "https://www.liberation.fr/lifestyle/intimites/ghosting-le-soir-pendant-mon-retour-dans-le-train-je-ne-fais-que-pleurer-je-suis-detruite-20261026_UN6CT6QHORFTPNYWW77LVKK564/",
-   "date": "2026-10-26T06:09Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "A Bordeaux, une singulière passe d’armes entre UGC et le Festival du cinéma indépendant",
-   "lien": "https://www.liberation.fr/culture/cinema/a-bordeaux-une-singuliere-passe-darmes-entre-ugc-et-le-festival-du-cinema-independant-20261026_BPSW6YVGQFFBFBA25GZXWXBGZM/",
-   "date": "2026-10-26T06:00Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "«Soulèvement», la révolte un peu sage du chorégraphe Angelin Preljocaj",
-   "lien": "https://www.liberation.fr/culture/scenes/soulevement-la-revolte-un-peu-sage-du-choregraphe-angelin-preljocaj-20261026_Z4AGRARFMBGEDKGTBLL545YHFE/",
-   "date": "2026-10-26T05:53Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "Accord turco-libyen : la bataille des «frontières» de la mer relancée en Méditerranée",
-   "lien": "https://www.liberation.fr/international/moyen-orient/accord-turco-libyen-la-bataille-des-frontieres-de-la-mer-relancee-en-mediterranee-20261026_L25WKDYYPNEDNJKTGJOD42BXAY/",
-   "date": "2026-10-26T05:37Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "TEMOIGNAGES. \"On sort beaucoup moins\" : à Trappes, la peur s'est installée après l'attentat raciste",
-   "lien": "https://www.franceinfo.fr/faits-divers/terrorisme/attentat-raciste-a-trappes/temoignages-on-a-peur-de-sortir-a-trappes-la-peur-s-est-installee-apres-l-attentat-raciste_8253556.html",
-   "date": "2026-10-26T05:16Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "Au congrès du RN, Jordan Bardella plébiscité mais affaibli dans sa présidence",
-   "lien": "https://www.liberation.fr/politique/elections/au-congres-du-rn-jordan-bardella-plebiscite-mais-affaibli-dans-sa-presidence-20261026_57QT3UO73JFI3HXVKSZEIVCGYE/",
-   "date": "2026-10-26T05:07Z"
-  },
-  {
-   "source": "Le Monde · économie",
-   "titre": "Quelles sanctions pour les justiciables qui violent l’obligation de confidentialité attachée à la médiation ?",
-   "lien": "https://www.lemonde.fr/argent/article/2026/10/26/quelles-sanctions-pour-les-justiciables-qui-violent-l-obligation-de-confidentialite-attachee-a-la-mediation_6800430_1657007.html",
-   "date": "2026-10-26T05:00Z"
-  },
-  {
-   "source": "Le Monde · économie",
-   "titre": "L’IA qui s’améliore elle-même, nouvel horizon controversé des grands laboratoires comme OpenAI et Anthropic",
-   "lien": "https://www.lemonde.fr/economie/article/2026/10/26/l-ia-qui-s-ameliore-elle-meme-nouvel-horizon-controverse-des-grands-laboratoires-comme-openai-et-anthropic_6800428_3234.html",
-   "date": "2026-10-26T04:45Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "L’IA, je m’en passe, par Michel Henry",
-   "lien": "https://www.liberation.fr/idees-et-debats/tribunes/lia-je-men-passe-par-michel-henry-20261026_UQW6EAPVBRHXLBBN3MIPUHFXDU/",
-   "date": "2026-10-26T04:44Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "« A la veille des ventes de Noël, les mauvaises nouvelles s’accumulent » : la colère sociale assombrit davantage les perspectives économiques de la France",
-   "lien": "https://www.lemonde.fr/economie/article/2026/10/26/la-colere-sociale-fragilise-encore-davantage-les-perspectives-economiques-de-la-france_6800426_3234.html",
-   "date": "2026-10-26T04:30Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "Raphaël Glucksmann, un candidat à la présidentielle à la recherche de la jeunesse perdue",
-   "lien": "https://www.lemonde.fr/politique/article/2026/10/26/raphael-glucksmann-un-candidat-a-la-presidentielle-a-la-recherche-de-la-jeunesse-perdue_6800424_823448.html",
-   "date": "2026-10-26T04:30Z"
-  },
-  {
-   "source": "Le Monde · économie",
-   "titre": "A Los Angeles, le fléau des vols de câbles en cuivre fait la fortune d’une PME d’Agen",
-   "lien": "https://www.lemonde.fr/economie/article/2026/10/26/a-los-angeles-le-fleau-des-vols-de-cables-en-cuivre-fait-la-fortune-d-une-pme-d-agen_6800423_3234.html",
-   "date": "2026-10-26T04:30Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "Myriam Revault d’Allonnes, philosophe : « La juste colère des lycéens demande que l’école républicaine assure sa promesse d’émancipation »",
-   "lien": "https://www.lemonde.fr/idees/article/2026/10/26/myriam-revault-d-allonnes-philosophe-la-juste-colere-des-lyceens-demande-que-l-ecole-republicaine-assure-sa-promesse-d-emancipation_6800385_3232.html",
-   "date": "2026-10-26T04:00Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "Après les manifestations du 24 octobre, l’exécutif confronté à la perspective d’un long automne social",
-   "lien": "https://www.lemonde.fr/politique/article/2026/10/26/apres-les-manifestations-du-24-octobre-l-executif-confronte-a-la-perspective-d-un-long-automne-social_6800384_823448.html",
-   "date": "2026-10-26T04:00Z"
-  },
-  {
-   "source": "Le Monde · économie",
-   "titre": "Comment des « prêts toxiques » chinois ont alimenté une spirale de surendettement en Zambie",
-   "lien": "https://www.lemonde.fr/les-decodeurs/article/2026/10/26/comment-des-prets-toxiques-chinois-ont-alimente-une-spirale-de-surendettement-en-zambie_6800383_4355770.html",
-   "date": "2026-10-26T04:00Z"
-  },
-  {
-   "source": "franceinfo · économie",
-   "titre": "Maisons fissurées : quelles solutions et innovations pour les sinistrés ?",
-   "lien": "https://www.franceinfo.fr/environnement/evenements-meteorologiques-extremes/secheresse/maisons-fissurees-quelles-solutions-et-innovations-pour-les-sinistres_8253526.html",
-   "date": "2026-10-25T21:59Z"
-  },
-  {
-   "source": "franceinfo · économie",
-   "titre": "\"Je n'ai pas l'habitude qu'une escroquerie vienne de quelqu'un que je connais\" : alerte à une nouvelle arnaque aux faux messages de proches",
-   "lien": "https://www.franceinfo.fr/economie/fraude/je-n-ai-pas-l-habitude-qu-une-escroquerie-vienne-de-quelqu-un-que-je-connais-alerte-a-une-nouvelle-arnaque-aux-faux-messages-de-proches_8253514.html",
-   "date": "2026-10-25T20:41Z"
-  },
-  {
-   "source": "franceinfo · économie",
-   "titre": "Mobilisation contre la vie chère : la colère monte dans d'autres pays d'Europe",
-   "lien": "https://www.franceinfo.fr/economie/greve/mobilisation-contre-la-vie-chere-la-colere-monte-dans-d-autres-pays-d-europe_8253511.html",
-   "date": "2026-10-25T20:13Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "Derrière la mobilisation du 24 octobre, un soulagement en trompe-l’œil",
-   "lien": "https://www.liberation.fr/idees-et-debats/opinions/derriere-la-mobilisation-du-24-octobre-un-soulagement-en-trompe-loeil-20261025_OCVGZAZQUJAIFH5L5CPC2PLS54/",
-   "date": "2026-10-25T20:12Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "Prochaines mobilisations, annonces du gouvernement… Quel avenir pour le mouvement après les manifestations du 24 octobre ?",
-   "lien": "https://www.liberation.fr/politique/prochaines-mobilisations-annonces-du-gouvernement-quel-avenir-pour-le-mouvement-apres-les-manifestations-du-24-octobre-20261025_D6HA7R4VGZG4DHHZUZQQREN47E/",
-   "date": "2026-10-25T20:00Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "VIDEO. Gilets jaunes, syndicats, lycéens : la mobilisation sociale est-elle partie pour durer ?",
-   "lien": "https://www.franceinfo.fr/replay-jt/france-2/20-heures/gilets-jaunes-syndicats-lyceens-la-mobilisation-sociale-est-elle-partie-pour-durer_8253490.html",
-   "date": "2026-10-25T19:59Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "BFMTV dénonce \"une campagne de dénigrement\" après des accusations de LFI, qui reproche à la chaîne de propager des propos racistes",
-   "lien": "https://www.franceinfo.fr/economie/medias/bfmtv-denonce-une-campagne-de-denigrement-apres-des-accusations-de-lfi-qui-reprochent-a-la-chaine-de-propager-des-propos-racistes_8253499.html",
-   "date": "2026-10-25T19:53Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "«Je me suis reconnu en lui et ça m’effraie» : à Aubervilliers, une marche blanche pour Pengo Bossio Wangi, victime d’un attentat raciste",
-   "lien": "https://www.liberation.fr/societe/je-me-suis-reconnu-en-lui-et-ca-meffraie-a-aubervilliers-une-marche-blanche-pour-pengo-bossio-wangi-victime-dun-assassinat-raciste-20261025_NHNVDNSARNHFZM3HAI3F6WHTOE/",
-   "date": "2026-10-25T19:52Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "\"On est libre, entre guillemets\" : le Brésil, un pays coupé en deux",
-   "lien": "https://www.franceinfo.fr/monde/bresil/on-est-libre-entre-guillemets-le-bresil-un-pays-coupe-en-deux_8253502.html",
-   "date": "2026-10-25T19:48Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "Présidentielle 2027 : à Orléans, Marine Le Pen lance sa campagne entre radicalité et « optimisme », dans une ville en état de siège",
-   "lien": "https://www.lemonde.fr/politique/article/2026/10/25/presidentielle-2027-a-orleans-marine-le-pen-lance-sa-campagne-entre-radicalite-et-optimisme-dans-une-ville-en-etat-de-siege_6800113_823448.html",
-   "date": "2026-10-25T19:01Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "À Orléans, l’éloge du beau de Marine Le Pen tranche avec les échauffourées en tribune et l’expulsion de journalistes",
-   "lien": "https://www.publicsenat.fr/actualites/politique/a-orleans-leloge-du-beau-de-marine-le-pen-tranche-avec-les-echauffourees-en-tribune-et-lexpulsion-de-journalistes",
-   "date": "2026-10-25T18:59Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "À Trappes, un homme blessé par balles à la jambe, son pronostic vital n'est pas engagé, le tireur en fuite",
-   "lien": "https://www.franceinfo.fr/faits-divers/a-trappes-un-homme-blesse-par-balles-a-la-jambe-son-pronostic-vital-n-est-pas-engage-le-tireur-en-fuite_8253463.html",
-   "date": "2026-10-25T18:47Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "REPORTAGE. \"On a gagné la bataille des idées\" : à Orléans, Marine Le Pen lance sa campagne dans une ville sous haute surveillance",
-   "lien": "https://www.franceinfo.fr/politique/marine-le-pen/reportage-on-a-gagne-la-bataille-des-idees-a-orleans-marine-le-pen-lance-sa-campagne-dans-une-ville-sous-haute-surveillance_8252908.html",
-   "date": "2026-10-25T18:34Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "Mobilisation du 24 octobre : un homme blessé à la main à Clermont-Ferrand, la police «pourrait» être responsable",
-   "lien": "https://www.liberation.fr/societe/police-justice/mobilisation-du-24-octobre-un-homme-blesse-a-la-main-a-clermont-ferrand-la-police-pourrait-etre-responsable-20261025_XNM3H67DXZENLFOHH66WHOIS7Y/",
-   "date": "2026-10-25T18:24Z"
-  },
-  {
-   "source": "Public Sénat",
-   "titre": "Si elle gagne en 2027, Marine Le Pen appelle à la formation d’un « gouvernement d’union nationale »",
-   "lien": "https://www.publicsenat.fr/actualites/politique/si-elle-gagne-en-2027-marine-le-pen-appelle-a-la-formation-dun-gouvernement-dunion-nationale",
-   "date": "2026-10-25T18:18Z"
-  },
-  {
-   "source": "Mediapart",
-   "titre": "Mobilisations du 24 octobre: l’extrême droite a provoqué les manifestants sous le regard de policiers",
-   "lien": "https://www.mediapart.fr/journal/france/251026/mobilisations-du-24-octobre-l-extreme-droite-provoque-les-manifestants-sous-le-regard-de-policiers",
-   "date": "2026-10-25T18:10Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "Parcoursup, recrutements, conditions d’étude : ce que les syndicats attendent des annonces de ce lundi pour les lycées",
-   "lien": "https://www.liberation.fr/societe/education/parcoursup-recrutements-conditions-detude-ce-que-les-syndicats-attendent-des-annonces-de-ce-lundi-pour-les-lycees-20261025_NEJPYCQTDNFHDLUK5BVFR6M3DI/",
-   "date": "2026-10-25T17:59Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "Congrès du RN à Orléans : le discours de Jordan Bardella a été interrompu par des militants de l'Union des étudiants juifs de France",
-   "lien": "https://www.franceinfo.fr/politique/front-national/congres-du-rn-a-orleans-le-discours-de-jordan-bardella-a-ete-interrompu-par-des-militants-de-l-union-des-etudiants-juifs-de-france_8253304.html",
-   "date": "2026-10-25T17:46Z"
-  },
-  {
-   "source": "Mediapart",
-   "titre": "«Un état de siège»: la ville d’Orléans s’est barricadée pour mieux accueillir le Rassemblement national",
-   "lien": "https://www.mediapart.fr/journal/france/251026/un-etat-de-siege-la-ville-d-orleans-s-est-barricadee-pour-mieux-accueillir-le-rassemblement-national",
-   "date": "2026-10-25T17:38Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "Plateau du Golan occupé : «Le Sud syrien est devenu un territoire qu’Israël veut soumettre à sa domination»",
-   "lien": "https://www.liberation.fr/international/moyen-orient/plateau-du-golan-occupe-le-sud-syrien-est-devenu-un-territoire-quisrael-veut-soumettre-a-sa-domination-20261025_SRNGRS2WFRDPFEC2LXN2626ZCM/",
-   "date": "2026-10-25T17:17Z"
-  },
-  {
-   "source": "Mediapart",
-   "titre": "L’extrême droite tue de plus en plus en France",
-   "lien": "https://www.mediapart.fr/journal/france/251026/l-extreme-droite-tue-de-plus-en-plus-en-france",
-   "date": "2026-10-25T17:17Z"
-  },
-  {
-   "source": "Mediapart",
-   "titre": "Avant l’attentat de Trappes, deux mois de haine médiatique en continu",
-   "lien": "https://www.mediapart.fr/journal/france/251026/avant-l-attentat-de-trappes-deux-mois-de-haine-mediatique-en-continu",
-   "date": "2026-10-25T17:17Z"
-  },
-  {
-   "source": "franceinfo · société",
-   "titre": "On a suivi Adam, street medic de 19 ans, dans un cortège parisien",
-   "lien": "https://www.franceinfo.fr/societe/manifestations/on-a-suivi-adam-street-medic-de-19-ans-dans-un-cortege-parisien_8253406.html",
-   "date": "2026-10-25T17:13Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "Congrès du RN : pour son premier discours de campagne, Marine Le Pen dit vouloir présider à la « renaissance » de la France",
-   "lien": "https://www.lemonde.fr/politique/article/2026/10/25/congres-du-rn-pour-son-premier-discours-de-campagne-marine-le-pen-dit-vouloir-presider-a-la-renaissance-de-la-france_6800086_823449.html",
-   "date": "2026-10-25T17:10Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "Congrès du RN : Marine Le Pen promet un gouvernement \"d'union nationale\", \"pluraliste\" et dirigé par Jordan Bardella",
-   "lien": "https://www.franceinfo.fr/politique/front-national/congres-du-rn-marine-le-pen-promet-un-gouvernement-d-union-nationale-pluraliste-et-dirige-par-jordan-bardella_8253364.html",
-   "date": "2026-10-25T17:06Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "« La social-démocratie en France n’a pas pris la mesure du rejet qu’elle suscite ni de sa responsabilité dans la droitisation des valeurs »",
-   "lien": "https://www.lemonde.fr/idees/article/2026/10/25/la-social-democratie-en-france-n-a-pas-pris-la-mesure-du-rejet-qu-elle-suscite-ni-de-sa-responsabilite-dans-la-droitisation-des-valeurs_6800096_3232.html",
-   "date": "2026-10-25T16:00Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "Kurt Schwitters au musée Picasso, bric-à-brac du chaos fertile",
-   "lien": "https://www.liberation.fr/culture/arts/kurt-schwitters-au-musee-picasso-bric-a-brac-du-chaos-fertile-20261025_FEOLQDOWTNDELN722ENHCLPIKY/",
-   "date": "2026-10-25T15:25Z"
-  },
-  {
-   "source": "franceinfo · économie",
-   "titre": "Vendanges, dégustations, costumes d'époque… Un village du Gard célèbre son histoire vigneronne dans une ambiance rétro",
-   "lien": "https://www.franceinfo.fr/replay-jt/france-2/13-heures/vendanges-degustations-costumes-d-epoque-un-village-du-gard-celebre-son-histoire-vigneronne-dans-une-ambiance-retro_8253181.html",
-   "date": "2026-10-25T15:09Z"
-  },
-  {
-   "source": "franceinfo · économie",
-   "titre": "\"Je n’y croyais pas, ça fait tout drôle\" : le succès grandissant des tombolas aux lots XXL",
-   "lien": "https://www.franceinfo.fr/replay-jt/france-2/13-heures/le-succes-des-tombolas-aux-lots-toujours-plus-gros_8253169.html",
-   "date": "2026-10-25T15:07Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "Après l’attentat raciste de Trappes, le maire, Ali Rabeh, déclare : « Le président de la République n’a pas été le protecteur qu’il aurait dû être »",
-   "lien": "https://www.lemonde.fr/politique/article/2026/10/25/apres-l-attentat-raciste-de-trappes-le-maire-ali-rabeh-le-president-de-la-republique-n-a-pas-ete-le-protecteur-qu-il-aurait-du-etre_6800093_823448.html",
-   "date": "2026-10-25T15:02Z"
-  },
-  {
-   "source": "franceinfo · économie",
-   "titre": "\"On le dit, on continuera\" : une mobilisation sociale partie pour s'ancrer dans la durée ?",
-   "lien": "https://www.franceinfo.fr/replay-jt/france-2/13-heures/on-continuera-une-mobilisation-sociale-qui-s-ancre-dans-la-duree_8253118.html",
-   "date": "2026-10-25T15:01Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "Congrès du RN à Orléans : une centaine de militants antifascistes se sont rassemblés en dépit des interdictions",
-   "lien": "https://www.franceinfo.fr/politique/front-national/congres-du-rn-a-orleans-une-centaine-de-militants-antifascistes-se-sont-rassembles-en-depit-des-interdictions_8253235.html",
-   "date": "2026-10-25T14:56Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "Un bus de militants en partance pour le congrès du RN à Orléans pris pour cible à Grenoble",
-   "lien": "https://www.franceinfo.fr/faits-divers/un-bus-de-militants-en-partance-pour-le-congres-du-rn-a-orleans-pris-pour-cible-a-grenoble_8253211.html",
-   "date": "2026-10-25T14:24Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "«Mes mains, pleines de sang»  de Claude Askolovitch : l’augure des lamentations",
-   "lien": "https://www.liberation.fr/idees-et-debats/mes-mains-pleines-de-sang-de-claude-askolovitch-laugure-des-lamentations-20261025_YDXWABZVIBDSBELRXZGSMBLEJQ/",
-   "date": "2026-10-25T14:24Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "Manifestations du 24 octobre : enquête ouverte à Nice contre des membres de la mouvance d’ultradroite après des agressions de manifestants",
-   "lien": "https://www.lemonde.fr/societe/article/2026/10/25/manifestations-du-24-octobre-enquete-ouverte-a-nice-contre-des-membres-de-la-mouvance-d-ultradroite-apres-des-agressions-de-manifestants_6800088_3224.html",
-   "date": "2026-10-25T14:11Z"
-  },
-  {
-   "source": "franceinfo · économie",
-   "titre": "En Espagne, 128 personnes interpellées à Barcelone pour des dégradations et des pillages lors d'un rassemblement non déclaré",
-   "lien": "https://www.franceinfo.fr/monde/espagne/en-espagne-128-personnes-interpellees-a-barcelone-pour-des-degradations-et-des-pillages-lors-d-un-rassemblement-non-declare_8253175.html",
-   "date": "2026-10-25T13:58Z"
-  },
-  {
-   "source": "Mediapart",
-   "titre": "La nouvelle bataille démographique et électorale d’Israël",
-   "lien": "https://www.mediapart.fr/journal/international/251026/la-nouvelle-bataille-demographique-et-electorale-d-israel",
-   "date": "2026-10-25T13:50Z"
-  },
-  {
-   "source": "Mediapart",
-   "titre": "Foucault et la colonisation: du silence à l’omniprésence",
-   "lien": "https://www.mediapart.fr/journal/culture-et-idees/251026/foucault-et-la-colonisation-du-silence-l-omnipresence",
-   "date": "2026-10-25T13:25Z"
-  },
-  {
-   "source": "Mediapart",
-   "titre": "Mort de Cédric Chouviat: le procès s’ouvre, mais pas celui que sa famille espérait",
-   "lien": "https://www.mediapart.fr/journal/france/251026/mort-de-cedric-chouviat-le-proces-s-ouvre-mais-pas-celui-que-sa-famille-esperait",
-   "date": "2026-10-25T13:22Z"
-  },
-  {
-   "source": "franceinfo · politique",
-   "titre": "\"Il y a une responsabilité politico-médiatique qui arme aussi le coupable\" de l'attaque terroriste dans les Yvelines, affirme Mathilde Panot",
-   "lien": "https://www.franceinfo.fr/faits-divers/terrorisme/attentat-raciste-a-trappes/il-y-a-une-responsabilite-politico-mediatique-qui-arme-aussi-le-coupable-de-l-attaque-terroriste-dans-les-yvelines-affirme-mathilde-panot_8253142.html",
-   "date": "2026-10-25T13:14Z"
-  },
-  {
-   "source": "franceinfo · économie",
-   "titre": "Nice, Montpellier, Rouen... Plusieurs responsables politiques dénoncent des violences de l'ultradroite en marge de manifestations du 24 octobre",
-   "lien": "https://www.franceinfo.fr/societe/manifestations/nice-montpellier-rouen-plusieurs-responsables-politiques-denoncent-des-violences-de-l-ultradroite-en-marge-de-manifestations-du-24-octobre_8252998.html",
-   "date": "2026-10-25T13:05Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "Attentat de Trappes : du racisme au terrorisme, une responsabilité collective",
-   "lien": "https://www.lemonde.fr/idees/article/2026/10/25/attentat-de-trappes-du-racisme-au-terrorisme-une-responsabilite-collective_6800082_3232.html",
-   "date": "2026-10-25T13:00Z"
-  },
-  {
-   "source": "Le Monde · politique",
-   "titre": "Législatives en Serbie : les serbes se déplacent aux urnes en images",
-   "lien": "https://www.lemonde.fr/international/video/2026/10/25/legislatives-en-serbie-les-serbes-se-rendent-dans-les-bureaux-de-vote-en-images_6800081_3210.html",
-   "date": "2026-10-25T12:27Z"
-  },
-  {
-   "source": "Le Monde · économie",
-   "titre": "Tempête Boelo : 82 000 foyers privés d’électricité au Royaume-Uni, des dizaines de vols annulés à l’aéroport d’Amsterdam",
-   "lien": "https://www.lemonde.fr/planete/article/2026/10/25/tempete-boelo-a-l-aeroport-d-amsterdam-des-dizaines-de-vols-annules-en-raison-de-vents-violents_6800080_3244.html",
-   "date": "2026-10-25T12:24Z"
-  },
-  {
-   "source": "Libération",
-   "titre": "Après sept ans de procédure, l’affaire Cédric Chouviat, mort par asphyxie lors d’un contrôle policier, enfin devant la justice",
-   "lien": "https://www.liberation.fr/societe/apres-sept-ans-de-procedure-laffaire-cedric-chouviat-mort-par-asphyxie-lors-dun-controle-policier-enfin-devant-la-justice-20261025_V6O424UQVVHZ3MGLVIUCGEDJR4/",
-   "date": "2026-10-25T12:13Z"
-  },
-  {
    "source": "LCP · Assemblée nationale",
    "titre": "Cybersécurité: pourquoi la France a-t-elle autant tardé pour renforcer sa protection?",
    "lien": "https://lcp.fr/actualites/cybersecurite-pourquoi-la-france-a-t-elle-autant-tarde-pour-renforcer-sa-protection",
@@ -9743,6 +9749,54 @@
    "source": "LCP · Assemblée nationale",
    "titre": "Procréation médicalement assistée: Marine Tondelier apporte son soutien à une proposition de loi visant à légaliser un examen interdit en France",
    "lien": "https://lcp.fr/actualites/procreation-medicalement-assistee-marine-tondelier-apporte-son-soutien-a-une-proposition",
+   "date": null
+  },
+  {
+   "source": "LCP · Assemblée nationale",
+   "titre": "Budget 2027 rejeté: quelles sont les prochaines étapes au Parlement?",
+   "lien": "https://lcp.fr/actualites/budget-2027-rejete-quelles-sont-les-prochaines-etapes-au-parlement-444753",
+   "date": null
+  },
+  {
+   "source": "LCP · Assemblée nationale",
+   "titre": "Grève du 5 novembre: une mobilisation qui s'annonce \"très suivie\", 70.000 policiers et gendarmes déployés",
+   "lien": "https://lcp.fr/actualites/greve-du-5-novembre-une-mobilisation-qui-s-annonce-tres-suivie-70000-policiers-et",
+   "date": null
+  },
+  {
+   "source": "LCP · Assemblée nationale",
+   "titre": "Des propos \"tout bonnement inadmissibles\": La Ciivise saisit l'Assemblée nationale après des \"invectives\" de Julien Odoul",
+   "lien": "https://lcp.fr/actualites/des-propos-tout-bonnement-inadmissibles-la-ciivise-saisit-l-assemblee-nationale-apres",
+   "date": null
+  },
+  {
+   "source": "LCP · Assemblée nationale",
+   "titre": "\"Indigeste\", \"sans cohérence\", \"contradictoire\": le projet de budget 2027, largement modifié lors des débats, fait l'unanimité contre lui",
+   "lien": "https://lcp.fr/actualites/indigeste-sans-coherence-contradictoire-le-projet-de-budget-2027-largement-modifie-lors",
+   "date": null
+  },
+  {
+   "source": "LCP · Assemblée nationale",
+   "titre": "Budget 2027: l'Assemblée rejette à l'unanimité la partie \"recettes\", le projet de loi de finances va être transmis au Sénat",
+   "lien": "https://lcp.fr/actualites/budget-2027-l-assemblee-rejette-a-l-unanimite-la-partie-recettes-le-projet-de-loi-de",
+   "date": null
+  },
+  {
+   "source": "LCP · Assemblée nationale",
+   "titre": "\"Nous avons été livrés aux casseurs\": devant les députés, les commerçants évoquent leur \"solitude\" face aux pillages du 17 octobre",
+   "lien": "https://lcp.fr/actualites/nous-avons-ete-livres-aux-casseurs-devant-les-deputes-les-commercants-evoquent-leur",
+   "date": null
+  },
+  {
+   "source": "LCP · Assemblée nationale",
+   "titre": "\"Le droit de pétition déçoit davantage qu’il ne mobilise\", juge le député Erwan Balanant, dans un rapport qui propose des pistes de réforme",
+   "lien": "https://lcp.fr/actualites/le-droit-de-petition-decoit-davantage-qu-il-ne-mobilise-juge-le-depute-erwan-balanant",
+   "date": null
+  },
+  {
+   "source": "LCP · Assemblée nationale",
+   "titre": "À quel niveau augmenter le Smic, et quand ? \"Les deux sujets sont sur la table\" pour Roland Lescure. Quelles sont les règles en la matière?",
+   "lien": "https://lcp.fr/actualites/a-quel-niveau-augmenter-le-smic-et-quand-les-deux-sujets-sont-sur-la-table-pour-roland",
    "date": null
   }
  ]
