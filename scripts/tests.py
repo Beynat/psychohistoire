@@ -398,6 +398,10 @@ a = commun.ancrage_quotidien(commun.serie('ecart_FR_DE_pb'), commun.serie('ecart
 print(json.dumps(a[3]))
 """
         jour = json.loads(run("-c", code).strip().splitlines()[-1])
+        # Séries réputées collectées au jour d'ancrage : sinon, dès que le point quotidien dépasse de plus de
+        # trois jours la collecte fictive du 31 octobre, la série est écartée comme périmée (passe du 16 novembre).
+        etat = tmp / "data/historique/_collecte.json"
+        etat.write_text(json.dumps({k: jour for k in json.loads(etat.read_text())}))
         run("scripts/geler.py", jour, "essai-n4", "--essai")
         run("scripts/questions.py", jour, "essai-n4")
         qs = json.loads((tmp / "data/cycles/essai-n4/questions.json").read_text())["questions"]
@@ -615,9 +619,6 @@ def test_jalons():
         assert r.returncode == 0, r.stderr[-300:]
         # Registre fantôme par le moteur unique (étape 2) : J-001 (49.3 sur le budget, indice sur la censure d'ici
         # fin 2026) observé relève EV-15 par rapport à la référence, calculée sans les indices.
-        r = subprocess.run([sys.executable, "scripts/jalons.py", "statut"], cwd=tmp, env=env, capture_output=True, text=True,
-                           input=json.dumps({"jalon": "J-001", "statut": "observé", "date": j0, "source": "s", "agent": "a"}) + chr(10))
-        assert r.returncode == 0, r.stderr[-300:]
         (tmp / "data/cycles/t").mkdir(parents=True, exist_ok=True)
         (tmp / "data/cycles/t/questions.json").write_text(json.dumps({"questions": [
             {"id": "Q-EV-15", "type": "evenement", "details": {"evenement": "EV-15"}, "issues": ["oui", "non"],
@@ -626,10 +627,18 @@ def test_jalons():
                  "origine": "cycle t", "donnees": "t"}
         subprocess.run([sys.executable, "scripts/registre.py", "registre/essai_j.jsonl"], cwd=tmp, env=env, check=True,
                        capture_output=True, text=True, input=json.dumps(ligne) + chr(10))
+        # Passe du 16 novembre 2026 : la comparaison se fait contre le même calcul sans J-001 observé, et non plus
+        # contre la référence sans indices, que les autres jalons en cours (fenêtres entamées sans fait) font
+        # baisser à mesure que le temps passe (EV-15 : 27,8 contre 26,8 le 16 novembre, test en échec).
+        run("scripts/jalons.py", "fantome", "registre/essai_j.jsonl", "--tirages", "20", "--trajectoires", "100")
+        avant = [json.loads(l) for l in (tmp / "registre/fantome.jsonl").read_text().splitlines() if l.strip()][-1]
+        r = subprocess.run([sys.executable, "scripts/jalons.py", "statut"], cwd=tmp, env=env, capture_output=True, text=True,
+                           input=json.dumps({"jalon": "J-001", "statut": "observé", "date": j0, "source": "s", "agent": "a"}) + chr(10))
+        assert r.returncode == 0, r.stderr[-300:]
         run("scripts/jalons.py", "fantome", "registre/essai_j.jsonl", "--tirages", "20", "--trajectoires", "100")
         f = [json.loads(l) for l in (tmp / "registre/fantome.jsonl").read_text().splitlines() if l.strip()]
         assert f[-1]["question"] == "Q-EV-15" and "J-001" in f[-1]["jalons"], f[-1]
-        assert f[-1]["probabilites"]["oui"] > f[-1]["reference"]["oui"] + 3, f[-1]
+        assert f[-1]["probabilites"]["oui"] > avant["probabilites"]["oui"] + 3, (avant, f[-1])
     finally:
         shutil.rmtree(tmp.parent)
 
