@@ -1,6 +1,6 @@
 {
  "description": "Reprise et statut des faits (annexe, sections 11.2 et 11.3) : descriptif, sans effet sur les probabilités. Sept flux suivis (franceinfo, Le Monde, LCP, Public Sénat, Le Figaro, Libération, Mediapart). Stade retenu : « allégation » sauf étape officielle vérifiée par deux agents ; la nature n'est publiée qu'avec une étape vérifiée, jamais « vie privée ».",
- "etabli_le": "2026-11-16",
+ "etabli_le": "2026-11-18",
  "faits": {
   "revelations-presse-ecrits-rn": {
    "sources_distinctes": 7,
@@ -344,7 +344,7 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 3,
-   "sources_7_derniers_jours": 1,
+   "sources_7_derniers_jours": 0,
    "titres": 36,
    "jours": 14,
    "premier_jour": "2026-10-07",
@@ -366,7 +366,7 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 1,
-   "sources_7_derniers_jours": 1,
+   "sources_7_derniers_jours": 0,
    "titres": 2,
    "jours": 2,
    "premier_jour": "2026-10-08",
@@ -389,7 +389,7 @@
     "Mediapart"
    ],
    "sources_7_premiers_jours": 2,
-   "sources_7_derniers_jours": 3,
+   "sources_7_derniers_jours": 0,
    "titres": 6,
    "jours": 4,
    "premier_jour": "2026-10-12",
@@ -983,7 +983,7 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 3,
-   "sources_7_derniers_jours": 5,
+   "sources_7_derniers_jours": 4,
    "titres": 28,
    "jours": 7,
    "premier_jour": "2026-10-14",
@@ -1008,11 +1008,11 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 5,
-   "sources_7_derniers_jours": 0,
-   "titres": 7,
-   "jours": 3,
+   "sources_7_derniers_jours": 1,
+   "titres": 8,
+   "jours": 4,
    "premier_jour": "2026-10-14",
-   "dernier_jour": "2026-10-16",
+   "dernier_jour": "2026-11-17",
    "concerne": [
     "Q-EV-01",
     "Q-EV-04"
@@ -1162,7 +1162,7 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 4,
-   "sources_7_derniers_jours": 1,
+   "sources_7_derniers_jours": 0,
    "titres": 17,
    "jours": 12,
    "premier_jour": "2026-10-13",
@@ -1280,7 +1280,7 @@
     "Public Sénat"
    ],
    "sources_7_premiers_jours": 3,
-   "sources_7_derniers_jours": 1,
+   "sources_7_derniers_jours": 0,
    "titres": 6,
    "jours": 4,
    "premier_jour": "2026-10-14",
@@ -1447,21 +1447,22 @@
    "statut": "retombé"
   },
   "primaire-bloc-central": {
-   "sources_distinctes": 6,
+   "sources_distinctes": 7,
    "sources": [
     "LCP",
     "Le Figaro",
     "Le Monde",
     "Libération",
+    "Mediapart",
     "Public Sénat",
     "franceinfo"
    ],
    "sources_7_premiers_jours": 1,
-   "sources_7_derniers_jours": 4,
-   "titres": 48,
-   "jours": 19,
+   "sources_7_derniers_jours": 6,
+   "titres": 60,
+   "jours": 21,
    "premier_jour": "2026-10-15",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
    "concerne": [
     "Q-EV-40b",
     "Q-EV-40d",
@@ -1500,17 +1501,18 @@
    "statut": "retombé"
   },
   "croissance-prevision-2027": {
-   "sources_distinctes": 2,
+   "sources_distinctes": 3,
    "sources": [
     "Le Monde",
-    "Libération"
+    "Libération",
+    "franceinfo"
    ],
    "sources_7_premiers_jours": 1,
-   "sources_7_derniers_jours": 0,
-   "titres": 2,
-   "jours": 2,
+   "sources_7_derniers_jours": 1,
+   "titres": 3,
+   "jours": 3,
    "premier_jour": "2026-10-14",
-   "dernier_jour": "2026-11-03",
+   "dernier_jour": "2026-11-18",
    "concerne": [
     "Q-EV-03",
     "Q-EV-06"
@@ -1545,7 +1547,7 @@
    "nature_verifiee": null,
    "type_fait": "fait public",
    "date_reexamen": "2026-11-18",
-   "statut": "fait public non vérifié, en observation"
+   "statut": "retombé"
   },
   "interpellations-17-octobre": {
    "sources_distinctes": 3,
@@ -1617,7 +1619,7 @@
    "nature_verifiee": null,
    "type_fait": "fait public",
    "date_reexamen": "2026-11-18",
-   "statut": "fait public non vérifié, en observation"
+   "statut": "retombé"
   },
   "appels-demission-ministre-interieur": {
    "sources_distinctes": 3,
@@ -1640,7 +1642,7 @@
    "nature_verifiee": null,
    "type_fait": "fait public",
    "date_reexamen": "2026-11-17",
-   "statut": "fait public non vérifié, en observation"
+   "statut": "retombé"
   },
   "acte-ii-24-octobre-preparatifs": {
    "sources_distinctes": 4,
@@ -1807,7 +1809,7 @@
    "nature_verifiee": null,
    "type_fait": "fait public",
    "date_reexamen": "2026-11-18",
-   "statut": "fait public non vérifié, en observation"
+   "statut": "retombé"
   },
   "livraisons-diesel-golfe": {
    "sources_distinctes": 1,
@@ -1838,7 +1840,7 @@
     "Public Sénat"
    ],
    "sources_7_premiers_jours": 1,
-   "sources_7_derniers_jours": 1,
+   "sources_7_derniers_jours": 0,
    "titres": 5,
    "jours": 4,
    "premier_jour": "2026-10-19",
@@ -1851,7 +1853,7 @@
    "nature_verifiee": null,
    "type_fait": "fait public",
    "date_reexamen": "2026-11-18",
-   "statut": "fait public non vérifié, en observation"
+   "statut": "retombé"
   },
   "lfi-accuse-renseignement-detourne": {
    "sources_distinctes": 1,
@@ -2553,10 +2555,10 @@
    ],
    "sources_7_premiers_jours": 5,
    "sources_7_derniers_jours": 1,
-   "titres": 30,
-   "jours": 7,
+   "titres": 31,
+   "jours": 8,
    "premier_jour": "2026-11-02",
-   "dernier_jour": "2026-11-10",
+   "dernier_jour": "2026-11-18",
    "concerne": [],
    "peut_resoudre": [
     "Q-EV-30"
@@ -2846,7 +2848,7 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 4,
-   "sources_7_derniers_jours": 1,
+   "sources_7_derniers_jours": 0,
    "titres": 8,
    "jours": 6,
    "premier_jour": "2026-11-05",
@@ -2871,7 +2873,7 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 5,
-   "sources_7_derniers_jours": 1,
+   "sources_7_derniers_jours": 0,
    "titres": 16,
    "jours": 4,
    "premier_jour": "2026-11-05",
@@ -3029,18 +3031,19 @@
    "statut": "fait public non vérifié, en observation"
   },
   "fonction-publique-greve-17-novembre-appel": {
-   "sources_distinctes": 3,
+   "sources_distinctes": 4,
    "sources": [
     "Le Monde",
     "Libération",
+    "Public Sénat",
     "franceinfo"
    ],
    "sources_7_premiers_jours": 3,
-   "sources_7_derniers_jours": 2,
-   "titres": 4,
-   "jours": 2,
+   "sources_7_derniers_jours": 3,
+   "titres": 7,
+   "jours": 3,
    "premier_jour": "2026-11-09",
-   "dernier_jour": "2026-11-13",
+   "dernier_jour": "2026-11-17",
    "concerne": [
     "Q-EV-13"
    ],
@@ -3104,7 +3107,7 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 5,
-   "sources_7_derniers_jours": 4,
+   "sources_7_derniers_jours": 0,
    "titres": 10,
    "jours": 4,
    "premier_jour": "2026-11-06",
@@ -3308,11 +3311,11 @@
     "Public Sénat"
    ],
    "sources_7_premiers_jours": 3,
-   "sources_7_derniers_jours": 2,
-   "titres": 3,
-   "jours": 3,
+   "sources_7_derniers_jours": 1,
+   "titres": 4,
+   "jours": 4,
    "premier_jour": "2026-11-06",
-   "dernier_jour": "2026-11-12",
+   "dernier_jour": "2026-11-17",
    "concerne": [
     "Q-EV-02"
    ],
@@ -3350,7 +3353,7 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 1,
-   "sources_7_derniers_jours": 1,
+   "sources_7_derniers_jours": 0,
    "titres": 1,
    "jours": 1,
    "premier_jour": "2026-11-10",
@@ -3371,7 +3374,7 @@
     "franceinfo"
    ],
    "sources_7_premiers_jours": 1,
-   "sources_7_derniers_jours": 1,
+   "sources_7_derniers_jours": 0,
    "titres": 1,
    "jours": 1,
    "premier_jour": "2026-11-10",
@@ -3698,6 +3701,162 @@
    "type_fait": "mise en cause",
    "date_reexamen": "2026-12-13",
    "statut": "en observation"
+  },
+  "programme-retraites-rn": {
+   "sources_distinctes": 6,
+   "sources": [
+    "LCP",
+    "Le Figaro",
+    "Le Monde",
+    "Libération",
+    "Public Sénat",
+    "franceinfo"
+   ],
+   "sources_7_premiers_jours": 6,
+   "sources_7_derniers_jours": 6,
+   "titres": 15,
+   "jours": 2,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-18",
+   "concerne": [
+    "Q-EV-45"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-12-17",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "manifestations-17-novembre": {
+   "sources_distinctes": 3,
+   "sources": [
+    "Le Monde",
+    "Mediapart",
+    "franceinfo"
+   ],
+   "sources_7_premiers_jours": 3,
+   "sources_7_derniers_jours": 3,
+   "titres": 8,
+   "jours": 2,
+   "premier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-17",
+   "concerne": [],
+   "peut_resoudre": [
+    "Q-EV-52"
+   ],
+   "stade_retenu": "allégation",
+   "nature_verifiee": null,
+   "type_fait": null,
+   "date_reexamen": "2026-12-16",
+   "statut": "en observation"
+  },
+  "fonction-publique-greve-17-novembre": {
+   "sources_distinctes": 2,
+   "sources": [
+    "Le Monde",
+    "franceinfo"
+   ],
+   "sources_7_premiers_jours": 2,
+   "sources_7_derniers_jours": 2,
+   "titres": 3,
+   "jours": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "concerne": [],
+   "peut_resoudre": [
+    "Q-EV-13"
+   ],
+   "stade_retenu": "allégation",
+   "nature_verifiee": null,
+   "type_fait": null,
+   "date_reexamen": "2026-12-17",
+   "statut": "en observation"
+  },
+  "soldats-francais-ukraine-audition": {
+   "sources_distinctes": 1,
+   "sources": [
+    "Public Sénat"
+   ],
+   "sources_7_premiers_jours": 1,
+   "sources_7_derniers_jours": 1,
+   "titres": 1,
+   "jours": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "concerne": [
+    "Q-EV-29"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-12-17",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "commission-previsions-automne-france": {
+   "sources_distinctes": 1,
+   "sources": [
+    "Le Monde"
+   ],
+   "sources_7_premiers_jours": 1,
+   "sources_7_derniers_jours": 1,
+   "titres": 1,
+   "jours": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "concerne": [
+    "Q-EV-03"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": null,
+   "statut": "fait établi"
+  },
+  "senat-retraites-reforme-2023-retablie": {
+   "sources_distinctes": 1,
+   "sources": [
+    "Public Sénat"
+   ],
+   "sources_7_premiers_jours": 1,
+   "sources_7_derniers_jours": 1,
+   "titres": 2,
+   "jours": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "concerne": [
+    "Q-EV-45"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-12-17",
+   "statut": "fait public non vérifié, en observation"
+  },
+  "refus-primaire-candidat-horizons": {
+   "sources_distinctes": 1,
+   "sources": [
+    "LCP"
+   ],
+   "sources_7_premiers_jours": 1,
+   "sources_7_derniers_jours": 1,
+   "titres": 1,
+   "jours": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "concerne": [
+    "Q-EV-40b",
+    "Q-EV-41"
+   ],
+   "peut_resoudre": [],
+   "stade_retenu": null,
+   "nature_verifiee": null,
+   "type_fait": "fait public",
+   "date_reexamen": "2026-12-18",
+   "statut": "fait public non vérifié, en observation"
   }
  },
  "non_rattaches": {
@@ -4695,7 +4854,7 @@
   },
   "presidentielle-2027-campagne-candidats": {
    "titres": 23,
-   "titres_7_derniers_jours": 7,
+   "titres_7_derniers_jours": 4,
    "sources_distinctes": 7,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-11-15",
@@ -4790,11 +4949,11 @@
    "emergence": false
   },
   "inflation-pouvoir-achat-menages": {
-   "titres": 36,
-   "titres_7_derniers_jours": 11,
-   "sources_distinctes": 4,
+   "titres": 37,
+   "titres_7_derniers_jours": 12,
+   "sources_distinctes": 5,
    "premier_jour": "2026-10-05",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "kosovo-nouvelle-presidente": {
@@ -4806,11 +4965,11 @@
    "emergence": false
   },
   "culture-cinema-spectacles": {
-   "titres": 73,
-   "titres_7_derniers_jours": 5,
+   "titres": 74,
+   "titres_7_derniers_jours": 2,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-06",
-   "dernier_jour": "2026-11-14",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "societe-sante-aidants-travail": {
@@ -4823,7 +4982,7 @@
   },
   "decisions-judiciaires-divers": {
    "titres": 16,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 4,
    "sources_distinctes": 6,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-11-16",
@@ -4870,16 +5029,16 @@
    "emergence": false
   },
   "secheresse-elevage": {
-   "titres": 9,
-   "titres_7_derniers_jours": 1,
+   "titres": 10,
+   "titres_7_derniers_jours": 2,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-06",
-   "dernier_jour": "2026-11-12",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "etat-droit-reflexions-economie": {
    "titres": 13,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-05",
    "dernier_jour": "2026-11-13",
@@ -4895,7 +5054,7 @@
   },
   "marche-immobilier-prix": {
    "titres": 12,
-   "titres_7_derniers_jours": 4,
+   "titres_7_derniers_jours": 3,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-06",
    "dernier_jour": "2026-11-15",
@@ -5006,11 +5165,11 @@
    "emergence": false
   },
   "emission-politique-candidat": {
-   "titres": 6,
-   "titres_7_derniers_jours": 2,
-   "sources_distinctes": 1,
+   "titres": 8,
+   "titres_7_derniers_jours": 4,
+   "sources_distinctes": 2,
    "premier_jour": "2026-10-06",
-   "dernier_jour": "2026-11-14",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "schneider-acquisition": {
@@ -5046,11 +5205,11 @@
    "emergence": false
   },
   "ukraine-kyiv-situation": {
-   "titres": 6,
-   "titres_7_derniers_jours": 0,
-   "sources_distinctes": 2,
+   "titres": 7,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 3,
    "premier_jour": "2026-10-05",
-   "dernier_jour": "2026-10-31",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "nouvelle-caledonie-filiere-nickel": {
@@ -5214,11 +5373,11 @@
    "emergence": false
   },
   "emission-matinale-revue": {
-   "titres": 26,
-   "titres_7_derniers_jours": 3,
+   "titres": 27,
+   "titres_7_derniers_jours": 4,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-08",
-   "dernier_jour": "2026-11-13",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "actualite-diverse-37": {
@@ -5263,18 +5422,18 @@
   },
   "politique-etats-unis": {
    "titres": 18,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-08",
    "dernier_jour": "2026-11-15",
    "emergence": false
   },
   "data-centers-contestation": {
-   "titres": 13,
+   "titres": 14,
    "titres_7_derniers_jours": 2,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-08",
-   "dernier_jour": "2026-11-12",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "actualite-diverse-50": {
@@ -5719,7 +5878,7 @@
   },
   "voitures-electriques-ventes-modeles": {
    "titres": 9,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-11",
    "dernier_jour": "2026-11-13",
@@ -6343,7 +6502,7 @@
   },
   "fonds-souverains": {
    "titres": 4,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-10",
    "dernier_jour": "2026-11-10",
@@ -6398,11 +6557,11 @@
    "emergence": false
   },
   "ia-risques-regulation": {
-   "titres": 23,
-   "titres_7_derniers_jours": 6,
+   "titres": 24,
+   "titres_7_derniers_jours": 4,
    "sources_distinctes": 6,
    "premier_jour": "2026-10-09",
-   "dernier_jour": "2026-11-15",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "referendum-article-11-campagne": {
@@ -6671,7 +6830,7 @@
   },
   "ia-entreprises-nvidia": {
    "titres": 28,
-   "titres_7_derniers_jours": 14,
+   "titres_7_derniers_jours": 7,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-13",
    "dernier_jour": "2026-11-13",
@@ -6710,11 +6869,11 @@
    "emergence": false
   },
   "climat-environnement": {
-   "titres": 43,
-   "titres_7_derniers_jours": 7,
+   "titres": 44,
+   "titres_7_derniers_jours": 6,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-13",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "international-divers": {
@@ -6759,7 +6918,7 @@
   },
   "societe-justice-faits-divers": {
    "titres": 32,
-   "titres_7_derniers_jours": 12,
+   "titres_7_derniers_jours": 11,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-12",
    "dernier_jour": "2026-11-14",
@@ -6774,11 +6933,11 @@
    "emergence": false
   },
   "presse-medias-divers": {
-   "titres": 16,
-   "titres_7_derniers_jours": 4,
+   "titres": 18,
+   "titres_7_derniers_jours": 3,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-13",
-   "dernier_jour": "2026-11-13",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "presidentielle-regulation-podcasts": {
@@ -6847,7 +7006,7 @@
   },
   "pouvoir-achat-reportage-electorat": {
    "titres": 4,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-13",
    "dernier_jour": "2026-11-11",
@@ -6878,8 +7037,8 @@
    "emergence": false
   },
   "emissions-programmes-audiovisuels-public-senat": {
-   "titres": 113,
-   "titres_7_derniers_jours": 39,
+   "titres": 127,
+   "titres_7_derniers_jours": 46,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-12",
    "dernier_jour": "2026-11-16",
@@ -6935,7 +7094,7 @@
   },
   "culture-pensee-livre": {
    "titres": 14,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 4,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-12",
    "dernier_jour": "2026-11-16",
@@ -6975,18 +7134,18 @@
   },
   "societe-divers": {
    "titres": 90,
-   "titres_7_derniers_jours": 24,
+   "titres_7_derniers_jours": 16,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-15",
    "dernier_jour": "2026-11-16",
    "emergence": false
   },
   "tech-divers": {
-   "titres": 21,
-   "titres_7_derniers_jours": 7,
+   "titres": 24,
+   "titres_7_derniers_jours": 9,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-16",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "bilan-macronie": {
@@ -7006,16 +7165,16 @@
    "emergence": false
   },
   "airbus-livraisons-industrie": {
-   "titres": 3,
-   "titres_7_derniers_jours": 0,
+   "titres": 4,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-16",
-   "dernier_jour": "2026-10-29",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "portrait-politique-divers": {
    "titres": 12,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 3,
    "sources_distinctes": 6,
    "premier_jour": "2026-10-16",
    "dernier_jour": "2026-11-14",
@@ -7062,11 +7221,11 @@
    "emergence": false
   },
   "transports-mobilite-divers": {
-   "titres": 17,
+   "titres": 18,
    "titres_7_derniers_jours": 10,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-14",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "rn-ukraine-aide-polemique": {
@@ -7111,7 +7270,7 @@
   },
   "budget-2027-taxe-sucre": {
    "titres": 8,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-15",
    "dernier_jour": "2026-11-10",
@@ -7119,7 +7278,7 @@
   },
   "lycee-revendications-parcoursup": {
    "titres": 14,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-15",
    "dernier_jour": "2026-11-15",
@@ -7230,16 +7389,16 @@
    "emergence": false
   },
   "bilan-maintien-ordre-17-octobre": {
-   "titres": 40,
-   "titres_7_derniers_jours": 0,
+   "titres": 41,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 7,
    "premier_jour": "2026-10-16",
-   "dernier_jour": "2026-10-24",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "mouvements-sociaux-europe": {
    "titres": 34,
-   "titres_7_derniers_jours": 7,
+   "titres_7_derniers_jours": 5,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-17",
    "dernier_jour": "2026-11-14",
@@ -7255,7 +7414,7 @@
   },
   "societe-sante": {
    "titres": 23,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 3,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-16",
    "dernier_jour": "2026-11-15",
@@ -7286,11 +7445,11 @@
    "emergence": false
   },
   "degats-commerces-17-octobre": {
-   "titres": 29,
-   "titres_7_derniers_jours": 0,
+   "titres": 30,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-17",
-   "dernier_jour": "2026-10-28",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "deroulement-17-octobre": {
@@ -7310,35 +7469,35 @@
    "emergence": false
   },
   "mairie-limoges-incendie": {
-   "titres": 28,
-   "titres_7_derniers_jours": 0,
+   "titres": 31,
+   "titres_7_derniers_jours": 3,
    "sources_distinctes": 7,
    "premier_jour": "2026-10-17",
-   "dernier_jour": "2026-11-03",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "placements-taux-epargne": {
-   "titres": 13,
+   "titres": 14,
    "titres_7_derniers_jours": 2,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-16",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "proces-narcotrafic-aix": {
-   "titres": 7,
-   "titres_7_derniers_jours": 0,
-   "sources_distinctes": 3,
+   "titres": 8,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 4,
    "premier_jour": "2026-10-18",
-   "dernier_jour": "2026-11-03",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "mobilisation-etudiante-universite": {
-   "titres": 24,
-   "titres_7_derniers_jours": 9,
+   "titres": 26,
+   "titres_7_derniers_jours": 8,
    "sources_distinctes": 6,
    "premier_jour": "2026-10-19",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "actualite-politique-divers": {
@@ -7351,7 +7510,7 @@
   },
   "referendum-citoyen-projet": {
    "titres": 4,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 2,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-18",
    "dernier_jour": "2026-11-12",
@@ -7399,7 +7558,7 @@
   },
   "prix-courses-pouvoir-achat": {
    "titres": 6,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-17",
    "dernier_jour": "2026-11-10",
@@ -7663,7 +7822,7 @@
   },
   "mouvement-lyceen-tribunes-analyses": {
    "titres": 14,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-24",
    "dernier_jour": "2026-11-13",
@@ -7790,11 +7949,11 @@
    "emergence": false
   },
   "rn-promesses-subventions-associations": {
-   "titres": 2,
-   "titres_7_derniers_jours": 0,
-   "sources_distinctes": 2,
+   "titres": 8,
+   "titres_7_derniers_jours": 6,
+   "sources_distinctes": 5,
    "premier_jour": "2026-10-22",
-   "dernier_jour": "2026-10-26",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "absenteisme-parlement-europeen-rn": {
@@ -7806,16 +7965,16 @@
    "emergence": false
   },
   "interviews-8h30-franceinfo": {
-   "titres": 15,
-   "titres_7_derniers_jours": 0,
+   "titres": 17,
+   "titres_7_derniers_jours": 2,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-22",
-   "dernier_jour": "2026-11-09",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "doctrine-maintien-ordre-critiques": {
    "titres": 14,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-22",
    "dernier_jour": "2026-11-10",
@@ -7846,11 +8005,11 @@
    "emergence": false
   },
   "ordre-public-declarations-ministre-interieur": {
-   "titres": 5,
-   "titres_7_derniers_jours": 0,
+   "titres": 6,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-21",
-   "dernier_jour": "2026-11-04",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "incendie-universite-rouen-suspect": {
@@ -7990,11 +8149,11 @@
    "emergence": false
   },
   "ia-impact-economie-emploi": {
-   "titres": 21,
-   "titres_7_derniers_jours": 4,
+   "titres": 22,
+   "titres_7_derniers_jours": 3,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-21",
-   "dernier_jour": "2026-11-14",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "ia-edition-litterature-detection": {
@@ -8007,18 +8166,18 @@
   },
   "economie-entreprises-divers": {
    "titres": 68,
-   "titres_7_derniers_jours": 19,
+   "titres_7_derniers_jours": 13,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-21",
    "dernier_jour": "2026-11-16",
    "emergence": false
   },
   "elections-serbie-victoire-liste-etudiante": {
-   "titres": 8,
-   "titres_7_derniers_jours": 1,
+   "titres": 9,
+   "titres_7_derniers_jours": 2,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-23",
-   "dernier_jour": "2026-11-13",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "cop-biodiversite": {
@@ -8095,7 +8254,7 @@
   },
   "legislatives-israel": {
    "titres": 19,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-22",
    "dernier_jour": "2026-11-13",
@@ -8127,7 +8286,7 @@
   },
   "extremes-droites-europe": {
    "titres": 6,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-22",
    "dernier_jour": "2026-11-12",
@@ -8135,7 +8294,7 @@
   },
   "geopolitique-divers": {
    "titres": 13,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 5,
    "premier_jour": "2026-10-24",
    "dernier_jour": "2026-11-11",
@@ -8270,11 +8429,11 @@
    "emergence": false
   },
   "bhv-redressement-judiciaire": {
-   "titres": 11,
+   "titres": 12,
    "titres_7_derniers_jours": 1,
    "sources_distinctes": 4,
    "premier_jour": "2026-10-27",
-   "dernier_jour": "2026-11-10",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "jeu-video-guerre-coree": {
@@ -8383,7 +8542,7 @@
   },
   "mort-manifestant-17-octobre-autopsie": {
    "titres": 3,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-27",
    "dernier_jour": "2026-11-11",
@@ -8574,11 +8733,11 @@
    "emergence": false
   },
   "anthropic-introduction-bourse": {
-   "titres": 5,
+   "titres": 6,
    "titres_7_derniers_jours": 1,
-   "sources_distinctes": 2,
+   "sources_distinctes": 3,
    "premier_jour": "2026-10-26",
-   "dernier_jour": "2026-11-10",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "sport-voile-route-du-rhum": {
@@ -8630,11 +8789,11 @@
    "emergence": false
   },
   "societe-relations-sentimentales": {
-   "titres": 3,
-   "titres_7_derniers_jours": 1,
+   "titres": 4,
+   "titres_7_derniers_jours": 2,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-29",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "suppression-programmes-renovation-energetique": {
@@ -8670,11 +8829,11 @@
    "emergence": false
   },
   "entretien-president-hugodecrypte": {
-   "titres": 2,
-   "titres_7_derniers_jours": 0,
-   "sources_distinctes": 2,
+   "titres": 7,
+   "titres_7_derniers_jours": 5,
+   "sources_distinctes": 3,
    "premier_jour": "2026-10-28",
-   "dernier_jour": "2026-10-29",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "banque-centrale-americaine-taux": {
@@ -8703,7 +8862,7 @@
   },
   "natalite-politiques": {
    "titres": 4,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 3,
    "premier_jour": "2026-10-28",
    "dernier_jour": "2026-11-10",
@@ -8735,7 +8894,7 @@
   },
   "chomage-troisieme-trimestre-2026": {
    "titres": 6,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-28",
    "dernier_jour": "2026-11-10",
@@ -8751,7 +8910,7 @@
   },
   "petition-fermeture-cnews": {
    "titres": 24,
-   "titres_7_derniers_jours": 11,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 7,
    "premier_jour": "2026-11-02",
    "dernier_jour": "2026-11-12",
@@ -8766,11 +8925,11 @@
    "emergence": false
   },
   "commercants-impact-mobilisations": {
-   "titres": 4,
-   "titres_7_derniers_jours": 0,
+   "titres": 5,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 1,
    "premier_jour": "2026-10-30",
-   "dernier_jour": "2026-11-02",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "ouverture-dimanche-commerces": {
@@ -8783,7 +8942,7 @@
   },
   "rue-aubagne-proces-appel": {
    "titres": 3,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-02",
    "dernier_jour": "2026-11-11",
@@ -8854,19 +9013,19 @@
    "emergence": false
   },
   "proces-martyre-a10": {
-   "titres": 7,
+   "titres": 8,
    "titres_7_derniers_jours": 2,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-01",
-   "dernier_jour": "2026-11-13",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "egalite-salariale-19-novembre": {
-   "titres": 1,
-   "titres_7_derniers_jours": 0,
-   "sources_distinctes": 1,
+   "titres": 3,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
    "premier_jour": "2026-11-02",
-   "dernier_jour": "2026-11-02",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "revalorisation-smic-debat": {
@@ -9095,7 +9254,7 @@
   },
   "arrets-maladie-negociation": {
    "titres": 3,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-10-30",
    "dernier_jour": "2026-11-10",
@@ -9134,11 +9293,11 @@
    "emergence": false
   },
   "economie-budget-tribunes": {
-   "titres": 12,
-   "titres_7_derniers_jours": 3,
-   "sources_distinctes": 3,
+   "titres": 13,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 4,
    "premier_jour": "2026-11-02",
-   "dernier_jour": "2026-11-12",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "condamnation-policier-sursis-journaliste-infiltre": {
@@ -9150,11 +9309,11 @@
    "emergence": false
   },
   "interdictions-individuelles-manifester": {
-   "titres": 4,
+   "titres": 5,
    "titres_7_derniers_jours": 1,
    "sources_distinctes": 3,
    "premier_jour": "2026-11-03",
-   "dernier_jour": "2026-11-11",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "rapport-police-municipale-la-grande-motte": {
@@ -9206,11 +9365,11 @@
    "emergence": false
   },
   "emissions-franceinfo-podcasts": {
-   "titres": 17,
-   "titres_7_derniers_jours": 8,
+   "titres": 19,
+   "titres_7_derniers_jours": 6,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-03",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "pompiers-manifestation-bruxelles": {
@@ -9454,16 +9613,16 @@
    "emergence": false
   },
   "smic-hausse-declarations": {
-   "titres": 41,
-   "titres_7_derniers_jours": 16,
+   "titres": 43,
+   "titres_7_derniers_jours": 5,
    "sources_distinctes": 4,
    "premier_jour": "2026-11-06",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "culture-medias-divers": {
    "titres": 32,
-   "titres_7_derniers_jours": 13,
+   "titres_7_derniers_jours": 11,
    "sources_distinctes": 5,
    "premier_jour": "2026-11-04",
    "dernier_jour": "2026-11-15",
@@ -9502,11 +9661,11 @@
    "emergence": false
   },
   "livre-confidences-president": {
-   "titres": 3,
-   "titres_7_derniers_jours": 0,
-   "sources_distinctes": 2,
+   "titres": 4,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 3,
    "premier_jour": "2026-11-04",
-   "dernier_jour": "2026-11-06",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "declarations-programme-candidat-picardie": {
@@ -9574,11 +9733,11 @@
    "emergence": false
   },
   "heydemann-orange-ia-europe": {
-   "titres": 2,
-   "titres_7_derniers_jours": 0,
+   "titres": 3,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-04",
-   "dernier_jour": "2026-11-06",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "senat-debat-aide-ukraine": {
@@ -9614,11 +9773,11 @@
    "emergence": false
   },
   "petition-suppression-cnews": {
-   "titres": 4,
-   "titres_7_derniers_jours": 0,
-   "sources_distinctes": 3,
+   "titres": 6,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 5,
    "premier_jour": "2026-11-04",
-   "dernier_jour": "2026-11-06",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "commercants-impact-manifestations": {
@@ -9686,16 +9845,16 @@
    "emergence": false
   },
   "lycee-paul-eluard-enquete-administrative": {
-   "titres": 2,
-   "titres_7_derniers_jours": 1,
-   "sources_distinctes": 2,
+   "titres": 3,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 3,
    "premier_jour": "2026-11-05",
-   "dernier_jour": "2026-11-15",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "restrictions-liberte-manifester": {
    "titres": 13,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 4,
    "sources_distinctes": 3,
    "premier_jour": "2026-11-04",
    "dernier_jour": "2026-11-16",
@@ -9703,7 +9862,7 @@
   },
   "budget-2027-senat-mesures-sectorielles": {
    "titres": 7,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 3,
    "premier_jour": "2026-11-04",
    "dernier_jour": "2026-11-10",
@@ -9815,7 +9974,7 @@
   },
   "declarations-racisme-discriminations": {
    "titres": 14,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 4,
    "sources_distinctes": 5,
    "premier_jour": "2026-11-06",
    "dernier_jour": "2026-11-16",
@@ -9838,27 +9997,27 @@
    "emergence": false
   },
   "cop31-turquie": {
-   "titres": 6,
-   "titres_7_derniers_jours": 3,
-   "sources_distinctes": 2,
+   "titres": 8,
+   "titres_7_derniers_jours": 4,
+   "sources_distinctes": 3,
    "premier_jour": "2026-11-08",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "cybersecurite-loi-resilience": {
-   "titres": 4,
-   "titres_7_derniers_jours": 2,
-   "sources_distinctes": 3,
+   "titres": 7,
+   "titres_7_derniers_jours": 3,
+   "sources_distinctes": 4,
    "premier_jour": "2026-11-09",
-   "dernier_jour": "2026-11-11",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "proces-agression-michel-zecler": {
-   "titres": 8,
+   "titres": 10,
    "titres_7_derniers_jours": 5,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-08",
-   "dernier_jour": "2026-11-13",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "justice-administrative-street-medics": {
@@ -9870,11 +10029,11 @@
    "emergence": false
   },
   "polemique-programme-lfi-russie": {
-   "titres": 8,
-   "titres_7_derniers_jours": 6,
+   "titres": 9,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 5,
    "premier_jour": "2026-11-08",
-   "dernier_jour": "2026-11-11",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "polemique-commemoration-guerre-algerie": {
@@ -9887,7 +10046,7 @@
   },
   "sport-divers": {
    "titres": 11,
-   "titres_7_derniers_jours": 9,
+   "titres_7_derniers_jours": 6,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-07",
    "dernier_jour": "2026-11-15",
@@ -9967,7 +10126,7 @@
   },
   "commemorations-11-novembre": {
    "titres": 9,
-   "titres_7_derniers_jours": 9,
+   "titres_7_derniers_jours": 4,
    "sources_distinctes": 3,
    "premier_jour": "2026-11-11",
    "dernier_jour": "2026-11-13",
@@ -9975,7 +10134,7 @@
   },
   "faits-divers-international": {
    "titres": 5,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 2,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-16",
@@ -9983,7 +10142,7 @@
   },
   "trump-plainte-diffamation-bbc": {
    "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-11",
    "dernier_jour": "2026-11-11",
@@ -9991,7 +10150,7 @@
   },
   "polemique-commemoration-11-novembre-ecole": {
    "titres": 3,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-11",
@@ -9999,7 +10158,7 @@
   },
   "agression-elue-chelles-lycee": {
    "titres": 7,
-   "titres_7_derniers_jours": 7,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 4,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-11",
@@ -10007,7 +10166,7 @@
   },
   "vigilantisme-analyse": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-11",
    "dernier_jour": "2026-11-11",
@@ -10015,7 +10174,7 @@
   },
   "detention-journaliste-algerie": {
    "titres": 5,
-   "titres_7_derniers_jours": 5,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 3,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-12",
@@ -10023,7 +10182,7 @@
   },
   "decret-aides-entreprises-conditionnement": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-11",
    "dernier_jour": "2026-11-11",
@@ -10031,7 +10190,7 @@
   },
   "frappes-ukrainiennes-port-baltique": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-11",
    "dernier_jour": "2026-11-11",
@@ -10039,7 +10198,7 @@
   },
   "reglementation-numerique-ue": {
    "titres": 4,
-   "titres_7_derniers_jours": 4,
+   "titres_7_derniers_jours": 2,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-11",
    "dernier_jour": "2026-11-14",
@@ -10047,7 +10206,7 @@
   },
   "impot-revenu-recettes": {
    "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-11",
@@ -10055,7 +10214,7 @@
   },
   "verification-faits-dirigeante-syndicale": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-10",
@@ -10063,7 +10222,7 @@
   },
   "sante-securite-sociale-guadeloupe": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-10",
@@ -10071,7 +10230,7 @@
   },
   "hatvp-renforcement-avant-presidentielle": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-10",
@@ -10079,7 +10238,7 @@
   },
   "nomination-grasset-polemique": {
    "titres": 3,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-09",
    "dernier_jour": "2026-11-10",
@@ -10087,7 +10246,7 @@
   },
   "desinformation-chatbots-documentaire": {
    "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-12",
@@ -10095,7 +10254,7 @@
   },
   "decret-branches-remuneration-smic": {
    "titres": 3,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 2,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-12",
@@ -10103,7 +10262,7 @@
   },
   "prix-gaz-hausse-decembre": {
    "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-10",
@@ -10111,7 +10270,7 @@
   },
   "police-faits-divers": {
    "titres": 3,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 1,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-13",
@@ -10119,7 +10278,7 @@
   },
   "simulateur-majorite-assemblee": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-10",
@@ -10127,7 +10286,7 @@
   },
   "nomination-cour-des-comptes-recours": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-10",
@@ -10135,7 +10294,7 @@
   },
   "fichage-lycees-brest": {
    "titres": 3,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-09",
    "dernier_jour": "2026-11-10",
@@ -10143,7 +10302,7 @@
   },
   "maintien-ordre-incidents-manifestations": {
    "titres": 3,
-   "titres_7_derniers_jours": 3,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-10",
@@ -10151,7 +10310,7 @@
   },
   "probite-publique-declaration": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-10",
@@ -10159,7 +10318,7 @@
   },
   "plainte-diffamation-couple-presidentiel": {
    "titres": 2,
-   "titres_7_derniers_jours": 2,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-10",
@@ -10167,7 +10326,7 @@
   },
   "negociations-ukraine-tribune": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-10",
    "dernier_jour": "2026-11-10",
@@ -10207,7 +10366,7 @@
   },
   "colonies-israeliennes-commerce-proposition": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-11",
    "dernier_jour": "2026-11-11",
@@ -10215,7 +10374,7 @@
   },
   "plf-fin-de-gestion-examen": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-11",
    "dernier_jour": "2026-11-11",
@@ -10223,7 +10382,7 @@
   },
   "plateformes-ecommerce-sanctions-proposition": {
    "titres": 1,
-   "titres_7_derniers_jours": 1,
+   "titres_7_derniers_jours": 0,
    "sources_distinctes": 1,
    "premier_jour": "2026-11-11",
    "dernier_jour": "2026-11-11",
@@ -10294,11 +10453,11 @@
    "emergence": false
   },
   "suppressions-postes-fonctionnaires-candidats": {
-   "titres": 3,
-   "titres_7_derniers_jours": 3,
+   "titres": 5,
+   "titres_7_derniers_jours": 5,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-12",
-   "dernier_jour": "2026-11-13",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "accidents-travail-morts": {
@@ -10350,11 +10509,11 @@
    "emergence": false
   },
   "affaire-nvidia-demission": {
-   "titres": 6,
-   "titres_7_derniers_jours": 6,
+   "titres": 9,
+   "titres_7_derniers_jours": 9,
    "sources_distinctes": 2,
    "premier_jour": "2026-11-13",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "desistement-appel-acteur-condamnation": {
@@ -10366,19 +10525,19 @@
    "emergence": false
   },
   "prostitution-mineures-justice": {
-   "titres": 2,
-   "titres_7_derniers_jours": 2,
-   "sources_distinctes": 1,
+   "titres": 5,
+   "titres_7_derniers_jours": 5,
+   "sources_distinctes": 2,
    "premier_jour": "2026-11-15",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "panne-controle-aerien-etats-unis": {
-   "titres": 11,
-   "titres_7_derniers_jours": 11,
+   "titres": 12,
+   "titres_7_derniers_jours": 12,
    "sources_distinctes": 4,
    "premier_jour": "2026-11-14",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "tournee-influenceur-armee": {
@@ -10398,17 +10557,17 @@
    "emergence": false
   },
   "departements-budget-2027-alerte": {
-   "titres": 1,
-   "titres_7_derniers_jours": 1,
-   "sources_distinctes": 1,
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
    "premier_jour": "2026-11-16",
-   "dernier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-17",
    "emergence": false
   },
   "enquete-fractures-francaises": {
-   "titres": 7,
-   "titres_7_derniers_jours": 7,
-   "sources_distinctes": 1,
+   "titres": 8,
+   "titres_7_derniers_jours": 8,
+   "sources_distinctes": 2,
    "premier_jour": "2026-11-15",
    "dernier_jour": "2026-11-16",
    "emergence": false
@@ -10518,11 +10677,11 @@
    "emergence": false
   },
   "scenario-duel-rn-lfi": {
-   "titres": 2,
-   "titres_7_derniers_jours": 2,
-   "sources_distinctes": 2,
+   "titres": 3,
+   "titres_7_derniers_jours": 3,
+   "sources_distinctes": 3,
    "premier_jour": "2026-11-13",
-   "dernier_jour": "2026-11-14",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   },
   "prime-risque-forces-ordre": {
@@ -10563,6 +10722,694 @@
    "sources_distinctes": 1,
    "premier_jour": "2026-11-13",
    "dernier_jour": "2026-11-13",
+   "emergence": false
+  },
+  "dior-structure-capitalistique-contestation": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "ecole-bergerac-nom-rescapee": {
+   "titres": 3,
+   "titres_7_derniers_jours": 3,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "deces-architecte-gares": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "vie-chere-outre-mer-lois": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "defenseur-droits-saisines-mobilisations": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "sommet-shenzhen": {
+   "titres": 3,
+   "titres_7_derniers_jours": 3,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "programme-candidat-horizons-presentation": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "crs-arrets-maladie-interdiction-greve": {
+   "titres": 3,
+   "titres_7_derniers_jours": 3,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "gta-vi-jeu-video": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "action-syndicale-policiers-ministere": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "recours-lfi-conseil-etat-ingerences": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "livre-cynisme-adolescents": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "franprix-bateau-port": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "securite-travail-nucleaire": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "accident-tramway-val-de-marne": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "paiement-fractionne-credit-consommation": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "inside-deutsche-bank-enquete": {
+   "titres": 6,
+   "titres_7_derniers_jours": 6,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "dpe-rn-amendement-passoires-thermiques": {
+   "titres": 4,
+   "titres_7_derniers_jours": 4,
+   "sources_distinctes": 4,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "mise-en-cause-comedien-presse": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "temu-commission-europeenne": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "pont-crimee-destruction": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "colloque-negrophobie-assemblee": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "plainte-avocats-ministre-interieur": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "industrie-spatiale-europe": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "proces-policiers-brav-m": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "shein-bourses-ecoles-mode": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "proces-canal-telegram-masculiniste": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "critiques-magistrats-propos-ancienne-ministre": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "evaluations-nationales-ecole": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "federation-sourds-discriminations-enseignement": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "diner-candidat-lfi-patrons": {
+   "titres": 3,
+   "titres_7_derniers_jours": 3,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "precarite-energetique-chauffage": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "enquete-attentes-plafonnement-prix": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "science-divers": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "situation-rohingyas-malaisie": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "vente-tableau-encheres-record": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "ralliement-appel-candidat-horizons": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "attentes-classe-moyenne": {
+   "titres": 3,
+   "titres_7_derniers_jours": 3,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "temoignages-sinistres-incendie": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "loreal-accord-plaignantes": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "traitement-cancer-pancreas-autorisation": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "polemique-vie-privee-militante-franceinfo": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "reportage-ancienne-usine-amiens": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "paris-fermetures-ecoles-sectorisation": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "polemique-chanson-lfi": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "condamnation-chasseur-tir-bar": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "epargne-retraite-changements": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "remuneration-patrons-cac40": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "controle-societe-chine-pcc": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "hub-retour-rwanda": {
+   "titres": 4,
+   "titres_7_derniers_jours": 4,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "made-in-europe-turquie": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "aeroport-lille-extension": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "reaction-lfi-accusations-gouvernement-mobilisation-lyceenne": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "rapport-police-municipale-carcassonne": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "mascuradar-paris": {
+   "titres": 3,
+   "titres_7_derniers_jours": 3,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "proces-chroniqueur-sportif": {
+   "titres": 3,
+   "titres_7_derniers_jours": 3,
+   "sources_distinctes": 3,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "textile-bangladesh-affrontements": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "biens-sections-commune-proposition": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "fuite-donnees-controle-technique": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "consolidation-bancaire-europe": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "prix-pain-paris": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "sondage-ipsos-france-en-colere": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "debat-presidentielle-pauvrete": {
+   "titres": 5,
+   "titres_7_derniers_jours": 5,
+   "sources_distinctes": 5,
+   "premier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "journalistes-elysee-respect": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "proces-attaque-bar-brest": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "commerce-chine-canada": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "lycee-nantes-reprise-cours-reportee": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "rn-grand-est-liberte-expression": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "patrimoine-immobilier-inegalites": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "persecution-lgbt-turquie": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "casting-james-bond": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "gaz-lacrymogenes-sante-femmes": {
+   "titres": 3,
+   "titres_7_derniers_jours": 3,
+   "sources_distinctes": 3,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "tribune-hauts-fonctionnaires-magistrats": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "parcours-scolaires-jeunes": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "recettes-amendes-routieres": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-17",
+   "dernier_jour": "2026-11-17",
+   "emergence": false
+  },
+  "qualite-air-villes": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-16",
+   "emergence": false
+  },
+  "antibioresistance-sensibilisation": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-16",
+   "emergence": false
+  },
+  "justice-americaine-sejour-etudiants": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-16",
+   "emergence": false
+  },
+  "epargne-salariale-deblocage-assemblee": {
+   "titres": 2,
+   "titres_7_derniers_jours": 2,
+   "sources_distinctes": 2,
+   "premier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "prefecture-jeunes-majeurs-etrangers": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-16",
+   "emergence": false
+  },
+  "senat-amendement-application-loi": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-16",
+   "emergence": false
+  },
+  "invitation-matignon-elus-departements": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-16",
+   "emergence": false
+  },
+  "taxe-lapin-senat": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-16",
+   "dernier_jour": "2026-11-16",
+   "emergence": false
+  },
+  "amnistie-mineurs-mouvement-lyceen": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "niches-parlementaires-programme-textes": {
+   "titres": 3,
+   "titres_7_derniers_jours": 3,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
+   "emergence": false
+  },
+  "politique-ville-renouvellement-urbain": {
+   "titres": 1,
+   "titres_7_derniers_jours": 1,
+   "sources_distinctes": 1,
+   "premier_jour": "2026-11-18",
+   "dernier_jour": "2026-11-18",
    "emergence": false
   }
  },
