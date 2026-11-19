@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-11-18",
+ "genere_le": "2026-11-19",
  "registre": "registre/v0.jsonl",
  "cycle": "2026-11",
  "version_structure": "structure v0.11 (16 octobre 2026, décisions de Nathan : état « serré » de VE-SOND, pivot PV-SOUTIEN relié au duel et aux sondages) ; structure v0.10.1 (16 octobre 2026, revue de Nathan : définition de l'hypothèse principale de VE-SOND et VE-RN écrite, justification fausse de la feuille PV-GAUCHE corrigée, dérogations déclarées aux contrôles de vraisemblance) ; structure v0.10 (11 octobre 2026, étape 13 : sous-réseau mouvements et ordre public — VE-LYCEE décalé parent de VE-MOBIL, pivot PV-CASSEURS, satellites EV-48, EV-49, EV-03, EV-44, EV-23, EV-14b) ; structure v0.9 (10 octobre 2026, étape 10 : profils de risque élicités sur tranches de dates réelles pour huit pivots « à tout moment », départ immédiat du Premier ministre après censure) ; structure v0.8 (10 octobre 2026, étape 9 : points d'entrée des chocs, nœud rare PV-VACANCE) ; structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
@@ -6841,9 +6841,9 @@
    {
     "fait": "primaire-bloc-central",
     "premier_jour": "2026-10-15",
-    "dernier_jour": "2026-11-16",
-    "titres": 48,
-    "sources": 6,
+    "dernier_jour": "2026-11-18",
+    "titres": 60,
+    "sources": 7,
     "concerne": [
      "Q-EV-40b",
      "Q-EV-40d",
@@ -6853,6 +6853,183 @@
     ],
     "stade": null,
     "statut": "fait public non vérifié, prolongé",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "élevé"
+   },
+   {
+    "fait": "midterms-resultats-2026",
+    "premier_jour": "2026-11-02",
+    "dernier_jour": "2026-11-18",
+    "titres": 31,
+    "sources": 5,
+    "concerne": [],
+    "stade": "allégation",
+    "statut": "retombé",
+    "type": null,
+    "allegation": true,
+    "vigilance": "élevé"
+   },
+   {
+    "fait": "programme-retraites-rn",
+    "premier_jour": "2026-11-17",
+    "dernier_jour": "2026-11-18",
+    "titres": 15,
+    "sources": 6,
+    "concerne": [
+     "Q-EV-45"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "élevé"
+   },
+   {
+    "fait": "croissance-prevision-2027",
+    "premier_jour": "2026-10-14",
+    "dernier_jour": "2026-11-18",
+    "titres": 3,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-03",
+     "Q-EV-06"
+    ],
+    "stade": null,
+    "statut": "retombé",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "refus-primaire-candidat-horizons",
+    "premier_jour": "2026-11-18",
+    "dernier_jour": "2026-11-18",
+    "titres": 1,
+    "sources": 1,
+    "concerne": [
+     "Q-EV-40b",
+     "Q-EV-41"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "budget-france-bruxelles",
+    "premier_jour": "2026-10-14",
+    "dernier_jour": "2026-11-17",
+    "titres": 8,
+    "sources": 5,
+    "concerne": [
+     "Q-EV-01",
+     "Q-EV-04"
+    ],
+    "stade": null,
+    "statut": "retombé",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "manifestations-17-novembre",
+    "premier_jour": "2026-11-16",
+    "dernier_jour": "2026-11-17",
+    "titres": 8,
+    "sources": 3,
+    "concerne": [],
+    "stade": "allégation",
+    "statut": "en observation",
+    "type": null,
+    "allegation": true,
+    "vigilance": "élevé"
+   },
+   {
+    "fait": "fonction-publique-greve-17-novembre-appel",
+    "premier_jour": "2026-11-09",
+    "dernier_jour": "2026-11-17",
+    "titres": 7,
+    "sources": 4,
+    "concerne": [
+     "Q-EV-13"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "budget-2027-debat-senat",
+    "premier_jour": "2026-11-06",
+    "dernier_jour": "2026-11-17",
+    "titres": 4,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-02"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "fonction-publique-greve-17-novembre",
+    "premier_jour": "2026-11-17",
+    "dernier_jour": "2026-11-17",
+    "titres": 3,
+    "sources": 2,
+    "concerne": [],
+    "stade": "allégation",
+    "statut": "en observation",
+    "type": null,
+    "allegation": true,
+    "vigilance": "élevé"
+   },
+   {
+    "fait": "senat-retraites-reforme-2023-retablie",
+    "premier_jour": "2026-11-17",
+    "dernier_jour": "2026-11-17",
+    "titres": 2,
+    "sources": 1,
+    "concerne": [
+     "Q-EV-45"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "soldats-francais-ukraine-audition",
+    "premier_jour": "2026-11-17",
+    "dernier_jour": "2026-11-17",
+    "titres": 1,
+    "sources": 1,
+    "concerne": [
+     "Q-EV-29"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "commission-previsions-automne-france",
+    "premier_jour": "2026-11-17",
+    "dernier_jour": "2026-11-17",
+    "titres": 1,
+    "sources": 1,
+    "concerne": [
+     "Q-EV-03"
+    ],
+    "stade": null,
+    "statut": "fait établi",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -6982,7 +7159,7 @@
     "statut": "fait public non vérifié, prolongé",
     "type": "fait public",
     "allegation": false,
-    "vigilance": "élevé"
+    "vigilance": "modéré"
    },
    {
     "fait": "parrainages-manquants-candidate-rn",
@@ -7108,21 +7285,6 @@
     "sources": 3,
     "concerne": [
      "Q-EV-14b"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "fonction-publique-greve-17-novembre-appel",
-    "premier_jour": "2026-11-09",
-    "dernier_jour": "2026-11-13",
-    "titres": 4,
-    "sources": 3,
-    "concerne": [
-     "Q-EV-13"
     ],
     "stade": null,
     "statut": "fait public non vérifié, en observation",
@@ -7269,21 +7431,6 @@
     "vigilance": "modéré"
    },
    {
-    "fait": "budget-2027-debat-senat",
-    "premier_jour": "2026-11-06",
-    "dernier_jour": "2026-11-12",
-    "titres": 3,
-    "sources": 3,
-    "concerne": [
-     "Q-EV-02"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
     "fait": "candidature-eventuelle-presidentielle",
     "premier_jour": "2026-11-09",
     "dernier_jour": "2026-11-12",
@@ -7385,23 +7532,10 @@
      "Q-EV-13"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
-   },
-   {
-    "fait": "midterms-resultats-2026",
-    "premier_jour": "2026-11-02",
-    "dernier_jour": "2026-11-10",
-    "titres": 30,
-    "sources": 5,
-    "concerne": [],
-    "stade": "allégation",
-    "statut": "retombé",
-    "type": null,
-    "allegation": true,
-    "vigilance": "élevé"
    },
    {
     "fait": "conference-sociale-9-novembre",
@@ -8066,22 +8200,6 @@
     "sources": 5,
     "concerne": [
      "Q-EV-05"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "croissance-prevision-2027",
-    "premier_jour": "2026-10-14",
-    "dernier_jour": "2026-11-03",
-    "titres": 2,
-    "sources": 2,
-    "concerne": [
-     "Q-EV-03",
-     "Q-EV-06"
     ],
     "stade": null,
     "statut": "retombé",
@@ -8799,7 +8917,7 @@
      "Q-EV-52"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -8845,7 +8963,7 @@
      "Q-EV-01"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -8891,7 +9009,7 @@
      "Q-EV-50"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -8958,22 +9076,6 @@
     "type": "fait public",
     "allegation": false,
     "vigilance": "élevé"
-   },
-   {
-    "fait": "budget-france-bruxelles",
-    "premier_jour": "2026-10-14",
-    "dernier_jour": "2026-10-16",
-    "titres": 7,
-    "sources": 5,
-    "concerne": [
-     "Q-EV-01",
-     "Q-EV-04"
-    ],
-    "stade": null,
-    "statut": "retombé",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
    },
    {
     "fait": "primaire-gauche-suites-union",
@@ -9284,8 +9386,8 @@
   "sans_question": [
    {
     "fait": "emissions-programmes-audiovisuels-public-senat",
-    "titres": 113,
-    "titres_7_derniers_jours": 39,
+    "titres": 127,
+    "titres_7_derniers_jours": 46,
     "sources_distinctes": 1,
     "premier_jour": "2026-10-12",
     "dernier_jour": "2026-11-16",
@@ -9294,37 +9396,10 @@
    {
     "fait": "societe-divers",
     "titres": 90,
-    "titres_7_derniers_jours": 24,
+    "titres_7_derniers_jours": 16,
     "sources_distinctes": 5,
     "premier_jour": "2026-10-15",
     "dernier_jour": "2026-11-16",
-    "emergence": false
-   },
-   {
-    "fait": "economie-entreprises-divers",
-    "titres": 68,
-    "titres_7_derniers_jours": 19,
-    "sources_distinctes": 4,
-    "premier_jour": "2026-10-21",
-    "dernier_jour": "2026-11-16",
-    "emergence": false
-   },
-   {
-    "fait": "smic-hausse-declarations",
-    "titres": 41,
-    "titres_7_derniers_jours": 16,
-    "sources_distinctes": 4,
-    "premier_jour": "2026-11-06",
-    "dernier_jour": "2026-11-16",
-    "emergence": false
-   },
-   {
-    "fait": "ia-entreprises-nvidia",
-    "titres": 28,
-    "titres_7_derniers_jours": 14,
-    "sources_distinctes": 4,
-    "premier_jour": "2026-10-13",
-    "dernier_jour": "2026-11-13",
     "emergence": false
    },
    {
@@ -9337,57 +9412,57 @@
     "emergence": false
    },
    {
-    "fait": "culture-medias-divers",
-    "titres": 32,
+    "fait": "economie-entreprises-divers",
+    "titres": 68,
     "titres_7_derniers_jours": 13,
+    "sources_distinctes": 4,
+    "premier_jour": "2026-10-21",
+    "dernier_jour": "2026-11-16",
+    "emergence": false
+   },
+   {
+    "fait": "inflation-pouvoir-achat-menages",
+    "titres": 37,
+    "titres_7_derniers_jours": 12,
     "sources_distinctes": 5,
-    "premier_jour": "2026-11-04",
-    "dernier_jour": "2026-11-15",
+    "premier_jour": "2026-10-05",
+    "dernier_jour": "2026-11-17",
+    "emergence": false
+   },
+   {
+    "fait": "panne-controle-aerien-etats-unis",
+    "titres": 12,
+    "titres_7_derniers_jours": 12,
+    "sources_distinctes": 4,
+    "premier_jour": "2026-11-14",
+    "dernier_jour": "2026-11-18",
     "emergence": false
    },
    {
     "fait": "societe-justice-faits-divers",
     "titres": 32,
-    "titres_7_derniers_jours": 12,
+    "titres_7_derniers_jours": 11,
     "sources_distinctes": 4,
     "premier_jour": "2026-10-12",
     "dernier_jour": "2026-11-14",
     "emergence": false
    },
    {
-    "fait": "inflation-pouvoir-achat-menages",
-    "titres": 36,
+    "fait": "culture-medias-divers",
+    "titres": 32,
     "titres_7_derniers_jours": 11,
-    "sources_distinctes": 4,
-    "premier_jour": "2026-10-05",
-    "dernier_jour": "2026-11-16",
-    "emergence": false
-   },
-   {
-    "fait": "petition-fermeture-cnews",
-    "titres": 24,
-    "titres_7_derniers_jours": 11,
-    "sources_distinctes": 7,
-    "premier_jour": "2026-11-02",
-    "dernier_jour": "2026-11-12",
-    "emergence": false
-   },
-   {
-    "fait": "panne-controle-aerien-etats-unis",
-    "titres": 11,
-    "titres_7_derniers_jours": 11,
-    "sources_distinctes": 4,
-    "premier_jour": "2026-11-14",
-    "dernier_jour": "2026-11-16",
+    "sources_distinctes": 5,
+    "premier_jour": "2026-11-04",
+    "dernier_jour": "2026-11-15",
     "emergence": false
    },
    {
     "fait": "transports-mobilite-divers",
-    "titres": 17,
+    "titres": 18,
     "titres_7_derniers_jours": 10,
     "sources_distinctes": 3,
     "premier_jour": "2026-10-14",
-    "dernier_jour": "2026-11-16",
+    "dernier_jour": "2026-11-18",
     "emergence": false
    },
    {
@@ -9400,21 +9475,48 @@
     "emergence": false
    },
    {
-    "fait": "mobilisation-etudiante-universite",
+    "fait": "tech-divers",
     "titres": 24,
     "titres_7_derniers_jours": 9,
+    "sources_distinctes": 4,
+    "premier_jour": "2026-10-16",
+    "dernier_jour": "2026-11-18",
+    "emergence": false
+   },
+   {
+    "fait": "affaire-nvidia-demission",
+    "titres": 9,
+    "titres_7_derniers_jours": 9,
+    "sources_distinctes": 2,
+    "premier_jour": "2026-11-13",
+    "dernier_jour": "2026-11-18",
+    "emergence": false
+   },
+   {
+    "fait": "mobilisation-etudiante-universite",
+    "titres": 26,
+    "titres_7_derniers_jours": 8,
     "sources_distinctes": 6,
     "premier_jour": "2026-10-19",
+    "dernier_jour": "2026-11-18",
+    "emergence": false
+   },
+   {
+    "fait": "enquete-fractures-francaises",
+    "titres": 8,
+    "titres_7_derniers_jours": 8,
+    "sources_distinctes": 2,
+    "premier_jour": "2026-11-15",
     "dernier_jour": "2026-11-16",
     "emergence": false
    },
    {
-    "fait": "sport-divers",
-    "titres": 11,
-    "titres_7_derniers_jours": 9,
-    "sources_distinctes": 1,
-    "premier_jour": "2026-11-07",
-    "dernier_jour": "2026-11-15",
+    "fait": "ia-entreprises-nvidia",
+    "titres": 28,
+    "titres_7_derniers_jours": 7,
+    "sources_distinctes": 4,
+    "premier_jour": "2026-10-13",
+    "dernier_jour": "2026-11-13",
     "emergence": false
    }
   ],
