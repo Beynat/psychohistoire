@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-11-20",
+ "genere_le": "2026-11-21",
  "registre": "registre/v0.jsonl",
  "cycle": "2026-11",
  "version_structure": "structure v0.11 (16 octobre 2026, décisions de Nathan : état « serré » de VE-SOND, pivot PV-SOUTIEN relié au duel et aux sondages) ; structure v0.10.1 (16 octobre 2026, revue de Nathan : définition de l'hypothèse principale de VE-SOND et VE-RN écrite, justification fausse de la feuille PV-GAUCHE corrigée, dérogations déclarées aux contrôles de vraisemblance) ; structure v0.10 (11 octobre 2026, étape 13 : sous-réseau mouvements et ordre public — VE-LYCEE décalé parent de VE-MOBIL, pivot PV-CASSEURS, satellites EV-48, EV-49, EV-03, EV-44, EV-23, EV-14b) ; structure v0.9 (10 octobre 2026, étape 10 : profils de risque élicités sur tranches de dates réelles pour huit pivots « à tout moment », départ immédiat du Premier ministre après censure) ; structure v0.8 (10 octobre 2026, étape 9 : points d'entrée des chocs, nœud rare PV-VACANCE) ; structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
@@ -1087,7 +1087,7 @@
    },
    "niveau": 2,
    "type": "aval",
-   "statut": "en cours",
+   "statut": "à constater",
    "a": 0.375,
    "b": 0.364,
    "rapport": 1.03,
@@ -6839,6 +6839,68 @@
  "actualite": {
   "faits": [
    {
+    "fait": "candidature-declaree-presidentielle",
+    "premier_jour": "2026-10-14",
+    "dernier_jour": "2026-11-20",
+    "titres": 33,
+    "sources": 6,
+    "concerne": [
+     "Q-EV-05"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, prolongé",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "ecologistes-strategie-presidentielle",
+    "premier_jour": "2026-10-13",
+    "dernier_jour": "2026-11-20",
+    "titres": 25,
+    "sources": 7,
+    "concerne": [
+     "Q-EV-18",
+     "Q-EV-19"
+    ],
+    "stade": null,
+    "statut": "retombé",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "élevé"
+   },
+   {
+    "fait": "convocation-prefet-ministere-interieur",
+    "premier_jour": "2026-11-19",
+    "dernier_jour": "2026-11-20",
+    "titres": 11,
+    "sources": 4,
+    "concerne": [
+     "Q-EV-05",
+     "Q-EV-40a"
+    ],
+    "stade": "allégation",
+    "statut": "en observation",
+    "type": "mise en cause",
+    "allegation": true,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "fonction-publique-greve-1er-decembre-appel",
+    "premier_jour": "2026-11-20",
+    "dernier_jour": "2026-11-20",
+    "titres": 1,
+    "sources": 1,
+    "concerne": [
+     "Q-EV-13"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
     "fait": "primaire-bloc-central",
     "premier_jour": "2026-10-15",
     "dernier_jour": "2026-11-18",
@@ -7142,21 +7204,6 @@
     ],
     "stade": null,
     "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "candidature-declaree-presidentielle",
-    "premier_jour": "2026-10-14",
-    "dernier_jour": "2026-11-14",
-    "titres": 28,
-    "sources": 6,
-    "concerne": [
-     "Q-EV-05"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, prolongé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -7548,7 +7595,7 @@
      "Q-EV-52"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -7564,7 +7611,7 @@
      "Q-EV-52"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -8023,22 +8070,6 @@
     "vigilance": "modéré"
    },
    {
-    "fait": "ecologistes-strategie-presidentielle",
-    "premier_jour": "2026-10-13",
-    "dernier_jour": "2026-11-05",
-    "titres": 3,
-    "sources": 3,
-    "concerne": [
-     "Q-EV-18",
-     "Q-EV-19"
-    ],
-    "stade": null,
-    "statut": "retombé",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "élevé"
-   },
-   {
     "fait": "candidat-gauche-hue-manifestation",
     "premier_jour": "2026-11-05",
     "dernier_jour": "2026-11-05",
@@ -8407,7 +8438,7 @@
      "Q-EV-08"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -8856,7 +8887,7 @@
      "Q-EV-01"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -8901,7 +8932,7 @@
      "Q-EV-39"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -8933,7 +8964,7 @@
      "Q-EV-40a"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -8948,7 +8979,7 @@
      "Q-EV-40c"
     ],
     "stade": "allégation",
-    "statut": "en observation",
+    "statut": "retombé",
     "type": "mise en cause",
     "allegation": true,
     "vigilance": "modéré"
@@ -8979,7 +9010,7 @@
      "Q-EV-50"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -8994,7 +9025,7 @@
      "Q-EV-42"
     ],
     "stade": null,
-    "statut": "fait public non vérifié, en observation",
+    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -9386,119 +9417,101 @@
   "sans_question": [
    {
     "fait": "emissions-programmes-audiovisuels-public-senat",
-    "titres": 127,
-    "titres_7_derniers_jours": 46,
+    "titres": 132,
+    "titres_7_derniers_jours": 49,
     "sources_distinctes": 1,
     "premier_jour": "2026-10-12",
-    "dernier_jour": "2026-11-16",
+    "dernier_jour": "2026-11-19",
     "emergence": false
    },
    {
     "fait": "societe-divers",
-    "titres": 90,
-    "titres_7_derniers_jours": 16,
-    "sources_distinctes": 5,
-    "premier_jour": "2026-10-15",
-    "dernier_jour": "2026-11-16",
-    "emergence": false
-   },
-   {
-    "fait": "international-divers",
-    "titres": 97,
-    "titres_7_derniers_jours": 14,
+    "titres": 92,
+    "titres_7_derniers_jours": 13,
     "sources_distinctes": 6,
-    "premier_jour": "2026-10-13",
-    "dernier_jour": "2026-11-16",
+    "premier_jour": "2026-10-15",
+    "dernier_jour": "2026-11-20",
     "emergence": false
    },
    {
-    "fait": "economie-entreprises-divers",
-    "titres": 68,
+    "fait": "panne-controle-aerien-etats-unis",
+    "titres": 13,
     "titres_7_derniers_jours": 13,
     "sources_distinctes": 4,
-    "premier_jour": "2026-10-21",
-    "dernier_jour": "2026-11-16",
+    "premier_jour": "2026-11-14",
+    "dernier_jour": "2026-11-19",
     "emergence": false
    },
    {
     "fait": "inflation-pouvoir-achat-menages",
     "titres": 37,
-    "titres_7_derniers_jours": 12,
+    "titres_7_derniers_jours": 10,
     "sources_distinctes": 5,
     "premier_jour": "2026-10-05",
     "dernier_jour": "2026-11-17",
     "emergence": false
    },
    {
-    "fait": "panne-controle-aerien-etats-unis",
-    "titres": 12,
-    "titres_7_derniers_jours": 12,
-    "sources_distinctes": 4,
-    "premier_jour": "2026-11-14",
-    "dernier_jour": "2026-11-18",
-    "emergence": false
-   },
-   {
-    "fait": "societe-justice-faits-divers",
-    "titres": 32,
-    "titres_7_derniers_jours": 11,
-    "sources_distinctes": 4,
-    "premier_jour": "2026-10-12",
-    "dernier_jour": "2026-11-14",
-    "emergence": false
-   },
-   {
-    "fait": "culture-medias-divers",
-    "titres": 32,
-    "titres_7_derniers_jours": 11,
-    "sources_distinctes": 5,
-    "premier_jour": "2026-11-04",
-    "dernier_jour": "2026-11-15",
-    "emergence": false
-   },
-   {
-    "fait": "transports-mobilite-divers",
-    "titres": 18,
+    "fait": "emission-politique-candidat",
+    "titres": 15,
     "titres_7_derniers_jours": 10,
-    "sources_distinctes": 3,
-    "premier_jour": "2026-10-14",
-    "dernier_jour": "2026-11-18",
+    "sources_distinctes": 2,
+    "premier_jour": "2026-10-06",
+    "dernier_jour": "2026-11-20",
     "emergence": false
    },
    {
-    "fait": "grand-oral-services-publics",
-    "titres": 10,
+    "fait": "economie-entreprises-divers",
+    "titres": 70,
     "titres_7_derniers_jours": 10,
-    "sources_distinctes": 3,
-    "premier_jour": "2026-11-12",
-    "dernier_jour": "2026-11-13",
+    "sources_distinctes": 4,
+    "premier_jour": "2026-10-21",
+    "dernier_jour": "2026-11-20",
     "emergence": false
    },
    {
     "fait": "tech-divers",
-    "titres": 24,
+    "titres": 25,
     "titres_7_derniers_jours": 9,
     "sources_distinctes": 4,
     "premier_jour": "2026-10-16",
-    "dernier_jour": "2026-11-18",
+    "dernier_jour": "2026-11-20",
     "emergence": false
    },
    {
     "fait": "affaire-nvidia-demission",
-    "titres": 9,
+    "titres": 11,
     "titres_7_derniers_jours": 9,
     "sources_distinctes": 2,
     "premier_jour": "2026-11-13",
-    "dernier_jour": "2026-11-18",
+    "dernier_jour": "2026-11-19",
     "emergence": false
    },
    {
-    "fait": "mobilisation-etudiante-universite",
-    "titres": 26,
+    "fait": "culture-cinema-spectacles",
+    "titres": 80,
+    "titres_7_derniers_jours": 8,
+    "sources_distinctes": 5,
+    "premier_jour": "2026-10-06",
+    "dernier_jour": "2026-11-20",
+    "emergence": false
+   },
+   {
+    "fait": "international-divers",
+    "titres": 100,
     "titres_7_derniers_jours": 8,
     "sources_distinctes": 6,
-    "premier_jour": "2026-10-19",
-    "dernier_jour": "2026-11-18",
+    "premier_jour": "2026-10-13",
+    "dernier_jour": "2026-11-20",
+    "emergence": false
+   },
+   {
+    "fait": "anthropic-introduction-bourse",
+    "titres": 13,
+    "titres_7_derniers_jours": 8,
+    "sources_distinctes": 3,
+    "premier_jour": "2026-10-26",
+    "dernier_jour": "2026-11-19",
     "emergence": false
    },
    {
@@ -9511,12 +9524,30 @@
     "emergence": false
    },
    {
-    "fait": "ia-entreprises-nvidia",
-    "titres": 28,
-    "titres_7_derniers_jours": 7,
+    "fait": "sommet-shenzhen",
+    "titres": 8,
+    "titres_7_derniers_jours": 8,
+    "sources_distinctes": 3,
+    "premier_jour": "2026-11-16",
+    "dernier_jour": "2026-11-19",
+    "emergence": false
+   },
+   {
+    "fait": "gta-vi-jeu-video",
+    "titres": 8,
+    "titres_7_derniers_jours": 8,
     "sources_distinctes": 4,
-    "premier_jour": "2026-10-13",
-    "dernier_jour": "2026-11-13",
+    "premier_jour": "2026-11-17",
+    "dernier_jour": "2026-11-20",
+    "emergence": false
+   },
+   {
+    "fait": "rn-promesses-subventions-associations",
+    "titres": 9,
+    "titres_7_derniers_jours": 7,
+    "sources_distinctes": 5,
+    "premier_jour": "2026-10-22",
+    "dernier_jour": "2026-11-20",
     "emergence": false
    }
   ],
