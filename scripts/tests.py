@@ -1823,6 +1823,21 @@ def test_ensemble_modeles_minimum():
     assert modeles_minimum({}) == 3
 
 
+def test_blocs_des_sondages():
+    """23 novembre 2026 : tout candidat testé d'un bloc est rattaché (Lagarde au centre, Hollande à gauche) ; le meilleur
+    du bloc compte, et VE-SOND bascule sur l'écart de 2 points (contrôle par mutation : rattachements retirés)."""
+    import etat
+    assert etat.bloc("Lagarde") == "centre" and etat.bloc("Hollande") == "gauche"
+    assert etat.etat_sond({"centre": 14.1, "gauche": 16.5, "droite": 6.8}) == "gauche"
+    assert etat.etat_sond({"centre": 15.1, "gauche": 16.6, "droite": 6.0}) == "serré"
+    noms = {k for l in open(commun.RACINE / "data/etat/sondages.jsonl", encoding="utf-8")
+            for k in json.loads(l)["scores"]}
+    sans_bloc = {"Arthaud", "Poutou", "Dupont-Aignan", "Zemmour", "Knafo", "Villepin", "Polony", "Riner", "Asselineau",
+                 "Bouamrane", "Philippot", "Lassalle", "Maréchal", "Villiers", "Vote blanc"}
+    orphelins = {n for n in noms if etat.bloc(n) is None and n not in sans_bloc}
+    assert not orphelins, f"candidats sans bloc ni exclusion déclarée : {sorted(orphelins)}"
+
+
 if __name__ == "__main__":
     for nom, f in list(globals().items()):
         if nom.startswith("test_"):

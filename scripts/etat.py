@@ -19,8 +19,14 @@ from commun import RACINE, lire_json, lire_jsonl
 
 CORRECTION = {"RN": 0.0, "centre": 0.0, "gauche": 0.0, "droite": 0.0}   # appliquée aux états : aucune (définition)
 HISTORIQUE = (lire_json("data/etat/erreur_sondages.json") or {}).get("correction_moyenne", {})
-BLOCS = {"Le Pen": "RN", "Bardella": "RN", "Philippe": "centre", "Attal": "centre", "Mélenchon": "gauche",
-         "Glucksmann": "gauche", "Ruffin": "gauche", "Tondelier": "gauche", "Roussel": "gauche", "Faure": "gauche",
+# Rattachements ajoutés le 23 novembre 2026 (Lagarde, Bayrou, Darmanin, Le Maire, Lecornu au centre ; Hollande, Royal,
+# Guedj, Maurel à gauche) : testés sans être rattachés à un bloc, ils n'étaient comptés nulle part
+# (rapport modele/reseau/rapports/2026-11-23_sondages.md). Hors bloc : voir test_blocs_des_sondages.
+BLOCS = {"Le Pen": "RN", "Bardella": "RN",
+         "Philippe": "centre", "Attal": "centre", "Lagarde": "centre", "Bayrou": "centre", "Darmanin": "centre",
+         "Le Maire": "centre", "Lecornu": "centre",
+         "Mélenchon": "gauche", "Glucksmann": "gauche", "Ruffin": "gauche", "Tondelier": "gauche", "Roussel": "gauche",
+         "Faure": "gauche", "Hollande": "gauche", "Royal": "gauche", "Guedj": "gauche", "Maurel": "gauche",
          "Retailleau": "droite", "Lisnard": "droite", "Wauquiez": "droite", "Bertrand": "droite"}
 
 
