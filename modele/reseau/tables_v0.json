@@ -1,5 +1,5 @@
 {
- "version": "tables v0.11 (16 octobre 2026, décisions de Nathan, lot L8 : VE-SOND avec l'état « serré », PV-SOUTIEN, PV-ECOLO, PV-BLOC, PV-GAUCHE et PV-DUEL réélicités sur dossier sourcé, E34 et E35 Opus, E36 Sonnet, deux rondes IDEA)",
+ "version": "tables v0.12 (23 novembre 2026, question de Nathan sur le duel figé, lot L9 : persistance de VE-SOND réélicitée sur dossier sourcé, E37 et E38 Opus, E39 Sonnet, deux rondes IDEA ; VE-SOND seul)",
  "evaluateurs": [
   "E1",
   "E2",
@@ -387,1185 +387,1165 @@
   "VE-SOND": {
    "cas": {
     "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.59871,
-     "serré": 0.32971,
-     "gauche": 0.05039,
-     "droite": 0.02119
+     "centre": 0.70195,
+     "serré": 0.19634,
+     "gauche": 0.08892,
+     "droite": 0.01279
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.50847,
-     "serré": 0.37342,
-     "gauche": 0.0968,
-     "droite": 0.02131
+     "centre": 0.70463,
+     "serré": 0.19534,
+     "gauche": 0.08719,
+     "droite": 0.01283
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.52315,
-     "serré": 0.36624,
-     "gauche": 0.08927,
-     "droite": 0.02135
+     "centre": 0.62845,
+     "serré": 0.22886,
+     "gauche": 0.1301,
+     "droite": 0.01259
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.57602,
-     "serré": 0.34188,
-     "gauche": 0.06099,
-     "droite": 0.02111
+     "centre": 0.70135,
+     "serré": 0.19604,
+     "gauche": 0.08982,
+     "droite": 0.01279
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.7775,
-     "serré": 0.19339,
-     "gauche": 0.01278,
-     "droite": 0.01633
+     "centre": 0.80001,
+     "serré": 0.14109,
+     "gauche": 0.05038,
+     "droite": 0.00852
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.70894,
-     "serré": 0.23987,
-     "gauche": 0.03432,
-     "droite": 0.01686
+     "centre": 0.8006,
+     "serré": 0.14164,
+     "gauche": 0.04898,
+     "droite": 0.00878
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.72095,
-     "serré": 0.23203,
-     "gauche": 0.03015,
-     "droite": 0.01688
+     "centre": 0.7441,
+     "serré": 0.17086,
+     "gauche": 0.07651,
+     "droite": 0.00853
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.76035,
-     "serré": 0.20495,
-     "gauche": 0.01839,
-     "droite": 0.01631
+     "centre": 0.79938,
+     "serré": 0.14115,
+     "gauche": 0.05094,
+     "droite": 0.00852
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.42233,
-     "serré": 0.4087,
-     "gauche": 0.13122,
-     "droite": 0.03774
+     "centre": 0.53644,
+     "serré": 0.26484,
+     "gauche": 0.16498,
+     "droite": 0.03374
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.33652,
-     "serré": 0.4267,
-     "gauche": 0.1989,
-     "droite": 0.03788
+     "centre": 0.53619,
+     "serré": 0.26292,
+     "gauche": 0.16708,
+     "droite": 0.03381
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.34871,
-     "serré": 0.42505,
-     "gauche": 0.18841,
-     "droite": 0.03782
+     "centre": 0.46666,
+     "serré": 0.27999,
+     "gauche": 0.22023,
+     "droite": 0.03313
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.40179,
-     "serré": 0.41556,
-     "gauche": 0.14494,
-     "droite": 0.03771
+     "centre": 0.53569,
+     "serré": 0.26416,
+     "gauche": 0.16639,
+     "droite": 0.03376
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.19337,
-     "serré": 0.38224,
-     "gauche": 0.29229,
-     "droite": 0.13211
+     "centre": 0.33812,
+     "serré": 0.29212,
+     "gauche": 0.27733,
+     "droite": 0.09243
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.13382,
-     "serré": 0.35973,
-     "gauche": 0.37975,
-     "droite": 0.12669
+     "centre": 0.3343,
+     "serré": 0.29169,
+     "gauche": 0.2822,
+     "droite": 0.0918
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.14204,
-     "serré": 0.36341,
-     "gauche": 0.36777,
-     "droite": 0.12678
+     "centre": 0.28088,
+     "serré": 0.29339,
+     "gauche": 0.3444,
+     "droite": 0.08133
     },
     "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.17798,
-     "serré": 0.38043,
-     "gauche": 0.30999,
-     "droite": 0.1316
+     "centre": 0.33691,
+     "serré": 0.29133,
+     "gauche": 0.27983,
+     "droite": 0.09194
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.66561,
-     "serré": 0.28547,
-     "gauche": 0.02858,
-     "droite": 0.02034
+     "centre": 0.72391,
+     "serré": 0.19231,
+     "gauche": 0.07167,
+     "droite": 0.01211
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.57884,
-     "serré": 0.33415,
-     "gauche": 0.06643,
-     "droite": 0.02058
+     "centre": 0.72606,
+     "serré": 0.19134,
+     "gauche": 0.07045,
+     "droite": 0.01215
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.59298,
-     "serré": 0.326,
-     "gauche": 0.06039,
-     "droite": 0.02062
+     "centre": 0.65193,
+     "serré": 0.22428,
+     "gauche": 0.1119,
+     "droite": 0.01188
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.64372,
-     "serré": 0.2984,
-     "gauche": 0.03761,
-     "droite": 0.02027
+     "centre": 0.72319,
+     "serré": 0.19239,
+     "gauche": 0.0723,
+     "droite": 0.01212
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.82374,
-     "serré": 0.15366,
-     "gauche": 0.0073,
-     "droite": 0.0153
+     "centre": 0.81881,
+     "serré": 0.13818,
+     "gauche": 0.03499,
+     "droite": 0.00803
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.76374,
-     "serré": 0.19975,
-     "gauche": 0.02065,
-     "droite": 0.01586
+     "centre": 0.81922,
+     "serré": 0.13879,
+     "gauche": 0.03394,
+     "droite": 0.00804
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.77508,
-     "serré": 0.19225,
-     "gauche": 0.01679,
-     "droite": 0.01588
+     "centre": 0.76503,
+     "serré": 0.16735,
+     "gauche": 0.05959,
+     "droite": 0.00803
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.81048,
-     "serré": 0.16691,
-     "gauche": 0.0073,
-     "droite": 0.01531
+     "centre": 0.81844,
+     "serré": 0.13823,
+     "gauche": 0.0353,
+     "droite": 0.00803
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.4926,
-     "serré": 0.37381,
-     "gauche": 0.09708,
-     "droite": 0.03652
+     "centre": 0.56112,
+     "serré": 0.26078,
+     "gauche": 0.14594,
+     "droite": 0.03215
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.40307,
-     "serré": 0.40694,
-     "gauche": 0.15327,
-     "droite": 0.03672
+     "centre": 0.56045,
+     "serré": 0.2592,
+     "gauche": 0.14781,
+     "droite": 0.03254
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.41628,
-     "serré": 0.40261,
-     "gauche": 0.14436,
-     "droite": 0.03674
+     "centre": 0.49144,
+     "serré": 0.27716,
+     "gauche": 0.19992,
+     "droite": 0.03148
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.47105,
-     "serré": 0.38405,
-     "gauche": 0.10846,
-     "droite": 0.03643
+     "centre": 0.56031,
+     "serré": 0.26045,
+     "gauche": 0.14707,
+     "droite": 0.03217
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.24695,
-     "serré": 0.37766,
-     "gauche": 0.24233,
-     "droite": 0.13306
+     "centre": 0.3629,
+     "serré": 0.2904,
+     "gauche": 0.25802,
+     "droite": 0.08868
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.17673,
-     "serré": 0.37089,
-     "gauche": 0.32495,
-     "droite": 0.12743
+     "centre": 0.35874,
+     "serré": 0.28976,
+     "gauche": 0.26249,
+     "droite": 0.08902
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.18632,
-     "serré": 0.37257,
-     "gauche": 0.31331,
-     "droite": 0.12779
+     "centre": 0.30412,
+     "serré": 0.29305,
+     "gauche": 0.32417,
+     "droite": 0.07867
     },
     "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.22882,
-     "serré": 0.37991,
-     "gauche": 0.2591,
-     "droite": 0.13217
+     "centre": 0.3616,
+     "serré": 0.28952,
+     "gauche": 0.26022,
+     "droite": 0.08866
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.73232,
-     "serré": 0.23544,
-     "gauche": 0.01346,
-     "droite": 0.01878
+     "centre": 0.74987,
+     "serré": 0.18849,
+     "gauche": 0.05023,
+     "droite": 0.01142
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.65284,
-     "serré": 0.28713,
-     "gauche": 0.04087,
-     "droite": 0.01915
+     "centre": 0.75135,
+     "serré": 0.18799,
+     "gauche": 0.04922,
+     "droite": 0.01144
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.66682,
-     "serré": 0.27858,
-     "gauche": 0.03541,
-     "droite": 0.01919
+     "centre": 0.67645,
+     "serré": 0.21987,
+     "gauche": 0.09229,
+     "droite": 0.01139
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.71205,
-     "serré": 0.24992,
-     "gauche": 0.0193,
-     "droite": 0.01873
+     "centre": 0.74943,
+     "serré": 0.18856,
+     "gauche": 0.05058,
+     "droite": 0.01143
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.86321,
-     "serré": 0.1141,
-     "gauche": 0.00889,
-     "droite": 0.01379
+     "centre": 0.83365,
+     "serré": 0.13288,
+     "gauche": 0.026,
+     "droite": 0.00746
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.81678,
-     "serré": 0.15926,
-     "gauche": 0.00957,
-     "droite": 0.01439
+     "centre": 0.83402,
+     "serré": 0.1332,
+     "gauche": 0.02529,
+     "droite": 0.00748
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.82592,
-     "serré": 0.15208,
-     "gauche": 0.0076,
-     "droite": 0.01439
+     "centre": 0.79224,
+     "serré": 0.16436,
+     "gauche": 0.03587,
+     "droite": 0.00753
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.85492,
-     "serré": 0.126,
-     "gauche": 0.00523,
-     "droite": 0.01385
+     "centre": 0.83348,
+     "serré": 0.13291,
+     "gauche": 0.02615,
+     "droite": 0.00747
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.56965,
-     "serré": 0.32929,
-     "gauche": 0.06704,
-     "droite": 0.03402
+     "centre": 0.58692,
+     "serré": 0.25648,
+     "gauche": 0.12579,
+     "droite": 0.03081
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.47997,
-     "serré": 0.37346,
-     "gauche": 0.11216,
-     "droite": 0.03441
+     "centre": 0.58633,
+     "serré": 0.25532,
+     "gauche": 0.1275,
+     "droite": 0.03085
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.49409,
-     "serré": 0.36659,
-     "gauche": 0.10484,
-     "droite": 0.03448
+     "centre": 0.51789,
+     "serré": 0.27332,
+     "gauche": 0.17872,
+     "droite": 0.03007
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.54898,
-     "serré": 0.34135,
-     "gauche": 0.07572,
-     "droite": 0.03395
+     "centre": 0.58617,
+     "serré": 0.25616,
+     "gauche": 0.12721,
+     "droite": 0.03046
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.31573,
-     "serré": 0.36104,
-     "gauche": 0.19294,
-     "droite": 0.13029
+     "centre": 0.38913,
+     "serré": 0.28758,
+     "gauche": 0.23815,
+     "droite": 0.08514
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.2339,
-     "serré": 0.37179,
-     "gauche": 0.26938,
-     "droite": 0.12493
+     "centre": 0.38482,
+     "serré": 0.28769,
+     "gauche": 0.242,
+     "droite": 0.0855
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.24557,
-     "serré": 0.3706,
-     "gauche": 0.25822,
-     "droite": 0.12561
+     "centre": 0.32912,
+     "serré": 0.29143,
+     "gauche": 0.30364,
+     "droite": 0.07582
     },
     "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.29518,
-     "serré": 0.36723,
-     "gauche": 0.20838,
-     "droite": 0.12921
+     "centre": 0.38809,
+     "serré": 0.2871,
+     "gauche": 0.23969,
+     "droite": 0.08513
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.08819,
-     "serré": 0.48656,
-     "gauche": 0.40425,
-     "droite": 0.02099
+     "centre": 0.1695,
+     "serré": 0.40874,
+     "gauche": 0.39865,
+     "droite": 0.02311
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.05418,
-     "serré": 0.42491,
-     "gauche": 0.50072,
-     "droite": 0.0202
+     "centre": 0.17063,
+     "serré": 0.40529,
+     "gauche": 0.40119,
+     "droite": 0.02289
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.05879,
-     "serré": 0.43412,
-     "gauche": 0.48691,
-     "droite": 0.02017
+     "centre": 0.12459,
+     "serré": 0.36852,
+     "gauche": 0.48723,
+     "droite": 0.01967
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.07904,
-     "serré": 0.47497,
-     "gauche": 0.42497,
-     "droite": 0.02103
+     "centre": 0.16885,
+     "serré": 0.40706,
+     "gauche": 0.40098,
+     "droite": 0.02311
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.20872,
-     "serré": 0.55169,
-     "gauche": 0.21957,
-     "droite": 0.02003
+     "centre": 0.24728,
+     "serré": 0.41911,
+     "gauche": 0.31419,
+     "droite": 0.01942
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.14884,
-     "serré": 0.53056,
-     "gauche": 0.30076,
-     "droite": 0.01984
+     "centre": 0.24771,
+     "serré": 0.41359,
+     "gauche": 0.31953,
+     "droite": 0.01917
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.15747,
-     "serré": 0.5345,
-     "gauche": 0.28825,
-     "droite": 0.01978
+     "centre": 0.19476,
+     "serré": 0.39924,
+     "gauche": 0.39009,
+     "droite": 0.01591
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.19305,
-     "serré": 0.55053,
-     "gauche": 0.23637,
-     "droite": 0.02006
+     "centre": 0.24633,
+     "serré": 0.41777,
+     "gauche": 0.31675,
+     "droite": 0.01915
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.04807,
-     "serré": 0.37017,
-     "gauche": 0.54653,
-     "droite": 0.03523
+     "centre": 0.09421,
+     "serré": 0.37318,
+     "gauche": 0.49508,
+     "droite": 0.03753
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.0262,
-     "serré": 0.3012,
-     "gauche": 0.63894,
-     "droite": 0.03366
+     "centre": 0.09436,
+     "serré": 0.37156,
+     "gauche": 0.49714,
+     "droite": 0.03694
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.02882,
-     "serré": 0.31105,
-     "gauche": 0.62652,
-     "droite": 0.03361
+     "centre": 0.06626,
+     "serré": 0.33445,
+     "gauche": 0.56641,
+     "droite": 0.03288
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.04125,
-     "serré": 0.35559,
-     "gauche": 0.56784,
-     "droite": 0.03532
+     "centre": 0.09389,
+     "serré": 0.37149,
+     "gauche": 0.49738,
+     "droite": 0.03724
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.01653,
-     "serré": 0.23211,
-     "gauche": 0.6656,
-     "droite": 0.08575
+     "centre": 0.04588,
+     "serré": 0.33713,
+     "gauche": 0.54483,
+     "droite": 0.07215
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.00683,
-     "serré": 0.17637,
-     "gauche": 0.73596,
-     "droite": 0.08084
+     "centre": 0.04614,
+     "serré": 0.3352,
+     "gauche": 0.54737,
+     "droite": 0.07128
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.00735,
-     "serré": 0.18445,
-     "gauche": 0.72752,
-     "droite": 0.08069
+     "centre": 0.03332,
+     "serré": 0.30091,
+     "gauche": 0.60687,
+     "droite": 0.05889
     },
     "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.01222,
-     "serré": 0.21973,
-     "gauche": 0.68204,
-     "droite": 0.08601
+     "centre": 0.04567,
+     "serré": 0.3355,
+     "gauche": 0.54708,
+     "droite": 0.07175
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.12008,
-     "serré": 0.51045,
-     "gauche": 0.34843,
-     "droite": 0.02104
+     "centre": 0.18739,
+     "serré": 0.41035,
+     "gauche": 0.3797,
+     "droite": 0.02256
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.07784,
-     "serré": 0.46007,
-     "gauche": 0.44178,
-     "droite": 0.02031
+     "centre": 0.18848,
+     "serré": 0.40689,
+     "gauche": 0.38232,
+     "droite": 0.02231
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.08327,
-     "serré": 0.46791,
-     "gauche": 0.42854,
-     "droite": 0.02029
+     "centre": 0.14011,
+     "serré": 0.3719,
+     "gauche": 0.46859,
+     "droite": 0.0194
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.10869,
-     "serré": 0.50192,
-     "gauche": 0.36834,
-     "droite": 0.02105
+     "centre": 0.18645,
+     "serré": 0.40864,
+     "gauche": 0.38235,
+     "droite": 0.02256
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.26275,
-     "serré": 0.54054,
-     "gauche": 0.17693,
-     "droite": 0.01978
+     "centre": 0.26772,
+     "serré": 0.41852,
+     "gauche": 0.2949,
+     "droite": 0.01886
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.1932,
-     "serré": 0.53879,
-     "gauche": 0.24845,
-     "droite": 0.01956
+     "centre": 0.26827,
+     "serré": 0.41303,
+     "gauche": 0.30012,
+     "droite": 0.01858
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.20316,
-     "serré": 0.53962,
-     "gauche": 0.23769,
-     "droite": 0.01954
+     "centre": 0.21319,
+     "serré": 0.40023,
+     "gauche": 0.37093,
+     "droite": 0.01565
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.2447,
-     "serré": 0.54425,
-     "gauche": 0.1913,
-     "droite": 0.01975
+     "centre": 0.26681,
+     "serré": 0.41717,
+     "gauche": 0.29716,
+     "droite": 0.01886
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.06906,
-     "serré": 0.4065,
-     "gauche": 0.489,
-     "droite": 0.03544
+     "centre": 0.10825,
+     "serré": 0.37721,
+     "gauche": 0.4776,
+     "droite": 0.03694
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.04021,
-     "serré": 0.34128,
-     "gauche": 0.58448,
-     "droite": 0.03403
+     "centre": 0.10825,
+     "serré": 0.3757,
+     "gauche": 0.47975,
+     "droite": 0.03631
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.04371,
-     "serré": 0.35107,
-     "gauche": 0.57124,
-     "droite": 0.03398
+     "centre": 0.0779,
+     "serré": 0.33966,
+     "gauche": 0.54986,
+     "droite": 0.03258
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.0607,
-     "serré": 0.39329,
-     "gauche": 0.51047,
-     "droite": 0.03554
+     "centre": 0.10764,
+     "serré": 0.3755,
+     "gauche": 0.48023,
+     "droite": 0.03663
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.02514,
-     "serré": 0.26698,
-     "gauche": 0.62071,
-     "droite": 0.08717
+     "centre": 0.05813,
+     "serré": 0.34225,
+     "gauche": 0.52823,
+     "droite": 0.07139
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.01149,
-     "serré": 0.20908,
-     "gauche": 0.69732,
-     "droite": 0.0821
+     "centre": 0.05852,
+     "serré": 0.34014,
+     "gauche": 0.53088,
+     "droite": 0.07046
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.01372,
-     "serré": 0.21721,
-     "gauche": 0.68712,
-     "droite": 0.08194
+     "centre": 0.045,
+     "serré": 0.30601,
+     "gauche": 0.5909,
+     "droite": 0.05809
     },
     "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.0216,
-     "serré": 0.25444,
-     "gauche": 0.63673,
-     "droite": 0.08723
+     "centre": 0.05791,
+     "serré": 0.34029,
+     "gauche": 0.53083,
+     "droite": 0.07097
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.16309,
-     "serré": 0.52507,
-     "gauche": 0.29139,
-     "droite": 0.02045
+     "centre": 0.20631,
+     "serré": 0.411,
+     "gauche": 0.36067,
+     "droite": 0.02202
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.11047,
-     "serré": 0.49088,
-     "gauche": 0.37892,
-     "droite": 0.01973
+     "centre": 0.20765,
+     "serré": 0.40819,
+     "gauche": 0.36215,
+     "droite": 0.02201
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.11748,
-     "serré": 0.49665,
-     "gauche": 0.36614,
-     "droite": 0.01973
+     "centre": 0.15657,
+     "serré": 0.3746,
+     "gauche": 0.44996,
+     "droite": 0.01887
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.14914,
-     "serré": 0.5211,
-     "gauche": 0.30937,
-     "droite": 0.02039
+     "centre": 0.2054,
+     "serré": 0.4096,
+     "gauche": 0.36299,
+     "droite": 0.02202
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.33059,
-     "serré": 0.51497,
-     "gauche": 0.13551,
-     "droite": 0.01893
+     "centre": 0.28952,
+     "serré": 0.41696,
+     "gauche": 0.27523,
+     "droite": 0.01829
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.25039,
-     "serré": 0.5332,
-     "gauche": 0.19771,
-     "droite": 0.0187
+     "centre": 0.29009,
+     "serré": 0.41182,
+     "gauche": 0.2798,
+     "droite": 0.01829
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.26216,
-     "serré": 0.53059,
-     "gauche": 0.18851,
-     "droite": 0.01873
+     "centre": 0.23309,
+     "serré": 0.4009,
+     "gauche": 0.35091,
+     "droite": 0.0151
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.31008,
-     "serré": 0.52269,
-     "gauche": 0.14838,
-     "droite": 0.01885
+     "centre": 0.28862,
+     "serré": 0.41591,
+     "gauche": 0.27717,
+     "droite": 0.01829
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.10038,
-     "serré": 0.44094,
-     "gauche": 0.42443,
-     "droite": 0.03425
+     "centre": 0.1228,
+     "serré": 0.38097,
+     "gauche": 0.45987,
+     "droite": 0.03636
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.06231,
-     "serré": 0.38354,
-     "gauche": 0.52105,
-     "droite": 0.0331
+     "centre": 0.12269,
+     "serré": 0.37951,
+     "gauche": 0.46211,
+     "droite": 0.03569
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.06676,
-     "serré": 0.39226,
-     "gauche": 0.50793,
-     "droite": 0.03305
+     "centre": 0.0902,
+     "serré": 0.3446,
+     "gauche": 0.5332,
+     "droite": 0.03199
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.09003,
-     "serré": 0.43013,
-     "gauche": 0.4455,
-     "droite": 0.03434
+     "centre": 0.12222,
+     "serré": 0.37923,
+     "gauche": 0.46251,
+     "droite": 0.03604
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.04036,
-     "serré": 0.30589,
-     "gauche": 0.56788,
-     "droite": 0.08587
+     "centre": 0.06965,
+     "serré": 0.34741,
+     "gauche": 0.5126,
+     "droite": 0.07034
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.02172,
-     "serré": 0.24744,
-     "gauche": 0.64997,
-     "droite": 0.08087
+     "centre": 0.07017,
+     "serré": 0.34542,
+     "gauche": 0.51506,
+     "droite": 0.06935
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.02344,
-     "serré": 0.25547,
-     "gauche": 0.64024,
-     "droite": 0.08085
+     "centre": 0.05522,
+     "serré": 0.31145,
+     "gauche": 0.57555,
+     "droite": 0.05779
     },
     "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.03508,
-     "serré": 0.29342,
-     "gauche": 0.58562,
-     "droite": 0.08588
+     "centre": 0.06942,
+     "serré": 0.34544,
+     "gauche": 0.51523,
+     "droite": 0.06991
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.01091,
-     "serré": 0.19428,
-     "gauche": 0.77925,
-     "droite": 0.01557
+     "centre": 0.02857,
+     "serré": 0.10379,
+     "gauche": 0.85486,
+     "droite": 0.01278
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.00532,
-     "serré": 0.13756,
-     "gauche": 0.84259,
-     "droite": 0.01453
+     "centre": 0.03235,
+     "serré": 0.10688,
+     "gauche": 0.84845,
+     "droite": 0.01233
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.00532,
-     "serré": 0.14614,
-     "gauche": 0.83402,
-     "droite": 0.01452
+     "centre": 0.01925,
+     "serré": 0.0786,
+     "gauche": 0.89322,
+     "droite": 0.00893
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.00758,
-     "serré": 0.18115,
-     "gauche": 0.79568,
-     "droite": 0.01559
+     "centre": 0.02837,
+     "serré": 0.10302,
+     "gauche": 0.85583,
+     "droite": 0.01278
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.04579,
-     "serré": 0.31833,
-     "gauche": 0.61958,
-     "droite": 0.0163
+     "centre": 0.06705,
+     "serré": 0.15298,
+     "gauche": 0.77024,
+     "droite": 0.00974
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.01546,
-     "serré": 0.2587,
-     "gauche": 0.71022,
-     "droite": 0.01563
+     "centre": 0.06815,
+     "serré": 0.15154,
+     "gauche": 0.77095,
+     "droite": 0.00935
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.01699,
-     "serré": 0.26943,
-     "gauche": 0.69795,
-     "droite": 0.01562
+     "centre": 0.0451,
+     "serré": 0.12234,
+     "gauche": 0.82548,
+     "droite": 0.00708
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.03662,
-     "serré": 0.30559,
-     "gauche": 0.64144,
-     "droite": 0.01635
+     "centre": 0.06651,
+     "serré": 0.15154,
+     "gauche": 0.77222,
+     "droite": 0.00974
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.01507,
-     "serré": 0.11534,
-     "gauche": 0.84621,
-     "droite": 0.02337
+     "centre": 0.01786,
+     "serré": 0.08165,
+     "gauche": 0.88302,
+     "droite": 0.01746
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.00848,
-     "serré": 0.07402,
-     "gauche": 0.89551,
-     "droite": 0.022
+     "centre": 0.0172,
+     "serré": 0.08289,
+     "gauche": 0.8829,
+     "droite": 0.01701
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.00845,
-     "serré": 0.08058,
-     "gauche": 0.88902,
-     "droite": 0.02194
+     "centre": 0.01005,
+     "serré": 0.06308,
+     "gauche": 0.91237,
+     "droite": 0.0145
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.00958,
-     "serré": 0.10557,
-     "gauche": 0.86132,
-     "droite": 0.02353
+     "centre": 0.01764,
+     "serré": 0.08099,
+     "gauche": 0.88391,
+     "droite": 0.01746
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.00852,
-     "serré": 0.05758,
-     "gauche": 0.87898,
-     "droite": 0.05493
+     "centre": 0.01022,
+     "serré": 0.09145,
+     "gauche": 0.8676,
+     "droite": 0.03073
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.00515,
-     "serré": 0.03362,
-     "gauche": 0.91045,
-     "droite": 0.05078
+     "centre": 0.0097,
+     "serré": 0.09244,
+     "gauche": 0.86823,
+     "droite": 0.02963
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.00514,
-     "serré": 0.03613,
-     "gauche": 0.90797,
-     "droite": 0.05075
+     "centre": 0.00911,
+     "serré": 0.07118,
+     "gauche": 0.89933,
+     "droite": 0.02038
     },
     "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.0059,
-     "serré": 0.05117,
-     "gauche": 0.88776,
-     "droite": 0.05516
+     "centre": 0.01022,
+     "serré": 0.09074,
+     "gauche": 0.86884,
+     "droite": 0.0302
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.02274,
-     "serré": 0.2263,
-     "gauche": 0.73512,
-     "droite": 0.01585
+     "centre": 0.03656,
+     "serré": 0.1082,
+     "gauche": 0.84244,
+     "droite": 0.0128
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.00746,
-     "serré": 0.17063,
-     "gauche": 0.80706,
-     "droite": 0.01485
+     "centre": 0.0414,
+     "serré": 0.1114,
+     "gauche": 0.83487,
+     "droite": 0.01234
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.00853,
-     "serré": 0.17957,
-     "gauche": 0.79707,
-     "droite": 0.01484
+     "centre": 0.02629,
+     "serré": 0.08295,
+     "gauche": 0.88181,
+     "droite": 0.00894
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.01745,
-     "serré": 0.2142,
-     "gauche": 0.75249,
-     "droite": 0.01586
+     "centre": 0.03635,
+     "serré": 0.10743,
+     "gauche": 0.84342,
+     "droite": 0.0128
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.07202,
-     "serré": 0.34938,
-     "gauche": 0.56227,
-     "droite": 0.01633
+     "centre": 0.07838,
+     "serré": 0.1573,
+     "gauche": 0.75456,
+     "droite": 0.00976
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.03317,
-     "serré": 0.29455,
-     "gauche": 0.65651,
-     "droite": 0.01576
+     "centre": 0.07962,
+     "serré": 0.15632,
+     "gauche": 0.7547,
+     "droite": 0.00937
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.03861,
-     "serré": 0.30295,
-     "gauche": 0.64271,
-     "droite": 0.01573
+     "centre": 0.05435,
+     "serré": 0.12645,
+     "gauche": 0.81211,
+     "droite": 0.00709
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.06069,
-     "serré": 0.33779,
-     "gauche": 0.58514,
-     "droite": 0.01638
+     "centre": 0.07786,
+     "serré": 0.15633,
+     "gauche": 0.75644,
+     "droite": 0.00938
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.01074,
-     "serré": 0.14209,
-     "gauche": 0.82303,
-     "droite": 0.02413
+     "centre": 0.02433,
+     "serré": 0.08635,
+     "gauche": 0.87184,
+     "droite": 0.01748
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.00939,
-     "serré": 0.09849,
-     "gauche": 0.86975,
-     "droite": 0.02237
+     "centre": 0.02337,
+     "serré": 0.0874,
+     "gauche": 0.8722,
+     "droite": 0.01703
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.00938,
-     "serré": 0.10485,
-     "gauche": 0.86344,
-     "droite": 0.02234
+     "centre": 0.01568,
+     "serré": 0.06744,
+     "gauche": 0.90236,
+     "droite": 0.01452
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.00905,
-     "serré": 0.1319,
-     "gauche": 0.83493,
-     "droite": 0.02413
+     "centre": 0.02409,
+     "serré": 0.08535,
+     "gauche": 0.87308,
+     "droite": 0.01748
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.01406,
-     "serré": 0.07342,
-     "gauche": 0.85657,
-     "droite": 0.05596
+     "centre": 0.0159,
+     "serré": 0.09606,
+     "gauche": 0.85726,
+     "droite": 0.03078
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.00573,
-     "serré": 0.04719,
-     "gauche": 0.895,
-     "droite": 0.05207
+     "centre": 0.01526,
+     "serré": 0.09683,
+     "gauche": 0.85824,
+     "droite": 0.02968
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.00572,
-     "serré": 0.05133,
-     "gauche": 0.89096,
-     "droite": 0.05199
+     "centre": 0.01428,
+     "serré": 0.0756,
+     "gauche": 0.88972,
+     "droite": 0.02041
     },
     "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.01187,
-     "serré": 0.06711,
-     "gauche": 0.86493,
-     "droite": 0.05609
+     "centre": 0.0159,
+     "serré": 0.09535,
+     "gauche": 0.85851,
+     "droite": 0.03024
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.03982,
-     "serré": 0.26246,
-     "gauche": 0.68214,
-     "droite": 0.01558
+     "centre": 0.04427,
+     "serré": 0.11263,
+     "gauche": 0.83026,
+     "droite": 0.01283
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.01504,
-     "serré": 0.20833,
-     "gauche": 0.76202,
-     "droite": 0.01461
+     "centre": 0.04994,
+     "serré": 0.11592,
+     "gauche": 0.82178,
+     "droite": 0.01236
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.0189,
-     "serré": 0.21596,
-     "gauche": 0.75054,
-     "droite": 0.0146
+     "centre": 0.03264,
+     "serré": 0.08724,
+     "gauche": 0.87116,
+     "droite": 0.00896
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.03223,
-     "serré": 0.25057,
-     "gauche": 0.7016,
-     "droite": 0.0156
+     "centre": 0.04408,
+     "serré": 0.11187,
+     "gauche": 0.83166,
+     "droite": 0.01239
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.10852,
-     "serré": 0.37824,
-     "gauche": 0.49745,
-     "droite": 0.0158
+     "centre": 0.09047,
+     "serré": 0.16172,
+     "gauche": 0.7384,
+     "droite": 0.00941
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.05938,
-     "serré": 0.33094,
-     "gauche": 0.59437,
-     "droite": 0.01531
+     "centre": 0.09195,
+     "serré": 0.16069,
+     "gauche": 0.73797,
+     "droite": 0.00939
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.06631,
-     "serré": 0.33851,
-     "gauche": 0.5799,
-     "droite": 0.01528
+     "centre": 0.06397,
+     "serré": 0.13106,
+     "gauche": 0.79822,
+     "droite": 0.00676
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.09502,
-     "serré": 0.36895,
-     "gauche": 0.5202,
-     "droite": 0.01584
+     "centre": 0.08971,
+     "serré": 0.16073,
+     "gauche": 0.74015,
+     "droite": 0.00941
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.02012,
-     "serré": 0.17373,
-     "gauche": 0.78239,
-     "droite": 0.02376
+     "centre": 0.03025,
+     "serré": 0.09064,
+     "gauche": 0.8616,
+     "droite": 0.01752
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.00775,
-     "serré": 0.12812,
-     "gauche": 0.84193,
-     "droite": 0.0222
+     "centre": 0.02905,
+     "serré": 0.09182,
+     "gauche": 0.86206,
+     "droite": 0.01707
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.00888,
-     "serré": 0.13455,
-     "gauche": 0.83439,
-     "droite": 0.02219
+     "centre": 0.02011,
+     "serré": 0.07198,
+     "gauche": 0.89336,
+     "droite": 0.01455
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.01598,
-     "serré": 0.1627,
-     "gauche": 0.79755,
-     "droite": 0.02377
+     "centre": 0.03001,
+     "serré": 0.08998,
+     "gauche": 0.86295,
+     "droite": 0.01706
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.00866,
-     "serré": 0.09464,
-     "gauche": 0.84066,
-     "droite": 0.05604
+     "centre": 0.02057,
+     "serré": 0.10073,
+     "gauche": 0.84836,
+     "droite": 0.03034
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.01009,
-     "serré": 0.06544,
-     "gauche": 0.87311,
-     "droite": 0.05136
+     "centre": 0.01969,
+     "serré": 0.10163,
+     "gauche": 0.84891,
+     "droite": 0.02977
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.01153,
-     "serré": 0.06926,
-     "gauche": 0.86795,
-     "droite": 0.05126
+     "centre": 0.01816,
+     "serré": 0.0796,
+     "gauche": 0.88177,
+     "droite": 0.02046
     },
     "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.01665,
-     "serré": 0.08679,
-     "gauche": 0.84105,
-     "droite": 0.0555
+     "centre": 0.02035,
+     "serré": 0.09962,
+     "gauche": 0.8497,
+     "droite": 0.03033
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.07149,
-     "serré": 0.19784,
-     "gauche": 0.11023,
-     "droite": 0.62043
+     "centre": 0.08818,
+     "serré": 0.28757,
+     "gauche": 0.16542,
+     "droite": 0.45883
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.03991,
-     "serré": 0.18052,
-     "gauche": 0.16611,
-     "droite": 0.61346
+     "centre": 0.09053,
+     "serré": 0.28667,
+     "gauche": 0.16194,
+     "droite": 0.46086
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.04481,
-     "serré": 0.18369,
-     "gauche": 0.15809,
-     "droite": 0.6134
+     "centre": 0.0668,
+     "serré": 0.28308,
+     "gauche": 0.23605,
+     "droite": 0.41406
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.06233,
-     "serré": 0.19429,
-     "gauche": 0.12386,
-     "droite": 0.61953
+     "centre": 0.08802,
+     "serré": 0.28724,
+     "gauche": 0.16659,
+     "droite": 0.45815
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.14581,
-     "serré": 0.19598,
-     "gauche": 0.0562,
-     "droite": 0.60201
+     "centre": 0.17407,
+     "serré": 0.29685,
+     "gauche": 0.14825,
+     "droite": 0.38083
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.09778,
-     "serré": 0.19781,
-     "gauche": 0.09729,
-     "droite": 0.60711
+     "centre": 0.17477,
+     "serré": 0.29689,
+     "gauche": 0.14456,
+     "droite": 0.38378
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.10505,
-     "serré": 0.19818,
-     "gauche": 0.09066,
-     "droite": 0.60611
+     "centre": 0.14356,
+     "serré": 0.29671,
+     "gauche": 0.20637,
+     "droite": 0.35336
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.13278,
-     "serré": 0.19752,
-     "gauche": 0.06625,
-     "droite": 0.60345
+     "centre": 0.17362,
+     "serré": 0.29649,
+     "gauche": 0.14945,
+     "droite": 0.38045
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.03874,
-     "serré": 0.16418,
-     "gauche": 0.19227,
-     "droite": 0.60481
+     "centre": 0.0522,
+     "serré": 0.25471,
+     "gauche": 0.16854,
+     "droite": 0.52456
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.01627,
-     "serré": 0.13895,
-     "gauche": 0.24723,
-     "droite": 0.59755
+     "centre": 0.05105,
+     "serré": 0.25386,
+     "gauche": 0.16568,
+     "droite": 0.52941
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.01999,
-     "serré": 0.14336,
-     "gauche": 0.24029,
-     "droite": 0.59637
+     "centre": 0.03951,
+     "serré": 0.25651,
+     "gauche": 0.22409,
+     "droite": 0.47988
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.03179,
-     "serré": 0.15787,
-     "gauche": 0.20418,
-     "droite": 0.60616
+     "centre": 0.05204,
+     "serré": 0.25438,
+     "gauche": 0.16999,
+     "droite": 0.5236
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.01017,
-     "serré": 0.08361,
-     "gauche": 0.18247,
-     "droite": 0.72375
+     "centre": 0.02472,
+     "serré": 0.21303,
+     "gauche": 0.14893,
+     "droite": 0.61333
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.00413,
-     "serré": 0.06485,
-     "gauche": 0.22272,
-     "droite": 0.7083
+     "centre": 0.02424,
+     "serré": 0.21245,
+     "gauche": 0.14554,
+     "droite": 0.61777
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.00413,
-     "serré": 0.06831,
-     "gauche": 0.21842,
-     "droite": 0.70914
+     "centre": 0.02353,
+     "serré": 0.2187,
+     "gauche": 0.19508,
+     "droite": 0.56269
     },
     "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.00704,
-     "serré": 0.07918,
-     "gauche": 0.19036,
-     "droite": 0.72341
-    },
-    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.0985,
-     "serré": 0.20205,
-     "gauche": 0.08034,
-     "droite": 0.61911
-    },
-    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.06128,
-     "serré": 0.19125,
-     "gauche": 0.13466,
-     "droite": 0.61281
-    },
-    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.06687,
-     "serré": 0.19375,
-     "gauche": 0.12694,
+     "centre": 0.02472,
+     "serré": 0.21271,
+     "gauche": 0.15012,
      "droite": 0.61245
     },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "centre": 0.10517,
+     "serré": 0.29087,
+     "gauche": 0.16234,
+     "droite": 0.44162
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "centre": 0.10791,
+     "serré": 0.28964,
+     "gauche": 0.15894,
+     "droite": 0.44351
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "centre": 0.08419,
+     "serré": 0.28615,
+     "gauche": 0.23199,
+     "droite": 0.39766
+    },
     "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.08786,
-     "serré": 0.20025,
-     "gauche": 0.09445,
-     "droite": 0.61744
+     "centre": 0.105,
+     "serré": 0.2905,
+     "gauche": 0.16323,
+     "droite": 0.44126
     },
     "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.18501,
-     "serré": 0.1858,
-     "gauche": 0.03558,
-     "droite": 0.59361
+     "centre": 0.19403,
+     "serré": 0.29824,
+     "gauche": 0.14459,
+     "droite": 0.36315
     },
     "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.13285,
-     "serré": 0.19524,
-     "gauche": 0.07273,
-     "droite": 0.59919
+     "centre": 0.19468,
+     "serré": 0.29798,
+     "gauche": 0.14086,
+     "droite": 0.36649
     },
     "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.14045,
-     "serré": 0.19438,
-     "gauche": 0.06699,
-     "droite": 0.59818
+     "centre": 0.16241,
+     "serré": 0.29884,
+     "gauche": 0.20162,
+     "droite": 0.33713
     },
     "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.17088,
-     "serré": 0.18924,
-     "gauche": 0.0456,
-     "droite": 0.59428
+     "centre": 0.19357,
+     "serré": 0.29785,
+     "gauche": 0.14584,
+     "droite": 0.36274
     },
     "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.05877,
-     "serré": 0.17643,
-     "gauche": 0.16157,
-     "droite": 0.60324
+     "centre": 0.06619,
+     "serré": 0.25957,
+     "gauche": 0.16599,
+     "droite": 0.50825
     },
     "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.03032,
-     "serré": 0.15471,
-     "gauche": 0.21713,
-     "droite": 0.59784
+     "centre": 0.0646,
+     "serré": 0.25864,
+     "gauche": 0.16354,
+     "droite": 0.51322
     },
     "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.03459,
-     "serré": 0.15873,
-     "gauche": 0.20976,
-     "droite": 0.59692
+     "centre": 0.05302,
+     "serré": 0.2614,
+     "gauche": 0.22124,
+     "droite": 0.46434
     },
     "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.05067,
-     "serré": 0.17144,
-     "gauche": 0.17407,
-     "droite": 0.60381
+     "centre": 0.06602,
+     "serré": 0.25924,
+     "gauche": 0.16748,
+     "droite": 0.50727
     },
     "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.01687,
-     "serré": 0.09395,
-     "gauche": 0.1614,
-     "droite": 0.72778
+     "centre": 0.03822,
+     "serré": 0.21829,
+     "gauche": 0.14698,
+     "droite": 0.59651
     },
     "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.0057,
-     "serré": 0.07818,
-     "gauche": 0.2029,
-     "droite": 0.71322
+     "centre": 0.0373,
+     "serré": 0.21731,
+     "gauche": 0.14424,
+     "droite": 0.60115
     },
     "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.00822,
-     "serré": 0.08118,
-     "gauche": 0.19813,
-     "droite": 0.71247
+     "centre": 0.03622,
+     "serré": 0.22368,
+     "gauche": 0.19328,
+     "droite": 0.54681
     },
     "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.01415,
-     "serré": 0.08964,
-     "gauche": 0.16966,
-     "droite": 0.72655
+     "centre": 0.03807,
+     "serré": 0.21794,
+     "gauche": 0.14846,
+     "droite": 0.59553
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.1359,
-     "serré": 0.20365,
-     "gauche": 0.04926,
-     "droite": 0.61119
+     "centre": 0.12253,
+     "serré": 0.29405,
+     "gauche": 0.15889,
+     "droite": 0.42453
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.09065,
-     "serré": 0.20086,
-     "gauche": 0.10415,
-     "droite": 0.60434
+     "centre": 0.12539,
+     "serré": 0.29279,
+     "gauche": 0.15561,
+     "droite": 0.42621
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.09726,
-     "serré": 0.20177,
-     "gauche": 0.096,
-     "droite": 0.60497
+     "centre": 0.10085,
+     "serré": 0.28979,
+     "gauche": 0.22761,
+     "droite": 0.38174
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.12317,
-     "serré": 0.20359,
-     "gauche": 0.06549,
-     "droite": 0.60774
+     "centre": 0.12236,
+     "serré": 0.29332,
+     "gauche": 0.16014,
+     "droite": 0.42418
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.23381,
-     "serré": 0.17016,
-     "gauche": 0.01856,
-     "droite": 0.57746
+     "centre": 0.21554,
+     "serré": 0.29876,
+     "gauche": 0.14058,
+     "droite": 0.34512
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.17761,
-     "serré": 0.18823,
-     "gauche": 0.05036,
-     "droite": 0.5838
+     "centre": 0.21601,
+     "serré": 0.29897,
+     "gauche": 0.13656,
+     "droite": 0.34847
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.18637,
-     "serré": 0.18583,
-     "gauche": 0.04508,
-     "droite": 0.58272
+     "centre": 0.18246,
+     "serré": 0.30026,
+     "gauche": 0.1966,
+     "droite": 0.32068
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.21964,
-     "serré": 0.17668,
-     "gauche": 0.02568,
-     "droite": 0.578
+     "centre": 0.21506,
+     "serré": 0.29836,
+     "gauche": 0.1419,
+     "droite": 0.34468
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.08726,
-     "serré": 0.18846,
-     "gauche": 0.13152,
-     "droite": 0.59276
+     "centre": 0.0796,
+     "serré": 0.26434,
+     "gauche": 0.16381,
+     "droite": 0.49226
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.05125,
-     "serré": 0.17277,
-     "gauche": 0.18659,
-     "droite": 0.5894
+     "centre": 0.07779,
+     "serré": 0.26363,
+     "gauche": 0.16091,
+     "droite": 0.49766
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.05675,
-     "serré": 0.17568,
-     "gauche": 0.17874,
-     "droite": 0.58883
+     "centre": 0.0654,
+     "serré": 0.26644,
+     "gauche": 0.21847,
+     "droite": 0.4497
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.0771,
-     "serré": 0.18551,
-     "gauche": 0.144,
-     "droite": 0.59339
+     "centre": 0.07942,
+     "serré": 0.26398,
+     "gauche": 0.16502,
+     "droite": 0.49158
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
-     "centre": 0.02817,
-     "serré": 0.10668,
-     "gauche": 0.14106,
-     "droite": 0.72408
+     "centre": 0.04882,
+     "serré": 0.22399,
+     "gauche": 0.14589,
+     "droite": 0.58129
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
-     "centre": 0.01373,
-     "serré": 0.09202,
-     "gauche": 0.18436,
-     "droite": 0.70989
+     "centre": 0.04767,
+     "serré": 0.22327,
+     "gauche": 0.14265,
+     "droite": 0.58641
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
-     "centre": 0.01573,
-     "serré": 0.09484,
-     "gauche": 0.17912,
-     "droite": 0.71031
+     "centre": 0.04636,
+     "serré": 0.22948,
+     "gauche": 0.19161,
+     "droite": 0.53255
     },
     "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
-     "centre": 0.02408,
-     "serré": 0.10288,
-     "gauche": 0.15023,
-     "droite": 0.72281
+     "centre": 0.04866,
+     "serré": 0.22363,
+     "gauche": 0.14709,
+     "droite": 0.58062
     }
    },
-   "sigma": 0.402,
+   "sigma": 0.312,
    "evaluateurs": [
-    "E34",
-    "E35",
-    "E36"
+    "E37",
+    "E38",
+    "E39"
    ],
-   "format": "lois par cas v1",
-   "alertes": [
-    "VE-SOND [prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien] gauche : zéro isolé ramené à 0.005 ([0.005, 0.0, 0.0274])",
-    "VE-SOND [prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien] centre : zéro isolé ramené à 0.01 ([0.01, 0.0, 0.0329])",
-    "VE-SOND [prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann] centre : zéro isolé ramené à 0.005 ([0.005, 0.0, 0.0226])",
-    "VE-SOND [prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon] centre : zéro isolé ramené à 0.005 ([0.005, 0.0, 0.0226])",
-    "VE-SOND [prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné] centre : zéro isolé ramené à 0.005 ([0.005, 0.0, 0.0329])",
-    "VE-SOND [prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien] centre : zéro isolé ramené à 0.0076 ([0.01, 0.0, 0.0076])",
-    "VE-SOND [prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann] centre : zéro isolé ramené à 0.005 ([0.005, 0.0, 0.005])",
-    "VE-SOND [prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon] centre : zéro isolé ramené à 0.005 ([0.005, 0.0, 0.005])",
-    "VE-SOND [prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné] centre : zéro isolé ramené à 0.005 ([0.005, 0.0, 0.0076])",
-    "VE-SOND [prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann] centre : zéro isolé ramené à 0.005 ([0.005, 0.0, 0.0311])",
-    "VE-SOND [prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon] centre : zéro isolé ramené à 0.005 ([0.005, 0.0, 0.0311])",
-    "VE-SOND [prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien] centre : zéro isolé ramené à 0.01 ([0.025, 0.0, 0.0106])",
-    "VE-SOND [prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann] centre : zéro isolé ramené à 0.005 ([0.005, 0.0, 0.007])",
-    "VE-SOND [prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon] centre : zéro isolé ramené à 0.005 ([0.005, 0.0, 0.007])",
-    "VE-SOND [prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné] centre : zéro isolé ramené à 0.01 ([0.015, 0.0, 0.0106])",
-    "VE-SOND [prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann] centre : zéro isolé ramené à 0.0099 ([0.01, 0.0, 0.0099])",
-    "VE-SOND [prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon] centre : zéro isolé ramené à 0.0099 ([0.015, 0.0, 0.0099])",
-    "VE-SOND [prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné] centre : zéro isolé ramené à 0.01 ([0.03, 0.0, 0.0148])"
-   ]
+   "format": "lois par cas v1"
   },
   "VE-RN": {
    "cas": {
@@ -4925,11 +4905,11 @@
    "pas d'arrêt au 31 mars 2027": 51.5
   },
   "EV-40a": 82.0,
-  "EV-40b": 31.0,
-  "EV-40c": 25.0,
+  "EV-40b": 27.0,
+  "EV-40c": 45.0,
   "EV-40d": 4.0,
   "EV-40e": 6.0,
-  "EV-40f": 20.0,
+  "EV-40f": 8.0,
   "EV-40g": 6.0,
   "EV-05": {
    "Marine Le Pen": 40.8,

@@ -1,0 +1,2028 @@
+{
+ "evaluateur": "E39",
+ "date": "2026-11-23",
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités. Note du 23 novembre 2026 : seul VE-SOND est réélicité. La question est sa persistance : la loi de chaque cas est celle du mois suivant, et le réseau enchaîne ces lois de mois en mois jusqu'au 26 mars 2027 (liste officielle) puis au premier tour du 18 avril 2027 : la loi d'avril résulte de l'enchaînement de ces lois mensuelles, jugez donc aussi la persistance à quatre ou cinq mois qu'elles impliquent. Les avis directs EV-40b, EV-40c et EV-40f (qualification de Philippe, de Mélenchon, de Glucksmann au second tour) servent au contrôle : la marginale impliquée par vos lois, avec la table actuelle du duel, doit en être proche. Les observations (octobre : gauche) sont celles du réseau au 23 novembre ; novembre n'est pas encore inscrit (mois en cours).",
+ "noeuds": {
+  "VE-SOND": {
+   "nom": "Deuxième place derrière le RN dans les intentions de vote (bloc et écart)",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "PV-BLOC",
+     "nom": "Candidatures du bloc central",
+     "etats": [
+      "les deux",
+      "Philippe seul",
+      "Attal seul",
+      "aucun des deux"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    },
+    {
+     "id": "PV-SOUTIEN",
+     "nom": "Bénéficiaire du soutien des Écologistes à la présidentielle",
+     "etats": [
+      "pas de soutien",
+      "Glucksmann",
+      "Mélenchon",
+      "autre ou non désigné"
+     ],
+     "decalage": 0,
+     "definition": "personne soutenue par les Écologistes, d'après leur vote du 10 au 13 décembre 2026 ou la première annonce officielle de leurs instances au plus tard le 31 janvier 2027 ; « pas de soutien » si le vote retient la candidature autonome ou n'a pas lieu ; « autre ou non désigné » si le soutien est voté sans bénéficiaire nommé au 31 janvier"
+    }
+   ],
+   "definition": "hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc (centre, gauche, droite) compté par son candidat le mieux placé, moyenne du mois sans correction de l'erreur historique (scripts/etat.py) : « serré » si les deux premiers blocs derrière le RN sont à 2 points ou moins l'un de l'autre ; sinon le bloc deuxième, devant le troisième de plus de 2 points",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "centre",
+    "serré",
+    "gauche",
+    "droite"
+   ],
+   "cas": {
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0159,
+     "loi": {
+      "centre": 0.68,
+      "serré": 0.15,
+      "gauche": 0.15,
+      "droite": 0.02
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0034,
+     "loi": {
+      "centre": 0.659,
+      "serré": 0.153,
+      "gauche": 0.168,
+      "droite": 0.02
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "centre": 0.619,
+      "serré": 0.161,
+      "gauche": 0.201,
+      "droite": 0.019
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0028,
+     "loi": {
+      "centre": 0.677,
+      "serré": 0.149,
+      "gauche": 0.154,
+      "droite": 0.02
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0692,
+     "loi": {
+      "centre": 0.777,
+      "serré": 0.114,
+      "gauche": 0.097,
+      "droite": 0.012
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0184,
+     "loi": {
+      "centre": 0.76,
+      "serré": 0.118,
+      "gauche": 0.109,
+      "droite": 0.013
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0099,
+     "loi": {
+      "centre": 0.728,
+      "serré": 0.126,
+      "gauche": 0.134,
+      "droite": 0.012
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0142,
+     "loi": {
+      "centre": 0.774,
+      "serré": 0.114,
+      "gauche": 0.1,
+      "droite": 0.012
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0048,
+     "loi": {
+      "centre": 0.543,
+      "serré": 0.2,
+      "gauche": 0.22,
+      "droite": 0.037
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0017,
+     "loi": {
+      "centre": 0.519,
+      "serré": 0.201,
+      "gauche": 0.243,
+      "droite": 0.037
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": 0.476,
+      "serré": 0.206,
+      "gauche": 0.283,
+      "droite": 0.035
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": 0.54,
+      "serré": 0.198,
+      "gauche": 0.225,
+      "droite": 0.037
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0031,
+     "loi": {
+      "centre": 0.463,
+      "serré": 0.227,
+      "gauche": 0.249,
+      "droite": 0.061
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "centre": 0.439,
+      "serré": 0.227,
+      "gauche": 0.274,
+      "droite": 0.06
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": 0.399,
+      "serré": 0.23,
+      "gauche": 0.316,
+      "droite": 0.055
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": 0.459,
+      "serré": 0.225,
+      "gauche": 0.256,
+      "droite": 0.06
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.003,
+     "loi": {
+      "centre": 0.724,
+      "serré": 0.133,
+      "gauche": 0.126,
+      "droite": 0.017
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": 0.704,
+      "serré": 0.136,
+      "gauche": 0.143,
+      "droite": 0.017
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.668,
+      "serré": 0.144,
+      "gauche": 0.172,
+      "droite": 0.016
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": 0.721,
+      "serré": 0.133,
+      "gauche": 0.129,
+      "droite": 0.017
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0203,
+     "loi": {
+      "centre": 0.81,
+      "serré": 0.099,
+      "gauche": 0.081,
+      "droite": 0.01
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0059,
+     "loi": {
+      "centre": 0.796,
+      "serré": 0.103,
+      "gauche": 0.091,
+      "droite": 0.01
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0025,
+     "loi": {
+      "centre": 0.768,
+      "serré": 0.111,
+      "gauche": 0.111,
+      "droite": 0.01
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0044,
+     "loi": {
+      "centre": 0.808,
+      "serré": 0.099,
+      "gauche": 0.083,
+      "droite": 0.01
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": 0.595,
+      "serré": 0.182,
+      "gauche": 0.191,
+      "droite": 0.032
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.571,
+      "serré": 0.184,
+      "gauche": 0.212,
+      "droite": 0.033
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.529,
+      "serré": 0.191,
+      "gauche": 0.25,
+      "droite": 0.03
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.592,
+      "serré": 0.181,
+      "gauche": 0.195,
+      "droite": 0.032
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.516,
+      "serré": 0.211,
+      "gauche": 0.22,
+      "droite": 0.053
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.492,
+      "serré": 0.211,
+      "gauche": 0.243,
+      "droite": 0.054
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.451,
+      "serré": 0.217,
+      "gauche": 0.283,
+      "droite": 0.049
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.512,
+      "serré": 0.209,
+      "gauche": 0.226,
+      "droite": 0.053
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "centre": 0.765,
+      "serré": 0.116,
+      "gauche": 0.105,
+      "droite": 0.014
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.747,
+      "serré": 0.12,
+      "gauche": 0.119,
+      "droite": 0.014
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": 0.714,
+      "serré": 0.128,
+      "gauche": 0.144,
+      "droite": 0.014
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": 0.763,
+      "serré": 0.116,
+      "gauche": 0.107,
+      "droite": 0.014
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0129,
+     "loi": {
+      "centre": 0.841,
+      "serré": 0.085,
+      "gauche": 0.066,
+      "droite": 0.008
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0034,
+     "loi": {
+      "centre": 0.829,
+      "serré": 0.088,
+      "gauche": 0.075,
+      "droite": 0.008
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0016,
+     "loi": {
+      "centre": 0.804,
+      "serré": 0.096,
+      "gauche": 0.092,
+      "droite": 0.008
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "centre": 0.84,
+      "serré": 0.085,
+      "gauche": 0.067,
+      "droite": 0.008
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.646,
+      "serré": 0.164,
+      "gauche": 0.162,
+      "droite": 0.028
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.624,
+      "serré": 0.167,
+      "gauche": 0.181,
+      "droite": 0.028
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.584,
+      "serré": 0.174,
+      "gauche": 0.216,
+      "droite": 0.026
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.643,
+      "serré": 0.163,
+      "gauche": 0.167,
+      "droite": 0.027
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.57,
+      "serré": 0.193,
+      "gauche": 0.191,
+      "droite": 0.046
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.547,
+      "serré": 0.195,
+      "gauche": 0.211,
+      "droite": 0.047
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.506,
+      "serré": 0.201,
+      "gauche": 0.25,
+      "droite": 0.043
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.567,
+      "serré": 0.192,
+      "gauche": 0.195,
+      "droite": 0.046
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0279,
+     "loi": {
+      "centre": 0.17,
+      "serré": 0.38,
+      "gauche": 0.42,
+      "droite": 0.03
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.007,
+     "loi": {
+      "centre": 0.156,
+      "serré": 0.368,
+      "gauche": 0.447,
+      "droite": 0.029
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0035,
+     "loi": {
+      "centre": 0.134,
+      "serré": 0.353,
+      "gauche": 0.488,
+      "droite": 0.025
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "centre": 0.168,
+      "serré": 0.375,
+      "gauche": 0.427,
+      "droite": 0.03
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0638,
+     "loi": {
+      "centre": 0.251,
+      "serré": 0.374,
+      "gauche": 0.351,
+      "droite": 0.024
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0258,
+     "loi": {
+      "centre": 0.233,
+      "serré": 0.366,
+      "gauche": 0.378,
+      "droite": 0.023
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0124,
+     "loi": {
+      "centre": 0.204,
+      "serré": 0.357,
+      "gauche": 0.419,
+      "droite": 0.02
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0164,
+     "loi": {
+      "centre": 0.248,
+      "serré": 0.37,
+      "gauche": 0.359,
+      "droite": 0.023
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0087,
+     "loi": {
+      "centre": 0.103,
+      "serré": 0.385,
+      "gauche": 0.469,
+      "droite": 0.043
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0038,
+     "loi": {
+      "centre": 0.094,
+      "serré": 0.37,
+      "gauche": 0.495,
+      "droite": 0.041
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "centre": 0.08,
+      "serré": 0.351,
+      "gauche": 0.534,
+      "droite": 0.035
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0015,
+     "loi": {
+      "centre": 0.102,
+      "serré": 0.38,
+      "gauche": 0.476,
+      "droite": 0.042
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0041,
+     "loi": {
+      "centre": 0.078,
+      "serré": 0.388,
+      "gauche": 0.473,
+      "droite": 0.061
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "centre": 0.071,
+      "serré": 0.372,
+      "gauche": 0.498,
+      "droite": 0.059
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": 0.06,
+      "serré": 0.353,
+      "gauche": 0.537,
+      "droite": 0.05
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": 0.077,
+      "serré": 0.383,
+      "gauche": 0.48,
+      "droite": 0.06
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0073,
+     "loi": {
+      "centre": 0.202,
+      "serré": 0.376,
+      "gauche": 0.394,
+      "droite": 0.028
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "centre": 0.186,
+      "serré": 0.365,
+      "gauche": 0.422,
+      "droite": 0.027
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": 0.161,
+      "serré": 0.353,
+      "gauche": 0.462,
+      "droite": 0.024
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0016,
+     "loi": {
+      "centre": 0.199,
+      "serré": 0.371,
+      "gauche": 0.402,
+      "droite": 0.028
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0149,
+     "loi": {
+      "centre": 0.292,
+      "serré": 0.363,
+      "gauche": 0.323,
+      "droite": 0.022
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0066,
+     "loi": {
+      "centre": 0.273,
+      "serré": 0.356,
+      "gauche": 0.35,
+      "droite": 0.021
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0034,
+     "loi": {
+      "centre": 0.24,
+      "serré": 0.35,
+      "gauche": 0.391,
+      "droite": 0.019
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0033,
+     "loi": {
+      "centre": 0.289,
+      "serré": 0.359,
+      "gauche": 0.33,
+      "droite": 0.022
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0019,
+     "loi": {
+      "centre": 0.125,
+      "serré": 0.387,
+      "gauche": 0.447,
+      "droite": 0.041
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": 0.114,
+      "serré": 0.373,
+      "gauche": 0.474,
+      "droite": 0.039
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": 0.097,
+      "serré": 0.356,
+      "gauche": 0.513,
+      "droite": 0.034
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.123,
+      "serré": 0.382,
+      "gauche": 0.455,
+      "droite": 0.04
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "centre": 0.095,
+      "serré": 0.393,
+      "gauche": 0.453,
+      "droite": 0.059
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.087,
+      "serré": 0.377,
+      "gauche": 0.479,
+      "droite": 0.057
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.074,
+      "serré": 0.359,
+      "gauche": 0.519,
+      "droite": 0.048
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.094,
+      "serré": 0.387,
+      "gauche": 0.461,
+      "droite": 0.058
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0038,
+     "loi": {
+      "centre": 0.239,
+      "serré": 0.368,
+      "gauche": 0.367,
+      "droite": 0.026
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "centre": 0.222,
+      "serré": 0.36,
+      "gauche": 0.392,
+      "droite": 0.026
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": 0.193,
+      "serré": 0.35,
+      "gauche": 0.435,
+      "droite": 0.022
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "centre": 0.236,
+      "serré": 0.364,
+      "gauche": 0.374,
+      "droite": 0.026
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0091,
+     "loi": {
+      "centre": 0.338,
+      "serré": 0.348,
+      "gauche": 0.294,
+      "droite": 0.02
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0041,
+     "loi": {
+      "centre": 0.318,
+      "serré": 0.343,
+      "gauche": 0.319,
+      "droite": 0.02
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0018,
+     "loi": {
+      "centre": 0.282,
+      "serré": 0.341,
+      "gauche": 0.36,
+      "droite": 0.017
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "centre": 0.335,
+      "serré": 0.345,
+      "gauche": 0.3,
+      "droite": 0.02
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0016,
+     "loi": {
+      "centre": 0.151,
+      "serré": 0.387,
+      "gauche": 0.423,
+      "droite": 0.039
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": 0.138,
+      "serré": 0.374,
+      "gauche": 0.451,
+      "droite": 0.037
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.119,
+      "serré": 0.359,
+      "gauche": 0.49,
+      "droite": 0.032
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.149,
+      "serré": 0.382,
+      "gauche": 0.431,
+      "droite": 0.038
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.115,
+      "serré": 0.396,
+      "gauche": 0.433,
+      "droite": 0.056
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.106,
+      "serré": 0.381,
+      "gauche": 0.459,
+      "droite": 0.054
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.09,
+      "serré": 0.364,
+      "gauche": 0.499,
+      "droite": 0.047
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.114,
+      "serré": 0.39,
+      "gauche": 0.441,
+      "droite": 0.055
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0599,
+     "loi": {
+      "centre": 0.05,
+      "serré": 0.09,
+      "gauche": 0.85,
+      "droite": 0.01
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0253,
+     "loi": {
+      "centre": 0.044,
+      "serré": 0.083,
+      "gauche": 0.864,
+      "droite": 0.009
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0137,
+     "loi": {
+      "centre": 0.035,
+      "serré": 0.075,
+      "gauche": 0.883,
+      "droite": 0.007
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0116,
+     "loi": {
+      "centre": 0.049,
+      "serré": 0.088,
+      "gauche": 0.853,
+      "droite": 0.01
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0712,
+     "loi": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0438,
+     "loi": {
+      "centre": 0.074,
+      "serré": 0.093,
+      "gauche": 0.825,
+      "droite": 0.008
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0191,
+     "loi": {
+      "centre": 0.06,
+      "serré": 0.085,
+      "gauche": 0.848,
+      "droite": 0.007
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0198,
+     "loi": {
+      "centre": 0.082,
+      "serré": 0.098,
+      "gauche": 0.811,
+      "droite": 0.009
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0352,
+     "loi": {
+      "centre": 0.028,
+      "serré": 0.084,
+      "gauche": 0.875,
+      "droite": 0.013
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0188,
+     "loi": {
+      "centre": 0.025,
+      "serré": 0.078,
+      "gauche": 0.885,
+      "droite": 0.012
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0099,
+     "loi": {
+      "centre": 0.02,
+      "serré": 0.069,
+      "gauche": 0.901,
+      "droite": 0.01
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0057,
+     "loi": {
+      "centre": 0.027,
+      "serré": 0.082,
+      "gauche": 0.878,
+      "droite": 0.013
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0272,
+     "loi": {
+      "centre": 0.021,
+      "serré": 0.084,
+      "gauche": 0.876,
+      "droite": 0.019
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0092,
+     "loi": {
+      "centre": 0.018,
+      "serré": 0.078,
+      "gauche": 0.887,
+      "droite": 0.017
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0062,
+     "loi": {
+      "centre": 0.015,
+      "serré": 0.069,
+      "gauche": 0.902,
+      "droite": 0.014
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0052,
+     "loi": {
+      "centre": 0.021,
+      "serré": 0.082,
+      "gauche": 0.879,
+      "droite": 0.018
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0103,
+     "loi": {
+      "centre": 0.062,
+      "serré": 0.093,
+      "gauche": 0.835,
+      "droite": 0.01
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0059,
+     "loi": {
+      "centre": 0.055,
+      "serré": 0.086,
+      "gauche": 0.85,
+      "droite": 0.009
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0024,
+     "loi": {
+      "centre": 0.044,
+      "serré": 0.078,
+      "gauche": 0.871,
+      "droite": 0.007
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0028,
+     "loi": {
+      "centre": 0.061,
+      "serré": 0.091,
+      "gauche": 0.838,
+      "droite": 0.01
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0097,
+     "loi": {
+      "centre": 0.103,
+      "serré": 0.103,
+      "gauche": 0.785,
+      "droite": 0.009
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.007,
+     "loi": {
+      "centre": 0.091,
+      "serré": 0.096,
+      "gauche": 0.805,
+      "droite": 0.008
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0034,
+     "loi": {
+      "centre": 0.074,
+      "serré": 0.087,
+      "gauche": 0.832,
+      "droite": 0.007
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0025,
+     "loi": {
+      "centre": 0.101,
+      "serré": 0.101,
+      "gauche": 0.79,
+      "droite": 0.008
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0073,
+     "loi": {
+      "centre": 0.035,
+      "serré": 0.088,
+      "gauche": 0.864,
+      "droite": 0.013
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0039,
+     "loi": {
+      "centre": 0.031,
+      "serré": 0.081,
+      "gauche": 0.876,
+      "droite": 0.012
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0024,
+     "loi": {
+      "centre": 0.025,
+      "serré": 0.072,
+      "gauche": 0.893,
+      "droite": 0.01
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": 0.034,
+      "serré": 0.085,
+      "gauche": 0.868,
+      "droite": 0.013
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0058,
+     "loi": {
+      "centre": 0.026,
+      "serré": 0.088,
+      "gauche": 0.867,
+      "droite": 0.019
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "centre": 0.023,
+      "serré": 0.081,
+      "gauche": 0.879,
+      "droite": 0.017
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": 0.019,
+      "serré": 0.073,
+      "gauche": 0.894,
+      "droite": 0.014
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": 0.026,
+      "serré": 0.086,
+      "gauche": 0.87,
+      "droite": 0.018
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0051,
+     "loi": {
+      "centre": 0.077,
+      "serré": 0.096,
+      "gauche": 0.817,
+      "droite": 0.01
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0028,
+     "loi": {
+      "centre": 0.068,
+      "serré": 0.089,
+      "gauche": 0.834,
+      "droite": 0.009
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": 0.055,
+      "serré": 0.081,
+      "gauche": 0.857,
+      "droite": 0.007
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0016,
+     "loi": {
+      "centre": 0.076,
+      "serré": 0.094,
+      "gauche": 0.821,
+      "droite": 0.009
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0049,
+     "loi": {
+      "centre": 0.127,
+      "serré": 0.105,
+      "gauche": 0.76,
+      "droite": 0.008
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0036,
+     "loi": {
+      "centre": 0.113,
+      "serré": 0.098,
+      "gauche": 0.781,
+      "droite": 0.008
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "centre": 0.092,
+      "serré": 0.09,
+      "gauche": 0.812,
+      "droite": 0.006
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "centre": 0.124,
+      "serré": 0.103,
+      "gauche": 0.765,
+      "droite": 0.008
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0035,
+     "loi": {
+      "centre": 0.044,
+      "serré": 0.091,
+      "gauche": 0.852,
+      "droite": 0.013
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0021,
+     "loi": {
+      "centre": 0.039,
+      "serré": 0.084,
+      "gauche": 0.865,
+      "droite": 0.012
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": 0.031,
+      "serré": 0.076,
+      "gauche": 0.883,
+      "droite": 0.01
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.043,
+      "serré": 0.089,
+      "gauche": 0.856,
+      "droite": 0.012
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "centre": 0.033,
+      "serré": 0.092,
+      "gauche": 0.857,
+      "droite": 0.018
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0011,
+     "loi": {
+      "centre": 0.029,
+      "serré": 0.085,
+      "gauche": 0.869,
+      "droite": 0.017
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": 0.023,
+      "serré": 0.076,
+      "gauche": 0.887,
+      "droite": 0.014
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": 0.032,
+      "serré": 0.089,
+      "gauche": 0.861,
+      "droite": 0.018
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.005,
+     "loi": {
+      "centre": 0.2,
+      "serré": 0.25,
+      "gauche": 0.2,
+      "droite": 0.35
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": 0.188,
+      "serré": 0.248,
+      "gauche": 0.217,
+      "droite": 0.347
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": 0.173,
+      "serré": 0.254,
+      "gauche": 0.253,
+      "droite": 0.32
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": 0.199,
+      "serré": 0.249,
+      "gauche": 0.204,
+      "droite": 0.348
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0079,
+     "loi": {
+      "centre": 0.3,
+      "serré": 0.25,
+      "gauche": 0.17,
+      "droite": 0.28
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0036,
+     "loi": {
+      "centre": 0.284,
+      "serré": 0.25,
+      "gauche": 0.187,
+      "droite": 0.279
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0021,
+     "loi": {
+      "centre": 0.263,
+      "serré": 0.258,
+      "gauche": 0.219,
+      "droite": 0.26
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "centre": 0.298,
+      "serré": 0.249,
+      "gauche": 0.174,
+      "droite": 0.279
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0023,
+     "loi": {
+      "centre": 0.111,
+      "serré": 0.231,
+      "gauche": 0.204,
+      "droite": 0.454
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.001,
+     "loi": {
+      "centre": 0.104,
+      "serré": 0.228,
+      "gauche": 0.221,
+      "droite": 0.447
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": 0.096,
+      "serré": 0.234,
+      "gauche": 0.257,
+      "droite": 0.413
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.11,
+      "serré": 0.23,
+      "gauche": 0.209,
+      "droite": 0.451
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0053,
+     "loi": {
+      "centre": 0.071,
+      "serré": 0.198,
+      "gauche": 0.175,
+      "droite": 0.556
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0015,
+     "loi": {
+      "centre": 0.067,
+      "serré": 0.196,
+      "gauche": 0.189,
+      "droite": 0.548
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "centre": 0.062,
+      "serré": 0.203,
+      "gauche": 0.223,
+      "droite": 0.512
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": 0.071,
+      "serré": 0.197,
+      "gauche": 0.179,
+      "droite": 0.553
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "centre": 0.237,
+      "serré": 0.247,
+      "gauche": 0.188,
+      "droite": 0.328
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": 0.224,
+      "serré": 0.245,
+      "gauche": 0.205,
+      "droite": 0.326
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.206,
+      "serré": 0.252,
+      "gauche": 0.24,
+      "droite": 0.302
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.236,
+      "serré": 0.246,
+      "gauche": 0.191,
+      "droite": 0.327
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "centre": 0.347,
+      "serré": 0.241,
+      "gauche": 0.156,
+      "droite": 0.256
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": 0.33,
+      "serré": 0.241,
+      "gauche": 0.172,
+      "droite": 0.257
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": 0.307,
+      "serré": 0.251,
+      "gauche": 0.202,
+      "droite": 0.24
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.345,
+      "serré": 0.24,
+      "gauche": 0.16,
+      "droite": 0.255
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": 0.135,
+      "serré": 0.234,
+      "gauche": 0.195,
+      "droite": 0.436
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.126,
+      "serré": 0.231,
+      "gauche": 0.213,
+      "droite": 0.43
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.116,
+      "serré": 0.238,
+      "gauche": 0.248,
+      "droite": 0.398
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.134,
+      "serré": 0.233,
+      "gauche": 0.2,
+      "droite": 0.433
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0009,
+     "loi": {
+      "centre": 0.088,
+      "serré": 0.203,
+      "gauche": 0.169,
+      "droite": 0.54
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.082,
+      "serré": 0.2,
+      "gauche": 0.185,
+      "droite": 0.533
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": 0.076,
+      "serré": 0.208,
+      "gauche": 0.218,
+      "droite": 0.498
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.087,
+      "serré": 0.202,
+      "gauche": 0.174,
+      "droite": 0.537
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.28,
+      "serré": 0.242,
+      "gauche": 0.174,
+      "droite": 0.304
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.265,
+      "serré": 0.241,
+      "gauche": 0.191,
+      "droite": 0.303
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.245,
+      "serré": 0.249,
+      "gauche": 0.224,
+      "droite": 0.282
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.279,
+      "serré": 0.24,
+      "gauche": 0.178,
+      "droite": 0.303
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": 0.399,
+      "serré": 0.229,
+      "gauche": 0.141,
+      "droite": 0.231
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": 0.381,
+      "serré": 0.231,
+      "gauche": 0.155,
+      "droite": 0.233
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.356,
+      "serré": 0.241,
+      "gauche": 0.184,
+      "droite": 0.219
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.397,
+      "serré": 0.228,
+      "gauche": 0.145,
+      "droite": 0.23
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.164,
+      "serré": 0.235,
+      "gauche": 0.186,
+      "droite": 0.415
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.154,
+      "serré": 0.233,
+      "gauche": 0.202,
+      "droite": 0.411
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.142,
+      "serré": 0.24,
+      "gauche": 0.237,
+      "droite": 0.381
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.163,
+      "serré": 0.234,
+      "gauche": 0.19,
+      "droite": 0.413
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.108,
+      "serré": 0.207,
+      "gauche": 0.164,
+      "droite": 0.521
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": 0.101,
+      "serré": 0.205,
+      "gauche": 0.178,
+      "droite": 0.516
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.094,
+      "serré": 0.213,
+      "gauche": 0.211,
+      "droite": 0.482
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.107,
+      "serré": 0.206,
+      "gauche": 0.168,
+      "droite": 0.519
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-40b": {
+   "critere": "Édouard Philippe figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.25
+  },
+  "EV-40c": {
+   "critere": "Jean-Luc Mélenchon figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.45
+  },
+  "EV-40f": {
+   "critere": "Raphaël Glucksmann figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.1
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "forte"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "gauche"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-11-23"
+}

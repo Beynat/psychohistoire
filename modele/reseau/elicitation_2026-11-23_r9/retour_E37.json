@@ -1,0 +1,1600 @@
+{
+ "evaluateur": "E37",
+ "ronde": 2,
+ "lecture": "Seconde ronde (protocole IDEA). (1) défauts de ta réponse ; (2) questions où la marginale impliquée par TES lois s'écarte de plus de 5 points de ton avis direct ; (3) cas où les évaluateurs donnent des sens opposés par rapport au cas le plus fréquent, avec les lois et justifications anonymes des autres ; (4) pour chaque nœud, les lois et justifications des autres sur les trois cas les plus fréquents. Corrige ou maintiens en écrivant pourquoi.",
+ "defauts": [],
+ "marginales": [
+  {
+   "question": "EV-40c",
+   "issue": "oui",
+   "implique": 30.3,
+   "direct": 48.0
+  },
+  {
+   "question": "EV-40f",
+   "issue": "oui",
+   "implique": 22.8,
+   "direct": 7.0
+  }
+ ],
+ "sens_opposes": [
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "droite",
+   "ta_loi_cas": {
+    "centre": 0.8,
+    "serré": 0.17,
+    "gauche": 0.025,
+    "droite": 0.005
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.8,
+      "serré": 0.14,
+      "gauche": 0.05,
+      "droite": 0.01
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.777,
+      "serré": 0.114,
+      "gauche": 0.097,
+      "droite": 0.012
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "droite",
+   "ta_loi_cas": {
+    "centre": 0.81,
+    "serré": 0.165,
+    "gauche": 0.02,
+    "droite": 0.005
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.8,
+      "serré": 0.14,
+      "gauche": 0.05,
+      "droite": 0.01
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.76,
+      "serré": 0.118,
+      "gauche": 0.109,
+      "droite": 0.013
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Glucksmann": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "droite",
+   "ta_loi_cas": {
+    "centre": 0.74,
+    "serré": 0.21,
+    "gauche": 0.045,
+    "droite": 0.005
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.74,
+      "serré": 0.18,
+      "gauche": 0.07,
+      "droite": 0.01
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement).",
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.728,
+      "serré": 0.126,
+      "gauche": 0.134,
+      "droite": 0.012
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "droite",
+   "ta_loi_cas": {
+    "centre": 0.8,
+    "serré": 0.17,
+    "gauche": 0.025,
+    "droite": 0.005
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.8,
+      "serré": 0.14,
+      "gauche": 0.05,
+      "droite": 0.01
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.774,
+      "serré": 0.114,
+      "gauche": 0.1,
+      "droite": 0.012
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=autre ou non désigné": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.04,
+    "serré": 0.3,
+    "gauche": 0.6,
+    "droite": 0.06
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.07,
+      "serré": 0.34,
+      "gauche": 0.49,
+      "droite": 0.1
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.115,
+      "serré": 0.396,
+      "gauche": 0.433,
+      "droite": 0.056
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.04,
+    "serré": 0.3,
+    "gauche": 0.6,
+    "droite": 0.06
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.07,
+      "serré": 0.34,
+      "gauche": 0.49,
+      "droite": 0.1
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.114,
+      "serré": 0.39,
+      "gauche": 0.441,
+      "droite": 0.055
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.03,
+    "serré": 0.15,
+    "gauche": 0.815,
+    "droite": 0.005
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.09,
+      "serré": 0.16,
+      "gauche": 0.74,
+      "droite": 0.01
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.092,
+      "serré": 0.09,
+      "gauche": 0.812,
+      "droite": 0.006
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.06,
+    "serré": 0.35,
+    "gauche": 0.14,
+    "droite": 0.45
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.05,
+      "serré": 0.25,
+      "gauche": 0.15,
+      "droite": 0.55
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.2,
+      "serré": 0.25,
+      "gauche": 0.2,
+      "droite": 0.35
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.07,
+    "serré": 0.35,
+    "gauche": 0.12,
+    "droite": 0.46
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.05,
+      "serré": 0.25,
+      "gauche": 0.15,
+      "droite": 0.55
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.188,
+      "serré": 0.248,
+      "gauche": 0.217,
+      "droite": 0.347
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Glucksmann": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.05,
+    "serré": 0.33,
+    "gauche": 0.22,
+    "droite": 0.4
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.03,
+      "serré": 0.25,
+      "gauche": 0.22,
+      "droite": 0.5
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.173,
+      "serré": 0.254,
+      "gauche": 0.253,
+      "droite": 0.32
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.06,
+    "serré": 0.35,
+    "gauche": 0.14,
+    "droite": 0.45
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.05,
+      "serré": 0.25,
+      "gauche": 0.15,
+      "droite": 0.55
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.199,
+      "serré": 0.249,
+      "gauche": 0.204,
+      "droite": 0.348
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=autre ou non désigné": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.04,
+    "serré": 0.31,
+    "gauche": 0.15,
+    "droite": 0.5
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.03,
+      "serré": 0.22,
+      "gauche": 0.15,
+      "droite": 0.6
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.111,
+      "serré": 0.231,
+      "gauche": 0.204,
+      "droite": 0.454
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.04,
+    "serré": 0.31,
+    "gauche": 0.13,
+    "droite": 0.52
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.03,
+      "serré": 0.22,
+      "gauche": 0.15,
+      "droite": 0.6
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.104,
+      "serré": 0.228,
+      "gauche": 0.221,
+      "droite": 0.447
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.04,
+    "serré": 0.31,
+    "gauche": 0.15,
+    "droite": 0.5
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.03,
+      "serré": 0.22,
+      "gauche": 0.15,
+      "droite": 0.6
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.11,
+      "serré": 0.23,
+      "gauche": 0.209,
+      "droite": 0.451
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.05,
+    "serré": 0.33,
+    "gauche": 0.22,
+    "droite": 0.4
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.05,
+      "serré": 0.26,
+      "gauche": 0.22,
+      "droite": 0.47
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.206,
+      "serré": 0.252,
+      "gauche": 0.24,
+      "droite": 0.302
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (les deux), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.04,
+    "serré": 0.31,
+    "gauche": 0.15,
+    "droite": 0.5
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.05,
+      "serré": 0.23,
+      "gauche": 0.15,
+      "droite": 0.57
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.135,
+      "serré": 0.234,
+      "gauche": 0.195,
+      "droite": 0.436
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.04,
+    "serré": 0.31,
+    "gauche": 0.13,
+    "droite": 0.52
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.05,
+      "serré": 0.23,
+      "gauche": 0.15,
+      "droite": 0.57
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.126,
+      "serré": 0.231,
+      "gauche": 0.213,
+      "droite": 0.43
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.03,
+    "serré": 0.3,
+    "gauche": 0.21,
+    "droite": 0.46
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.04,
+      "serré": 0.24,
+      "gauche": 0.2,
+      "droite": 0.52
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.116,
+      "serré": 0.238,
+      "gauche": 0.248,
+      "droite": 0.398
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.04,
+    "serré": 0.31,
+    "gauche": 0.15,
+    "droite": 0.5
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.05,
+      "serré": 0.23,
+      "gauche": 0.15,
+      "droite": 0.57
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.134,
+      "serré": 0.233,
+      "gauche": 0.2,
+      "droite": 0.433
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (25-35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.04,
+    "serré": 0.31,
+    "gauche": 0.15,
+    "droite": 0.5
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.07,
+      "serré": 0.24,
+      "gauche": 0.15,
+      "droite": 0.54
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.164,
+      "serré": 0.235,
+      "gauche": 0.186,
+      "droite": 0.415
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.04,
+    "serré": 0.31,
+    "gauche": 0.13,
+    "droite": 0.52
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.07,
+      "serré": 0.24,
+      "gauche": 0.15,
+      "droite": 0.54
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.154,
+      "serré": 0.233,
+      "gauche": 0.202,
+      "droite": 0.411
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Glucksmann": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.03,
+    "serré": 0.3,
+    "gauche": 0.21,
+    "droite": 0.46
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.06,
+      "serré": 0.25,
+      "gauche": 0.2,
+      "droite": 0.49
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.142,
+      "serré": 0.24,
+      "gauche": 0.237,
+      "droite": 0.381
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (Mélenchon), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.04,
+    "serré": 0.31,
+    "gauche": 0.15,
+    "droite": 0.5
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.07,
+      "serré": 0.24,
+      "gauche": 0.15,
+      "droite": 0.54
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.163,
+      "serré": 0.234,
+      "gauche": 0.19,
+      "droite": 0.413
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=autre ou non désigné": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Attal seul), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.02,
+    "serré": 0.26,
+    "gauche": 0.14,
+    "droite": 0.58
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.05,
+      "serré": 0.2,
+      "gauche": 0.13,
+      "droite": 0.62
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.108,
+      "serré": 0.207,
+      "gauche": 0.164,
+      "droite": 0.521
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (pas de soutien), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.02,
+    "serré": 0.26,
+    "gauche": 0.12,
+    "droite": 0.6
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.05,
+      "serré": 0.2,
+      "gauche": 0.13,
+      "droite": 0.62
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.101,
+      "serré": 0.205,
+      "gauche": 0.178,
+      "droite": 0.516
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Glucksmann": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (Glucksmann), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  },
+  {
+   "noeud": "VE-SOND",
+   "cas": "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné",
+   "cas_reference": "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien",
+   "issue": "centre",
+   "ta_loi_cas": {
+    "centre": 0.02,
+    "serré": 0.26,
+    "gauche": 0.14,
+    "droite": 0.58
+   },
+   "ta_loi_reference": {
+    "centre": 0.05,
+    "serré": 0.2,
+    "gauche": 0.745,
+    "droite": 0.005
+   },
+   "autres": [
+    {
+     "evaluateur": "autre 1",
+     "loi_cas": {
+      "centre": 0.05,
+      "serré": 0.2,
+      "gauche": 0.13,
+      "droite": 0.62
+     },
+     "loi_reference": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+     }
+    },
+    {
+     "evaluateur": "autre 2",
+     "loi_cas": {
+      "centre": 0.107,
+      "serré": 0.206,
+      "gauche": 0.168,
+      "droite": 0.519
+     },
+     "loi_reference": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justifications": {
+      "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47).",
+      "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=autre ou non désigné": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (aucun des deux), soutien écologiste (autre ou non désigné), popularité (> 35 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+     }
+    }
+   ]
+  }
+ ],
+ "noeuds": {
+  "VE-SOND": {
+   "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+    "autre 1": {
+     "loi": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "autre 2": {
+     "loi": {
+      "centre": 0.084,
+      "serré": 0.101,
+      "gauche": 0.806,
+      "droite": 0.009
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    }
+   },
+   "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+    "autre 1": {
+     "loi": {
+      "centre": 0.8,
+      "serré": 0.14,
+      "gauche": 0.05,
+      "droite": 0.01
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "autre 2": {
+     "loi": {
+      "centre": 0.777,
+      "serré": 0.114,
+      "gauche": 0.097,
+      "droite": 0.012
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    }
+   },
+   "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=pas de soutien": {
+    "autre 1": {
+     "loi": {
+      "centre": 0.22,
+      "serré": 0.45,
+      "gauche": 0.3,
+      "droite": 0.03
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "autre 2": {
+     "loi": {
+      "centre": 0.251,
+      "serré": 0.374,
+      "gauche": 0.351,
+      "droite": 0.024
+     },
+     "justification": "jugement : persistance mensuelle partant de la série du dossier section 1.1 (3 changements d'état sur 15 transitions, gauche deuxième en octobre et novembre avec écart de 6,5 en novembre) et des taux de base section 2.3 (échange du deuxième derrière un même premier : 0,05 par transition, coudes-à-coudes courts) ; ajustements : bloc central (Philippe seul), soutien écologiste (pas de soutien), popularité (< 25 %) ; sondages post-15 octobre section 1.2 (gauche devant le centre dans 43 hypothèses sur 47)."
+    }
+   }
+  }
+ }
+}

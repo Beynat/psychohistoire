@@ -1,0 +1,1068 @@
+{
+ "evaluateur": "E38",
+ "date": "2026-11-23",
+ "format": "lois par cas v1",
+ "lecture": "Des cas qui ont la même loi peuvent être regroupés par un joker : remplacer, par exemple, « PV-VAINQ=PHI » par « PV-VAINQ=* » dans la clé, et supprimer les cas couverts ; chaque cas doit rester couvert, et le plus précis l'emporte. Pour chaque nœud et chaque cas (combinaison des états de ses parents, et état du mois précédent pour une variable d'état), donner la loi complète demandée : pour un pivot « à tout moment », la probabilité qu'il survienne sur toute sa fenêtre si ce cas valait pendant toute la fenêtre ; pour un pivot daté, la loi de ses issues à sa date ; pour une variable d'état, la loi de son état le mois suivant. Probabilités en fractions de somme 1. Chaque cas a une justification : un fait sourcé (URL ou référence) ou la mention « jugement » suivie du raisonnement. « poids_reseau » indique la fréquence du cas dans le réseau actuel : les cas fréquents comptent le plus. Donner enfin, dans « direct », votre probabilité pour chaque question indiquée, jugée directement ; elle sert à vérifier que vos lois sont cohérentes avec votre avis d'ensemble, pas de cible. Pour un pivot « à tout moment » dont un parent est lui-même un événement (une censure, une dissolution), le cas « parent=oui » s'applique au reste de la fenêtre à partir de sa survenue. Un verrou (« verrous ») rend la survenue impossible pendant la durée indiquée, quel que soit le cas : ne pas le recompter dans les probabilités. Note du 23 novembre 2026 : seul VE-SOND est réélicité. La question est sa persistance : la loi de chaque cas est celle du mois suivant, et le réseau enchaîne ces lois de mois en mois jusqu'au 26 mars 2027 (liste officielle) puis au premier tour du 18 avril 2027 : la loi d'avril résulte de l'enchaînement de ces lois mensuelles, jugez donc aussi la persistance à quatre ou cinq mois qu'elles impliquent. Les avis directs EV-40b, EV-40c et EV-40f (qualification de Philippe, de Mélenchon, de Glucksmann au second tour) servent au contrôle : la marginale impliquée par vos lois, avec la table actuelle du duel, doit en être proche. Les observations (octobre : gauche) sont celles du réseau au 23 novembre ; novembre n'est pas encore inscrit (mois en cours).",
+ "noeuds": {
+  "VE-SOND": {
+   "nom": "Deuxième place derrière le RN dans les intentions de vote (bloc et écart)",
+   "nature": "variable d'état",
+   "parents": [
+    {
+     "id": "VE-POP",
+     "nom": "Popularité du président de la République",
+     "etats": [
+      "< 25 %",
+      "25-35 %",
+      "> 35 %"
+     ],
+     "decalage": 1,
+     "definition": "part de satisfaits dans le baromètre mensuel de référence (data/etat/popularite.jsonl)"
+    },
+    {
+     "id": "PV-BLOC",
+     "nom": "Candidatures du bloc central",
+     "etats": [
+      "les deux",
+      "Philippe seul",
+      "Attal seul",
+      "aucun des deux"
+     ],
+     "decalage": 0,
+     "definition": "2027-03-26"
+    },
+    {
+     "id": "PV-SOUTIEN",
+     "nom": "Bénéficiaire du soutien des Écologistes à la présidentielle",
+     "etats": [
+      "pas de soutien",
+      "Glucksmann",
+      "Mélenchon",
+      "autre ou non désigné"
+     ],
+     "decalage": 0,
+     "definition": "personne soutenue par les Écologistes, d'après leur vote du 10 au 13 décembre 2026 ou la première annonce officielle de leurs instances au plus tard le 31 janvier 2027 ; « pas de soutien » si le vote retient la candidature autonome ou n'a pas lieu ; « autre ou non désigné » si le soutien est voté sans bénéficiaire nommé au 31 janvier"
+    }
+   ],
+   "definition": "hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc (centre, gauche, droite) compté par son candidat le mieux placé, moyenne du mois sans correction de l'erreur historique (scripts/etat.py) : « serré » si les deux premiers blocs derrière le RN sont à 2 points ou moins l'un de l'autre ; sinon le bloc deuxième, devant le troisième de plus de 2 points",
+   "date": null,
+   "fenetre": null,
+   "issues": [
+    "centre",
+    "serré",
+    "gauche",
+    "droite"
+   ],
+   "cas": {
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0221,
+     "loi": {
+      "centre": 0.7,
+      "serré": 0.2,
+      "gauche": 0.08,
+      "droite": 0.02
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "centre": 0.62,
+      "serré": 0.24,
+      "gauche": 0.12,
+      "droite": 0.02
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.1018,
+     "loi": {
+      "centre": 0.8,
+      "serré": 0.14,
+      "gauche": 0.05,
+      "droite": 0.01
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0099,
+     "loi": {
+      "centre": 0.74,
+      "serré": 0.18,
+      "gauche": 0.07,
+      "droite": 0.01
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0073,
+     "loi": {
+      "centre": 0.55,
+      "serré": 0.25,
+      "gauche": 0.15,
+      "droite": 0.05
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": 0.48,
+      "serré": 0.27,
+      "gauche": 0.2,
+      "droite": 0.05
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0049,
+     "loi": {
+      "centre": 0.3,
+      "serré": 0.25,
+      "gauche": 0.3,
+      "droite": 0.15
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=centre|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": 0.25,
+      "serré": 0.25,
+      "gauche": 0.37,
+      "droite": 0.13
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0042,
+     "loi": {
+      "centre": 0.72,
+      "serré": 0.21,
+      "gauche": 0.05,
+      "droite": 0.02
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.64,
+      "serré": 0.25,
+      "gauche": 0.09,
+      "droite": 0.02
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0306,
+     "loi": {
+      "centre": 0.82,
+      "serré": 0.15,
+      "gauche": 0.02,
+      "droite": 0.01
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0025,
+     "loi": {
+      "centre": 0.76,
+      "serré": 0.19,
+      "gauche": 0.04,
+      "droite": 0.01
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": 0.57,
+      "serré": 0.26,
+      "gauche": 0.12,
+      "droite": 0.05
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.5,
+      "serré": 0.28,
+      "gauche": 0.17,
+      "droite": 0.05
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.32,
+      "serré": 0.26,
+      "gauche": 0.27,
+      "droite": 0.15
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=centre|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.27,
+      "serré": 0.26,
+      "gauche": 0.34,
+      "droite": 0.13
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0026,
+     "loi": {
+      "centre": 0.74,
+      "serré": 0.22,
+      "gauche": 0.02,
+      "droite": 0.02
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": 0.66,
+      "serré": 0.26,
+      "gauche": 0.06,
+      "droite": 0.02
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0196,
+     "loi": {
+      "centre": 0.8267,
+      "serré": 0.1533,
+      "gauche": 0.01,
+      "droite": 0.01
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0016,
+     "loi": {
+      "centre": 0.78,
+      "serré": 0.2,
+      "gauche": 0.01,
+      "droite": 0.01
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.59,
+      "serré": 0.27,
+      "gauche": 0.09,
+      "droite": 0.05
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.52,
+      "serré": 0.29,
+      "gauche": 0.14,
+      "droite": 0.05
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.34,
+      "serré": 0.27,
+      "gauche": 0.24,
+      "droite": 0.15
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=centre|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.29,
+      "serré": 0.27,
+      "gauche": 0.31,
+      "droite": 0.13
+     },
+     "justification": "jugement : état centre stable 12 mois sur 16 dans la série (dossier 1.1) ; persistance forte si Philippe est seul, plus faible si le bloc reste divisé ou sans Philippe ; un soutien écologiste à Mélenchon pousse la gauche. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0402,
+     "loi": {
+      "centre": 0.14,
+      "serré": 0.42,
+      "gauche": 0.4,
+      "droite": 0.04
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0035,
+     "loi": {
+      "centre": 0.11,
+      "serré": 0.38,
+      "gauche": 0.48,
+      "droite": 0.03
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.106,
+     "loi": {
+      "centre": 0.22,
+      "serré": 0.45,
+      "gauche": 0.3,
+      "droite": 0.03
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0124,
+     "loi": {
+      "centre": 0.18,
+      "serré": 0.42,
+      "gauche": 0.38,
+      "droite": 0.02
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.014,
+     "loi": {
+      "centre": 0.08,
+      "serré": 0.36,
+      "gauche": 0.5,
+      "droite": 0.06
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "centre": 0.06,
+      "serré": 0.33,
+      "gauche": 0.56,
+      "droite": 0.05
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0062,
+     "loi": {
+      "centre": 0.03,
+      "serré": 0.32,
+      "gauche": 0.55,
+      "droite": 0.1
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=serré|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": 0.02,
+      "serré": 0.3,
+      "gauche": 0.6,
+      "droite": 0.08
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0112,
+     "loi": {
+      "centre": 0.16,
+      "serré": 0.43,
+      "gauche": 0.37,
+      "droite": 0.04
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0007,
+     "loi": {
+      "centre": 0.13,
+      "serré": 0.39,
+      "gauche": 0.45,
+      "droite": 0.03
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0248,
+     "loi": {
+      "centre": 0.24,
+      "serré": 0.46,
+      "gauche": 0.27,
+      "droite": 0.03
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0034,
+     "loi": {
+      "centre": 0.2,
+      "serré": 0.43,
+      "gauche": 0.35,
+      "droite": 0.02
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0028,
+     "loi": {
+      "centre": 0.1,
+      "serré": 0.37,
+      "gauche": 0.47,
+      "droite": 0.06
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": 0.08,
+      "serré": 0.34,
+      "gauche": 0.53,
+      "droite": 0.05
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "centre": 0.05,
+      "serré": 0.33,
+      "gauche": 0.52,
+      "droite": 0.1
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=serré|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0002,
+     "loi": {
+      "centre": 0.04,
+      "serré": 0.31,
+      "gauche": 0.57,
+      "droite": 0.08
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0062,
+     "loi": {
+      "centre": 0.18,
+      "serré": 0.44,
+      "gauche": 0.34,
+      "droite": 0.04
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": 0.15,
+      "serré": 0.4,
+      "gauche": 0.42,
+      "droite": 0.03
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0154,
+     "loi": {
+      "centre": 0.26,
+      "serré": 0.47,
+      "gauche": 0.24,
+      "droite": 0.03
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0018,
+     "loi": {
+      "centre": 0.22,
+      "serré": 0.44,
+      "gauche": 0.32,
+      "droite": 0.02
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "centre": 0.12,
+      "serré": 0.38,
+      "gauche": 0.44,
+      "droite": 0.06
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.1,
+      "serré": 0.35,
+      "gauche": 0.5,
+      "droite": 0.05
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": 0.07,
+      "serré": 0.34,
+      "gauche": 0.49,
+      "droite": 0.1
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=serré|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.06,
+      "serré": 0.32,
+      "gauche": 0.54,
+      "droite": 0.08
+     },
+     "justification": "jugement : un coude-à-coude se résout en général en un ou deux mois (dossier 2.3 : épisodes de 1, 1 et 3 mois ; août-septembre 2026 résolu vers la gauche) ; la pente actuelle favorise la gauche, sauf consolidation du centre derrière Philippe seul. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0968,
+     "loi": {
+      "centre": 0.03,
+      "serré": 0.11,
+      "gauche": 0.82,
+      "droite": 0.04
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0137,
+     "loi": {
+      "centre": 0.02,
+      "serré": 0.08,
+      "gauche": 0.88,
+      "droite": 0.02
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.1348,
+     "loi": {
+      "centre": 0.07,
+      "serré": 0.17,
+      "gauche": 0.74,
+      "droite": 0.02
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0191,
+     "loi": {
+      "centre": 0.05,
+      "serré": 0.14,
+      "gauche": 0.8,
+      "droite": 0.01
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0597,
+     "loi": {
+      "centre": 0.02,
+      "serré": 0.08,
+      "gauche": 0.86,
+      "droite": 0.04
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0099,
+     "loi": {
+      "centre": 0.01,
+      "serré": 0.06,
+      "gauche": 0.9,
+      "droite": 0.03
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0416,
+     "loi": {
+      "centre": 0.01,
+      "serré": 0.1,
+      "gauche": 0.84,
+      "droite": 0.05
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=gauche|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0062,
+     "loi": {
+      "centre": 0.01,
+      "serré": 0.08,
+      "gauche": 0.88,
+      "droite": 0.03
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.019,
+     "loi": {
+      "centre": 0.05,
+      "serré": 0.12,
+      "gauche": 0.79,
+      "droite": 0.04
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0024,
+     "loi": {
+      "centre": 0.04,
+      "serré": 0.09,
+      "gauche": 0.85,
+      "droite": 0.02
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0192,
+     "loi": {
+      "centre": 0.09,
+      "serré": 0.18,
+      "gauche": 0.71,
+      "droite": 0.02
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0034,
+     "loi": {
+      "centre": 0.07,
+      "serré": 0.15,
+      "gauche": 0.77,
+      "droite": 0.01
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0119,
+     "loi": {
+      "centre": 0.04,
+      "serré": 0.09,
+      "gauche": 0.83,
+      "droite": 0.04
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0024,
+     "loi": {
+      "centre": 0.03,
+      "serré": 0.07,
+      "gauche": 0.87,
+      "droite": 0.03
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0084,
+     "loi": {
+      "centre": 0.03,
+      "serré": 0.11,
+      "gauche": 0.81,
+      "droite": 0.05
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=gauche|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": 0.03,
+      "serré": 0.09,
+      "gauche": 0.85,
+      "droite": 0.03
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0095,
+     "loi": {
+      "centre": 0.07,
+      "serré": 0.13,
+      "gauche": 0.76,
+      "droite": 0.04
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": 0.06,
+      "serré": 0.1,
+      "gauche": 0.82,
+      "droite": 0.02
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0099,
+     "loi": {
+      "centre": 0.11,
+      "serré": 0.19,
+      "gauche": 0.68,
+      "droite": 0.02
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0022,
+     "loi": {
+      "centre": 0.09,
+      "serré": 0.16,
+      "gauche": 0.74,
+      "droite": 0.01
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0059,
+     "loi": {
+      "centre": 0.06,
+      "serré": 0.1,
+      "gauche": 0.8,
+      "droite": 0.04
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0012,
+     "loi": {
+      "centre": 0.05,
+      "serré": 0.08,
+      "gauche": 0.84,
+      "droite": 0.03
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0029,
+     "loi": {
+      "centre": 0.05,
+      "serré": 0.12,
+      "gauche": 0.78,
+      "droite": 0.05
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=gauche|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": 0.05,
+      "serré": 0.1,
+      "gauche": 0.82,
+      "droite": 0.03
+     },
+     "justification": "jugement : la gauche (Mélenchon 18-20) devance le centre dans 43 hypothèses sur 47 depuis le 15 oct., écart 6,5 en novembre (dossier 1.1-1.2) ; changement de 2e à premier inchangé rare (0,05 par transition, dossier 2.3), d'où forte persistance, atténuée si Philippe reste seul candidat du bloc central (Ifop Sud Radio, notice 10392 : Philippe 19 contre Mélenchon 18) et renforcée par un soutien écologiste à Mélenchon. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0069,
+     "loi": {
+      "centre": 0.05,
+      "serré": 0.25,
+      "gauche": 0.15,
+      "droite": 0.55
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": 0.03,
+      "serré": 0.25,
+      "gauche": 0.22,
+      "droite": 0.5
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0137,
+     "loi": {
+      "centre": 0.13,
+      "serré": 0.27,
+      "gauche": 0.15,
+      "droite": 0.45
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0021,
+     "loi": {
+      "centre": 0.1,
+      "serré": 0.27,
+      "gauche": 0.21,
+      "droite": 0.42
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0035,
+     "loi": {
+      "centre": 0.03,
+      "serré": 0.22,
+      "gauche": 0.15,
+      "droite": 0.6
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": 0.02,
+      "serré": 0.23,
+      "gauche": 0.2,
+      "droite": 0.55
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0073,
+     "loi": {
+      "centre": 0.01,
+      "serré": 0.18,
+      "gauche": 0.13,
+      "droite": 0.68
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=droite|VE-POP=< 25 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0013,
+     "loi": {
+      "centre": 0.01,
+      "serré": 0.2,
+      "gauche": 0.17,
+      "droite": 0.62
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0016,
+     "loi": {
+      "centre": 0.07,
+      "serré": 0.26,
+      "gauche": 0.15,
+      "droite": 0.52
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0003,
+     "loi": {
+      "centre": 0.05,
+      "serré": 0.26,
+      "gauche": 0.22,
+      "droite": 0.47
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0029,
+     "loi": {
+      "centre": 0.15,
+      "serré": 0.28,
+      "gauche": 0.15,
+      "droite": 0.42
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": 0.12,
+      "serré": 0.28,
+      "gauche": 0.21,
+      "droite": 0.39
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0006,
+     "loi": {
+      "centre": 0.05,
+      "serré": 0.23,
+      "gauche": 0.15,
+      "droite": 0.57
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.04,
+      "serré": 0.24,
+      "gauche": 0.2,
+      "droite": 0.52
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0014,
+     "loi": {
+      "centre": 0.03,
+      "serré": 0.19,
+      "gauche": 0.13,
+      "droite": 0.65
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=droite|VE-POP=25-35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": 0.03,
+      "serré": 0.21,
+      "gauche": 0.17,
+      "droite": 0.59
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité 25-35 % : léger transfert vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0004,
+     "loi": {
+      "centre": 0.09,
+      "serré": 0.27,
+      "gauche": 0.15,
+      "droite": 0.49
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=les deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.07,
+      "serré": 0.27,
+      "gauche": 0.22,
+      "droite": 0.44
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.002,
+     "loi": {
+      "centre": 0.17,
+      "serré": 0.29,
+      "gauche": 0.15,
+      "droite": 0.39
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Philippe seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.14,
+      "serré": 0.29,
+      "gauche": 0.21,
+      "droite": 0.36
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0005,
+     "loi": {
+      "centre": 0.07,
+      "serré": 0.24,
+      "gauche": 0.15,
+      "droite": 0.54
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=Attal seul|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0,
+     "loi": {
+      "centre": 0.06,
+      "serré": 0.25,
+      "gauche": 0.2,
+      "droite": 0.49
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=*": {
+     "poids_reseau": 0.0008,
+     "loi": {
+      "centre": 0.05,
+      "serré": 0.2,
+      "gauche": 0.13,
+      "droite": 0.62
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien non Mélenchon : effet faible sur le meilleur candidat de gauche (jugement)."
+    },
+    "prec=droite|VE-POP=> 35 %|PV-BLOC=aucun des deux|PV-SOUTIEN=Mélenchon": {
+     "poids_reseau": 0.0001,
+     "loi": {
+      "centre": 0.05,
+      "serré": 0.22,
+      "gauche": 0.17,
+      "droite": 0.56
+     },
+     "justification": "jugement : état jamais observé ; une droite deuxième viendrait d'un effondrement du centre (6 hypothèses de novembre où la droite égale ou dépasse le centre, dossier 1.2) ; persistance moyenne, retour vers la gauche plus probable que vers le centre, surtout sans Philippe. Popularité > 35 % : transfert un peu plus marqué vers le centre (jugement). Soutien des Écologistes à Mélenchon (offre Tondelier du 18 nov., dossier 3.3) : gauche renforcée (jugement)."
+    }
+   },
+   "verrous": []
+  }
+ },
+ "direct": {
+  "EV-40b": {
+   "critere": "Édouard Philippe figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.31
+  },
+  "EV-40c": {
+   "critere": "Jean-Luc Mélenchon figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.45
+  },
+  "EV-40f": {
+   "critere": "Raphaël Glucksmann figure sur la liste des deux candidats admis au second tour de l'élection présidentielle de 2027, établie par le Conseil constitutionnel après le premier tour (en tenant compte d'un éventuel retrait, selon l'article 7 de la Constitution). Si un candidat est élu dès le premier tour, la réponse est « oui » pour lui seul.",
+   "fenetre": {
+    "debut": "2026-10-03",
+    "fin": "2027-04-18"
+   },
+   "probabilite": 0.08
+  }
+ },
+ "observations": {
+  "VE-ECART": {
+   "2026-10": "120-160 pb"
+  },
+  "VE-MOBIL": {
+   "2026-10": "forte"
+  },
+  "VE-LYCEE": {
+   "2026-10": "forte"
+  },
+  "VE-POP": {
+   "2026-10": "< 25 %"
+  },
+  "VE-SOND": {
+   "2026-10": "gauche"
+  },
+  "VE-RN": {
+   "2026-10": "30-35 %"
+  }
+ },
+ "date_du_jour": "2026-11-23"
+}
