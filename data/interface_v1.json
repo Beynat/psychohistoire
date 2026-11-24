@@ -1,9 +1,9 @@
 {
- "genere_le": "2026-11-23",
+ "genere_le": "2026-11-24",
  "registre": "registre/v0.jsonl",
  "cycle": "2026-11",
  "version_structure": "structure v0.11 (16 octobre 2026, décisions de Nathan : état « serré » de VE-SOND, pivot PV-SOUTIEN relié au duel et aux sondages) ; structure v0.10.1 (16 octobre 2026, revue de Nathan : définition de l'hypothèse principale de VE-SOND et VE-RN écrite, justification fausse de la feuille PV-GAUCHE corrigée, dérogations déclarées aux contrôles de vraisemblance) ; structure v0.10 (11 octobre 2026, étape 13 : sous-réseau mouvements et ordre public — VE-LYCEE décalé parent de VE-MOBIL, pivot PV-CASSEURS, satellites EV-48, EV-49, EV-03, EV-44, EV-23, EV-14b) ; structure v0.9 (10 octobre 2026, étape 10 : profils de risque élicités sur tranches de dates réelles pour huit pivots « à tout moment », départ immédiat du Premier ministre après censure) ; structure v0.8 (10 octobre 2026, étape 9 : points d'entrée des chocs, nœud rare PV-VACANCE) ; structure v0.7.1 (10 octobre 2026, étape 5 : issue « autre candidat RN », PV-RNAUTRE, hypothèse H-01) ; v0.6 : calendrier sourcé ; v0.5 : verrous de l'article 12 ; v0.7.1 : sens attendus de liens, feuilles assumées, anciens identifiants (étape 7)",
- "version_tables": "tables v0.11 (16 octobre 2026, décisions de Nathan, lot L8 : VE-SOND avec l'état « serré », PV-SOUTIEN, PV-ECOLO, PV-BLOC, PV-GAUCHE et PV-DUEL réélicités sur dossier sourcé, E34 et E35 Opus, E36 Sonnet, deux rondes IDEA)",
+ "version_tables": "tables v0.12 (23 novembre 2026, question de Nathan sur le duel figé, lot L9 : persistance de VE-SOND réélicitée sur dossier sourcé, E37 et E38 Opus, E39 Sonnet, deux rondes IDEA ; VE-SOND seul)",
  "codes_candidats": {
   "RN": "candidat du RN (Marine Le Pen si PV-LEPEN = candidate ; sinon Jordan Bardella, ou un autre candidat si PV-RNAUTRE = oui)",
   "PHI": "Édouard Philippe",
@@ -541,7 +541,7 @@
    ],
    "definition": "hypothèses de premier tour du mois qui testent Édouard Philippe, chaque bloc (centre, gauche, droite) compté par son candidat le mieux placé, moyenne du mois sans correction de l'erreur historique (scripts/etat.py) : « serré » si les deux premiers blocs derrière le RN sont à 2 points ou moins l'un de l'autre ; sinon le bloc deuxième, devant le troisième de plus de 2 points",
    "observe": {
-    "2026-10": "serré"
+    "2026-10": "gauche"
    },
    "questions": []
   },
@@ -555,7 +555,7 @@
    ],
    "definition": "moyenne des sondages du mois pour le candidat du RN ; hypothèse principale : les hypothèses de premier tour du mois qui testent Édouard Philippe (scripts/etat.py), sans correction de l'erreur historique",
    "observe": {
-    "2026-10": "> 35 %"
+    "2026-10": "30-35 %"
    },
    "questions": []
   }
@@ -6839,11 +6839,30 @@
  "actualite": {
   "faits": [
    {
+    "fait": "reponse-gouvernement-mouvement-lyceen",
+    "premier_jour": "2026-10-14",
+    "dernier_jour": "2026-11-23",
+    "titres": 59,
+    "sources": 7,
+    "concerne": [
+     "Q-EV-10",
+     "Q-EV-47",
+     "Q-EV-49",
+     "Q-EV-50",
+     "Q-EV-52"
+    ],
+    "stade": null,
+    "statut": "fait établi",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
     "fait": "candidature-declaree-presidentielle",
     "premier_jour": "2026-10-14",
-    "dernier_jour": "2026-11-20",
-    "titres": 33,
-    "sources": 6,
+    "dernier_jour": "2026-11-23",
+    "titres": 41,
+    "sources": 7,
     "concerne": [
      "Q-EV-05"
     ],
@@ -6851,13 +6870,187 @@
     "statut": "fait public non vérifié, prolongé",
     "type": "fait public",
     "allegation": false,
+    "vigilance": "élevé"
+   },
+   {
+    "fait": "convocation-prefet-ministere-interieur",
+    "premier_jour": "2026-11-19",
+    "dernier_jour": "2026-11-23",
+    "titres": 28,
+    "sources": 5,
+    "concerne": [
+     "Q-EV-05",
+     "Q-EV-40a"
+    ],
+    "stade": "allégation",
+    "statut": "en observation",
+    "type": "mise en cause",
+    "allegation": true,
+    "vigilance": "élevé"
+   },
+   {
+    "fait": "lfi-mise-en-cause-violences-17-octobre",
+    "premier_jour": "2026-10-18",
+    "dernier_jour": "2026-11-23",
+    "titres": 21,
+    "sources": 7,
+    "concerne": [
+     "Q-EV-40c"
+    ],
+    "stade": "allégation",
+    "statut": "retombé",
+    "type": "mise en cause",
+    "allegation": true,
     "vigilance": "modéré"
+   },
+   {
+    "fait": "regle-or-budgetaire-constitution",
+    "premier_jour": "2026-11-22",
+    "dernier_jour": "2026-11-23",
+    "titres": 14,
+    "sources": 5,
+    "concerne": [
+     "Q-EV-01",
+     "Q-EV-03"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "élevé"
+   },
+   {
+    "fait": "calendrier-presidentielle-question",
+    "premier_jour": "2026-10-19",
+    "dernier_jour": "2026-11-23",
+    "titres": 11,
+    "sources": 6,
+    "concerne": [
+     "Q-EV-05",
+     "Q-EV-23"
+    ],
+    "stade": null,
+    "statut": "retombé",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "marches-dette-ia",
+    "premier_jour": "2026-10-15",
+    "dernier_jour": "2026-11-23",
+    "titres": 8,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-01",
+     "Q-EV-06"
+    ],
+    "stade": null,
+    "statut": "retombé",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "accord-generation-s-lfi-presidentielle",
+    "premier_jour": "2026-11-23",
+    "dernier_jour": "2026-11-23",
+    "titres": 3,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-19",
+     "Q-EV-40c"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "retrait-candidature-gauche-hors-partis",
+    "premier_jour": "2026-11-21",
+    "dernier_jour": "2026-11-23",
+    "titres": 3,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-19"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "prime-carburant-annonce",
+    "premier_jour": "2026-11-09",
+    "dernier_jour": "2026-11-23",
+    "titres": 2,
+    "sources": 2,
+    "concerne": [
+     "Q-EV-42"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "mobilisation-lyceenne-bilan-blesses-ministere",
+    "premier_jour": "2026-11-23",
+    "dernier_jour": "2026-11-23",
+    "titres": 1,
+    "sources": 1,
+    "concerne": [
+     "Q-EV-49"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "candidature-revolutionnaire-extreme-gauche",
+    "premier_jour": "2026-11-22",
+    "dernier_jour": "2026-11-22",
+    "titres": 1,
+    "sources": 1,
+    "concerne": [
+     "Q-EV-19"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "primaire-bloc-central",
+    "premier_jour": "2026-10-15",
+    "dernier_jour": "2026-11-21",
+    "titres": 64,
+    "sources": 7,
+    "concerne": [
+     "Q-EV-40b",
+     "Q-EV-40d",
+     "Q-EV-40e",
+     "Q-EV-40g",
+     "Q-EV-41"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, prolongé",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "élevé"
    },
    {
     "fait": "ecologistes-strategie-presidentielle",
     "premier_jour": "2026-10-13",
-    "dernier_jour": "2026-11-20",
-    "titres": 25,
+    "dernier_jour": "2026-11-21",
+    "titres": 28,
     "sources": 7,
     "concerne": [
      "Q-EV-18",
@@ -6870,19 +7063,82 @@
     "vigilance": "élevé"
    },
    {
-    "fait": "convocation-prefet-ministere-interieur",
-    "premier_jour": "2026-11-19",
-    "dernier_jour": "2026-11-20",
+    "fait": "gilets-jaunes-appel-21-novembre",
+    "premier_jour": "2026-11-14",
+    "dernier_jour": "2026-11-21",
     "titres": 11,
     "sources": 4,
     "concerne": [
-     "Q-EV-05",
+     "Q-EV-51",
+     "Q-EV-52"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "cadre-financier-europeen-proposition",
+    "premier_jour": "2026-11-21",
+    "dernier_jour": "2026-11-21",
+    "titres": 1,
+    "sources": 1,
+    "concerne": [
+     "Q-EV-C3a",
+     "Q-EV-C3b"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "budget-2027-debat-senat",
+    "premier_jour": "2026-11-06",
+    "dernier_jour": "2026-11-20",
+    "titres": 5,
+    "sources": 3,
+    "concerne": [
+     "Q-EV-02"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "procedure-judiciaire-depute-rn",
+    "premier_jour": "2026-10-27",
+    "dernier_jour": "2026-11-20",
+    "titres": 3,
+    "sources": 2,
+    "concerne": [
      "Q-EV-40a"
     ],
     "stade": "allégation",
     "statut": "en observation",
     "type": "mise en cause",
     "allegation": true,
+    "vigilance": "modéré"
+   },
+   {
+    "fait": "maires-reticents-parrainages",
+    "premier_jour": "2026-11-20",
+    "dernier_jour": "2026-11-20",
+    "titres": 2,
+    "sources": 2,
+    "concerne": [
+     "Q-EV-19",
+     "Q-EV-21",
+     "Q-EV-41"
+    ],
+    "stade": null,
+    "statut": "fait public non vérifié, en observation",
+    "type": "fait public",
+    "allegation": false,
     "vigilance": "modéré"
    },
    {
@@ -6899,25 +7155,6 @@
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
-   },
-   {
-    "fait": "primaire-bloc-central",
-    "premier_jour": "2026-10-15",
-    "dernier_jour": "2026-11-18",
-    "titres": 60,
-    "sources": 7,
-    "concerne": [
-     "Q-EV-40b",
-     "Q-EV-40d",
-     "Q-EV-40e",
-     "Q-EV-40g",
-     "Q-EV-41"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, prolongé",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "élevé"
    },
    {
     "fait": "midterms-resultats-2026",
@@ -7016,21 +7253,6 @@
     "sources": 4,
     "concerne": [
      "Q-EV-13"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "budget-2027-debat-senat",
-    "premier_jour": "2026-11-06",
-    "dernier_jour": "2026-11-17",
-    "titres": 4,
-    "sources": 3,
-    "concerne": [
-     "Q-EV-02"
     ],
     "stade": null,
     "statut": "fait public non vérifié, en observation",
@@ -7225,22 +7447,6 @@
     "vigilance": "modéré"
    },
    {
-    "fait": "gilets-jaunes-appel-21-novembre",
-    "premier_jour": "2026-11-14",
-    "dernier_jour": "2026-11-14",
-    "titres": 1,
-    "sources": 1,
-    "concerne": [
-     "Q-EV-51",
-     "Q-EV-52"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
     "fait": "proposition-americaine-accord-donbass",
     "premier_jour": "2026-11-14",
     "dernier_jour": "2026-11-14",
@@ -7252,25 +7458,6 @@
     ],
     "stade": null,
     "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "reponse-gouvernement-mouvement-lyceen",
-    "premier_jour": "2026-10-14",
-    "dernier_jour": "2026-11-13",
-    "titres": 58,
-    "sources": 7,
-    "concerne": [
-     "Q-EV-10",
-     "Q-EV-47",
-     "Q-EV-49",
-     "Q-EV-50",
-     "Q-EV-52"
-    ],
-    "stade": null,
-    "statut": "fait établi",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -7818,21 +8005,6 @@
     "vigilance": "modéré"
    },
    {
-    "fait": "prime-carburant-annonce",
-    "premier_jour": "2026-11-09",
-    "dernier_jour": "2026-11-09",
-    "titres": 1,
-    "sources": 1,
-    "concerne": [
-     "Q-EV-42"
-    ],
-    "stade": null,
-    "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
     "fait": "debat-dette-crise-financiere",
     "premier_jour": "2026-10-10",
     "dernier_jour": "2026-11-08",
@@ -8224,21 +8396,6 @@
     "vigilance": "modéré"
    },
    {
-    "fait": "calendrier-presidentielle-question",
-    "premier_jour": "2026-10-19",
-    "dernier_jour": "2026-11-03",
-    "titres": 9,
-    "sources": 5,
-    "concerne": [
-     "Q-EV-05"
-    ],
-    "stade": null,
-    "statut": "retombé",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
     "fait": "mobilisation-europeenne-vie-chere",
     "premier_jour": "2026-11-03",
     "dernier_jour": "2026-11-03",
@@ -8409,21 +8566,6 @@
     ],
     "stade": null,
     "statut": "fait public non vérifié, en observation",
-    "type": "fait public",
-    "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "marches-dette-ia",
-    "premier_jour": "2026-10-15",
-    "dernier_jour": "2026-10-31",
-    "titres": 4,
-    "sources": 2,
-    "concerne": [
-     "Q-EV-01"
-    ],
-    "stade": null,
-    "statut": "retombé",
     "type": "fait public",
     "allegation": false,
     "vigilance": "modéré"
@@ -8726,21 +8868,6 @@
     "vigilance": "modéré"
    },
    {
-    "fait": "procedure-judiciaire-depute-rn",
-    "premier_jour": "2026-10-27",
-    "dernier_jour": "2026-10-27",
-    "titres": 2,
-    "sources": 2,
-    "concerne": [
-     "Q-EV-40a"
-    ],
-    "stade": "allégation",
-    "statut": "en observation",
-    "type": "mise en cause",
-    "allegation": true,
-    "vigilance": "modéré"
-   },
-   {
     "fait": "sondage-popularite-candidats-gauche-droite",
     "premier_jour": "2026-10-27",
     "dernier_jour": "2026-10-27",
@@ -8816,21 +8943,6 @@
     "statut": "fait public non vérifié, en observation",
     "type": "fait public",
     "allegation": false,
-    "vigilance": "modéré"
-   },
-   {
-    "fait": "lfi-mise-en-cause-violences-17-octobre",
-    "premier_jour": "2026-10-18",
-    "dernier_jour": "2026-10-25",
-    "titres": 20,
-    "sources": 7,
-    "concerne": [
-     "Q-EV-40c"
-    ],
-    "stade": "allégation",
-    "statut": "retombé",
-    "type": "mise en cause",
-    "allegation": true,
     "vigilance": "modéré"
    },
    {
@@ -9416,6 +9528,69 @@
   ],
   "sans_question": [
    {
+    "fait": "emissions-public-senat-programmes",
+    "titres": 119,
+    "titres_7_derniers_jours": 22,
+    "sources_distinctes": 1,
+    "premier_jour": "2026-09-28",
+    "dernier_jour": "2026-11-23",
+    "emergence": false
+   },
+   {
+    "fait": "societe-divers",
+    "titres": 106,
+    "titres_7_derniers_jours": 16,
+    "sources_distinctes": 6,
+    "premier_jour": "2026-10-15",
+    "dernier_jour": "2026-11-23",
+    "emergence": false
+   },
+   {
+    "fait": "fiscalite-milliardaires",
+    "titres": 20,
+    "titres_7_derniers_jours": 12,
+    "sources_distinctes": 5,
+    "premier_jour": "2026-10-18",
+    "dernier_jour": "2026-11-23",
+    "emergence": false
+   },
+   {
+    "fait": "anthropic-introduction-bourse",
+    "titres": 17,
+    "titres_7_derniers_jours": 12,
+    "sources_distinctes": 3,
+    "premier_jour": "2026-10-26",
+    "dernier_jour": "2026-11-21",
+    "emergence": false
+   },
+   {
+    "fait": "legitime-defense-forces-ordre-texte",
+    "titres": 13,
+    "titres_7_derniers_jours": 12,
+    "sources_distinctes": 4,
+    "premier_jour": "2026-11-04",
+    "dernier_jour": "2026-11-21",
+    "emergence": false
+   },
+   {
+    "fait": "sommet-choose-france-2026",
+    "titres": 11,
+    "titres_7_derniers_jours": 11,
+    "sources_distinctes": 4,
+    "premier_jour": "2026-11-19",
+    "dernier_jour": "2026-11-23",
+    "emergence": false
+   },
+   {
+    "fait": "economie-entreprises-divers",
+    "titres": 78,
+    "titres_7_derniers_jours": 10,
+    "sources_distinctes": 4,
+    "premier_jour": "2026-10-21",
+    "dernier_jour": "2026-11-23",
+    "emergence": false
+   },
+   {
     "fait": "emission-politique-candidat",
     "titres": 15,
     "titres_7_derniers_jours": 9,
@@ -9425,129 +9600,66 @@
     "emergence": false
    },
    {
-    "fait": "anthropic-introduction-bourse",
-    "titres": 13,
-    "titres_7_derniers_jours": 8,
-    "sources_distinctes": 3,
-    "premier_jour": "2026-10-26",
-    "dernier_jour": "2026-11-19",
+    "fait": "international-divers",
+    "titres": 106,
+    "titres_7_derniers_jours": 9,
+    "sources_distinctes": 6,
+    "premier_jour": "2026-10-13",
+    "dernier_jour": "2026-11-23",
     "emergence": false
    },
    {
-    "fait": "gta-vi-jeu-video",
-    "titres": 8,
-    "titres_7_derniers_jours": 8,
-    "sources_distinctes": 4,
-    "premier_jour": "2026-11-17",
-    "dernier_jour": "2026-11-20",
-    "emergence": false
-   },
-   {
-    "fait": "culture-cinema-spectacles",
-    "titres": 80,
-    "titres_7_derniers_jours": 7,
-    "sources_distinctes": 5,
-    "premier_jour": "2026-10-06",
-    "dernier_jour": "2026-11-20",
-    "emergence": false
-   },
-   {
-    "fait": "sommet-shenzhen",
-    "titres": 8,
-    "titres_7_derniers_jours": 7,
-    "sources_distinctes": 3,
-    "premier_jour": "2026-11-16",
-    "dernier_jour": "2026-11-19",
-    "emergence": false
-   },
-   {
-    "fait": "inside-deutsche-bank-enquete",
-    "titres": 7,
-    "titres_7_derniers_jours": 7,
+    "fait": "proces-agression-michel-zecler",
+    "titres": 17,
+    "titres_7_derniers_jours": 9,
     "sources_distinctes": 2,
-    "premier_jour": "2026-11-17",
-    "dernier_jour": "2026-11-19",
-    "emergence": false
-   },
-   {
-    "fait": "diner-candidat-lfi-patrons",
-    "titres": 7,
-    "titres_7_derniers_jours": 7,
-    "sources_distinctes": 4,
-    "premier_jour": "2026-11-17",
-    "dernier_jour": "2026-11-20",
-    "emergence": false
-   },
-   {
-    "fait": "fiscalite-milliardaires",
-    "titres": 14,
-    "titres_7_derniers_jours": 6,
-    "sources_distinctes": 5,
-    "premier_jour": "2026-10-18",
-    "dernier_jour": "2026-11-20",
-    "emergence": false
-   },
-   {
-    "fait": "rn-promesses-subventions-associations",
-    "titres": 9,
-    "titres_7_derniers_jours": 6,
-    "sources_distinctes": 5,
-    "premier_jour": "2026-10-22",
-    "dernier_jour": "2026-11-20",
-    "emergence": false
-   },
-   {
-    "fait": "programme-candidat-horizons-presentation",
-    "titres": 6,
-    "titres_7_derniers_jours": 6,
-    "sources_distinctes": 3,
-    "premier_jour": "2026-11-18",
-    "dernier_jour": "2026-11-20",
-    "emergence": false
-   },
-   {
-    "fait": "degats-commerces-17-octobre",
-    "titres": 34,
-    "titres_7_derniers_jours": 5,
-    "sources_distinctes": 5,
-    "premier_jour": "2026-10-17",
-    "dernier_jour": "2026-11-20",
+    "premier_jour": "2026-11-08",
+    "dernier_jour": "2026-11-21",
     "emergence": false
    },
    {
     "fait": "affaire-nvidia-demission",
-    "titres": 11,
-    "titres_7_derniers_jours": 5,
+    "titres": 15,
+    "titres_7_derniers_jours": 9,
     "sources_distinctes": 2,
     "premier_jour": "2026-11-13",
-    "dernier_jour": "2026-11-19",
+    "dernier_jour": "2026-11-23",
     "emergence": false
    },
    {
-    "fait": "encadrement-loyers-prolongation-adoption",
-    "titres": 5,
-    "titres_7_derniers_jours": 5,
-    "sources_distinctes": 3,
-    "premier_jour": "2026-11-19",
-    "dernier_jour": "2026-11-20",
-    "emergence": false
-   },
-   {
-    "fait": "tech-divers",
-    "titres": 25,
-    "titres_7_derniers_jours": 4,
+    "fait": "gta-vi-jeu-video",
+    "titres": 9,
+    "titres_7_derniers_jours": 9,
     "sources_distinctes": 4,
-    "premier_jour": "2026-10-16",
-    "dernier_jour": "2026-11-20",
+    "premier_jour": "2026-11-17",
+    "dernier_jour": "2026-11-21",
     "emergence": false
    },
    {
-    "fait": "interviews-8h30-franceinfo",
-    "titres": 19,
-    "titres_7_derniers_jours": 4,
-    "sources_distinctes": 1,
-    "premier_jour": "2026-10-22",
-    "dernier_jour": "2026-11-20",
+    "fait": "inside-deutsche-bank-enquete",
+    "titres": 9,
+    "titres_7_derniers_jours": 9,
+    "sources_distinctes": 3,
+    "premier_jour": "2026-11-17",
+    "dernier_jour": "2026-11-22",
+    "emergence": false
+   },
+   {
+    "fait": "culture-cinema-spectacles",
+    "titres": 81,
+    "titres_7_derniers_jours": 8,
+    "sources_distinctes": 5,
+    "premier_jour": "2026-10-06",
+    "dernier_jour": "2026-11-21",
+    "emergence": false
+   },
+   {
+    "fait": "societe-justice-faits-divers",
+    "titres": 39,
+    "titres_7_derniers_jours": 7,
+    "sources_distinctes": 4,
+    "premier_jour": "2026-10-12",
+    "dernier_jour": "2026-11-23",
     "emergence": false
    }
   ],
